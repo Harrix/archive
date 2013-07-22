@@ -1,0 +1,192 @@
+\documentclass[a4paper,12pt]{article}
+
+\input{packages}
+\input{styles}
+
+\title{Harrix Data 1.0}
+\author{А.\,Б. Сергиенко}
+\date{\today}
+
+
+\begin{document}
+
+\input{names}
+
+\maketitle
+
+\begin{abstract}
+\textbf{Harrix Data 1.0} --- формат файлов вида \textbf{*.hdata} для представления данных для обработки и отображения в графиках в программах Harrix.
+\end{abstract}
+
+\tableofcontents
+
+\newpage
+
+\section{Вводная информация}
+
+Библиотека распространяется по лицензии Apache License, Version 2.0.
+
+Описание данного формата файлов располагается по адресу \href {https://github.com/Harrix/HarrixFileFormats} {https://github.com/Harrix/HarrixFileFormats}.
+
+С автором можно связаться по адресу \href {mailto:sergienkoanton@mail.ru} {sergienkoanton@mail.ru} или  \href {http://vk.com/harrix} {http://vk.com/harrix}. Сайт автора, где публикуются последние новости: \href {http://blog.harrix.org} {http://blog.harrix.org}, а проекты располагаются по адресу \href {http://harrix.org} {http://harrix.org}.
+
+
+\section{Краткое описание формата данных}
+
+Файл формата \textbf{Harrix Data 1.0} имеет расширение вида \textbf{*.hdata}.
+
+Файл представляет собой обычный текстовой файл, где информация располагается по строкам. Вначале файла идет служебная информация, а потом идут непосредственно данные.
+
+В качестве разделителя для числовых данных используется точка, а не запятая.
+
+\section{Пример файла *.hdata}
+
+Обратите внимание, что если Вы будете копировать примеры данных между строчками \textbf{BeginData} и \textbf{EndData} из данного документа, то между числами вместо знака табуляции будет знак пробела. Это неправильно! Так что копируйте из файлов, которые находятся на сайте \href {https://github.com/Harrix/HarrixFileFormats} {https://github.com/Harrix/HarrixFileFormats} или меняйте пробел на знак табуляции.
+
+\begin{lstlisting}[label=Example01,caption=Пример файла *.hdata]
+HarrixFileFormat = Harrix Data 1.0
+Site = https://github.com/Harrix/HarrixFileFormats
+Type = TwoIndependentChartsOfPointsAndLine
+Title = Тестовый график
+AxisX = x
+AxisX = y
+Parameters = ShowLine, ShowPoints, ShowArea, ShowSpecPoints
+BeginNamesOfCharts
+Количество деревьев
+Количество домов
+EndNamesOfCharts
+BeginData
+-0.807560891	-0.94366779	-3.14	-0.001592653
+0.00127521	-0.128120962	-3.04	-0.101417986
+-2.489437639	-0.611951554	-2.94	-0.200229985
+0.445603028	0.599178044	-2.84	-0.297041351
+1.586889318	1.085454093	-2.74	-0.390884779
+0.746497053	0.566555897	-2.64	-0.480822615
+2.568177686	0.617068194	-2.54	-0.56595623
+EndData
+\end{lstlisting}
+
+\section{Структура файла}
+
+Вначале в файле в первых двух строчках идет служебная информация, которая описывает формат файла.
+
+\begin{itemize}
+\item \textbf{Harrix File Format}.
+В первой строчке содержится название формата файла:
+\begin{lstlisting}[label=Line01,caption=Первая строчка файла *.hdata]
+HarrixFileFormat = Harrix Data 1.0
+\end{lstlisting}
+Она должна содержаться в каждом файле и не подлежит изменению.
+
+\item \textbf{Site}.
+Во второй строчке содержится информация о сайте, на котором содержится данное описание формата файла:
+\begin{lstlisting}[label=Line02,caption=Вторая строчка файла *.hdata]
+Site = https://github.com/Harrix/HarrixFileFormats
+\end{lstlisting}
+Она должна содержаться в каждом файле и не подлежит изменению.
+\end{itemize}
+
+Далее идут строчки описывающие данные, которые содержатся в файле. Данные строчки могут отсутствовать.
+
+\begin{itemize}
+\item \textbf{Type}.
+В следующей строчке написан формат данных, содержащихся в данном файле.
+\begin{lstlisting}[label=Line03,caption=Строчка с описанием типа данных в файле]
+Type = TwoIndependentChartsOfPointsAndLine
+\end{lstlisting}
+Данный параметр может принимать следующие значения:
+
+\begin{itemize}
+\item \textbf{Line};
+\item \textbf{TwoLines};
+\end{itemize}
+
+Рассмотрим их более подробно.
+
+\begin{itemize}
+\item \textbf{Line} --- файл содержат информацию о массиве точек с координатами x и y. То есть на графике выведется одна линия по точкам. Массив точек не должен быть отсортирован по какой-нибудь координате.
+
+В блоке между строчками \textbf{BeginNamesOfCharts} и \textbf{EndNamesOfCharts} должна содержаться только одна строчка, которая содержит название линии:
+\begin{lstlisting}[label=Line03_2,caption=Для Line ]
+BeginNamesOfCharts
+Название линии
+EndNamesOfCharts
+\end{lstlisting}
+
+Пример данных, которые содержатся в между строчками \textbf{BeginData} и \textbf{EndData} (с этими строчками включительно):
+\begin{lstlisting}[label=Line03_3,caption=Для Line ]
+BeginData
+3	0.111111
+4	0.0666667
+5	0.04
+6	0.0285714
+7	0.0204082
+8	0.015873
+9	0.0123457
+10	0.010101
+EndData
+\end{lstlisting}
+
+\item \textbf{TwoLines} --- файл содержат информацию о двух линиях с одинаковыми значениями по оси Ox. То есть на графике выведется две линии по точкам. Массив точек не должен быть отсортирован по какой-нибудь координате.
+
+В блоке между строчками \textbf{BeginNamesOfCharts} и \textbf{EndNamesOfCharts} должна содержаться две строчки, которая содержит название линии:
+\begin{lstlisting}[label=Line03_4,caption=Для Line ]
+BeginNamesOfCharts
+Количество домов
+Количество участков
+EndNamesOfCharts
+\end{lstlisting}
+
+Пример данных, которые содержатся в между строчками \textbf{BeginData} и \textbf{EndData} (с этими строчками включительно):
+\begin{lstlisting}[label=Line03_5,caption=Для Line ]
+BeginData
+3	5.111111	9
+7	7.0666667	-1
+5	4.04	12
+6	2.0285714	5
+7.1	8.0204082	8
+8	0.015873	4
+9	6.0123457	9
+5.5	4.010101	1
+11	15.00826446	7
+EndData
+\end{lstlisting}
+
+\item \textbf{TwoLines} --- файл содержат информацию о двух линиях с одинаковыми значениями по оси Ox. То есть на графике выведется две линии по точкам. Массив точек не должен быть отсортирован по какой-нибудь координате.
+
+В блоке между строчками \textbf{BeginNamesOfCharts} и \textbf{EndNamesOfCharts} должна содержаться две строчки, которая содержит название линии:
+\begin{lstlisting}[label=Line03_4,caption=Для Line ]
+BeginNamesOfCharts
+Количество домов
+Количество участков
+EndNamesOfCharts
+\end{lstlisting}
+
+Пример данных, которые содержатся в между строчками \textbf{BeginData} и \textbf{EndData} (с этими строчками включительно):
+\begin{lstlisting}[label=Line03_5,caption=Для Line ]
+BeginData
+3	5.111111	9
+7	7.0666667	-1
+5	4.04	12
+6	2.0285714	5
+7.1	8.0204082	8
+8	0.015873	4
+9	6.0123457	9
+5.5	4.010101	1
+11	15.00826446	7
+EndData
+\end{lstlisting}
+
+\end{itemize}
+
+\end{itemize}
+
+Потом идет блок, который обрамляется строчками \textbf{BeginNamesOfCharts} и \textbf{EndNamesOfCharts}.
+
+Наконец, идет блок, который обрамляется строчками \textbf{BeginData} и \textbf{EndData}. В данном блоке идут непосредственно данные. Данные располагаются в виде стандартного представления строк и столбцов. То есть каждая строка описывает одну точку или несколько точек (для некоторых типов данных). Каждый столбец содержит данные одного типа. Все столбцы разделяются знаком табуляции. Если в какой-то ячейке нет данных (например, данные содержат данные о двух линиях с разным количеством точек), то на месте пропуска ставится знак минуса <<->>.
+
+\section{Функции, которые обрабатывают данный формат файлов}
+
+В библиотеке \href {https://github.com/Harrix/QtHarrixLibrary} {https://github.com/Harrix/QtHarrixLibrary} на языке С++ имеются функции, которые обрабатывают данный формат файлов с среде Qt. К таким функциям относятся:
+
+\end{document}

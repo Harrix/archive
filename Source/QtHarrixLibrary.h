@@ -46,12 +46,10 @@ QString THQt_GiveRainbowColorRGB(double position);//Функция выдает 
 void THQt_RGBStringToThreeNumbers(QString RGB, int *R, int *G, int *B);//Функция переводит строку RGB типа #25ffb5 в три числа от 0 до 255, которые кодируют  цвета.
 QString THQt_ColorFromGradient(double position, QString FirstRGB, QString SecondRGB);//Функция выдает код RGB из градиента от одного цвета FirstRGB к другому цвету SecondRGB согласно позиции от 0 до 1.
 QString THQt_AlphaBlendingColorToColor(double alpha, QString FirstRGB, QString SecondRGB);//Функция накладывает сверху на цвет другой цвет с определенной прозрачностью.
-
 int HQt_CountOfColsFromQStringList(QStringList QStringListFromFile);//Функция подсчитывает сколько столбцов в текстовом файле, который скопировали в QStringListFromFile.
 int HQt_CountOfRowsFromQStringList(QStringList QStringListFromFile);//Функция подсчитывает сколько строк в текстовом файле, который скопировали в QStringListFromFile.
 int HQt_CountOfRowsFromQStringList(QStringList QStringListFromFile, int k);//Функция подсчитывает сколько строк в k столбце из текстового файла, который скопировали в QStringListFromFile.
 int HQt_CountOfRowsFromQStringList(QStringList QStringListFromFile, int *VMHL_ResultVector);//Функция подсчитывает сколько строк в каждом столбце из текстового файла с матрицей, который скопировали в QStringListFromFile.
-
 template <class T> void THQt_ReadVectorFromQStringList(QStringList QStringListFromFile, T *VMHL_VectorResult);//Функция считывает данные из QStringList в вектор.
 template <class T> void THQt_ReadTwoVectorFromQStringList(QStringList QStringListFromFile, T *VMHL_VectorResult1, T *VMHL_VectorResult2);//Функция считывает данные из QStringList в два вектора.
 template <class T> void THQt_ReadTwoVectorFromQStringList(QStringList QStringListFromFile, T *VMHL_VectorResult1, QDate *VMHL_VectorResult2);//Функция считывает данные из QStringList в два вектора (второй вектор - это даты).
@@ -59,11 +57,15 @@ template <class T> void THQt_ReadMatrixFromQStringList(QStringList QStringListFr
 template <class T> void THQt_ReadColFromQStringList(QStringList QStringListFromFile, int k, T *VMHL_VectorResult);//Функция считывает данные какого-то k столбца из QStringList в виде матрицы.
 void THQt_ReadColFromQStringList(QStringList QStringListFromFile, int k, QDate *VMHL_VectorResult);//Функция считывает данные какого-то k столбца с датами из QStringList в виде матрицы.
 void THQt_ReadColFromQStringList(QStringList QStringListFromFile, int k, QString *VMHL_VectorResult);//Функция считывает данные какого-то k столбца с датами из QStringList в виде матрицы.
+QString HQt_TextBeforeEqualSign (QString String);//Функция возвращает текст строки до первого знака =.
+QString HQt_TextAfterEqualSign (QString String);//Функция возвращает текст строки после первого знака =.
 
 //Для отображения HTML текста
 QString HQt_BeginHtml (); //Функция возвращает строку с началом HTML файла, в который другими функциями добавляются иные данные.
 QString HQt_EndHtml (); //Функция возвращает строку с концовкой HTML файла, в который другими функциями добавляются иные данные.
-QString HQt_ShowText (QString TitleX);
+QString HQt_ShowText (QString TitleX);//Функция возвращает строку с выводом некоторой строки с HTML кодами. Для добавление в html файл.
+QString HQt_ShowSimpleText (QString String);//Функция возвращает строку с выводом некоторой строки с HTML кодами без всякого излишевства. Для добавление в html файл.
+QString HQt_ShowAlert (QString String);//Функция возвращает строку с выводом некоторого предупреждения. Для добавление в html файл.
 template <class T> QString THQt_ShowNumber (T VMHL_X, QString TitleX, QString NameX);//Функция возвращает строку с выводом некоторого числа VMHL_X с HTML кодами.
 template <class T> QString THQt_ShowVector (T *VMHL_Vector, int VMHL_N, QString TitleVector, QString NameVector);//Функция возвращает строку с выводом некоторый вектора VMHL_Vector с HTML кодами.
 template <class T> QString THQt_NumberToText (T VMHL_X);//Функция выводит число VMHL_X в строку.
@@ -93,6 +95,8 @@ template <class T> QString THQt_ShowTwoIndependentChartsOfPointsAndLine (T *VMHL
 template <class T> QString THQt_ShowTwoIndependentChartsOfPointsAndLine (T *VMHL_VectorX1,T *VMHL_VectorY1,int VMHL_N1,T *VMHL_VectorX2,T *VMHL_VectorY2, int VMHL_N2, QString TitleChart, QString NameVectorX, QString NameVectorY,bool ShowLine,bool ShowPoints,bool ShowArea,bool ShowSpecPoints);//Функция возвращает строку с выводом некоторого двух независимых графиков по точкам с HTML кодами. Один график выводится в виде точек, а второй в виде линии. Удобно для отображения регрессий. Отличается от основной функции отсутствием легенды, то есть параметров NameLine1, NameLine2.
 template <class T> QString THQt_ShowTwoIndependentChartsOfPointsAndLine (T *VMHL_VectorX1,T *VMHL_VectorY1,int VMHL_N1,T *VMHL_VectorX2,T *VMHL_VectorY2, int VMHL_N2, QString TitleChart, QString NameVectorX, QString NameVectorY,QString NameLine1, QString NameLine2);//Функция возвращает строку с выводом некоторого двух независимых графиков по точкам с HTML кодами. Один график выводится в виде точек, а второй в виде линии. Удобно для отображения регрессий. Отличается от основной функции отсутствием булевых параметров - все по умолчанию.
 template <class T> QString THQt_ShowTwoIndependentChartsOfPointsAndLine (T *VMHL_VectorX1,T *VMHL_VectorY1,int VMHL_N1,T *VMHL_VectorX2,T *VMHL_VectorY2, int VMHL_N2);//Функция возвращает строку с выводом некоторого двух независимых графиков по точкам с HTML кодами. Один график выводится в виде точек, а второй в виде линии. Удобно для отображения регрессий. Отличается от основной функции отсутствием булевых параметров и подписей - все по умолчанию.
+QString HQt_ReadHdataToHtmlChart (QString filename);//Функция возвращает строку с HTML кодом графика в результате считывания информации из *.hdata. Для добавление в html файл.
+
 
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 // РЕАЛИЗАЦИЯ ШАБЛОНОВ

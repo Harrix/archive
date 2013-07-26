@@ -9,6 +9,7 @@
 #include <QStandardItemModel>
 #include <QSortFilterProxyModel>
 #include <typeinfo>
+#include <QFileDialog>
 
 #include "QtHarrixLibrary.h"
 #include "MathHarrixLibrary.h"
@@ -32,43 +33,24 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_pushButton_clicked()
 {
-        QString Html;
-        Html=HQt_BeginHtml ();
+    QString Html;
+    Html=HQt_BeginHtml ();
 
-        QStringList List = HQt_ReadFileToQStringList(path+"16.hdata");
-        int NX1=HQt_CountOfRowsFromQStringList(List,0);
-        int NY1=HQt_CountOfRowsFromQStringList(List,1);
-        int NX2=HQt_CountOfRowsFromQStringList(List,2);
-        int NY2=HQt_CountOfRowsFromQStringList(List,3);
-        double *dataX1=new double [NX1];
-        double *dataY1=new double [NY1];
-        double *dataX2=new double [NX2];
-        double *dataY2=new double [NY2];
+    Html+=HQt_ReadHdataToHtmlChart (QFileDialog::getOpenFileName(this, tr("Открыть файл с данными графика"),"",tr("Harrix Data 1.0 (*.hdata)")));
 
-        THQt_ReadColFromQStringList(List,0,dataX1);
-        THQt_ReadColFromQStringList(List,1,dataY1);
-        THQt_ReadColFromQStringList(List,2,dataX2);
-        THQt_ReadColFromQStringList(List,3,dataY2);
+    Html+=HQt_EndHtml();
+    HQt_SaveFile(Html, path+"temp.html");
+    ui->webView->setUrl(QUrl::fromLocalFile(path+"temp.html"));
+}
 
-        Html += THQt_ShowTwoIndependentChartsOfPointsAndLine (dataX1,dataY1,NX1,dataX2,dataY2,NX2,"Тестовый график","x","y","количество деревьев","количество домов");
+void MainWindow::on_action_triggered()
+{
+    QString Html;
+    Html=HQt_BeginHtml ();
 
-        Html += THQt_ShowTwoIndependentChartsOfPointsAndLine (dataX1,dataY1,NX1,dataX2,dataY2,NX2,"Тестовый график","x","y","количество деревьев","количество домов",true,true,true,true);
-        Html += THQt_ShowTwoIndependentChartsOfPointsAndLine (dataX1,dataY1,NX1,dataX2,dataY2,NX2,"Тестовый график","x","y","количество деревьев","количество домов",false,true,true,true);
-        Html += THQt_ShowTwoIndependentChartsOfPointsAndLine (dataX1,dataY1,NX1,dataX2,dataY2,NX2,"Тестовый график","x","y","количество деревьев","количество домов",true,false,true,true);
-        Html += THQt_ShowTwoIndependentChartsOfPointsAndLine (dataX1,dataY1,NX1,dataX2,dataY2,NX2,"Тестовый график","x","y","количество деревьев","количество домов",true,true,false,true);
-        Html += THQt_ShowTwoIndependentChartsOfPointsAndLine (dataX1,dataY1,NX1,dataX2,dataY2,NX2,"Тестовый график","x","y","количество деревьев","количество домов",true,true,true,false);
+    Html+=HQt_ReadHdataToHtmlChart (QFileDialog::getOpenFileName(this, tr("Открыть файл с данными графика"),"",tr("Harrix Data 1.0 (*.hdata)")));
 
-        Html += THQt_ShowTwoIndependentChartsOfPointsAndLine (dataX1,dataY1,NX1,dataX2,dataY2,NX2,"Тестовый график","x","y",true,true,true,true);
-        Html += THQt_ShowTwoIndependentChartsOfPointsAndLine (dataX1,dataY1,NX1,dataX2,dataY2,NX2,"Тестовый график","x","y","количество деревьев","количество домов");
-        Html += THQt_ShowTwoIndependentChartsOfPointsAndLine (dataX1,dataY1,NX1,dataX2,dataY2,NX2);
-
-
-        delete []dataX1;
-        delete []dataX2;
-        delete []dataY1;
-        delete []dataY2;
-
-        Html+=HQt_EndHtml();
-        HQt_SaveFile(Html, path+"temp.html");
-        ui->webView->setUrl(QUrl::fromLocalFile(path+"temp.html"));
+    Html+=HQt_EndHtml();
+    HQt_SaveFile(Html, path+"temp.html");
+    ui->webView->setUrl(QUrl::fromLocalFile(path+"temp.html"));
 }

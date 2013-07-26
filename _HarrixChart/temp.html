@@ -1,0 +1,71 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd">
+<html>
+<head>
+<meta name="qrichtext" content="1" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<style type="text/css">
+p, li { white-space: pre-wrap; }
+h1 { font-size:140% }
+h2 { font-size:120% }
+h3,h4,h5,h6 { font-size:110% }
+body { font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-style:normal; }
+</style>
+
+<link rel="stylesheet" type="text/css" href="jsxgraph.css" />
+<script type="text/javascript" src="jsxgraphcore.js"></script></head>
+
+<body>
+<!--Вывод графика-->
+<h2>Диэлектрическая проницаемость в зависимости от температуры</h2><div id="BoxxDkYzp" class="jxgbox" style="width:600px; height:300px;"></div>
+<script type="text/javascript">
+var BoardxDkYzp = JXG.JSXGraph.initBoard('BoxxDkYzp', {boundingbox: [2.2, 18.2099, 12.6, -4.20165], axis:false,keepaspectratio: false,showcopyright: false,showNavigation: false, zoom: {wheel: true}});
+var AxisXxDkYzp = BoardxDkYzp.create('axis', [[3, -1], [4, -1]],{withLabel: true, name: '&lambda;',label: {position:'lft',offset:[10,-21]}});
+var AxisYxDkYzp = BoardxDkYzp.create('axis', [[3, -1], [3, 0]],{withLabel: true, name: '&upsilon;',label: { position:'lrt',offset: [20,0]}});
+var DataXxDkYzp = [3, 5, 5.5, 6, 7, 7.1, 8, 9, 11];
+var DataY1xDkYzp = [5.11111, 4.04, 4.0101, 2.02857, 7.06667, 8.02041, 0.015873, 6.01235, 15.0083];
+var DataY2xDkYzp = [9, 12, 1, 5, -1, 8, 4, 9, 7];
+var DataXAreaxDkYzp = [3, 3, 5, 5.5, 6, 7, 7.1, 8, 9, 11, 11, 3];
+var DataY1AreaxDkYzp = [-1, 5.11111, 4.04, 4.0101, 2.02857, 7.06667, 8.02041, 0.015873, 6.01235, 15.0083, -1, -1];
+var DataY2AreaxDkYzp = [-1, 9, 12, 1, 5, -1, 8, 4, 9, 7, -1, -1];
+BoardxDkYzp.create('curve', [DataXAreaxDkYzp,DataY2AreaxDkYzp],{strokeColor:'#cccccc',highlightStrokeColor:'#cccccc',strokeWidth:0,highlightStrokeWidth:0,dash:0, fillColor:'#cccccc',highlightFillColor:'#cccccc',fillOpacity:0.5,highlightFillOpacity:0.5});
+BoardxDkYzp.create('curve', [DataXAreaxDkYzp,DataY1AreaxDkYzp],{strokeColor:'#97bbcd',highlightStrokeColor:'#97bbcd',strokeWidth:0,highlightStrokeWidth:0,dash:0, fillColor:'#97bbcd',highlightFillColor:'#97bbcd',fillOpacity:0.5,highlightFillOpacity:0.5});
+var Chart2xDkYzp= BoardxDkYzp.createElement('chart', [DataXxDkYzp,DataY2xDkYzp], {chartStyle:'line,point'});
+Chart2xDkYzp[0].setProperty('strokeColor:#cccccc','highlightStrokeColor:#7e7e7e','strokeWidth:2');
+for(var i=0; i<9;i++) 
+    {
+    Chart2xDkYzp[1][i].setProperty({strokeColor:'#cccccc',highlightStrokeColor:'#7e7e7e',fillColor:'white',highlightFillColor:'white',face:'o', size:2, strokeWidth:'2pt'});
+    }
+var Chart1xDkYzp= BoardxDkYzp.createElement('chart', [DataXxDkYzp,DataY1xDkYzp], {chartStyle:'line,point'});
+Chart1xDkYzp[0].setProperty('strokeColor:#97bbcd','highlightStrokeColor:#3c7693','strokeWidth:2');
+for(var i=0; i<9;i++) 
+    {
+    Chart1xDkYzp[1][i].setProperty({strokeColor:'#97bbcd',highlightStrokeColor:'#3c7693',fillColor:'white',highlightFillColor:'white',face:'o', size:2, strokeWidth:'2pt'});
+    }
+BoardxDkYzp.create('point',[3,-1], {strokeColor:'#88969c',highlightStrokeColor:'#3c7693',fillColor:'white',highlightFillColor:'white',strokeWidth:'2pt',face:'o', size:1, name:'Min<sub>x</sub> = 3, Min<sub>y</sub> = -1',label:{fontsize:10}});
+BoardxDkYzp.create('point',[3,15.0083], {strokeColor:'#88969c',highlightStrokeColor:'#3c7693',fillColor:'white',highlightFillColor:'white',strokeWidth:'2pt',face:'o', size:1, name:'Max<sub>y</sub> = 15.0083',label:{fontsize:10}});
+BoardxDkYzp.create('point',[11,-1], {strokeColor:'#88969c',highlightStrokeColor:'#3c7693',fillColor:'white',highlightFillColor:'white',strokeWidth:'2pt',face:'o', size:1, name:'Max<sub>x</sub> = 11',label:{fontsize:10}});
+</script>
+<div id="BoxLegendlXqaQL" class="jxgbox" style="width:600px; height:100px;"></div>
+<script type="text/javascript">
+var BoardLegendlXqaQL = JXG.JSXGraph.initBoard('BoxLegendlXqaQL', {boundingbox: [0, 3, 11.5, 0], axis:false,keepaspectratio: false,showcopyright: false,showNavigation: false, zoom: {wheel: false}});
+var DataXLegendlXqaQL = [1, 2];
+var DataY1LegendlXqaQL = [2, 2];
+var DataY2LegendlXqaQL = [1, 1];
+var Chart1LegendlXqaQL= BoardLegendlXqaQL.createElement('chart', [DataXLegendlXqaQL,DataY1LegendlXqaQL], {chartStyle:'line,point'});
+Chart1LegendlXqaQL[0].setProperty('strokeColor:#97bbcd','highlightStrokeColor:#3c7693','strokeWidth:2');
+for(var i=0; i<2;i++) 
+    {
+    Chart1LegendlXqaQL[1][i].setProperty({strokeColor:'#97bbcd',highlightStrokeColor:'#3c7693',fillColor:'white',highlightFillColor:'white',face:'o', size:2, strokeWidth:'2pt'});
+    }
+var Chart2LegendlXqaQL= BoardLegendlXqaQL.createElement('chart', [DataXLegendlXqaQL,DataY2LegendlXqaQL], {chartStyle:'line,point'});
+Chart2LegendlXqaQL[0].setProperty('strokeColor:#cccccc','highlightStrokeColor:#7e7e7e','strokeWidth:2');
+for(var i=0; i<2;i++) 
+    {
+    Chart2LegendlXqaQL[1][i].setProperty({strokeColor:'#cccccc',highlightStrokeColor:'#7e7e7e',fillColor:'white',highlightFillColor:'white',face:'o', size:2, strokeWidth:'2pt'});
+    }
+Text1LegendxDkYzp = BoardLegendlXqaQL.create('text',[2.2,2, "- T = 600;"], {display:'internal', anchorX:'left',frozen: true, strokeColor:'#000000',highlightStrokeColor:'#000000'});
+Text2LegendxDkYzp = BoardLegendlXqaQL.create('text',[2.2,1, "- T = 900."], {display:'internal', anchorX:'left',frozen: true, strokeColor:'#000000',highlightStrokeColor:'#000000'});
+</script>
+</body>
+</html>

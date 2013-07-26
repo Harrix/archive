@@ -22,3 +22,5 @@ HEADERS  += mainwindow.h \
     MathHarrixLibrary.h
 
 FORMS    += mainwindow.ui
+
+win32:RC_FILE = myapp.rc

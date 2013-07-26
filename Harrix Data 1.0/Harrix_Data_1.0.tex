@@ -46,7 +46,7 @@
 \begin{lstlisting}[label=Example01,caption=Пример файла *.hdata]
 HarrixFileFormat = Harrix Data 1.0
 Site = https://github.com/Harrix/HarrixFileFormats
-Type = TwoIndependentChartsOfPointsAndLine
+Type = PointsAndLine
 Title = Тестовый график
 AxisX = x
 AxisY = y
@@ -298,5 +298,9 @@ Parameters = ShowLine, ShowPoints, ShowArea, ShowSpecPoints
 \section{Функции, которые обрабатывают данный формат файлов}
 
 В библиотеке \href {https://github.com/Harrix/QtHarrixLibrary} {https://github.com/Harrix/QtHarrixLibrary} на языке С++ имеются функции, которые обрабатывают данный формат файлов с среде Qt. К таким функциям относятся:
+
+\begin{itemize}
+\item QString HQt\_ReadHdataToHtmlChart (QString filename) --- функция возвращает строку с HTML кодом графика в результате считывания информации из *.hdata. Для добавление в html файл.
+\end{itemize}
 
 \end{document}

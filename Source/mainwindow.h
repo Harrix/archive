@@ -12,15 +12,14 @@ class MainWindow : public QMainWindow
     Q_OBJECT
     
 public:
-    explicit MainWindow(QWidget *parent = 0);
+    explicit MainWindow(QWidget *parent = 0,QString FileNameFromArgv="");
     ~MainWindow();
 
-    QString DS;
-    QString path;
-    QString Html;
+    QString DS;//разделитель между папками: слэш или иное в данной ОС
+    QString path;//путь к папке с программой
+    QString Html;//сюда кладется выводимый текст
     
 private slots:
-    void on_pushButton_clicked();
 
     void on_action_triggered();
 

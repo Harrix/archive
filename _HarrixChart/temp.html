@@ -1,0 +1,66 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd">
+<html>
+<head>
+<meta name="qrichtext" content="1" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<style type="text/css">
+p, li { white-space: pre-wrap; }
+h1 { font-size:140% }
+h2 { font-size:120% }
+h3,h4,h5,h6 { font-size:110% }
+body { font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-style:normal; }
+</style>
+
+<link rel="stylesheet" type="text/css" href="jsxgraph.css" />
+<script type="text/javascript" src="jsxgraphcore.js"></script></head>
+
+<body>
+<!--Вывод графика-->
+<h2>Вероятности выбора индивидов турнирной T𝑇= 2 и ранговой селекции при N = 10</h2><div id="BoxOhUMhf" class="jxgbox" style="width:600px; height:300px;"></div>
+<script type="text/javascript">
+var BoardOhUMhf = JXG.JSXGraph.initBoard('BoxOhUMhf', {boundingbox: [0.1, 0.24, 11.8, -0.04], axis:false,keepaspectratio: false,showcopyright: false,showNavigation: false, zoom: {wheel: true}});
+var AxisXOhUMhf = BoardOhUMhf.create('axis', [[1, 0], [2, 0]],{withLabel: true, name: '№ индивида',label: {position:'lft',offset:[10,-21]}});
+var AxisYOhUMhf = BoardOhUMhf.create('axis', [[1, 0], [1, 1]],{withLabel: true, name: 'P, вероятность выбора',label: { position:'lrt',offset: [20,0]}});
+var DataXOhUMhf = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+var DataY1OhUMhf = [0, 0.0222222, 0.0444444, 0.0666667, 0.0888889, 0.111111, 0.133333, 0.155556, 0.177778, 0.2];
+var DataY2OhUMhf = [0.0181818, 0.0363636, 0.0545455, 0.0727273, 0.0909091, 0.109091, 0.127273, 0.145455, 0.163636, 0.181818];
+var Chart2OhUMhf= BoardOhUMhf.createElement('chart', [DataXOhUMhf,DataY2OhUMhf], {chartStyle:'line,point'});
+Chart2OhUMhf[0].setProperty('strokeColor:#cccccc','highlightStrokeColor:#7e7e7e','strokeWidth:2');
+for(var i=0; i<10;i++) 
+    {
+    Chart2OhUMhf[1][i].setProperty({strokeColor:'#cccccc',highlightStrokeColor:'#7e7e7e',fillColor:'white',highlightFillColor:'white',face:'o', size:2, strokeWidth:'2pt'});
+    }
+var Chart1OhUMhf= BoardOhUMhf.createElement('chart', [DataXOhUMhf,DataY1OhUMhf], {chartStyle:'line,point'});
+Chart1OhUMhf[0].setProperty('strokeColor:#97bbcd','highlightStrokeColor:#3c7693','strokeWidth:2');
+for(var i=0; i<10;i++) 
+    {
+    Chart1OhUMhf[1][i].setProperty({strokeColor:'#97bbcd',highlightStrokeColor:'#3c7693',fillColor:'white',highlightFillColor:'white',face:'o', size:2, strokeWidth:'2pt'});
+    }
+BoardOhUMhf.create('point',[1,0], {strokeColor:'#88969c',highlightStrokeColor:'#3c7693',fillColor:'white',highlightFillColor:'white',strokeWidth:'2pt',face:'o', size:1, name:'Min<sub>x</sub> = 1, Min<sub>y</sub> = 0',label:{fontsize:10}});
+BoardOhUMhf.create('point',[1,0.2], {strokeColor:'#88969c',highlightStrokeColor:'#3c7693',fillColor:'white',highlightFillColor:'white',strokeWidth:'2pt',face:'o', size:1, name:'Max<sub>y</sub> = 0.2',label:{fontsize:10}});
+BoardOhUMhf.create('point',[10,0], {strokeColor:'#88969c',highlightStrokeColor:'#3c7693',fillColor:'white',highlightFillColor:'white',strokeWidth:'2pt',face:'o', size:1, name:'Max<sub>x</sub> = 10',label:{fontsize:10}});
+</script>
+<div id="BoxLegendRyfGXl" class="jxgbox" style="width:600px; height:100px;"></div>
+<script type="text/javascript">
+var BoardLegendRyfGXl = JXG.JSXGraph.initBoard('BoxLegendRyfGXl', {boundingbox: [0, 3, 11.5, 0], axis:false,keepaspectratio: false,showcopyright: false,showNavigation: false, zoom: {wheel: false}});
+var DataXLegendRyfGXl = [1, 2];
+var DataY1LegendRyfGXl = [2, 2];
+var DataY2LegendRyfGXl = [1, 1];
+var Chart1LegendRyfGXl= BoardLegendRyfGXl.createElement('chart', [DataXLegendRyfGXl,DataY1LegendRyfGXl], {chartStyle:'line,point'});
+Chart1LegendRyfGXl[0].setProperty('strokeColor:#97bbcd','highlightStrokeColor:#3c7693','strokeWidth:2');
+for(var i=0; i<2;i++) 
+    {
+    Chart1LegendRyfGXl[1][i].setProperty({strokeColor:'#97bbcd',highlightStrokeColor:'#3c7693',fillColor:'white',highlightFillColor:'white',face:'o', size:2, strokeWidth:'2pt'});
+    }
+var Chart2LegendRyfGXl= BoardLegendRyfGXl.createElement('chart', [DataXLegendRyfGXl,DataY2LegendRyfGXl], {chartStyle:'line,point'});
+Chart2LegendRyfGXl[0].setProperty('strokeColor:#cccccc','highlightStrokeColor:#7e7e7e','strokeWidth:2');
+for(var i=0; i<2;i++) 
+    {
+    Chart2LegendRyfGXl[1][i].setProperty({strokeColor:'#cccccc',highlightStrokeColor:'#7e7e7e',fillColor:'white',highlightFillColor:'white',face:'o', size:2, strokeWidth:'2pt'});
+    }
+Text1LegendOhUMhf = BoardLegendRyfGXl.create('text',[2.2,2, "- турнирная (T=2);"], {display:'internal', anchorX:'left',frozen: true, strokeColor:'#000000',highlightStrokeColor:'#000000'});
+Text2LegendOhUMhf = BoardLegendRyfGXl.create('text',[2.2,1, "- ранговая."], {display:'internal', anchorX:'left',frozen: true, strokeColor:'#000000',highlightStrokeColor:'#000000'});
+</script>
+</body>
+</html>

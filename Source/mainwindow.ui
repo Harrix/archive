@@ -11,10 +11,10 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>HarrixChart 1.0 - Приложение по отображению графиков из данных формата *.hdata</string>
+   <string>HarrixChart 1.1 - Приложение по отображению графиков из данных формата *.hdata</string>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <layout class="QVBoxLayout" name="verticalLayout">
+   <layout class="QHBoxLayout" name="horizontalLayout">
     <item>
      <widget class="QWebView" name="webView">
       <property name="url">

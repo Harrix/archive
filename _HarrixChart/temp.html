@@ -17,50 +17,83 @@ body { font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-sty
 
 <body>
 <!--Вывод графика-->
-<h2>Вероятности выбора индивидов турнирной T𝑇= 2 и ранговой селекции при N = 10</h2><div id="BoxBLdVcX" class="jxgbox" style="width:600px; height:300px;"></div>
+<h2>Прозрачность озера</h2><div id="BoxxTBPuc" class="jxgbox" style="width:600px; height:300px;"></div>
 <script type="text/javascript">
-var BoardBLdVcX = JXG.JSXGraph.initBoard('BoxBLdVcX', {boundingbox: [0.1, 0.24, 11.8, -0.04], axis:false,keepaspectratio: false,showcopyright: false,showNavigation: false, zoom: {wheel: true}});
-var AxisXBLdVcX = BoardBLdVcX.create('axis', [[1, 0], [2, 0]],{withLabel: true, name: '№ индивида',label: {position:'lft',offset:[10,-21]}});
-var AxisYBLdVcX = BoardBLdVcX.create('axis', [[1, 0], [1, 1]],{withLabel: true, name: 'P, вероятность выбора',label: { position:'lrt',offset: [20,0]}});
-var DataXBLdVcX = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-var DataY1BLdVcX = [0, 0.0222222, 0.0444444, 0.0666667, 0.0888889, 0.111111, 0.133333, 0.155556, 0.177778, 0.2];
-var DataY2BLdVcX = [0.0181818, 0.0363636, 0.0545455, 0.0727273, 0.0909091, 0.109091, 0.127273, 0.145455, 0.163636, 0.181818];
-var Chart2BLdVcX= BoardBLdVcX.createElement('chart', [DataXBLdVcX,DataY2BLdVcX], {chartStyle:'line,point'});
-Chart2BLdVcX[0].setProperty('strokeColor:#cccccc','highlightStrokeColor:#7e7e7e','strokeWidth:2');
+var BoardxTBPuc = JXG.JSXGraph.initBoard('BoxxTBPuc', {boundingbox: [-3.4, 14.2, 14.8, -1.2], axis:false,keepaspectratio: false,showcopyright: false,showNavigation: false, zoom: {wheel: true}});
+var AxisXxTBPuc = BoardxTBPuc.create('axis', [[-2, 1], [-1, 1]],{withLabel: true, name: 'x, глубина озера',label: {position:'lft',offset:[10,-21]}});
+var AxisYxTBPuc = BoardxTBPuc.create('axis', [[-2, 1], [-2, 2]],{withLabel: true, name: 'k, коэффициент прозрачности',label: { position:'lrt',offset: [20,0]}});
+var DataX1xTBPuc = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+var DataY1xTBPuc = [1, 2, 5, 4, 5, 6, 7, 8, 9, 10];
+var DataX2xTBPuc = [5, 6, 7, 8, 9, 10, 11, 12];
+var DataY2xTBPuc = [12, 11, 10, 9, 8, 7, 6, 5];
+var DataX3xTBPuc = [-2, 1, 2, 7, 8, 9];
+var DataY3xTBPuc = [8, 9, 8, 7, 6, 7];
+var DataX4xTBPuc = [1.1, 1.3, 2.1, 4.2, 5.5, 7.2, 7.5];
+var DataY4xTBPuc = [8, 1, 5, 2, 4, 9, 3];
+var Chart4xTBPuc= BoardxTBPuc.createElement('chart', [DataX4xTBPuc,DataY4xTBPuc], {chartStyle:'line,point'});
+Chart4xTBPuc[0].setProperty('strokeColor:#e06c65','highlightStrokeColor:#9d2b24','strokeWidth:2');
+for(var i=0; i<7;i++) 
+    {
+    Chart4xTBPuc[1][i].setProperty({strokeColor:'#e06c65',highlightStrokeColor:'#9d2b24',fillColor:'white',highlightFillColor:'white',face:'x', size:3, strokeWidth:'2pt'});
+    }
+var Chart3xTBPuc= BoardxTBPuc.createElement('chart', [DataX3xTBPuc,DataY3xTBPuc], {chartStyle:'line,point'});
+Chart3xTBPuc[0].setProperty('strokeColor:#e7cc4c','highlightStrokeColor:#b49c28','strokeWidth:2');
+for(var i=0; i<6;i++) 
+    {
+    Chart3xTBPuc[1][i].setProperty({strokeColor:'#e7cc4c',highlightStrokeColor:'#b49c28',fillColor:'white',highlightFillColor:'white',face:'<>', size:3, strokeWidth:'2pt'});
+    }
+var Chart2xTBPuc= BoardxTBPuc.createElement('chart', [DataX2xTBPuc,DataY2xTBPuc], {chartStyle:'line,point'});
+Chart2xTBPuc[0].setProperty('strokeColor:#4ac955','highlightStrokeColor:#2b8c34','strokeWidth:2');
+for(var i=0; i<8;i++) 
+    {
+    Chart2xTBPuc[1][i].setProperty({strokeColor:'#4ac955',highlightStrokeColor:'#2b8c34',fillColor:'white',highlightFillColor:'white',face:'[]', size:2, strokeWidth:'2pt'});
+    }
+var Chart1xTBPuc= BoardxTBPuc.createElement('chart', [DataX1xTBPuc,DataY1xTBPuc], {chartStyle:'line,point'});
+Chart1xTBPuc[0].setProperty('strokeColor:#97bbcd','highlightStrokeColor:#3c7693','strokeWidth:2');
 for(var i=0; i<10;i++) 
     {
-    Chart2BLdVcX[1][i].setProperty({strokeColor:'#cccccc',highlightStrokeColor:'#7e7e7e',fillColor:'white',highlightFillColor:'white',face:'[]', size:3, strokeWidth:'2pt'});
+    Chart1xTBPuc[1][i].setProperty({strokeColor:'#97bbcd',highlightStrokeColor:'#3c7693',fillColor:'white',highlightFillColor:'white',face:'o', size:2, strokeWidth:'2pt'});
     }
-var Chart1BLdVcX= BoardBLdVcX.createElement('chart', [DataXBLdVcX,DataY1BLdVcX], {chartStyle:'line,point'});
-Chart1BLdVcX[0].setProperty('strokeColor:#97bbcd','highlightStrokeColor:#3c7693','strokeWidth:2');
-for(var i=0; i<10;i++) 
-    {
-    Chart1BLdVcX[1][i].setProperty({strokeColor:'#97bbcd',highlightStrokeColor:'#3c7693',fillColor:'white',highlightFillColor:'white',face:'o', size:2, strokeWidth:'2pt'});
-    }
-BoardBLdVcX.create('point',[1,0], {strokeColor:'#88969c',highlightStrokeColor:'#3c7693',fillColor:'white',highlightFillColor:'white',strokeWidth:'2pt',face:'o', size:1, name:'Min<sub>x</sub> = 1, Min<sub>y</sub> = 0',label:{fontsize:10}});
-BoardBLdVcX.create('point',[1,0.2], {strokeColor:'#88969c',highlightStrokeColor:'#3c7693',fillColor:'white',highlightFillColor:'white',strokeWidth:'2pt',face:'o', size:1, name:'Max<sub>y</sub> = 0.2',label:{fontsize:10}});
-BoardBLdVcX.create('point',[10,0], {strokeColor:'#88969c',highlightStrokeColor:'#3c7693',fillColor:'white',highlightFillColor:'white',strokeWidth:'2pt',face:'o', size:1, name:'Max<sub>x</sub> = 10',label:{fontsize:10}});
+BoardxTBPuc.create('point',[-2,1], {strokeColor:'#88969c',highlightStrokeColor:'#3c7693',fillColor:'white',highlightFillColor:'white',strokeWidth:'2pt',face:'o', size:1, name:'Min<sub>x</sub> = -2, Min<sub>y</sub> = 1',label:{fontsize:10}});
+BoardxTBPuc.create('point',[-2,12], {strokeColor:'#88969c',highlightStrokeColor:'#3c7693',fillColor:'white',highlightFillColor:'white',strokeWidth:'2pt',face:'o', size:1, name:'Max<sub>y</sub> = 12',label:{fontsize:10}});
+BoardxTBPuc.create('point',[12,1], {strokeColor:'#88969c',highlightStrokeColor:'#3c7693',fillColor:'white',highlightFillColor:'white',strokeWidth:'2pt',face:'o', size:1, name:'Max<sub>x</sub> = 12',label:{fontsize:10}});
 </script>
-<div id="BoxLegendSobRHl" class="jxgbox" style="width:600px; height:100px;"></div>
+<div id="BoxLegendVnuIBw" class="jxgbox" style="width:600px; height:200px;"></div>
 <script type="text/javascript">
-var BoardLegendSobRHl = JXG.JSXGraph.initBoard('BoxLegendSobRHl', {boundingbox: [0, 3, 11.5, 0], axis:false,keepaspectratio: false,showcopyright: false,showNavigation: false, zoom: {wheel: false}});
-var DataXLegendSobRHl = [1, 2];
-var DataY1LegendSobRHl = [2, 2];
-var DataY2LegendSobRHl = [1, 1];
-var Chart1LegendSobRHl= BoardLegendSobRHl.createElement('chart', [DataXLegendSobRHl,DataY1LegendSobRHl], {chartStyle:'line,point'});
-Chart1LegendSobRHl[0].setProperty('strokeColor:#97bbcd','highlightStrokeColor:#3c7693','strokeWidth:2');
+var BoardLegendVnuIBw = JXG.JSXGraph.initBoard('BoxLegendVnuIBw', {boundingbox: [0, 5, 11.5, 0], axis:false,keepaspectratio: false,showcopyright: false,showNavigation: false, zoom: {wheel: false}});
+var DataXLegendVnuIBw = [1, 2];
+var DataY1LegendVnuIBw = [4, 4];
+var DataY2LegendVnuIBw = [3, 3];
+var DataY3LegendVnuIBw = [2, 2];
+var DataY4LegendVnuIBw = [1, 1];
+var Chart4LegendVnuIBw= BoardLegendVnuIBw.createElement('chart', [DataXLegendVnuIBw,DataY4LegendVnuIBw], {chartStyle:'line,point'});
+Chart4LegendVnuIBw[0].setProperty('strokeColor:#e06c65','highlightStrokeColor:#9d2b24','strokeWidth:2');
 for(var i=0; i<2;i++) 
     {
-    Chart1LegendSobRHl[1][i].setProperty({strokeColor:'#97bbcd',highlightStrokeColor:'#3c7693',fillColor:'white',highlightFillColor:'white',face:'o', size:2, strokeWidth:'2pt'});
+    Chart4LegendVnuIBw[1][i].setProperty({strokeColor:'#e06c65',highlightStrokeColor:'#9d2b24',fillColor:'white',highlightFillColor:'white',face:'x', size:3, strokeWidth:'2pt'});
     }
-var Chart2LegendSobRHl= BoardLegendSobRHl.createElement('chart', [DataXLegendSobRHl,DataY2LegendSobRHl], {chartStyle:'line,point'});
-Chart2LegendSobRHl[0].setProperty('strokeColor:#cccccc','highlightStrokeColor:#7e7e7e','strokeWidth:2');
+var Chart3LegendVnuIBw= BoardLegendVnuIBw.createElement('chart', [DataXLegendVnuIBw,DataY3LegendVnuIBw], {chartStyle:'line,point'});
+Chart3LegendVnuIBw[0].setProperty('strokeColor:#e7cc4c','highlightStrokeColor:#b49c28','strokeWidth:2');
 for(var i=0; i<2;i++) 
     {
-    Chart2LegendSobRHl[1][i].setProperty({strokeColor:'#cccccc',highlightStrokeColor:'#7e7e7e',fillColor:'white',highlightFillColor:'white',face:'[]', size:3, strokeWidth:'2pt'});
+    Chart3LegendVnuIBw[1][i].setProperty({strokeColor:'#e7cc4c',highlightStrokeColor:'#b49c28',fillColor:'white',highlightFillColor:'white',face:'<>', size:3, strokeWidth:'2pt'});
     }
-Text1LegendBLdVcX = BoardLegendSobRHl.create('text',[2.2,2, "- турнирная (T=2);"], {display:'internal', anchorX:'left',frozen: true, strokeColor:'#000000',highlightStrokeColor:'#000000'});
-Text2LegendBLdVcX = BoardLegendSobRHl.create('text',[2.2,1, "- ранговая."], {display:'internal', anchorX:'left',frozen: true, strokeColor:'#000000',highlightStrokeColor:'#000000'});
+var Chart2LegendVnuIBw= BoardLegendVnuIBw.createElement('chart', [DataXLegendVnuIBw,DataY2LegendVnuIBw], {chartStyle:'line,point'});
+Chart2LegendVnuIBw[0].setProperty('strokeColor:#4ac955','highlightStrokeColor:#2b8c34','strokeWidth:2');
+for(var i=0; i<2;i++) 
+    {
+    Chart2LegendVnuIBw[1][i].setProperty({strokeColor:'#4ac955',highlightStrokeColor:'#2b8c34',fillColor:'white',highlightFillColor:'white',face:'[]', size:2, strokeWidth:'2pt'});
+    }
+var Chart1LegendVnuIBw= BoardLegendVnuIBw.createElement('chart', [DataXLegendVnuIBw,DataY1LegendVnuIBw], {chartStyle:'line,point'});
+Chart1LegendVnuIBw[0].setProperty('strokeColor:#97bbcd','highlightStrokeColor:#3c7693','strokeWidth:2');
+for(var i=0; i<2;i++) 
+    {
+    Chart1LegendVnuIBw[1][i].setProperty({strokeColor:'#97bbcd',highlightStrokeColor:'#3c7693',fillColor:'white',highlightFillColor:'white',face:'o', size:2, strokeWidth:'2pt'});
+    }
+Text1LegendVnuIBw = BoardLegendVnuIBw.create('text',[2.2,4, "- Учум;"], {display:'internal', anchorX:'left',frozen: true, strokeColor:'#000000',highlightStrokeColor:'#000000'});
+Text2LegendVnuIBw = BoardLegendVnuIBw.create('text',[2.2,3, "- Круглое;"], {display:'internal', anchorX:'left',frozen: true, strokeColor:'#000000',highlightStrokeColor:'#000000'});
+Text3LegendVnuIBw = BoardLegendVnuIBw.create('text',[2.2,2, "- Большое;"], {display:'internal', anchorX:'left',frozen: true, strokeColor:'#000000',highlightStrokeColor:'#000000'});
+Text4LegendVnuIBw = BoardLegendVnuIBw.create('text',[2.2,1, "- Тус."], {display:'internal', anchorX:'left',frozen: true, strokeColor:'#000000',highlightStrokeColor:'#000000'});
 </script>
 </body>
 </html>

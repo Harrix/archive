@@ -130,6 +130,19 @@ QString **HQt_DrawLine** (double Left, double Right, double h, double (*Function
 ---------------
 Режим постоянного отображения изменений осуществляется благодаря функции AJAX. Поэтому вы отображаете в QWebView файл **index.html**, а сохраняете данные в **temp.html**. Отображаемый файл **index.html** не трогаете.
 
+Скопируйте файлы из списка в папку с исходниками вашего проекта.
+- QtHarrixLibraryForQWebView.cpp
+- QtHarrixLibraryForQWebView.h
+- QtHarrixLibrary.cpp
+- QtHarrixLibrary.h
+
+А файлы из списка в папку с *.exe файлом вашего проекта.
+- папка images
+- index.html
+- jquery.js
+- jsxgraphcore.js
+- style.css
+
 Вначале вам нужно вызвать данные 4 строчки, например, в конструкторе MainWindow::MainWindow(QWidget *parent):
 
     DS=QDir::separator();

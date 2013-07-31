@@ -146,7 +146,7 @@ QString **HQt_DrawLine** (double Left, double Right, double h, double (*Function
 Объявите, например, в mainwindow.h глобальные переменные:
 
     QString DS;
-    QString path;
+    QString Path;
     QString Html;
 
 Вам нужно вызвать данные 4 строчки, например, в конструкторе MainWindow::MainWindow(QWidget *parent):

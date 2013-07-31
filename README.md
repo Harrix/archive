@@ -10,11 +10,11 @@ https://github.com/Harrix/QtHarrixLibraryForQWebView
 Функции для получения HTML кода для вывода в webView
 ---------------
 
-QString **HQt_BeginHtml** ();   
-Функция возвращает строку с началом HTML файла, в который другими функциями добавляются иные данные.
+void **HQt_BeginHtml**(QString Path);  
+Функция обнуляет переменную HTML. Требуется когда нужно перезапустить показ информации в QWebView.
 
-QString **HQt_EndHtml** ();  
-Функция возвращает строку с концовкой HTML файла, в который другими функциями добавляются иные данные.
+void **HQt_AddHtml**(QString Html);  
+Функция добавляет код html к существующему и сохраняет его в temp.html.
 
 template <class T> QString **THQt_NumberToText** (T VMHL_X);  
 Функция выводит число VMHL_X в строку.
@@ -143,25 +143,25 @@ QString **HQt_DrawLine** (double Left, double Right, double h, double (*Function
 - jsxgraphcore.js
 - style.css
 
-Вначале вам нужно вызвать данные 4 строчки, например, в конструкторе MainWindow::MainWindow(QWidget *parent):
-
-    DS=QDir::separator();
-    path=QGuiApplication::applicationDirPath()+DS;//путь к папке
-    HQt_SaveFile(Html, path+"temp.html");
-    ui->webView->setUrl(QUrl::fromLocalFile(path+"index.html"));
-	
 Объявите, например, в mainwindow.h глобальные переменные:
 
     QString DS;
     QString path;
     QString Html;
+
+Вам нужно вызвать данные 4 строчки, например, в конструкторе MainWindow::MainWindow(QWidget *parent):
+
+    DS=QDir::separator();//какой разделитель используется в пути между папками
+    Path=QGuiApplication::applicationDirPath()+DS;//путь к папке, где находится приложение
+    HQt_BeginHtml(Path);
+    ui->webView->setUrl(QUrl::fromLocalFile(Path+"index.html"));// и в webViewотображаем index.html (его вообще не трогаем)
 	
 Теперь в любом месте, где хотите добавить текст html и его отобразить, пишите:
 
-	Html+="<b>Example</b>";
-	HQt_SaveFile(Html, path+"temp.html");
+	Html="<b>Example</b>";
+	HQt_AddHtml(Html);
 	
-И соответствующий текст должен отобразиться в QWebView максимум за 1 секунду: каждую секунду происходит обновление. Желательно добавлять текст Html не самостоятельно, а за счет функций данной библиотеки.
+И соответствующий текст должен отобразиться в QWebView максимум за 1 секунду: каждую секунду происходит проверка на наличие обновления. Желательно добавлять текст Html не самостоятельно, а за счет функций данной библиотеки.
 
 История проекта
 ---------------
@@ -171,6 +171,12 @@ QString **HQt_DrawLine** (double Left, double Right, double h, double (*Function
 **[+]** добавление
 
 **[*]** разное
+
+**1.1**
+
+**[+]** Добавлены функции void HQt_BeginHtml(QString Path) и void HQt_AddHtml(QString Html).
+
+**[*]** Изменение работы ajax скрипта. Теперь обновление происходит только когда появилась новая информация.
 
 **1.0**
 

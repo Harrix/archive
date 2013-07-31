@@ -11,15 +11,31 @@
 <body>
 <div id="content"></div>
     <script>  
+	var result='';
+	var resultnew='';
+	
         function show()  
         {  
             $.ajax({  
-                url: "temp.html",  
+                url: "marker.html",  
                 cache: false,  
-                success: function(html){  
-                    $("#content").html(html);  
-                }  
-            });  
+                success: function(html)
+					{  
+					resultnew = html; 
+					if ((resultnew!=result)||(resultnew==''))
+						{
+						$.ajax({  
+							url: "temp.html",  
+							cache: false,  
+							success: function(html)
+								{  
+								$("#content").html(html);  
+								}  
+							});
+						result=resultnew;
+						}
+					}  
+            });		
         }  
       
         $(document).ready(function(){  

@@ -16,7 +16,7 @@ public:
     ~MainWindow();
 
     QString DS;//разделитель между папками: слэш или иное в данной ОС
-    QString path;//путь к папке с программой
+    QString Path;//путь к папке с программой
     QString Html;//сюда кладется выводимый текст
     
 private slots:

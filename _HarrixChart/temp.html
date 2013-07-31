@@ -1,99 +1,85 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd">
-<html>
-<head>
-<meta name="qrichtext" content="1" />
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-
-<style type="text/css">
-p, li { white-space: pre-wrap; }
-h1 { font-size:140% }
-h2 { font-size:120% }
-h3,h4,h5,h6 { font-size:110% }
-body { font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-style:normal; }
-</style>
-
-<link rel="stylesheet" type="text/css" href="jsxgraph.css" />
-<script type="text/javascript" src="jsxgraphcore.js"></script></head>
-
-<body>
 <!--Вывод графика-->
-<h2>Прозрачность озера</h2><div id="BoxxTBPuc" class="jxgbox" style="width:600px; height:300px;"></div>
+<h2>Сравнение алгоритмов оптимизации</h2><div id="BoxamSoKg" class="jxgbox" style="width:600px; height:300px;"></div>
 <script type="text/javascript">
-var BoardxTBPuc = JXG.JSXGraph.initBoard('BoxxTBPuc', {boundingbox: [-3.4, 14.2, 14.8, -1.2], axis:false,keepaspectratio: false,showcopyright: false,showNavigation: false, zoom: {wheel: true}});
-var AxisXxTBPuc = BoardxTBPuc.create('axis', [[-2, 1], [-1, 1]],{withLabel: true, name: 'x, глубина озера',label: {position:'lft',offset:[10,-21]}});
-var AxisYxTBPuc = BoardxTBPuc.create('axis', [[-2, 1], [-2, 2]],{withLabel: true, name: 'k, коэффициент прозрачности',label: { position:'lrt',offset: [20,0]}});
-var DataX1xTBPuc = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-var DataY1xTBPuc = [1, 2, 5, 4, 5, 6, 7, 8, 9, 10];
-var DataX2xTBPuc = [5, 6, 7, 8, 9, 10, 11, 12];
-var DataY2xTBPuc = [12, 11, 10, 9, 8, 7, 6, 5];
-var DataX3xTBPuc = [-2, 1, 2, 7, 8, 9];
-var DataY3xTBPuc = [8, 9, 8, 7, 6, 7];
-var DataX4xTBPuc = [1.1, 1.3, 2.1, 4.2, 5.5, 7.2, 7.5];
-var DataY4xTBPuc = [8, 1, 5, 2, 4, 9, 3];
-var Chart4xTBPuc= BoardxTBPuc.createElement('chart', [DataX4xTBPuc,DataY4xTBPuc], {chartStyle:'line,point'});
-Chart4xTBPuc[0].setProperty('strokeColor:#e06c65','highlightStrokeColor:#9d2b24','strokeWidth:2');
-for(var i=0; i<7;i++) 
+var BoardamSoKg = JXG.JSXGraph.initBoard('BoxamSoKg', {boundingbox: [-0.0631365, 4.7677, 1.14065, -0.777298], axis:false,keepaspectratio: false,showcopyright: false,showNavigation: false, zoom: {wheel: true}});
+var AxisXamSoKg = BoardamSoKg.create('axis', [[0.0294625, 0.0148455], [1.02946, 0.0148455]],{withLabel: true, name: 'R, надежность',label: {position:'lft',offset:[10,-21]}});
+var AxisYamSoKg = BoardamSoKg.create('axis', [[0.0294625, 0.0148455], [0.0294625, 1.01485]],{withLabel: true, name: 'M, количество поколений',label: { position:'lrt',offset: [20,0]}});
+var DataXamSoKg = [0.0294625, 0.0456535, 0.0477241, 0.0613111, 0.250609, 0.269032, 0.303349, 0.374612, 0.402566, 0.408536, 0.415193, 0.416134, 0.421262, 0.561256, 0.658228, 0.765765, 0.815885, 0.908626, 0.949978, 0.955452];
+var DataY1amSoKg = [0.145611, 0.655466, 0.0148455, 0.0951637, 0.0617643, 0.808772, 0.121382, 0.505098, 0.0458101, 0.548411, 0.269462, 0.874141, 0.744287, 0.971324, 0.529199, 0.0281808, 0.493986, 0.0954471, 0.513723, 0.167637];
+var DataY2amSoKg = [1.39305, 1.83332, 1.6293, 1.44586, 1.50565, 1.60113, 1.19515, 1.77571, 1.52655, 1.74925, 1.72127, 1.60916, 1.32471, 1.57216, 1.50598, 1.95559, 1.58404, 1.61467, 1.80058, 1.39844];
+var DataY3amSoKg = [2.24136, 2.9673, 2.40203, 2.83157, 2.79988, 2.87735, 2.76409, 2.60498, 2.06864, 2.81257, 2.69604, 2.91544, 2.79511, 2.25862, 2.93408, 2.22015, 2.44726, 2.57721, 2.70027, 2.74393];
+var DataY4amSoKg = [3.13537, 3.93681, 3.78466, 3.5118, 3.59539, 3.56989, 3.5473, 3.32585, 3.47321, 3.09964, 3.91918, 3.3857, 3.06364, 3.00984, 3.48687, 3.34586, 3.20036, 3.97556, 3.54105, 3.00202];
+var DataX1AreaamSoKg = [0.0294625, 0.0294625, 0.0456535, 0.0477241, 0.0613111, 0.250609, 0.269032, 0.303349, 0.374612, 0.402566, 0.408536, 0.415193, 0.416134, 0.421262, 0.561256, 0.658228, 0.765765, 0.815885, 0.908626, 0.949978, 0.955452, 0.955452, 0.0294625];
+var DataY1AreaamSoKg = [0.0148455, 0.145611, 0.655466, 0.0148455, 0.0951637, 0.0617643, 0.808772, 0.121382, 0.505098, 0.0458101, 0.548411, 0.269462, 0.874141, 0.744287, 0.971324, 0.529199, 0.0281808, 0.493986, 0.0954471, 0.513723, 0.167637, 0.0148455, 0.0148455];
+var DataY2AreaamSoKg = [0.0148455, 1.39305, 1.83332, 1.6293, 1.44586, 1.50565, 1.60113, 1.19515, 1.77571, 1.52655, 1.74925, 1.72127, 1.60916, 1.32471, 1.57216, 1.50598, 1.95559, 1.58404, 1.61467, 1.80058, 1.39844, 0.0148455, 0.0148455];
+var DataY3AreaamSoKg = [0.0148455, 2.24136, 2.9673, 2.40203, 2.83157, 2.79988, 2.87735, 2.76409, 2.60498, 2.06864, 2.81257, 2.69604, 2.91544, 2.79511, 2.25862, 2.93408, 2.22015, 2.44726, 2.57721, 2.70027, 2.74393, 0.0148455, 0.0148455];
+var DataY4AreaamSoKg = [0.0148455, 3.13537, 3.93681, 3.78466, 3.5118, 3.59539, 3.56989, 3.5473, 3.32585, 3.47321, 3.09964, 3.91918, 3.3857, 3.06364, 3.00984, 3.48687, 3.34586, 3.20036, 3.97556, 3.54105, 3.00202, 0.0148455, 0.0148455];
+BoardamSoKg.create('curve', [DataX1AreaamSoKg,DataY4AreaamSoKg],{strokeColor:'#cccccc',highlightStrokeColor:'#cccccc',strokeWidth:0,highlightStrokeWidth:0,dash:0, fillColor:'#cccccc',highlightFillColor:'#cccccc',fillOpacity:0.5,highlightFillOpacity:0.5});
+BoardamSoKg.create('curve', [DataX1AreaamSoKg,DataY3AreaamSoKg],{strokeColor:'#97bbcd',highlightStrokeColor:'#97bbcd',strokeWidth:0,highlightStrokeWidth:0,dash:0, fillColor:'#97bbcd',highlightFillColor:'#97bbcd',fillOpacity:0.5,highlightFillOpacity:0.5});
+BoardamSoKg.create('curve', [DataX1AreaamSoKg,DataY2AreaamSoKg],{strokeColor:'#83a6b7',highlightStrokeColor:'#83a6b7',strokeWidth:0,highlightStrokeWidth:0,dash:0, fillColor:'#83a6b7',highlightFillColor:'#83a6b7',fillOpacity:0.5,highlightFillOpacity:0.5});
+BoardamSoKg.create('curve', [DataX1AreaamSoKg,DataY1AreaamSoKg],{strokeColor:'#799bac',highlightStrokeColor:'#799bac',strokeWidth:0,highlightStrokeWidth:0,dash:0, fillColor:'#799bac',highlightFillColor:'#799bac',fillOpacity:0.5,highlightFillOpacity:0.5});
+var Chart4amSoKg= BoardamSoKg.createElement('chart', [DataXamSoKg,DataY4amSoKg], {chartStyle:'line,point'});
+Chart4amSoKg[0].setProperty('strokeColor:#cccccc','highlightStrokeColor:#7e7e7e','strokeWidth:2');
+for(var i=0; i<20;i++) 
     {
-    Chart4xTBPuc[1][i].setProperty({strokeColor:'#e06c65',highlightStrokeColor:'#9d2b24',fillColor:'white',highlightFillColor:'white',face:'x', size:3, strokeWidth:'2pt'});
+    Chart4amSoKg[1][i].setProperty({strokeColor:'#cccccc',highlightStrokeColor:'#7e7e7e',fillColor:'white',highlightFillColor:'white',face:'x', size:3, strokeWidth:'2pt'});
     }
-var Chart3xTBPuc= BoardxTBPuc.createElement('chart', [DataX3xTBPuc,DataY3xTBPuc], {chartStyle:'line,point'});
-Chart3xTBPuc[0].setProperty('strokeColor:#e7cc4c','highlightStrokeColor:#b49c28','strokeWidth:2');
-for(var i=0; i<6;i++) 
+var Chart3amSoKg= BoardamSoKg.createElement('chart', [DataXamSoKg,DataY3amSoKg], {chartStyle:'line,point'});
+Chart3amSoKg[0].setProperty('strokeColor:#97bbcd','highlightStrokeColor:#3c7693','strokeWidth:2');
+for(var i=0; i<20;i++) 
     {
-    Chart3xTBPuc[1][i].setProperty({strokeColor:'#e7cc4c',highlightStrokeColor:'#b49c28',fillColor:'white',highlightFillColor:'white',face:'<>', size:3, strokeWidth:'2pt'});
+    Chart3amSoKg[1][i].setProperty({strokeColor:'#97bbcd',highlightStrokeColor:'#3c7693',fillColor:'white',highlightFillColor:'white',face:'<>', size:3, strokeWidth:'2pt'});
     }
-var Chart2xTBPuc= BoardxTBPuc.createElement('chart', [DataX2xTBPuc,DataY2xTBPuc], {chartStyle:'line,point'});
-Chart2xTBPuc[0].setProperty('strokeColor:#4ac955','highlightStrokeColor:#2b8c34','strokeWidth:2');
-for(var i=0; i<8;i++) 
+var Chart2amSoKg= BoardamSoKg.createElement('chart', [DataXamSoKg,DataY2amSoKg], {chartStyle:'line,point'});
+Chart2amSoKg[0].setProperty('strokeColor:#83a6b7','highlightStrokeColor:#336278','strokeWidth:2');
+for(var i=0; i<20;i++) 
     {
-    Chart2xTBPuc[1][i].setProperty({strokeColor:'#4ac955',highlightStrokeColor:'#2b8c34',fillColor:'white',highlightFillColor:'white',face:'[]', size:2, strokeWidth:'2pt'});
+    Chart2amSoKg[1][i].setProperty({strokeColor:'#83a6b7',highlightStrokeColor:'#336278',fillColor:'white',highlightFillColor:'white',face:'[]', size:2, strokeWidth:'2pt'});
     }
-var Chart1xTBPuc= BoardxTBPuc.createElement('chart', [DataX1xTBPuc,DataY1xTBPuc], {chartStyle:'line,point'});
-Chart1xTBPuc[0].setProperty('strokeColor:#97bbcd','highlightStrokeColor:#3c7693','strokeWidth:2');
-for(var i=0; i<10;i++) 
+var Chart1amSoKg= BoardamSoKg.createElement('chart', [DataXamSoKg,DataY1amSoKg], {chartStyle:'line,point'});
+Chart1amSoKg[0].setProperty('strokeColor:#799bac','highlightStrokeColor:#9d2b24','strokeWidth:2');
+for(var i=0; i<20;i++) 
     {
-    Chart1xTBPuc[1][i].setProperty({strokeColor:'#97bbcd',highlightStrokeColor:'#3c7693',fillColor:'white',highlightFillColor:'white',face:'o', size:2, strokeWidth:'2pt'});
+    Chart1amSoKg[1][i].setProperty({strokeColor:'#799bac',highlightStrokeColor:'#9d2b24',fillColor:'white',highlightFillColor:'white',face:'o', size:2, strokeWidth:'2pt'});
     }
-BoardxTBPuc.create('point',[-2,1], {strokeColor:'#88969c',highlightStrokeColor:'#3c7693',fillColor:'white',highlightFillColor:'white',strokeWidth:'2pt',face:'o', size:1, name:'Min<sub>x</sub> = -2, Min<sub>y</sub> = 1',label:{fontsize:10}});
-BoardxTBPuc.create('point',[-2,12], {strokeColor:'#88969c',highlightStrokeColor:'#3c7693',fillColor:'white',highlightFillColor:'white',strokeWidth:'2pt',face:'o', size:1, name:'Max<sub>y</sub> = 12',label:{fontsize:10}});
-BoardxTBPuc.create('point',[12,1], {strokeColor:'#88969c',highlightStrokeColor:'#3c7693',fillColor:'white',highlightFillColor:'white',strokeWidth:'2pt',face:'o', size:1, name:'Max<sub>x</sub> = 12',label:{fontsize:10}});
+BoardamSoKg.create('point',[0.0294625,0.0148455], {strokeColor:'#88969c',highlightStrokeColor:'#3c7693',fillColor:'white',highlightFillColor:'white',strokeWidth:'2pt',face:'o', size:1, name:'Min<sub>x</sub> = 0.0294625, Min<sub>y</sub> = 0.0148455',label:{fontsize:10}});
+BoardamSoKg.create('point',[0.0294625,3.97556], {strokeColor:'#88969c',highlightStrokeColor:'#3c7693',fillColor:'white',highlightFillColor:'white',strokeWidth:'2pt',face:'o', size:1, name:'Max<sub>y</sub> = 3.97556',label:{fontsize:10}});
+BoardamSoKg.create('point',[0.955452,0.0148455], {strokeColor:'#88969c',highlightStrokeColor:'#3c7693',fillColor:'white',highlightFillColor:'white',strokeWidth:'2pt',face:'o', size:1, name:'Max<sub>x</sub> = 0.955452',label:{fontsize:10}});
 </script>
-<div id="BoxLegendVnuIBw" class="jxgbox" style="width:600px; height:200px;"></div>
+<div id="BoxLegendyZrSfT" class="jxgbox" style="width:600px; height:200px;"></div>
 <script type="text/javascript">
-var BoardLegendVnuIBw = JXG.JSXGraph.initBoard('BoxLegendVnuIBw', {boundingbox: [0, 5, 11.5, 0], axis:false,keepaspectratio: false,showcopyright: false,showNavigation: false, zoom: {wheel: false}});
-var DataXLegendVnuIBw = [1, 2];
-var DataY1LegendVnuIBw = [4, 4];
-var DataY2LegendVnuIBw = [3, 3];
-var DataY3LegendVnuIBw = [2, 2];
-var DataY4LegendVnuIBw = [1, 1];
-var Chart4LegendVnuIBw= BoardLegendVnuIBw.createElement('chart', [DataXLegendVnuIBw,DataY4LegendVnuIBw], {chartStyle:'line,point'});
-Chart4LegendVnuIBw[0].setProperty('strokeColor:#e06c65','highlightStrokeColor:#9d2b24','strokeWidth:2');
+var BoardLegendyZrSfT = JXG.JSXGraph.initBoard('BoxLegendyZrSfT', {boundingbox: [0, 5, 11.5, 0], axis:false,keepaspectratio: false,showcopyright: false,showNavigation: false, zoom: {wheel: false}});
+var DataXLegendyZrSfT = [1, 2];
+var DataY1LegendyZrSfT = [4, 4];
+var DataY2LegendyZrSfT = [3, 3];
+var DataY3LegendyZrSfT = [2, 2];
+var DataY4LegendyZrSfT = [1, 1];
+var Chart4LegendyZrSfT= BoardLegendyZrSfT.createElement('chart', [DataXLegendyZrSfT,DataY4LegendyZrSfT], {chartStyle:'line,point'});
+Chart4LegendyZrSfT[0].setProperty('strokeColor:#cccccc','highlightStrokeColor:#7e7e7e','strokeWidth:2');
 for(var i=0; i<2;i++) 
     {
-    Chart4LegendVnuIBw[1][i].setProperty({strokeColor:'#e06c65',highlightStrokeColor:'#9d2b24',fillColor:'white',highlightFillColor:'white',face:'x', size:3, strokeWidth:'2pt'});
+    Chart4LegendyZrSfT[1][i].setProperty({strokeColor:'#cccccc',highlightStrokeColor:'#7e7e7e',fillColor:'white',highlightFillColor:'white',face:'x', size:3, strokeWidth:'2pt'});
     }
-var Chart3LegendVnuIBw= BoardLegendVnuIBw.createElement('chart', [DataXLegendVnuIBw,DataY3LegendVnuIBw], {chartStyle:'line,point'});
-Chart3LegendVnuIBw[0].setProperty('strokeColor:#e7cc4c','highlightStrokeColor:#b49c28','strokeWidth:2');
+var Chart3LegendyZrSfT= BoardLegendyZrSfT.createElement('chart', [DataXLegendyZrSfT,DataY3LegendyZrSfT], {chartStyle:'line,point'});
+Chart3LegendyZrSfT[0].setProperty('strokeColor:#97bbcd','highlightStrokeColor:#3c7693','strokeWidth:2');
 for(var i=0; i<2;i++) 
     {
-    Chart3LegendVnuIBw[1][i].setProperty({strokeColor:'#e7cc4c',highlightStrokeColor:'#b49c28',fillColor:'white',highlightFillColor:'white',face:'<>', size:3, strokeWidth:'2pt'});
+    Chart3LegendyZrSfT[1][i].setProperty({strokeColor:'#97bbcd',highlightStrokeColor:'#3c7693',fillColor:'white',highlightFillColor:'white',face:'<>', size:3, strokeWidth:'2pt'});
     }
-var Chart2LegendVnuIBw= BoardLegendVnuIBw.createElement('chart', [DataXLegendVnuIBw,DataY2LegendVnuIBw], {chartStyle:'line,point'});
-Chart2LegendVnuIBw[0].setProperty('strokeColor:#4ac955','highlightStrokeColor:#2b8c34','strokeWidth:2');
+var Chart2LegendyZrSfT= BoardLegendyZrSfT.createElement('chart', [DataXLegendyZrSfT,DataY2LegendyZrSfT], {chartStyle:'line,point'});
+Chart2LegendyZrSfT[0].setProperty('strokeColor:#83a6b7','highlightStrokeColor:#336278','strokeWidth:2');
 for(var i=0; i<2;i++) 
     {
-    Chart2LegendVnuIBw[1][i].setProperty({strokeColor:'#4ac955',highlightStrokeColor:'#2b8c34',fillColor:'white',highlightFillColor:'white',face:'[]', size:2, strokeWidth:'2pt'});
+    Chart2LegendyZrSfT[1][i].setProperty({strokeColor:'#83a6b7',highlightStrokeColor:'#336278',fillColor:'white',highlightFillColor:'white',face:'[]', size:2, strokeWidth:'2pt'});
     }
-var Chart1LegendVnuIBw= BoardLegendVnuIBw.createElement('chart', [DataXLegendVnuIBw,DataY1LegendVnuIBw], {chartStyle:'line,point'});
-Chart1LegendVnuIBw[0].setProperty('strokeColor:#97bbcd','highlightStrokeColor:#3c7693','strokeWidth:2');
+var Chart1LegendyZrSfT= BoardLegendyZrSfT.createElement('chart', [DataXLegendyZrSfT,DataY1LegendyZrSfT], {chartStyle:'line,point'});
+Chart1LegendyZrSfT[0].setProperty('strokeColor:#799bac','highlightStrokeColor:#9d2b24','strokeWidth:2');
 for(var i=0; i<2;i++) 
     {
-    Chart1LegendVnuIBw[1][i].setProperty({strokeColor:'#97bbcd',highlightStrokeColor:'#3c7693',fillColor:'white',highlightFillColor:'white',face:'o', size:2, strokeWidth:'2pt'});
+    Chart1LegendyZrSfT[1][i].setProperty({strokeColor:'#799bac',highlightStrokeColor:'#9d2b24',fillColor:'white',highlightFillColor:'white',face:'o', size:2, strokeWidth:'2pt'});
     }
-Text1LegendVnuIBw = BoardLegendVnuIBw.create('text',[2.2,4, "- Учум;"], {display:'internal', anchorX:'left',frozen: true, strokeColor:'#000000',highlightStrokeColor:'#000000'});
-Text2LegendVnuIBw = BoardLegendVnuIBw.create('text',[2.2,3, "- Круглое;"], {display:'internal', anchorX:'left',frozen: true, strokeColor:'#000000',highlightStrokeColor:'#000000'});
-Text3LegendVnuIBw = BoardLegendVnuIBw.create('text',[2.2,2, "- Большое;"], {display:'internal', anchorX:'left',frozen: true, strokeColor:'#000000',highlightStrokeColor:'#000000'});
-Text4LegendVnuIBw = BoardLegendVnuIBw.create('text',[2.2,1, "- Тус."], {display:'internal', anchorX:'left',frozen: true, strokeColor:'#000000',highlightStrokeColor:'#000000'});
+Text1LegendyZrSfT = BoardLegendyZrSfT.create('text',[2.2,4, "- генетический алгоритм;"], {display:'internal', anchorX:'left',frozen: true, strokeColor:'#000000',highlightStrokeColor:'#000000'});
+Text2LegendyZrSfT = BoardLegendyZrSfT.create('text',[2.2,3, "- модифицированный ГА;"], {display:'internal', anchorX:'left',frozen: true, strokeColor:'#000000',highlightStrokeColor:'#000000'});
+Text3LegendyZrSfT = BoardLegendyZrSfT.create('text',[2.2,2, "- самонастраивающийся ГА;"], {display:'internal', anchorX:'left',frozen: true, strokeColor:'#000000',highlightStrokeColor:'#000000'});
+Text4LegendyZrSfT = BoardLegendyZrSfT.create('text',[2.2,1, "- самонастраивающийся ГА с эффектом памяти."], {display:'internal', anchorX:'left',frozen: true, strokeColor:'#000000',highlightStrokeColor:'#000000'});
 </script>
-</body>
-</html>

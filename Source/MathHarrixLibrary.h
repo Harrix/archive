@@ -182,6 +182,19 @@ template <class T> T TMHL_Chebychev(T *x, T *y, int VMHL_N);
 template <class T> T TMHL_CityBlock(T *x, T *y, int VMHL_N);
 template <class T> T TMHL_Euclid(T *x, T *y, int VMHL_N);
 
+//Непараметрика
+double MHL_BellShapedKernelExp(double z);
+double MHL_BellShapedKernelParabola(double z);
+double MHL_BellShapedKernelRectangle(double z);
+double MHL_BellShapedKernelTriangle(double z);
+double MHL_DerivativeOfBellShapedKernelExp(double z);
+double MHL_DerivativeOfBellShapedKernelParabola(double z);
+double MHL_DerivativeOfBellShapedKernelRectangle(double z);
+double MHL_DerivativeOfBellShapedKernelTriangle(double z);
+
+//Нечеткие системы
+double MHL_TrapeziformFuzzyNumber(double x,double a,double b,double c,double d);
+
 //Оптимизация
 int MHL_BinaryMonteCarloAlgorithm(int *Parameters, double (*FitnessFunction)(int*,int), int *VMHL_ResultVector, double *VMHL_Result);
 
@@ -221,6 +234,8 @@ int MHL_RandomUniformIntIncluding(int n, int m);
 //Сортировка
 template <class T> void TMHL_BubbleDescendingSort(T *VMHL_ResultVector, int VMHL_N);
 template <class T> void TMHL_BubbleSort(T *VMHL_ResultVector, int VMHL_N);
+template <class T> void TMHL_BubbleSortColWithOtherConjugateColsInMatrix(T **VMHL_ResultMatrix,int Col, int VMHL_N, int VMHL_M);
+template <class T> void TMHL_BubbleSortEveryColInMatrix(T **VMHL_ResultMatrix,int VMHL_N, int VMHL_M);
 template <class T> void TMHL_BubbleSortEveryRowInMatrix(T **VMHL_ResultMatrix,int VMHL_N, int VMHL_M);
 template <class T> void TMHL_BubbleSortInGroups(T *VMHL_ResultVector, int VMHL_N, int m);
 template <class T> void TMHL_BubbleSortRowWithOtherConjugateRowsInMatrix(T **VMHL_ResultMatrix,int Row, int VMHL_N, int VMHL_M);
@@ -257,6 +272,9 @@ double MHL_Sin(double x);
 double MHL_SinDeg(double x);
 double MHL_Tan(double x);
 double MHL_TanDeg(double x);
+
+//Уравнения
+int MHL_QuadraticEquation(double a, double b, double c, double *x1, double *x2);
 
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 // РЕАЛИЗАЦИЯ ШАБЛОНОВ
@@ -1803,6 +1821,12 @@ return VMHL_Result;
 }
 //---------------------------------------------------------------------------
 //*****************************************************************
+//Непараметрика
+//*****************************************************************
+//*****************************************************************
+//Нечеткие системы
+//*****************************************************************
+//*****************************************************************
 //Оптимизация
 //*****************************************************************
 //*****************************************************************
@@ -2128,6 +2152,53 @@ for(i=VMHL_N-1;i>0;i--)
    TMHL_NumberInterchange(&(VMHL_ResultVector[j]),&(VMHL_ResultVector[j+1]));
 }
 //---------------------------------------------------------------------------
+template <class T> void TMHL_BubbleSortColWithOtherConjugateColsInMatrix(T **VMHL_ResultMatrix,int Col, int VMHL_N, int VMHL_M)
+{
+/*
+Функция сортирует матрицу по какому-то столбцу под номером в порядке возрастания методом "Сортировка пузырьком".
+При этом все остальные столбцы являются как бы сопряженным с данным столбцом. То есть элементы в этом столбце сортируются,
+а все строки остаются прежними.
+Входные параметры:
+ VMHL_ResultMatrix - указатель на матрицу, которую будем сортировать;
+ Col - номер сортируемого столбца в матрице;
+ VMHL_N - количество строк в матрице;
+ VMHL_M - количество столбцов в матрице.
+Выходной параметр:
+ Отсутствует.
+*/
+    int i,j,k;
+    for(i=VMHL_N-1;i>0;i--)
+        for(j=0;j<i;j++)
+            if(VMHL_ResultMatrix[j][Col]>VMHL_ResultMatrix[j+1][Col])
+            {
+                for (k=0;k<VMHL_M;k++)
+                    TMHL_NumberInterchange(&(VMHL_ResultMatrix[j][k]),&(VMHL_ResultMatrix[j+1][k]));
+            }
+}
+//---------------------------------------------------------------------------
+template <class T> void TMHL_BubbleSortEveryColInMatrix(T **VMHL_ResultMatrix,int VMHL_N, int VMHL_M)
+{
+/*
+Функция сортирует каждый столбец матрицы в отдельности.
+Входные параметры:
+ VMHL_ResultMatrix - указатель на матрицу, которую будем сортировать;
+ VMHL_N - количество строк в матрице;
+ VMHL_M - количество столбцов в матрице.
+Выходной параметр:
+ Отсутствует.
+*/
+    int i,j,k;
+    for (k=0;k<VMHL_M;k++)
+    {
+        for(i=VMHL_N-1;i>0;i--)
+            for(j=0;j<i;j++)
+                if(VMHL_ResultMatrix[j][k]>VMHL_ResultMatrix[j+1][k])
+                {
+                    TMHL_NumberInterchange(&(VMHL_ResultMatrix[j][k]),&(VMHL_ResultMatrix[j+1][k]));
+                }
+    }
+}
+//---------------------------------------------------------------------------
 template <class T> void TMHL_BubbleSortEveryRowInMatrix(T **VMHL_ResultMatrix,int VMHL_N, int VMHL_M)
 {
 /*
@@ -2339,6 +2410,9 @@ return TMHL_SampleCovariance(x,x,VMHL_N);
 //*****************************************************************
 //*****************************************************************
 //Тригонометрические функции
+//*****************************************************************
+//*****************************************************************
+//Уравнения
 //*****************************************************************
 
 #endif // MATHHARRIXLIBRARY_H

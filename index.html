@@ -32,16 +32,22 @@
 								$("#content").html(html);  
 								}  
 							});
+						scroll_to_bottom(500);
 						result=resultnew;
 						}
 					}  
             });		
-        }  
+        }
+
+function scroll_to_bottom(speed) {
+	var height= $("body").height(); 
+	$("html,body").animate({"scrollTop":height},speed); 
+}		
       
         $(document).ready(function(){  
             show();  
             setInterval('show()',1000);  
         });  
-    </script>  
+    </script>
 </body>
 </html>

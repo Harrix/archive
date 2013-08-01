@@ -13,41 +13,61 @@
     <script>  
 	var result='';
 	var resultnew='';
+	var scroll=false;
+	var ajaxbegin=false;
 	
-        function show()  
-        {  
-            $.ajax({  
-                url: "marker.html",  
-                cache: false,  
-                success: function(html)
-					{  
-					resultnew = html; 
-					if ((resultnew!=result)||(resultnew==''))
-						{
-						$.ajax({  
-							url: "temp.html",  
-							cache: false,  
-							success: function(html)
-								{  
-								$("#content").html(html);  
-								}  
-							});
-						scroll_to_bottom(500);
-						result=resultnew;
-						}
-					}  
-            });		
-        }
+	function show()  
+	{  
+	ajaxbegin=true;
+		$.ajax({  
+		url: "marker.html",  
+		cache: false,  
+		success: function(html)
+			{  			
+				resultnew = html; 
+				if ((resultnew!=result)||(resultnew==''))
+				{				
+					$.ajax({  
+					url: "temp.html",  
+					cache: false,  
+					success: function(html)
+						{  
+							$("#content").stop().html(html);  
+						}  
+					});
+					scroll_to_bottom(500);
+					result=resultnew;
+					scroll=false;
+				}
+			}  
+		});	
+	ajaxbegin=false;
+	}
+	
+	function show2()  
+	{  
+		if ((resultnew==result)&&(resultnew!='')&&(scroll==false))
+		{
+			scroll_to_bottom(500);
+			scroll=true;
+		}
+		if (ajaxbegin==true)
+		{
+			scroll_to_bottom(500);
+		}
+	}
 
-function scroll_to_bottom(speed) {
-	var height= $("body").height(); 
-	$("html,body").animate({"scrollTop":height},speed); 
-}		
-      
-        $(document).ready(function(){  
-            show();  
-            setInterval('show()',1000);  
-        });  
+	function scroll_to_bottom(speed) {
+		var height= $("body").height(); 
+		$("html,body").stop().animate({"scrollTop":height},speed); 
+	}		
+	
+	$(document).ready(function(){  
+		show();  
+		setInterval('show()',500);  
+		show2();  
+		setInterval('show2()',1000); 
+	});  
     </script>
 </body>
 </html>

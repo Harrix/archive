@@ -1,7 +1,7 @@
 QtHarrixLibraryForQWebView
 =================
 
-Библиотека для отображения различных данных в QWebView. Версия v.1.2.
+Библиотека для отображения различных данных в QWebView. Версия v.1.3.
 
 https://github.com/Harrix/QtHarrixLibraryForQWebView
 
@@ -24,6 +24,12 @@ QString **HQt_ShowText** (QString TitleX);
 
 QString **HQt_ShowSimpleText** (QString String);  
 Функция возвращает строку с выводом некоторой строки с HTML кодами без всякого излишеств. Для добавление в html файл.
+
+QString **HQt_ShowH1** (QString String);  
+Функция возвращает строку с выводом некоторой строки в виде заголовка. Для добавление в html файл.
+
+QString **HQt_ShowHr** ();  
+Функция возвращает строку с выводом горизонтальной линии. Для добавление в html файл.
 
 QString **HQt_ShowAlert** (QString String);  
 Функция возвращает строку с выводом некоторого предупреждения. Для добавление в html файл.
@@ -145,9 +151,9 @@ QString **HQt_DrawLine** (double Left, double Right, double h, double (*Function
 
 Объявите, например, в mainwindow.h глобальные переменные:
 
-    QString DS;
-    QString Path;
-    QString Html;
+    QString DS;//разделитель между папками: слэш или иное в данной ОС
+    QString Path;//путь к папке с программой
+    QString Html;//сюда кладется выводимый текст
 
 Вам нужно вызвать данные 4 строчки, например, в конструкторе MainWindow::MainWindow(QWidget *parent):
 
@@ -171,6 +177,18 @@ QString **HQt_DrawLine** (double Left, double Right, double h, double (*Function
 **[+]** добавление
 
 **[*]** разное
+
+**1.3**
+
+**[*]** Оптимизирована работа некоторых функций.
+
+**[-]** Иногда прокрутка не докручивалась. Вставлен костыль.
+
+**[+]** Добавлена функция QString HQt_ShowH1 (QString String).
+
+**[+]** Добавлена функция QString HQt_ShowHr ().
+
+**[-]** Почти все стили вынесены в style.css.
 
 **1.2**
 

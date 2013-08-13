@@ -26,13 +26,14 @@ void MHL_SeedRandom(void);//Инициализатор генератора сл
 double MHL_RandomNumber(void);//Генерирует вещественное случайное число из интервала (0;1)
 
 //ПЕРЕМЕННЫЕ ПЕРЕЧИСЛЯЕМОГО ТИПА
-
+enum TypeOfTestFunction { TestFunction_Ackley, TestFunction_ParaboloidOfRevolution, TestFunction_Rastrigin, TestFunction_Rosenbrock, TestFunction_SumVector };
 
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 // ОБЪЯВЛЕНИЯ ФУНКЦИЙ
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 //Вектора (Одномерные массивы)
+void MHL_DependentNoiseInVector(double *VMHL_ResultVector, double percent, int VMHL_N);
 double MHL_EuclidNorma(double *a,int VMHL_N);
 void MHL_NoiseInVector(double *VMHL_ResultVector, double percent, int VMHL_N);
 template <class T> void TMHL_AcceptanceLimits(T *VMHL_ResultVector, T *Left, T *Right, int VMHL_N);
@@ -52,7 +53,9 @@ template <class T> int TMHL_NumberOfPositiveValues(T *a, int VMHL_N);
 template <class T> int TMHL_NumberOfZeroValues(T *a, int VMHL_N);
 template <class T> void TMHL_OrdinalVector(T *VMHL_ResultVector, int VMHL_N);
 template <class T> void TMHL_OrdinalVectorZero(T *VMHL_ResultVector, int VMHL_N);
+template <class T> T TMHL_ProductOfElementsOfVector(T *VMHL_Vector,int VMHL_N);
 template <class T> void TMHL_ReverseVector(T *VMHL_ResultVector, int VMHL_N);
+template <class T> int TMHL_SearchElementInVector (T *X, T x, int VMHL_N);
 template <class T> int TMHL_SearchFirstNotZero(T *x, int VMHL_N);
 template <class T> int TMHL_SearchFirstZero(T *x, int VMHL_N);
 template <class T> T TMHL_SumSquareVector(T *VMHL_Vector,int VMHL_N);
@@ -108,6 +111,46 @@ double MHL_CenterDerivative(double x, double h, double (*Function)(double));
 double MHL_LeftDerivative(double x, double h, double (*Function)(double));
 double MHL_RightDerivative(double x, double h, double (*Function)(double));
 
+//Для тестовых функций
+int MHL_ClassOfTestFunction(TypeOfTestFunction Type);
+void MHL_DefineTestFunction(TypeOfTestFunction Type);
+double MHL_ErrorExOfTestFunction_Binary(int *x, int VMHL_N);
+double MHL_ErrorExOfTestFunction_Binary(int *x, int VMHL_N, TypeOfTestFunction Type);
+double MHL_ErrorExOfTestFunction_Real(double *x, int VMHL_N);
+double MHL_ErrorExOfTestFunction_Real(double *x, int VMHL_N, TypeOfTestFunction Type);
+double MHL_ErrorEyOfTestFunction_Binary(double FitnessOfx, int VMHL_N);
+double MHL_ErrorEyOfTestFunction_Binary(double FitnessOfx, int VMHL_N, TypeOfTestFunction Type);
+double MHL_ErrorEyOfTestFunction_Real(double FitnessOfx, int VMHL_N);
+double MHL_ErrorEyOfTestFunction_Real(double FitnessOfx, int VMHL_N, TypeOfTestFunction Type);
+double MHL_ErrorROfTestFunction_Binary(int *x, int VMHL_N);
+double MHL_ErrorROfTestFunction_Binary(int *x, int VMHL_N, TypeOfTestFunction Type);
+double MHL_ErrorROfTestFunction_Real(double *x, int VMHL_N);
+double MHL_ErrorROfTestFunction_Real(double *x, int VMHL_N, TypeOfTestFunction Type);
+double MHL_FitnessOfOptimumOfTestFunction_Binary(int VMHL_N);
+double MHL_FitnessOfOptimumOfTestFunction_Binary(int VMHL_N, TypeOfTestFunction Type);
+double MHL_FitnessOfOptimumOfTestFunction_Real(double VMHL_N);
+double MHL_FitnessOfOptimumOfTestFunction_Real(double VMHL_N, TypeOfTestFunction Type);
+int MHL_GetCountOfFitness();
+void MHL_LeftAndRightBorderOfTestFunction_Real(double *Left, double *Right,int VMHL_N);
+void MHL_LeftAndRightBorderOfTestFunction_Real(double *Left, double *Right, int VMHL_N, TypeOfTestFunction Type);
+double MHL_MaximumOrMinimumOfTestFunction_Binary();
+double MHL_MaximumOrMinimumOfTestFunction_Binary(TypeOfTestFunction Type);
+double MHL_MaximumOrMinimumOfTestFunction_Real();
+double MHL_MaximumOrMinimumOfTestFunction_Real(TypeOfTestFunction Type);
+double MHL_NumberOfPartsOfTestFunction_Real(int *NumberOfParts, int VMHL_N);
+double MHL_NumberOfPartsOfTestFunction_Real(int *NumberOfParts, int VMHL_N, TypeOfTestFunction Type);
+double MHL_OptimumOfTestFunction_Binary(int *Optimum, int VMHL_N);
+double MHL_OptimumOfTestFunction_Binary(int *Optimum, int VMHL_N, TypeOfTestFunction Type);
+double MHL_OptimumOfTestFunction_Real(double *Optimum, int VMHL_N);
+double MHL_OptimumOfTestFunction_Real(double *Optimum, int VMHL_N, TypeOfTestFunction Type);
+double MHL_PrecisionOfCalculationsOfTestFunction_Real();
+double MHL_PrecisionOfCalculationsOfTestFunction_Real(TypeOfTestFunction Type);
+void MHL_SetToZeroCountOfFitness();
+double MHL_TestFunction_Binary(int *x, int VMHL_N);
+double MHL_TestFunction_Binary(int *x, int VMHL_N, TypeOfTestFunction Type);
+double MHL_TestFunction_Real(double *x, int VMHL_N);
+double MHL_TestFunction_Real(double *x, int VMHL_N, TypeOfTestFunction Type);
+
 //Интегрирование
 double MHL_IntegralOfRectangle(double a, double b, double Epsilon,double (*Function)(double));
 double MHL_IntegralOfSimpson(double a, double b, double Epsilon,double (*Function)(double));
@@ -133,6 +176,7 @@ int MHL_GreatestCommonDivisorEuclid(int A,int B);
 int MHL_HowManyPowersOfTwo(int x);
 double MHL_InverseNormalizationNumberAll(double x);
 int MHL_LeastCommonMultipleEuclid(int A,int B);
+void MHL_MixedMultiLogicVectorOfFullSearch(int *VMHL_Vector, int I, int *HowMuchInElements, int VMHL_N);
 double MHL_NormalizationNumberAll(double x);
 int MHL_Parity(int a);
 double MHL_SumGeometricSeries(double u1,double q,int n);
@@ -154,6 +198,7 @@ template <class T> void TMHL_ColInterchange(T **VMHL_ResultMatrix, int VMHL_N, i
 template <class T> void TMHL_ColToMatrix(T **VMHL_ResultMatrix, T *b, int VMHL_N, int k);
 template <class T> void TMHL_DeleteColInMatrix(T **VMHL_ResultMatrix, int k, int VMHL_N, int VMHL_M);
 template <class T> void TMHL_DeleteRowInMatrix(T **VMHL_ResultMatrix, int k, int VMHL_N, int VMHL_M);
+template <class T> bool TMHL_EqualityOfMatrixes (T **a, T **b,int VMHL_N,int VMHL_M);
 template <class T> void TMHL_FillMatrix(T **VMHL_ResultMatrix, int VMHL_N, int VMHL_M, T x);
 template <class T> void TMHL_IdentityMatrix(T **VMHL_ResultMatrix,int VMHL_N);
 template <class T> void TMHL_MatrixMinusMatrix(T **a, T **b, T **VMHL_ResultMatrix, int VMHL_N, int VMHL_M);
@@ -181,6 +226,7 @@ template <class T> void TMHL_ZeroMatrix(T **VMHL_ResultMatrix,int VMHL_N,int VMH
 template <class T> T TMHL_Chebychev(T *x, T *y, int VMHL_N);
 template <class T> T TMHL_CityBlock(T *x, T *y, int VMHL_N);
 template <class T> T TMHL_Euclid(T *x, T *y, int VMHL_N);
+template <class T> T TMHL_Minkovski(T *x, T *y, int r, int VMHL_N);
 
 //Непараметрика
 double MHL_BellShapedKernelExp(double z);
@@ -197,6 +243,14 @@ double MHL_TrapeziformFuzzyNumber(double x,double a,double b,double c,double d);
 
 //Оптимизация
 int MHL_BinaryMonteCarloAlgorithm(int *Parameters, double (*FitnessFunction)(int*,int), int *VMHL_ResultVector, double *VMHL_Result);
+void MHL_DichotomyOptimization (double Left, double Right, double (*Function)(double), double Interval, double Epsilon, double *VMHL_Result_X,double *VMHL_Result_Y);
+void MHL_FibonacciOptimization (double Left, double Right, double (*Function)(double), int Count, double *VMHL_Result_X,double *VMHL_Result_Y);
+void MHL_GoldenSectionOptimization (double Left, double Right, double (*Function)(double), double Interval, double *VMHL_Result_X,double *VMHL_Result_Y);
+void MHL_QuadraticFitOptimization (double Left, double Right, double (*Function)(double), double Epsilon, double Epsilon2, double *VMHL_Result_X,double *VMHL_Result_Y);
+int MHL_RealMonteCarloAlgorithm(int *Parameters, double *Left, double *Right, double (*FitnessFunction)(double*,int), double *VMHL_ResultVector, double *VMHL_Result);
+void MHL_RealMonteCarloOptimization (double Left, double Right, double (*Function)(double), int Count, double *VMHL_Result_X,double *VMHL_Result_Y);
+void MHL_UniformSearchOptimization (double Left, double Right, double (*Function)(double), double Interval, double *VMHL_Result_X,double *VMHL_Result_Y);
+void MHL_UniformSearchOptimizationN (double Left, double Right, double (*Function)(double), int Count, double *VMHL_Result_X,double *VMHL_Result_Y);
 
 //Перевод единиц измерений
 double MHL_DegToRad(double VMHL_X);
@@ -253,11 +307,11 @@ template <class T> T TMHL_SampleCovariance(T *x, T *y, int VMHL_N);
 template <class T> T TMHL_Variance(T *x, int VMHL_N);
 
 //Тестовые функции для оптимизации
-double MHL_TestFuction_Ackley(double *x, int VMHL_N);
-double MHL_TestFuction_ParaboloidOfRevolution(double *x, int VMHL_N);
-double MHL_TestFuction_Rastrigin(double *x, int VMHL_N);
-double MHL_TestFuction_Rosenbrock(double *x, int VMHL_N);
-double MHL_TestFuction_SumVector(int *x, int VMHL_N);
+double MHL_TestFunction_Ackley(double *x, int VMHL_N);
+double MHL_TestFunction_ParaboloidOfRevolution(double *x, int VMHL_N);
+double MHL_TestFunction_Rastrigin(double *x, int VMHL_N);
+double MHL_TestFunction_Rosenbrock(double *x, int VMHL_N);
+double MHL_TestFunction_SumVector(int *x, int VMHL_N);
 
 //Тригонометрические функции
 double MHL_Cos(double x);
@@ -621,6 +675,23 @@ for (int i=0;i<VMHL_N;i++)
     VMHL_ResultVector[i]=i;
 }
 //---------------------------------------------------------------------------
+template <class T> T TMHL_ProductOfElementsOfVector(T *VMHL_Vector,int VMHL_N)
+{
+/*
+Функция вычисляет произведение элементов вектора.
+Входные параметры:
+ VMHL_Vector - указатель на исходный массив;
+ VMHL_N - размер массива.
+Возвращаемое значение:
+ Произведение элементов массива.
+*/
+T VMHL_Result=1;
+for (int i=0;i<VMHL_N;i++)
+    VMHL_Result*=VMHL_Vector[i];
+
+return VMHL_Result;
+}
+//---------------------------------------------------------------------------
 template <class T> void TMHL_ReverseVector(T *VMHL_ResultVector, int VMHL_N)
 {
 /*
@@ -633,6 +704,30 @@ template <class T> void TMHL_ReverseVector(T *VMHL_ResultVector, int VMHL_N)
 */
 for (int i=0;i<VMHL_N/2;i++)
  TMHL_NumberInterchange(&(VMHL_ResultVector[i]),&(VMHL_ResultVector[VMHL_N-i-1]));
+}
+//---------------------------------------------------------------------------
+template <class T> int TMHL_SearchElementInVector (T *X, T x, int VMHL_N)
+/*
+Функция находит номер первого элемента в массиве, равного данному.
+Входные параметры:
+ X - исходный массив;
+ x - данный элемент;
+ VMHL_N - размер массива.
+Возвращаемое значение:
+ Номер элемента.
+Примечание:
+ Если такого элемента нет, то возвращает -1.
+*/
+{
+int i=0;
+
+while (i<VMHL_N)
+	{
+	if (X[i]==x) return (i);//нашли элемент
+	i++;
+	}
+	
+return -1;//не нашли
 }
 //---------------------------------------------------------------------------
 template <class T> int TMHL_SearchFirstNotZero(T *x, int VMHL_N)
@@ -967,6 +1062,9 @@ else
 //*****************************************************************
 //*****************************************************************
 //Дифференцирование
+//*****************************************************************
+//*****************************************************************
+//Для тестовых функций
 //*****************************************************************
 //*****************************************************************
 //Интегрирование
@@ -1335,6 +1433,29 @@ for (i=k;i<VMHL_N-1;i++)
   VMHL_ResultMatrix[i][j]=VMHL_ResultMatrix[i+1][j];
 for (j=0;j<VMHL_M;j++)
  VMHL_ResultMatrix[VMHL_N-1][j]=0;//зануляем
+}
+//---------------------------------------------------------------------------
+template <class T> bool TMHL_EqualityOfMatrixes (T **a, T **b,int VMHL_N,int VMHL_M)
+{
+/*
+Функция проверяет равенство матриц.
+Входные параметры:
+ a - указатель на первую матрицу;
+ b - указатель на вторую матрицу;
+ VMHL_N - размер массива a (число строк);
+ VMHL_M - размер массива a (число столбцов).
+Возвращаемое значение:
+ true - матрицы совпадают;
+ false - матрицы не совпадают.
+*/
+bool VMHL_Result=true;
+
+for (int i=0;i<VMHL_N;i++)
+    for (int j=0;j<VMHL_M;j++)
+        if (a[i][j]!=b[i][j])
+            VMHL_Result=false;
+
+return VMHL_Result;
 }
 //---------------------------------------------------------------------------
 template <class T> void TMHL_FillMatrix(T **VMHL_ResultMatrix, int VMHL_N, int VMHL_M, T x)
@@ -1817,6 +1938,28 @@ T VMHL_Result=0;
 for (int i=0;i<VMHL_N;i++)
  VMHL_Result+=(x[i]-y[i])*(x[i]-y[i]);
 VMHL_Result=sqrt(VMHL_Result);
+return VMHL_Result;
+}
+//---------------------------------------------------------------------------
+template <class T> T TMHL_Minkovski(T *x, T *y, int r, int VMHL_N)
+{
+/*
+Функция вычисляет метрику Минковского.
+Входные параметры:
+ x - указатель на первый вектор;
+ y - указатель на второй вектор;
+ r - порядок метрики;
+ VMHL_N - размер массивов.
+Возвращаемое значение:
+ Значение метрики Минковского.
+*/
+T VMHL_Result=0;
+for (int i=0;i<VMHL_N;i++)
+ {
+ VMHL_Result+=pow(fabs(x[i]-y[i]),r);
+}
+VMHL_Result=pow(VMHL_Result,1./double(r));
+
 return VMHL_Result;
 }
 //---------------------------------------------------------------------------

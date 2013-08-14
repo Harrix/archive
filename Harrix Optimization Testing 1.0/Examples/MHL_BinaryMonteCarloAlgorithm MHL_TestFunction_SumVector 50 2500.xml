@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document>
+<harrix_file_format>
+	<format>Harrix Optimization Testing</format>
+	<version>1.0</version>
+	<site>https://github.com/Harrix/HarrixFileFormats</site>
+</harrix_file_format>
+<about>
+	<author>Сергиенко Антон Борисович</author>
+	<date>12.08.2013 23:04:28</date>
+</about>
+<about_data>
+	<!-- Обозначение алгоритма (по названию функции, которая его реализует) -->
+	<name_algorithm>MHL_BinaryMonteCarloAlgorithm</name_algorithm>
+	<!-- Полное название алгоритма -->
+	<full_name_algorithm>Метод Монте-Карло на бинарных строках</full_name_algorithm>
+	<!-- Название тестовой функции (по названию функции, которая его реализует) -->
+	<name_test_function>MHL_TestFunction_SumVector</test_function>
+	<!-- Полное название тестовой функции -->
+	<full_name_test_function>Сумма всех элементов бинарного вектора</test_function>
+	<!-- Размерность задачи оптимизации -->
+	<chromosome_length>50</chromosome_length>
+	<!-- Количество измерений для каждого варианта настроек алгоритма (сколько точек получим) -->
+	<number_of_measuring>10</number_of_measuring>
+	<!-- Количество запусков алгоритма в каждом из экспериментов -->
+	<number_of_runs>10</number_of_runs>
+	<!-- Максимальное допустимое число вычислений целевой функции -->
+	<max_count_of_fitness>2500</max_count_of_fitness>
+	<!-- Количество проверяемых параметров алгоритма оптимизации -->
+	<number_of_parameters>1</number_of_parameters>
+	<!-- Количество комбинаций вариантов настроек -->
+	<number_of_experiments>1</number_of_experiments>
+</about_data>
+<data>
+	<experiment parameters_of_algorithm_1="Отсутствуют = Отсутствуют" >
+		<measuring number="1">
+			<Ex>0.26</Ex>
+			<Ey>0.26</Ey>
+			<R>0</R>
+		</measuring>
+		<measuring number="2">
+			<Ex>0.266</Ex>
+			<Ey>0.266</Ey>
+			<R>0</R>
+		</measuring>
+		<measuring number="3">
+			<Ex>0.252</Ex>
+			<Ey>0.252</Ey>
+			<R>0</R>
+		</measuring>
+		<measuring number="4">
+			<Ex>0.258</Ex>
+			<Ey>0.258</Ey>
+			<R>0</R>
+		</measuring>
+		<measuring number="5">
+			<Ex>0.254</Ex>
+			<Ey>0.254</Ey>
+			<R>0</R>
+		</measuring>
+		<measuring number="6">
+			<Ex>0.26</Ex>
+			<Ey>0.26</Ey>
+			<R>0</R>
+		</measuring>
+		<measuring number="7">
+			<Ex>0.258</Ex>
+			<Ey>0.258</Ey>
+			<R>0</R>
+		</measuring>
+		<measuring number="8">
+			<Ex>0.258</Ex>
+			<Ey>0.258</Ey>
+			<R>0</R>
+		</measuring>
+		<measuring number="9">
+			<Ex>0.266</Ex>
+			<Ey>0.266</Ey>
+			<R>0</R>
+		</measuring>
+		<measuring number="10">
+			<Ex>0.258</Ex>
+			<Ey>0.258</Ey>
+			<R>0</R>
+		</measuring>
+	</experiment>
+</data>
+</document>

@@ -1,7 +1,7 @@
 QtHarrixLibraryForQWebView
 =================
 
-Библиотека для отображения различных данных в QWebView. Версия v.1.4.
+Библиотека для отображения различных данных в QWebView. Версия v.1.5.
 
 https://github.com/Harrix/QtHarrixLibraryForQWebView
 
@@ -37,13 +37,37 @@ QString **HQt_ShowAlert** (QString String);
 template <class T> QString **THQt_ShowNumber** (T VMHL_X, QString TitleX, QString NameX);  
 Функция возвращает строку с выводом некоторого числа VMHL_X с HTML кодами.
 
+template <class T> QString **THQt_ShowNumber** (T VMHL_X, QString NameX);  
+Функция возвращает строку с выводом некоторого числа VMHL_X с HTML кодами. Для добавление в html файл.
+
+template <class T> QString **THQt_ShowNumber** (T VMHL_X);  
+Функция возвращает строку с выводом некоторого числа VMHL_X с HTML кодами. Для добавление в html файл.
+
 template <class T> QString **THQt_ShowVector** (T *VMHL_Vector, int VMHL_N, QString TitleVector, QString NameVector);  
+Функция возвращает строку с выводом некоторый вектора VMHL_Vector с HTML кодами.
+
+template <class T> QString **THQt_ShowVector** (T *VMHL_Vector, int VMHL_N, QString NameVector);  
+Функция возвращает строку с выводом некоторый вектора VMHL_Vector с HTML кодами.
+
+template <class T> QString **THQt_ShowVector** (T *VMHL_Vector, int VMHL_N);  
 Функция возвращает строку с выводом некоторый вектора VMHL_Vector с HTML кодами.
 
 template <class T> QString **THQt_ShowVectorT** (T *VMHL_Vector, int VMHL_N, QString TitleVector, QString NameVector);  
 Функция возвращает строку с выводом некоторый вектора VMHL_Vector в транспонированном виде с HTML кодами.
 
+template <class T> QString **THQt_ShowVectorT** (T *VMHL_Vector, int VMHL_N, QString NameVector);  
+Функция возвращает строку с выводом некоторый вектора VMHL_Vector в траснпонированном виде с HTML кодами.
+
+template <class T> QString **THQt_ShowVectorT** (T *VMHL_Vector, int VMHL_N);  
+Функция возвращает строку с выводом некоторый вектора VMHL_Vector в траснпонированном виде с HTML кодами.
+
 template <class T> QString **THQt_ShowMatrix** (T *VMHL_Matrix, int VMHL_N, int VMHL_M, QString TitleMatrix, QString NameMatrix);  
+Функция возвращает строку с выводом некоторой матрицы VMHL_Matrix с HTML кодами.
+
+template <class T> QString **THQt_ShowMatrix** (T *VMHL_Matrix, int VMHL_N, int VMHL_M, QString NameMatrix);  
+Функция возвращает строку с выводом некоторой матрицы VMHL_Matrix с HTML кодами.
+
+template <class T> QString **THQt_ShowMatrix** (T *VMHL_Matrix, int VMHL_N, int VMHL_M);  
 Функция возвращает строку с выводом некоторой матрицы VMHL_Matrix с HTML кодами.
 
 template <class T> QString **THQt_ShowChartOfLine** (T *VMHL_VectorX,T *VMHL_VectorY, int VMHL_N, QString TitleChart, QString NameVectorX, QString NameVectorY, QString NameLine, bool ShowLine, bool ShowPoints, bool ShowArea, bool ShowSpecPoints, bool RedLine);  
@@ -177,6 +201,11 @@ QString **HQt_DrawLine** (double Left, double Right, double h, double (*Function
 **[+]** добавление
 
 **[*]** разное
+
+**1.5**
+
+**[+]** Добавлены функции template <class T> QString **THQt_ShowNumber** (T VMHL_X, QString NameX), template <class T> QString **THQt_ShowVector** (T *VMHL_Vector, int VMHL_N), template <class T> QString **THQt_ShowVectorT** (T *VMHL_Vector, int VMHL_N, QString NameVector), template <class T> QString **THQt_ShowVectorT** (T *VMHL_Vector, int VMHL_N), template <class T> QString **THQt_ShowMatrix** (T *VMHL_Matrix, int VMHL_N, int VMHL_M, QString NameMatrix), 
+template <class T> QString **THQt_ShowMatrix** (T *VMHL_Matrix, int VMHL_N, int VMHL_M).
 
 **1.4**
 

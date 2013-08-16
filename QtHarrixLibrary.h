@@ -11,6 +11,7 @@
 #include <QDateTime>
 #include <QApplication>
 #include <typeinfo>
+#include <QXmlStreamReader>
 
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 // ОБЪЯВЛЕНИЯ ФУНКЦИЙ
@@ -57,6 +58,9 @@ void THQt_ReadColFromQStringList(QStringList QStringListFromFile, int k, QDate *
 void THQt_ReadColFromQStringList(QStringList QStringListFromFile, int k, QString *VMHL_VectorResult);//Функция считывает данные какого-то k столбца с датами из QStringList в виде матрицы.
 QString HQt_TextBeforeEqualSign (QString String);//Функция возвращает текст строки до первого знака =.
 QString HQt_TextAfterEqualSign (QString String);//Функция возвращает текст строки после первого знака =.
+QStringList HQt_AddUniqueQStringInQStringList (QStringList StringList, QString String);//Функция добавляет в QStringList строку QString. Но если такая строка уже присутствует, то добавление не происходит.
+int HQt_ReadNumberOfExperimentsFromHarrixOptimizationTesting (QString filename);//Функция считывает количество комбинаций вариантов настроек алгоритмов оптимизации из файла формата HarrixOptimizationTesting.
+int HQt_ReadNumberOfMeasuringFromHarrixOptimizationTesting (QString filename);//Функция считывает количество измерений для каждого варианта настроек алгоритма оптимизации из файла формата HarrixOptimizationTesting.
 
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 // РЕАЛИЗАЦИЯ ШАБЛОНОВ

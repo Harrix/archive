@@ -1,4 +1,4 @@
-//Сборник функций для Qt. Версия v.3.2
+//Сборник функций для Qt. Версия v.3.3
 //https://github.com/Harrix/QtHarrixLibrary
 //Библиотека распространяется по лицензии Apache License, Version 2.0.
 
@@ -933,3 +933,102 @@ QStringList HQt_AddUniqueQStringInQStringList (QStringList StringList, QString S
 }
 //---------------------------------------------------------------------------
 
+int HQt_ReadNumberOfExperimentsFromHarrixOptimizationTesting (QString filename)
+{
+    /*
+    Функция считывает количество комбинаций вариантов настроек алгоритмов оптимизации из файла формата HarrixOptimizationTesting.
+    Входные параметры:
+     filename - полное имя считываемого файла.
+    Возвращаемое значение:
+     Количество комбинаций вариантов настроек алгоритмов оптимизации.
+    Примечание:
+     Если результат не найдет, то возвращается -1.
+    */
+    int VMHL_Result=-1;
+
+    QXmlStreamReader Rxml;//непосредственно анализируемый xml файл
+    QFile file(filename);//для открытия файла и запихивания его в Rxml
+
+    QString NameOfElement;//имя тэга
+    QString TextOfElement;//содержимое тэга
+
+    if (!file.open(QFile::ReadOnly | QFile::Text))
+    {
+        return -1;
+    }
+    else
+    {
+        Rxml.setDevice(&file);
+        Rxml.readNext();while((!Rxml.isStartElement())&&(!Rxml.atEnd())){Rxml.readNext();}
+
+        while(!Rxml.atEnd())
+        {
+            if(Rxml.isStartElement())
+            {
+                NameOfElement=Rxml.name().toString().toLower();
+                if (NameOfElement=="number_of_experiments")
+                {
+                    TextOfElement=Rxml.readElementText();
+                    VMHL_Result=TextOfElement.toInt();
+                    break;
+                }
+            }
+            Rxml.readNext();
+        }
+    }
+
+    file.close();
+
+    return VMHL_Result;
+}
+//---------------------------------------------------------------------------
+
+int HQt_ReadNumberOfMeasuringFromHarrixOptimizationTesting (QString filename)
+{
+    /*
+    Функция считывает количество измерений для каждого варианта настроек алгоритма оптимизации из файла формата HarrixOptimizationTesting.
+    Входные параметры:
+     filename - полное имя считываемого файла.
+    Возвращаемое значение:
+     Количество измерений для каждого варианта настроек алгоритма оптимизации.
+    Примечание:
+     Если результат не найдет, то возвращается -1.
+    */
+    int VMHL_Result=-1;
+
+    QXmlStreamReader Rxml;//непосредственно анализируемый xml файл
+    QFile file(filename);//для открытия файла и запихивания его в Rxml
+
+    QString NameOfElement;//имя тэга
+    QString TextOfElement;//содержимое тэга
+
+    if (!file.open(QFile::ReadOnly | QFile::Text))
+    {
+        return -1;
+    }
+    else
+    {
+        Rxml.setDevice(&file);
+        Rxml.readNext();while((!Rxml.isStartElement())&&(!Rxml.atEnd())){Rxml.readNext();}
+
+        while(!Rxml.atEnd())
+        {
+            if(Rxml.isStartElement())
+            {
+                NameOfElement=Rxml.name().toString().toLower();
+                if (NameOfElement=="number_of_measuring")
+                {
+                    TextOfElement=Rxml.readElementText();
+                    VMHL_Result=TextOfElement.toInt();
+                    break;
+                }
+            }
+            Rxml.readNext();
+        }
+    }
+
+    file.close();
+
+    return VMHL_Result;
+}
+//---------------------------------------------------------------------------

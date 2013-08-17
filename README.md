@@ -1,7 +1,7 @@
 QtHarrixLibraryForQWebView
 =================
 
-Библиотека для отображения различных данных в QWebView. Версия v.1.5.
+Библиотека для отображения различных данных в QWebView. Версия v.1.6.
 
 https://github.com/Harrix/QtHarrixLibraryForQWebView
 
@@ -51,6 +51,15 @@ template <class T> QString **THQt_ShowVector** (T *VMHL_Vector, int VMHL_N, QStr
 
 template <class T> QString **THQt_ShowVector** (T *VMHL_Vector, int VMHL_N);  
 Функция возвращает строку с выводом некоторый вектора VMHL_Vector с HTML кодами.
+
+QString **THQt_ShowVector** (QStringList VMHL_Vector, QString TitleVector, QString NameVector);  
+Функция возвращает строку с выводом некоторого списка строк VMHL_Vector с HTML кодами. Для добавление в html файл.
+
+QString **THQt_ShowVector** (QStringList VMHL_Vector, QString NameVector);  
+Функция возвращает строку с выводом некоторого списка строк VMHL_Vector с HTML кодами. Для добавление в html файл.
+
+QString **THQt_ShowVector** (QStringList VMHL_Vector);  
+Функция возвращает строку с выводом некоторого списка строк VMHL_Vector с HTML кодами. Для добавление в html файл.
 
 template <class T> QString **THQt_ShowVectorT** (T *VMHL_Vector, int VMHL_N, QString TitleVector, QString NameVector);  
 Функция возвращает строку с выводом некоторый вектора VMHL_Vector в транспонированном виде с HTML кодами.
@@ -201,6 +210,10 @@ QString **HQt_DrawLine** (double Left, double Right, double h, double (*Function
 **[+]** добавление
 
 **[*]** разное
+
+**1.6**
+
+**[+]** Добавлены функции QString THQt_ShowVector (QStringList VMHL_Vector, QString TitleVector, QString NameVector), QString THQt_ShowVector (QStringList VMHL_Vector, QString NameVector), QString THQt_ShowVector (QStringList VMHL_Vector).
 
 **1.5**
 

@@ -33,6 +33,8 @@ template <class T> QString THQt_ShowVector (T *VMHL_Vector, int VMHL_N, QString 
 template <class T> QString THQt_ShowVector (T *VMHL_Vector, int VMHL_N, QString NameVector);//Функция возвращает строку с выводом некоторый вектора VMHL_Vector с HTML кодами.
 template <class T> QString THQt_ShowVector (T *VMHL_Vector, int VMHL_N);//Функция возвращает строку с выводом некоторый вектора VMHL_Vector с HTML кодами.
 QString THQt_ShowVector (QStringList VMHL_Vector, QString TitleVector, QString NameVector);//Функция возвращает строку с выводом некоторого списка строк VMHL_Vector с HTML кодами. Для добавление в html файл.
+QString THQt_ShowVector (QStringList VMHL_Vector, QString NameVector);//Функция возвращает строку с выводом некоторого списка строк VMHL_Vector с HTML кодами. Для добавление в html файл.
+QString THQt_ShowVector (QStringList VMHL_Vector);//Функция возвращает строку с выводом некоторого списка строк VMHL_Vector с HTML кодами. Для добавление в html файл.
 template <class T> QString THQt_ShowVectorT (T *VMHL_Vector, int VMHL_N, QString TitleVector, QString NameVector);//Функция возвращает строку с выводом некоторый вектора VMHL_Vector в траснпонированном виде с HTML кодами.
 template <class T> QString THQt_ShowVectorT (T *VMHL_Vector, int VMHL_N, QString NameVector);//Функция возвращает строку с выводом некоторый вектора VMHL_Vector в траснпонированном виде с HTML кодами.
 template <class T> QString THQt_ShowVectorT (T *VMHL_Vector, int VMHL_N);//Функция возвращает строку с выводом некоторый вектора VMHL_Vector в траснпонированном виде с HTML кодами.
@@ -68,7 +70,6 @@ QString HQt_DrawLine (double Left, double Right, double h, double (*Function)(do
 QString HQt_DrawLine (double Left, double Right, double h, double (*Function)(double), QString TitleChart, QString NameVectorX, QString NameVectorY, bool ShowLine, bool ShowPoints, bool ShowArea, bool ShowSpecPoints, bool RedLine);//Функция возвращает строку с HTML кодом отрисовки линии по функции Function. Для добавление в html файл. Отличается от основной функцией отсутствием параметра NameLine(название графика (для легенды)).
 QString HQt_DrawLine (double Left, double Right, double h, double (*Function)(double), QString TitleChart, QString NameVectorX, QString NameVectorY, QString NameLine);//Функция возвращает строку с HTML кодом отрисовки линии по функции Function. Для добавление в html файл. Отличается от основной функцией отсутствием булевских параметров в конце - все по умолчанию делается.
 QString HQt_DrawLine (double Left, double Right, double h, double (*Function)(double));//Функция возвращает строку с HTML кодом отрисовки линии по функции Function. Для добавление в html файл. Отличается от основной функцией отсутствием булевских параметров в конце и названий осей и графиков - для быстрого отображения графика без лишних телодвижений.
-
 
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 // РЕАЛИЗАЦИЯ ШАБЛОНОВ

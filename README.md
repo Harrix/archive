@@ -1,7 +1,7 @@
 QtHarrixLibraryForQWebView
 =================
 
-Библиотека для отображения различных данных в QWebView. Версия v.1.6.
+Библиотека для отображения различных данных в QWebView. Версия v.1.7.
 
 https://github.com/Harrix/QtHarrixLibraryForQWebView
 
@@ -78,6 +78,15 @@ template <class T> QString **THQt_ShowMatrix** (T *VMHL_Matrix, int VMHL_N, int 
 
 template <class T> QString **THQt_ShowMatrix** (T *VMHL_Matrix, int VMHL_N, int VMHL_M);  
 Функция возвращает строку с выводом некоторой матрицы VMHL_Matrix с HTML кодами.
+
+QString **THQt_ShowMatrix** (QStringList *VMHL_Matrix, int VMHL_N, QString TitleMatrix, QString NameMatrix);  
+Функция возвращает строку с выводом некоторой матрицы VMHL_Matrix с HTML кодами. Для добавление в html файл.
+
+QString **THQt_ShowMatrix** (QStringList *VMHL_Matrix, int VMHL_N, QString NameMatrix);  
+Функция возвращает строку с выводом некоторой матрицы VMHL_Matrix с HTML кодами. Для добавление в html файл.
+
+QString **THQt_ShowMatrix** (QStringList *VMHL_Matrix, int VMHL_N);  
+Функция возвращает строку с выводом некоторой матрицы VMHL_Matrix с HTML кодами. Для добавление в html файл.
 
 template <class T> QString **THQt_ShowChartOfLine** (T *VMHL_VectorX,T *VMHL_VectorY, int VMHL_N, QString TitleChart, QString NameVectorX, QString NameVectorY, QString NameLine, bool ShowLine, bool ShowPoints, bool ShowArea, bool ShowSpecPoints, bool RedLine);  
 Функция возвращает строку с выводом некоторого графика по точкам с HTML кодами. Для добавление в HTML файл.
@@ -175,12 +184,25 @@ QString **HQt_DrawLine** (double Left, double Right, double h, double (*Function
 - QtHarrixLibrary.cpp
 - QtHarrixLibrary.h
 
+Если вы хотите работать с форматом Harrix Optimization Testing, то скопируйте файлы:
+- DataOfHarrixOptimizationTesting.cpp
+- DataOfHarrixOptimizationTesting.h
+- MathHarrixLibrary.cpp
+- MathHarrixLibrary.h
+
 А файлы из списка в папку с *.exe файлом вашего проекта.
 - папка images
 - index.html
 - jquery.js
 - jsxgraphcore.js
 - style.css
+
+Добавьте  соответствующие инклуды (два последних, если хотите использовать Harrix Optimization Testing):
+
+    #include "QtHarrixLibrary.h"
+    #include "QtHarrixLibraryForQWebView.h"
+    #include "MathHarrixLibrary.h"
+    #include "DataOfHarrixOptimizationTesting.h"
 
 Объявите, например, в mainwindow.h глобальные переменные:
 
@@ -210,6 +232,10 @@ QString **HQt_DrawLine** (double Left, double Right, double h, double (*Function
 **[+]** добавление
 
 **[*]** разное
+
+**1.7**
+
+**[+]** Добавлены функции QString THQt_ShowMatrix (QStringList *VMHL_Matrix, int VMHL_N, QString TitleMatrix, QString NameMatrix), QString THQt_ShowMatrix (QStringList *VMHL_Matrix, int VMHL_N, QString NameMatrix), QString THQt_ShowMatrix (QStringList *VMHL_Matrix, int VMHL_N).
 
 **1.6**
 

@@ -184,12 +184,6 @@ QString **HQt_DrawLine** (double Left, double Right, double h, double (*Function
 - QtHarrixLibrary.cpp
 - QtHarrixLibrary.h
 
-Если вы хотите работать с форматом Harrix Optimization Testing, то скопируйте файлы:
-- DataOfHarrixOptimizationTesting.cpp
-- DataOfHarrixOptimizationTesting.h
-- MathHarrixLibrary.cpp
-- MathHarrixLibrary.h
-
 А файлы из списка в папку с *.exe файлом вашего проекта.
 - папка images
 - index.html
@@ -197,12 +191,10 @@ QString **HQt_DrawLine** (double Left, double Right, double h, double (*Function
 - jsxgraphcore.js
 - style.css
 
-Добавьте  соответствующие инклуды (два последних, если хотите использовать Harrix Optimization Testing):
+Добавьте  соответствующие инклуды:
 
     #include "QtHarrixLibrary.h"
     #include "QtHarrixLibraryForQWebView.h"
-    #include "MathHarrixLibrary.h"
-    #include "DataOfHarrixOptimizationTesting.h"
 
 Объявите, например, в mainwindow.h глобальные переменные:
 

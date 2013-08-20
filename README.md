@@ -1,7 +1,7 @@
 QtHarrixLibraryForQWebView
 =================
 
-Библиотека для отображения различных данных в QWebView. Версия v.1.7.
+Библиотека для отображения различных данных в QWebView. Версия v.1.8.
 
 https://github.com/Harrix/QtHarrixLibraryForQWebView
 
@@ -224,6 +224,10 @@ QString **HQt_DrawLine** (double Left, double Right, double h, double (*Function
 **[+]** добавление
 
 **[*]** разное
+
+**1.8**
+
+**[-]** Дополнения в функциях вывода QStringList.
 
 **1.7**
 

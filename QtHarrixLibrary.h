@@ -31,6 +31,7 @@ bool HQt_FileExists(QString filename);//Функция проверяет сущ
 QString HQt_GetNameFromFilename(QString filename);//Функция получает имя файла без расширения по его имени.
 bool HQt_CopyFile(QString filename, QString dir);//Функция копирует файл filename в папку dir.
 bool HQt_CopyFile(QString filename, QString dir, bool overwrite);//Функция копирует файл filename в папку dir, с возможносью перезаписи.
+bool HQt_RenameFile(QString filename, QString newfilename);//Функция переименовывает файл filename в newfilename.
 QString HQt_GetFilenameFromFullFilename(QString filename);//Функция получает имя файла по полному пути.
 QString HQt_WriteTime(int t);//Функция переводит миллисекунды в строку с описанием сколько это минут, секунд и др.
 QString HQt_UniqueName ();//Функция возвращает уникальную строку, которую можно использовать как некий идентификатор.
@@ -62,6 +63,16 @@ QStringList HQt_AddUniqueQStringInQStringList (QStringList StringList, QString S
 int HQt_SearchQStringInQStringList (QStringList StringList, QString String);//Функция ищет в QStringList строку QString (номер первого вхождения).
 QString HQt_StringForLaTeX (QString String);//Функция обрабатывает строку String так, чтобы она подходила длz публикации в LaTeX.
 QString HQt_StringToLabelForLaTeX (QString String);//Функция обрабатывает строку String так, чтобы она подходила длz публикации в LaTeX в виде label.
+int HQt_GetTypeCharRus(QString x);//Функция выдает тип вводимого QString (считая, что это буква). Нужно для алгоритма переноса строк П.Хpистова в модификации Дымченко и Ваpсанофьева.
+bool HQt_CheckRus(QString S);//Функция проверяет наличие русских букв в строке.
+bool HQt_CheckLetterFromWord(QString x);//Является ли буква символом из слова. Считается, что это или латинские буквы, или русские, или цифры или нижнее подчеркивание.
+QStringList HQt_CutToWords(QString S);//Функция разбивает строку на слова и те, части, между которыми они находятся. Слова с дефисом считаются за несколько слов.
+QStringList HQt_CutToWordsWithWordWrap(QString S);//Функция разбивает строку на слова и те, части, между которыми они находятся. А русские и английские слова разделяет по переносам. Слова с дефисом считаются за несколько слов.
+int HQt_GetTypeCharEng(QString x);//Функция выдает тип вводимого QString (считая, что это буква английская). Нужно для алгоритма переноса строк П.Хpистова в модификации Дымченко и Ваpсанофьева.
+QStringList HQt_BreakdownOfTextWithWordWrap(QString S, int length);//Функция разбивает текст на строки длиной не более length. Если может, то ставит переносы.
+bool HQt_CheckIntolerablePunctuation(QString x);//Является ли символом знаком пунктуации, который нельзя переносить.
+
+
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 // РЕАЛИЗАЦИЯ ШАБЛОНОВ
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++

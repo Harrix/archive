@@ -1,6 +1,8 @@
 DataOfHarrixOptimizationTesting
 ===============================
 
+Версия 1.1
+
 Класс DataOfHarrixOptimizationTesting для считывания информации формата данных Harrix Optimization Testing на C++.
 
 https://github.com/Harrix/DataOfHarrixOptimizationTesting
@@ -72,6 +74,10 @@ https://github.com/Harrix/HarrixFileFormats
 **[+]** добавление
 
 **[*]** разное
+
+**1.1**
+
+**[+]** Серьезное обновление функционала.
 
 **1.0**
 

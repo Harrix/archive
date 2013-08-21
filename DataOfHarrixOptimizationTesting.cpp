@@ -1,5 +1,5 @@
 //Класс DataOfHarrixOptimizationTesting для считывания информации формата данных Harrix Optimization Testing
-//Версия 1.0
+//Версия 1.1
 
 #include "QtHarrixLibrary.h"
 #include "QtHarrixLibraryForQWebView.h"
@@ -15,8 +15,6 @@ DataOfHarrixOptimizationTesting::DataOfHarrixOptimizationTesting(QString filenam
      filename - полное имя считываемого файла;
  */
     SuccessReading=true;
-    Html="";
-    Latex="";
     //++++++++++++ Конец возвращаемых переменных ++++++++
 
     //++++++++++++ Переменные итоговые ++++++++++++++++++
@@ -30,16 +28,12 @@ DataOfHarrixOptimizationTesting::DataOfHarrixOptimizationTesting(QString filenam
 
     QXmlStreamReader Rxml;//непосредственно анализируемый xml файл
     QFile file(filename);//для открытия файла и запихивания его в Rxml
-    bool Error=false;//типа вначале нет ошибок в файле
-
-    QString NameOfElement;//имя тэга
-    QString TextOfElement;//содержимое тэга
-    QString AttrOfElement;//содержимое аттрибута тэга
-    QString NameOfAttr;//название атрибута тэга
+    Error=false;//типа вначале нет ошибок в файле
+    Un=HQt_RandomString(5);//уникальная строка для Latex
 
     if (!file.open(QFile::ReadOnly | QFile::Text))
     {
-        Html+=HQt_ShowAlert("Файл "+HQt_GetFilenameFromFullFilename(filename)+" не открывается");
+        HtmlMessageOfError+=HQt_ShowAlert("Файл "+HQt_GetFilenameFromFullFilename(filename)+" не открывается");
         Error=true;
     }
     else
@@ -58,7 +52,7 @@ DataOfHarrixOptimizationTesting::DataOfHarrixOptimizationTesting(QString filenam
             NameOfElement=Rxml.name().toString().toLower();
             if (NameOfElement!="document")
             {
-                Html+=HQt_ShowAlert("Отсутствует основной тэг document");
+                HtmlMessageOfError+=HQt_ShowAlert("Отсутствует основной тэг document");
                 Error=true;
             }
             else
@@ -73,7 +67,7 @@ DataOfHarrixOptimizationTesting::DataOfHarrixOptimizationTesting(QString filenam
             NameOfElement=Rxml.name().toString().toLower();
             if (NameOfElement!="harrix_file_format")
             {
-                Html+=HQt_ShowAlert("Отсутствует тэг описания формата данных harrix_file_format");
+                HtmlMessageOfError+=HQt_ShowAlert("Отсутствует тэг описания формата данных harrix_file_format");
                 Error=true;
             }
             else
@@ -89,7 +83,7 @@ DataOfHarrixOptimizationTesting::DataOfHarrixOptimizationTesting(QString filenam
             TextOfElement=Rxml.readElementText();
             if ((NameOfElement!="format")||(TextOfElement!="Harrix Optimization Testing"))
             {
-                Html+=HQt_ShowAlert("Неправильный формат данных. Это не Harrix Optimization Testing");
+                HtmlMessageOfError+=HQt_ShowAlert("Неправильный формат данных. Это не Harrix Optimization Testing");
                 Error=true;
             }
             else
@@ -105,7 +99,7 @@ DataOfHarrixOptimizationTesting::DataOfHarrixOptimizationTesting(QString filenam
             TextOfElement=Rxml.readElementText();
             if ((NameOfElement!="version")||(TextOfElement!="1.0"))
             {
-                Html+=HQt_ShowAlert("Неправильная версия формата Harrix Optimization Testing. Данная функция обрабатывает версию 1.0");
+                HtmlMessageOfError+=HQt_ShowAlert("Неправильная версия формата Harrix Optimization Testing. Данная функция обрабатывает версию 1.0");
                 Error=true;
             }
             else
@@ -121,7 +115,7 @@ DataOfHarrixOptimizationTesting::DataOfHarrixOptimizationTesting(QString filenam
             TextOfElement=Rxml.readElementText();
             if ((NameOfElement!="site")||(TextOfElement!="https://github.com/Harrix/HarrixFileFormats"))
             {
-                Html+=HQt_ShowAlert("Неправильный сайт в описании. Должен быть https://github.com/Harrix/HarrixFileFormats");
+                HtmlMessageOfError+=HQt_ShowAlert("Неправильный сайт в описании. Должен быть https://github.com/Harrix/HarrixFileFormats");
                 Error=true;
             }
             else
@@ -136,7 +130,7 @@ DataOfHarrixOptimizationTesting::DataOfHarrixOptimizationTesting(QString filenam
             NameOfElement=Rxml.name().toString().toLower();
             if (NameOfElement!="about")
             {
-                Html+=HQt_ShowAlert("Нет тэга about");
+                HtmlMessageOfError+=HQt_ShowAlert("Нет тэга about");
                 Error=true;
             }
             else
@@ -152,7 +146,7 @@ DataOfHarrixOptimizationTesting::DataOfHarrixOptimizationTesting(QString filenam
             TextOfElement=Rxml.readElementText();
             if (NameOfElement!="author")
             {
-                Html+=HQt_ShowAlert("Нет тэга об авторе");
+                HtmlMessageOfError+=HQt_ShowAlert("Нет тэга об авторе");
                 Error=true;
             }
             else
@@ -169,7 +163,7 @@ DataOfHarrixOptimizationTesting::DataOfHarrixOptimizationTesting(QString filenam
             TextOfElement=Rxml.readElementText();
             if (NameOfElement!="date")
             {
-                Html+=HQt_ShowAlert("Нет тэга о дате создания документа");
+                HtmlMessageOfError+=HQt_ShowAlert("Нет тэга о дате создания документа");
                 Error=true;
             }
             else
@@ -185,7 +179,7 @@ DataOfHarrixOptimizationTesting::DataOfHarrixOptimizationTesting(QString filenam
             NameOfElement=Rxml.name().toString().toLower();
             if (NameOfElement!="about_data")
             {
-                Html+=HQt_ShowAlert("Нет тэга about_data");
+                HtmlMessageOfError+=HQt_ShowAlert("Нет тэга about_data");
                 Error=true;
             }
             else
@@ -201,7 +195,7 @@ DataOfHarrixOptimizationTesting::DataOfHarrixOptimizationTesting(QString filenam
             TextOfElement=Rxml.readElementText();
             if (NameOfElement!="name_algorithm")
             {
-                Html+=HQt_ShowAlert("Нет тэга об названии алгоритма name_algorithm");
+                HtmlMessageOfError+=HQt_ShowAlert("Нет тэга об названии алгоритма name_algorithm");
                 Error=true;
             }
             else
@@ -218,7 +212,7 @@ DataOfHarrixOptimizationTesting::DataOfHarrixOptimizationTesting(QString filenam
             TextOfElement=Rxml.readElementText();
             if (NameOfElement!="full_name_algorithm")
             {
-                Html+=HQt_ShowAlert("Нет тэга о полном названии алгоритма full_name_algorithm");
+                HtmlMessageOfError+=HQt_ShowAlert("Нет тэга о полном названии алгоритма full_name_algorithm");
                 Error=true;
             }
             else
@@ -235,7 +229,7 @@ DataOfHarrixOptimizationTesting::DataOfHarrixOptimizationTesting(QString filenam
             TextOfElement=Rxml.readElementText();
             if (NameOfElement!="name_test_function")
             {
-                Html+=HQt_ShowAlert("Нет тэга о названии тестовой функции name_test_function");
+                HtmlMessageOfError+=HQt_ShowAlert("Нет тэга о названии тестовой функции name_test_function");
                 Error=true;
             }
             else
@@ -252,7 +246,7 @@ DataOfHarrixOptimizationTesting::DataOfHarrixOptimizationTesting(QString filenam
             TextOfElement=Rxml.readElementText();
             if (NameOfElement!="full_name_test_function")
             {
-                Html+=HQt_ShowAlert("Нет тэга о полном названии тестовой функции full_name_test_function");
+                HtmlMessageOfError+=HQt_ShowAlert("Нет тэга о полном названии тестовой функции full_name_test_function");
                 Error=true;
             }
             else
@@ -269,7 +263,7 @@ DataOfHarrixOptimizationTesting::DataOfHarrixOptimizationTesting(QString filenam
             TextOfElement=Rxml.readElementText();
             if (NameOfElement!="chromosome_length")
             {
-                Html+=HQt_ShowAlert("Нет тэга о размерности тестовой задачи chromosome_length");
+                HtmlMessageOfError+=HQt_ShowAlert("Нет тэга о размерности тестовой задачи chromosome_length");
                 Error=true;
             }
             else
@@ -286,7 +280,7 @@ DataOfHarrixOptimizationTesting::DataOfHarrixOptimizationTesting(QString filenam
             TextOfElement=Rxml.readElementText();
             if (NameOfElement!="number_of_measuring")
             {
-                Html+=HQt_ShowAlert("Нет тэга number_of_measuring");
+                HtmlMessageOfError+=HQt_ShowAlert("Нет тэга number_of_measuring");
                 Error=true;
             }
             else
@@ -303,7 +297,7 @@ DataOfHarrixOptimizationTesting::DataOfHarrixOptimizationTesting(QString filenam
             TextOfElement=Rxml.readElementText();
             if (NameOfElement!="number_of_runs")
             {
-                Html+=HQt_ShowAlert("Нет тэга number_of_runs");
+                HtmlMessageOfError+=HQt_ShowAlert("Нет тэга number_of_runs");
                 Error=true;
             }
             else
@@ -320,7 +314,7 @@ DataOfHarrixOptimizationTesting::DataOfHarrixOptimizationTesting(QString filenam
             TextOfElement=Rxml.readElementText();
             if (NameOfElement!="max_count_of_fitness")
             {
-                Html+=HQt_ShowAlert("Нет тэга max_count_of_fitness");
+                HtmlMessageOfError+=HQt_ShowAlert("Нет тэга max_count_of_fitness");
                 Error=true;
             }
             else
@@ -337,7 +331,7 @@ DataOfHarrixOptimizationTesting::DataOfHarrixOptimizationTesting(QString filenam
             TextOfElement=Rxml.readElementText();
             if (NameOfElement!="number_of_parameters")
             {
-                Html+=HQt_ShowAlert("Нет тэга number_of_parameters");
+                HtmlMessageOfError+=HQt_ShowAlert("Нет тэга number_of_parameters");
                 Error=true;
             }
             else
@@ -354,7 +348,7 @@ DataOfHarrixOptimizationTesting::DataOfHarrixOptimizationTesting(QString filenam
             TextOfElement=Rxml.readElementText();
             if (NameOfElement!="number_of_experiments")
             {
-                Html+=HQt_ShowAlert("Нет тэга number_of_experiments");
+                HtmlMessageOfError+=HQt_ShowAlert("Нет тэга number_of_experiments");
                 Error=true;
             }
             else
@@ -370,7 +364,7 @@ DataOfHarrixOptimizationTesting::DataOfHarrixOptimizationTesting(QString filenam
             NameOfElement=Rxml.name().toString().toLower();
             if (NameOfElement!="data")
             {
-                Html+=HQt_ShowAlert("Нет тэга data");
+                HtmlMessageOfError+=HQt_ShowAlert("Нет тэга data");
                 Error=true;
             }
             else
@@ -399,6 +393,30 @@ DataOfHarrixOptimizationTesting::DataOfHarrixOptimizationTesting(QString filenam
         MatrixOfR=new double*[XML_Number_Of_Experiments];
         for (int i=0;i<XML_Number_Of_Experiments;i++) MatrixOfR[i]=new double[XML_Number_Of_Measuring];
 
+        //Вектор средних значений ошибок Ex алгоритма оптимизации по измерениям для каждой настройки.
+        //Число элементов равно числу комбинаций вариантов настроек.
+        MeanOfEx=new double[XML_Number_Of_Experiments];
+
+        //Вектор средних ошибок Ey алгоритма оптимизации по измерениям для каждой настройки.
+        //Число элементов равно числу комбинаций вариантов настроек.
+        MeanOfEy=new double[XML_Number_Of_Experiments];
+
+        //Вектор средних ошибок R алгоритма оптимизации по измерениям для каждой настройки.
+        //Число элементов равно числу комбинаций вариантов настроек.
+        MeanOfR=new double[XML_Number_Of_Experiments];
+
+        //Вектор дисперсий ошибок Ex алгоритма оптимизации по измерениям для каждой настройки.
+        //Число элементов равно числу комбинаций вариантов настроек.
+        VarianceOfEx=new double[XML_Number_Of_Experiments];
+
+        //Вектор дисперсий ошибок Ey алгоритма оптимизации по измерениям для каждой настройки.
+        //Число элементов равно числу комбинаций вариантов настроек.
+        VarianceOfEy=new double[XML_Number_Of_Experiments];
+
+        //Вектор дисперсий ошибок R алгоритма оптимизации по измерениям для каждой настройки.
+        //Число элементов равно числу комбинаций вариантов настроек.
+        VarianceOfR=new double[XML_Number_Of_Experiments];
+
         //Матрица значений параметров для каждой комбинации вариантов настроек.
         //Число строк равно числу комбинаций вариантов настроек.
         //Число столбцов равно числу проверяемых параметров алгоритма оптимизации.
@@ -425,6 +443,13 @@ DataOfHarrixOptimizationTesting::DataOfHarrixOptimizationTesting(QString filenam
         TMHL_FillMatrix(MatrixOfEy, XML_Number_Of_Experiments, XML_Number_Of_Measuring, -1.);
         TMHL_FillMatrix(MatrixOfR,  XML_Number_Of_Experiments, XML_Number_Of_Measuring, -1.);
         TMHL_FillMatrix(MatrixOfParameters,  XML_Number_Of_Experiments, XML_Number_Of_Parameters, -1);
+        TMHL_ZeroVector(MeanOfEx,XML_Number_Of_Experiments);
+        TMHL_ZeroVector(MeanOfEy,XML_Number_Of_Experiments);
+        TMHL_ZeroVector(MeanOfR ,XML_Number_Of_Experiments);
+        TMHL_ZeroVector(VarianceOfEx,XML_Number_Of_Experiments);
+        TMHL_ZeroVector(VarianceOfEy,XML_Number_Of_Experiments);
+        TMHL_ZeroVector(VarianceOfR ,XML_Number_Of_Experiments);
+
         for (int k=0;k<XML_Number_Of_Parameters;k++) ListOfParameterOptions[k].clear();
         (NamesOfParameters).clear();
 
@@ -533,14 +558,14 @@ DataOfHarrixOptimizationTesting::DataOfHarrixOptimizationTesting(QString filenam
 
                             if (!((bool_ex)&&(bool_ey)&&(bool_r)))
                             {
-                                Html+=HQt_ShowAlert("В тэге measuring были не все три тэга ex, ee, r (или вообще не было).");
+                                HtmlMessageOfError+=HQt_ShowAlert("В тэге measuring были не все три тэга ex, ee, r (или вообще не было).");
                                 Error=true;
                             }
                         }
                         else
                         {
                             //должен быть тэг measuring, а его нет
-                            Html+=HQt_ShowAlert("Анализатор ожидал тэга measuring. Что не так в струтуре или данных файла.");
+                            HtmlMessageOfError+=HQt_ShowAlert("Анализатор ожидал тэга measuring. Что не так в струтуре или данных файла.");
                             Error=true;
                         }
                     }
@@ -549,7 +574,7 @@ DataOfHarrixOptimizationTesting::DataOfHarrixOptimizationTesting(QString filenam
                 else
                 {
                     //должен быть тэг experiment, а его нет
-                    Html+=HQt_ShowAlert("Анализатор ожидал тэга experiment. Что не так в струтуре или данных файла.");
+                    HtmlMessageOfError+=HQt_ShowAlert("Анализатор ожидал тэга experiment. Что не так в струтуре или данных файла.");
                     Error=true;
                 }
 
@@ -561,11 +586,37 @@ DataOfHarrixOptimizationTesting::DataOfHarrixOptimizationTesting(QString filenam
 
         if ((Rxml.hasError())||(Error))
         {
-            Html+=HQt_ShowAlert("В процессе разбора файла обнаружены ошибки. Помните, что для этой функции обработки XML файла требуется правильный порядок следования тэгов.");
+            HtmlMessageOfError+=HQt_ShowAlert("В процессе разбора файла обнаружены ошибки. Помните, что для этой функции обработки XML файла требуется правильный порядок следования тэгов.");
+            Html+=HtmlMessageOfError;
             SuccessReading=false;
         }
         else
         {
+            //++++++++++++++ Обработка полученной информации  ++++++++++++++++++++
+            for (int i=0;i<XML_Number_Of_Experiments;i++)
+            {
+                //заполним значениями вектор средних значений критериев и
+
+
+                for (int j=0;j<XML_Number_Of_Measuring;j++)
+                {
+                    MeanOfEx[i]+=MatrixOfEx[i][j];
+                    MeanOfEy[i]+=MatrixOfEy[i][j];
+                    MeanOfR[i] +=MatrixOfR[i][j];
+                }
+
+                MeanOfEx[i]/=double(XML_Number_Of_Measuring);
+                MeanOfEy[i]/=double(XML_Number_Of_Measuring);
+                MeanOfR[i] /=double(XML_Number_Of_Measuring);
+
+                VarianceOfEx[i]+=TMHL_Variance(MatrixOfEx[i],XML_Number_Of_Measuring);
+                VarianceOfEy[i]+=TMHL_Variance(MatrixOfEx[i],XML_Number_Of_Measuring);
+                VarianceOfR [i]+=TMHL_Variance(MatrixOfR [i],XML_Number_Of_Measuring);
+            }
+
+            //++++++++++++++ Конец обработки полученной информации  ++++++++++++++
+
+
             //++++++++++++++ Обработка полученной информации Html ++++++++++++++++
             Html+=HQt_ShowHr();
             Html+=HQt_ShowH1("Данные о файле");
@@ -594,8 +645,19 @@ DataOfHarrixOptimizationTesting::DataOfHarrixOptimizationTesting(QString filenam
             Html+=THQt_ShowMatrix(MatrixOfParameters,XML_Number_Of_Experiments,XML_Number_Of_Parameters,"Матрица параметров по номерам","MatrixOfParameters");
             //Html+=THQt_ShowMatrix(MatrixOfNameParameters,XML_Number_Of_Experiments,"Матрица параметров по именам","MatrixOfParameters");
 
-
             //++++++++++++++ Конец обработки полученной информации Html ++++++++++
+
+            //++++++++++++++ Обработка полученной информации Latex ++++++++++++++++
+            NameForHead="алгоритма оптимизации <<"+HQt_StringForLaTeX(XML_Full_Name_Algorithm)+">>на тестовой функции <<"+HQt_StringForLaTeX(XML_Full_Name_Test_Function)+">> (размерность равна "+QString::number(XML_Chromosome_Length)+")";
+
+            makingLatexInfo();
+            makingLatexAboutParameters();
+            makingLatexTableEx();//заполняем LatexTableEx
+            makingLatexTableEy();//заполняем LatexTableEy
+            makingLatexTableR();//заполняем LatexTableR
+
+            Latex+=LatexInfo+LatexAboutParameters+LatexTableEx+LatexTableEy+LatexTableR;
+            //++++++++++++++ Конец обработки полученной информации Latex ++++++++++
 
             Html+=HQt_ShowHr();
             Html+=HQt_ShowText("Обработка файла завершена. Ошибки не обнаружены");
@@ -620,6 +682,12 @@ DataOfHarrixOptimizationTesting::~DataOfHarrixOptimizationTesting()
     for (int i=0;i<XML_Number_Of_Experiments;i++) delete [] MatrixOfParameters[i];
     delete [] MatrixOfParameters;
     delete [] ListOfParameterOptions;
+    delete [] MeanOfEx;
+    delete [] MeanOfEy;
+    delete [] MeanOfR;
+    delete [] VarianceOfEx;
+    delete [] VarianceOfEy;
+    delete [] VarianceOfR;
 }
 //--------------------------------------------------------------------------
 
@@ -888,5 +956,325 @@ int DataOfHarrixOptimizationTesting::getNumberOfOption(QString NameOption)
     VMHL_Result = HQt_SearchQStringInQStringList (NamesOfParameters, NameOption);
 
     return VMHL_Result;
+}
+//--------------------------------------------------------------------------
+
+void DataOfHarrixOptimizationTesting::makingLatexTableR()
+{
+    /*
+    Создает текст LaTeX для отображения сырых данных по надежности в виде полной таблицы.
+    Входные параметры:
+     Отсутствуют.
+    Возвращаемое значение:
+     Отсутствует. Значение возвращается в переменную LatexTableR, которую можно вызвать getLatexTableR
+     */
+    //////////////////Сырые данные по R ///////////
+    ////////////////////////////////////////////////
+    LatexTableR+="\\subsection {Надёжность $R$}\n\n";
+    LatexTableR+="Третьим критерием, по которому происходит сравнение алгоритмов оптимизации является надёжность $R$. ";
+    LatexTableR+="Конкретные формулы, по которым происходило подсчитывание критерия в виде ошибки по значениям целевой функции вы можете найти на сайте в описании конкретной тестовой функции: \n";
+    LatexTableR+="\\href{https://github.com/Harrix/HarrixTestFunctions}{https://github.com/Harrix/HarrixTestFunctions}.";
+    LatexTableR+="\\begin{center}\n";
+    LatexTableR+="{\\renewcommand{\\arraystretch}{1.5}\n";
+    LatexTableR+="\\footnotesize\\begin{longtable}[H]{|m{0.03\\linewidth}|m{2in}|m{0.2\\linewidth}|m{0.18\\linewidth}|m{0.18\\linewidth}|}\n";
+    LatexTableR+="\\caption{Значения надёжности $R$ "+NameForHead+"}\n";
+    LatexTableR+="\\label{"+Un+":"+HQt_StringToLabelForLaTeX(XML_Name_Algorithm)+":TableR}\n";
+    LatexTableR+="\\tabularnewline\\hline\n";
+    LatexTableR+="\\centering \\textbf{№} & \\centering \\textbf{Настройки алгоритма}    & \\centering \\textbf{Значения ошибки $R$} & \\centering \\textbf{Среднее значение} & \\centering \\textbf{Дисперсия}  \\centering \\tabularnewline \\hline \\endhead\n";
+    LatexTableR+="\\hline \\multicolumn{5}{|r|}{{Продолжение на следующей странице...}} \\\\ \\hline \\endfoot\n";
+    LatexTableR+="\\hline \\endlastfoot";
+
+    for (int i=0;i<XML_Number_Of_Experiments;i++)
+    {
+        Cell1.clear();
+        Cell2.clear();
+        Cell3.clear();
+        Cell4.clear();
+        Cell5.clear();
+        //получим номер
+        Cell1=QString::number(i+1);
+        Cell1="\\centering "+Cell1;
+
+        //получим значения параметров алгоритма
+        Cell2="\\specialcelltwoin{";
+
+        for (int j=0;j<XML_Number_Of_Parameters;j++)
+        {
+            Cell2+=MatrixOfNameParameters[i][j] +" \\\\ ";
+        }
+
+        Cell2+="}";
+        Cell2="\\centering "+Cell2;
+
+        //получим значения критерий
+        Cell3="\\specialcell{";
+
+        for (int j=0;j<XML_Number_Of_Measuring;j++)
+        {
+            Cell3+=QString::number(MatrixOfR[i][j])+" \\\\ ";
+        }
+
+        Cell3+="}";
+
+        Cell3="\\centering "+Cell3;
+
+        //получим средние значения критерия
+        Cell4=QString::number(MeanOfR[i]);
+
+        Cell4="\\centering "+Cell4;
+
+        //получим значения дисперсии
+        Cell5=QString::number(VarianceOfR[i]);
+
+        Cell5="\\centering "+Cell5;
+
+        LatexTableR+=Cell1+" & "+Cell2+" & "+Cell3+" & "+Cell4+" & "+Cell5+"\\tabularnewline \\hline\n";
+    }
+
+    LatexTableR+="\\end{longtable}\n";
+    LatexTableR+="}\n";
+    LatexTableR+="\\end{center}\n\n";
+
+}
+//--------------------------------------------------------------------------
+
+void DataOfHarrixOptimizationTesting::makingLatexTableEy()
+{
+    /*
+    Создает текст LaTeX для отображения сырых данных ошибки по значениям целевой функции в виде полной таблицы.
+    Входные параметры:
+     Отсутствуют.
+    Возвращаемое значение:
+     Отсутствует. Значение возвращается в переменную LatexTableEy, которую можно вызвать getLatexTableEy
+     */
+    //////////////////Сырые данные по Ey ///////////
+    ////////////////////////////////////////////////
+    LatexTableEy+="\\subsection {Ошибка по значениям целевой функции $E_y$}\n\n";
+    LatexTableEy+="Другим критерием, по которому происходит сравнение алгоритмов оптимизации является ошибка по значениям целевой функции $E_y$. ";
+    LatexTableEy+="Конкретные формулы, по которым происходило подсчитывание критерия в виде ошибки по значениям целевой функции вы можете найти на сайте в описании конкретной тестовой функции: \n";
+    LatexTableEy+="\\href{https://github.com/Harrix/HarrixTestFunctions}{https://github.com/Harrix/HarrixTestFunctions}.";
+    LatexTableEy+="\\begin{center}\n";
+    LatexTableEy+="{\\renewcommand{\\arraystretch}{1.5}\n";
+    LatexTableEy+="\\footnotesize\\begin{longtable}[H]{|m{0.03\\linewidth}|m{2in}|m{0.2\\linewidth}|m{0.18\\linewidth}|m{0.18\\linewidth}|}\n";
+    LatexTableEy+="\\caption{Значения ошибки по значениям целевой функции $E_y$ "+NameForHead+"}\n";
+    LatexTableEy+="\\label{"+Un+":"+HQt_StringToLabelForLaTeX(XML_Name_Algorithm)+":TableEy}\n";
+    LatexTableEy+="\\tabularnewline\\hline\n";
+    LatexTableEy+="\\centering \\textbf{№} & \\centering \\textbf{Настройки алгоритма}    & \\centering \\textbf{Значения ошибки $E_y$} & \\centering \\textbf{Среднее значение} & \\centering \\textbf{Дисперсия}  \\centering \\tabularnewline \\hline \\endhead\n";
+    LatexTableEy+="\\hline \\multicolumn{5}{|r|}{{Продолжение на следующей странице...}} \\\\ \\hline \\endfoot\n";
+    LatexTableEy+="\\hline \\endlastfoot";
+
+    for (int i=0;i<XML_Number_Of_Experiments;i++)
+    {
+        Cell1.clear();
+        Cell2.clear();
+        Cell3.clear();
+        Cell4.clear();
+        Cell5.clear();
+        //получим номер
+        Cell1=QString::number(i+1);
+        Cell1="\\centering "+Cell1;
+
+        //получим значения параметров алгоритма
+        Cell2="\\specialcelltwoin{";
+
+        for (int j=0;j<XML_Number_Of_Parameters;j++)
+        {
+            Cell2+=MatrixOfNameParameters[i][j] +" \\\\ ";
+        }
+
+        Cell2+="}";
+        Cell2="\\centering "+Cell2;
+
+        //получим значения критерий
+        Cell3="\\specialcell{";
+
+        for (int j=0;j<XML_Number_Of_Measuring;j++)
+        {
+            Cell3+=QString::number(MatrixOfEy[i][j])+" \\\\ ";
+        }
+
+        Cell3+="}";
+
+        Cell3="\\centering "+Cell3;
+
+        //получим средние значения критерия
+        Cell4=QString::number(MeanOfEy[i]);
+
+        Cell4="\\centering "+Cell4;
+
+        //получим значения дисперсии
+        Cell5=QString::number(VarianceOfEy[i]);
+
+        Cell5="\\centering "+Cell5;
+
+        LatexTableEy+=Cell1+" & "+Cell2+" & "+Cell3+" & "+Cell4+" & "+Cell5+"\\tabularnewline \\hline\n";
+    }
+
+    LatexTableEy+="\\end{longtable}\n";
+    LatexTableEy+="}\n";
+    LatexTableEy+="\\end{center}\n\n";
+}
+//--------------------------------------------------------------------------
+
+void DataOfHarrixOptimizationTesting::makingLatexTableEx()
+{
+    /*
+    Создает текст LaTeX для отображения сырых данных ошибки по входным параметрам в виде полной таблицы.
+    Входные параметры:
+     Отсутствуют.
+    Возвращаемое значение:
+     Отсутствует. Значение возвращается в переменную LatexTableEx, которую можно вызвать getLatexTableEx
+     */
+    //////////////////Сырые данные по Ex ///////////
+    ////////////////////////////////////////////////
+    LatexTableEx+="\\subsection {Ошибка по входным параметрам $E_x$}\n\n";
+    LatexTableEx+="Одним из критериев, по которому происходит сравнение алгоритмов оптимизации является ошибка по входным параметрам $E_x$. ";
+    LatexTableEx+="В результате проделанных экспериментов были получены следующие данные, представленные ниже в таблице. ";
+    LatexTableEx+="\\href{https://github.com/Harrix/HarrixTestFunctions}{https://github.com/Harrix/HarrixTestFunctions}.";
+    LatexTableEx+="\\begin{center}\n";
+    LatexTableEx+="{\\renewcommand{\\arraystretch}{1.5}\n";
+    LatexTableEx+="\\footnotesize\\begin{longtable}[H]{|m{0.03\\linewidth}|m{2in}|m{0.2\\linewidth}|m{0.18\\linewidth}|m{0.18\\linewidth}|}\n";
+    LatexTableEx+="\\caption{Значения ошибки по выходным параметрам $E_x$ "+NameForHead+"}\n";
+    LatexTableEx+="\\label{"+Un+":"+HQt_StringToLabelForLaTeX(XML_Name_Algorithm)+":TableEx}\n";
+    LatexTableEx+="\\tabularnewline\\hline\n";
+    LatexTableEx+="\\centering \\textbf{№} & \\centering \\textbf{Настройки алгоритма}    & \\centering \\textbf{Значения ошибки $E_x$} & \\centering \\textbf{Среднее значение} & \\centering \\textbf{Дисперсия}  \\centering \\tabularnewline \\hline \\endhead\n";
+    LatexTableEx+="\\hline \\multicolumn{5}{|r|}{{Продолжение на следующей странице...}} \\\\ \\hline \\endfoot\n";
+    LatexTableEx+="\\hline \\endlastfoot";
+
+    for (int i=0;i<XML_Number_Of_Experiments;i++)
+    {
+        Cell1.clear();
+        Cell2.clear();
+        Cell3.clear();
+        Cell4.clear();
+        Cell5.clear();
+        //получим номер
+        Cell1=QString::number(i+1);
+        Cell1="\\centering "+Cell1;
+
+        //получим значения параметров алгоритма
+        Cell2="\\specialcelltwoin{";
+
+        for (int j=0;j<XML_Number_Of_Parameters;j++)
+        {
+            Cell2+=MatrixOfNameParameters[i][j] +" \\\\ ";
+        }
+
+        Cell2+="}";
+        Cell2="\\centering "+Cell2;
+
+        //получим значения критерий
+        Cell3="\\specialcell{";
+
+        for (int j=0;j<XML_Number_Of_Measuring;j++)
+        {
+            Cell3+=QString::number(MatrixOfEx[i][j])+" \\\\ ";
+        }
+
+        Cell3+="}";
+
+        Cell3="\\centering "+Cell3;
+
+        //получим средние значения критерия
+        Cell4=QString::number(MeanOfEx[i]);
+
+        Cell4="\\centering "+Cell4;
+
+        //получим значения дисперсии
+        Cell5=QString::number(VarianceOfEx[i]);
+
+        Cell5="\\centering "+Cell5;
+
+        LatexTableEx+=Cell1+" & "+Cell2+" & "+Cell3+" & "+Cell4+" & "+Cell5+"\\tabularnewline \\hline\n";
+    }
+
+    LatexTableEx+="\\end{longtable}\n";
+    LatexTableEx+="}\n";
+    LatexTableEx+="\\end{center}\n\n";
+}
+//--------------------------------------------------------------------------
+
+void DataOfHarrixOptimizationTesting::makingLatexInfo()
+{
+    /*
+    Создает текст LaTeX для отображения информации о исследовании.
+    Входные параметры:
+     Отсутствуют.
+    Возвращаемое значение:
+     Отсутствует. Значение возвращается в переменную LatexTableEx, которую можно вызвать getLatexInfo
+     */
+    LatexInfo+="\\section{Исследование эффективности "+NameForHead+"}\\label{"+Un+":"+HQt_StringToLabelForLaTeX(XML_Name_Algorithm)+":Name_Algorithm}\n\n";
+    LatexInfo+="В данной работе, автором проведено исследование алгоритма <<"+HQt_StringForLaTeX(XML_Full_Name_Algorithm)+">>. Ниже приведена информация об этом исследовании.\n\n";
+    LatexInfo+="\\subsection {Информация об исследовании}\n\n";
+    LatexInfo+="\\begin{tabularwide}\n";
+    LatexInfo+="\\textbf{Автор исследования}: & "+HQt_StringForLaTeX(XML_Author)+". \\\\ \n";
+    LatexInfo+="\\textbf{Дата создания исследования}: & "+HQt_StringForLaTeX(XML_Date)+". \\\\ \n";
+    LatexInfo+="\\textbf{Идентификатор алгоритма}: & "+HQt_StringForLaTeX(XML_Name_Algorithm)+". \\\\ \n";
+    LatexInfo+="\\textbf{Полное название алгоритма}: & "+HQt_StringForLaTeX(XML_Full_Name_Algorithm)+". \\\\ \n";
+    LatexInfo+="\\textbf{Идентификатор исследуемой тестовой функции}: & "+HQt_StringForLaTeX(XML_Name_Test_Function)+". \\\\ \n";
+    LatexInfo+="\\textbf{Полное название тестовой функции}: & "+HQt_StringForLaTeX(XML_Full_Name_Test_Function)+". \\\\ \n";
+    LatexInfo+="\\end{tabularwide}\n\n";
+    LatexInfo+="\\begin{tabularwide08}\n";
+    LatexInfo+="\\textbf{Размерность тестовой функции:} & "+QString::number(XML_Chromosome_Length)+" \\\\ \n";
+    LatexInfo+="\\textbf{Количество измерений для каждого варианта настроек алгоритма}: & "+QString::number(XML_Number_Of_Measuring)+" \\\\ \n";
+    LatexInfo+="\\textbf{Количество запусков алгоритма в каждом из экспериментов}: & "+QString::number(XML_Number_Of_Runs)+" \\\\ \n";
+    LatexInfo+="\\textbf{Максимальное допустимое число вычислений целевой функции}: & "+QString::number(XML_Max_Count_Of_Fitness)+" \\\\ \n";
+    LatexInfo+="\\textbf{Количество проверяемых параметров алгоритма оптимизации}: & "+QString::number(XML_Number_Of_Parameters)+" \\\\ \n";
+    LatexInfo+="\\textbf{Количество проверяемых параметров алгоритма оптимизации}: & "+QString::number(XML_Number_Of_Experiments)+" \\\\ \n";
+    LatexInfo+="\\textbf{Общий объем максимального числа вычислений целевой функции во всем исследовании}: & "+QString::number(XML_Number_Of_Experiments*XML_Max_Count_Of_Fitness*XML_Number_Of_Measuring*XML_Number_Of_Runs)+" \\\\ \n";
+    LatexInfo+="\\end{tabularwide08}\n\n";
+    LatexInfo+="Информацию о исследуемой функции можно найти по адресу:\n\n";
+    LatexInfo+="\\href{https://github.com/Harrix/HarrixTestFunctions}{https://github.com/Harrix/HarrixTestFunctions}\n\n";
+    LatexInfo+="Информацию о исследуемом алгоритме оптимизации можно найти по адресу:\n\n";
+    LatexInfo+="\\href{https://github.com/Harrix/HarrixOptimizationAlgorithms}{https://github.com/Harrix/HarrixOptimizationAlgorithms}\n\n";
+}
+//--------------------------------------------------------------------------
+
+void DataOfHarrixOptimizationTesting::makingLatexAboutParameters()
+{
+    /*
+    Создает текст LaTeX для отображения данных о обнаруженных параметрах алгоритма и какие они бывают.
+    Входные параметры:
+     Отсутствуют.
+    Возвращаемое значение:
+     Отсутствует. Значение возвращается в переменную LatexTableEx, которую можно вызвать getLatexAboutParameters
+     */
+    LatexAboutParameters+="\\subsection {Параметры алгоритма оптимизации}\n\n";
+    LatexAboutParameters+="Исследуемый алгоритм оптимизации проверялся по эффективности по некоторому конечному множеству возможных настроек алгоритма. ";
+    LatexAboutParameters+="Как написано выше, всего возможных параметров алгоритма было "+QString::number(XML_Number_Of_Parameters)+" штук. ";
+    LatexAboutParameters+="В формуле \\ref{"+Un+":"+HQt_StringToLabelForLaTeX(XML_Name_Algorithm)+":Parameters} показано множество проверяемых параметров алгоритма.\n\n";
+    LatexAboutParameters+="\\begin{equation}\n";
+    LatexAboutParameters+="\\label{"+Un+":"+HQt_StringToLabelForLaTeX(XML_Name_Algorithm)+":Parameters}\n";
+    LatexAboutParameters+="Parameters = \\left( \\begin{array}{c} ";
+    if (HQt_MaxCountOfQStringList(NamesOfParameters)>57)
+        Parbox="\\parbox{\\dimexpr \\linewidth-3in}";
+    else
+        Parbox="";
+    for (int i=0;i<NamesOfParameters.count();i++)
+    {
+        LatexAboutParameters+=Parbox+"{\\centering\\textit{"+HQt_StringForLaTeX(NamesOfParameters.at(i))+"}} ";
+        if (i!=NamesOfParameters.count()-1) LatexAboutParameters+="\\\\ ";
+    }
+    LatexAboutParameters+="\\end{array}\\right). ";
+    LatexAboutParameters+="\\end{equation}\n\n";
+    LatexAboutParameters+="Теперь рассмотрим, какие значения может принимать каждый из параметров.";
+
+    for (int j=0;j<XML_Number_Of_Parameters;j++)
+    {
+        LatexAboutParameters+="\\begin{equation}\n";
+        LatexAboutParameters+="\\label{"+Un+":"+HQt_StringToLabelForLaTeX(XML_Name_Algorithm)+":parameter_"+QString::number(j+1)+"}\n";
+        LatexAboutParameters+="Parameters^{"+QString::number(j+1)+"} \\in \\left\\lbrace  \\begin{array}{c} ";
+        if (HQt_MaxCountOfQStringList(ListOfParameterOptions[j])>57)
+            Parbox="\\parbox{\\dimexpr \\linewidth-3in}";
+        else
+            Parbox="";
+        for (int i=0;i<ListOfParameterOptions[j].count();i++)
+        {
+            LatexAboutParameters+=Parbox+"{\\centering\\textit{"+HQt_StringForLaTeX(ListOfParameterOptions[j].at(i))+"}} ";
+            if (i!=ListOfParameterOptions[j].count()-1) LatexAboutParameters+="\\\\ ";
+        }
+        LatexAboutParameters+="\\end{array}\\right\\rbrace . ";
+        LatexAboutParameters+="\\end{equation}\n\n";
+    }
 }
 //--------------------------------------------------------------------------

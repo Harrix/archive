@@ -10,6 +10,8 @@ public:
     ~DataOfHarrixOptimizationTesting();
     bool getSuccessReading();//Получение значения переменной SuccessReading о удачности или неудачности прочитывания файла.
     QString getHtml();//Получение текста переменной Html
+    QString getHtmlReport();//Получение текста переменной HtmlReport. Это частm html документа в виде отчета о проделанной работе.
+    QString getHtmlMessageOfError();//Получение текста переменной HtmlMessageOfError. Это частm html документа в виде кода о сообщениях ошибок.
     QString getLatex();//Получение текста переменной Latex
     QString getLatexTableEx();//Получение текста переменной LatexTableEx - отображение таблицы данных о ошибке Ex.
     QString getLatexTableEy();//Получение текста переменной LatexTableEy - отображение сырых данных ошибки по значениям целевой функции в виде полной таблицы.
@@ -47,6 +49,9 @@ private:
     void makingLatexTableEx();//Создает текст LaTeX для отображения сырых данных ошибки по входным параметрам в виде полной таблицы.
     void makingLatexInfo();//Создает текст LaTeX для отображения информации о исследовании.
     void makingLatexAboutParameters();//Создает текст LaTeX для отображения данных о обнаруженных параметрах алгоритма и какие они бывают.
+    void makingHtmlReport();//Создает текст Html для отображения отчета о считывании XML файла.
+    QString getLatexEnd();//Внутренная функция. Возвращает концовку для полноценного Latex файла.
+    QString getLatexBegin();//Внутренная функция. Возвращает начало для полноценного Latex файла.
 
     QString XML_Author;//Автор документа
     QString XML_Date;//Дата создания документа
@@ -64,7 +69,8 @@ private:
     //Строка с возвращаемым HTML кодом
     QString Html;
     //далее идет набор переменных для кусков Html кодов
-    QString HtmlMessageOfError;
+    QString HtmlMessageOfError;// сюда записывается код о сообщениях ошибок
+    QString HtmlReport;//текст Html для отображения отчета о считывании XML файла.
 
     //Строка с возвращаемым кодом  Latex для добавления в https://github.com/Harrix/Harrix-Document-Template-LaTeX
     QString Latex;

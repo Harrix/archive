@@ -1,5 +1,5 @@
 //Класс DataOfHarrixOptimizationTesting для считывания информации формата данных Harrix Optimization Testing
-//Версия 1.2
+//Версия 1.3
 
 #include "QtHarrixLibrary.h"
 #include "QtHarrixLibraryForQWebView.h"
@@ -618,33 +618,8 @@ DataOfHarrixOptimizationTesting::DataOfHarrixOptimizationTesting(QString filenam
 
 
             //++++++++++++++ Обработка полученной информации Html ++++++++++++++++
-            Html+=HQt_ShowHr();
-            Html+=HQt_ShowH1("Данные о файле");
-            Html+=HQt_ShowSimpleText("<b>Автор документа:</b> "+XML_Author+".");
-            Html+=HQt_ShowSimpleText("<b>Дата создания документа:</b> "+XML_Date+".");
-            Html+=HQt_ShowHr();
-            Html+=HQt_ShowH1("Данные о собранных данных");
-            Html+=HQt_ShowSimpleText("<b>Обозначение алгоритма:</b> "+XML_Name_Algorithm+".");
-            Html+=HQt_ShowSimpleText("<b>Полное название алгоритма:</b> "+XML_Full_Name_Algorithm+".");
-            Html+=HQt_ShowSimpleText("<b>Название тестовой функции:</b> "+XML_Name_Test_Function+".");
-            Html+=HQt_ShowSimpleText("<b>Полное название тестовой функции:</b> "+XML_Full_Name_Test_Function+".");
-            Html+=HQt_ShowSimpleText("<b>Размерность задачи оптимизации:</b> "+QString::number(XML_Chromosome_Length)+".");
-            Html+=HQt_ShowSimpleText("<b>Количество измерений для каждого варианта настроек алгоритма:</b> "+QString::number(XML_Number_Of_Measuring)+".");
-            Html+=HQt_ShowSimpleText("<b>Количество запусков алгоритма в каждом из экспериментов:</b> "+QString::number(XML_Number_Of_Runs)+".");
-            Html+=HQt_ShowSimpleText("<b>Максимальное допустимое число вычислений целевой функции:</b> "+QString::number(XML_Max_Count_Of_Fitness)+".");
-            Html+=HQt_ShowSimpleText("<b>Количество проверяемых параметров алгоритма оптимизации:</b> "+QString::number(XML_Number_Of_Parameters)+".");
-            Html+=HQt_ShowSimpleText("<b>Количество комбинаций вариантов настроек:</b> "+QString::number(XML_Number_Of_Experiments)+".");
-            Html+=HQt_ShowHr();
-            Html+=HQt_ShowH1("Собранные данные");
-            Html+=THQt_ShowMatrix(MatrixOfEx,XML_Number_Of_Experiments,XML_Number_Of_Measuring,"Ошибки по входным параметрам","Ex");
-            Html+=THQt_ShowMatrix(MatrixOfEy,XML_Number_Of_Experiments,XML_Number_Of_Measuring,"Ошибки по значениям целевой функции","Ey");
-            Html+=THQt_ShowMatrix(MatrixOfR, XML_Number_Of_Experiments,XML_Number_Of_Measuring,"Надежности","R");
-            Html+=THQt_ShowVector(NamesOfParameters,"Вектора названий параметров алгоримта","NamesOfParameters");
-            for (int j=0;j<XML_Number_Of_Parameters;j++)
-                Html+=THQt_ShowVector(ListOfParameterOptions[j],(NamesOfParameters).at(j) + "(возможные принимаемые значения)","ParameterOptions");
-            Html+=THQt_ShowMatrix(MatrixOfParameters,XML_Number_Of_Experiments,XML_Number_Of_Parameters,"Матрица параметров по номерам","MatrixOfParameters");
-            //Html+=THQt_ShowMatrix(MatrixOfNameParameters,XML_Number_Of_Experiments,"Матрица параметров по именам","MatrixOfParameters");
-
+            makingHtmlReport();
+            Html+=HtmlReport;
             //++++++++++++++ Конец обработки полученной информации Html ++++++++++
 
             //++++++++++++++ Обработка полученной информации Latex ++++++++++++++++
@@ -694,9 +669,33 @@ DataOfHarrixOptimizationTesting::~DataOfHarrixOptimizationTesting()
 QString DataOfHarrixOptimizationTesting::getHtml()
 {
     /*
-     Получение текста переменной Html
+     Получение текста переменной Html. Это итоговый Html документ.
+     Помните, что это не полноценный Html код. Его нужно применять в виде temp.html для макета:
+     https://github.com/Harrix/QtHarrixLibraryForQWebView
      */
     return Html;
+}
+//--------------------------------------------------------------------------
+
+QString DataOfHarrixOptimizationTesting::getHtmlReport()
+{
+    /*
+     Получение текста переменной HtmlReport. Это частm html документа в виде отчета о проделанной работе.
+     Помните, что это не полноценный Html код. Его нужно применять в виде temp.html для макета:
+     https://github.com/Harrix/QtHarrixLibraryForQWebView
+     */
+    return HtmlReport;
+}
+//--------------------------------------------------------------------------
+
+QString DataOfHarrixOptimizationTesting::getHtmlMessageOfError()
+{
+    /*
+     Получение текста переменной HtmlMessageOfError. Это частm html документа в виде кода о сообщениях ошибок.
+     Помните, что это не полноценный Html код. Его нужно применять в виде temp.html для макета:
+     https://github.com/Harrix/QtHarrixLibraryForQWebView
+     */
+    return HtmlMessageOfError;
 }
 //--------------------------------------------------------------------------
 
@@ -764,6 +763,31 @@ QString DataOfHarrixOptimizationTesting::getLatexAboutParameters()
      https://github.com/Harrix/Harrix-Document-Template-LaTeX
      */
     return LatexAboutParameters;
+}
+//--------------------------------------------------------------------------
+
+QString DataOfHarrixOptimizationTesting::getLatexBegin()
+{
+    /*
+     Внутренная функция. Возвращает начало для полноценного Latex файла.
+     */
+    QString VMHL_Result;
+    VMHL_Result+="\\documentclass[a4paper,12pt]{report}\n\n";
+    VMHL_Result+="\\input{packages} %Подключаем модуль пакетов\n";
+    VMHL_Result+="\\input{styles} %Подключаем модуль стилей\n\n";
+    VMHL_Result+="\\begin{document}\n\n";
+    VMHL_Result+="\\input{names} %Подключаем модуль перемиенования некоторых команд\n\n";
+
+    return VMHL_Result;
+}
+//--------------------------------------------------------------------------
+
+QString DataOfHarrixOptimizationTesting::getLatexEnd()
+{
+    /*
+     Внутренная функция. Возвращает концовку для полноценного Latex файла.
+     */
+    return "\n\n\\end{document}";
 }
 //--------------------------------------------------------------------------
 
@@ -1430,5 +1454,54 @@ void DataOfHarrixOptimizationTesting::makingLatexAboutParameters()
         LatexAboutParameters+="\\end{array}\\right\\rbrace . ";
         LatexAboutParameters+="\\end{equation}\n\n";
     }
+}
+//--------------------------------------------------------------------------
+void DataOfHarrixOptimizationTesting::makingHtmlReport()
+{
+    /*
+    Создает текст Html для отображения отчета о считывании XML файла.
+    Входные параметры:
+     Отсутствуют.
+    Возвращаемое значение:
+     Отсутствует. Значение возвращается в переменную HtmlReport, которую можно вызвать getHtmlReport
+     */
+    HtmlReport+=HQt_ShowHr();
+    HtmlReport+=HQt_ShowH1("Данные о файле");
+    HtmlReport+=HQt_ShowSimpleText("<b>Автор документа:</b> "+XML_Author+".");
+    HtmlReport+=HQt_ShowSimpleText("<b>Дата создания документа:</b> "+XML_Date+".");
+    HtmlReport+=HQt_ShowHr();
+    HtmlReport+=HQt_ShowH1("Данные о собранных данных");
+    HtmlReport+=HQt_ShowSimpleText("<b>Обозначение алгоритма:</b> "+XML_Name_Algorithm+".");
+    HtmlReport+=HQt_ShowSimpleText("<b>Полное название алгоритма:</b> "+XML_Full_Name_Algorithm+".");
+    HtmlReport+=HQt_ShowSimpleText("<b>Название тестовой функции:</b> "+XML_Name_Test_Function+".");
+    HtmlReport+=HQt_ShowSimpleText("<b>Полное название тестовой функции:</b> "+XML_Full_Name_Test_Function+".");
+    HtmlReport+=HQt_ShowSimpleText("<b>Размерность задачи оптимизации:</b> "+QString::number(XML_Chromosome_Length)+".");
+    HtmlReport+=HQt_ShowSimpleText("<b>Количество измерений для каждого варианта настроек алгоритма:</b> "+QString::number(XML_Number_Of_Measuring)+".");
+    HtmlReport+=HQt_ShowSimpleText("<b>Количество запусков алгоритма в каждом из экспериментов:</b> "+QString::number(XML_Number_Of_Runs)+".");
+    HtmlReport+=HQt_ShowSimpleText("<b>Максимальное допустимое число вычислений целевой функции:</b> "+QString::number(XML_Max_Count_Of_Fitness)+".");
+    HtmlReport+=HQt_ShowSimpleText("<b>Количество проверяемых параметров алгоритма оптимизации:</b> "+QString::number(XML_Number_Of_Parameters)+".");
+    HtmlReport+=HQt_ShowSimpleText("<b>Количество комбинаций вариантов настроек:</b> "+QString::number(XML_Number_Of_Experiments)+".");
+    HtmlReport+=HQt_ShowHr();
+    HtmlReport+=HQt_ShowH1("Собранные данные");
+    HtmlReport+=THQt_ShowMatrix(MatrixOfEx,XML_Number_Of_Experiments,XML_Number_Of_Measuring,"Ошибки по входным параметрам","Ex");
+    HtmlReport+=THQt_ShowMatrix(MatrixOfEy,XML_Number_Of_Experiments,XML_Number_Of_Measuring,"Ошибки по значениям целевой функции","Ey");
+    HtmlReport+=THQt_ShowMatrix(MatrixOfR, XML_Number_Of_Experiments,XML_Number_Of_Measuring,"Надежности","R");
+    HtmlReport+=THQt_ShowVector(NamesOfParameters,"Вектора названий параметров алгоримта","NamesOfParameters");
+    for (int j=0;j<XML_Number_Of_Parameters;j++)
+        HtmlReport+=THQt_ShowVector(ListOfParameterOptions[j],(NamesOfParameters).at(j) + "(возможные принимаемые значения)","ParameterOptions");
+    HtmlReport+=THQt_ShowMatrix(MatrixOfParameters,XML_Number_Of_Experiments,XML_Number_Of_Parameters,"Матрица параметров по номерам","MatrixOfParameters");
+    //HtmlReport+=THQt_ShowMatrix(MatrixOfNameParameters,XML_Number_Of_Experiments,"Матрица параметров по именам","MatrixOfParameters");
+}
+//--------------------------------------------------------------------------
+
+void DataOfHarrixOptimizationTesting::checkXmlLeafTag()
+{
+    /*
+    Считывает и проверяет тэг, который должен являться "листом", то есть самым глубоким. Служебная функция
+    Входные параметры:
+     Отсутствуют.
+    Возвращаемое значение:
+     Отсутствует.
+     */
 }
 //--------------------------------------------------------------------------

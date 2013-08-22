@@ -1,5 +1,5 @@
 //Класс DataOfHarrixOptimizationTesting для считывания информации формата данных Harrix Optimization Testing
-//Версия 1.1
+//Версия 1.2
 
 #include "QtHarrixLibrary.h"
 #include "QtHarrixLibraryForQWebView.h"
@@ -704,8 +704,66 @@ QString DataOfHarrixOptimizationTesting::getLatex()
 {
     /*
      Получение текста переменной Latex.
+     Здесь собран полный файл анализа данных из считываемого xml файла.
+     Помните, что это не полноценный Latex код.Его нужно применять внутри файла из макета:
+     https://github.com/Harrix/Harrix-Document-Template-LaTeX
      */
     return Latex;
+}
+//--------------------------------------------------------------------------
+
+QString DataOfHarrixOptimizationTesting::getLatexTableEx()
+{
+    /*
+     Получение текста переменной LatexTableEx - отображение сырых данных таблицы данных о ошибке Ex.
+     Помните, что это не полноценный Latex код.Его нужно применять внутри файла из макета:
+     https://github.com/Harrix/Harrix-Document-Template-LaTeX
+     */
+    return LatexTableEx;
+}
+//--------------------------------------------------------------------------
+
+QString DataOfHarrixOptimizationTesting::getLatexTableEy()
+{
+    /*
+     Получение текста переменной LatexTableEy - отображение сырых данных ошибки по значениям целевой функции в виде полной таблицы.
+     Помните, что это не полноценный Latex код.Его нужно применять внутри файла из макета:
+     https://github.com/Harrix/Harrix-Document-Template-LaTeX
+     */
+    return LatexTableEy;
+}
+//--------------------------------------------------------------------------
+
+QString DataOfHarrixOptimizationTesting::getLatexTableR()
+{
+    /*
+     Получение текста переменной LatexTableR - отображение сырых данных по надедности в виде полной таблицы.
+     Помните, что это не полноценный Latex код.Его нужно применять внутри файла из макета:
+     https://github.com/Harrix/Harrix-Document-Template-LaTeX
+     */
+    return LatexTableR;
+}
+//--------------------------------------------------------------------------
+
+QString DataOfHarrixOptimizationTesting::getLatexInfo()
+{
+    /*
+     Получение текста переменной LatexInfo - отображение информации о исследовании.
+     Помните, что это не полноценный Latex код.Его нужно применять внутри файла из макета:
+     https://github.com/Harrix/Harrix-Document-Template-LaTeX
+     */
+    return LatexInfo;
+}
+//--------------------------------------------------------------------------
+
+QString DataOfHarrixOptimizationTesting::getLatexAboutParameters()
+{
+    /*
+     Получение текста переменной LatexAboutParameters - отображение данных о обнаруженных параметрах алгоритма и какие они бывают.
+     Помните, что это не полноценный Latex код.Его нужно применять внутри файла из макета:
+     https://github.com/Harrix/Harrix-Document-Template-LaTeX
+     */
+    return LatexAboutParameters;
 }
 //--------------------------------------------------------------------------
 
@@ -874,6 +932,102 @@ double DataOfHarrixOptimizationTesting::getErrorR(int Number_Of_Experiment, int 
     if (Number_Of_Measuring>XML_Number_Of_Measuring-1) Number_Of_Measuring=XML_Number_Of_Measuring-1;
 
     return MatrixOfR[Number_Of_Experiment][Number_Of_Measuring];
+}
+//--------------------------------------------------------------------------
+
+double DataOfHarrixOptimizationTesting::getMeanEx(int Number_Of_Experiment)
+{
+    /*
+    Получение среднего значения ошибки Ex по измерениям для настройки (сколько точек было по столько и усредняем).
+    Входные параметры:
+     Number_Of_Experiment - номер комбинации вариантов настроек.
+    Возвращаемое значение:
+     Значения среднего значения Ex.
+     */
+    if (Number_Of_Experiment<0) Number_Of_Experiment=0;
+    if (Number_Of_Experiment>XML_Number_Of_Experiments-1) Number_Of_Experiment=XML_Number_Of_Experiments-1;
+
+    return MeanOfEx[Number_Of_Experiment];
+}
+//--------------------------------------------------------------------------
+
+double DataOfHarrixOptimizationTesting::getMeanEy(int Number_Of_Experiment)
+{
+    /*
+    Получение среднего значения ошибки Ey по измерениям для настройки (сколько точек было по столько и усредняем).
+    Входные параметры:
+     Number_Of_Experiment - номер комбинации вариантов настроек.
+    Возвращаемое значение:
+     Значения среднего значения Ey.
+     */
+    if (Number_Of_Experiment<0) Number_Of_Experiment=0;
+    if (Number_Of_Experiment>XML_Number_Of_Experiments-1) Number_Of_Experiment=XML_Number_Of_Experiments-1;
+
+    return MeanOfEy[Number_Of_Experiment];
+}
+//--------------------------------------------------------------------------
+
+double DataOfHarrixOptimizationTesting::getMeanR(int Number_Of_Experiment)
+{
+    /*
+    Получение среднего значения надежности R по измерениям для настройки (сколько точек было по столько и усредняем).
+    Входные параметры:
+     Number_Of_Experiment - номер комбинации вариантов настроек.
+    Возвращаемое значение:
+     Значения среднего значения Ey.
+     */
+    if (Number_Of_Experiment<0) Number_Of_Experiment=0;
+    if (Number_Of_Experiment>XML_Number_Of_Experiments-1) Number_Of_Experiment=XML_Number_Of_Experiments-1;
+
+    return MeanOfR[Number_Of_Experiment];
+}
+//--------------------------------------------------------------------------
+
+double DataOfHarrixOptimizationTesting::getVarianceOfEx(int Number_Of_Experiment)
+{
+    /*
+    Получение дисперсии значения ошибки Ex по измерениям для настройки (сколько точек было по столько и усредняем).
+    Входные параметры:
+     Number_Of_Experiment - номер комбинации вариантов настроек.
+    Возвращаемое значение:
+     Значения дисперсии значения Ex.
+     */
+    if (Number_Of_Experiment<0) Number_Of_Experiment=0;
+    if (Number_Of_Experiment>XML_Number_Of_Experiments-1) Number_Of_Experiment=XML_Number_Of_Experiments-1;
+
+    return VarianceOfEx[Number_Of_Experiment];
+}
+//--------------------------------------------------------------------------
+
+double DataOfHarrixOptimizationTesting::getVarianceOfEy(int Number_Of_Experiment)
+{
+    /*
+    Получение дисперсии значения ошибки Ey по измерениям для настройки (сколько точек было по столько и усредняем).
+    Входные параметры:
+     Number_Of_Experiment - номер комбинации вариантов настроек.
+    Возвращаемое значение:
+     Значения дисперсии значения Ey.
+     */
+    if (Number_Of_Experiment<0) Number_Of_Experiment=0;
+    if (Number_Of_Experiment>XML_Number_Of_Experiments-1) Number_Of_Experiment=XML_Number_Of_Experiments-1;
+
+    return VarianceOfEy[Number_Of_Experiment];
+}
+//--------------------------------------------------------------------------
+
+double DataOfHarrixOptimizationTesting::getVarianceOfR(int Number_Of_Experiment)
+{
+    /*
+    Получение дисперсии значения надежности R по измерениям для настройки (сколько точек было по столько и усредняем).
+    Входные параметры:
+     Number_Of_Experiment - номер комбинации вариантов настроек.
+    Возвращаемое значение:
+     Значения дисперсии значения надежности R.
+     */
+    if (Number_Of_Experiment<0) Number_Of_Experiment=0;
+    if (Number_Of_Experiment>XML_Number_Of_Experiments-1) Number_Of_Experiment=XML_Number_Of_Experiments-1;
+
+    return VarianceOfR[Number_Of_Experiment];
 }
 //--------------------------------------------------------------------------
 

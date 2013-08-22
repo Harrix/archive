@@ -11,6 +11,11 @@ public:
     bool getSuccessReading();//Получение значения переменной SuccessReading о удачности или неудачности прочитывания файла.
     QString getHtml();//Получение текста переменной Html
     QString getLatex();//Получение текста переменной Latex
+    QString getLatexTableEx();//Получение текста переменной LatexTableEx - отображение таблицы данных о ошибке Ex.
+    QString getLatexTableEy();//Получение текста переменной LatexTableEy - отображение сырых данных ошибки по значениям целевой функции в виде полной таблицы.
+    QString getLatexTableR();//Получение текста переменной LatexTableR - отображение сырых данных по надедности в виде полной таблицы.
+    QString getLatexInfo();//Получение текста переменной LatexTableR - отображение информации о исследовании.
+    QString getLatexAboutParameters();//Получение текста переменной LatexAboutParameters - отображение данных о обнаруженных параметрах алгоритма и какие они бывают.
     QString getAuthor();//Получение текста переменной XML_Author - Автор документа
     QString getDate();//Получение текста переменной  XML_Date - Дата создания документа
     QString getNameAlgorithm();//Получение текста переменной  XML_Name_Algorithm - Название алгоритма оптимизации
@@ -26,6 +31,12 @@ public:
     double getErrorEx(int Number_Of_Experiment, int Number_Of_Measuring);//Получение значения ошибки Ex.
     double getErrorEy(int Number_Of_Experiment, int Number_Of_Measuring);//Получение значения ошибки Ey.
     double getErrorR(int Number_Of_Experiment, int Number_Of_Measuring);//Получение значения надежности R.
+    double getMeanEx(int Number_Of_Experiment);//Получение среднего значения ошибки Ex по измерениям для настройки (сколько точек было по столько и усредняем).
+    double getMeanEy(int Number_Of_Experiment);//Получение среднего значения ошибки Ey по измерениям для настройки (сколько точек было по столько и усредняем).
+    double getMeanR(int Number_Of_Experiment);//Получение среднего значения надежности R по измерениям для настройки (сколько точек было по столько и усредняем).
+    double getVarianceOfEx(int Number_Of_Experiment);//Получение дисперсии значения ошибки Ex по измерениям для настройки (сколько точек было по столько и усредняем).
+    double getVarianceOfEy(int Number_Of_Experiment);//Получение дисперсии значения ошибки Ey по измерениям для настройки (сколько точек было по столько и усредняем).
+    double getVarianceOfR(int Number_Of_Experiment);//Получение дисперсии значения надежности R по измерениям для настройки (сколько точек было по столько и усредняем).
     int getParameter(int Number_Of_Experiment, int Number_Of_Parameter);//Получение значения параметра настройки какой-то.
     QString getNameParameter(int Number_Of_Experiment, int Number_Of_Parameter);//Получение значения параметра настройки какой-то в виде полного наименования.
     QString getNameOption(int Number_Of_Parameter);//Получение имени параметра алгоритма по его номеру.

@@ -2,6 +2,7 @@
 #define DATAOFHARRIXOPTIMIZATIONTESTING_H
 
 #include <QFile>
+#include <QXmlStreamReader>
 
 class DataOfHarrixOptimizationTesting
 {
@@ -52,6 +53,13 @@ private:
     void makingHtmlReport();//Создает текст Html для отображения отчета о считывании XML файла.
     QString getLatexEnd();//Внутренная функция. Возвращает концовку для полноценного Latex файла.
     QString getLatexBegin();//Внутренная функция. Возвращает начало для полноценного Latex файла.
+    void readXmlLeafTag();//Считывает и проверяет тэг, который должен являться "листом", то есть самым глубоким. Внутренная функция.
+    void checkXmlLeafTags();//Проверяет наличие тэгов и правильное их выполнение. Внутренная функция.
+    void memoryAllocation();//Выделяет память под необходимые массивы. Внутренная функция.
+    void readXmlDataTags();//Считывает и проверяет тэги данных. Внутренная функция.
+    bool readXmlTreeTag(QString tag);//Считывает и проверяет тэг, который содержит внутри себя другие тэги. Внутренная функция.
+    void zeroArray();//Обнуляет массивы, в котрые записывается информация о данных из файла. Внутренная функция.
+    void makingAnalysis();//Выполняет анализ считанных данных. Внутренная функция.
 
     QString XML_Author;//Автор документа
     QString XML_Date;//Дата создания документа
@@ -65,6 +73,11 @@ private:
     int XML_Max_Count_Of_Fitness;//Максимальное допустимое число вычислений целевой функции для алгоритма
     int XML_Number_Of_Parameters;//Количество проверяемых параметров алгоритма оптимизации
     int XML_Number_Of_Experiments;//Количество комбинаций вариантов настроек
+    QString XML_Link_Test_Function;//Ссылка на описание тестовой функции
+    QString XML_Link_Algorithm;//Ссылка на описание алгоритма оптимизации
+    QString XML_Format;//Что за формат файла
+    QString XML_Version;//Какая версия формата файла
+    QString XML_Site;//Ссылка на описание формата файла
 
     //Строка с возвращаемым HTML кодом
     QString Html;
@@ -155,6 +168,7 @@ private:
     QString AttrOfElement;//содержимое аттрибута тэга
     QString NameOfAttr;//название атрибута тэга
     bool Error;//естm ли ошибка при анализе XML файла
+    QXmlStreamReader Rxml;//непосредственно анализируемый xml файл
 };
 
 #endif // DATAOFHARRIXOPTIMIZATIONTESTING_H

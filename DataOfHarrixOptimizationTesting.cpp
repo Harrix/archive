@@ -1,5 +1,5 @@
 //Класс DataOfHarrixOptimizationTesting для считывания информации формата данных Harrix Optimization Testing
-//Версия 1.3
+//Версия 1.4
 
 #include "QtHarrixLibrary.h"
 #include "QtHarrixLibraryForQWebView.h"
@@ -15,21 +15,16 @@ DataOfHarrixOptimizationTesting::DataOfHarrixOptimizationTesting(QString filenam
      filename - полное имя считываемого файла;
  */
     SuccessReading=true;
-    //++++++++++++ Конец возвращаемых переменных ++++++++
-
-    //++++++++++++ Переменные итоговые ++++++++++++++++++
-    XML_Chromosome_Length=0;//Размерность тестовой задачи (длина хромосомы решения)
-    XML_Number_Of_Measuring=0;//Количество экспериментов для каждого набора параметров алгоритма
-    XML_Number_Of_Runs=0;//Количество прогонов по которому деляется усреднение для эксперимента
-    XML_Max_Count_Of_Fitness=0;//Максимальное допустимое число вычислений целевой функции для алгоритма
-    XML_Number_Of_Parameters=0;//Количество проверяемых параметров алгоритма оптимизации
-    XML_Number_Of_Experiments=0;//Количество комбинаций вариантов настроек
-    //++++++++++++ Конец переменных итоговых ++++++++++++
-
-    QXmlStreamReader Rxml;//непосредственно анализируемый xml файл
-    QFile file(filename);//для открытия файла и запихивания его в Rxml
+    XML_Chromosome_Length=-1;//Размерность тестовой задачи (длина хромосомы решения)
+    XML_Number_Of_Measuring=-1;//Количество экспериментов для каждого набора параметров алгоритма
+    XML_Number_Of_Runs=-1;//Количество прогонов по которому деляется усреднение для эксперимента
+    XML_Max_Count_Of_Fitness=-1;//Максимальное допустимое число вычислений целевой функции для алгоритма
+    XML_Number_Of_Parameters=-1;//Количество проверяемых параметров алгоритма оптимизации
+    XML_Number_Of_Experiments=-1;//Количество комбинаций вариантов настроек
     Error=false;//типа вначале нет ошибок в файле
     Un=HQt_RandomString(5);//уникальная строка для Latex
+
+    QFile file(filename);//для открытия файла и запихивания его в Rxml
 
     if (!file.open(QFile::ReadOnly | QFile::Text))
     {
@@ -40,548 +35,43 @@ DataOfHarrixOptimizationTesting::DataOfHarrixOptimizationTesting(QString filenam
     {
         Html+=HQt_ShowText("Файл <font color=\"#00b400\">"+HQt_GetFilenameFromFullFilename(filename)+"</font> загружен");
 
-        //первоначальные действия
+        //Первоначальные действия
         Rxml.setDevice(&file);
         Rxml.readNext();while((!Rxml.isStartElement())&&(!Rxml.atEnd())){Rxml.readNext();}//первый нормальный элемент
 
         //Начнем анализ документа
-
-        //проверка тэга document
-        if (!Rxml.atEnd())
+        if (readXmlTreeTag("document"))
         {
-            NameOfElement=Rxml.name().toString().toLower();
-            if (NameOfElement!="document")
+            if (readXmlTreeTag("harrix_file_format"))
             {
-                HtmlMessageOfError+=HQt_ShowAlert("Отсутствует основной тэг document");
-                Error=true;
-            }
-            else
-            {
-                Rxml.readNext();while((!Rxml.isStartElement())&&(!Rxml.atEnd())){Rxml.readNext();}
-            }
-        }
+                //далее должны идти тэги format, version, site
+                for (int k=0;k<3;k++)
+                    readXmlLeafTag();//считает тэг
 
-        //проверка тэга harrix_file_format
-        if ((!Rxml.atEnd())&&(!Error))
-        {
-            NameOfElement=Rxml.name().toString().toLower();
-            if (NameOfElement!="harrix_file_format")
-            {
-                HtmlMessageOfError+=HQt_ShowAlert("Отсутствует тэг описания формата данных harrix_file_format");
-                Error=true;
-            }
-            else
-            {
-                Rxml.readNext();while((!Rxml.isStartElement())&&(!Rxml.atEnd())){Rxml.readNext();}
-            }
-        }
-
-        //проверка тэга format
-        if ((!Rxml.atEnd())&&(!Error))
-        {
-            NameOfElement=Rxml.name().toString().toLower();
-            TextOfElement=Rxml.readElementText();
-            if ((NameOfElement!="format")||(TextOfElement!="Harrix Optimization Testing"))
-            {
-                HtmlMessageOfError+=HQt_ShowAlert("Неправильный формат данных. Это не Harrix Optimization Testing");
-                Error=true;
-            }
-            else
-            {
-                Rxml.readNext();while((!Rxml.isStartElement())&&(!Rxml.atEnd())){Rxml.readNext();}
-            }
-        }
-
-        //проверка тэга format
-        if ((!Rxml.atEnd())&&(!Error))
-        {
-            NameOfElement=Rxml.name().toString().toLower();
-            TextOfElement=Rxml.readElementText();
-            if ((NameOfElement!="version")||(TextOfElement!="1.0"))
-            {
-                HtmlMessageOfError+=HQt_ShowAlert("Неправильная версия формата Harrix Optimization Testing. Данная функция обрабатывает версию 1.0");
-                Error=true;
-            }
-            else
-            {
-                Rxml.readNext();while((!Rxml.isStartElement())&&(!Rxml.atEnd())){Rxml.readNext();}
-            }
-        }
-
-        //проверка тэга site
-        if ((!Rxml.atEnd())&&(!Error))
-        {
-            NameOfElement=Rxml.name().toString().toLower();
-            TextOfElement=Rxml.readElementText();
-            if ((NameOfElement!="site")||(TextOfElement!="https://github.com/Harrix/HarrixFileFormats"))
-            {
-                HtmlMessageOfError+=HQt_ShowAlert("Неправильный сайт в описании. Должен быть https://github.com/Harrix/HarrixFileFormats");
-                Error=true;
-            }
-            else
-            {
-                Rxml.readNext();while((!Rxml.isStartElement())&&(!Rxml.atEnd())){Rxml.readNext();}
-            }
-        }
-
-        //проверка тэга about
-        if ((!Rxml.atEnd())&&(!Error))
-        {
-            NameOfElement=Rxml.name().toString().toLower();
-            if (NameOfElement!="about")
-            {
-                HtmlMessageOfError+=HQt_ShowAlert("Нет тэга about");
-                Error=true;
-            }
-            else
-            {
-                Rxml.readNext();while((!Rxml.isStartElement())&&(!Rxml.atEnd())){Rxml.readNext();}
-            }
-        }
-
-        //проверка тэга author
-        if ((!Rxml.atEnd())&&(!Error))
-        {
-            NameOfElement=Rxml.name().toString().toLower();
-            TextOfElement=Rxml.readElementText();
-            if (NameOfElement!="author")
-            {
-                HtmlMessageOfError+=HQt_ShowAlert("Нет тэга об авторе");
-                Error=true;
-            }
-            else
-            {
-                XML_Author=TextOfElement;
-                Rxml.readNext();while((!Rxml.isStartElement())&&(!Rxml.atEnd())){Rxml.readNext();}
-            }
-        }
-
-        //проверка тэга date
-        if ((!Rxml.atEnd())&&(!Error))
-        {
-            NameOfElement=Rxml.name().toString().toLower();
-            TextOfElement=Rxml.readElementText();
-            if (NameOfElement!="date")
-            {
-                HtmlMessageOfError+=HQt_ShowAlert("Нет тэга о дате создания документа");
-                Error=true;
-            }
-            else
-            {
-                XML_Date=TextOfElement;
-                Rxml.readNext();while((!Rxml.isStartElement())&&(!Rxml.atEnd())){Rxml.readNext();}
-            }
-        }
-
-        //проверка тэга about_data
-        if ((!Rxml.atEnd())&&(!Error))
-        {
-            NameOfElement=Rxml.name().toString().toLower();
-            if (NameOfElement!="about_data")
-            {
-                HtmlMessageOfError+=HQt_ShowAlert("Нет тэга about_data");
-                Error=true;
-            }
-            else
-            {
-                Rxml.readNext();while((!Rxml.isStartElement())&&(!Rxml.atEnd())){Rxml.readNext();}
-            }
-        }
-
-        //проверка тэга name_algorithm
-        if ((!Rxml.atEnd())&&(!Error))
-        {
-            NameOfElement=Rxml.name().toString().toLower();
-            TextOfElement=Rxml.readElementText();
-            if (NameOfElement!="name_algorithm")
-            {
-                HtmlMessageOfError+=HQt_ShowAlert("Нет тэга об названии алгоритма name_algorithm");
-                Error=true;
-            }
-            else
-            {
-                XML_Name_Algorithm=TextOfElement;
-                Rxml.readNext();while((!Rxml.isStartElement())&&(!Rxml.atEnd())){Rxml.readNext();}
-            }
-        }
-
-        //проверка тэга full_name_algorithm
-        if ((!Rxml.atEnd())&&(!Error))
-        {
-            NameOfElement=Rxml.name().toString().toLower();
-            TextOfElement=Rxml.readElementText();
-            if (NameOfElement!="full_name_algorithm")
-            {
-                HtmlMessageOfError+=HQt_ShowAlert("Нет тэга о полном названии алгоритма full_name_algorithm");
-                Error=true;
-            }
-            else
-            {
-                XML_Full_Name_Algorithm=TextOfElement;
-                Rxml.readNext();while((!Rxml.isStartElement())&&(!Rxml.atEnd())){Rxml.readNext();}
-            }
-        }
-
-        //проверка тэга name_test_function
-        if ((!Rxml.atEnd())&&(!Error))
-        {
-            NameOfElement=Rxml.name().toString().toLower();
-            TextOfElement=Rxml.readElementText();
-            if (NameOfElement!="name_test_function")
-            {
-                HtmlMessageOfError+=HQt_ShowAlert("Нет тэга о названии тестовой функции name_test_function");
-                Error=true;
-            }
-            else
-            {
-                XML_Name_Test_Function=TextOfElement;
-                Rxml.readNext();while((!Rxml.isStartElement())&&(!Rxml.atEnd())){Rxml.readNext();}
-            }
-        }
-
-        //проверка тэга full_name_test_function
-        if ((!Rxml.atEnd())&&(!Error))
-        {
-            NameOfElement=Rxml.name().toString().toLower();
-            TextOfElement=Rxml.readElementText();
-            if (NameOfElement!="full_name_test_function")
-            {
-                HtmlMessageOfError+=HQt_ShowAlert("Нет тэга о полном названии тестовой функции full_name_test_function");
-                Error=true;
-            }
-            else
-            {
-                XML_Full_Name_Test_Function=TextOfElement;
-                Rxml.readNext();while((!Rxml.isStartElement())&&(!Rxml.atEnd())){Rxml.readNext();}
-            }
-        }
-
-        //проверка тэга chromosome_length
-        if ((!Rxml.atEnd())&&(!Error))
-        {
-            NameOfElement=Rxml.name().toString().toLower();
-            TextOfElement=Rxml.readElementText();
-            if (NameOfElement!="chromosome_length")
-            {
-                HtmlMessageOfError+=HQt_ShowAlert("Нет тэга о размерности тестовой задачи chromosome_length");
-                Error=true;
-            }
-            else
-            {
-                XML_Chromosome_Length=TextOfElement.toInt();
-                Rxml.readNext();while((!Rxml.isStartElement())&&(!Rxml.atEnd())){Rxml.readNext();}
-            }
-        }
-
-        //проверка тэга number_of_measuring
-        if ((!Rxml.atEnd())&&(!Error))
-        {
-            NameOfElement=Rxml.name().toString().toLower();
-            TextOfElement=Rxml.readElementText();
-            if (NameOfElement!="number_of_measuring")
-            {
-                HtmlMessageOfError+=HQt_ShowAlert("Нет тэга number_of_measuring");
-                Error=true;
-            }
-            else
-            {
-                XML_Number_Of_Measuring=TextOfElement.toInt();
-                Rxml.readNext();while((!Rxml.isStartElement())&&(!Rxml.atEnd())){Rxml.readNext();}
-            }
-        }
-
-        //проверка тэга number_of_runs
-        if ((!Rxml.atEnd())&&(!Error))
-        {
-            NameOfElement=Rxml.name().toString().toLower();
-            TextOfElement=Rxml.readElementText();
-            if (NameOfElement!="number_of_runs")
-            {
-                HtmlMessageOfError+=HQt_ShowAlert("Нет тэга number_of_runs");
-                Error=true;
-            }
-            else
-            {
-                XML_Number_Of_Runs=TextOfElement.toInt();
-                Rxml.readNext();while((!Rxml.isStartElement())&&(!Rxml.atEnd())){Rxml.readNext();}
-            }
-        }
-
-        //проверка тэга max_count_of_fitness
-        if ((!Rxml.atEnd())&&(!Error))
-        {
-            NameOfElement=Rxml.name().toString().toLower();
-            TextOfElement=Rxml.readElementText();
-            if (NameOfElement!="max_count_of_fitness")
-            {
-                HtmlMessageOfError+=HQt_ShowAlert("Нет тэга max_count_of_fitness");
-                Error=true;
-            }
-            else
-            {
-                XML_Max_Count_Of_Fitness=TextOfElement.toInt();
-                Rxml.readNext();while((!Rxml.isStartElement())&&(!Rxml.atEnd())){Rxml.readNext();}
-            }
-        }
-
-        //проверка тэга number_of_parameters
-        if ((!Rxml.atEnd())&&(!Error))
-        {
-            NameOfElement=Rxml.name().toString().toLower();
-            TextOfElement=Rxml.readElementText();
-            if (NameOfElement!="number_of_parameters")
-            {
-                HtmlMessageOfError+=HQt_ShowAlert("Нет тэга number_of_parameters");
-                Error=true;
-            }
-            else
-            {
-                XML_Number_Of_Parameters=TextOfElement.toInt();
-                Rxml.readNext();while((!Rxml.isStartElement())&&(!Rxml.atEnd())){Rxml.readNext();}
-            }
-        }
-
-        //проверка тэга number_of_experiments
-        if ((!Rxml.atEnd())&&(!Error))
-        {
-            NameOfElement=Rxml.name().toString().toLower();
-            TextOfElement=Rxml.readElementText();
-            if (NameOfElement!="number_of_experiments")
-            {
-                HtmlMessageOfError+=HQt_ShowAlert("Нет тэга number_of_experiments");
-                Error=true;
-            }
-            else
-            {
-                XML_Number_Of_Experiments=TextOfElement.toInt();
-                Rxml.readNext();while((!Rxml.isStartElement())&&(!Rxml.atEnd())){Rxml.readNext();}
-            }
-        }
-
-        //проверка тэга data
-        if ((!Rxml.atEnd())&&(!Error))
-        {
-            NameOfElement=Rxml.name().toString().toLower();
-            if (NameOfElement!="data")
-            {
-                HtmlMessageOfError+=HQt_ShowAlert("Нет тэга data");
-                Error=true;
-            }
-            else
-            {
-                Rxml.readNext();while((!Rxml.isStartElement())&&(!Rxml.atEnd())){Rxml.readNext();}
-            }
-        }
-
-        //////////////// ВЫДЕЛЕНИЕ ПАМЯТИ ПОД МАССИВЫ //////////////////////////////////
-
-        //Матрица значений ошибок Ex алгоритма оптимизации.
-        //Число строк равно числу комбинаций вариантов настроек.
-        //Число столбцов равно числу измерений для каждого варианта настроек алгоритма.
-        MatrixOfEx=new double*[XML_Number_Of_Experiments];
-        for (int i=0;i<XML_Number_Of_Experiments;i++) MatrixOfEx[i]=new double[XML_Number_Of_Measuring];
-
-        //Матрица значений ошибок Ey алгоритма оптимизации.
-        //Число строк равно числу комбинаций вариантов настроек.
-        //Число столбцов равно числу измерений для каждого варианта настроек алгоритма.
-        MatrixOfEy=new double*[XML_Number_Of_Experiments];
-        for (int i=0;i<XML_Number_Of_Experiments;i++) MatrixOfEy[i]=new double[XML_Number_Of_Measuring];
-
-        //Матрица значений ошибок R алгоритма оптимизации.
-        //Число строк равно числу комбинаций вариантов настроек.
-        //Число столбцов равно числу измерений для каждого варианта настроек алгоритма.
-        MatrixOfR=new double*[XML_Number_Of_Experiments];
-        for (int i=0;i<XML_Number_Of_Experiments;i++) MatrixOfR[i]=new double[XML_Number_Of_Measuring];
-
-        //Вектор средних значений ошибок Ex алгоритма оптимизации по измерениям для каждой настройки.
-        //Число элементов равно числу комбинаций вариантов настроек.
-        MeanOfEx=new double[XML_Number_Of_Experiments];
-
-        //Вектор средних ошибок Ey алгоритма оптимизации по измерениям для каждой настройки.
-        //Число элементов равно числу комбинаций вариантов настроек.
-        MeanOfEy=new double[XML_Number_Of_Experiments];
-
-        //Вектор средних ошибок R алгоритма оптимизации по измерениям для каждой настройки.
-        //Число элементов равно числу комбинаций вариантов настроек.
-        MeanOfR=new double[XML_Number_Of_Experiments];
-
-        //Вектор дисперсий ошибок Ex алгоритма оптимизации по измерениям для каждой настройки.
-        //Число элементов равно числу комбинаций вариантов настроек.
-        VarianceOfEx=new double[XML_Number_Of_Experiments];
-
-        //Вектор дисперсий ошибок Ey алгоритма оптимизации по измерениям для каждой настройки.
-        //Число элементов равно числу комбинаций вариантов настроек.
-        VarianceOfEy=new double[XML_Number_Of_Experiments];
-
-        //Вектор дисперсий ошибок R алгоритма оптимизации по измерениям для каждой настройки.
-        //Число элементов равно числу комбинаций вариантов настроек.
-        VarianceOfR=new double[XML_Number_Of_Experiments];
-
-        //Матрица значений параметров для каждой комбинации вариантов настроек.
-        //Число строк равно числу комбинаций вариантов настроек.
-        //Число столбцов равно числу проверяемых параметров алгоритма оптимизации.
-        MatrixOfParameters=new int*[XML_Number_Of_Experiments];
-        for (int i=0;i<XML_Number_Of_Experiments;i++) MatrixOfParameters[i]=new int[XML_Number_Of_Parameters];
-
-        //Вектор названий вариантов параметров алгоритма оптимизации.
-        //Число элементов равно числу проверяемых параметров алгоритма оптимизации.
-        //Элементы будут заноситься по мере обнаружений новых вариантов алгоритма.
-        //Номера вариантов параметров алгоритма в конкретном списке QStringList будет совпадать
-        //с номерами из MatrixOfParameters. То есть, что записано в MatrixOfParameters в ListOfParameterOptions
-        //находится под номером соответствующим.
-        ListOfParameterOptions=new QStringList[XML_Number_Of_Parameters];
-
-        //Матрица значений параметров для каждой комбинации вариантов настроек.
-        //Элементы не в виде чисел, а в виде наименований этих параметров.
-        //Число строк равно числу комбинаций вариантов настроек.
-        //Число столбцов равно числу проверяемых параметров алгоритма оптимизации.
-        MatrixOfNameParameters=new QStringList[XML_Number_Of_Experiments];
-        //////////////// ВЫДЕЛЕНИЕ ПАМЯТИ ПОД МАССИВЫ //////////////////////////////////
-
-        //"Обнулим" матрицы
-        TMHL_FillMatrix(MatrixOfEx, XML_Number_Of_Experiments, XML_Number_Of_Measuring, -1.);
-        TMHL_FillMatrix(MatrixOfEy, XML_Number_Of_Experiments, XML_Number_Of_Measuring, -1.);
-        TMHL_FillMatrix(MatrixOfR,  XML_Number_Of_Experiments, XML_Number_Of_Measuring, -1.);
-        TMHL_FillMatrix(MatrixOfParameters,  XML_Number_Of_Experiments, XML_Number_Of_Parameters, -1);
-        TMHL_ZeroVector(MeanOfEx,XML_Number_Of_Experiments);
-        TMHL_ZeroVector(MeanOfEy,XML_Number_Of_Experiments);
-        TMHL_ZeroVector(MeanOfR ,XML_Number_Of_Experiments);
-        TMHL_ZeroVector(VarianceOfEx,XML_Number_Of_Experiments);
-        TMHL_ZeroVector(VarianceOfEy,XML_Number_Of_Experiments);
-        TMHL_ZeroVector(VarianceOfR ,XML_Number_Of_Experiments);
-
-        for (int k=0;k<XML_Number_Of_Parameters;k++) ListOfParameterOptions[k].clear();
-        (NamesOfParameters).clear();
-
-        //Теперь должны пойти данные об экспериментах
-        int i=0;//номер варианта настройки алгоритма
-        bool bool_ex;
-        bool bool_ey;
-        bool bool_r;
-        while(!Rxml.atEnd())
-        {
-            if(Rxml.isStartElement())
-            {
-                NameOfElement=Rxml.name().toString().toLower();
-
-                if (NameOfElement=="experiment")
+                if (readXmlTreeTag("about"))
                 {
-                    for (int k=0;k<XML_Number_Of_Parameters;k++)
+                    //далее должны идти тэги author, date
+                    for (int k=0;k<2;k++)
+                        readXmlLeafTag();//считает тэг
+
+                    if (readXmlTreeTag("about_data"))
                     {
-                        //считаем массив параметров алгоритма
-                        NameOfAttr="parameters_of_algorithm_"+QString::number(k+1);
-                        AttrOfElement = Rxml.attributes().value(NameOfAttr).toString();
+                        //далее должны идти 12 тэгов по информации о данных
+                        for (int k=0;k<12;k++)
+                            readXmlLeafTag();//считает тэг
 
-                        //считываеv названия параметров алгорима
-                        if (i==0) NamesOfParameters << HQt_TextBeforeEqualSign(AttrOfElement);
-
-                        //теперь значения параметров алгоритма
-                        ListOfParameterOptions[k] = HQt_AddUniqueQStringInQStringList (ListOfParameterOptions[k], HQt_TextAfterEqualSign(AttrOfElement));
-
-                        MatrixOfParameters[i][k]=HQt_SearchQStringInQStringList (ListOfParameterOptions[k], HQt_TextAfterEqualSign(AttrOfElement));
-                        MatrixOfNameParameters[i] << HQt_TextAfterEqualSign(AttrOfElement);
+                        readXmlTreeTag("data");
                     }
-
-                    for (int k=0;k<XML_Number_Of_Measuring;k++)
-                    {
-                        Rxml.readNext();while((!Rxml.isStartElement())&&(!Rxml.atEnd())){Rxml.readNext();}
-                        NameOfElement=Rxml.name().toString().toLower();
-
-                        if (NameOfElement=="measuring")
-                        {
-                            bool_ex = false;
-                            bool_ey = false;
-                            bool_r = false;
-
-                            Rxml.readNext();while((!Rxml.isStartElement())&&(!Rxml.atEnd())){Rxml.readNext();}
-                            NameOfElement=Rxml.name().toString().toLower();
-
-                            if (NameOfElement=="ex")
-                            {
-                                MatrixOfEx[i][k]=(Rxml.readElementText()).toDouble();
-                                bool_ex=true;
-                            }
-
-                            if (NameOfElement=="ey")
-                            {
-                                MatrixOfEy[i][k]=(Rxml.readElementText()).toDouble();
-                                bool_ey=true;
-                            }
-
-                            if (NameOfElement=="r")
-                            {
-                                MatrixOfR[i][k]=(Rxml.readElementText()).toDouble();
-                                bool_r=true;
-                            }
-
-                            Rxml.readNext();while((!Rxml.isStartElement())&&(!Rxml.atEnd())){Rxml.readNext();}
-                            NameOfElement=Rxml.name().toString().toLower();
-
-                            if (NameOfElement=="ex")
-                            {
-                                MatrixOfEx[i][k]=(Rxml.readElementText()).toDouble();
-                                bool_ex=true;
-                            }
-
-                            if (NameOfElement=="ey")
-                            {
-                                MatrixOfEy[i][k]=(Rxml.readElementText()).toDouble();
-                                bool_ey=true;
-                            }
-
-                            if (NameOfElement=="r")
-                            {
-                                MatrixOfR[i][k]=(Rxml.readElementText()).toDouble();
-                                bool_r=true;
-                            }
-
-                            Rxml.readNext();while((!Rxml.isStartElement())&&(!Rxml.atEnd())){Rxml.readNext();}
-                            NameOfElement=Rxml.name().toString().toLower();
-
-                            if (NameOfElement=="ex")
-                            {
-                                MatrixOfEx[i][k]=(Rxml.readElementText()).toDouble();
-                                bool_ex=true;
-                            }
-
-                            if (NameOfElement=="ey")
-                            {
-                                MatrixOfEy[i][k]=(Rxml.readElementText()).toDouble();
-                                bool_ey=true;
-                            }
-
-                            if (NameOfElement=="r")
-                            {
-                                MatrixOfR[i][k]=(Rxml.readElementText()).toDouble();
-                                bool_r=true;
-                            }
-
-                            if (!((bool_ex)&&(bool_ey)&&(bool_r)))
-                            {
-                                HtmlMessageOfError+=HQt_ShowAlert("В тэге measuring были не все три тэга ex, ee, r (или вообще не было).");
-                                Error=true;
-                            }
-                        }
-                        else
-                        {
-                            //должен быть тэг measuring, а его нет
-                            HtmlMessageOfError+=HQt_ShowAlert("Анализатор ожидал тэга measuring. Что не так в струтуре или данных файла.");
-                            Error=true;
-                        }
-                    }
-
                 }
-                else
-                {
-                    //должен быть тэг experiment, а его нет
-                    HtmlMessageOfError+=HQt_ShowAlert("Анализатор ожидал тэга experiment. Что не так в струтуре или данных файла.");
-                    Error=true;
-                }
-
+                checkXmlLeafTags();//проверим наличие всех тэгов
             }
+        }
 
-            Rxml.readNext();while((!Rxml.isStartElement())&&(!Rxml.atEnd())){Rxml.readNext();}
-            i++;
+        if (!Error)
+        {
+            memoryAllocation();//выделение памяти под массивы
+            zeroArray();//обнулим массивы
+            readXmlDataTags();//считаем данные непосредственно
         }
 
         if ((Rxml.hasError())||(Error))
@@ -592,47 +82,20 @@ DataOfHarrixOptimizationTesting::DataOfHarrixOptimizationTesting(QString filenam
         }
         else
         {
-            //++++++++++++++ Обработка полученной информации  ++++++++++++++++++++
-            for (int i=0;i<XML_Number_Of_Experiments;i++)
-            {
-                //заполним значениями вектор средних значений критериев и
+            makingAnalysis();//выполняем анализ данных
 
-
-                for (int j=0;j<XML_Number_Of_Measuring;j++)
-                {
-                    MeanOfEx[i]+=MatrixOfEx[i][j];
-                    MeanOfEy[i]+=MatrixOfEy[i][j];
-                    MeanOfR[i] +=MatrixOfR[i][j];
-                }
-
-                MeanOfEx[i]/=double(XML_Number_Of_Measuring);
-                MeanOfEy[i]/=double(XML_Number_Of_Measuring);
-                MeanOfR[i] /=double(XML_Number_Of_Measuring);
-
-                VarianceOfEx[i]+=TMHL_Variance(MatrixOfEx[i],XML_Number_Of_Measuring);
-                VarianceOfEy[i]+=TMHL_Variance(MatrixOfEx[i],XML_Number_Of_Measuring);
-                VarianceOfR [i]+=TMHL_Variance(MatrixOfR [i],XML_Number_Of_Measuring);
-            }
-
-            //++++++++++++++ Конец обработки полученной информации  ++++++++++++++
-
-
-            //++++++++++++++ Обработка полученной информации Html ++++++++++++++++
+            //Обработка полученной информации Html
             makingHtmlReport();
             Html+=HtmlReport;
-            //++++++++++++++ Конец обработки полученной информации Html ++++++++++
 
-            //++++++++++++++ Обработка полученной информации Latex ++++++++++++++++
+            //Обработка полученной информации Latex
             NameForHead="алгоритма оптимизации <<"+HQt_StringForLaTeX(XML_Full_Name_Algorithm)+">>на тестовой функции <<"+HQt_StringForLaTeX(XML_Full_Name_Test_Function)+">> (размерность равна "+QString::number(XML_Chromosome_Length)+")";
-
             makingLatexInfo();
             makingLatexAboutParameters();
             makingLatexTableEx();//заполняем LatexTableEx
             makingLatexTableEy();//заполняем LatexTableEy
             makingLatexTableR();//заполняем LatexTableR
-
             Latex+=LatexInfo+LatexAboutParameters+LatexTableEx+LatexTableEy+LatexTableR;
-            //++++++++++++++ Конец обработки полученной информации Latex ++++++++++
 
             Html+=HQt_ShowHr();
             Html+=HQt_ShowText("Обработка файла завершена. Ошибки не обнаружены");
@@ -648,21 +111,24 @@ DataOfHarrixOptimizationTesting::~DataOfHarrixOptimizationTesting()
     /*
      Деконструктор класса.
      */
-    for (int i=0;i<XML_Number_Of_Experiments;i++) delete [] MatrixOfEx[i];
-    delete [] MatrixOfEx;
-    for (int i=0;i<XML_Number_Of_Experiments;i++) delete [] MatrixOfEy[i];
-    delete [] MatrixOfEy;
-    for (int i=0;i<XML_Number_Of_Experiments;i++) delete [] MatrixOfR[i];
-    delete [] MatrixOfR;
-    for (int i=0;i<XML_Number_Of_Experiments;i++) delete [] MatrixOfParameters[i];
-    delete [] MatrixOfParameters;
-    delete [] ListOfParameterOptions;
-    delete [] MeanOfEx;
-    delete [] MeanOfEy;
-    delete [] MeanOfR;
-    delete [] VarianceOfEx;
-    delete [] VarianceOfEy;
-    delete [] VarianceOfR;
+    if (!Error)
+    {
+        for (int i=0;i<XML_Number_Of_Experiments;i++) delete [] MatrixOfEx[i];
+        delete [] MatrixOfEx;
+        for (int i=0;i<XML_Number_Of_Experiments;i++) delete [] MatrixOfEy[i];
+        delete [] MatrixOfEy;
+        for (int i=0;i<XML_Number_Of_Experiments;i++) delete [] MatrixOfR[i];
+        delete [] MatrixOfR;
+        for (int i=0;i<XML_Number_Of_Experiments;i++) delete [] MatrixOfParameters[i];
+        delete [] MatrixOfParameters;
+        delete [] ListOfParameterOptions;
+        delete [] MeanOfEx;
+        delete [] MeanOfEy;
+        delete [] MeanOfR;
+        delete [] VarianceOfEx;
+        delete [] VarianceOfEy;
+        delete [] VarianceOfR;
+    }
 }
 //--------------------------------------------------------------------------
 
@@ -1147,7 +613,6 @@ void DataOfHarrixOptimizationTesting::makingLatexTableR()
      Отсутствует. Значение возвращается в переменную LatexTableR, которую можно вызвать getLatexTableR
      */
     //////////////////Сырые данные по R ///////////
-    ////////////////////////////////////////////////
     LatexTableR+="\\subsection {Надёжность $R$}\n\n";
     LatexTableR+="Третьим критерием, по которому происходит сравнение алгоритмов оптимизации является надёжность $R$. ";
     LatexTableR+="Конкретные формулы, по которым происходило подсчитывание критерия в виде ошибки по значениям целевой функции вы можете найти на сайте в описании конкретной тестовой функции: \n";
@@ -1226,7 +691,6 @@ void DataOfHarrixOptimizationTesting::makingLatexTableEy()
      Отсутствует. Значение возвращается в переменную LatexTableEy, которую можно вызвать getLatexTableEy
      */
     //////////////////Сырые данные по Ey ///////////
-    ////////////////////////////////////////////////
     LatexTableEy+="\\subsection {Ошибка по значениям целевой функции $E_y$}\n\n";
     LatexTableEy+="Другим критерием, по которому происходит сравнение алгоритмов оптимизации является ошибка по значениям целевой функции $E_y$. ";
     LatexTableEy+="Конкретные формулы, по которым происходило подсчитывание критерия в виде ошибки по значениям целевой функции вы можете найти на сайте в описании конкретной тестовой функции: \n";
@@ -1304,7 +768,6 @@ void DataOfHarrixOptimizationTesting::makingLatexTableEx()
      Отсутствует. Значение возвращается в переменную LatexTableEx, которую можно вызвать getLatexTableEx
      */
     //////////////////Сырые данные по Ex ///////////
-    ////////////////////////////////////////////////
     LatexTableEx+="\\subsection {Ошибка по входным параметрам $E_x$}\n\n";
     LatexTableEx+="Одним из критериев, по которому происходит сравнение алгоритмов оптимизации является ошибка по входным параметрам $E_x$. ";
     LatexTableEx+="В результате проделанных экспериментов были получены следующие данные, представленные ниже в таблице. ";
@@ -1494,14 +957,531 @@ void DataOfHarrixOptimizationTesting::makingHtmlReport()
 }
 //--------------------------------------------------------------------------
 
-void DataOfHarrixOptimizationTesting::checkXmlLeafTag()
+void DataOfHarrixOptimizationTesting::readXmlLeafTag()
 {
     /*
-    Считывает и проверяет тэг, который должен являться "листом", то есть самым глубоким. Служебная функция
+    Считывает и проверяет тэг, который должен являться "листом", то есть самым глубоким. Внутренная функция.
+    Учитывает все "листовые" тэги кроме тэгов данных.
     Входные параметры:
      Отсутствуют.
     Возвращаемое значение:
      Отсутствует.
      */
+    bool FindTag=false;
+    NameOfElement.clear();
+
+    //проверка тэга number_of_parameters
+    if ((!Rxml.atEnd())&&(!Error))
+    {
+        NameOfElement=Rxml.name().toString().toLower();
+        TextOfElement=Rxml.readElementText();
+        if (NameOfElement=="number_of_parameters")
+        {
+            XML_Number_Of_Parameters=TextOfElement.toInt();
+            FindTag=true;
+        }
+        if (NameOfElement=="number_of_experiments")
+        {
+            XML_Number_Of_Experiments=TextOfElement.toInt();
+            FindTag=true;
+        }
+        if (NameOfElement=="max_count_of_fitness")
+        {
+            XML_Max_Count_Of_Fitness=TextOfElement.toInt();
+            FindTag=true;
+        }
+        if (NameOfElement=="number_of_runs")
+        {
+            XML_Number_Of_Runs=TextOfElement.toInt();
+            FindTag=true;
+        }
+        if (NameOfElement=="number_of_measuring")
+        {
+            XML_Number_Of_Measuring=TextOfElement.toInt();
+            FindTag=true;
+        }
+        if (NameOfElement=="chromosome_length")
+        {
+            XML_Chromosome_Length=TextOfElement.toInt();
+            FindTag=true;
+        }
+        if (NameOfElement=="full_name_test_function")
+        {
+            XML_Full_Name_Test_Function=TextOfElement;
+            FindTag=true;
+        }
+        if (NameOfElement=="name_test_function")
+        {
+            XML_Name_Test_Function=TextOfElement;
+            FindTag=true;
+        }
+        if (NameOfElement=="full_name_algorithm")
+        {
+            XML_Full_Name_Algorithm=TextOfElement;
+            FindTag=true;
+        }
+        if (NameOfElement=="name_algorithm")
+        {
+            XML_Name_Algorithm=TextOfElement;
+            FindTag=true;
+        }
+        if (NameOfElement=="date")
+        {
+            XML_Date=TextOfElement;
+            FindTag=true;
+        }
+        if (NameOfElement=="author")
+        {
+            XML_Author=TextOfElement;
+            FindTag=true;
+        }
+        if (NameOfElement=="link_test_function")
+        {
+            XML_Link_Test_Function=TextOfElement;
+            FindTag=true;
+        }
+        if (NameOfElement=="link_algorithm")
+        {
+            XML_Link_Algorithm=TextOfElement;
+            FindTag=true;
+        }
+        if (NameOfElement=="format")
+        {
+            XML_Format=TextOfElement;
+            FindTag=true;
+        }
+        if (NameOfElement=="version")
+        {
+            XML_Version=TextOfElement;
+            FindTag=true;
+        }
+        if (NameOfElement=="site")
+        {
+            XML_Site=TextOfElement;
+            FindTag=true;
+        }
+    }
+
+    if (FindTag)
+    {
+        Rxml.readNext();while((!Rxml.isStartElement())&&(!Rxml.atEnd())){Rxml.readNext();}
+    }
+    else
+    {
+        if (NameOfElement.length()>0)
+            HtmlMessageOfError+=HQt_ShowAlert("Попался какой-то непонятный тэг "+NameOfElement+". Программа в непонятках! О_о");
+        else
+            HtmlMessageOfError+=HQt_ShowAlert("Ждали-ждали тэг, а тут вообще ничего нет.");
+        Error=true;
+    }
+}
+//--------------------------------------------------------------------------
+
+void DataOfHarrixOptimizationTesting::checkXmlLeafTags()
+{
+    /*
+    Проверяет наличие тэгов и правильное их выполнение. Внутренная функция.
+    Учитывает все "листовые" тэги кроме тэгов данных.
+    Входные параметры:
+     Отсутствуют.
+    Возвращаемое значение:
+     Отсутствует.
+     */
+    if (XML_Format!="Harrix Optimization Testing")
+    {
+        HtmlMessageOfError+=HQt_ShowAlert("Неправильный формат данных. Это не Harrix Optimization Testing.");
+        Error=true;
+    }
+    if (XML_Site!="https://github.com/Harrix/HarrixFileFormats")
+    {
+        HtmlMessageOfError+=HQt_ShowAlert("Неправильный сайт в описании. Должен быть https://github.com/Harrix/HarrixFileFormats.");
+        Error=true;
+    }
+    if (XML_Version!="1.0")
+    {
+        HtmlMessageOfError+=HQt_ShowAlert("Неправильная версия формата Harrix Optimization Testing. Данная функция обрабатывает версию 1.0.");
+        Error=true;
+    }
+    if (XML_Number_Of_Parameters==-1)
+    {
+        HtmlMessageOfError+=HQt_ShowAlert("Нет тэга number_of_parameters.");
+        Error=true;
+    }
+    if (XML_Number_Of_Experiments==-1)
+    {
+        HtmlMessageOfError+=HQt_ShowAlert("Нет тэга number_of_experiments.");
+        Error=true;
+    }
+    if (XML_Max_Count_Of_Fitness==-1)
+    {
+        HtmlMessageOfError+=HQt_ShowAlert("Нет тэга max_count_of_fitness.");
+        Error=true;
+    }
+    if (XML_Number_Of_Runs==-1)
+    {
+        HtmlMessageOfError+=HQt_ShowAlert("Нет тэга number_of_runs.");
+        Error=true;
+    }
+    if (XML_Number_Of_Measuring==-1)
+    {
+        HtmlMessageOfError+=HQt_ShowAlert("Нет тэга number_of_measuring.");
+        Error=true;
+    }
+    if (XML_Number_Of_Measuring==-1)
+    {
+        HtmlMessageOfError+=HQt_ShowAlert("Нет тэга о размерности тестовой задачи chromosome_length.");
+        Error=true;
+    }
+    if (XML_Full_Name_Test_Function.isEmpty())
+    {
+        HtmlMessageOfError+=HQt_ShowAlert("Нет тэга о полном названии тестовой функции full_name_test_function.");
+        Error=true;
+    }
+    if (XML_Name_Test_Function.isEmpty())
+    {
+        HtmlMessageOfError+=HQt_ShowAlert("Нет тэга о названии тестовой функции name_test_function.");
+        Error=true;
+    }
+    if (XML_Full_Name_Algorithm.isEmpty())
+    {
+        HtmlMessageOfError+=HQt_ShowAlert("Нет тэга о полном названии алгоритма full_name_algorithm.");
+        Error=true;
+    }
+    if (XML_Name_Algorithm.isEmpty())
+    {
+        HtmlMessageOfError+=HQt_ShowAlert("Нет тэга об названии алгоритма name_algorithm.");
+        Error=true;
+    }
+    if (XML_Date.isEmpty())
+    {
+        HtmlMessageOfError+=HQt_ShowAlert("Нет тэга о дате создания документа date.");
+        Error=true;
+    }
+    if (XML_Author.isEmpty())
+    {
+        HtmlMessageOfError+=HQt_ShowAlert("Нет тэга об авторе author");
+        Error=true;
+    }
+    if (XML_Link_Algorithm.isEmpty())
+    {
+        HtmlMessageOfError+=HQt_ShowAlert("Нет тэга о ссылке на описание алгоритма link_algorithm.");
+        Error=true;
+    }
+    if (XML_Link_Test_Function.isEmpty())
+    {
+        HtmlMessageOfError+=HQt_ShowAlert("Нет тэга о ссылке на описание тестовой функции link_test_function.");
+        Error=true;
+    }
+}
+//--------------------------------------------------------------------------
+
+void DataOfHarrixOptimizationTesting::memoryAllocation()
+{
+    /*
+    Выделяет память под необходимые массивы. Внутренная функция.
+    Входные параметры:
+     Отсутствуют.
+    Возвращаемое значение:
+     Отсутствует.
+     */
+    //Матрица значений ошибок Ex алгоритма оптимизации.
+    //Число строк равно числу комбинаций вариантов настроек.
+    //Число столбцов равно числу измерений для каждого варианта настроек алгоритма.
+    MatrixOfEx=new double*[XML_Number_Of_Experiments];
+    for (int i=0;i<XML_Number_Of_Experiments;i++) MatrixOfEx[i]=new double[XML_Number_Of_Measuring];
+
+    //Матрица значений ошибок Ey алгоритма оптимизации.
+    //Число строк равно числу комбинаций вариантов настроек.
+    //Число столбцов равно числу измерений для каждого варианта настроек алгоритма.
+    MatrixOfEy=new double*[XML_Number_Of_Experiments];
+    for (int i=0;i<XML_Number_Of_Experiments;i++) MatrixOfEy[i]=new double[XML_Number_Of_Measuring];
+
+    //Матрица значений ошибок R алгоритма оптимизации.
+    //Число строк равно числу комбинаций вариантов настроек.
+    //Число столбцов равно числу измерений для каждого варианта настроек алгоритма.
+    MatrixOfR=new double*[XML_Number_Of_Experiments];
+    for (int i=0;i<XML_Number_Of_Experiments;i++) MatrixOfR[i]=new double[XML_Number_Of_Measuring];
+
+    //Вектор средних значений ошибок Ex алгоритма оптимизации по измерениям для каждой настройки.
+    //Число элементов равно числу комбинаций вариантов настроек.
+    MeanOfEx=new double[XML_Number_Of_Experiments];
+
+    //Вектор средних ошибок Ey алгоритма оптимизации по измерениям для каждой настройки.
+    //Число элементов равно числу комбинаций вариантов настроек.
+    MeanOfEy=new double[XML_Number_Of_Experiments];
+
+    //Вектор средних ошибок R алгоритма оптимизации по измерениям для каждой настройки.
+    //Число элементов равно числу комбинаций вариантов настроек.
+    MeanOfR=new double[XML_Number_Of_Experiments];
+
+    //Вектор дисперсий ошибок Ex алгоритма оптимизации по измерениям для каждой настройки.
+    //Число элементов равно числу комбинаций вариантов настроек.
+    VarianceOfEx=new double[XML_Number_Of_Experiments];
+
+    //Вектор дисперсий ошибок Ey алгоритма оптимизации по измерениям для каждой настройки.
+    //Число элементов равно числу комбинаций вариантов настроек.
+    VarianceOfEy=new double[XML_Number_Of_Experiments];
+
+    //Вектор дисперсий ошибок R алгоритма оптимизации по измерениям для каждой настройки.
+    //Число элементов равно числу комбинаций вариантов настроек.
+    VarianceOfR=new double[XML_Number_Of_Experiments];
+
+    //Матрица значений параметров для каждой комбинации вариантов настроек.
+    //Число строк равно числу комбинаций вариантов настроек.
+    //Число столбцов равно числу проверяемых параметров алгоритма оптимизации.
+    MatrixOfParameters=new int*[XML_Number_Of_Experiments];
+    for (int i=0;i<XML_Number_Of_Experiments;i++) MatrixOfParameters[i]=new int[XML_Number_Of_Parameters];
+
+    //Вектор названий вариантов параметров алгоритма оптимизации.
+    //Число элементов равно числу проверяемых параметров алгоритма оптимизации.
+    //Элементы будут заноситься по мере обнаружений новых вариантов алгоритма.
+    //Номера вариантов параметров алгоритма в конкретном списке QStringList будет совпадать
+    //с номерами из MatrixOfParameters. То есть, что записано в MatrixOfParameters в ListOfParameterOptions
+    //находится под номером соответствующим.
+    ListOfParameterOptions=new QStringList[XML_Number_Of_Parameters];
+
+    //Матрица значений параметров для каждой комбинации вариантов настроек.
+    //Элементы не в виде чисел, а в виде наименований этих параметров.
+    //Число строк равно числу комбинаций вариантов настроек.
+    //Число столбцов равно числу проверяемых параметров алгоритма оптимизации.
+    MatrixOfNameParameters=new QStringList[XML_Number_Of_Experiments];
+}
+//--------------------------------------------------------------------------
+
+void DataOfHarrixOptimizationTesting::readXmlDataTags()
+{
+    /*
+    Считывает и проверяет тэги данных. Внутренная функция.
+    Учитывает все "листовые" тэги кроме тэгов данных.
+    Входные параметры:
+     Отсутствуют.
+    Возвращаемое значение:
+     Отсутствует.
+     */
+
+    //Теперь должны пойти данные об экспериментах
+    int i=0;//номер варианта настройки алгоритма
+    bool bool_ex;
+    bool bool_ey;
+    bool bool_r;
+    while(!Rxml.atEnd())
+    {
+        if(Rxml.isStartElement())
+        {
+            NameOfElement=Rxml.name().toString().toLower();
+
+            if (NameOfElement=="experiment")
+            {
+                for (int k=0;k<XML_Number_Of_Parameters;k++)
+                {
+                    //считаем массив параметров алгоритма
+                    NameOfAttr="parameters_of_algorithm_"+QString::number(k+1);
+                    AttrOfElement = Rxml.attributes().value(NameOfAttr).toString();
+
+                    //считываеv названия параметров алгорима
+                    if (i==0) NamesOfParameters << HQt_TextBeforeEqualSign(AttrOfElement);
+
+                    //теперь значения параметров алгоритма
+                    ListOfParameterOptions[k] = HQt_AddUniqueQStringInQStringList (ListOfParameterOptions[k], HQt_TextAfterEqualSign(AttrOfElement));
+
+                    MatrixOfParameters[i][k]=HQt_SearchQStringInQStringList (ListOfParameterOptions[k], HQt_TextAfterEqualSign(AttrOfElement));
+                    MatrixOfNameParameters[i] << HQt_TextAfterEqualSign(AttrOfElement);
+                }
+
+                for (int k=0;k<XML_Number_Of_Measuring;k++)
+                {
+                    Rxml.readNext();while((!Rxml.isStartElement())&&(!Rxml.atEnd())){Rxml.readNext();}
+                    NameOfElement=Rxml.name().toString().toLower();
+
+                    if (NameOfElement=="measuring")
+                    {
+                        bool_ex = false;
+                        bool_ey = false;
+                        bool_r = false;
+
+                        Rxml.readNext();while((!Rxml.isStartElement())&&(!Rxml.atEnd())){Rxml.readNext();}
+                        NameOfElement=Rxml.name().toString().toLower();
+
+                        if (NameOfElement=="ex")
+                        {
+                            MatrixOfEx[i][k]=(Rxml.readElementText()).toDouble();
+                            bool_ex=true;
+                        }
+
+                        if (NameOfElement=="ey")
+                        {
+                            MatrixOfEy[i][k]=(Rxml.readElementText()).toDouble();
+                            bool_ey=true;
+                        }
+
+                        if (NameOfElement=="r")
+                        {
+                            MatrixOfR[i][k]=(Rxml.readElementText()).toDouble();
+                            bool_r=true;
+                        }
+
+                        Rxml.readNext();while((!Rxml.isStartElement())&&(!Rxml.atEnd())){Rxml.readNext();}
+                        NameOfElement=Rxml.name().toString().toLower();
+
+                        if (NameOfElement=="ex")
+                        {
+                            MatrixOfEx[i][k]=(Rxml.readElementText()).toDouble();
+                            bool_ex=true;
+                        }
+
+                        if (NameOfElement=="ey")
+                        {
+                            MatrixOfEy[i][k]=(Rxml.readElementText()).toDouble();
+                            bool_ey=true;
+                        }
+
+                        if (NameOfElement=="r")
+                        {
+                            MatrixOfR[i][k]=(Rxml.readElementText()).toDouble();
+                            bool_r=true;
+                        }
+
+                        Rxml.readNext();while((!Rxml.isStartElement())&&(!Rxml.atEnd())){Rxml.readNext();}
+                        NameOfElement=Rxml.name().toString().toLower();
+
+                        if (NameOfElement=="ex")
+                        {
+                            MatrixOfEx[i][k]=(Rxml.readElementText()).toDouble();
+                            bool_ex=true;
+                        }
+
+                        if (NameOfElement=="ey")
+                        {
+                            MatrixOfEy[i][k]=(Rxml.readElementText()).toDouble();
+                            bool_ey=true;
+                        }
+
+                        if (NameOfElement=="r")
+                        {
+                            MatrixOfR[i][k]=(Rxml.readElementText()).toDouble();
+                            bool_r=true;
+                        }
+
+                        if (!((bool_ex)&&(bool_ey)&&(bool_r)))
+                        {
+                            HtmlMessageOfError+=HQt_ShowAlert("В тэге measuring были не все три тэга ex, ee, r (или вообще не было).");
+                            Error=true;
+                        }
+                    }
+                    else
+                    {
+                        //должен быть тэг measuring, а его нет
+                        HtmlMessageOfError+=HQt_ShowAlert("Анализатор ожидал тэга measuring. Что не так в струтуре или данных файла.");
+                        Error=true;
+                    }
+                }
+
+            }
+            else
+            {
+                //должен быть тэг experiment, а его нет
+                HtmlMessageOfError+=HQt_ShowAlert("Анализатор ожидал тэга experiment. Что не так в струтуре или данных файла.");
+                Error=true;
+            }
+
+        }
+
+        Rxml.readNext();while((!Rxml.isStartElement())&&(!Rxml.atEnd())){Rxml.readNext();}
+        i++;
+    }
+}
+//--------------------------------------------------------------------------
+bool DataOfHarrixOptimizationTesting::readXmlTreeTag(QString tag)
+{
+    /*
+    Считывает и проверяет тэг, который содержит внутри себя другие тэги. Внутренная функция.
+    Входные параметры:
+     tag - какой тэг мы ищем.
+    Возвращаемое значение:
+     true - текущий тэг это тот самый, что нам и нужен;
+     false - иначе.
+     */
+    bool FindTag=false;
+
+    NameOfElement.clear();
+
+    //проверка тэга number_of_parameters
+    if ((!Rxml.atEnd())&&(!Error))
+    {
+        NameOfElement=Rxml.name().toString().toLower();
+        if (NameOfElement==tag)
+        {
+            FindTag=true;
+        }
+    }
+
+    if (FindTag)
+    {
+        Rxml.readNext();while((!Rxml.isStartElement())&&(!Rxml.atEnd())){Rxml.readNext();}
+    }
+    else
+    {
+        if (NameOfElement.length()>0)
+            HtmlMessageOfError+=HQt_ShowAlert("Ожидался тэг "+tag+". Но этого не случилось, и получили этот "+NameOfElement+".");
+        else
+            HtmlMessageOfError+=HQt_ShowAlert("Ожидался тэг "+tag+". Но этого не случилось, и вообще никакого тэга не получили.");
+        Error=true;
+    }
+    return FindTag;
+}
+//--------------------------------------------------------------------------
+
+void DataOfHarrixOptimizationTesting::zeroArray()
+{
+    /*
+    Обнуляет массивы, в котрые записывается информация о данных из файла. Внутренная функция.
+    Входные параметры:
+     Отсутствуют.
+    Возвращаемое значение:
+     Отсутствует.
+     */
+    //"Обнулим" матрицы
+    TMHL_FillMatrix(MatrixOfEx, XML_Number_Of_Experiments, XML_Number_Of_Measuring, -1.);
+    TMHL_FillMatrix(MatrixOfEy, XML_Number_Of_Experiments, XML_Number_Of_Measuring, -1.);
+    TMHL_FillMatrix(MatrixOfR,  XML_Number_Of_Experiments, XML_Number_Of_Measuring, -1.);
+    TMHL_FillMatrix(MatrixOfParameters,  XML_Number_Of_Experiments, XML_Number_Of_Parameters, -1);
+    TMHL_ZeroVector(MeanOfEx,XML_Number_Of_Experiments);
+    TMHL_ZeroVector(MeanOfEy,XML_Number_Of_Experiments);
+    TMHL_ZeroVector(MeanOfR ,XML_Number_Of_Experiments);
+    TMHL_ZeroVector(VarianceOfEx,XML_Number_Of_Experiments);
+    TMHL_ZeroVector(VarianceOfEy,XML_Number_Of_Experiments);
+    TMHL_ZeroVector(VarianceOfR ,XML_Number_Of_Experiments);
+    for (int k=0;k<XML_Number_Of_Parameters;k++) ListOfParameterOptions[k].clear();
+    (NamesOfParameters).clear();
+}
+//--------------------------------------------------------------------------
+
+void DataOfHarrixOptimizationTesting::makingAnalysis()
+{
+    /*
+    Выполняет анализ считанных данных. Внутренная функция.
+    Входные параметры:
+     Отсутствуют.
+    Возвращаемое значение:
+     Отсутствует.
+     */
+    for (int i=0;i<XML_Number_Of_Experiments;i++)
+    {
+        //заполним значениями вектор средних значений критериев и дисперсий
+        for (int j=0;j<XML_Number_Of_Measuring;j++)
+        {
+            MeanOfEx[i]+=MatrixOfEx[i][j];
+            MeanOfEy[i]+=MatrixOfEy[i][j];
+            MeanOfR[i] +=MatrixOfR[i][j];
+        }
+
+        MeanOfEx[i]/=double(XML_Number_Of_Measuring);
+        MeanOfEy[i]/=double(XML_Number_Of_Measuring);
+        MeanOfR[i] /=double(XML_Number_Of_Measuring);
+
+        VarianceOfEx[i]+=TMHL_Variance(MatrixOfEx[i],XML_Number_Of_Measuring);
+        VarianceOfEy[i]+=TMHL_Variance(MatrixOfEx[i],XML_Number_Of_Measuring);
+        VarianceOfR [i]+=TMHL_Variance(MatrixOfR [i],XML_Number_Of_Measuring);
+    }
 }
 //--------------------------------------------------------------------------

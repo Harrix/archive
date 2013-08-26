@@ -44,6 +44,9 @@ public:
     QString getNameParameter(int Number_Of_Experiment, int Number_Of_Parameter);//Получение значения параметра настройки какой-то в виде полного наименования.
     QString getNameOption(int Number_Of_Parameter);//Получение имени параметра алгоритма по его номеру.
     int getNumberOfOption(QString NameOption);//Получение номера параметра алгоритма по его имени.
+    QString getFormat();//Получение переменной XML_Format, то есть возвращает название формата документа.
+    QString getVersion();//Получение переменной XML_Version, то есть возвращает версию формата документа.
+    QString getLink();//Получение переменной XML_Site, то есть возвращает ссылку на описание формата файла.
 private:
     void makingLatexTableR();//Создает текст LaTeX для отображения сырых данных по надедности в виде полной таблицы.
     void makingLatexTableEy();//Создает текст LaTeX для отображения сырых данных ошибки по значениям целевой функции в виде полной таблицы.
@@ -77,7 +80,7 @@ private:
     QString XML_Link_Algorithm;//Ссылка на описание алгоритма оптимизации
     QString XML_Format;//Что за формат файла
     QString XML_Version;//Какая версия формата файла
-    QString XML_Site;//Ссылка на описание формата файла
+    QString XML_Link;//Ссылка на описание формата файла
 
     //Строка с возвращаемым HTML кодом
     QString Html;

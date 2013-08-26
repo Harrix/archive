@@ -1,5 +1,5 @@
 //Класс DataOfHarrixOptimizationTesting для считывания информации формата данных Harrix Optimization Testing
-//Версия 1.4
+//Версия 1.5
 
 #include "QtHarrixLibrary.h"
 #include "QtHarrixLibraryForQWebView.h"
@@ -603,6 +603,48 @@ int DataOfHarrixOptimizationTesting::getNumberOfOption(QString NameOption)
 }
 //--------------------------------------------------------------------------
 
+QString DataOfHarrixOptimizationTesting::getFormat()
+{
+    /*
+    Получение переменной XML_Format, то есть возвращает название формата документа.
+    Входные параметры:
+     Отсутствует.
+    Возвращаемое значение:
+     Если документ без ошибок в описании формата, то всегда должно возвращаться "Harrix Optimization Testing".
+     */
+
+    return XML_Format;
+}
+//--------------------------------------------------------------------------
+
+QString DataOfHarrixOptimizationTesting::getVersion()
+{
+    /*
+    Получение переменной XML_Version, то есть возвращает версию формата документа.
+    Входные параметры:
+     Отсутствует.
+    Возвращаемое значение:
+     Если документ без ошибок в описании формата, то всегда должно возвращаться "1.0".
+     */
+
+    return XML_Version;
+}
+//--------------------------------------------------------------------------
+
+QString DataOfHarrixOptimizationTesting::getLink()
+{
+    /*
+    Получение переменной XML_Link, то есть возвращает ссылку на описание формата файла.
+    Входные параметры:
+     Отсутствует.
+    Возвращаемое значение:
+     Если документ без ошибок в описании формата, то всегда должно возвращаться "https://github.com/Harrix/HarrixFileFormats".
+     */
+
+    return XML_Link;
+}
+//--------------------------------------------------------------------------
+
 void DataOfHarrixOptimizationTesting::makingLatexTableR()
 {
     /*
@@ -1055,9 +1097,9 @@ void DataOfHarrixOptimizationTesting::readXmlLeafTag()
             XML_Version=TextOfElement;
             FindTag=true;
         }
-        if (NameOfElement=="site")
+        if (NameOfElement=="link")
         {
-            XML_Site=TextOfElement;
+            XML_Link=TextOfElement;
             FindTag=true;
         }
     }
@@ -1092,7 +1134,7 @@ void DataOfHarrixOptimizationTesting::checkXmlLeafTags()
         HtmlMessageOfError+=HQt_ShowAlert("Неправильный формат данных. Это не Harrix Optimization Testing.");
         Error=true;
     }
-    if (XML_Site!="https://github.com/Harrix/HarrixFileFormats")
+    if (XML_Link!="https://github.com/Harrix/HarrixFileFormats")
     {
         HtmlMessageOfError+=HQt_ShowAlert("Неправильный сайт в описании. Должен быть https://github.com/Harrix/HarrixFileFormats.");
         Error=true;
@@ -1105,6 +1147,16 @@ void DataOfHarrixOptimizationTesting::checkXmlLeafTags()
     if (XML_Number_Of_Parameters==-1)
     {
         HtmlMessageOfError+=HQt_ShowAlert("Нет тэга number_of_parameters.");
+        Error=true;
+    }
+    if (XML_Number_Of_Parameters==0)
+    {
+        HtmlMessageOfError+=HQt_ShowAlert("Ошибка в тэге number_of_parameters. Минимальное число параметров 1. Подробности в описании формата данных на https://github.com/Harrix/HarrixFileFormats.");
+        Error=true;
+    }
+    if ((XML_Number_Of_Parameters<0)&&(XML_Number_Of_Parameters!=-1))
+    {
+        HtmlMessageOfError+=HQt_ShowAlert("Ошибка в тэге number_of_parameters. Число параметров не может быть отрицательным.");
         Error=true;
     }
     if (XML_Number_Of_Experiments==-1)

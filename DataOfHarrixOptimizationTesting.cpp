@@ -1,5 +1,5 @@
 //Класс DataOfHarrixOptimizationTesting для считывания информации формата данных Harrix Optimization Testing
-//Версия 1.5
+//Версия 1.6
 
 #include "QtHarrixLibrary.h"
 #include "QtHarrixLibraryForQWebView.h"
@@ -685,7 +685,16 @@ void DataOfHarrixOptimizationTesting::makingLatexTableR()
 
         for (int j=0;j<XML_Number_Of_Parameters;j++)
         {
-            Cell2+=MatrixOfNameParameters[i][j] +" \\\\ ";
+            if (MatrixOfNameParameters[i][j]=="NULL")
+                Cell2+="Отсутствует \\\\ ";
+            else
+                if (!HQt_IsNumeric(MatrixOfNameParameters[i][j]))
+                    if (MatrixOfNameParameters[i][j].length()>=5)
+                        Cell2+=MatrixOfNameParameters[i][j] +" \\\\ ";
+                    else
+                        Cell2+=NamesOfParameters[j] + " = " + MatrixOfNameParameters[i][j] +" \\\\ ";
+                else
+                    Cell2+=NamesOfParameters[j] + " = " + MatrixOfNameParameters[i][j] +" \\\\ ";
         }
 
         Cell2+="}";
@@ -763,7 +772,16 @@ void DataOfHarrixOptimizationTesting::makingLatexTableEy()
 
         for (int j=0;j<XML_Number_Of_Parameters;j++)
         {
-            Cell2+=MatrixOfNameParameters[i][j] +" \\\\ ";
+            if (MatrixOfNameParameters[i][j]=="NULL")
+                Cell2+="Отсутствует \\\\ ";
+            else
+                if (!HQt_IsNumeric(MatrixOfNameParameters[i][j]))
+                    if (MatrixOfNameParameters[i][j].length()>=5)
+                        Cell2+=MatrixOfNameParameters[i][j] +" \\\\ ";
+                    else
+                        Cell2+=NamesOfParameters[j] + " = " + MatrixOfNameParameters[i][j] +" \\\\ ";
+                else
+                    Cell2+=NamesOfParameters[j] + " = " + MatrixOfNameParameters[i][j] +" \\\\ ";
         }
 
         Cell2+="}";
@@ -840,7 +858,16 @@ void DataOfHarrixOptimizationTesting::makingLatexTableEx()
 
         for (int j=0;j<XML_Number_Of_Parameters;j++)
         {
-            Cell2+=MatrixOfNameParameters[i][j] +" \\\\ ";
+            if (MatrixOfNameParameters[i][j]=="NULL")
+                Cell2+="Отсутствует \\\\ ";
+            else
+                if (!HQt_IsNumeric(MatrixOfNameParameters[i][j]))
+                    if (MatrixOfNameParameters[i][j].length()>=5)
+                        Cell2+=MatrixOfNameParameters[i][j] +" \\\\ ";
+                    else
+                        Cell2+=NamesOfParameters[j] + " = " + MatrixOfNameParameters[i][j] +" \\\\ ";
+                else
+                    Cell2+=NamesOfParameters[j] + " = " + MatrixOfNameParameters[i][j] +" \\\\ ";
         }
 
         Cell2+="}";
@@ -902,8 +929,17 @@ void DataOfHarrixOptimizationTesting::makingLatexInfo()
     LatexInfo+="\\textbf{Количество измерений для каждого варианта настроек алгоритма}: & "+QString::number(XML_Number_Of_Measuring)+" \\\\ \n";
     LatexInfo+="\\textbf{Количество запусков алгоритма в каждом из экспериментов}: & "+QString::number(XML_Number_Of_Runs)+" \\\\ \n";
     LatexInfo+="\\textbf{Максимальное допустимое число вычислений целевой функции}: & "+QString::number(XML_Max_Count_Of_Fitness)+" \\\\ \n";
-    LatexInfo+="\\textbf{Количество проверяемых параметров алгоритма оптимизации}: & "+QString::number(XML_Number_Of_Parameters)+" \\\\ \n";
-    LatexInfo+="\\textbf{Количество проверяемых параметров алгоритма оптимизации}: & "+QString::number(XML_Number_Of_Experiments)+" \\\\ \n";
+
+    if ((XML_Number_Of_Parameters==1)&&(NamesOfParameters.at(0)=="NULL"))
+    {
+        LatexInfo+="\\textbf{Количество проверяемых параметров алгоритма оптимизации}: & Отсутствуют \\\\ \n";
+     }
+      else
+    {
+        LatexInfo+="\\textbf{Количество проверяемых параметров алгоритма оптимизации}: & "+QString::number(XML_Number_Of_Parameters)+" \\\\ \n";
+    }
+
+    LatexInfo+="\\textbf{Количество комбинаций вариантов настроек}: & "+QString::number(XML_Number_Of_Experiments)+" \\\\ \n";
     LatexInfo+="\\textbf{Общий объем максимального числа вычислений целевой функции во всем исследовании}: & "+QString::number(XML_Number_Of_Experiments*XML_Max_Count_Of_Fitness*XML_Number_Of_Measuring*XML_Number_Of_Runs)+" \\\\ \n";
     LatexInfo+="\\end{tabularwide08}\n\n";
     LatexInfo+="Информацию о исследуемой функции можно найти по адресу:\n\n";
@@ -923,6 +959,12 @@ void DataOfHarrixOptimizationTesting::makingLatexAboutParameters()
      Отсутствует. Значение возвращается в переменную LatexTableEx, которую можно вызвать getLatexAboutParameters
      */
     LatexAboutParameters+="\\subsection {Параметры алгоритма оптимизации}\n\n";
+    if ((XML_Number_Of_Parameters==1)&&(NamesOfParameters.at(0)=="NULL"))
+    {
+        LatexAboutParameters+="В данном исследуемом алгоритме оптимизации нет настраеваемых параметров. Поэтому в таблице ниже приведены даные только одного эксперимента.";
+    }
+      else
+    {
     LatexAboutParameters+="Исследуемый алгоритм оптимизации проверялся по эффективности по некоторому конечному множеству возможных настроек алгоритма. ";
     LatexAboutParameters+="Как написано выше, всего возможных параметров алгоритма было "+QString::number(XML_Number_Of_Parameters)+" штук. ";
     LatexAboutParameters+="В формуле \\ref{"+Un+":"+HQt_StringToLabelForLaTeX(XML_Name_Algorithm)+":Parameters} показано множество проверяемых параметров алгоритма.\n\n";
@@ -958,6 +1000,7 @@ void DataOfHarrixOptimizationTesting::makingLatexAboutParameters()
         }
         LatexAboutParameters+="\\end{array}\\right\\rbrace . ";
         LatexAboutParameters+="\\end{equation}\n\n";
+    }
     }
 }
 //--------------------------------------------------------------------------
@@ -1164,9 +1207,29 @@ void DataOfHarrixOptimizationTesting::checkXmlLeafTags()
         HtmlMessageOfError+=HQt_ShowAlert("Нет тэга number_of_experiments.");
         Error=true;
     }
+    if (XML_Number_Of_Experiments==0)
+    {
+        HtmlMessageOfError+=HQt_ShowAlert("Ошибка в тэге number_of_experiments. Минимальное число экспериментов 1.");
+        Error=true;
+    }
+    if ((XML_Number_Of_Experiments<0)&&(XML_Number_Of_Experiments!=-1))
+    {
+        HtmlMessageOfError+=HQt_ShowAlert("Ошибка в тэге number_of_experiments. Число параметров не может быть отрицательным.");
+        Error=true;
+    }
     if (XML_Max_Count_Of_Fitness==-1)
     {
         HtmlMessageOfError+=HQt_ShowAlert("Нет тэга max_count_of_fitness.");
+        Error=true;
+    }
+    if (XML_Max_Count_Of_Fitness==0)
+    {
+        HtmlMessageOfError+=HQt_ShowAlert("Ошибка в тэге max_count_of_fitness. Минимальное число вычислений целевой функции 1, и то это очень мало.");
+        Error=true;
+    }
+    if ((XML_Max_Count_Of_Fitness<0)&&(XML_Max_Count_Of_Fitness!=-1))
+    {
+        HtmlMessageOfError+=HQt_ShowAlert("Ошибка в тэге max_count_of_fitness. Число вычислений целевой функции не может быть отрицательным.");
         Error=true;
     }
     if (XML_Number_Of_Runs==-1)
@@ -1174,14 +1237,44 @@ void DataOfHarrixOptimizationTesting::checkXmlLeafTags()
         HtmlMessageOfError+=HQt_ShowAlert("Нет тэга number_of_runs.");
         Error=true;
     }
+    if (XML_Number_Of_Runs==0)
+    {
+        HtmlMessageOfError+=HQt_ShowAlert("Ошибка в тэге number_of_runs. Минимальное число запусков алгоритма для усреднения 1 (желательно от 10).");
+        Error=true;
+    }
+    if ((XML_Number_Of_Runs<0)&&(XML_Number_Of_Runs!=-1))
+    {
+        HtmlMessageOfError+=HQt_ShowAlert("Ошибка в тэге number_of_runs. Число запусков алгоритма для усреднения не может быть отрицательным.");
+        Error=true;
+    }
     if (XML_Number_Of_Measuring==-1)
     {
         HtmlMessageOfError+=HQt_ShowAlert("Нет тэга number_of_measuring.");
         Error=true;
     }
-    if (XML_Number_Of_Measuring==-1)
+    if (XML_Number_Of_Measuring==0)
+    {
+        HtmlMessageOfError+=HQt_ShowAlert("Ошибка в тэге number_of_measuring. Минимальное число измерений для настройки алгоритма 1 (желательно от 10).");
+        Error=true;
+    }
+    if ((XML_Number_Of_Measuring<0)&&(XML_Number_Of_Measuring!=-1))
+    {
+        HtmlMessageOfError+=HQt_ShowAlert("Ошибка в тэге number_of_measuring. Число измерений для настройки алгоритма не может быть отрицательным.");
+        Error=true;
+    }
+    if (XML_Chromosome_Length==-1)
     {
         HtmlMessageOfError+=HQt_ShowAlert("Нет тэга о размерности тестовой задачи chromosome_length.");
+        Error=true;
+    }
+    if (XML_Chromosome_Length==0)
+    {
+        HtmlMessageOfError+=HQt_ShowAlert("Ошибка в тэге chromosome_length. Минимальная длина хромосомы 1 (желательно от 10).");
+        Error=true;
+    }
+    if ((XML_Chromosome_Length<0)&&(XML_Chromosome_Length!=-1))
+    {
+        HtmlMessageOfError+=HQt_ShowAlert("Ошибка в тэге chromosome_length. Длина хромосомы не может быть отрицательной.");
         Error=true;
     }
     if (XML_Full_Name_Test_Function.isEmpty())
@@ -1316,6 +1409,7 @@ void DataOfHarrixOptimizationTesting::readXmlDataTags()
     bool bool_ex;
     bool bool_ey;
     bool bool_r;
+    bool is_number;
     while(!Rxml.atEnd())
     {
         if(Rxml.isStartElement())
@@ -1353,65 +1447,92 @@ void DataOfHarrixOptimizationTesting::readXmlDataTags()
 
                         Rxml.readNext();while((!Rxml.isStartElement())&&(!Rxml.atEnd())){Rxml.readNext();}
                         NameOfElement=Rxml.name().toString().toLower();
+                        TextOfElement=Rxml.readElementText();
+                        is_number=HQt_IsNumeric(TextOfElement);
+                        if (!is_number)
+                        {
+                            HtmlMessageOfError+=HQt_ShowAlert("Ошибка Ex не является числом. Вместо числа получили вот это: "+TextOfElement);
+                            Error=true;
+                        }
 
                         if (NameOfElement=="ex")
                         {
-                            MatrixOfEx[i][k]=(Rxml.readElementText()).toDouble();
+                            MatrixOfEx[i][k]=HQt_QStringToNumber(TextOfElement);
                             bool_ex=true;
                         }
 
                         if (NameOfElement=="ey")
                         {
-                            MatrixOfEy[i][k]=(Rxml.readElementText()).toDouble();
+                            MatrixOfEy[i][k]=HQt_QStringToNumber(TextOfElement);
                             bool_ey=true;
                         }
 
                         if (NameOfElement=="r")
                         {
-                            MatrixOfR[i][k]=(Rxml.readElementText()).toDouble();
+                            MatrixOfR[i][k]=HQt_QStringToNumber(TextOfElement);
                             bool_r=true;
                         }
 
                         Rxml.readNext();while((!Rxml.isStartElement())&&(!Rxml.atEnd())){Rxml.readNext();}
                         NameOfElement=Rxml.name().toString().toLower();
+                        TextOfElement=Rxml.readElementText();
+                        is_number=HQt_IsNumeric(TextOfElement);
+                        if (!is_number)
+                        {
+                            HtmlMessageOfError+=HQt_ShowAlert("Ошибка Ex не является числом. Вместо числа получили вот это: "+TextOfElement);
+                            Error=true;
+                        }
 
                         if (NameOfElement=="ex")
                         {
-                            MatrixOfEx[i][k]=(Rxml.readElementText()).toDouble();
+                            MatrixOfEx[i][k]=HQt_QStringToNumber(TextOfElement);
                             bool_ex=true;
                         }
 
                         if (NameOfElement=="ey")
                         {
-                            MatrixOfEy[i][k]=(Rxml.readElementText()).toDouble();
+                            MatrixOfEy[i][k]=HQt_QStringToNumber(TextOfElement);
                             bool_ey=true;
                         }
 
                         if (NameOfElement=="r")
                         {
-                            MatrixOfR[i][k]=(Rxml.readElementText()).toDouble();
+                            MatrixOfR[i][k]=HQt_QStringToNumber(TextOfElement);
                             bool_r=true;
                         }
 
                         Rxml.readNext();while((!Rxml.isStartElement())&&(!Rxml.atEnd())){Rxml.readNext();}
                         NameOfElement=Rxml.name().toString().toLower();
+                        TextOfElement=Rxml.readElementText();
+                        is_number=HQt_IsNumeric(TextOfElement);
+                        if (!is_number)
+                        {
+                            HtmlMessageOfError+=HQt_ShowAlert("Ошибка Ex не является числом. Вместо числа получили вот это: "+TextOfElement);
+                            Error=true;
+                        }
 
                         if (NameOfElement=="ex")
                         {
-                            MatrixOfEx[i][k]=(Rxml.readElementText()).toDouble();
+                            MatrixOfEx[i][k]=HQt_QStringToNumber(TextOfElement);
                             bool_ex=true;
                         }
 
                         if (NameOfElement=="ey")
                         {
-                            MatrixOfEy[i][k]=(Rxml.readElementText()).toDouble();
+                            MatrixOfEy[i][k]=HQt_QStringToNumber(TextOfElement);
                             bool_ey=true;
                         }
 
                         if (NameOfElement=="r")
                         {
-                            MatrixOfR[i][k]=(Rxml.readElementText()).toDouble();
+                            MatrixOfR[i][k]=HQt_QStringToNumber(TextOfElement);
                             bool_r=true;
+
+                            if ((MatrixOfR[i][k]<0)||(MatrixOfR[i][k]>1))
+                            {
+                                HtmlMessageOfError+=HQt_ShowAlert("Сейчас просматривался тэг нажедности R. Надежность это величина от 0 до 1. У вас это не так.");
+                                Error=true;
+                            }
                         }
 
                         if (!((bool_ex)&&(bool_ey)&&(bool_r)))
@@ -1440,6 +1561,12 @@ void DataOfHarrixOptimizationTesting::readXmlDataTags()
 
         Rxml.readNext();while((!Rxml.isStartElement())&&(!Rxml.atEnd())){Rxml.readNext();}
         i++;
+    }
+
+    if (i!=XML_Number_Of_Experiments)
+    {
+        HtmlMessageOfError+=HQt_ShowAlert("Число экспериментов в тэге number_of_experiments не равно реальному числу экспериментов в xml файле.");
+        Error=true;
     }
 }
 //--------------------------------------------------------------------------

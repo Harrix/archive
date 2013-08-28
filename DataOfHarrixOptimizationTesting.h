@@ -200,6 +200,7 @@ private:
     QString NameOfAttr;//название атрибута тэга
     bool Error;//естm ли ошибка при анализе XML файла
     QXmlStreamReader Rxml;//непосредственно анализируемый xml файл
+    bool Zero_Number_Of_Parameters;//Число параметров равно нулю или нет
 };
 
 #endif // DATAOFHARRIXOPTIMIZATIONTESTING_H

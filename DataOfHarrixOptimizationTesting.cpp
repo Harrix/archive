@@ -1,5 +1,5 @@
 //Класс DataOfHarrixOptimizationTesting для считывания информации формата данных Harrix Optimization Testing
-//Версия 1.8
+//Версия 1.9
 
 #include "QtHarrixLibrary.h"
 #include "QtHarrixLibraryForQWebView.h"
@@ -20,6 +20,7 @@ DataOfHarrixOptimizationTesting::DataOfHarrixOptimizationTesting(QString filenam
     XML_Number_Of_Runs=-1;//Количество прогонов по которому деляется усреднение для эксперимента
     XML_Max_Count_Of_Fitness=-1;//Максимальное допустимое число вычислений целевой функции для алгоритма
     XML_Number_Of_Parameters=-1;//Количество проверяемых параметров алгоритма оптимизации
+    Zero_Number_Of_Parameters=false;//пока ничего не известно
     XML_Number_Of_Experiments=-1;//Количество комбинаций вариантов настроек
     Error=false;//типа вначале нет ошибок в файле
     Un=HQt_RandomString(5);//уникальная строка для Latex
@@ -443,6 +444,7 @@ int DataOfHarrixOptimizationTesting::getNumberOfParameters()
     /*
      Получение текста переменной  XML_Number_Of_Parameters - Количество проверяемых параметров алгоритма оптимизации
      */
+    if (Zero_Number_Of_Parameters) return 0;
     return XML_Number_Of_Parameters;
 }
 //--------------------------------------------------------------------------
@@ -758,7 +760,7 @@ void DataOfHarrixOptimizationTesting::makingLatexTableR()
     LatexTableR+="\\tabularnewline\\hline\n";
     LatexTableR+="\\centering \\textbf{№} & \\centering \\textbf{Настройки алгоритма}    & \\centering \\textbf{Значения ошибки $R$} & \\centering \\textbf{Среднее значение} & \\centering \\textbf{Дисперсия}  \\centering \\tabularnewline \\hline \\endhead\n";
     LatexTableR+="\\hline \\multicolumn{5}{|r|}{{Продолжение на следующей странице...}} \\\\ \\hline \\endfoot\n";
-    LatexTableR+="\\hline \\endlastfoot";
+    LatexTableR+="\\endlastfoot";
 
     for (int i=0;i<XML_Number_Of_Experiments;i++)
     {
@@ -845,7 +847,7 @@ void DataOfHarrixOptimizationTesting::makingLatexTableEy()
     LatexTableEy+="\\tabularnewline\\hline\n";
     LatexTableEy+="\\centering \\textbf{№} & \\centering \\textbf{Настройки алгоритма}    & \\centering \\textbf{Значения ошибки $E_y$} & \\centering \\textbf{Среднее значение} & \\centering \\textbf{Дисперсия}  \\centering \\tabularnewline \\hline \\endhead\n";
     LatexTableEy+="\\hline \\multicolumn{5}{|r|}{{Продолжение на следующей странице...}} \\\\ \\hline \\endfoot\n";
-    LatexTableEy+="\\hline \\endlastfoot";
+    LatexTableEy+="\\endlastfoot";
 
     for (int i=0;i<XML_Number_Of_Experiments;i++)
     {
@@ -931,7 +933,7 @@ void DataOfHarrixOptimizationTesting::makingLatexTableEx()
     LatexTableEx+="\\tabularnewline\\hline\n";
     LatexTableEx+="\\centering \\textbf{№} & \\centering \\textbf{Настройки алгоритма}    & \\centering \\textbf{Значения ошибки $E_x$} & \\centering \\textbf{Среднее значение} & \\centering \\textbf{Дисперсия}  \\centering \\tabularnewline \\hline \\endhead\n";
     LatexTableEx+="\\hline \\multicolumn{5}{|r|}{{Продолжение на следующей странице...}} \\\\ \\hline \\endfoot\n";
-    LatexTableEx+="\\hline \\endlastfoot";
+    LatexTableEx+="\\endlastfoot";
 
     for (int i=0;i<XML_Number_Of_Experiments;i++)
     {
@@ -1024,8 +1026,8 @@ void DataOfHarrixOptimizationTesting::makingLatexInfo()
     if ((XML_Number_Of_Parameters==1)&&(NamesOfParameters.at(0)=="NULL"))
     {
         LatexInfo+="\\textbf{Количество проверяемых параметров алгоритма оптимизации}: & Отсутствуют \\\\ \n";
-     }
-      else
+    }
+    else
     {
         LatexInfo+="\\textbf{Количество проверяемых параметров алгоритма оптимизации}: & "+QString::number(XML_Number_Of_Parameters)+" \\\\ \n";
     }
@@ -1054,44 +1056,44 @@ void DataOfHarrixOptimizationTesting::makingLatexAboutParameters()
     {
         LatexAboutParameters+="В данном исследуемом алгоритме оптимизации нет настраеваемых параметров. Поэтому в таблице ниже приведены даные только одного эксперимента.";
     }
-      else
-    {
-    LatexAboutParameters+="Исследуемый алгоритм оптимизации проверялся по эффективности по некоторому конечному множеству возможных настроек алгоритма. ";
-    LatexAboutParameters+="Как написано выше, всего возможных параметров алгоритма было "+QString::number(XML_Number_Of_Parameters)+" штук. ";
-    LatexAboutParameters+="В формуле \\ref{"+Un+":"+HQt_StringToLabelForLaTeX(XML_Name_Algorithm)+":Parameters} показано множество проверяемых параметров алгоритма.\n\n";
-    LatexAboutParameters+="\\begin{equation}\n";
-    LatexAboutParameters+="\\label{"+Un+":"+HQt_StringToLabelForLaTeX(XML_Name_Algorithm)+":Parameters}\n";
-    LatexAboutParameters+="Parameters = \\left( \\begin{array}{c} ";
-    if (HQt_MaxCountOfQStringList(NamesOfParameters)>57)
-        Parbox="\\parbox{\\dimexpr \\linewidth-3in}";
     else
-        Parbox="";
-    for (int i=0;i<NamesOfParameters.count();i++)
     {
-        LatexAboutParameters+=Parbox+"{\\centering\\textit{"+HQt_StringForLaTeX(NamesOfParameters.at(i))+"}} ";
-        if (i!=NamesOfParameters.count()-1) LatexAboutParameters+="\\\\ ";
-    }
-    LatexAboutParameters+="\\end{array}\\right). ";
-    LatexAboutParameters+="\\end{equation}\n\n";
-    LatexAboutParameters+="Теперь рассмотрим, какие значения может принимать каждый из параметров.";
-
-    for (int j=0;j<XML_Number_Of_Parameters;j++)
-    {
+        LatexAboutParameters+="Исследуемый алгоритм оптимизации проверялся по эффективности по некоторому конечному множеству возможных настроек алгоритма. ";
+        LatexAboutParameters+="Как написано выше, всего возможных параметров алгоритма было "+QString::number(XML_Number_Of_Parameters)+" штук. ";
+        LatexAboutParameters+="В формуле \\ref{"+Un+":"+HQt_StringToLabelForLaTeX(XML_Name_Algorithm)+":Parameters} показано множество проверяемых параметров алгоритма.\n\n";
         LatexAboutParameters+="\\begin{equation}\n";
-        LatexAboutParameters+="\\label{"+Un+":"+HQt_StringToLabelForLaTeX(XML_Name_Algorithm)+":parameter_"+QString::number(j+1)+"}\n";
-        LatexAboutParameters+="Parameters^{"+QString::number(j+1)+"} \\in \\left\\lbrace  \\begin{array}{c} ";
-        if (HQt_MaxCountOfQStringList(ListOfParameterOptions[j])>57)
+        LatexAboutParameters+="\\label{"+Un+":"+HQt_StringToLabelForLaTeX(XML_Name_Algorithm)+":Parameters}\n";
+        LatexAboutParameters+="Parameters = \\left( \\begin{array}{c} ";
+        if (HQt_MaxCountOfQStringList(NamesOfParameters)>57)
             Parbox="\\parbox{\\dimexpr \\linewidth-3in}";
         else
             Parbox="";
-        for (int i=0;i<ListOfParameterOptions[j].count();i++)
+        for (int i=0;i<NamesOfParameters.count();i++)
         {
-            LatexAboutParameters+=Parbox+"{\\centering\\textit{"+HQt_StringForLaTeX(ListOfParameterOptions[j].at(i))+"}} ";
-            if (i!=ListOfParameterOptions[j].count()-1) LatexAboutParameters+="\\\\ ";
+            LatexAboutParameters+=Parbox+"{\\centering\\textit{"+HQt_StringForLaTeX(NamesOfParameters.at(i))+"}} ";
+            if (i!=NamesOfParameters.count()-1) LatexAboutParameters+="\\\\ ";
         }
-        LatexAboutParameters+="\\end{array}\\right\\rbrace . ";
+        LatexAboutParameters+="\\end{array}\\right). ";
         LatexAboutParameters+="\\end{equation}\n\n";
-    }
+        LatexAboutParameters+="Теперь рассмотрим, какие значения может принимать каждый из параметров.";
+
+        for (int j=0;j<XML_Number_Of_Parameters;j++)
+        {
+            LatexAboutParameters+="\\begin{equation}\n";
+            LatexAboutParameters+="\\label{"+Un+":"+HQt_StringToLabelForLaTeX(XML_Name_Algorithm)+":parameter_"+QString::number(j+1)+"}\n";
+            LatexAboutParameters+="Parameters^{"+QString::number(j+1)+"} \\in \\left\\lbrace  \\begin{array}{c} ";
+            if (HQt_MaxCountOfQStringList(ListOfParameterOptions[j])>57)
+                Parbox="\\parbox{\\dimexpr \\linewidth-3in}";
+            else
+                Parbox="";
+            for (int i=0;i<ListOfParameterOptions[j].count();i++)
+            {
+                LatexAboutParameters+=Parbox+"{\\centering\\textit{"+HQt_StringForLaTeX(ListOfParameterOptions[j].at(i))+"}} ";
+                if (i!=ListOfParameterOptions[j].count()-1) LatexAboutParameters+="\\\\ ";
+            }
+            LatexAboutParameters+="\\end{array}\\right\\rbrace . ";
+            LatexAboutParameters+="\\end{equation}\n\n";
+        }
     }
 }
 //--------------------------------------------------------------------------
@@ -1118,17 +1120,20 @@ void DataOfHarrixOptimizationTesting::makingHtmlReport()
     HtmlReport+=HQt_ShowSimpleText("<b>Количество измерений для каждого варианта настроек алгоритма:</b> "+QString::number(XML_Number_Of_Measuring)+".");
     HtmlReport+=HQt_ShowSimpleText("<b>Количество запусков алгоритма в каждом из экспериментов:</b> "+QString::number(XML_Number_Of_Runs)+".");
     HtmlReport+=HQt_ShowSimpleText("<b>Максимальное допустимое число вычислений целевой функции:</b> "+QString::number(XML_Max_Count_Of_Fitness)+".");
-    HtmlReport+=HQt_ShowSimpleText("<b>Количество проверяемых параметров алгоритма оптимизации:</b> "+QString::number(XML_Number_Of_Parameters)+".");
+    HtmlReport+=HQt_ShowSimpleText("<b>Количество проверяемых параметров алгоритма оптимизации:</b> "+QString::number(getNumberOfParameters())+".");
     HtmlReport+=HQt_ShowSimpleText("<b>Количество комбинаций вариантов настроек:</b> "+QString::number(XML_Number_Of_Experiments)+".");
     HtmlReport+=HQt_ShowHr();
     HtmlReport+=HQt_ShowH1("Собранные данные");
     HtmlReport+=THQt_ShowMatrix(MatrixOfEx,XML_Number_Of_Experiments,XML_Number_Of_Measuring,"Ошибки по входным параметрам","Ex");
     HtmlReport+=THQt_ShowMatrix(MatrixOfEy,XML_Number_Of_Experiments,XML_Number_Of_Measuring,"Ошибки по значениям целевой функции","Ey");
     HtmlReport+=THQt_ShowMatrix(MatrixOfR, XML_Number_Of_Experiments,XML_Number_Of_Measuring,"Надежности","R");
-    HtmlReport+=THQt_ShowVector(NamesOfParameters,"Вектора названий параметров алгоримта","NamesOfParameters");
-    for (int j=0;j<XML_Number_Of_Parameters;j++)
-        HtmlReport+=THQt_ShowVector(ListOfParameterOptions[j],(NamesOfParameters).at(j) + "(возможные принимаемые значения)","ParameterOptions");
-    HtmlReport+=THQt_ShowMatrix(MatrixOfParameters,XML_Number_Of_Experiments,XML_Number_Of_Parameters,"Матрица параметров по номерам","MatrixOfParameters");
+    if (!Zero_Number_Of_Parameters)
+    {
+        HtmlReport+=THQt_ShowVector(NamesOfParameters,"Вектора названий параметров алгоримта","NamesOfParameters");
+        for (int j=0;j<XML_Number_Of_Parameters;j++)
+            HtmlReport+=THQt_ShowVector(ListOfParameterOptions[j],(NamesOfParameters).at(j) + "(возможные принимаемые значения)","ParameterOptions");
+        HtmlReport+=THQt_ShowMatrix(MatrixOfParameters,XML_Number_Of_Experiments,XML_Number_Of_Parameters,"Матрица параметров по номерам","MatrixOfParameters");
+    }
     //HtmlReport+=THQt_ShowMatrix(MatrixOfNameParameters,XML_Number_Of_Experiments,"Матрица параметров по именам","MatrixOfParameters");
 }
 //--------------------------------------------------------------------------
@@ -1154,6 +1159,14 @@ void DataOfHarrixOptimizationTesting::readXmlLeafTag()
         if (NameOfElement=="number_of_parameters")
         {
             XML_Number_Of_Parameters=TextOfElement.toInt();
+            if (XML_Number_Of_Parameters==0)
+            {
+                //чтобы  в дальнейших вычислениях не было путоницы, но всё равно считаем,
+                //что число параметров нулю
+                XML_Number_Of_Parameters=1;
+                Zero_Number_Of_Parameters=true;
+            }
+
             FindTag=true;
         }
         if (NameOfElement=="number_of_experiments")
@@ -1509,20 +1522,30 @@ void DataOfHarrixOptimizationTesting::readXmlDataTags()
 
             if (NameOfElement=="experiment")
             {
-                for (int k=0;k<XML_Number_Of_Parameters;k++)
+                //если параметров нет, то имитируем один NULL парметр
+                if (Zero_Number_Of_Parameters)
                 {
-                    //считаем массив параметров алгоритма
-                    NameOfAttr="parameters_of_algorithm_"+QString::number(k+1);
-                    AttrOfElement = Rxml.attributes().value(NameOfAttr).toString();
+                    NamesOfParameters << "NULL";
+                    MatrixOfParameters[0][0]=0;
+                    MatrixOfNameParameters[0] << "NULL";
+                }
+                else
+                {
+                    for (int k=0;k<XML_Number_Of_Parameters;k++)
+                    {
+                        //считаем массив параметров алгоритма
+                        NameOfAttr="parameters_of_algorithm_"+QString::number(k+1);
+                        AttrOfElement = Rxml.attributes().value(NameOfAttr).toString();
 
-                    //считываеv названия параметров алгорима
-                    if (i==0) NamesOfParameters << HQt_TextBeforeEqualSign(AttrOfElement);
+                        //считываеv названия параметров алгорима
+                        if (i==0) NamesOfParameters << HQt_TextBeforeEqualSign(AttrOfElement);
 
-                    //теперь значения параметров алгоритма
-                    ListOfParameterOptions[k] = HQt_AddUniqueQStringInQStringList (ListOfParameterOptions[k], HQt_TextAfterEqualSign(AttrOfElement));
+                        //теперь значения параметров алгоритма
+                        ListOfParameterOptions[k] = HQt_AddUniqueQStringInQStringList (ListOfParameterOptions[k], HQt_TextAfterEqualSign(AttrOfElement));
 
-                    MatrixOfParameters[i][k]=HQt_SearchQStringInQStringList (ListOfParameterOptions[k], HQt_TextAfterEqualSign(AttrOfElement));
-                    MatrixOfNameParameters[i] << HQt_TextAfterEqualSign(AttrOfElement);
+                        MatrixOfParameters[i][k]=HQt_SearchQStringInQStringList (ListOfParameterOptions[k], HQt_TextAfterEqualSign(AttrOfElement));
+                        MatrixOfNameParameters[i] << HQt_TextAfterEqualSign(AttrOfElement);
+                    }
                 }
 
                 for (int k=0;k<XML_Number_Of_Measuring;k++)
@@ -1795,7 +1818,7 @@ void DataOfHarrixOptimizationTesting::makingLatexAnalysis()
      Отсутствует. Значение возвращается в переменную LatexAnalysis, которую можно вызвать getLatexAnalysis
      */
     LatexAnalysis+="\\subsection {Первоначальный анализ данных}\n\n";
-    LatexAnalysis+="В данном разделе представлен первоначальный анализ данных исследования эффекстивности алгоритма оптимизации <<"+XML_Full_Name_Algorithm+">> на рассматриваемой тестовой функции <<"+XML_Full_Name_Test_Function+">> (размерность "+XML_DimensionTestFunction+").\n\n";
+    LatexAnalysis+="В данном разделе представлен первоначальный анализ данных исследования эффекстивности алгоритма оптимизации <<"+XML_Full_Name_Algorithm+">> на рассматриваемой тестовой функции <<"+XML_Full_Name_Test_Function+">> (размерность "+QString::number(XML_DimensionTestFunction)+").\n\n";
     if (XML_Number_Of_Experiments==1)
     {
         //Алгоритм имеет только один эксперимент

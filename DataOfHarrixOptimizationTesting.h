@@ -33,7 +33,7 @@ public:
     QString getFullNameAlgorithm();//Получение текста переменной  XML_Full_Name_Algorithm - Полное название алгоритма оптимизации
     QString getNameTestFunction();//Получение текста переменной  XML_Name_Test_Function - Название тестовой функции
     QString getFullNameTestFunction();//Получение текста переменной  XML_Full_Name_Test_Function - Полное название тестовой функции
-    int getChromosomeLength();//Получение текста переменной  XML_Chromosome_Length - Размерность тестовой задачи (длина хромосомы решения)
+    int getDimensionTestFunction();//Получение текста переменной  XML_DimensionTestFunction - Размерность тестовой задачи (длина хромосомы решения)
     int getNumberOfMeasuring();//Получение текста переменной  XML_Number_Of_Measuring - Размерность тестовой задачи (длина хромосомы решения)
     int getNumberOfRuns();//Получение текста переменной  XML_Number_Of_Runs - Количество прогонов по которому делается усреднение для эксперимента
     int getMaxCountOfFitness();//Получение текста переменной  Max_Count_Of_Fitness - Максимальное допустимое число вычислений целевой функции для алгоритма
@@ -79,7 +79,7 @@ private:
     QString XML_Full_Name_Algorithm;//Полное название алгоритма оптимизации
     QString XML_Name_Test_Function;//Название тестовой функции
     QString XML_Full_Name_Test_Function;//Полное название тестовой функции
-    int XML_Chromosome_Length;//Размерность тестовой задачи (длина хромосомы решения)
+    int XML_DimensionTestFunction;//Размерность тестовой задачи (длина хромосомы решения)
     int XML_Number_Of_Measuring;//Количество экспериментов для каждого набора параметров алгоритма
     int XML_Number_Of_Runs;//Количество прогонов по которому делается усреднение для эксперимента
     int XML_Max_Count_Of_Fitness;//Максимальное допустимое число вычислений целевой функции для алгоритма

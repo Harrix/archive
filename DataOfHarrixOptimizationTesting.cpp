@@ -1,5 +1,5 @@
 //Класс DataOfHarrixOptimizationTesting для считывания информации формата данных Harrix Optimization Testing
-//Версия 1.7
+//Версия 1.8
 
 #include "QtHarrixLibrary.h"
 #include "QtHarrixLibraryForQWebView.h"
@@ -15,7 +15,7 @@ DataOfHarrixOptimizationTesting::DataOfHarrixOptimizationTesting(QString filenam
      filename - полное имя считываемого файла;
  */
     SuccessReading=true;
-    XML_Chromosome_Length=-1;//Размерность тестовой задачи (длина хромосомы решения)
+    XML_DimensionTestFunction=-1;//Размерность тестовой задачи (длина хромосомы решения)
     XML_Number_Of_Measuring=-1;//Количество экспериментов для каждого набора параметров алгоритма
     XML_Number_Of_Runs=-1;//Количество прогонов по которому деляется усреднение для эксперимента
     XML_Max_Count_Of_Fitness=-1;//Максимальное допустимое число вычислений целевой функции для алгоритма
@@ -89,7 +89,7 @@ DataOfHarrixOptimizationTesting::DataOfHarrixOptimizationTesting(QString filenam
             Html+=HtmlReport;
 
             //Обработка полученной информации Latex
-            NameForHead="алгоритма оптимизации <<"+HQt_StringForLaTeX(XML_Full_Name_Algorithm)+">>на тестовой функции <<"+HQt_StringForLaTeX(XML_Full_Name_Test_Function)+">> (размерность равна "+QString::number(XML_Chromosome_Length)+")";
+            NameForHead="алгоритма оптимизации <<"+HQt_StringForLaTeX(XML_Full_Name_Algorithm)+">>на тестовой функции <<"+HQt_StringForLaTeX(XML_Full_Name_Test_Function)+">> (размерность равна "+QString::number(XML_DimensionTestFunction)+")";
             makingLatexInfo();
             makingLatexAboutParameters();
             makingLatexTableEx();//заполняем LatexTableEx
@@ -402,12 +402,12 @@ QString DataOfHarrixOptimizationTesting::getFullNameTestFunction()
 }
 //--------------------------------------------------------------------------
 
-int DataOfHarrixOptimizationTesting::getChromosomeLength()
+int DataOfHarrixOptimizationTesting::getDimensionTestFunction()
 {
     /*
-     Получение текста переменной  XML_Chromosome_Length - Размерность тестовой задачи (длина хромосомы решения)
+     Получение текста переменной  XML_DimensionTestFunction - Размерность тестовой задачи
      */
-    return XML_Chromosome_Length;
+    return XML_DimensionTestFunction;
 }
 //--------------------------------------------------------------------------
 
@@ -1016,7 +1016,7 @@ void DataOfHarrixOptimizationTesting::makingLatexInfo()
     LatexInfo+="\\textbf{Полное название тестовой функции}: & "+HQt_StringForLaTeX(XML_Full_Name_Test_Function)+". \\\\ \n";
     LatexInfo+="\\end{tabularwide}\n\n";
     LatexInfo+="\\begin{tabularwide08}\n";
-    LatexInfo+="\\textbf{Размерность тестовой функции:} & "+QString::number(XML_Chromosome_Length)+" \\\\ \n";
+    LatexInfo+="\\textbf{Размерность тестовой функции:} & "+QString::number(XML_DimensionTestFunction)+" \\\\ \n";
     LatexInfo+="\\textbf{Количество измерений для каждого варианта настроек алгоритма}: & "+QString::number(XML_Number_Of_Measuring)+" \\\\ \n";
     LatexInfo+="\\textbf{Количество запусков алгоритма в каждом из экспериментов}: & "+QString::number(XML_Number_Of_Runs)+" \\\\ \n";
     LatexInfo+="\\textbf{Максимальное допустимое число вычислений целевой функции}: & "+QString::number(XML_Max_Count_Of_Fitness)+" \\\\ \n";
@@ -1114,7 +1114,7 @@ void DataOfHarrixOptimizationTesting::makingHtmlReport()
     HtmlReport+=HQt_ShowSimpleText("<b>Полное название алгоритма:</b> "+XML_Full_Name_Algorithm+".");
     HtmlReport+=HQt_ShowSimpleText("<b>Название тестовой функции:</b> "+XML_Name_Test_Function+".");
     HtmlReport+=HQt_ShowSimpleText("<b>Полное название тестовой функции:</b> "+XML_Full_Name_Test_Function+".");
-    HtmlReport+=HQt_ShowSimpleText("<b>Размерность задачи оптимизации:</b> "+QString::number(XML_Chromosome_Length)+".");
+    HtmlReport+=HQt_ShowSimpleText("<b>Размерность задачи оптимизации:</b> "+QString::number(XML_DimensionTestFunction)+".");
     HtmlReport+=HQt_ShowSimpleText("<b>Количество измерений для каждого варианта настроек алгоритма:</b> "+QString::number(XML_Number_Of_Measuring)+".");
     HtmlReport+=HQt_ShowSimpleText("<b>Количество запусков алгоритма в каждом из экспериментов:</b> "+QString::number(XML_Number_Of_Runs)+".");
     HtmlReport+=HQt_ShowSimpleText("<b>Максимальное допустимое число вычислений целевой функции:</b> "+QString::number(XML_Max_Count_Of_Fitness)+".");
@@ -1176,9 +1176,9 @@ void DataOfHarrixOptimizationTesting::readXmlLeafTag()
             XML_Number_Of_Measuring=TextOfElement.toInt();
             FindTag=true;
         }
-        if (NameOfElement=="chromosome_length")
+        if (NameOfElement=="dimension_test_function")
         {
-            XML_Chromosome_Length=TextOfElement.toInt();
+            XML_DimensionTestFunction=TextOfElement.toInt();
             FindTag=true;
         }
         if (NameOfElement=="full_name_test_function")
@@ -1353,19 +1353,19 @@ void DataOfHarrixOptimizationTesting::checkXmlLeafTags()
         HtmlMessageOfError+=HQt_ShowAlert("Ошибка в тэге number_of_measuring. Число измерений для настройки алгоритма не может быть отрицательным.");
         Error=true;
     }
-    if (XML_Chromosome_Length==-1)
+    if (XML_DimensionTestFunction==-1)
     {
-        HtmlMessageOfError+=HQt_ShowAlert("Нет тэга о размерности тестовой задачи chromosome_length.");
+        HtmlMessageOfError+=HQt_ShowAlert("Нет тэга о размерности тестовой задачи dimension_test_function.");
         Error=true;
     }
-    if (XML_Chromosome_Length==0)
+    if (XML_DimensionTestFunction==0)
     {
-        HtmlMessageOfError+=HQt_ShowAlert("Ошибка в тэге chromosome_length. Минимальная длина хромосомы 1 (желательно от 10).");
+        HtmlMessageOfError+=HQt_ShowAlert("Ошибка в тэге dimension_test_function. Минимальная длина хромосомы 1 (желательно от 10).");
         Error=true;
     }
-    if ((XML_Chromosome_Length<0)&&(XML_Chromosome_Length!=-1))
+    if ((XML_DimensionTestFunction<0)&&(XML_DimensionTestFunction!=-1))
     {
-        HtmlMessageOfError+=HQt_ShowAlert("Ошибка в тэге chromosome_length. Длина хромосомы не может быть отрицательной.");
+        HtmlMessageOfError+=HQt_ShowAlert("Ошибка в тэге dimension_test_function. Длина хромосомы не может быть отрицательной.");
         Error=true;
     }
     if (XML_Full_Name_Test_Function.isEmpty())
@@ -1795,7 +1795,7 @@ void DataOfHarrixOptimizationTesting::makingLatexAnalysis()
      Отсутствует. Значение возвращается в переменную LatexAnalysis, которую можно вызвать getLatexAnalysis
      */
     LatexAnalysis+="\\subsection {Первоначальный анализ данных}\n\n";
-    LatexAnalysis+="В данном разделе представлен первоначальный анализ данных исследования эффекстивности алгоритма оптимизации <<"+XML_Full_Name_Algorithm+">> на рассматриваемой тестовой функции <<"+XML_Full_Name_Test_Function+">> (размерность "+XML_Chromosome_Length+").\n\n";
+    LatexAnalysis+="В данном разделе представлен первоначальный анализ данных исследования эффекстивности алгоритма оптимизации <<"+XML_Full_Name_Algorithm+">> на рассматриваемой тестовой функции <<"+XML_Full_Name_Test_Function+">> (размерность "+XML_DimensionTestFunction+").\n\n";
     if (XML_Number_Of_Experiments==1)
     {
         //Алгоритм имеет только один эксперимент

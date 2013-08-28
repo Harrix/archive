@@ -1,5 +1,5 @@
 //Класс DataOfHarrixOptimizationTesting для считывания информации формата данных Harrix Optimization Testing
-//Версия 1.6
+//Версия 1.7
 
 #include "QtHarrixLibrary.h"
 #include "QtHarrixLibraryForQWebView.h"
@@ -95,7 +95,9 @@ DataOfHarrixOptimizationTesting::DataOfHarrixOptimizationTesting(QString filenam
             makingLatexTableEx();//заполняем LatexTableEx
             makingLatexTableEy();//заполняем LatexTableEy
             makingLatexTableR();//заполняем LatexTableR
-            Latex+=LatexInfo+LatexAboutParameters+LatexTableEx+LatexTableEy+LatexTableR;
+            makingLatexAnalysis();//заполняем LatexTableR
+            //Latex+=LatexInfo+LatexAboutParameters+LatexTableEx+LatexTableEy+LatexTableR;
+            Latex+=LatexInfo+LatexAboutParameters+LatexTableEx+LatexTableEy+LatexTableR+LatexAnalysis;
 
             Html+=HQt_ShowHr();
             Html+=HQt_ShowText("Обработка файла завершена. Ошибки не обнаружены");
@@ -170,10 +172,22 @@ QString DataOfHarrixOptimizationTesting::getLatex()
     /*
      Получение текста переменной Latex.
      Здесь собран полный файл анализа данных из считываемого xml файла.
-     Помните, что это не полноценный Latex код.Его нужно применять внутри файла из макета:
+     Помните, что это не полноценный Latex код .Его нужно применять внутри файла из макета:
      https://github.com/Harrix/Harrix-Document-Template-LaTeX
      */
     return Latex;
+}
+//--------------------------------------------------------------------------
+
+QString DataOfHarrixOptimizationTesting::getFullLatex()
+{
+    /*
+     Получение текста переменной Latex в полном составе с началом и концовкой в Latex файле.
+     Здесь собран полный файл анализа данных из считываемого xml файла.
+     Это полноценный Latex код. Его нужно применять с файлами из макета:
+     https://github.com/Harrix/Harrix-Document-Template-LaTeX
+     */
+    return getLatexBegin() + Latex + getLatexEnd();
 }
 //--------------------------------------------------------------------------
 
@@ -181,10 +195,21 @@ QString DataOfHarrixOptimizationTesting::getLatexTableEx()
 {
     /*
      Получение текста переменной LatexTableEx - отображение сырых данных таблицы данных о ошибке Ex.
-     Помните, что это не полноценный Latex код.Его нужно применять внутри файла из макета:
+     Помните, что это не полноценный Latex код. Его нужно применять внутри файла из макета:
      https://github.com/Harrix/Harrix-Document-Template-LaTeX
      */
     return LatexTableEx;
+}
+//--------------------------------------------------------------------------
+
+QString DataOfHarrixOptimizationTesting::getFullLatexTableEx()
+{
+    /*
+     Получение текста переменной LatexTableEx - отображение сырых данных таблицы данных о ошибке Ex с началом и концовкой в Latex файле.
+     Это полноценный Latex код. Его нужно применять с файлами из макета:
+     https://github.com/Harrix/Harrix-Document-Template-LaTeX
+     */
+    return getLatexBegin() + LatexTableEx + getLatexEnd();
 }
 //--------------------------------------------------------------------------
 
@@ -199,14 +224,36 @@ QString DataOfHarrixOptimizationTesting::getLatexTableEy()
 }
 //--------------------------------------------------------------------------
 
+QString DataOfHarrixOptimizationTesting::getFullLatexTableEy()
+{
+    /*
+     Получение текста переменной LatexTableEy - отображение сырых данных таблицы данных о ошибке Ey с началом и концовкой в Latex файле.
+     Это полноценный Latex код. Его нужно применять с файлами из макета:
+     https://github.com/Harrix/Harrix-Document-Template-LaTeX
+     */
+    return getLatexBegin() + LatexTableEy + getLatexEnd();
+}
+//--------------------------------------------------------------------------
+
 QString DataOfHarrixOptimizationTesting::getLatexTableR()
 {
     /*
-     Получение текста переменной LatexTableR - отображение сырых данных по надедности в виде полной таблицы.
+     Получение текста переменной LatexTableR - отображение сырых данных по надежности в виде полной таблицы.
      Помните, что это не полноценный Latex код.Его нужно применять внутри файла из макета:
      https://github.com/Harrix/Harrix-Document-Template-LaTeX
      */
     return LatexTableR;
+}
+//--------------------------------------------------------------------------
+
+QString DataOfHarrixOptimizationTesting::getFullLatexTableR()
+{
+    /*
+     Получение текста переменной LatexTableR - отображение сырых данных по надежности в виде полной таблицы с началом и концовкой в Latex файле.
+     Это полноценный Latex код. Его нужно применять с файлами из макета:
+     https://github.com/Harrix/Harrix-Document-Template-LaTeX
+     */
+    return getLatexBegin() + LatexTableR + getLatexEnd();
 }
 //--------------------------------------------------------------------------
 
@@ -221,6 +268,17 @@ QString DataOfHarrixOptimizationTesting::getLatexInfo()
 }
 //--------------------------------------------------------------------------
 
+QString DataOfHarrixOptimizationTesting::getFullLatexInfo()
+{
+    /*
+     Получение текста переменной LatexInfo - отображение информации о исследовании с началом и концовкой в Latex файле.
+     Это полноценный Latex код. Его нужно применять с файлами из макета:
+     https://github.com/Harrix/Harrix-Document-Template-LaTeX
+     */
+    return getLatexBegin() + LatexInfo + getLatexEnd();
+}
+//--------------------------------------------------------------------------
+
 QString DataOfHarrixOptimizationTesting::getLatexAboutParameters()
 {
     /*
@@ -229,6 +287,39 @@ QString DataOfHarrixOptimizationTesting::getLatexAboutParameters()
      https://github.com/Harrix/Harrix-Document-Template-LaTeX
      */
     return LatexAboutParameters;
+}
+//--------------------------------------------------------------------------
+
+QString DataOfHarrixOptimizationTesting::getFullLatexAboutParameters()
+{
+    /*
+     Получение текста переменной LatexAboutParameters - отображение данных о обнаруженных параметрах алгоритма и какие они бывают с началом и концовкой в Latex файле.
+     Это полноценный Latex код. Его нужно применять с файлами из макета:
+     https://github.com/Harrix/Harrix-Document-Template-LaTeX
+     */
+    return getLatexBegin() + LatexAboutParameters + getLatexEnd();
+}
+//--------------------------------------------------------------------------
+
+QString DataOfHarrixOptimizationTesting::getLatexAnalysis()
+{
+    /*
+     Получение текста переменной LatexAnalysis - отображение первоначального анализа данных.
+     Помните, что это не полноценный Latex код.Его нужно применять внутри файла из макета:
+     https://github.com/Harrix/Harrix-Document-Template-LaTeX
+     */
+    return LatexAnalysis;
+}
+//--------------------------------------------------------------------------
+
+QString DataOfHarrixOptimizationTesting::getFullLatexAnalysis()
+{
+    /*
+     Получение текста переменной LatexAnalysis - отображение данных первоначального анализа данных.
+     Это полноценный Latex код. Его нужно применять с файлами из макета:
+     https://github.com/Harrix/Harrix-Document-Template-LaTeX
+     */
+    return getLatexBegin() + LatexAnalysis + getLatexEnd();
 }
 //--------------------------------------------------------------------------
 
@@ -1644,6 +1735,13 @@ void DataOfHarrixOptimizationTesting::makingAnalysis()
     Возвращаемое значение:
      Отсутствует.
      */
+    MeanOfAllEx=0;
+    MeanOfAllEy=0;
+    MeanOfAllR=0;
+    VarianceOfAllEx=0;
+    VarianceOfAllEy=0;
+    VarianceOfAllR=0;
+
     for (int i=0;i<XML_Number_Of_Experiments;i++)
     {
         //заполним значениями вектор средних значений критериев и дисперсий
@@ -1652,6 +1750,11 @@ void DataOfHarrixOptimizationTesting::makingAnalysis()
             MeanOfEx[i]+=MatrixOfEx[i][j];
             MeanOfEy[i]+=MatrixOfEy[i][j];
             MeanOfR[i] +=MatrixOfR[i][j];
+
+            //для общих дисперсий
+            MeanOfAllEx+=MatrixOfEx[i][j];
+            MeanOfAllEy+=MatrixOfEy[i][j];
+            MeanOfAllR +=MatrixOfR[i][j];
         }
 
         MeanOfEx[i]/=double(XML_Number_Of_Measuring);
@@ -1661,6 +1764,45 @@ void DataOfHarrixOptimizationTesting::makingAnalysis()
         VarianceOfEx[i]+=TMHL_Variance(MatrixOfEx[i],XML_Number_Of_Measuring);
         VarianceOfEy[i]+=TMHL_Variance(MatrixOfEx[i],XML_Number_Of_Measuring);
         VarianceOfR [i]+=TMHL_Variance(MatrixOfR [i],XML_Number_Of_Measuring);
+    }
+
+    //посчитаем общие средние значения
+    MeanOfAllEx/=double(XML_Number_Of_Measuring*XML_Number_Of_Experiments);
+    MeanOfAllEy/=double(XML_Number_Of_Measuring*XML_Number_Of_Experiments);
+    MeanOfAllR /=double(XML_Number_Of_Measuring*XML_Number_Of_Experiments);
+
+    //посчитаем дисперсии
+    for (int i=0;i<XML_Number_Of_Experiments;i++)
+        for (int j=0;j<XML_Number_Of_Measuring;j++)
+        {
+            VarianceOfAllEx+=(MatrixOfEx[i][j]-MeanOfAllEx)*(MatrixOfEx[i][j]-MeanOfAllEx);
+            VarianceOfAllEy+=(MatrixOfEy[i][j]-MeanOfAllEy)*(MatrixOfEy[i][j]-MeanOfAllEy);
+            VarianceOfAllR +=(MatrixOfR[i][j] -MeanOfAllR )*(MatrixOfR[i][j] -MeanOfAllR );
+        }
+    VarianceOfAllEx/=double(XML_Number_Of_Measuring*XML_Number_Of_Experiments-1);
+    VarianceOfAllEy/=double(XML_Number_Of_Measuring*XML_Number_Of_Experiments-1);
+    VarianceOfAllR/= double(XML_Number_Of_Measuring*XML_Number_Of_Experiments-1);
+}
+//--------------------------------------------------------------------------
+
+void DataOfHarrixOptimizationTesting::makingLatexAnalysis()
+{
+    /*
+    Создает текст LaTeX для отображения первоначального анализа данных.
+    Входные параметры:
+     Отсутствуют.
+    Возвращаемое значение:
+     Отсутствует. Значение возвращается в переменную LatexAnalysis, которую можно вызвать getLatexAnalysis
+     */
+    LatexAnalysis+="\\subsection {Первоначальный анализ данных}\n\n";
+    LatexAnalysis+="В данном разделе представлен первоначальный анализ данных исследования эффекстивности алгоритма оптимизации <<"+XML_Full_Name_Algorithm+">> на рассматриваемой тестовой функции <<"+XML_Full_Name_Test_Function+">> (размерность "+XML_Chromosome_Length+").\n\n";
+    if (XML_Number_Of_Experiments==1)
+    {
+        //Алгоритм имеет только один эксперимент
+    }
+    else
+    {
+
     }
 }
 //--------------------------------------------------------------------------

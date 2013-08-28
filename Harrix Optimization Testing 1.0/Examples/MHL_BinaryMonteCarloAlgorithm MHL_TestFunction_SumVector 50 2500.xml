@@ -3,7 +3,7 @@
 <harrix_file_format>
 	<format>Harrix Optimization Testing</format>
 	<version>1.0</version>
-	<site>https://github.com/Harrix/HarrixFileFormats</site>
+	<link>https://github.com/Harrix/HarrixFileFormats</link>
 </harrix_file_format>
 <about>
 	<author>Сергиенко Антон Борисович</author>
@@ -14,10 +14,14 @@
 	<name_algorithm>MHL_BinaryMonteCarloAlgorithm</name_algorithm>
 	<!-- Полное название алгоритма -->
 	<full_name_algorithm>Метод Монте-Карло на бинарных строках</full_name_algorithm>
+	<!-- Ссылка на описание алгоритма оптимизации (если нет, то NULL) -->
+	<link_algorithm>https://github.com/Harrix/HarrixOptimizationAlgorithms</link_algorithm>
 	<!-- Название тестовой функции (по названию функции, которая его реализует) -->
-	<name_test_function>MHL_TestFunction_SumVector</test_function>
+	<name_test_function>MHL_TestFunction_SumVector</name_test_function>
 	<!-- Полное название тестовой функции -->
-	<full_name_test_function>Сумма всех элементов бинарного вектора</test_function>
+	<full_name_test_function>Сумма всех элементов бинарного вектора</full_name_test_function>
+	<!-- Ссылка на описание тестовой функции (если нет, то NULL) -->
+	<link_test_function>https://github.com/Harrix/HarrixTestFunctions</link_test_function>
 	<!-- Размерность задачи оптимизации -->
 	<chromosome_length>50</chromosome_length>
 	<!-- Количество измерений для каждого варианта настроек алгоритма (сколько точек получим) -->
@@ -32,7 +36,7 @@
 	<number_of_experiments>1</number_of_experiments>
 </about_data>
 <data>
-	<experiment parameters_of_algorithm_1="Отсутствуют = Отсутствуют" >
+	<experiment parameters_of_algorithm_1="NULL = NULL" >
 		<measuring number="1">
 			<Ex>0.26</Ex>
 			<Ey>0.26</Ey>

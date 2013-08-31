@@ -67,7 +67,7 @@
 
 Предложенный ниже файл не является полным исследованием алгоритма, а является лишь тестовым примером.
 
-\begin{lstlisting}[label=Example01,caption=Пример части файла Harrix Optimization Testing]
+\begin{lstlisting}[label=Example01, language=xml ,caption=Пример части файла Harrix Optimization Testing]
 <?xml version="1.0" encoding="UTF-8"?>
 <document>
 <harrix_file_format>
@@ -104,6 +104,8 @@
 	<number_of_parameters>5</number_of_parameters>
 	<!-- Количество комбинаций вариантов настроек -->
 	<number_of_experiments>1</number_of_experiments>
+	<!-- Все ли комбинации вариантов настроек просмотрены -->
+	<all_combinations>1</all_combinations>
 </about_data>
 <data>
 	<experiment parameters_of_algorithm_1="Тип селекции = Пропорциональная селекция" parameters_of_algorithm_2="Тип скрещивания = Одноточечное скрещивание" parameters_of_algorithm_3="Тип мутации = Слабая мутация" parameters_of_algorithm_4="Тип формирования нового поколения = Только потомки" parameters_of_algorithm_5="Тип преобразования задачи вещественной оптимизации в задачу бинарной оптимизации = Стандартное представление целого числа - номер узла в сетке дискретизации">
@@ -168,13 +170,13 @@
 
 Первая строчка семантической нагрузки не несет, и нужна только для объявления формата XML для парсеров XML файлов. В общем, эта строчка должна быть, и ее не надо трогать.
 
-\begin{lstlisting}[label=Part01,caption=Первая строчка файла Harrix Optimization Testing]
+\begin{lstlisting}[label=Part01, language=xml ,caption=Первая строчка файла Harrix Optimization Testing]
 <?xml version="1.0" encoding="UTF-8"?>
 \end{lstlisting}
 
 Далее идет строчка с тэгом \textbf{<document>}, а закрывающимся тэгом \textbf{</document>} заканчивается весь документ. Внутри этого блока располагается вся информация.
 
-\begin{lstlisting}[label=Part02,caption=Блок <document> в файле Harrix Optimization Testing]
+\begin{lstlisting}[label=Part02, language=xml ,caption=Блок <document> в файле Harrix Optimization Testing]
 <?xml version="1.0" encoding="UTF-8"?>
 <document>
 ...
@@ -189,7 +191,7 @@
 \item \textbf{<data>} --- непосредственно данные, полученные во время исследования.
 \end{itemize}
 
-\begin{lstlisting}[label=Part03,caption=Подблоки в файле Harrix Optimization Testing]
+\begin{lstlisting}[label=Part03, language=xml ,caption=Подблоки в файле Harrix Optimization Testing]
 <?xml version="1.0" encoding="UTF-8"?>
 	<document>
 	<harrix_file_format>
@@ -211,7 +213,7 @@
 
 \subsection{Подблок <harrix\_file\_format>}
 
-\begin{lstlisting}[label=Part04,caption=Подблок в файле Harrix Optimization Testing]
+\begin{lstlisting}[label=Part04, language=xml ,caption=Подблок в файле Harrix Optimization Testing]
 <harrix_file_format>
 	<format>Harrix Optimization Testing</format>
 	<version>1.0</version>
@@ -230,7 +232,7 @@
 
 \subsection{Подблок <about>}
 
-\begin{lstlisting}[label=Part04,caption=Подблок в файле Harrix Optimization Testing]
+\begin{lstlisting}[label=Part04, language=xml ,caption=Подблок в файле Harrix Optimization Testing]
 <about>
 	<author>Сергиенко Антон Борисович</author>
 	<date>12.08.2013 23:17:24</date>
@@ -243,11 +245,11 @@
 \item \textbf{<date>} --- время проведения исследования или время формирования файла.
 \end{itemize}
 
-Содержимое этих двух тэгов произвольное, например, дату можно записывать как хочется - никаких требований нет.
+Содержимое этих двух тэгов произвольное, например, дату можно записывать как хочется --- никаких требований нет.
 
 \subsection{Подблок <about\_data>}
 
-\begin{lstlisting}[label=Part05,caption=Подблок в файле Harrix Optimization Testing]
+\begin{lstlisting}[label=Part05, language=xml ,caption=Подблок в файле Harrix Optimization Testing]
 <about_data>
 	<!-- Обозначение алгоритма (по названию функции, которая его реализует) -->
 	<name_algorithm>MHL_StandartRealGeneticAlgorithm</name_algorithm>
@@ -273,18 +275,20 @@
 	<number_of_parameters>5</number_of_parameters>
 	<!-- Количество комбинаций вариантов настроек -->
 	<number_of_experiments>1</number_of_experiments>
+	<!-- Все ли комбинации вариантов настроек просмотрены -->
+	<all_combinations>1</all_combinations>
 </about_data>
 \end{lstlisting}
 
 Строчки вида \textbf{<!--  -->}, например:
 
-\begin{lstlisting}[label=Part06,caption=Комментарий в файле Harrix Optimization Testing]
+\begin{lstlisting}[label=Part06, language=xml ,caption=Комментарий в файле Harrix Optimization Testing]
 <!-- Количество комбинаций вариантов настроек -->
 \end{lstlisting}
 
 являются комментариями и могут быть удалены без ущерба для файла.
 
-\begin{lstlisting}[label=Part07,caption=Подблок без комментариев в файле Harrix Optimization Testing]
+\begin{lstlisting}[label=Part07, language=xml ,caption=Подблок без комментариев в файле Harrix Optimization Testing]
 <about_data>
 	<name_algorithm>MHL_StandartRealGeneticAlgorithm</name_algorithm>
 	<full_name_algorithm>Стандартный генетический алгоритм на вещественных строках</full_name_algorithm>
@@ -298,17 +302,18 @@
 	<max_count_of_fitness>2500</max_count_of_fitness>
 	<number_of_parameters>5</number_of_parameters>
 	<number_of_experiments>1</number_of_experiments>
+	<all_combinations>1</all_combinations>
 </about_data>
 \end{lstlisting}
 
-В данном подблоке $ 12 $ тэгов, и каждый из них обязателен:
+В данном подблоке $ 13 $ тэгов, и каждый из них обязателен:
 \begin{itemize}
 \item \textbf{<name\_algorithm>} --- обозначение алгоритма (по названию функции, класса, которая его реализует, например: \textbf{MHL\_StandartRealGeneticAlgorithm}). 
 
 Например, в автор данного формата свои алгоритмы прописывает в библиотеке \href {https://github.com/Harrix/MathHarrixLibrary} {https://github.com/Harrix/MathHarrixLibrary}, файлы с описанием алгоритмов на \href {https://github.com/Harrix/HarrixOptimizationAlgorithms} {https://github.com/Harrix/HarrixOptimizationAlgorithms}, где содержатся одноименные файлы с описанием алгоритмов. Если вы исследуете какой-то уже существующий алгоритм, то используйте уже существующий идентификатор, чтобы в дальнейшем можно было сравнивать алгоритмы. Если предлагаете свой алгоритм, то придумайте свой идентификатор (обязательно без пробелов);
 \item \textbf{<full\_name\_algorithm>} --- полное название алгоритма оптимизации;
 \item \textbf{<link\_algorithm>} --- ссылка на описание алгоритма, где можно прочитать о нем подробно. Если же такого описания нет, или оно не выложено в сети, то в качестве значения в данном тэге должно быть слово <<\textbf{NULL}>>, например:
-\begin{lstlisting}[label=Part08,caption=У алгоритма нет ссылки в файле Harrix Optimization Testing]
+\begin{lstlisting}[label=Part08, language=xml ,caption=У алгоритма нет ссылки в файле Harrix Optimization Testing]
 <link_algorithm>NULL</link_algorithm>
 \end{lstlisting}
 \item \textbf{<name\_test\_function>} --- обозначение  тестовой функции (по названию функции, которая ее реализует, например: \textbf{MHL\_TestFunction\_Ackley}). 
@@ -316,7 +321,7 @@
 Например, в автор данного формата основные тестовые функции прописывает в библиотеке \href {https://github.com/Harrix/MathHarrixLibrary} {https://github.com/Harrix/MathHarrixLibrary}, файл с описанием тестовых функций на \href {https://github.com/Harrix/HarrixTestFunctions} {https://github.com/Harrix/HarrixTestFunctions}, где содержится подробное описание тестовых функций. Если вы исследуете какую-то уже существующую функцию, то используйте уже существующий идентификатор (посмотрите по ссылке выше), чтобы в дальнейшем можно было сравнивать алгоритмы. Если предлагаете свою тестовую функцию, то придумайте свой идентификатор (обязательно без пробелов);
 \item \textbf{<full\_name\_test\_function>} --- полное название тестовой функции;
 \item \textbf{<link\_test\_function>} --- ссылка на описание тестовой функции, где можно прочитать о ней подробно. Если же такого описания нет, или оно не выложено в сети, то в качестве значения в данном тэге должно быть слово <<\textbf{NULL}>>, например:
-\begin{lstlisting}[label=Part09,caption=У алгоритма нет ссылки в файле Harrix Optimization Testing]
+\begin{lstlisting}[label=Part09, language=xml ,caption=У алгоритма нет ссылки в файле Harrix Optimization Testing]
 <link_test_function>NULL</link_test_function>
 \end{lstlisting}
 \item \textbf{<dimension\_test\_function>} --- размерность тестовой задачи, то есть это количество входных параметров у тестовой функции. Прошу обратить внимание, что это количество входных переменных тестовой функции, а не размерность объекта, с которым непосредственно работает алгоритм оптимизации (например, стандартный генетический алгоритм работает с бинарными строками, но оптимизирует вещественную тестовую функцию);
@@ -328,12 +333,15 @@
 \item \textbf{<number\_of\_parameters>} --- количество проверяемых параметров алгоритма оптимизации.
 
 Если алгоритм оптимизации не имеет настраиваемых параметров, то число параметров ставим равным нулю.
+
+Если алгоритм имеет переменное число настроек (например, параметр  <<Размер турнира>> в генетическом алгоритме будет появляться только при использовании турнирной селекции)
 \item \textbf{<number\_of\_experiments>} --- количество комбинаций вариантов настроек алгоритма оптимизации, которые были рассмотрены в данном исследовании.
+\item \textbf{<all\_combinations>} --- все ли возможные комбинации настроек алгоритма оптимизации были просмотрены? Подсчитать возможное количество настроек алгоритма, например, как произведение всех возможных настроек каждого параметра не всегда возможно, так как в некоторых алгоритмах какой-нибудь параметр может быть использован только при каком-то значении другого параметра (например, размер турнира без использования турнирной селекции в генетическом алгоритме не используется). Поэтому предлагается автору исследования самому определиться: или это полное исследование алгоритма или же частичное, где рассмотрено только некотрое неполное подмножество всех возможных настроек (например, автор проводил предварительный анализ работы алгоритма на паре настроек). Какие принимает значения? Если всё множество комбинаций настроек просмотрено, то ставим \textbf{1}, иначе \textbf{0}.
 \end{itemize}
 
 \subsection{Подблок <data>}
 
-\begin{lstlisting}[label=Part10,caption=Подблок в файле Harrix Optimization Testing]
+\begin{lstlisting}[label=Part10, language=xml ,caption=Подблок в файле Harrix Optimization Testing]
 <data>
 	<experiment parameters_of_algorithm_1="Тип селекции = Пропорциональная селекция" parameters_of_algorithm_2="Тип скрещивания = Одноточечное скрещивание" parameters_of_algorithm_3="Тип мутации = Слабая мутация" parameters_of_algorithm_4="Тип формирования нового поколения = Только потомки" parameters_of_algorithm_5="Тип преобразования задачи вещественной оптимизации в задачу бинарной оптимизации = Стандартное представление целого числа - номер узла в сетке дискретизации">
 		<measuring>

@@ -90,6 +90,7 @@ private:
     QString XML_Format;//Что за формат файла
     QString XML_Version;//Какая версия формата файла
     QString XML_Link;//Ссылка на описание формата файла
+    int XML_All_Combinations;//Все ли рассмотрены функции
 
     //Строка с возвращаемым HTML кодом
     QString Html;
@@ -201,6 +202,7 @@ private:
     bool Error;//естm ли ошибка при анализе XML файла
     QXmlStreamReader Rxml;//непосредственно анализируемый xml файл
     bool Zero_Number_Of_Parameters;//Число параметров равно нулю или нет
+    bool AllOptions;//Просмотрены ли все варианты настроек или нет
 };
 
 #endif // DATAOFHARRIXOPTIMIZATIONTESTING_H

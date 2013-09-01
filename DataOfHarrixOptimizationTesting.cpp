@@ -1,5 +1,5 @@
 //Класс DataOfHarrixOptimizationTesting для считывания информации формата данных Harrix Optimization Testing
-//Версия 1.9
+//Версия 1.10
 
 #include "QtHarrixLibrary.h"
 #include "QtHarrixLibraryForQWebView.h"
@@ -24,6 +24,7 @@ DataOfHarrixOptimizationTesting::DataOfHarrixOptimizationTesting(QString filenam
     XML_Number_Of_Experiments=-1;//Количество комбинаций вариантов настроек
     Error=false;//типа вначале нет ошибок в файле
     Un=HQt_RandomString(5);//уникальная строка для Latex
+    AllOptions=true;//вначале наивно предполагаем, что в файле все настройки рассмотрены
 
     QFile file(filename);//для открытия файла и запихивания его в Rxml
 
@@ -1682,6 +1683,27 @@ void DataOfHarrixOptimizationTesting::readXmlDataTags()
         HtmlMessageOfError+=HQt_ShowAlert("Число экспериментов в тэге number_of_experiments не равно реальному числу экспериментов в xml файле.");
         Error=true;
     }
+    bool CheckMatrix=TMHL_CheckForIdenticalRowsInMatrix(MatrixOfParameters,XML_Number_Of_Experiments,XML_Number_Of_Parameters);
+    int TheoryAllOptions=1;
+    if (!Zero_Number_Of_Parameters)
+    {
+        for (int j=0;j<XML_Number_Of_Parameters;j++)
+        {
+            TheoryAllOptions *= ListOfParameterOptions[j].count();
+        }
+    }
+    Html+=THQt_ShowNumber(TheoryAllOptions);
+    Html+=THQt_ShowNumber(CheckMatrix);
+    if ((!CheckMatrix)&&(i==TheoryAllOptions))
+    {
+        //просмотрено все множество возможных вариантов
+        AllOptions=true;
+    }
+    else
+    {
+        //имееются непроверенные комбинации настроек алгоритма
+         AllOptions=false;
+    }
 }
 //--------------------------------------------------------------------------
 bool DataOfHarrixOptimizationTesting::readXmlTreeTag(QString tag)
@@ -1818,13 +1840,21 @@ void DataOfHarrixOptimizationTesting::makingLatexAnalysis()
      Отсутствует. Значение возвращается в переменную LatexAnalysis, которую можно вызвать getLatexAnalysis
      */
     LatexAnalysis+="\\subsection {Первоначальный анализ данных}\n\n";
-    LatexAnalysis+="В данном разделе представлен первоначальный анализ данных исследования эффекстивности алгоритма оптимизации <<"+XML_Full_Name_Algorithm+">> на рассматриваемой тестовой функции <<"+XML_Full_Name_Test_Function+">> (размерность "+QString::number(XML_DimensionTestFunction)+").\n\n";
+    LatexAnalysis+="В данном разделе представлен первоначальный анализ данных исследования эффекстивности алгоритма оптимизации <<"+XML_Full_Name_Algorithm+">> на рассматриваемой тестовой функции <<"+XML_Full_Name_Test_Function+">> (размерность "+QString::number(XML_DimensionTestFunction)+"). ";
     if (XML_Number_Of_Experiments==1)
     {
         //Алгоритм имеет только один эксперимент
     }
     else
     {
+        if (AllOptions==true)
+        {
+            LatexAnalysis+="При данном исследовании было рассмотрено всё множество возможных настроек алгоритма. Поэтому можно сделать полный анализ работы алгоритма в рассматриваемых условиях.\n\n";
+        }
+        else
+        {
+            LatexAnalysis+="Данное исследование является частичным, так как рассмотрено не всё множество возможных настроек алгоритма. Поэтому ниже будут представлены неполные выводы, так как при нерассмотренных настройках алгоритм мог показать себя лучше или хуже.\n\n";
+        }
 
     }
 }

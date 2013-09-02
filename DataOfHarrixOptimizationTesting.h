@@ -39,6 +39,7 @@ public:
     int getMaxCountOfFitness();//Получение текста переменной  Max_Count_Of_Fitness - Максимальное допустимое число вычислений целевой функции для алгоритма
     int getNumberOfParameters();//Получение текста переменной  XML_Number_Of_Parameters - Количество проверяемых параметров алгоритма оптимизации
     int getNumberOfExperiments();//Получение текста переменной  XML_Number_Of_Experiments - Количество комбинаций вариантов настроек
+    bool getCheckAllCombinations();//Получение текста переменной  XML_All_Combinations - Все ли комбинации вариантов настроек просмотрены: 0 bли 1
     double getErrorEx(int Number_Of_Experiment, int Number_Of_Measuring);//Получение значения ошибки Ex.
     double getErrorEy(int Number_Of_Experiment, int Number_Of_Measuring);//Получение значения ошибки Ey.
     double getErrorR(int Number_Of_Experiment, int Number_Of_Measuring);//Получение значения надежности R.

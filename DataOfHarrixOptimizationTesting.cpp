@@ -1,5 +1,5 @@
 //Класс DataOfHarrixOptimizationTesting для считывания информации формата данных Harrix Optimization Testing
-//Версия 1.10
+//Версия 1.11
 
 #include "QtHarrixLibrary.h"
 #include "QtHarrixLibraryForQWebView.h"
@@ -58,8 +58,8 @@ DataOfHarrixOptimizationTesting::DataOfHarrixOptimizationTesting(QString filenam
 
                     if (readXmlTreeTag("about_data"))
                     {
-                        //далее должны идти 12 тэгов по информации о данных
-                        for (int k=0;k<12;k++)
+                        //далее должны идти 13 тэгов по информации о данных
+                        for (int k=0;k<13;k++)
                             readXmlLeafTag();//считает тэг
 
                         readXmlTreeTag("data");
@@ -456,6 +456,15 @@ int DataOfHarrixOptimizationTesting::getNumberOfExperiments()
      Получение текста переменной  XML_Number_Of_Experiments - Количество комбинаций вариантов настроек
      */
     return XML_Number_Of_Experiments;
+}
+//--------------------------------------------------------------------------
+
+bool DataOfHarrixOptimizationTesting::getCheckAllCombinations()
+{
+    /*
+     Получение текста переменной  XML_All_Combinations - Все ли комбинации вариантов настроек просмотрены: 0 bли 1
+     */
+    return bool(XML_All_Combinations);
 }
 //--------------------------------------------------------------------------
 
@@ -1250,6 +1259,11 @@ void DataOfHarrixOptimizationTesting::readXmlLeafTag()
             XML_Link=TextOfElement;
             FindTag=true;
         }
+        if (NameOfElement=="all_combinations")
+        {
+            XML_All_Combinations=TextOfElement.toInt();
+            FindTag=true;
+        }
     }
 
     if (FindTag)
@@ -1422,6 +1436,12 @@ void DataOfHarrixOptimizationTesting::checkXmlLeafTags()
         HtmlMessageOfError+=HQt_ShowAlert("Нет тэга о ссылке на описание тестовой функции link_test_function.");
         Error=true;
     }
+    if (!((XML_All_Combinations==0)||(XML_All_Combinations==1)))
+    {
+        HtmlMessageOfError+=HQt_ShowAlert("Тэг all_combinations может принимать значение 0 или 1.");
+        Error=true;
+    }
+
 }
 //--------------------------------------------------------------------------
 
@@ -1683,27 +1703,27 @@ void DataOfHarrixOptimizationTesting::readXmlDataTags()
         HtmlMessageOfError+=HQt_ShowAlert("Число экспериментов в тэге number_of_experiments не равно реальному числу экспериментов в xml файле.");
         Error=true;
     }
-    bool CheckMatrix=TMHL_CheckForIdenticalRowsInMatrix(MatrixOfParameters,XML_Number_Of_Experiments,XML_Number_Of_Parameters);
-    int TheoryAllOptions=1;
-    if (!Zero_Number_Of_Parameters)
-    {
-        for (int j=0;j<XML_Number_Of_Parameters;j++)
-        {
-            TheoryAllOptions *= ListOfParameterOptions[j].count();
-        }
-    }
-    Html+=THQt_ShowNumber(TheoryAllOptions);
-    Html+=THQt_ShowNumber(CheckMatrix);
-    if ((!CheckMatrix)&&(i==TheoryAllOptions))
-    {
-        //просмотрено все множество возможных вариантов
-        AllOptions=true;
-    }
-    else
-    {
-        //имееются непроверенные комбинации настроек алгоритма
-         AllOptions=false;
-    }
+//    bool CheckMatrix=TMHL_CheckForIdenticalRowsInMatrix(MatrixOfParameters,XML_Number_Of_Experiments,XML_Number_Of_Parameters);
+//    int TheoryAllOptions=1;
+//    if (!Zero_Number_Of_Parameters)
+//    {
+//        for (int j=0;j<XML_Number_Of_Parameters;j++)
+//        {
+//            TheoryAllOptions *= ListOfParameterOptions[j].count();
+//        }
+//    }
+//    Html+=THQt_ShowNumber(TheoryAllOptions);
+//    Html+=THQt_ShowNumber(CheckMatrix);
+//    if ((!CheckMatrix)&&(i==TheoryAllOptions))
+//    {
+//        //просмотрено все множество возможных вариантов
+//        AllOptions=true;
+//    }
+//    else
+//    {
+//        //имееются непроверенные комбинации настроек алгоритма
+//         AllOptions=false;
+//    }
 }
 //--------------------------------------------------------------------------
 bool DataOfHarrixOptimizationTesting::readXmlTreeTag(QString tag)
@@ -1847,7 +1867,7 @@ void DataOfHarrixOptimizationTesting::makingLatexAnalysis()
     }
     else
     {
-        if (AllOptions==true)
+        if (XML_All_Combinations==true)
         {
             LatexAnalysis+="При данном исследовании было рассмотрено всё множество возможных настроек алгоритма. Поэтому можно сделать полный анализ работы алгоритма в рассматриваемых условиях.\n\n";
         }

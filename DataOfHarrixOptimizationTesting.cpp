@@ -24,7 +24,7 @@ DataOfHarrixOptimizationTesting::DataOfHarrixOptimizationTesting(QString filenam
     XML_Number_Of_Experiments=-1;//Количество комбинаций вариантов настроек
     Error=false;//типа вначале нет ошибок в файле
     Un=HQt_RandomString(5);//уникальная строка для Latex
-    AllOptions=true;//вначале наивно предполагаем, что в файле все настройки рассмотрены
+    //AllOptions=true;//вначале наивно предполагаем, что в файле все настройки рассмотрены
 
     QFile file(filename);//для открытия файла и запихивания его в Rxml
 
@@ -52,8 +52,8 @@ DataOfHarrixOptimizationTesting::DataOfHarrixOptimizationTesting(QString filenam
 
                 if (readXmlTreeTag("about"))
                 {
-                    //далее должны идти тэги author, date
-                    for (int k=0;k<2;k++)
+                    //далее должны идти тэги author, date, email
+                    for (int k=0;k<3;k++)
                         readXmlLeafTag();//считает тэг
 
                     if (readXmlTreeTag("about_data"))
@@ -1021,6 +1021,8 @@ void DataOfHarrixOptimizationTesting::makingLatexInfo()
     LatexInfo+="\\subsection {Информация об исследовании}\n\n";
     LatexInfo+="\\begin{tabularwide}\n";
     LatexInfo+="\\textbf{Автор исследования}: & "+HQt_StringForLaTeX(XML_Author)+". \\\\ \n";
+    if (XML_Email!="NULL")
+    LatexInfo+="\\textbf{Дата создания исследования}: & "+HQt_StringForLaTeX(XML_Date)+". \\\\ \n";
     LatexInfo+="\\textbf{Дата создания исследования}: & "+HQt_StringForLaTeX(XML_Date)+". \\\\ \n";
     LatexInfo+="\\textbf{Идентификатор алгоритма}: & "+HQt_StringForLaTeX(XML_Name_Algorithm)+". \\\\ \n";
     LatexInfo+="\\textbf{Полное название алгоритма}: & "+HQt_StringForLaTeX(XML_Full_Name_Algorithm)+". \\\\ \n";
@@ -1234,6 +1236,11 @@ void DataOfHarrixOptimizationTesting::readXmlLeafTag()
             XML_Author=TextOfElement;
             FindTag=true;
         }
+        if (NameOfElement=="email")
+        {
+            XML_Email=TextOfElement;
+            FindTag=true;
+        }
         if (NameOfElement=="link_test_function")
         {
             XML_Link_Test_Function=TextOfElement;
@@ -1424,6 +1431,11 @@ void DataOfHarrixOptimizationTesting::checkXmlLeafTags()
     if (XML_Author.isEmpty())
     {
         HtmlMessageOfError+=HQt_ShowAlert("Нет тэга об авторе author");
+        Error=true;
+    }
+    if (XML_Email.isEmpty())
+    {
+        HtmlMessageOfError+=HQt_ShowAlert("Нет тэга об электронной почте email. Если не хотите давать свою почту, то вставьте NULL.");
         Error=true;
     }
     if (XML_Link_Algorithm.isEmpty())
@@ -1779,7 +1791,7 @@ void DataOfHarrixOptimizationTesting::zeroArray()
     TMHL_FillMatrix(MatrixOfEx, XML_Number_Of_Experiments, XML_Number_Of_Measuring, -1.);
     TMHL_FillMatrix(MatrixOfEy, XML_Number_Of_Experiments, XML_Number_Of_Measuring, -1.);
     TMHL_FillMatrix(MatrixOfR,  XML_Number_Of_Experiments, XML_Number_Of_Measuring, -1.);
-    TMHL_FillMatrix(MatrixOfParameters,  XML_Number_Of_Experiments, XML_Number_Of_Parameters, -1);
+    TMHL_FillMatrix(MatrixOfParameters, XML_Number_Of_Experiments, XML_Number_Of_Parameters, -1);
     TMHL_ZeroVector(MeanOfEx,XML_Number_Of_Experiments);
     TMHL_ZeroVector(MeanOfEy,XML_Number_Of_Experiments);
     TMHL_ZeroVector(MeanOfR ,XML_Number_Of_Experiments);

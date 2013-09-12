@@ -76,6 +76,7 @@ private:
 
     QString XML_Author;//Автор документа
     QString XML_Date;//Дата создания документа
+    QString XML_Email;//Email автора, чтобы можно было с ним связаться
     QString XML_Name_Algorithm;//Название алгоритма оптимизации
     QString XML_Full_Name_Algorithm;//Полное название алгоритма оптимизации
     QString XML_Name_Test_Function;//Название тестовой функции
@@ -203,7 +204,7 @@ private:
     bool Error;//естm ли ошибка при анализе XML файла
     QXmlStreamReader Rxml;//непосредственно анализируемый xml файл
     bool Zero_Number_Of_Parameters;//Число параметров равно нулю или нет
-    bool AllOptions;//Просмотрены ли все варианты настроек или нет
+    //bool AllOptions;//Просмотрены ли все варианты настроек или нет
 };
 
 #endif // DATAOFHARRIXOPTIMIZATIONTESTING_H

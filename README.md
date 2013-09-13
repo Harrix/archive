@@ -1,9 +1,9 @@
-QtHarrixLibraryForQWebView
+HarrixQtLibraryForQWebView
 =================
 
-Библиотека для отображения различных данных в QWebView. Версия v.1.8.
+Библиотека для отображения различных данных в QWebView. Версия v.1.9.
 
-https://github.com/Harrix/QtHarrixLibraryForQWebView
+https://github.com/Harrix/HarrixQtLibraryForQWebView
 
 Библиотека распространяется по лицензии Apache License, Version 2.0.
 
@@ -179,10 +179,10 @@ QString **HQt_DrawLine** (double Left, double Right, double h, double (*Function
 Режим постоянного отображения изменений осуществляется благодаря функции AJAX. Поэтому вы отображаете в QWebView файл **index.html**, а сохраняете данные в **temp.html**. Отображаемый файл **index.html** не трогаете.
 
 Скопируйте файлы из списка в папку с исходниками вашего проекта.
-- QtHarrixLibraryForQWebView.cpp
-- QtHarrixLibraryForQWebView.h
-- QtHarrixLibrary.cpp
-- QtHarrixLibrary.h
+- HarrixQtLibraryForQWebView.cpp
+- HarrixQtLibraryForQWebView.h
+- HarrixQtLibrary.cpp
+- HarrixQtLibrary.h
 
 А файлы из списка в папку с *.exe файлом вашего проекта.
 - папка images
@@ -193,8 +193,8 @@ QString **HQt_DrawLine** (double Left, double Right, double h, double (*Function
 
 Добавьте  соответствующие инклуды:
 
-    #include "QtHarrixLibrary.h"
-    #include "QtHarrixLibraryForQWebView.h"
+    #include "HarrixQtLibrary.h"
+    #include "HarrixQtLibraryForQWebView.h"
 
 Объявите, например, в mainwindow.h глобальные переменные:
 
@@ -224,6 +224,10 @@ QString **HQt_DrawLine** (double Left, double Right, double h, double (*Function
 **[+]** добавление
 
 **[*]** разное
+
+**1.9**
+
+**[*]** Переименование библиотеки в HarrixQtLibraryForQWebView.
 
 **1.8**
 
@@ -270,7 +274,7 @@ template <class T> QString **THQt_ShowMatrix** (T *VMHL_Matrix, int VMHL_N, int 
 
 **1.0**
 
-**[*]** Библиотека есть следствие выделения функций для отображения в QWebView данных из библиотеки QtHarrixLibrary.
+**[*]** Библиотека есть следствие выделения функций для отображения в QWebView данных из библиотеки HarrixQtLibrary.
 
 **[*]** Отображение данных перешло на ajax технологию с применением JQuery библиотеки.
 

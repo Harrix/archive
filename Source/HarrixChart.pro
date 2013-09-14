@@ -14,14 +14,14 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-    QtHarrixLibrary.cpp \
-    MathHarrixLibrary.cpp \
-    QtHarrixLibraryForQWebView.cpp
+    HarrixQtLibrary.cpp \
+    HarrixMathLibrary.cpp \
+    HarrixQtLibraryForQWebView.cpp
 
 HEADERS  += mainwindow.h \
-    QtHarrixLibrary.h \
-    MathHarrixLibrary.h \
-    QtHarrixLibraryForQWebView.h
+    HarrixQtLibrary.h \
+    HarrixMathLibrary.h \
+    HarrixQtLibraryForQWebView.h
 
 FORMS    += mainwindow.ui
 

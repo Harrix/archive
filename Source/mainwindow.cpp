@@ -11,9 +11,9 @@
 #include <typeinfo>
 #include <QFileDialog>
 
-#include "QtHarrixLibrary.h"
-#include "MathHarrixLibrary.h"
-#include "QtHarrixLibraryForQWebView.h"
+#include "HarrixQtLibrary.h"
+#include "HarrixMathLibrary.h"
+#include "HarrixQtLibraryForQWebView.h"
 
 MainWindow::MainWindow(QWidget *parent,QString FileNameFromArgv) :
     QMainWindow(parent),

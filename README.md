@@ -7,7 +7,7 @@ HarrixChart
 
 https://github.com/Harrix/HarrixChart
 
-Библиотека распространяется по лицензии Apache License, Version 2.0.
+Программа распространяется по лицензии Apache License, Version 2.0.
 
 История проекта
 ---------------

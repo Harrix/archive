@@ -1,3 +1,8 @@
+//HarrixChart
+//Программа распространяется по лицензии Apache License, Version 2.0.
+//Приложение по отображению графиков из данных формата *.hdata.
+//https://github.com/Harrix/HarrixChart
+
 #include "mainwindow.h"
 #include <QApplication>
 

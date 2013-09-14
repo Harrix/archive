@@ -1,8 +1,8 @@
-//БИБЛИОТЕКА MATH HARRIX LIBRARY
-//Версия 3.15
+//Библиотека HarrixMathLibrary
+//Версия 3.16
 
 //Сборник различных математических функций с открытым кодом на языке C++
-//Страница проекта: https://github.com/Harrix/MathHarrixLibrary
+//Страница проекта: https://github.com/Harrix/HarrixMathLibrary
 //Распространяется по лицензии Apache License, Version 2.0
 
 //   Copyright 2007-2013 Harrix
@@ -22,7 +22,7 @@
 #include <time.h>
 #include <math.h>
 
-#include "MathHarrixLibrary.h"
+#include "HarrixMathLibrary.h"
 
 //ДЛЯ ГЕНЕРАТОРА СЛУЧАЙНЫХ ЧИСЕЛ
 unsigned int MHL_Dummy;//Результат инициализации генератора случайных чисел
@@ -1421,7 +1421,7 @@ int MHL_ClassOfTestFunction(TypeOfTestFunction Type)
     Функция выдает принадлежность тестовой функции к классу функций: бинарной, вещественной или иной оптимизации.
     Входные параметры:
      Type - тип тестовой функции.
-     Смотреть виды в переменных перечисляемого типа в начале MathHarrixLibrary.h файла.
+     Смотреть виды в переменных перечисляемого типа в начале HarrixMathLibrary.h файла.
     Возвращаемое значение:
      Класс тестовой функции:
       1 - бинарной оптимизации;
@@ -1455,7 +1455,7 @@ void MHL_DefineTestFunction(TypeOfTestFunction Type)
     Ответ представляет собой два действительных числа.
     Входные параметры:
      Type - обозначение тестовой функции, которую вызываем.
-     Смотреть виды в переменных перечисляемого типа в начале MathHarrixLibrary.h файла.
+     Смотреть виды в переменных перечисляемого типа в начале HarrixMathLibrary.h файла.
     Возвращаемое значение:
      Отсутствует.
     */
@@ -2227,7 +2227,7 @@ double MHL_OptimumOfTestFunction_Binary(int *Optimum, int VMHL_N, TypeOfTestFunc
      Optimum - указатель на исходный массив, куда будет записываться результат;
      VMHL_N - размер массива x;
      Type - тип тестовой функции.
-     Смотреть виды в переменных перечисляемого типа в начале MathHarrixLibrary.h файла.
+     Смотреть виды в переменных перечисляемого типа в начале HarrixMathLibrary.h файла.
     Возвращаемое значение:
      Значение тестовой функции в оптимальной точке.
     */
@@ -2290,7 +2290,7 @@ double MHL_OptimumOfTestFunction_Real(double *Optimum, int VMHL_N, TypeOfTestFun
      Optimum - указатель на исходный массив, куда будет записываться результат;
      VMHL_N - размер массива x;
      Type - тип тестовой функции.
-     Смотреть виды в переменных перечисляемого типа в начале MathHarrixLibrary.h файла.
+     Смотреть виды в переменных перечисляемого типа в начале HarrixMathLibrary.h файла.
     Возвращаемое значение:
      Значение тестовой функции в оптимальной точке.
     */
@@ -2407,7 +2407,7 @@ double MHL_TestFunction_Binary(int *x, int VMHL_N, TypeOfTestFunction Type)
      x - указатель на исходный массив;
      VMHL_N - размер массива x,
      Type - тип тестовой функции.
-     Смотреть виды в переменных перечисляемого типа в начале MathHarrixLibrary.h файла.
+     Смотреть виды в переменных перечисляемого типа в начале HarrixMathLibrary.h файла.
     Возвращаемое значение:
      Значение тестовой функции в точке x.
     */
@@ -2458,7 +2458,7 @@ double MHL_TestFunction_Real(double *x, int VMHL_N, TypeOfTestFunction Type)
      x - указатель на исходный массив;
      VMHL_N - размер массива x,
      Type - тип тестовой функции.
-     Смотреть виды в переменных перечисляемого типа в начале MathHarrixLibrary.h файла.
+     Смотреть виды в переменных перечисляемого типа в начале HarrixMathLibrary.h файла.
     Возвращаемое значение:
      Значение тестовой функции в точке x.
     */

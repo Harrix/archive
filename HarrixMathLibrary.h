@@ -1,5 +1,5 @@
-#ifndef MATHHARRIXLIBRARY_H
-#define MATHHARRIXLIBRARY_H
+#ifndef HARRIXMATHLIBRARY_H
+#define HARRIXMATHLIBRARY_H
 #include <math.h>
 
 // КОНСТАНТЫ
@@ -2620,4 +2620,4 @@ return TMHL_SampleCovariance(x,x,VMHL_N);
 //Уравнения
 //*****************************************************************
 
-#endif // MATHHARRIXLIBRARY_H
+#endif // HARRIXMATHLIBRARY_H

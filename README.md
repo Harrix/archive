@@ -1,11 +1,11 @@
-DataOfHarrixOptimizationTesting
+HarrixClass_DataOfHarrixOptimizationTesting
 ===============================
 
-Версия 1.11
+Версия 1.12
 
-Класс DataOfHarrixOptimizationTesting для считывания информации формата данных Harrix Optimization Testing на C++.
+Класс HarrixClass_DataOfHarrixOptimizationTesting для считывания информации формата данных Harrix Optimization Testing на C++.
 
-https://github.com/Harrix/DataOfHarrixOptimizationTesting
+https://github.com/Harrix/HarrixClass_DataOfHarrixOptimizationTesting
 
 Библиотека распространяется по лицензии Apache License, Version 2.0.
 
@@ -18,14 +18,14 @@ https://github.com/Harrix/HarrixFileFormats
 Пример использования
 ---------------
 Скопируйте файлы из списка в папку с исходниками вашего проекта.
-- DataOfHarrixOptimizationTesting.cpp
-- DataOfHarrixOptimizationTesting.h
-- QtHarrixLibraryForQWebView.cpp
-- QtHarrixLibraryForQWebView.h
-- QtHarrixLibrary.cpp
-- QtHarrixLibrary.h
-- MathHarrixLibrary.cpp
-- MathHarrixLibrary.h
+- HarrixClass_DataOfHarrixOptimizationTesting.cpp
+- HarrixClass_DataOfHarrixOptimizationTesting.h
+- HarrixQtLibraryForQWebView.cpp
+- HarrixQtLibraryForQWebView.h
+- HarrixQtLibrary.cpp
+- HarrixQtLibrary.h
+- HarrixMathLibrary.cpp
+- HarrixMathLibrary.h
 
 А файлы из списка в папку с *.exe файлом вашего проекта.
 - папка images
@@ -36,10 +36,10 @@ https://github.com/Harrix/HarrixFileFormats
 
 Добавьте  соответствующие инклуды:
 
-	#include "DataOfHarrixOptimizationTesting.h"
-    #include "MathHarrixLibrary.h"
-    #include "QtHarrixLibrary.h"
-    #include "QtHarrixLibraryForQWebView.h"
+	#include "HarrixClass_DataOfHarrixOptimizationTesting.h"
+    #include "HarrixMathLibrary.h"
+    #include "HarrixQtLibrary.h"
+    #include "HarrixQtLibraryForQWebView.h"
 
 Объявите, например, в mainwindow.h глобальные переменные:
 
@@ -57,7 +57,7 @@ https://github.com/Harrix/HarrixFileFormats
 Теперь в любом месте, где хотите добавить текст html и его отобразить, пишите (filename - путь к файлу, который анализируется):
 
 	QString Html;//сюда записывается код  HTML по анализу файла данных
-    DataOfHarrixOptimizationTesting Data(filename);
+    HarrixClass_DataOfHarrixOptimizationTesting Data(filename);
     if (Data.getSuccessReading())
     {
         Html=Data.getHtml();
@@ -69,67 +69,13 @@ https://github.com/Harrix/HarrixFileFormats
 История проекта
 ---------------
 
-**[-]** исправление
+1.12
 
-**[+]** добавление
+[*] Переименование проекта на HarrixClass_DataOfHarrixOptimizationTesting.
 
-**[*]** разное
+[*] Полная история перенесена в History.txt.
 
-**1.11**
-
-**[-]** Добавление считывания нового тэга.
-
-**1.10**
-
-**[-]** исправления и дополнения.
-
-**1.9**
-
-**[-]** исправления и изменения во внутренностях методов.
-
-**1.8**
-
-**[+]** Замена тэга chromosome_length на dimension_test_function, а то будет путаница.
-
-**1.7**
-
-**[+]** Добавление новых методов в классе.
-
-**[*]** Дополнительный функционал в существующих методах.
-
-**1.6**
-
-**[*]** Дополнительный функционал в существующих методах.
-
-**1.5**
-
-**[+]** Добавление новых методов в классе.
-
-**[*]** Тэг site поменялся на link.
-
-**[*]** Дополнительный функционал в существующих методах.
-
-**1.4**
-
-**[+]** Добавление новых методов в классе.
-
-**[*]** Изменение структуры конструктора.
-
-**1.3**
-
-**[+]** Добавление новых методов в классе.
-
-**1.2**
-
-**[+]** Добавление новых методов в классе.
-
-**1.1**
-
-**[+]** Серьезное обновление функционала.
-
-**1.0**
-
-**[*]** Первая версия библиотеки.
+Подробный список изменений в файле History.txt.
 
 Контакты
 ---------------

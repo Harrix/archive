@@ -9,6 +9,10 @@ https://github.com/Harrix/HarrixChart
 
 Программа распространяется по лицензии Apache License, Version 2.0.
 
+О формате *.hdata (Harrix Data) можно прочитать тут:
+
+https://github.com/Harrix/HarrixFileFormats
+
 История проекта
 ---------------
 

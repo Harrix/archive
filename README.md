@@ -13,7 +13,7 @@ https://github.com/Harrix/HarrixClass_DataOfHarrixOptimizationTesting
 
 https://github.com/Harrix/HarrixFileFormats
 
-Файл данного формата представлен в этом проекте как Example.xml.
+Пример файла данного формата представлен в этом проекте как Example.xml.
 
 Пример использования
 ---------------
@@ -52,7 +52,7 @@ https://github.com/Harrix/HarrixFileFormats
     DS=QDir::separator();//какой разделитель используется в пути между папками
     Path=QGuiApplication::applicationDirPath()+DS;//путь к папке, где находится приложение
     HQt_BeginHtml(Path);
-    ui->webView->setUrl(QUrl::fromLocalFile(Path+"index.html"));// и в webViewотображаем index.html (его вообще не трогаем)
+	ui->webView->setUrl(QUrl::fromLocalFile(Path+"index.html"));// и в webView отображаем index.html (его вообще не трогаем)
 	
 Теперь в любом месте, где хотите добавить текст html и его отобразить, пишите (filename - путь к файлу, который анализируется):
 

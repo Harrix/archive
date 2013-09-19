@@ -14,6 +14,14 @@ https://github.com/Harrix/HarrixFileFormats
 
 Данные распространяются по лицензии Apache License, Version 2.0.
 
+Для формата **Harrix Data 1.0** есть проект HarrixChart для считывания данных:
+
+https://github.com/Harrix/HarrixChart
+
+Для формата **Harrix Optimization Testing 1.0** есть класс HarrixClass_DataOfHarrixOptimizationTesting для считывания данных:
+
+https://github.com/Harrix/HarrixClass_DataOfHarrixOptimizationTesting
+
 История проекта
 ---------------
 

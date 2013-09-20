@@ -3,13 +3,13 @@ HarrixClass_DataOfHarrixOptimizationTesting
 
 Версия 1.12
 
-Класс HarrixClass_DataOfHarrixOptimizationTesting для считывания информации формата данных Harrix Optimization Testing на C++.
+Класс HarrixClass_DataOfHarrixOptimizationTesting для считывания информации формата данных Harrix Optimization Testing на C++ для Qt.
 
 https://github.com/Harrix/HarrixClass_DataOfHarrixOptimizationTesting
 
 Библиотека распространяется по лицензии Apache License, Version 2.0.
 
-Описание формата вы найдете тут:
+Описание формата Harrix Optimization Testing вы найдете тут:
 
 https://github.com/Harrix/HarrixFileFormats
 
@@ -66,7 +66,7 @@ https://github.com/Harrix/HarrixFileFormats
 	
 И соответствующий текст должен отобразиться в QWebView максимум за 1 секунду: каждую секунду происходит проверка на наличие обновления. Желательно добавлять текст Html не самостоятельно, а за счет функций данной библиотеки.
 
-История проекта
+Изменения в последней версии
 ---------------
 
 1.12

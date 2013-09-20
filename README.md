@@ -8,7 +8,7 @@ https://github.com/Harrix/HarrixFileFormats
 Данные распространяются по лицензии Apache License, Version 2.0.
 
 Форматы файлов
----------------
+--------------
 
 **Harrix Data 1.0** - формат файлов вида *.hdata для представления данных для обработки и отображения в графиках в программах Harrix.
 
@@ -30,7 +30,7 @@ https://github.com/Harrix/HarrixClass_DataOfHarrixOptimizationTesting
 Подробный список изменений в файле CHANGELOG.md.
 
 Контакты
----------------
+--------
 
 Автор: Сергиенко Антон Борисович.
 

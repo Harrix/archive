@@ -25,19 +25,7 @@ https://github.com/Harrix/HarrixClass_DataOfHarrixOptimizationTesting
 История проекта
 ---------------
 
-[-] исправление
-
-[+] добавление
-
-[*] разное
-
-Harrix Optimization Testing 1.0 
-
-[*] Подробное описание формата.
-
-Harrix Data 1.0
-
-[*] Подробное описание формата.
+Подробный список изменений в файле CHANGELOG.md.
 
 Контакты
 ---------------

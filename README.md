@@ -1,7 +1,7 @@
 HarrixQtLibraryForQWebView
 =================
 
-Библиотека для отображения различных данных в QWebView. Версия v.1.9.
+Библиотека для отображения различных данных в QWebView. Версия v.1.10
 
 https://github.com/Harrix/HarrixQtLibraryForQWebView
 
@@ -282,9 +282,8 @@ https://github.com/Harrix/HarrixQtLibraryForQWebView
 
 [*] разное
 
-1.9
-
-[*] Переименование библиотеки в HarrixQtLibraryForQWebView.
+1.10
+[*] Изменение функций HQt_BeginHtml и HQt_AddHtml ввиду изменений в файле index.html.
 
 Подробный список изменений в файле History.txt.
 

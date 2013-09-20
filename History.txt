@@ -1,4 +1,4 @@
-HarrixQtLibrary
+HarrixQtLibraryForQWebView
 =================
 
 История проекта
@@ -9,6 +9,9 @@ HarrixQtLibrary
 [+] добавление
 
 [*] разное
+
+1.10
+[*] Изменение функций HQt_BeginHtml и HQt_AddHtml ввиду изменений в файле index.html.
 
 1.9
 

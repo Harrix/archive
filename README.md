@@ -1,5 +1,5 @@
 HarrixClass_DataOfHarrixOptimizationTesting
-===============================
+===========================================
 
 Версия 1.12
 
@@ -16,7 +16,7 @@ https://github.com/Harrix/HarrixFileFormats
 Пример файла данного формата представлен в этом проекте как Example.xml.
 
 Пример использования
----------------
+--------------------
 Скопируйте файлы из списка в папку с исходниками вашего проекта.
 - HarrixClass_DataOfHarrixOptimizationTesting.cpp
 - HarrixClass_DataOfHarrixOptimizationTesting.h
@@ -72,7 +72,7 @@ https://github.com/Harrix/HarrixFileFormats
 Подробный список изменений в файле CHANGELOG.md.
 
 Контакты
----------------
+--------
 
 Автор: Сергиенко Антон Борисович.
 

@@ -5,6 +5,8 @@ HarrixFileFormats
 
 https://github.com/Harrix/HarrixFileFormats
 
+Данные распространяются по лицензии Apache License, Version 2.0.
+
 Форматы файлов
 ---------------
 

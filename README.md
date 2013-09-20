@@ -35,7 +35,7 @@ https://github.com/Harrix/HarrixHtmlForQWebView
 
 Подключенные библиотеки
 -----------------------
-
+ * **jQuery** - для скролла страниц: http://jquery.com
  * **JSXGraph** - для отображения графиков: https://github.com/jsxgraph/jsxgraph
 
 Пример использования

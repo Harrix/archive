@@ -1,4 +1,6 @@
-//Библиотека для отображения различных данных в QWebView. Версия v.1.12
+//HarrixClass_DataOfHarrixOptimizationTesting
+//Версия 1.12
+//Класс для считывания информации формата данных Harrix Optimization Testing на C++ для Qt.
 //https://github.com/Harrix/HarrixClass_DataOfHarrixOptimizationTesting
 //Библиотека распространяется по лицензии Apache License, Version 2.0.
 

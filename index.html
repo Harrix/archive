@@ -1,7 +1,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <!--
 HarrixHtmlForQWebView
-Html страница для отображения информации в QWebView через Ajax запросы.
+Версия 1.1
+Html страница для отображения информации в QWebView через ajax запросы.
 Библиотека распространяется по лицензии Apache License, Version 2.0.
 https://github.com/Harrix/HarrixHtmlForQWebView
 -->
@@ -24,23 +25,17 @@ https://github.com/Harrix/HarrixHtmlForQWebView
 	
 	function show()  
 	{  
+	//Функция проверяет обновление контента в temp.html и обновляет его
 	ajaxbegin=true;
 		$.ajax({  
-		url: "marker.html",  
+		url: "temp.html",  
 		cache: false,  
 		success: function(html)
 			{  			
 				resultnew = html; 
 				if ((resultnew!=result)||(resultnew==''))
 				{				
-					$.ajax({  
-					url: "temp.html",  
-					cache: false,  
-					success: function(html)
-						{  
-							$("#content").stop().html(html);  
-						}  
-					});
+					$("#content").stop().html(html);  
 					scroll_to_bottom(500);
 					result=resultnew;
 					scroll=false;
@@ -50,8 +45,9 @@ https://github.com/Harrix/HarrixHtmlForQWebView
 	ajaxbegin=false;
 	}
 	
-	function show2()  
+	function checkscroll()  
 	{  
+	//Функция проверяет, а был ли сделан скролл страницы после обновления. В случае, если этого не было, то дозавершает начатое.
 		if ((resultnew==result)&&(resultnew!='')&&(scroll==false))
 		{
 			scroll_to_bottom(500);
@@ -71,8 +67,8 @@ https://github.com/Harrix/HarrixHtmlForQWebView
 	$(document).ready(function(){  
 		show();  
 		setInterval('show()',500);  
-		show2();  
-		setInterval('show2()',1000); 
+		checkscroll();  
+		setInterval('checkscroll()',1000); 
 	});  
     </script>
 </body>

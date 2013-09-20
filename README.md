@@ -15,7 +15,7 @@ https://github.com/Harrix/HarrixChart
 
 https://github.com/Harrix/HarrixFileFormats
 
-Изменения
+История проекта
 ---------------
 
 Подробный список изменений в файле CHANGELOG.md.

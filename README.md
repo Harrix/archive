@@ -36,33 +36,42 @@ https://github.com/Harrix/HarrixFileFormats
 
 Добавьте  соответствующие инклуды:
 
-	#include "HarrixClass_DataOfHarrixOptimizationTesting.h"
-    #include "HarrixMathLibrary.h"
-    #include "HarrixQtLibrary.h"
-    #include "HarrixQtLibraryForQWebView.h"
+```cpp
+#include "HarrixClass_DataOfHarrixOptimizationTesting.h"
+#include "HarrixMathLibrary.h"
+#include "HarrixQtLibrary.h"
+#include "HarrixQtLibraryForQWebView.h"
+```
 
 Объявите, например, в mainwindow.h глобальные переменные:
 
-    QString DS;//разделитель между папками: слэш или иное в данной ОС
-    QString Path;//путь к папке с программой
-    QString Html;//сюда кладется выводимый текст
+```cpp
+QString DS;//разделитель между папками: слэш или иное в данной ОС
+QString Path;//путь к папке с программой
+QString Html;//сюда кладется выводимый текст
+```
 
 Вам нужно вызвать данные 4 строчки, например, в конструкторе MainWindow::MainWindow(QWidget *parent):
 
-    DS=QDir::separator();//какой разделитель используется в пути между папками
-    Path=QGuiApplication::applicationDirPath()+DS;//путь к папке, где находится приложение
-    HQt_BeginHtml(Path);
-	ui->webView->setUrl(QUrl::fromLocalFile(Path+"index.html"));// и в webView отображаем index.html (его вообще не трогаем)
+```cpp
+DS=QDir::separator();//какой разделитель используется в пути между папками
+Path=QGuiApplication::applicationDirPath()+DS;//путь к папке, где находится приложение
+HQt_BeginHtml(Path);
+// и в webView отображаем index.html (его вообще не трогаем)
+ui->webView->setUrl(QUrl::fromLocalFile(Path+"index.html"));
+```
 	
 Теперь в любом месте, где хотите добавить текст html и его отобразить, пишите (filename - путь к файлу, который анализируется):
 
-	QString Html;//сюда записывается код  HTML по анализу файла данных
-    HarrixClass_DataOfHarrixOptimizationTesting Data(filename);
-    if (Data.getSuccessReading())
-    {
-        Html=Data.getHtml();
-        HQt_AddHtml(Html);
-    }
+```cpp
+QString Html;//сюда записывается код  HTML по анализу файла данных
+HarrixClass_DataOfHarrixOptimizationTesting Data(filename);
+if (Data.getSuccessReading())
+	{
+	Html=Data.getHtml();
+	HQt_AddHtml(Html);
+	}
+```
 	
 И соответствующий текст должен отобразиться в QWebView максимум за 1 секунду: каждую секунду происходит проверка на наличие обновления. Желательно добавлять текст Html не самостоятельно, а за счет функций данной библиотеки.
 

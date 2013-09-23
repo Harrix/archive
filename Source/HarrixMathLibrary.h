@@ -114,6 +114,10 @@ double MHL_RightDerivative(double x, double h, double (*Function)(double));
 //Для тестовых функций
 int MHL_ClassOfTestFunction(TypeOfTestFunction Type);
 void MHL_DefineTestFunction(TypeOfTestFunction Type);
+int MHL_DimensionTestFunction_Binary(int i);
+int MHL_DimensionTestFunction_Binary(int i, TypeOfTestFunction Type);
+int MHL_DimensionTestFunction_Real(int i);
+int MHL_DimensionTestFunction_Real(int i, TypeOfTestFunction Type);
 double MHL_ErrorExOfTestFunction_Binary(int *x, int VMHL_N);
 double MHL_ErrorExOfTestFunction_Binary(int *x, int VMHL_N, TypeOfTestFunction Type);
 double MHL_ErrorExOfTestFunction_Real(double *x, int VMHL_N);
@@ -131,6 +135,10 @@ double MHL_FitnessOfOptimumOfTestFunction_Binary(int VMHL_N, TypeOfTestFunction 
 double MHL_FitnessOfOptimumOfTestFunction_Real(double VMHL_N);
 double MHL_FitnessOfOptimumOfTestFunction_Real(double VMHL_N, TypeOfTestFunction Type);
 int MHL_GetCountOfFitness();
+int MHL_GetCountOfSubProblems_Binary();
+int MHL_GetCountOfSubProblems_Binary(TypeOfTestFunction Type);
+int MHL_GetCountOfSubProblems_Real();
+int MHL_GetCountOfSubProblems_Real(TypeOfTestFunction Type);
 void MHL_LeftAndRightBorderOfTestFunction_Real(double *Left, double *Right,int VMHL_N);
 void MHL_LeftAndRightBorderOfTestFunction_Real(double *Left, double *Right, int VMHL_N, TypeOfTestFunction Type);
 double MHL_MaximumOrMinimumOfTestFunction_Binary();

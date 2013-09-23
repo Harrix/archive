@@ -268,11 +268,11 @@ QString Html;//сюда кладется выводимый текст
 Вам нужно вызвать данные 4 строчки, например, в конструкторе MainWindow::MainWindow(QWidget *parent):
 
 ```cpp
-int i=0;
 DS=QDir::separator();//какой разделитель используется в пути между папками
 Path=QGuiApplication::applicationDirPath()+DS;//путь к папке, где находится приложение
 HQt_BeginHtml(Path);
-ui->webView->setUrl(QUrl::fromLocalFile(Path+"index.html"));// и в webViewотображаем index.html (его вообще не трогаем)
+// и в webView отображаем index.html (его вообще не трогаем)
+ui->webView->setUrl(QUrl::fromLocalFile(Path+"index.html"));
 ```
 	
 Теперь в любом месте, где хотите добавить текст html и его отобразить, пишите:

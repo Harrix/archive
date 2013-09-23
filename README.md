@@ -252,26 +252,35 @@ https://github.com/Harrix/HarrixQtLibraryForQWebView
 
 Добавьте  соответствующие инклуды:
 
-    #include "HarrixQtLibrary.h"
-    #include "HarrixQtLibraryForQWebView.h"
+```cpp
+#include "HarrixQtLibrary.h"
+#include "HarrixQtLibraryForQWebView.h"
+```
 
 Объявите, например, в mainwindow.h глобальные переменные:
 
-    QString DS;//разделитель между папками: слэш или иное в данной ОС
-    QString Path;//путь к папке с программой
-    QString Html;//сюда кладется выводимый текст
+```cpp
+QString DS;//разделитель между папками: слэш или иное в данной ОС
+QString Path;//путь к папке с программой
+QString Html;//сюда кладется выводимый текст
+```
 
 Вам нужно вызвать данные 4 строчки, например, в конструкторе MainWindow::MainWindow(QWidget *parent):
 
-    DS=QDir::separator();//какой разделитель используется в пути между папками
-    Path=QGuiApplication::applicationDirPath()+DS;//путь к папке, где находится приложение
-    HQt_BeginHtml(Path);
-    ui->webView->setUrl(QUrl::fromLocalFile(Path+"index.html"));// и в webViewотображаем index.html (его вообще не трогаем)
+```cpp
+int i=0;
+DS=QDir::separator();//какой разделитель используется в пути между папками
+Path=QGuiApplication::applicationDirPath()+DS;//путь к папке, где находится приложение
+HQt_BeginHtml(Path);
+ui->webView->setUrl(QUrl::fromLocalFile(Path+"index.html"));// и в webViewотображаем index.html (его вообще не трогаем)
+```
 	
 Теперь в любом месте, где хотите добавить текст html и его отобразить, пишите:
 
-	Html="<b>Example</b>";
-	HQt_AddHtml(Html);
+```cpp
+Html="<b>Example</b>";
+HQt_AddHtml(Html);
+```
 	
 И соответствующий текст должен отобразиться в QWebView максимум за 1 секунду: каждую секунду происходит проверка на наличие обновления. Желательно добавлять текст Html не самостоятельно, а за счет функций данной библиотеки.
 

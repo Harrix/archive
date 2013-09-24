@@ -4,11 +4,11 @@
 #include <QFile>
 #include <QXmlStreamReader>
 
-class DataOfHarrixOptimizationTesting
+class HarrixClass_DataOfHarrixOptimizationTesting
 {
 public:
-    DataOfHarrixOptimizationTesting(QString filename);
-    ~DataOfHarrixOptimizationTesting();
+    HarrixClass_DataOfHarrixOptimizationTesting(QString filename);
+    ~HarrixClass_DataOfHarrixOptimizationTesting();
     bool getSuccessReading();//Получение значения переменной SuccessReading о удачности или неудачности прочитывания файла.
     QString getHtml();//Получение текста переменной Html
     QString getHtmlReport();//Получение текста переменной HtmlReport. Это частm html документа в виде отчета о проделанной работе.

@@ -7,9 +7,9 @@
 #include "QtHarrixLibrary.h"
 #include "QtHarrixLibraryForQWebView.h"
 #include "MathHarrixLibrary.h"
-#include "DataOfHarrixOptimizationTesting.h"
+#include "HarrixClass_DataOfHarrixOptimizationTesting.h"
 
-DataOfHarrixOptimizationTesting::DataOfHarrixOptimizationTesting(QString filename)
+HarrixClass_DataOfHarrixOptimizationTesting::HarrixClass_DataOfHarrixOptimizationTesting(QString filename)
 {
     /*
     Конструктор. Функция считывает данные о тестировании алгоритма оптимизации
@@ -113,7 +113,7 @@ DataOfHarrixOptimizationTesting::DataOfHarrixOptimizationTesting(QString filenam
 }
 //--------------------------------------------------------------------------
 
-DataOfHarrixOptimizationTesting::~DataOfHarrixOptimizationTesting()
+HarrixClass_DataOfHarrixOptimizationTesting::~HarrixClass_DataOfHarrixOptimizationTesting()
 {
     /*
      Деконструктор класса.
@@ -139,7 +139,7 @@ DataOfHarrixOptimizationTesting::~DataOfHarrixOptimizationTesting()
 }
 //--------------------------------------------------------------------------
 
-QString DataOfHarrixOptimizationTesting::getHtml()
+QString HarrixClass_DataOfHarrixOptimizationTesting::getHtml()
 {
     /*
      Получение текста переменной Html. Это итоговый Html документ.
@@ -150,7 +150,7 @@ QString DataOfHarrixOptimizationTesting::getHtml()
 }
 //--------------------------------------------------------------------------
 
-QString DataOfHarrixOptimizationTesting::getHtmlReport()
+QString HarrixClass_DataOfHarrixOptimizationTesting::getHtmlReport()
 {
     /*
      Получение текста переменной HtmlReport. Это частm html документа в виде отчета о проделанной работе.
@@ -161,7 +161,7 @@ QString DataOfHarrixOptimizationTesting::getHtmlReport()
 }
 //--------------------------------------------------------------------------
 
-QString DataOfHarrixOptimizationTesting::getHtmlMessageOfError()
+QString HarrixClass_DataOfHarrixOptimizationTesting::getHtmlMessageOfError()
 {
     /*
      Получение текста переменной HtmlMessageOfError. Это частm html документа в виде кода о сообщениях ошибок.
@@ -172,7 +172,7 @@ QString DataOfHarrixOptimizationTesting::getHtmlMessageOfError()
 }
 //--------------------------------------------------------------------------
 
-QString DataOfHarrixOptimizationTesting::getLatex()
+QString HarrixClass_DataOfHarrixOptimizationTesting::getLatex()
 {
     /*
      Получение текста переменной Latex.
@@ -184,7 +184,7 @@ QString DataOfHarrixOptimizationTesting::getLatex()
 }
 //--------------------------------------------------------------------------
 
-QString DataOfHarrixOptimizationTesting::getFullLatex()
+QString HarrixClass_DataOfHarrixOptimizationTesting::getFullLatex()
 {
     /*
      Получение текста переменной Latex в полном составе с началом и концовкой в Latex файле.
@@ -196,7 +196,7 @@ QString DataOfHarrixOptimizationTesting::getFullLatex()
 }
 //--------------------------------------------------------------------------
 
-QString DataOfHarrixOptimizationTesting::getLatexTableEx()
+QString HarrixClass_DataOfHarrixOptimizationTesting::getLatexTableEx()
 {
     /*
      Получение текста переменной LatexTableEx - отображение сырых данных таблицы данных о ошибке Ex.
@@ -207,7 +207,7 @@ QString DataOfHarrixOptimizationTesting::getLatexTableEx()
 }
 //--------------------------------------------------------------------------
 
-QString DataOfHarrixOptimizationTesting::getFullLatexTableEx()
+QString HarrixClass_DataOfHarrixOptimizationTesting::getFullLatexTableEx()
 {
     /*
      Получение текста переменной LatexTableEx - отображение сырых данных таблицы данных о ошибке Ex с началом и концовкой в Latex файле.
@@ -218,7 +218,7 @@ QString DataOfHarrixOptimizationTesting::getFullLatexTableEx()
 }
 //--------------------------------------------------------------------------
 
-QString DataOfHarrixOptimizationTesting::getLatexTableEy()
+QString HarrixClass_DataOfHarrixOptimizationTesting::getLatexTableEy()
 {
     /*
      Получение текста переменной LatexTableEy - отображение сырых данных ошибки по значениям целевой функции в виде полной таблицы.
@@ -229,7 +229,7 @@ QString DataOfHarrixOptimizationTesting::getLatexTableEy()
 }
 //--------------------------------------------------------------------------
 
-QString DataOfHarrixOptimizationTesting::getFullLatexTableEy()
+QString HarrixClass_DataOfHarrixOptimizationTesting::getFullLatexTableEy()
 {
     /*
      Получение текста переменной LatexTableEy - отображение сырых данных таблицы данных о ошибке Ey с началом и концовкой в Latex файле.
@@ -240,7 +240,7 @@ QString DataOfHarrixOptimizationTesting::getFullLatexTableEy()
 }
 //--------------------------------------------------------------------------
 
-QString DataOfHarrixOptimizationTesting::getLatexTableR()
+QString HarrixClass_DataOfHarrixOptimizationTesting::getLatexTableR()
 {
     /*
      Получение текста переменной LatexTableR - отображение сырых данных по надежности в виде полной таблицы.
@@ -251,7 +251,7 @@ QString DataOfHarrixOptimizationTesting::getLatexTableR()
 }
 //--------------------------------------------------------------------------
 
-QString DataOfHarrixOptimizationTesting::getFullLatexTableR()
+QString HarrixClass_DataOfHarrixOptimizationTesting::getFullLatexTableR()
 {
     /*
      Получение текста переменной LatexTableR - отображение сырых данных по надежности в виде полной таблицы с началом и концовкой в Latex файле.
@@ -262,7 +262,7 @@ QString DataOfHarrixOptimizationTesting::getFullLatexTableR()
 }
 //--------------------------------------------------------------------------
 
-QString DataOfHarrixOptimizationTesting::getLatexInfo()
+QString HarrixClass_DataOfHarrixOptimizationTesting::getLatexInfo()
 {
     /*
      Получение текста переменной LatexInfo - отображение информации о исследовании.
@@ -273,7 +273,7 @@ QString DataOfHarrixOptimizationTesting::getLatexInfo()
 }
 //--------------------------------------------------------------------------
 
-QString DataOfHarrixOptimizationTesting::getFullLatexInfo()
+QString HarrixClass_DataOfHarrixOptimizationTesting::getFullLatexInfo()
 {
     /*
      Получение текста переменной LatexInfo - отображение информации о исследовании с началом и концовкой в Latex файле.
@@ -284,7 +284,7 @@ QString DataOfHarrixOptimizationTesting::getFullLatexInfo()
 }
 //--------------------------------------------------------------------------
 
-QString DataOfHarrixOptimizationTesting::getLatexAboutParameters()
+QString HarrixClass_DataOfHarrixOptimizationTesting::getLatexAboutParameters()
 {
     /*
      Получение текста переменной LatexAboutParameters - отображение данных о обнаруженных параметрах алгоритма и какие они бывают.
@@ -295,7 +295,7 @@ QString DataOfHarrixOptimizationTesting::getLatexAboutParameters()
 }
 //--------------------------------------------------------------------------
 
-QString DataOfHarrixOptimizationTesting::getFullLatexAboutParameters()
+QString HarrixClass_DataOfHarrixOptimizationTesting::getFullLatexAboutParameters()
 {
     /*
      Получение текста переменной LatexAboutParameters - отображение данных о обнаруженных параметрах алгоритма и какие они бывают с началом и концовкой в Latex файле.
@@ -306,7 +306,7 @@ QString DataOfHarrixOptimizationTesting::getFullLatexAboutParameters()
 }
 //--------------------------------------------------------------------------
 
-QString DataOfHarrixOptimizationTesting::getLatexAnalysis()
+QString HarrixClass_DataOfHarrixOptimizationTesting::getLatexAnalysis()
 {
     /*
      Получение текста переменной LatexAnalysis - отображение первоначального анализа данных.
@@ -317,7 +317,7 @@ QString DataOfHarrixOptimizationTesting::getLatexAnalysis()
 }
 //--------------------------------------------------------------------------
 
-QString DataOfHarrixOptimizationTesting::getFullLatexAnalysis()
+QString HarrixClass_DataOfHarrixOptimizationTesting::getFullLatexAnalysis()
 {
     /*
      Получение текста переменной LatexAnalysis - отображение данных первоначального анализа данных.
@@ -328,7 +328,7 @@ QString DataOfHarrixOptimizationTesting::getFullLatexAnalysis()
 }
 //--------------------------------------------------------------------------
 
-QString DataOfHarrixOptimizationTesting::getLatexBegin()
+QString HarrixClass_DataOfHarrixOptimizationTesting::getLatexBegin()
 {
     /*
      Внутренная функция. Возвращает начало для полноценного Latex файла.
@@ -344,7 +344,7 @@ QString DataOfHarrixOptimizationTesting::getLatexBegin()
 }
 //--------------------------------------------------------------------------
 
-QString DataOfHarrixOptimizationTesting::getLatexEnd()
+QString HarrixClass_DataOfHarrixOptimizationTesting::getLatexEnd()
 {
     /*
      Внутренная функция. Возвращает концовку для полноценного Latex файла.
@@ -353,7 +353,7 @@ QString DataOfHarrixOptimizationTesting::getLatexEnd()
 }
 //--------------------------------------------------------------------------
 
-QString DataOfHarrixOptimizationTesting::getAuthor()
+QString HarrixClass_DataOfHarrixOptimizationTesting::getAuthor()
 {
     /*
      Получение текста переменной XML_Author - Автор документа
@@ -362,7 +362,7 @@ QString DataOfHarrixOptimizationTesting::getAuthor()
 }
 //--------------------------------------------------------------------------
 
-QString DataOfHarrixOptimizationTesting::getDate()
+QString HarrixClass_DataOfHarrixOptimizationTesting::getDate()
 {
     /*
      Получение текста переменной  XML_Date - Дата создания документа
@@ -371,7 +371,7 @@ QString DataOfHarrixOptimizationTesting::getDate()
 }
 //--------------------------------------------------------------------------
 
-QString DataOfHarrixOptimizationTesting::getNameAlgorithm()
+QString HarrixClass_DataOfHarrixOptimizationTesting::getNameAlgorithm()
 {
     /*
      Получение текста переменной  XML_Name_Algorithm - Название алгоритма оптимизации
@@ -380,7 +380,7 @@ QString DataOfHarrixOptimizationTesting::getNameAlgorithm()
 }
 //--------------------------------------------------------------------------
 
-QString DataOfHarrixOptimizationTesting::getFullNameAlgorithm()
+QString HarrixClass_DataOfHarrixOptimizationTesting::getFullNameAlgorithm()
 {
     /*
      Получение текста переменной  XML_Full_Name_Algorithm - Полное название алгоритма оптимизации
@@ -389,7 +389,7 @@ QString DataOfHarrixOptimizationTesting::getFullNameAlgorithm()
 }
 //--------------------------------------------------------------------------
 
-QString DataOfHarrixOptimizationTesting::getNameTestFunction()
+QString HarrixClass_DataOfHarrixOptimizationTesting::getNameTestFunction()
 {
     /*
      Получение текста переменной  XML_Name_Test_Function - Название тестовой функции
@@ -398,7 +398,7 @@ QString DataOfHarrixOptimizationTesting::getNameTestFunction()
 }
 //--------------------------------------------------------------------------
 
-QString DataOfHarrixOptimizationTesting::getFullNameTestFunction()
+QString HarrixClass_DataOfHarrixOptimizationTesting::getFullNameTestFunction()
 {
     /*
      Получение текста переменной  XML_Full_Name_Test_Function - Полное название тестовой функции
@@ -407,7 +407,7 @@ QString DataOfHarrixOptimizationTesting::getFullNameTestFunction()
 }
 //--------------------------------------------------------------------------
 
-int DataOfHarrixOptimizationTesting::getDimensionTestFunction()
+int HarrixClass_DataOfHarrixOptimizationTesting::getDimensionTestFunction()
 {
     /*
      Получение текста переменной  XML_DimensionTestFunction - Размерность тестовой задачи
@@ -416,7 +416,7 @@ int DataOfHarrixOptimizationTesting::getDimensionTestFunction()
 }
 //--------------------------------------------------------------------------
 
-int DataOfHarrixOptimizationTesting::getNumberOfMeasuring()
+int HarrixClass_DataOfHarrixOptimizationTesting::getNumberOfMeasuring()
 {
     /*
      Получение текста переменной  XML_Number_Of_Measuring - Размерность тестовой задачи (длина хромосомы решения)
@@ -425,7 +425,7 @@ int DataOfHarrixOptimizationTesting::getNumberOfMeasuring()
 }
 //--------------------------------------------------------------------------
 
-int DataOfHarrixOptimizationTesting::getNumberOfRuns()
+int HarrixClass_DataOfHarrixOptimizationTesting::getNumberOfRuns()
 {
     /*
      Получение текста переменной  XML_Number_Of_Runs - Количество прогонов по которому деляется усреднение для эксперимента
@@ -434,7 +434,7 @@ int DataOfHarrixOptimizationTesting::getNumberOfRuns()
 }
 //--------------------------------------------------------------------------
 
-int DataOfHarrixOptimizationTesting::getMaxCountOfFitness()
+int HarrixClass_DataOfHarrixOptimizationTesting::getMaxCountOfFitness()
 {
     /*
      Получение текста переменной  Max_Count_Of_Fitness - Максимальное допустимое число вычислений целевой функции для алгоритма
@@ -443,7 +443,7 @@ int DataOfHarrixOptimizationTesting::getMaxCountOfFitness()
 }
 //--------------------------------------------------------------------------
 
-int DataOfHarrixOptimizationTesting::getNumberOfParameters()
+int HarrixClass_DataOfHarrixOptimizationTesting::getNumberOfParameters()
 {
     /*
      Получение текста переменной  XML_Number_Of_Parameters - Количество проверяемых параметров алгоритма оптимизации
@@ -453,7 +453,7 @@ int DataOfHarrixOptimizationTesting::getNumberOfParameters()
 }
 //--------------------------------------------------------------------------
 
-int DataOfHarrixOptimizationTesting::getNumberOfExperiments()
+int HarrixClass_DataOfHarrixOptimizationTesting::getNumberOfExperiments()
 {
     /*
      Получение текста переменной  XML_Number_Of_Experiments - Количество комбинаций вариантов настроек
@@ -462,7 +462,7 @@ int DataOfHarrixOptimizationTesting::getNumberOfExperiments()
 }
 //--------------------------------------------------------------------------
 
-bool DataOfHarrixOptimizationTesting::getCheckAllCombinations()
+bool HarrixClass_DataOfHarrixOptimizationTesting::getCheckAllCombinations()
 {
     /*
      Получение текста переменной  XML_All_Combinations - Все ли комбинации вариантов настроек просмотрены: 0 bли 1
@@ -471,7 +471,7 @@ bool DataOfHarrixOptimizationTesting::getCheckAllCombinations()
 }
 //--------------------------------------------------------------------------
 
-double DataOfHarrixOptimizationTesting::getErrorEx(int Number_Of_Experiment, int Number_Of_Measuring)
+double HarrixClass_DataOfHarrixOptimizationTesting::getErrorEx(int Number_Of_Experiment, int Number_Of_Measuring)
 {
     /*
     Получение значения ошибки Ex.
@@ -491,7 +491,7 @@ double DataOfHarrixOptimizationTesting::getErrorEx(int Number_Of_Experiment, int
 }
 //--------------------------------------------------------------------------
 
-double DataOfHarrixOptimizationTesting::getErrorEy(int Number_Of_Experiment, int Number_Of_Measuring)
+double HarrixClass_DataOfHarrixOptimizationTesting::getErrorEy(int Number_Of_Experiment, int Number_Of_Measuring)
 {
     /*
     Получение значения ошибки Ey.
@@ -511,7 +511,7 @@ double DataOfHarrixOptimizationTesting::getErrorEy(int Number_Of_Experiment, int
 }
 //--------------------------------------------------------------------------
 
-double DataOfHarrixOptimizationTesting::getErrorR(int Number_Of_Experiment, int Number_Of_Measuring)
+double HarrixClass_DataOfHarrixOptimizationTesting::getErrorR(int Number_Of_Experiment, int Number_Of_Measuring)
 {
     /*
     Получение значения надежности R.
@@ -531,7 +531,7 @@ double DataOfHarrixOptimizationTesting::getErrorR(int Number_Of_Experiment, int 
 }
 //--------------------------------------------------------------------------
 
-double DataOfHarrixOptimizationTesting::getMeanEx(int Number_Of_Experiment)
+double HarrixClass_DataOfHarrixOptimizationTesting::getMeanEx(int Number_Of_Experiment)
 {
     /*
     Получение среднего значения ошибки Ex по измерениям для настройки (сколько точек было по столько и усредняем).
@@ -547,7 +547,7 @@ double DataOfHarrixOptimizationTesting::getMeanEx(int Number_Of_Experiment)
 }
 //--------------------------------------------------------------------------
 
-double DataOfHarrixOptimizationTesting::getMeanEy(int Number_Of_Experiment)
+double HarrixClass_DataOfHarrixOptimizationTesting::getMeanEy(int Number_Of_Experiment)
 {
     /*
     Получение среднего значения ошибки Ey по измерениям для настройки (сколько точек было по столько и усредняем).
@@ -563,7 +563,7 @@ double DataOfHarrixOptimizationTesting::getMeanEy(int Number_Of_Experiment)
 }
 //--------------------------------------------------------------------------
 
-double DataOfHarrixOptimizationTesting::getMeanR(int Number_Of_Experiment)
+double HarrixClass_DataOfHarrixOptimizationTesting::getMeanR(int Number_Of_Experiment)
 {
     /*
     Получение среднего значения надежности R по измерениям для настройки (сколько точек было по столько и усредняем).
@@ -579,7 +579,7 @@ double DataOfHarrixOptimizationTesting::getMeanR(int Number_Of_Experiment)
 }
 //--------------------------------------------------------------------------
 
-double DataOfHarrixOptimizationTesting::getVarianceOfEx(int Number_Of_Experiment)
+double HarrixClass_DataOfHarrixOptimizationTesting::getVarianceOfEx(int Number_Of_Experiment)
 {
     /*
     Получение дисперсии значения ошибки Ex по измерениям для настройки (сколько точек было по столько и усредняем).
@@ -595,7 +595,7 @@ double DataOfHarrixOptimizationTesting::getVarianceOfEx(int Number_Of_Experiment
 }
 //--------------------------------------------------------------------------
 
-double DataOfHarrixOptimizationTesting::getVarianceOfEy(int Number_Of_Experiment)
+double HarrixClass_DataOfHarrixOptimizationTesting::getVarianceOfEy(int Number_Of_Experiment)
 {
     /*
     Получение дисперсии значения ошибки Ey по измерениям для настройки (сколько точек было по столько и усредняем).
@@ -611,7 +611,7 @@ double DataOfHarrixOptimizationTesting::getVarianceOfEy(int Number_Of_Experiment
 }
 //--------------------------------------------------------------------------
 
-double DataOfHarrixOptimizationTesting::getVarianceOfR(int Number_Of_Experiment)
+double HarrixClass_DataOfHarrixOptimizationTesting::getVarianceOfR(int Number_Of_Experiment)
 {
     /*
     Получение дисперсии значения надежности R по измерениям для настройки (сколько точек было по столько и усредняем).
@@ -627,7 +627,7 @@ double DataOfHarrixOptimizationTesting::getVarianceOfR(int Number_Of_Experiment)
 }
 //--------------------------------------------------------------------------
 
-bool DataOfHarrixOptimizationTesting::getSuccessReading()
+bool HarrixClass_DataOfHarrixOptimizationTesting::getSuccessReading()
 {
     /*
     Получение значения переменной SuccessReading о удачности или неудачности прочитывания файла.
@@ -636,7 +636,7 @@ bool DataOfHarrixOptimizationTesting::getSuccessReading()
 }
 //--------------------------------------------------------------------------
 
-int DataOfHarrixOptimizationTesting::getParameter(int Number_Of_Experiment, int Number_Of_Parameter)
+int HarrixClass_DataOfHarrixOptimizationTesting::getParameter(int Number_Of_Experiment, int Number_Of_Parameter)
 {
     /*
     Получение значения параметра настройки какой-то.
@@ -656,7 +656,7 @@ int DataOfHarrixOptimizationTesting::getParameter(int Number_Of_Experiment, int 
 }
 //--------------------------------------------------------------------------
 
-QString DataOfHarrixOptimizationTesting::getNameParameter(int Number_Of_Experiment, int Number_Of_Parameter)
+QString HarrixClass_DataOfHarrixOptimizationTesting::getNameParameter(int Number_Of_Experiment, int Number_Of_Parameter)
 {
     /*
     Получение значения параметра настройки какой-то в виде полного наименования.
@@ -676,7 +676,7 @@ QString DataOfHarrixOptimizationTesting::getNameParameter(int Number_Of_Experime
 }
 //--------------------------------------------------------------------------
 
-QString DataOfHarrixOptimizationTesting::getNameOption(int Number_Of_Parameter)
+QString HarrixClass_DataOfHarrixOptimizationTesting::getNameOption(int Number_Of_Parameter)
 {
     /*
     Получение имени параметра алгоритма по его номеру.
@@ -692,7 +692,7 @@ QString DataOfHarrixOptimizationTesting::getNameOption(int Number_Of_Parameter)
 }
 //--------------------------------------------------------------------------
 
-int DataOfHarrixOptimizationTesting::getNumberOfOption(QString NameOption)
+int HarrixClass_DataOfHarrixOptimizationTesting::getNumberOfOption(QString NameOption)
 {
     /*
     Получение номера параметра алгоритма по его имени.
@@ -709,7 +709,7 @@ int DataOfHarrixOptimizationTesting::getNumberOfOption(QString NameOption)
 }
 //--------------------------------------------------------------------------
 
-QString DataOfHarrixOptimizationTesting::getFormat()
+QString HarrixClass_DataOfHarrixOptimizationTesting::getFormat()
 {
     /*
     Получение переменной XML_Format, то есть возвращает название формата документа.
@@ -723,7 +723,7 @@ QString DataOfHarrixOptimizationTesting::getFormat()
 }
 //--------------------------------------------------------------------------
 
-QString DataOfHarrixOptimizationTesting::getVersion()
+QString HarrixClass_DataOfHarrixOptimizationTesting::getVersion()
 {
     /*
     Получение переменной XML_Version, то есть возвращает версию формата документа.
@@ -737,7 +737,7 @@ QString DataOfHarrixOptimizationTesting::getVersion()
 }
 //--------------------------------------------------------------------------
 
-QString DataOfHarrixOptimizationTesting::getLink()
+QString HarrixClass_DataOfHarrixOptimizationTesting::getLink()
 {
     /*
     Получение переменной XML_Link, то есть возвращает ссылку на описание формата файла.
@@ -751,7 +751,7 @@ QString DataOfHarrixOptimizationTesting::getLink()
 }
 //--------------------------------------------------------------------------
 
-void DataOfHarrixOptimizationTesting::makingLatexTableR()
+void HarrixClass_DataOfHarrixOptimizationTesting::makingLatexTableR()
 {
     /*
     Создает текст LaTeX для отображения сырых данных по надежности в виде полной таблицы.
@@ -838,7 +838,7 @@ void DataOfHarrixOptimizationTesting::makingLatexTableR()
 }
 //--------------------------------------------------------------------------
 
-void DataOfHarrixOptimizationTesting::makingLatexTableEy()
+void HarrixClass_DataOfHarrixOptimizationTesting::makingLatexTableEy()
 {
     /*
     Создает текст LaTeX для отображения сырых данных ошибки по значениям целевой функции в виде полной таблицы.
@@ -924,7 +924,7 @@ void DataOfHarrixOptimizationTesting::makingLatexTableEy()
 }
 //--------------------------------------------------------------------------
 
-void DataOfHarrixOptimizationTesting::makingLatexTableEx()
+void HarrixClass_DataOfHarrixOptimizationTesting::makingLatexTableEx()
 {
     /*
     Создает текст LaTeX для отображения сырых данных ошибки по входным параметрам в виде полной таблицы.
@@ -1010,7 +1010,7 @@ void DataOfHarrixOptimizationTesting::makingLatexTableEx()
 }
 //--------------------------------------------------------------------------
 
-void DataOfHarrixOptimizationTesting::makingLatexInfo()
+void HarrixClass_DataOfHarrixOptimizationTesting::makingLatexInfo()
 {
     /*
     Создает текст LaTeX для отображения информации о исследовании.
@@ -1057,7 +1057,7 @@ void DataOfHarrixOptimizationTesting::makingLatexInfo()
 }
 //--------------------------------------------------------------------------
 
-void DataOfHarrixOptimizationTesting::makingLatexAboutParameters()
+void HarrixClass_DataOfHarrixOptimizationTesting::makingLatexAboutParameters()
 {
     /*
     Создает текст LaTeX для отображения данных о обнаруженных параметрах алгоритма и какие они бывают.
@@ -1112,7 +1112,7 @@ void DataOfHarrixOptimizationTesting::makingLatexAboutParameters()
     }
 }
 //--------------------------------------------------------------------------
-void DataOfHarrixOptimizationTesting::makingHtmlReport()
+void HarrixClass_DataOfHarrixOptimizationTesting::makingHtmlReport()
 {
     /*
     Создает текст Html для отображения отчета о считывании XML файла.
@@ -1153,7 +1153,7 @@ void DataOfHarrixOptimizationTesting::makingHtmlReport()
 }
 //--------------------------------------------------------------------------
 
-void DataOfHarrixOptimizationTesting::readXmlLeafTag()
+void HarrixClass_DataOfHarrixOptimizationTesting::readXmlLeafTag()
 {
     /*
     Считывает и проверяет тэг, который должен являться "листом", то есть самым глубоким. Внутренная функция.
@@ -1291,7 +1291,7 @@ void DataOfHarrixOptimizationTesting::readXmlLeafTag()
 }
 //--------------------------------------------------------------------------
 
-void DataOfHarrixOptimizationTesting::checkXmlLeafTags()
+void HarrixClass_DataOfHarrixOptimizationTesting::checkXmlLeafTags()
 {
     /*
     Проверяет наличие тэгов и правильное их выполнение. Внутренная функция.
@@ -1460,7 +1460,7 @@ void DataOfHarrixOptimizationTesting::checkXmlLeafTags()
 }
 //--------------------------------------------------------------------------
 
-void DataOfHarrixOptimizationTesting::memoryAllocation()
+void HarrixClass_DataOfHarrixOptimizationTesting::memoryAllocation()
 {
     /*
     Выделяет память под необходимые массивы. Внутренная функция.
@@ -1533,7 +1533,7 @@ void DataOfHarrixOptimizationTesting::memoryAllocation()
 }
 //--------------------------------------------------------------------------
 
-void DataOfHarrixOptimizationTesting::readXmlDataTags()
+void HarrixClass_DataOfHarrixOptimizationTesting::readXmlDataTags()
 {
     /*
     Считывает и проверяет тэги данных. Внутренная функция.
@@ -1741,7 +1741,7 @@ void DataOfHarrixOptimizationTesting::readXmlDataTags()
 //    }
 }
 //--------------------------------------------------------------------------
-bool DataOfHarrixOptimizationTesting::readXmlTreeTag(QString tag)
+bool HarrixClass_DataOfHarrixOptimizationTesting::readXmlTreeTag(QString tag)
 {
     /*
     Считывает и проверяет тэг, который содержит внутри себя другие тэги. Внутренная функция.
@@ -1781,7 +1781,7 @@ bool DataOfHarrixOptimizationTesting::readXmlTreeTag(QString tag)
 }
 //--------------------------------------------------------------------------
 
-void DataOfHarrixOptimizationTesting::zeroArray()
+void HarrixClass_DataOfHarrixOptimizationTesting::zeroArray()
 {
     /*
     Обнуляет массивы, в котрые записывается информация о данных из файла. Внутренная функция.
@@ -1806,7 +1806,7 @@ void DataOfHarrixOptimizationTesting::zeroArray()
 }
 //--------------------------------------------------------------------------
 
-void DataOfHarrixOptimizationTesting::makingAnalysis()
+void HarrixClass_DataOfHarrixOptimizationTesting::makingAnalysis()
 {
     /*
     Выполняет анализ считанных данных. Внутренная функция.
@@ -1865,7 +1865,7 @@ void DataOfHarrixOptimizationTesting::makingAnalysis()
 }
 //--------------------------------------------------------------------------
 
-void DataOfHarrixOptimizationTesting::makingLatexAnalysis()
+void HarrixClass_DataOfHarrixOptimizationTesting::makingLatexAnalysis()
 {
     /*
     Создает текст LaTeX для отображения первоначального анализа данных.

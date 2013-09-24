@@ -1,5 +1,5 @@
 //HarrixMathLibrary
-//Версия 3.18
+//Версия 3.19
 //Сборник различных математических функций и шаблонов с открытым кодом на языке C++.
 //https://github.com/Harrix/HarrixMathLibrary
 //Библиотека распространяется по лицензии Apache License, Version 2.0.
@@ -9,9 +9,13 @@
 #include <math.h>
 
 #include "HarrixMathLibrary.h"
+#include "mtrand.h"//генеhатор случайных чисел Mersenne Twister
 
-//ДЛЯ ГЕНЕРАТОРА СЛУЧАЙНЫХ ЧИСЕЛ
-unsigned int MHL_Dummy;//Результат инициализации генератора случайных чисел
+//ДЛЯ ГЕНЕРАТОРОВ СЛУЧАЙНЫХ ЧИСЕЛ
+unsigned int MHL_Dummy;//Результат инициализации гстандартного генератора случайных чисел
+TypeOfRandomNumberGenerator MHL_TypeOfRandomNumberGenerator;//тип генератора случайных чисел
+MTRand mt((unsigned)time(NULL));//Инициализатор генератора случайных чисел Mersenne Twister
+MTRand drand;//Для генерирования случайного числа в диапозоне [0,1).
 
 //СЛУЖЕБНЫЕ ДОПОЛНИТЕЛЬНЫЕ ПЕРМЕННЫЕ
 double (*VMHL_TempFunction)(double*,int);
@@ -36,24 +40,54 @@ void MHL_SeedRandom(void)
 Возвращаемое значение:
  Отсутствуют.
 */
+//StandardRandomNumberGenerator
+//Инициализатор стандартного генератора случайных чисел
 //В качестве начального значения для ГСЧ используем текущее время
 MHL_Dummy=(unsigned)time(NULL);
 srand(MHL_Dummy);//Стандартная инициализация
-rand();//первый вызов для контроля
+//rand();//первый вызов для контроля
+
+//MersenneTwisterRandomNumberGenerator
+//Инициализатор генератора случайных чисел Mersenne Twister
+//В качестве начального значения для ГСЧ используем текущее время
+//Инициализациz происходит еще при подключении данного файла
+
+//Назначаем генератор по умолчанию как Mersenne Twister
+MHL_TypeOfRandomNumberGenerator = MersenneTwisterRandomNumberGenerator;
 }
 //---------------------------------------------------------------------------
 double MHL_RandomNumber(void)
 {
 /*
 Генератор случайных чисел (ГСЧ).
-В данном случае используется самый простой его вариант со всеми его недостатками.
-Использовать в функциях по криптографии не стоит.
+Есть два варианта генератора случайных чисел, который можно переключать
+функцией MHL_SetRandomNumberGenerator.
 Входные параметры:
  Отсутствуют.
 Возвращаемое значение:
- Случайное вещественное число из интервала (0;1) по равномерному закону распределения.
+ Случайное вещественное число из интервала (0;1) или [0;1) по равномерному закону распределения.
 */
-return (double)rand()/(RAND_MAX+1);
+    if (MHL_TypeOfRandomNumberGenerator==StandardRandomNumberGenerator)
+        return (double)rand()/(RAND_MAX+1);
+    if (MHL_TypeOfRandomNumberGenerator==MersenneTwisterRandomNumberGenerator)
+        return drand();
+
+    return 0;
+}
+//---------------------------------------------------------------------------
+
+void MHL_SetRandomNumberGenerator(TypeOfRandomNumberGenerator T)
+{
+/*
+Функция переназначает генератор случайных чисел.
+Входные параметры:
+ TypeOfRandomNumberGenerator - тип генератора случайных чисел:
+  StandardRandomNumberGenerator - стандартный генератор случайных чисел;
+  MersenneTwisterRandomNumberGenerator - генератор случайных чисел Mersenne Twister.
+Возвращаемое значение:
+ Отсутствует.
+*/
+    MHL_TypeOfRandomNumberGenerator = T;
 }
 //---------------------------------------------------------------------------
 

@@ -4,930 +4,1892 @@
 //https://github.com/Harrix/HarrixClass_DataOfHarrixOptimizationTesting
 //Библиотека распространяется по лицензии Apache License, Version 2.0.
 
-#include "HarrixQtLibraryForQWebView.h"
+#include "QtHarrixLibrary.h"
+#include "QtHarrixLibraryForQWebView.h"
+#include "MathHarrixLibrary.h"
+#include "DataOfHarrixOptimizationTesting.h"
 
-QString VMHL_HTML;
-QString VMHL_Path;
-
-//Функции для получения HTML кода для вывода в webView
-
-void HQt_BeginHtml(QString Path)
+DataOfHarrixOptimizationTesting::DataOfHarrixOptimizationTesting(QString filename)
 {
     /*
-    Функция обнуляет переменную HTML. Требуется когда нужно перезапустить показ информации в QWebView.
+    Конструктор. Функция считывает данные о тестировании алгоритма оптимизации
+    из файла формата HarrixOptimizationTesting.
     Входные параметры:
-     Path - путь к папке, в которой надо будет сохранять html код. В этой папке должен соддержаться файл index.html
-    Возвращаемое значение:
-     Отсутствует.
-    */
-    VMHL_HTML="";
-    VMHL_Path=Path;
-    HQt_SaveFile(VMHL_HTML, VMHL_Path+"temp.html");//сохраняем пустую пока переменную в temp.html
-    HQt_SaveFile(HQt_RandomString(5), Path+"marker.html");
-}
-//---------------------------------------------------------------------------
+     filename - полное имя считываемого файла;
+ */
+    SuccessReading=true;
+    XML_DimensionTestFunction=-1;//Размерность тестовой задачи (длина хромосомы решения)
+    XML_Number_Of_Measuring=-1;//Количество экспериментов для каждого набора параметров алгоритма
+    XML_Number_Of_Runs=-1;//Количество прогонов по которому деляется усреднение для эксперимента
+    XML_Max_Count_Of_Fitness=-1;//Максимальное допустимое число вычислений целевой функции для алгоритма
+    XML_Number_Of_Parameters=-1;//Количество проверяемых параметров алгоритма оптимизации
+    Zero_Number_Of_Parameters=false;//пока ничего не известно
+    XML_Number_Of_Experiments=-1;//Количество комбинаций вариантов настроек
+    Error=false;//типа вначале нет ошибок в файле
+    Un=HQt_RandomString(5);//уникальная строка для Latex
+    //AllOptions=true;//вначале наивно предполагаем, что в файле все настройки рассмотрены
 
-void HQt_AddHtml(QString Html)
-{
-    /*
-    Функция добавляет код html к существующему и сохраняет его в temp.html.
-    Входные параметры:
-     Html - добавляемый текст.
-    Возвращаемое значение:
-     Отсутствует.
-    */
-    VMHL_HTML+=Html;
-    HQt_SaveFile(VMHL_HTML, VMHL_Path+"temp.html");
-    //добавим маркер того, что что-то добавилось, чтобы скрипт в index.html обновил информацию из temp.html.
-    HQt_SaveFile(HQt_RandomString(5), VMHL_Path+"marker.html");
-}
-//---------------------------------------------------------------------------
+    QFile file(filename);//для открытия файла и запихивания его в Rxml
 
-QString HQt_ShowText (QString TitleX)
-{
-    /*
-    Функция возвращает строку с выводом некоторой строки с HTML кодами. Для добавление в html файл.
-    Входные параметры:
-     TitleX - непосредственно выводимая строка.
-    Возвращаемое значение:
-     Строка с HTML кодами с выводимой строкой.
-    */
-    QString VMHL_Result;
-
-    VMHL_Result="<p><b>"+TitleX+".</b></p>\n";
-
-    return VMHL_Result;
-}
-//---------------------------------------------------------------------------
-
-QString HQt_ShowSimpleText (QString String)
-{
-    /*
-    Функция возвращает строку с выводом некоторой строки с HTML кодами без всякого излишевства. Для добавление в html файл.
-    Входные параметры:
-     String - непосредственно выводимая строка.
-    Возвращаемое значение:
-     Строка с HTML кодами с выводимой строкой.
-    */
-    QString VMHL_Result;
-
-    VMHL_Result="<p>"+String+"</p>\n";
-
-    return VMHL_Result;
-}
-//---------------------------------------------------------------------------
-
-QString HQt_ShowH1 (QString String)
-{
-    /*
-    Функция возвращает строку с выводом некоторой строки в виде заголовка. Для добавление в html файл.
-    Входные параметры:
-     String - непосредственно выводимая строка.
-    Возвращаемое значение:
-     Строка с HTML кодами с выводимой строкой.
-    */
-    QString VMHL_Result;
-
-    VMHL_Result="<h1>"+String+"</h1>\n";
-
-    return VMHL_Result;
-}
-//---------------------------------------------------------------------------
-
-QString HQt_ShowHr ()
-{
-    /*
-    Функция возвращает строку с выводом горизонтальной линии. Для добавление в html файл.
-    Входные параметры:
-     Отсутствуют.
-    Возвращаемое значение:
-     Строка с HTML кодами с тэгом hr.
-    */
-    QString VMHL_Result;
-
-    VMHL_Result="<hr>\n";
-
-    return VMHL_Result;
-}
-//---------------------------------------------------------------------------
-
-QString HQt_ShowAlert (QString String)
-{
-    /*
-    Функция возвращает строку с выводом некоторого предупреждения. Для добавление в html файл.
-    Входные параметры:
-     String - непосредственно выводимая строка.
-    Возвращаемое значение:
-     Строка с HTML кодами с выводимым предупреждением.
-    */
-    QString VMHL_Result;
-
-    VMHL_Result="<div style=\"background: #ffdfdf url(images/box-alert.png) no-repeat 16px; border-color: #feabab;color: #c31b00;padding: 15px 20px 15px 55px;-webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px;border: 1px solid;clear: both;margin: 15px 0;-webkit-box-shadow: 0 0 3px rgba(0, 0, 0, 0.1), 0 1px 0 #FFFFFF inset, 0 -1px 0 #FFFFFF inset;-moz-box-shadow: 0 0 3px rgba(0, 0, 0, 0.1), 0 1px 0 #FFFFFF inset, 0 -1px 0 #FFFFFF inset;box-shadow: 0 0 3px rgba(0, 0, 0, 0.1), 0 1px 0 #FFFFFF inset, 0 -1px 0 #FFFFFF inset;text-align: justify; width:600px;\">"+String+"</div>\n";
-
-    return VMHL_Result;
-}
-//---------------------------------------------------------------------------
-QString HQt_ReadHdataToHtmlChart (QString filename)
-{
-    /*
-    Функция возвращает строку с HTML кодом графика в результате считывания информации из *.hdata
-    версии Harrix Data 1.0. Для добавление в html файл.
-    Входные параметры:
-     filename - имя файла.
-    Возвращаемое значение:
-     Строка с HTML кодом.
-    */
-    QString VMHL_Result;
-
-    try
+    if (!file.open(QFile::ReadOnly | QFile::Text))
     {
-        if (HQt_GetExpFromFilename(filename)!="hdata")
+        HtmlMessageOfError+=HQt_ShowAlert("Файл "+HQt_GetFilenameFromFullFilename(filename)+" не открывается");
+        Error=true;
+    }
+    else
+    {
+        Html+=HQt_ShowText("Файл <font color=\"#00b400\">"+HQt_GetFilenameFromFullFilename(filename)+"</font> загружен");
+
+        //Первоначальные действия
+        Rxml.setDevice(&file);
+        Rxml.readNext();while((!Rxml.isStartElement())&&(!Rxml.atEnd())){Rxml.readNext();}//первый нормальный элемент
+
+        //Начнем анализ документа
+        if (readXmlTreeTag("document"))
         {
-            VMHL_Result+=HQt_ShowAlert ("Расширение файла не *.hdata.");
-            return VMHL_Result;
-        }
-        if (!HQt_FileExists(filename))
-        {
-            VMHL_Result+=HQt_ShowAlert ("Файл отсутствует.");
-            return VMHL_Result;
-        }
-
-        QStringList List = HQt_ReadFileToQStringList(filename);
-
-        if (List.isEmpty())
-        {
-            VMHL_Result+=HQt_ShowAlert ("Файл пустой.");
-            return VMHL_Result;
-        }
-
-        QString String;
-
-        String=List.at(0);
-
-        if (HQt_TextBeforeEqualSign (String)!="HarrixFileFormat")
-        {
-            VMHL_Result+=HQt_ShowAlert ("Это не формат HarrixFileFormat.");
-            return VMHL_Result;
-        }
-        if (HQt_TextAfterEqualSign (String)!="Harrix Data 1.0")
-        {
-            VMHL_Result+=HQt_ShowAlert ("Это не версия Harrix Data 1.0.");
-            return VMHL_Result;
-        }
-
-        List.removeFirst();
-        String=List.at(0);
-
-        if (HQt_TextBeforeEqualSign (String)!="Site")
-        {
-            VMHL_Result+=HQt_ShowAlert ("Ошибка в структуре файла: нет второй строки в виде ссылки на сайт.");
-            return VMHL_Result;
-        }
-        if (HQt_TextAfterEqualSign (String)!="https://github.com/Harrix/HarrixFileFormats")
-        {
-            VMHL_Result+=HQt_ShowAlert ("Ошибка в структуре файла: сайт указан неверно во второй строке.");
-            return VMHL_Result;
-        }
-
-        //параметры по умолчанию
-        QString Type;
-        QString Title;
-        QString AxisX;
-        QString AxisY;
-        bool ShowLine=false;
-        bool ShowPoints=false;
-        bool ShowArea=false;
-        bool ShowSpecPoints=false;
-        bool RedLine=false;
-
-        //предварительные переменные
-        QString TempType;
-        QString TempTitle;
-        QString TempAxisX;
-        QString TempAxisY;
-        QString TempParameters;
-
-        QString After;
-        QString Before;
-
-        List.removeFirst();
-
-        //проанализируем строчки на наличие тех переменных, которые могут быть необязательными
-        int i=0;
-        int n=List.count();
-        while ((i<n)&&(String!="BeginNamesOfCharts")&&(String!="BeginData"))
-        {
-            String = List.at(i);
-            Before = HQt_TextBeforeEqualSign (String);
-            After  = HQt_TextAfterEqualSign (String);
-
-            if (Before=="Type") TempType=After;
-            if (Before=="Title") TempTitle=After;
-            if (Before=="AxisX") TempAxisX=After;
-            if (Before=="AxisY") TempAxisY=After;
-            if (Before=="Parameters") TempParameters=After;
-            i++;
-        }
-
-        for (int j=0;j<i-1;j++) List.removeFirst();//удалим строчки, которые проанализировали
-
-        //А теперь сами переменные проанализируем
-        Title=TempTitle;
-        AxisX=TempAxisX;
-        AxisY=TempAxisY;
-
-        if (TempType=="Line") Type="Line";
-        if (TempType=="TwoLines") Type="TwoLines";
-        if (TempType=="TwoIndependentLines") Type="TwoIndependentLines";
-        if (TempType=="SeveralIndependentLines") Type="SeveralIndependentLines";
-        if (TempType=="SeveralLines") Type="SeveralLines";
-        if (TempType=="PointsAndLine") Type="PointsAndLine";
-
-        QStringList ListParameters = TempParameters.split( ",", QString::SkipEmptyParts );
-        for (int j=0;j<ListParameters.count();j++)
-        {
-            String=ListParameters.at(j);
-            String=String.trimmed();
-            if (String=="ShowLine") ShowLine=true;
-            if (String=="ShowPoints") ShowPoints=true;
-            if (String=="ShowArea") ShowArea=true;
-            if (String=="ShowSpecPoints") ShowSpecPoints=true;
-            if (String=="RedLine") RedLine=true;
-        }
-
-        if ((ShowLine==false)&&(ShowPoints==false)) ShowLine=true;
-
-
-        //Теперь пытаемся поискать и обработать названия столбцов
-        QStringList ListNamesOfCharts;
-        String=List.at(0);
-        i=0;
-        if (String=="BeginNamesOfCharts")
-        {
-            int n=List.count();
-            while ((i<n)&&(String!="EndNamesOfCharts")&&(String!="BeginData"))
+            if (readXmlTreeTag("harrix_file_format"))
             {
-                String = List.at(i);
+                //далее должны идти тэги format, version, site
+                for (int k=0;k<3;k++)
+                    readXmlLeafTag();//считает тэг
 
-                if ((String!="BeginNamesOfCharts")&&(String!="EndNamesOfCharts")&&(String!="BeginData")&&(String!="EndData"))
-                    ListNamesOfCharts << String;
+                if (readXmlTreeTag("about"))
+                {
+                    //далее должны идти тэги author, date, email
+                    for (int k=0;k<3;k++)
+                        readXmlLeafTag();//считает тэг
 
-                i++;
+                    if (readXmlTreeTag("about_data"))
+                    {
+                        //далее должны идти 13 тэгов по информации о данных
+                        for (int k=0;k<13;k++)
+                            readXmlLeafTag();//считает тэг
+
+                        readXmlTreeTag("data");
+                    }
+                }
+                checkXmlLeafTags();//проверим наличие всех тэгов
             }
         }
 
-        for (int j=0;j<i;j++) List.removeFirst();//удалим строчки, которые проанализировали
-
-        //Заберем данные непосредственно
-        String=List.at(0);
-        if (String=="BeginData")
+        if (!Error)
         {
+            memoryAllocation();//выделение памяти под массивы
+            zeroArray();//обнулим массивы
+            readXmlDataTags();//считаем данные непосредственно
+        }
 
-            if (List.at(List.count()-1)!="EndData")
-            {
-                VMHL_Result+=HQt_ShowAlert ("Ошибка в структуре файла: нет в конце строчки EndData.");
-                return VMHL_Result;
-            }
-            List.removeFirst();
-            List.removeLast();
-            //теперь в List находитсz только нормальный объем данных
+        if ((Rxml.hasError())||(Error))
+        {
+            HtmlMessageOfError+=HQt_ShowAlert("В процессе разбора файла обнаружены ошибки. Помните, что для этой функции обработки XML файла требуется правильный порядок следования тэгов.");
+            Html+=HtmlMessageOfError;
+            SuccessReading=false;
         }
         else
         {
-            VMHL_Result+=HQt_ShowAlert ("Ошибка в структуре файла: нет строчки BeginData.");
-            return VMHL_Result;
-        }
+            makingAnalysis();//выполняем анализ данных
 
-        //Теперь можем наконец работать с выводом графиков согласно типу
-        if (Type=="Line")
-        {
-            int N=HQt_CountOfRowsFromQStringList(List);
-            double *dataX=new double [N];
-            double *dataY=new double [N];
-            THQt_ReadTwoVectorFromQStringList(List,dataX,dataY);
+            //Обработка полученной информации Html
+            makingHtmlReport();
+            Html+=HtmlReport;
 
-            if (ListNamesOfCharts.count()<1) ListNamesOfCharts << "";
+            //Обработка полученной информации Latex
+            NameForHead="алгоритма оптимизации <<"+HQt_StringForLaTeX(XML_Full_Name_Algorithm)+">>на тестовой функции <<"+HQt_StringForLaTeX(XML_Full_Name_Test_Function)+">> (размерность равна "+QString::number(XML_DimensionTestFunction)+")";
+            makingLatexInfo();
+            makingLatexAboutParameters();
+            makingLatexTableEx();//заполняем LatexTableEx
+            makingLatexTableEy();//заполняем LatexTableEy
+            makingLatexTableR();//заполняем LatexTableR
+            makingLatexAnalysis();//заполняем LatexTableR
+            //Latex+=LatexInfo+LatexAboutParameters+LatexTableEx+LatexTableEy+LatexTableR;
+            Latex+=LatexInfo+LatexAboutParameters+LatexTableEx+LatexTableEy+LatexTableR+LatexAnalysis;
 
-            VMHL_Result += THQt_ShowChartOfLine (dataX,dataY,N,Title,AxisX,AxisY,ListNamesOfCharts.at(0),ShowLine,ShowPoints,ShowArea,ShowSpecPoints,RedLine);
-
-            delete []dataX;
-            delete []dataY;
-        }
-        if (Type=="TwoLines")
-        {
-            int N=HQt_CountOfRowsFromQStringList(List);
-            double *dataX=new double [N];
-            double *dataY1=new double [N];
-            double *dataY2=new double [N];
-
-            THQt_ReadColFromQStringList(List,0,dataX);
-            THQt_ReadColFromQStringList(List,1,dataY1);
-            THQt_ReadColFromQStringList(List,2,dataY2);
-
-            if (ListNamesOfCharts.count()<1) ListNamesOfCharts << "";
-            if (ListNamesOfCharts.count()<2) ListNamesOfCharts << "";
-
-            VMHL_Result += THQt_ShowTwoChartsOfLine (dataX,dataY1,dataY2,N,Title,AxisX,AxisY,ListNamesOfCharts.at(0),ListNamesOfCharts.at(1),ShowLine,ShowPoints,ShowArea,ShowSpecPoints);
-
-            delete []dataX;
-            delete []dataY1;
-            delete []dataY2;
-        }
-        if (Type=="TwoIndependentLines")
-        {
-            int NX1=HQt_CountOfRowsFromQStringList(List,0);
-            int NY1=HQt_CountOfRowsFromQStringList(List,1);
-            int NX2=HQt_CountOfRowsFromQStringList(List,2);
-            int NY2=HQt_CountOfRowsFromQStringList(List,3);
-            double *dataX1=new double [NX1];
-            double *dataY1=new double [NY1];
-            double *dataX2=new double [NX2];
-            double *dataY2=new double [NY2];
-
-            THQt_ReadColFromQStringList(List,0,dataX1);
-            THQt_ReadColFromQStringList(List,1,dataY1);
-            THQt_ReadColFromQStringList(List,2,dataX2);
-            THQt_ReadColFromQStringList(List,3,dataY2);
-
-            if (ListNamesOfCharts.count()<1) ListNamesOfCharts << "";
-            if (ListNamesOfCharts.count()<2) ListNamesOfCharts << "";
-
-            VMHL_Result += THQt_ShowTwoIndependentChartsOfLine (dataX1,dataY1,NX1,dataX2,dataY2,NX2,Title,AxisX,AxisY,ListNamesOfCharts.at(0),ListNamesOfCharts.at(1),ShowLine,ShowPoints,ShowArea,ShowSpecPoints);
-
-            delete []dataX1;
-            delete []dataX2;
-            delete []dataY1;
-            delete []dataY2;
-        }
-        if (Type=="SeveralLines")
-        {
-            int N,M;
-
-            M=HQt_CountOfColsFromQStringList(List);
-
-            int *N_EveryCol=new int[M];
-
-            N=HQt_CountOfRowsFromQStringList(List,N_EveryCol);
-
-            double **X;
-            X=new double*[N];
-            for (int i=0;i<N;i++) X[i]=new double[M];
-
-            THQt_ReadMatrixFromQStringList(List, X);
-
-            if (ListNamesOfCharts.count()<M-1)
-                for (int j=0;j<M-1-ListNamesOfCharts.count();j++) ListNamesOfCharts << "";
-
-            QString *NameLine=new QString[M-1];
-            for (int i=0;i<M-1;i++)NameLine[i]=ListNamesOfCharts.at(i);
-
-            VMHL_Result += THQt_ShowChartsOfLineFromMatrix (X,N,M,Title,AxisX,AxisY,NameLine,ShowLine,ShowPoints,ShowArea,ShowSpecPoints);
-
-            for (int i=0;i<N;i++) delete [] X[i];
-            delete [] X;
-            delete [] N_EveryCol;
-            delete [] NameLine;
-        }
-        if (Type=="SeveralIndependentLines")
-        {
-            int N,M;
-
-            M=HQt_CountOfColsFromQStringList(List);
-
-            int *N_EveryCol=new int[M];
-
-            N=HQt_CountOfRowsFromQStringList(List,N_EveryCol);
-
-            double **X;
-            X=new double*[N];
-            for (int i=0;i<N;i++) X[i]=new double[M];
-
-            THQt_ReadMatrixFromQStringList(List, X);
-
-            if (ListNamesOfCharts.count()<M/2)
-                for (int j=0;j<M/2-ListNamesOfCharts.count();j++) ListNamesOfCharts << "";
-
-            QString *NameLine=new QString[M/2];
-            for (int i=0;i<M/2;i++)NameLine[i]=ListNamesOfCharts.at(i);
-
-            VMHL_Result += THQt_ShowIndependentChartsOfLineFromMatrix (X,N_EveryCol,M, Title,AxisX,AxisY,NameLine,ShowLine,ShowPoints,ShowArea,ShowSpecPoints);
-
-            for (int i=0;i<N;i++) delete [] X[i];
-            delete [] X;
-            delete [] N_EveryCol;
-            delete [] NameLine;
-        }
-        if (Type=="PointsAndLine")
-        {
-            int NX1=HQt_CountOfRowsFromQStringList(List,0);
-            int NY1=HQt_CountOfRowsFromQStringList(List,1);
-            int NX2=HQt_CountOfRowsFromQStringList(List,2);
-            int NY2=HQt_CountOfRowsFromQStringList(List,3);
-            double *dataX1=new double [NX1];
-            double *dataY1=new double [NY1];
-            double *dataX2=new double [NX2];
-            double *dataY2=new double [NY2];
-
-            THQt_ReadColFromQStringList(List,0,dataX1);
-            THQt_ReadColFromQStringList(List,1,dataY1);
-            THQt_ReadColFromQStringList(List,2,dataX2);
-            THQt_ReadColFromQStringList(List,3,dataY2);
-
-            if (ListNamesOfCharts.count()<1) ListNamesOfCharts << "";
-            if (ListNamesOfCharts.count()<2) ListNamesOfCharts << "";
-
-            VMHL_Result += THQt_ShowTwoIndependentChartsOfPointsAndLine (dataX1,dataY1,NX1,dataX2,dataY2,NX2,Title,AxisX,AxisY,ListNamesOfCharts.at(0),ListNamesOfCharts.at(1),ShowLine,ShowPoints,ShowArea,ShowSpecPoints);
-
-            delete []dataX1;
-            delete []dataX2;
-            delete []dataY1;
-            delete []dataY2;
+            Html+=HQt_ShowHr();
+            Html+=HQt_ShowText("Обработка файла завершена. Ошибки не обнаружены");
         }
     }
-    catch(...)
+
+    file.close();
+}
+//--------------------------------------------------------------------------
+
+DataOfHarrixOptimizationTesting::~DataOfHarrixOptimizationTesting()
+{
+    /*
+     Деконструктор класса.
+     */
+    if (!Error)
     {
-        VMHL_Result+=HQt_ShowAlert ("Неизвестная ошибка.");
-        VMHL_Result="";
+        for (int i=0;i<XML_Number_Of_Experiments;i++) delete [] MatrixOfEx[i];
+        delete [] MatrixOfEx;
+        for (int i=0;i<XML_Number_Of_Experiments;i++) delete [] MatrixOfEy[i];
+        delete [] MatrixOfEy;
+        for (int i=0;i<XML_Number_Of_Experiments;i++) delete [] MatrixOfR[i];
+        delete [] MatrixOfR;
+        for (int i=0;i<XML_Number_Of_Experiments;i++) delete [] MatrixOfParameters[i];
+        delete [] MatrixOfParameters;
+        delete [] ListOfParameterOptions;
+        delete [] MeanOfEx;
+        delete [] MeanOfEy;
+        delete [] MeanOfR;
+        delete [] VarianceOfEx;
+        delete [] VarianceOfEy;
+        delete [] VarianceOfR;
     }
+}
+//--------------------------------------------------------------------------
+
+QString DataOfHarrixOptimizationTesting::getHtml()
+{
+    /*
+     Получение текста переменной Html. Это итоговый Html документ.
+     Помните, что это не полноценный Html код. Его нужно применять в виде temp.html для макета:
+     https://github.com/Harrix/QtHarrixLibraryForQWebView
+     */
+    return Html;
+}
+//--------------------------------------------------------------------------
+
+QString DataOfHarrixOptimizationTesting::getHtmlReport()
+{
+    /*
+     Получение текста переменной HtmlReport. Это частm html документа в виде отчета о проделанной работе.
+     Помните, что это не полноценный Html код. Его нужно применять в виде temp.html для макета:
+     https://github.com/Harrix/QtHarrixLibraryForQWebView
+     */
+    return HtmlReport;
+}
+//--------------------------------------------------------------------------
+
+QString DataOfHarrixOptimizationTesting::getHtmlMessageOfError()
+{
+    /*
+     Получение текста переменной HtmlMessageOfError. Это частm html документа в виде кода о сообщениях ошибок.
+     Помните, что это не полноценный Html код. Его нужно применять в виде temp.html для макета:
+     https://github.com/Harrix/QtHarrixLibraryForQWebView
+     */
+    return HtmlMessageOfError;
+}
+//--------------------------------------------------------------------------
+
+QString DataOfHarrixOptimizationTesting::getLatex()
+{
+    /*
+     Получение текста переменной Latex.
+     Здесь собран полный файл анализа данных из считываемого xml файла.
+     Помните, что это не полноценный Latex код .Его нужно применять внутри файла из макета:
+     https://github.com/Harrix/Harrix-Document-Template-LaTeX
+     */
+    return Latex;
+}
+//--------------------------------------------------------------------------
+
+QString DataOfHarrixOptimizationTesting::getFullLatex()
+{
+    /*
+     Получение текста переменной Latex в полном составе с началом и концовкой в Latex файле.
+     Здесь собран полный файл анализа данных из считываемого xml файла.
+     Это полноценный Latex код. Его нужно применять с файлами из макета:
+     https://github.com/Harrix/Harrix-Document-Template-LaTeX
+     */
+    return getLatexBegin() + Latex + getLatexEnd();
+}
+//--------------------------------------------------------------------------
+
+QString DataOfHarrixOptimizationTesting::getLatexTableEx()
+{
+    /*
+     Получение текста переменной LatexTableEx - отображение сырых данных таблицы данных о ошибке Ex.
+     Помните, что это не полноценный Latex код. Его нужно применять внутри файла из макета:
+     https://github.com/Harrix/Harrix-Document-Template-LaTeX
+     */
+    return LatexTableEx;
+}
+//--------------------------------------------------------------------------
+
+QString DataOfHarrixOptimizationTesting::getFullLatexTableEx()
+{
+    /*
+     Получение текста переменной LatexTableEx - отображение сырых данных таблицы данных о ошибке Ex с началом и концовкой в Latex файле.
+     Это полноценный Latex код. Его нужно применять с файлами из макета:
+     https://github.com/Harrix/Harrix-Document-Template-LaTeX
+     */
+    return getLatexBegin() + LatexTableEx + getLatexEnd();
+}
+//--------------------------------------------------------------------------
+
+QString DataOfHarrixOptimizationTesting::getLatexTableEy()
+{
+    /*
+     Получение текста переменной LatexTableEy - отображение сырых данных ошибки по значениям целевой функции в виде полной таблицы.
+     Помните, что это не полноценный Latex код.Его нужно применять внутри файла из макета:
+     https://github.com/Harrix/Harrix-Document-Template-LaTeX
+     */
+    return LatexTableEy;
+}
+//--------------------------------------------------------------------------
+
+QString DataOfHarrixOptimizationTesting::getFullLatexTableEy()
+{
+    /*
+     Получение текста переменной LatexTableEy - отображение сырых данных таблицы данных о ошибке Ey с началом и концовкой в Latex файле.
+     Это полноценный Latex код. Его нужно применять с файлами из макета:
+     https://github.com/Harrix/Harrix-Document-Template-LaTeX
+     */
+    return getLatexBegin() + LatexTableEy + getLatexEnd();
+}
+//--------------------------------------------------------------------------
+
+QString DataOfHarrixOptimizationTesting::getLatexTableR()
+{
+    /*
+     Получение текста переменной LatexTableR - отображение сырых данных по надежности в виде полной таблицы.
+     Помните, что это не полноценный Latex код.Его нужно применять внутри файла из макета:
+     https://github.com/Harrix/Harrix-Document-Template-LaTeX
+     */
+    return LatexTableR;
+}
+//--------------------------------------------------------------------------
+
+QString DataOfHarrixOptimizationTesting::getFullLatexTableR()
+{
+    /*
+     Получение текста переменной LatexTableR - отображение сырых данных по надежности в виде полной таблицы с началом и концовкой в Latex файле.
+     Это полноценный Latex код. Его нужно применять с файлами из макета:
+     https://github.com/Harrix/Harrix-Document-Template-LaTeX
+     */
+    return getLatexBegin() + LatexTableR + getLatexEnd();
+}
+//--------------------------------------------------------------------------
+
+QString DataOfHarrixOptimizationTesting::getLatexInfo()
+{
+    /*
+     Получение текста переменной LatexInfo - отображение информации о исследовании.
+     Помните, что это не полноценный Latex код.Его нужно применять внутри файла из макета:
+     https://github.com/Harrix/Harrix-Document-Template-LaTeX
+     */
+    return LatexInfo;
+}
+//--------------------------------------------------------------------------
+
+QString DataOfHarrixOptimizationTesting::getFullLatexInfo()
+{
+    /*
+     Получение текста переменной LatexInfo - отображение информации о исследовании с началом и концовкой в Latex файле.
+     Это полноценный Latex код. Его нужно применять с файлами из макета:
+     https://github.com/Harrix/Harrix-Document-Template-LaTeX
+     */
+    return getLatexBegin() + LatexInfo + getLatexEnd();
+}
+//--------------------------------------------------------------------------
+
+QString DataOfHarrixOptimizationTesting::getLatexAboutParameters()
+{
+    /*
+     Получение текста переменной LatexAboutParameters - отображение данных о обнаруженных параметрах алгоритма и какие они бывают.
+     Помните, что это не полноценный Latex код.Его нужно применять внутри файла из макета:
+     https://github.com/Harrix/Harrix-Document-Template-LaTeX
+     */
+    return LatexAboutParameters;
+}
+//--------------------------------------------------------------------------
+
+QString DataOfHarrixOptimizationTesting::getFullLatexAboutParameters()
+{
+    /*
+     Получение текста переменной LatexAboutParameters - отображение данных о обнаруженных параметрах алгоритма и какие они бывают с началом и концовкой в Latex файле.
+     Это полноценный Latex код. Его нужно применять с файлами из макета:
+     https://github.com/Harrix/Harrix-Document-Template-LaTeX
+     */
+    return getLatexBegin() + LatexAboutParameters + getLatexEnd();
+}
+//--------------------------------------------------------------------------
+
+QString DataOfHarrixOptimizationTesting::getLatexAnalysis()
+{
+    /*
+     Получение текста переменной LatexAnalysis - отображение первоначального анализа данных.
+     Помните, что это не полноценный Latex код.Его нужно применять внутри файла из макета:
+     https://github.com/Harrix/Harrix-Document-Template-LaTeX
+     */
+    return LatexAnalysis;
+}
+//--------------------------------------------------------------------------
+
+QString DataOfHarrixOptimizationTesting::getFullLatexAnalysis()
+{
+    /*
+     Получение текста переменной LatexAnalysis - отображение данных первоначального анализа данных.
+     Это полноценный Latex код. Его нужно применять с файлами из макета:
+     https://github.com/Harrix/Harrix-Document-Template-LaTeX
+     */
+    return getLatexBegin() + LatexAnalysis + getLatexEnd();
+}
+//--------------------------------------------------------------------------
+
+QString DataOfHarrixOptimizationTesting::getLatexBegin()
+{
+    /*
+     Внутренная функция. Возвращает начало для полноценного Latex файла.
+     */
+    QString VMHL_Result;
+    VMHL_Result+="\\documentclass[a4paper,12pt]{report}\n\n";
+    VMHL_Result+="\\input{packages} %Подключаем модуль пакетов\n";
+    VMHL_Result+="\\input{styles} %Подключаем модуль стилей\n\n";
+    VMHL_Result+="\\begin{document}\n\n";
+    VMHL_Result+="\\input{names} %Подключаем модуль перемиенования некоторых команд\n\n";
 
     return VMHL_Result;
 }
-//---------------------------------------------------------------------------
-QString HQt_DrawLine (double Left, double Right, double h, double (*Function)(double), QString TitleChart, QString NameVectorX, QString NameVectorY, QString NameLine, bool ShowLine, bool ShowPoints, bool ShowArea, bool ShowSpecPoints, bool RedLine)
+//--------------------------------------------------------------------------
+
+QString DataOfHarrixOptimizationTesting::getLatexEnd()
 {
     /*
-    Функция возвращает строку с HTML кодом отрисовки линии по функции Function. Для добавление в html файл.
+     Внутренная функция. Возвращает концовку для полноценного Latex файла.
+     */
+    return "\n\n\\end{document}";
+}
+//--------------------------------------------------------------------------
+
+QString DataOfHarrixOptimizationTesting::getAuthor()
+{
+    /*
+     Получение текста переменной XML_Author - Автор документа
+     */
+    return XML_Author;
+}
+//--------------------------------------------------------------------------
+
+QString DataOfHarrixOptimizationTesting::getDate()
+{
+    /*
+     Получение текста переменной  XML_Date - Дата создания документа
+     */
+    return XML_Date;
+}
+//--------------------------------------------------------------------------
+
+QString DataOfHarrixOptimizationTesting::getNameAlgorithm()
+{
+    /*
+     Получение текста переменной  XML_Name_Algorithm - Название алгоритма оптимизации
+     */
+    return XML_Name_Algorithm;
+}
+//--------------------------------------------------------------------------
+
+QString DataOfHarrixOptimizationTesting::getFullNameAlgorithm()
+{
+    /*
+     Получение текста переменной  XML_Full_Name_Algorithm - Полное название алгоритма оптимизации
+     */
+    return XML_Full_Name_Algorithm;
+}
+//--------------------------------------------------------------------------
+
+QString DataOfHarrixOptimizationTesting::getNameTestFunction()
+{
+    /*
+     Получение текста переменной  XML_Name_Test_Function - Название тестовой функции
+     */
+    return XML_Name_Test_Function;
+}
+//--------------------------------------------------------------------------
+
+QString DataOfHarrixOptimizationTesting::getFullNameTestFunction()
+{
+    /*
+     Получение текста переменной  XML_Full_Name_Test_Function - Полное название тестовой функции
+     */
+    return XML_Full_Name_Test_Function;
+}
+//--------------------------------------------------------------------------
+
+int DataOfHarrixOptimizationTesting::getDimensionTestFunction()
+{
+    /*
+     Получение текста переменной  XML_DimensionTestFunction - Размерность тестовой задачи
+     */
+    return XML_DimensionTestFunction;
+}
+//--------------------------------------------------------------------------
+
+int DataOfHarrixOptimizationTesting::getNumberOfMeasuring()
+{
+    /*
+     Получение текста переменной  XML_Number_Of_Measuring - Размерность тестовой задачи (длина хромосомы решения)
+     */
+    return XML_Number_Of_Measuring;
+}
+//--------------------------------------------------------------------------
+
+int DataOfHarrixOptimizationTesting::getNumberOfRuns()
+{
+    /*
+     Получение текста переменной  XML_Number_Of_Runs - Количество прогонов по которому деляется усреднение для эксперимента
+     */
+    return XML_Number_Of_Runs;
+}
+//--------------------------------------------------------------------------
+
+int DataOfHarrixOptimizationTesting::getMaxCountOfFitness()
+{
+    /*
+     Получение текста переменной  Max_Count_Of_Fitness - Максимальное допустимое число вычислений целевой функции для алгоритма
+     */
+    return XML_Max_Count_Of_Fitness;
+}
+//--------------------------------------------------------------------------
+
+int DataOfHarrixOptimizationTesting::getNumberOfParameters()
+{
+    /*
+     Получение текста переменной  XML_Number_Of_Parameters - Количество проверяемых параметров алгоритма оптимизации
+     */
+    if (Zero_Number_Of_Parameters) return 0;
+    return XML_Number_Of_Parameters;
+}
+//--------------------------------------------------------------------------
+
+int DataOfHarrixOptimizationTesting::getNumberOfExperiments()
+{
+    /*
+     Получение текста переменной  XML_Number_Of_Experiments - Количество комбинаций вариантов настроек
+     */
+    return XML_Number_Of_Experiments;
+}
+//--------------------------------------------------------------------------
+
+bool DataOfHarrixOptimizationTesting::getCheckAllCombinations()
+{
+    /*
+     Получение текста переменной  XML_All_Combinations - Все ли комбинации вариантов настроек просмотрены: 0 bли 1
+     */
+    return bool(XML_All_Combinations);
+}
+//--------------------------------------------------------------------------
+
+double DataOfHarrixOptimizationTesting::getErrorEx(int Number_Of_Experiment, int Number_Of_Measuring)
+{
+    /*
+    Получение значения ошибки Ex.
     Входные параметры:
-     Left - левая граница области;
-     Right - правая граница области;
-     h - шаг, с которым надо рисовать график;
-     Function - указатель на вычисляемую функцию;
-     TitleChart - заголовок графика;
-     NameVectorX - название оси Ox;
-     NameVectorY - название оси Oy;
-     NameLine - название первого графика (для легенды);
-     ShowLine - показывать ли линию;
-     ShowPoints - показывать ли точки;
-     ShowArea - показывать ли закрашенную область под кривой;
-     ShowSpecPoints - показывать ли специальные точки;
-     RedLine - рисовать ли красную линию, или синюю.
+     Number_Of_Experiment - номер комбинации вариантов настроек;
+     Number_Of_Measuring - номер измерения варианта настроек.
     Возвращаемое значение:
-     Строка с HTML кодом.
-    */
-    QString VMHL_Result;
+     Значения ошибки Ex.
+     */
+    if (Number_Of_Experiment<0) Number_Of_Experiment=0;
+    if (Number_Of_Experiment>XML_Number_Of_Experiments-1) Number_Of_Experiment=XML_Number_Of_Experiments-1;
 
-    int N=(Right-Left)/h;
-    double *dataX=new double [N];
-    double *dataY=new double [N];
+    if (Number_Of_Measuring<0) Number_Of_Measuring=0;
+    if (Number_Of_Measuring>XML_Number_Of_Measuring-1) Number_Of_Measuring=XML_Number_Of_Measuring-1;
 
-    double x=Left;
-    for (int i=0;i<N;i++)
+    return MatrixOfEx[Number_Of_Experiment][Number_Of_Measuring];
+}
+//--------------------------------------------------------------------------
+
+double DataOfHarrixOptimizationTesting::getErrorEy(int Number_Of_Experiment, int Number_Of_Measuring)
+{
+    /*
+    Получение значения ошибки Ey.
+    Входные параметры:
+     Number_Of_Experiment - номер комбинации вариантов настроек;
+     Number_Of_Measuring - номер измерения варианта настроек.
+    Возвращаемое значение:
+     Значения ошибки Ey.
+     */
+    if (Number_Of_Experiment<0) Number_Of_Experiment=0;
+    if (Number_Of_Experiment>XML_Number_Of_Experiments-1) Number_Of_Experiment=XML_Number_Of_Experiments-1;
+
+    if (Number_Of_Measuring<0) Number_Of_Measuring=0;
+    if (Number_Of_Measuring>XML_Number_Of_Measuring-1) Number_Of_Measuring=XML_Number_Of_Measuring-1;
+
+    return MatrixOfEy[Number_Of_Experiment][Number_Of_Measuring];
+}
+//--------------------------------------------------------------------------
+
+double DataOfHarrixOptimizationTesting::getErrorR(int Number_Of_Experiment, int Number_Of_Measuring)
+{
+    /*
+    Получение значения надежности R.
+    Входные параметры:
+     Number_Of_Experiment - номер комбинации вариантов настроек;
+     Number_Of_Measuring - номер измерения варианта настроек.
+    Возвращаемое значение:
+     Значения надежности R.
+     */
+    if (Number_Of_Experiment<0) Number_Of_Experiment=0;
+    if (Number_Of_Experiment>XML_Number_Of_Experiments-1) Number_Of_Experiment=XML_Number_Of_Experiments-1;
+
+    if (Number_Of_Measuring<0) Number_Of_Measuring=0;
+    if (Number_Of_Measuring>XML_Number_Of_Measuring-1) Number_Of_Measuring=XML_Number_Of_Measuring-1;
+
+    return MatrixOfR[Number_Of_Experiment][Number_Of_Measuring];
+}
+//--------------------------------------------------------------------------
+
+double DataOfHarrixOptimizationTesting::getMeanEx(int Number_Of_Experiment)
+{
+    /*
+    Получение среднего значения ошибки Ex по измерениям для настройки (сколько точек было по столько и усредняем).
+    Входные параметры:
+     Number_Of_Experiment - номер комбинации вариантов настроек.
+    Возвращаемое значение:
+     Значения среднего значения Ex.
+     */
+    if (Number_Of_Experiment<0) Number_Of_Experiment=0;
+    if (Number_Of_Experiment>XML_Number_Of_Experiments-1) Number_Of_Experiment=XML_Number_Of_Experiments-1;
+
+    return MeanOfEx[Number_Of_Experiment];
+}
+//--------------------------------------------------------------------------
+
+double DataOfHarrixOptimizationTesting::getMeanEy(int Number_Of_Experiment)
+{
+    /*
+    Получение среднего значения ошибки Ey по измерениям для настройки (сколько точек было по столько и усредняем).
+    Входные параметры:
+     Number_Of_Experiment - номер комбинации вариантов настроек.
+    Возвращаемое значение:
+     Значения среднего значения Ey.
+     */
+    if (Number_Of_Experiment<0) Number_Of_Experiment=0;
+    if (Number_Of_Experiment>XML_Number_Of_Experiments-1) Number_Of_Experiment=XML_Number_Of_Experiments-1;
+
+    return MeanOfEy[Number_Of_Experiment];
+}
+//--------------------------------------------------------------------------
+
+double DataOfHarrixOptimizationTesting::getMeanR(int Number_Of_Experiment)
+{
+    /*
+    Получение среднего значения надежности R по измерениям для настройки (сколько точек было по столько и усредняем).
+    Входные параметры:
+     Number_Of_Experiment - номер комбинации вариантов настроек.
+    Возвращаемое значение:
+     Значения среднего значения Ey.
+     */
+    if (Number_Of_Experiment<0) Number_Of_Experiment=0;
+    if (Number_Of_Experiment>XML_Number_Of_Experiments-1) Number_Of_Experiment=XML_Number_Of_Experiments-1;
+
+    return MeanOfR[Number_Of_Experiment];
+}
+//--------------------------------------------------------------------------
+
+double DataOfHarrixOptimizationTesting::getVarianceOfEx(int Number_Of_Experiment)
+{
+    /*
+    Получение дисперсии значения ошибки Ex по измерениям для настройки (сколько точек было по столько и усредняем).
+    Входные параметры:
+     Number_Of_Experiment - номер комбинации вариантов настроек.
+    Возвращаемое значение:
+     Значения дисперсии значения Ex.
+     */
+    if (Number_Of_Experiment<0) Number_Of_Experiment=0;
+    if (Number_Of_Experiment>XML_Number_Of_Experiments-1) Number_Of_Experiment=XML_Number_Of_Experiments-1;
+
+    return VarianceOfEx[Number_Of_Experiment];
+}
+//--------------------------------------------------------------------------
+
+double DataOfHarrixOptimizationTesting::getVarianceOfEy(int Number_Of_Experiment)
+{
+    /*
+    Получение дисперсии значения ошибки Ey по измерениям для настройки (сколько точек было по столько и усредняем).
+    Входные параметры:
+     Number_Of_Experiment - номер комбинации вариантов настроек.
+    Возвращаемое значение:
+     Значения дисперсии значения Ey.
+     */
+    if (Number_Of_Experiment<0) Number_Of_Experiment=0;
+    if (Number_Of_Experiment>XML_Number_Of_Experiments-1) Number_Of_Experiment=XML_Number_Of_Experiments-1;
+
+    return VarianceOfEy[Number_Of_Experiment];
+}
+//--------------------------------------------------------------------------
+
+double DataOfHarrixOptimizationTesting::getVarianceOfR(int Number_Of_Experiment)
+{
+    /*
+    Получение дисперсии значения надежности R по измерениям для настройки (сколько точек было по столько и усредняем).
+    Входные параметры:
+     Number_Of_Experiment - номер комбинации вариантов настроек.
+    Возвращаемое значение:
+     Значения дисперсии значения надежности R.
+     */
+    if (Number_Of_Experiment<0) Number_Of_Experiment=0;
+    if (Number_Of_Experiment>XML_Number_Of_Experiments-1) Number_Of_Experiment=XML_Number_Of_Experiments-1;
+
+    return VarianceOfR[Number_Of_Experiment];
+}
+//--------------------------------------------------------------------------
+
+bool DataOfHarrixOptimizationTesting::getSuccessReading()
+{
+    /*
+    Получение значения переменной SuccessReading о удачности или неудачности прочитывания файла.
+     */
+    return SuccessReading;
+}
+//--------------------------------------------------------------------------
+
+int DataOfHarrixOptimizationTesting::getParameter(int Number_Of_Experiment, int Number_Of_Parameter)
+{
+    /*
+    Получение значения параметра настройки какой-то.
+    Входные параметры:
+     Number_Of_Experiment - номер комбинации вариантов настроек;
+     Number_Of_Parameter - номер параметра.
+    Возвращаемое значение:
+     Значения параметра в виде числа (соответствие находим в ListOfParameterOptions).
+     */
+    if (Number_Of_Experiment<0) Number_Of_Experiment=0;
+    if (Number_Of_Experiment>XML_Number_Of_Experiments-1) Number_Of_Experiment=XML_Number_Of_Experiments-1;
+
+    if (Number_Of_Parameter<0) Number_Of_Parameter=0;
+    if (Number_Of_Parameter>XML_Number_Of_Parameters-1) Number_Of_Parameter=XML_Number_Of_Parameters-1;
+
+    return MatrixOfParameters[Number_Of_Experiment][Number_Of_Parameter];
+}
+//--------------------------------------------------------------------------
+
+QString DataOfHarrixOptimizationTesting::getNameParameter(int Number_Of_Experiment, int Number_Of_Parameter)
+{
+    /*
+    Получение значения параметра настройки какой-то в виде полного наименования.
+    Входные параметры:
+     Number_Of_Experiment - номер комбинации вариантов настроек;
+     Number_Of_Parameter - номер параметра.
+    Возвращаемое значение:
+     Значения параметра в виде наименования.
+     */
+    if (Number_Of_Experiment<0) Number_Of_Experiment=0;
+    if (Number_Of_Experiment>XML_Number_Of_Experiments-1) Number_Of_Experiment=XML_Number_Of_Experiments-1;
+
+    if (Number_Of_Parameter<0) Number_Of_Parameter=0;
+    if (Number_Of_Parameter>XML_Number_Of_Parameters-1) Number_Of_Parameter=XML_Number_Of_Parameters-1;
+
+    return MatrixOfNameParameters[Number_Of_Experiment][Number_Of_Parameter];
+}
+//--------------------------------------------------------------------------
+
+QString DataOfHarrixOptimizationTesting::getNameOption(int Number_Of_Parameter)
+{
+    /*
+    Получение имени параметра алгоритма по его номеру.
+    Входные параметры:
+     Number_Of_Parameter - номер параметра.
+    Возвращаемое значение:
+     Значения параметра в виде наименования.
+     */
+    if (Number_Of_Parameter<0) Number_Of_Parameter=0;
+    if (Number_Of_Parameter>XML_Number_Of_Parameters-1) Number_Of_Parameter=XML_Number_Of_Parameters-1;
+
+    return NamesOfParameters[Number_Of_Parameter];
+}
+//--------------------------------------------------------------------------
+
+int DataOfHarrixOptimizationTesting::getNumberOfOption(QString NameOption)
+{
+    /*
+    Получение номера параметра алгоритма по его имени.
+    Входные параметры:
+     NameOption - имя параметра.
+    Возвращаемое значение:
+     Значения параметра в виде номера (если не найдено, то возвращается -1.
+     */
+    int VMHL_Result=-1;
+
+    VMHL_Result = HQt_SearchQStringInQStringList (NamesOfParameters, NameOption);
+
+    return VMHL_Result;
+}
+//--------------------------------------------------------------------------
+
+QString DataOfHarrixOptimizationTesting::getFormat()
+{
+    /*
+    Получение переменной XML_Format, то есть возвращает название формата документа.
+    Входные параметры:
+     Отсутствует.
+    Возвращаемое значение:
+     Если документ без ошибок в описании формата, то всегда должно возвращаться "Harrix Optimization Testing".
+     */
+
+    return XML_Format;
+}
+//--------------------------------------------------------------------------
+
+QString DataOfHarrixOptimizationTesting::getVersion()
+{
+    /*
+    Получение переменной XML_Version, то есть возвращает версию формата документа.
+    Входные параметры:
+     Отсутствует.
+    Возвращаемое значение:
+     Если документ без ошибок в описании формата, то всегда должно возвращаться "1.0".
+     */
+
+    return XML_Version;
+}
+//--------------------------------------------------------------------------
+
+QString DataOfHarrixOptimizationTesting::getLink()
+{
+    /*
+    Получение переменной XML_Link, то есть возвращает ссылку на описание формата файла.
+    Входные параметры:
+     Отсутствует.
+    Возвращаемое значение:
+     Если документ без ошибок в описании формата, то всегда должно возвращаться "https://github.com/Harrix/HarrixFileFormats".
+     */
+
+    return XML_Link;
+}
+//--------------------------------------------------------------------------
+
+void DataOfHarrixOptimizationTesting::makingLatexTableR()
+{
+    /*
+    Создает текст LaTeX для отображения сырых данных по надежности в виде полной таблицы.
+    Входные параметры:
+     Отсутствуют.
+    Возвращаемое значение:
+     Отсутствует. Значение возвращается в переменную LatexTableR, которую можно вызвать getLatexTableR
+     */
+    //////////////////Сырые данные по R ///////////
+    LatexTableR+="\\subsection {Надёжность $R$}\n\n";
+    LatexTableR+="Третьим критерием, по которому происходит сравнение алгоритмов оптимизации является надёжность $R$. ";
+    LatexTableR+="Конкретные формулы, по которым происходило подсчитывание критерия в виде ошибки по значениям целевой функции вы можете найти на сайте в описании конкретной тестовой функции: \n";
+    LatexTableR+="\\href{https://github.com/Harrix/HarrixTestFunctions}{https://github.com/Harrix/HarrixTestFunctions}.";
+    LatexTableR+="\\begin{center}\n";
+    LatexTableR+="{\\renewcommand{\\arraystretch}{1.5}\n";
+    LatexTableR+="\\footnotesize\\begin{longtable}[H]{|m{0.03\\linewidth}|m{2in}|m{0.2\\linewidth}|m{0.18\\linewidth}|m{0.18\\linewidth}|}\n";
+    LatexTableR+="\\caption{Значения надёжности $R$ "+NameForHead+"}\n";
+    LatexTableR+="\\label{"+Un+":"+HQt_StringToLabelForLaTeX(XML_Name_Algorithm)+":TableR}\n";
+    LatexTableR+="\\tabularnewline\\hline\n";
+    LatexTableR+="\\centering \\textbf{№} & \\centering \\textbf{Настройки алгоритма}    & \\centering \\textbf{Значения ошибки $R$} & \\centering \\textbf{Среднее значение} & \\centering \\textbf{Дисперсия}  \\centering \\tabularnewline \\hline \\endhead\n";
+    LatexTableR+="\\hline \\multicolumn{5}{|r|}{{Продолжение на следующей странице...}} \\\\ \\hline \\endfoot\n";
+    LatexTableR+="\\endlastfoot";
+
+    for (int i=0;i<XML_Number_Of_Experiments;i++)
     {
-        dataX[i]=x;
-        dataY[i]=Function(x);
+        Cell1.clear();
+        Cell2.clear();
+        Cell3.clear();
+        Cell4.clear();
+        Cell5.clear();
+        //получим номер
+        Cell1=QString::number(i+1);
+        Cell1="\\centering "+Cell1;
 
-        x+=h;
+        //получим значения параметров алгоритма
+        Cell2="\\specialcelltwoin{";
+
+        for (int j=0;j<XML_Number_Of_Parameters;j++)
+        {
+            if (MatrixOfNameParameters[i][j]=="NULL")
+                Cell2+="Отсутствует \\\\ ";
+            else
+                if (!HQt_IsNumeric(MatrixOfNameParameters[i][j]))
+                    if (MatrixOfNameParameters[i][j].length()>=5)
+                        Cell2+=MatrixOfNameParameters[i][j] +" \\\\ ";
+                    else
+                        Cell2+=NamesOfParameters[j] + " = " + MatrixOfNameParameters[i][j] +" \\\\ ";
+                else
+                    Cell2+=NamesOfParameters[j] + " = " + MatrixOfNameParameters[i][j] +" \\\\ ";
+        }
+
+        Cell2+="}";
+        Cell2="\\centering "+Cell2;
+
+        //получим значения критерий
+        Cell3="\\specialcell{";
+
+        for (int j=0;j<XML_Number_Of_Measuring;j++)
+        {
+            Cell3+=QString::number(MatrixOfR[i][j])+" \\\\ ";
+        }
+
+        Cell3+="}";
+
+        Cell3="\\centering "+Cell3;
+
+        //получим средние значения критерия
+        Cell4=QString::number(MeanOfR[i]);
+
+        Cell4="\\centering "+Cell4;
+
+        //получим значения дисперсии
+        Cell5=QString::number(VarianceOfR[i]);
+
+        Cell5="\\centering "+Cell5;
+
+        LatexTableR+=Cell1+" & "+Cell2+" & "+Cell3+" & "+Cell4+" & "+Cell5+"\\tabularnewline \\hline\n";
     }
 
-    VMHL_Result += THQt_ShowChartOfLine (dataX,dataY,N,TitleChart,NameVectorX,NameVectorY,NameLine,ShowLine,ShowPoints,ShowArea,ShowSpecPoints,RedLine);
+    LatexTableR+="\\end{longtable}\n";
+    LatexTableR+="}\n";
+    LatexTableR+="\\end{center}\n\n";
 
-    delete []dataX;
-    delete []dataY;
-
-    return VMHL_Result;
 }
-//---------------------------------------------------------------------------
-QString HQt_DrawLine (double Left, double Right, double h, double (*Function)(double), QString TitleChart, QString NameVectorX, QString NameVectorY, bool ShowLine, bool ShowPoints, bool ShowArea, bool ShowSpecPoints, bool RedLine)
+//--------------------------------------------------------------------------
+
+void DataOfHarrixOptimizationTesting::makingLatexTableEy()
 {
     /*
-    Функция возвращает строку с HTML кодом отрисовки линии по функции Function. Для добавление в html файл.
-    Отличается от основной функцией отсутствием параметра NameLine(название графика (для легенды)).
+    Создает текст LaTeX для отображения сырых данных ошибки по значениям целевой функции в виде полной таблицы.
     Входные параметры:
-     Left - левая граница области;
-     Right - правая граница области;
-     h - шаг, с которым надо рисовать график;
-     Function - указатель на вычисляемую функцию;
-     TitleChart - заголовок графика;
-     NameVectorX - название оси Ox;
-     NameVectorY - название оси Oy;
-     ShowLine - показывать ли линию;
-     ShowPoints - показывать ли точки;
-     ShowArea - показывать ли закрашенную область под кривой;
-     ShowSpecPoints - показывать ли специальные точки;
-     RedLine - рисовать ли красную линию, или синюю.
+     Отсутствуют.
     Возвращаемое значение:
-     Строка с HTML кодом.
-    */
-    QString VMHL_Result;
+     Отсутствует. Значение возвращается в переменную LatexTableEy, которую можно вызвать getLatexTableEy
+     */
+    //////////////////Сырые данные по Ey ///////////
+    LatexTableEy+="\\subsection {Ошибка по значениям целевой функции $E_y$}\n\n";
+    LatexTableEy+="Другим критерием, по которому происходит сравнение алгоритмов оптимизации является ошибка по значениям целевой функции $E_y$. ";
+    LatexTableEy+="Конкретные формулы, по которым происходило подсчитывание критерия в виде ошибки по значениям целевой функции вы можете найти на сайте в описании конкретной тестовой функции: \n";
+    LatexTableEy+="\\href{https://github.com/Harrix/HarrixTestFunctions}{https://github.com/Harrix/HarrixTestFunctions}.";
+    LatexTableEy+="\\begin{center}\n";
+    LatexTableEy+="{\\renewcommand{\\arraystretch}{1.5}\n";
+    LatexTableEy+="\\footnotesize\\begin{longtable}[H]{|m{0.03\\linewidth}|m{2in}|m{0.2\\linewidth}|m{0.18\\linewidth}|m{0.18\\linewidth}|}\n";
+    LatexTableEy+="\\caption{Значения ошибки по значениям целевой функции $E_y$ "+NameForHead+"}\n";
+    LatexTableEy+="\\label{"+Un+":"+HQt_StringToLabelForLaTeX(XML_Name_Algorithm)+":TableEy}\n";
+    LatexTableEy+="\\tabularnewline\\hline\n";
+    LatexTableEy+="\\centering \\textbf{№} & \\centering \\textbf{Настройки алгоритма}    & \\centering \\textbf{Значения ошибки $E_y$} & \\centering \\textbf{Среднее значение} & \\centering \\textbf{Дисперсия}  \\centering \\tabularnewline \\hline \\endhead\n";
+    LatexTableEy+="\\hline \\multicolumn{5}{|r|}{{Продолжение на следующей странице...}} \\\\ \\hline \\endfoot\n";
+    LatexTableEy+="\\endlastfoot";
 
-    VMHL_Result += HQt_DrawLine (Left, Right, h, Function, TitleChart, NameVectorX, NameVectorY, "", ShowLine, ShowPoints, ShowArea, ShowSpecPoints, RedLine);
-
-    return VMHL_Result;
-}
-//---------------------------------------------------------------------------
-QString HQt_DrawLine (double Left, double Right, double h, double (*Function)(double), QString TitleChart, QString NameVectorX, QString NameVectorY, QString NameLine)
-{
-    /*
-    Функция возвращает строку с HTML кодом отрисовки линии по функции Function. Для добавление в html файл.
-    Отличается от основной функцией отсутствием булевских параметров в конце - все по умолчанию делается.
-    Входные параметры:
-     Left - левая граница области;
-     Right - правая граница области;
-     h - шаг, с которым надо рисовать график;
-     Function - указатель на вычисляемую функцию;
-     TitleChart - заголовок графика;
-     NameVectorX - название оси Ox;
-     NameVectorY - название оси Oy;
-     ShowLine - показывать ли линию;
-     ShowPoints - показывать ли точки;
-     ShowArea - показывать ли закрашенную область под кривой;
-     ShowSpecPoints - показывать ли специальные точки;
-     RedLine - рисовать ли красную линию, или синюю.
-    Возвращаемое значение:
-     Строка с HTML кодом.
-    */
-    QString VMHL_Result;
-
-    VMHL_Result += HQt_DrawLine (Left, Right, h, Function, TitleChart, NameVectorX, NameVectorY, NameLine, true, false, false, true, true);
-
-    return VMHL_Result;
-}
-//---------------------------------------------------------------------------
-QString HQt_DrawLine (double Left, double Right, double h, double (*Function)(double))
-{
-    /*
-    Функция возвращает строку с HTML кодом отрисовки линии по функции Function. Для добавление в html файл.
-    Отличается от основной функцией отсутствием булевских параметров в конце и названий осей и графиков - для быстрого отображения графика без лишних телодвижений.
-    Входные параметры:
-     Left - левая граница области;
-     Right - правая граница области;
-     h - шаг, с которым надо рисовать график;
-     Function - указатель на вычисляемую функцию;
-     TitleChart - заголовок графика;
-     NameVectorX - название оси Ox;
-     NameVectorY - название оси Oy;
-     ShowLine - показывать ли линию;
-     ShowPoints - показывать ли точки;
-     ShowArea - показывать ли закрашенную область под кривой;
-     ShowSpecPoints - показывать ли специальные точки;
-     RedLine - рисовать ли красную линию, или синюю.
-    Возвращаемое значение:
-     Строка с HTML кодом.
-    */
-    QString VMHL_Result;
-
-    VMHL_Result += HQt_DrawLine (Left, Right, h, Function, "", "x", "y", true, false, false, true, true);
-
-    return VMHL_Result;
-}
-//---------------------------------------------------------------------------
-
-QString THQt_ShowVector (QStringList VMHL_Vector, QString TitleVector, QString NameVector)
-{
-    /*
-    Функция возвращает строку с выводом некоторого списка строк VMHL_Vector с HTML кодами. Для добавление в html файл.
-    Входные параметры:
-     VMHL_Vector - указатель на список строк QStringList;
-     VMHL_N - количество элементов вектора;
-     TitleVector - заголовок выводимого вектора;
-     NameVector - обозначение вектора.
-    Возвращаемое значение:
-     Строка с HTML кодами с выводимым вектором.
-    */
-    QString VMHL_Result;
-
-    VMHL_Result+="<p><b>"+TitleVector+":</b>";
-
-    VMHL_Result+="<table>\n";
-    VMHL_Result+="<tr>\n";
-
-    VMHL_Result+="<td class=\"middle\">\n";
-    VMHL_Result+="<font class=\"overline\">";
-    VMHL_Result+=NameVector;
-    VMHL_Result+="</font> = \n";
-    VMHL_Result+="</td>\n";
-
-    VMHL_Result+="<td>\n";
-    VMHL_Result+="<table class=\"matrixbrak\">\n";
-    VMHL_Result+="<tr>\n";
-    VMHL_Result+="<td class=\"lbrak\">&nbsp;</td>\n";
-
-    VMHL_Result+="<td>\n";
-    VMHL_Result+="<table class=\"matrix\">\n";
-
-    for (int i=0;i<VMHL_Vector.count();i++)
+    for (int i=0;i<XML_Number_Of_Experiments;i++)
     {
-        VMHL_Result+="<tr>\n";
-        QString B=VMHL_Vector.at(i);
-        if (B!=B.trimmed()) B="→|"+B+"|←";
-        B=B.replace(" ","&nbsp;");
-        VMHL_Result+="<td class=\"number\">"+B+"</td>\n";
+        Cell1.clear();
+        Cell2.clear();
+        Cell3.clear();
+        Cell4.clear();
+        Cell5.clear();
+        //получим номер
+        Cell1=QString::number(i+1);
+        Cell1="\\centering "+Cell1;
 
-        VMHL_Result+="</tr>\n";
+        //получим значения параметров алгоритма
+        Cell2="\\specialcelltwoin{";
+
+        for (int j=0;j<XML_Number_Of_Parameters;j++)
+        {
+            if (MatrixOfNameParameters[i][j]=="NULL")
+                Cell2+="Отсутствует \\\\ ";
+            else
+                if (!HQt_IsNumeric(MatrixOfNameParameters[i][j]))
+                    if (MatrixOfNameParameters[i][j].length()>=5)
+                        Cell2+=MatrixOfNameParameters[i][j] +" \\\\ ";
+                    else
+                        Cell2+=NamesOfParameters[j] + " = " + MatrixOfNameParameters[i][j] +" \\\\ ";
+                else
+                    Cell2+=NamesOfParameters[j] + " = " + MatrixOfNameParameters[i][j] +" \\\\ ";
+        }
+
+        Cell2+="}";
+        Cell2="\\centering "+Cell2;
+
+        //получим значения критерий
+        Cell3="\\specialcell{";
+
+        for (int j=0;j<XML_Number_Of_Measuring;j++)
+        {
+            Cell3+=QString::number(MatrixOfEy[i][j])+" \\\\ ";
+        }
+
+        Cell3+="}";
+
+        Cell3="\\centering "+Cell3;
+
+        //получим средние значения критерия
+        Cell4=QString::number(MeanOfEy[i]);
+
+        Cell4="\\centering "+Cell4;
+
+        //получим значения дисперсии
+        Cell5=QString::number(VarianceOfEy[i]);
+
+        Cell5="\\centering "+Cell5;
+
+        LatexTableEy+=Cell1+" & "+Cell2+" & "+Cell3+" & "+Cell4+" & "+Cell5+"\\tabularnewline \\hline\n";
     }
 
-    VMHL_Result+="</table>\n";
-    VMHL_Result+="</td>\n";
-    VMHL_Result+="<td class=\"rbrak\">&nbsp;</td>\n";
-    VMHL_Result+="</tr>\n";
-    VMHL_Result+="</table>\n";
-    VMHL_Result+="</td>\n";
-
-    VMHL_Result+="</tr>\n";
-    VMHL_Result+="</table></p>\n";
-
-    return VMHL_Result;
+    LatexTableEy+="\\end{longtable}\n";
+    LatexTableEy+="}\n";
+    LatexTableEy+="\\end{center}\n\n";
 }
-//---------------------------------------------------------------------------
+//--------------------------------------------------------------------------
 
-QString THQt_ShowVector (QStringList VMHL_Vector, QString NameVector)
+void DataOfHarrixOptimizationTesting::makingLatexTableEx()
 {
     /*
-    Функция возвращает строку с выводом некоторого списка строк VMHL_Vector с HTML кодами. Для добавление в html файл.
+    Создает текст LaTeX для отображения сырых данных ошибки по входным параметрам в виде полной таблицы.
     Входные параметры:
-     VMHL_Vector - указатель на список строк QStringList;
-     VMHL_N - количество элементов вектора;
-     NameVector - обозначение вектора.
+     Отсутствуют.
     Возвращаемое значение:
-     Строка с HTML кодами с выводимым вектором.
-    */
-    QString VMHL_Result;
+     Отсутствует. Значение возвращается в переменную LatexTableEx, которую можно вызвать getLatexTableEx
+     */
+    //////////////////Сырые данные по Ex ///////////
+    LatexTableEx+="\\subsection {Ошибка по входным параметрам $E_x$}\n\n";
+    LatexTableEx+="Одним из критериев, по которому происходит сравнение алгоритмов оптимизации является ошибка по входным параметрам $E_x$. ";
+    LatexTableEx+="В результате проделанных экспериментов были получены следующие данные, представленные ниже в таблице. ";
+    LatexTableEx+="\\href{https://github.com/Harrix/HarrixTestFunctions}{https://github.com/Harrix/HarrixTestFunctions}.";
+    LatexTableEx+="\\begin{center}\n";
+    LatexTableEx+="{\\renewcommand{\\arraystretch}{1.5}\n";
+    LatexTableEx+="\\footnotesize\\begin{longtable}[H]{|m{0.03\\linewidth}|m{2in}|m{0.2\\linewidth}|m{0.18\\linewidth}|m{0.18\\linewidth}|}\n";
+    LatexTableEx+="\\caption{Значения ошибки по выходным параметрам $E_x$ "+NameForHead+"}\n";
+    LatexTableEx+="\\label{"+Un+":"+HQt_StringToLabelForLaTeX(XML_Name_Algorithm)+":TableEx}\n";
+    LatexTableEx+="\\tabularnewline\\hline\n";
+    LatexTableEx+="\\centering \\textbf{№} & \\centering \\textbf{Настройки алгоритма}    & \\centering \\textbf{Значения ошибки $E_x$} & \\centering \\textbf{Среднее значение} & \\centering \\textbf{Дисперсия}  \\centering \\tabularnewline \\hline \\endhead\n";
+    LatexTableEx+="\\hline \\multicolumn{5}{|r|}{{Продолжение на следующей странице...}} \\\\ \\hline \\endfoot\n";
+    LatexTableEx+="\\endlastfoot";
 
-    VMHL_Result+="<p><table>\n";
-    VMHL_Result+="<tr>\n";
-
-    VMHL_Result+="<td class=\"middle\">\n";
-    VMHL_Result+="<font class=\"overline\">";
-    VMHL_Result+=NameVector;
-    VMHL_Result+="</font> = \n";
-    VMHL_Result+="</td>\n";
-
-    VMHL_Result+="<td>\n";
-    VMHL_Result+="<table class=\"matrixbrak\">\n";
-    VMHL_Result+="<tr>\n";
-    VMHL_Result+="<td class=\"lbrak\">&nbsp;</td>\n";
-
-    VMHL_Result+="<td>\n";
-    VMHL_Result+="<table class=\"matrix\">\n";
-
-    for (int i=0;i<VMHL_Vector.count();i++)
+    for (int i=0;i<XML_Number_Of_Experiments;i++)
     {
-        VMHL_Result+="<tr>\n";
-        QString B=VMHL_Vector.at(i);
-        if (B!=B.trimmed()) B="→|"+B+"|←";
-        B=B.replace(" ","&nbsp;");
-        VMHL_Result+="<td class=\"number\">"+B+"</td>\n";
+        Cell1.clear();
+        Cell2.clear();
+        Cell3.clear();
+        Cell4.clear();
+        Cell5.clear();
+        //получим номер
+        Cell1=QString::number(i+1);
+        Cell1="\\centering "+Cell1;
 
-        VMHL_Result+="</tr>\n";
+        //получим значения параметров алгоритма
+        Cell2="\\specialcelltwoin{";
+
+        for (int j=0;j<XML_Number_Of_Parameters;j++)
+        {
+            if (MatrixOfNameParameters[i][j]=="NULL")
+                Cell2+="Отсутствует \\\\ ";
+            else
+                if (!HQt_IsNumeric(MatrixOfNameParameters[i][j]))
+                    if (MatrixOfNameParameters[i][j].length()>=5)
+                        Cell2+=MatrixOfNameParameters[i][j] +" \\\\ ";
+                    else
+                        Cell2+=NamesOfParameters[j] + " = " + MatrixOfNameParameters[i][j] +" \\\\ ";
+                else
+                    Cell2+=NamesOfParameters[j] + " = " + MatrixOfNameParameters[i][j] +" \\\\ ";
+        }
+
+        Cell2+="}";
+        Cell2="\\centering "+Cell2;
+
+        //получим значения критерий
+        Cell3="\\specialcell{";
+
+        for (int j=0;j<XML_Number_Of_Measuring;j++)
+        {
+            Cell3+=QString::number(MatrixOfEx[i][j])+" \\\\ ";
+        }
+
+        Cell3+="}";
+
+        Cell3="\\centering "+Cell3;
+
+        //получим средние значения критерия
+        Cell4=QString::number(MeanOfEx[i]);
+
+        Cell4="\\centering "+Cell4;
+
+        //получим значения дисперсии
+        Cell5=QString::number(VarianceOfEx[i]);
+
+        Cell5="\\centering "+Cell5;
+
+        LatexTableEx+=Cell1+" & "+Cell2+" & "+Cell3+" & "+Cell4+" & "+Cell5+"\\tabularnewline \\hline\n";
     }
 
-    VMHL_Result+="</table>\n";
-    VMHL_Result+="</td>\n";
-    VMHL_Result+="<td class=\"rbrak\">&nbsp;</td>\n";
-    VMHL_Result+="</tr>\n";
-    VMHL_Result+="</table>\n";
-    VMHL_Result+="</td>\n";
-
-    VMHL_Result+="</tr>\n";
-    VMHL_Result+="</table></p>\n";
-
-    return VMHL_Result;
+    LatexTableEx+="\\end{longtable}\n";
+    LatexTableEx+="}\n";
+    LatexTableEx+="\\end{center}\n\n";
 }
-//---------------------------------------------------------------------------
+//--------------------------------------------------------------------------
 
-QString THQt_ShowVector (QStringList VMHL_Vector)
+void DataOfHarrixOptimizationTesting::makingLatexInfo()
 {
     /*
-    Функция возвращает строку с выводом некоторого списка строк VMHL_Vector с HTML кодами. Для добавление в html файл.
+    Создает текст LaTeX для отображения информации о исследовании.
     Входные параметры:
-     VMHL_Vector - указатель на список строк QStringList;
-     VMHL_N - количество элементов вектора.
+     Отсутствуют.
     Возвращаемое значение:
-     Строка с HTML кодами с выводимым вектором.
-    */
-    QString VMHL_Result;
+     Отсутствует. Значение возвращается в переменную LatexTableEx, которую можно вызвать getLatexInfo
+     */
+    LatexInfo+="\\section{Исследование эффективности "+NameForHead+"}\\label{"+Un+":"+HQt_StringToLabelForLaTeX(XML_Name_Algorithm)+":Name_Algorithm}\n\n";
+    LatexInfo+="В данной работе, автором проведено исследование алгоритма <<"+HQt_StringForLaTeX(XML_Full_Name_Algorithm)+">>. Ниже приведена информация об этом исследовании.\n\n";
+    LatexInfo+="\\subsection {Информация об исследовании}\n\n";
+    LatexInfo+="\\begin{tabularwide}\n";
+    LatexInfo+="\\textbf{Автор исследования}: & "+HQt_StringForLaTeX(XML_Author)+". \\\\ \n";
+    if (XML_Email!="NULL")
+    LatexInfo+="\\textbf{Дата создания исследования}: & "+HQt_StringForLaTeX(XML_Date)+". \\\\ \n";
+    LatexInfo+="\\textbf{Дата создания исследования}: & "+HQt_StringForLaTeX(XML_Date)+". \\\\ \n";
+    LatexInfo+="\\textbf{Идентификатор алгоритма}: & "+HQt_StringForLaTeX(XML_Name_Algorithm)+". \\\\ \n";
+    LatexInfo+="\\textbf{Полное название алгоритма}: & "+HQt_StringForLaTeX(XML_Full_Name_Algorithm)+". \\\\ \n";
+    LatexInfo+="\\textbf{Идентификатор исследуемой тестовой функции}: & "+HQt_StringForLaTeX(XML_Name_Test_Function)+". \\\\ \n";
+    LatexInfo+="\\textbf{Полное название тестовой функции}: & "+HQt_StringForLaTeX(XML_Full_Name_Test_Function)+". \\\\ \n";
+    LatexInfo+="\\end{tabularwide}\n\n";
+    LatexInfo+="\\begin{tabularwide08}\n";
+    LatexInfo+="\\textbf{Размерность тестовой функции:} & "+QString::number(XML_DimensionTestFunction)+" \\\\ \n";
+    LatexInfo+="\\textbf{Количество измерений для каждого варианта настроек алгоритма}: & "+QString::number(XML_Number_Of_Measuring)+" \\\\ \n";
+    LatexInfo+="\\textbf{Количество запусков алгоритма в каждом из экспериментов}: & "+QString::number(XML_Number_Of_Runs)+" \\\\ \n";
+    LatexInfo+="\\textbf{Максимальное допустимое число вычислений целевой функции}: & "+QString::number(XML_Max_Count_Of_Fitness)+" \\\\ \n";
 
-    VMHL_Result+="<p><table>\n";
-    VMHL_Result+="<tr>\n";
-
-    VMHL_Result+="<td class=\"middle\">\n";
-    VMHL_Result+="<font class=\"overline\">";
-    VMHL_Result+="x";
-    VMHL_Result+="</font> = \n";
-    VMHL_Result+="</td>\n";
-
-    VMHL_Result+="<td>\n";
-    VMHL_Result+="<table class=\"matrixbrak\">\n";
-    VMHL_Result+="<tr>\n";
-    VMHL_Result+="<td class=\"lbrak\">&nbsp;</td>\n";
-
-    VMHL_Result+="<td>\n";
-    VMHL_Result+="<table class=\"matrix\">\n";
-
-    for (int i=0;i<VMHL_Vector.count();i++)
+    if ((XML_Number_Of_Parameters==1)&&(NamesOfParameters.at(0)=="NULL"))
     {
-        VMHL_Result+="<tr>\n";
-        QString B=VMHL_Vector.at(i);
-        if (B!=B.trimmed()) B="→|"+B+"|←";
-        B=B.replace(" ","&nbsp;");
-
-        VMHL_Result+="<td class=\"number\">"+B+"</td>\n";
-
-        VMHL_Result+="</tr>\n";
+        LatexInfo+="\\textbf{Количество проверяемых параметров алгоритма оптимизации}: & Отсутствуют \\\\ \n";
+    }
+    else
+    {
+        LatexInfo+="\\textbf{Количество проверяемых параметров алгоритма оптимизации}: & "+QString::number(XML_Number_Of_Parameters)+" \\\\ \n";
     }
 
-    VMHL_Result+="</table>\n";
-    VMHL_Result+="</td>\n";
-    VMHL_Result+="<td class=\"rbrak\">&nbsp;</td>\n";
-    VMHL_Result+="</tr>\n";
-    VMHL_Result+="</table>\n";
-    VMHL_Result+="</td>\n";
-
-    VMHL_Result+="</tr>\n";
-    VMHL_Result+="</table></p>\n";
-
-    return VMHL_Result;
+    LatexInfo+="\\textbf{Количество комбинаций вариантов настроек}: & "+QString::number(XML_Number_Of_Experiments)+" \\\\ \n";
+    LatexInfo+="\\textbf{Общий объем максимального числа вычислений целевой функции во всем исследовании}: & "+QString::number(XML_Number_Of_Experiments*XML_Max_Count_Of_Fitness*XML_Number_Of_Measuring*XML_Number_Of_Runs)+" \\\\ \n";
+    LatexInfo+="\\end{tabularwide08}\n\n";
+    LatexInfo+="Информацию о исследуемой функции можно найти по адресу:\n\n";
+    LatexInfo+="\\href{https://github.com/Harrix/HarrixTestFunctions}{https://github.com/Harrix/HarrixTestFunctions}\n\n";
+    LatexInfo+="Информацию о исследуемом алгоритме оптимизации можно найти по адресу:\n\n";
+    LatexInfo+="\\href{https://github.com/Harrix/HarrixOptimizationAlgorithms}{https://github.com/Harrix/HarrixOptimizationAlgorithms}\n\n";
 }
-//---------------------------------------------------------------------------
+//--------------------------------------------------------------------------
 
-QString THQt_ShowMatrix (QStringList *VMHL_Matrix, int VMHL_N, QString TitleMatrix, QString NameMatrix)
+void DataOfHarrixOptimizationTesting::makingLatexAboutParameters()
 {
     /*
-    Функция возвращает строку с выводом некоторой матрицы VMHL_Matrix с HTML кодами. Для добавление в html файл.
-    В качестве матрицы выступает массив QStringList, где количество QStringList - это количество строк. Каждый
-    QStringList - это одна строка.
+    Создает текст LaTeX для отображения данных о обнаруженных параметрах алгоритма и какие они бывают.
     Входные параметры:
-     VMHL_Matrix - указатель на выводимую матрицу;
-     VMHL_N - количество строк в матрице;
-     TitleMatrix - заголовок выводимой матрицы;
-     NameMatrix - обозначение матрицы.
+     Отсутствуют.
+    Возвращаемое значение:
+     Отсутствует. Значение возвращается в переменную LatexTableEx, которую можно вызвать getLatexAboutParameters
+     */
+    LatexAboutParameters+="\\subsection {Параметры алгоритма оптимизации}\n\n";
+    if ((XML_Number_Of_Parameters==1)&&(NamesOfParameters.at(0)=="NULL"))
+    {
+        LatexAboutParameters+="В данном исследуемом алгоритме оптимизации нет настраеваемых параметров. Поэтому в таблице ниже приведены даные только одного эксперимента.";
+    }
+    else
+    {
+        LatexAboutParameters+="Исследуемый алгоритм оптимизации проверялся по эффективности по некоторому конечному множеству возможных настроек алгоритма. ";
+        LatexAboutParameters+="Как написано выше, всего возможных параметров алгоритма было "+QString::number(XML_Number_Of_Parameters)+" штук. ";
+        LatexAboutParameters+="В формуле \\ref{"+Un+":"+HQt_StringToLabelForLaTeX(XML_Name_Algorithm)+":Parameters} показано множество проверяемых параметров алгоритма.\n\n";
+        LatexAboutParameters+="\\begin{equation}\n";
+        LatexAboutParameters+="\\label{"+Un+":"+HQt_StringToLabelForLaTeX(XML_Name_Algorithm)+":Parameters}\n";
+        LatexAboutParameters+="Parameters = \\left( \\begin{array}{c} ";
+        if (HQt_MaxCountOfQStringList(NamesOfParameters)>57)
+            Parbox="\\parbox{\\dimexpr \\linewidth-3in}";
+        else
+            Parbox="";
+        for (int i=0;i<NamesOfParameters.count();i++)
+        {
+            LatexAboutParameters+=Parbox+"{\\centering\\textit{"+HQt_StringForLaTeX(NamesOfParameters.at(i))+"}} ";
+            if (i!=NamesOfParameters.count()-1) LatexAboutParameters+="\\\\ ";
+        }
+        LatexAboutParameters+="\\end{array}\\right). ";
+        LatexAboutParameters+="\\end{equation}\n\n";
+        LatexAboutParameters+="Теперь рассмотрим, какие значения может принимать каждый из параметров.";
+
+        for (int j=0;j<XML_Number_Of_Parameters;j++)
+        {
+            LatexAboutParameters+="\\begin{equation}\n";
+            LatexAboutParameters+="\\label{"+Un+":"+HQt_StringToLabelForLaTeX(XML_Name_Algorithm)+":parameter_"+QString::number(j+1)+"}\n";
+            LatexAboutParameters+="Parameters^{"+QString::number(j+1)+"} \\in \\left\\lbrace  \\begin{array}{c} ";
+            if (HQt_MaxCountOfQStringList(ListOfParameterOptions[j])>57)
+                Parbox="\\parbox{\\dimexpr \\linewidth-3in}";
+            else
+                Parbox="";
+            for (int i=0;i<ListOfParameterOptions[j].count();i++)
+            {
+                LatexAboutParameters+=Parbox+"{\\centering\\textit{"+HQt_StringForLaTeX(ListOfParameterOptions[j].at(i))+"}} ";
+                if (i!=ListOfParameterOptions[j].count()-1) LatexAboutParameters+="\\\\ ";
+            }
+            LatexAboutParameters+="\\end{array}\\right\\rbrace . ";
+            LatexAboutParameters+="\\end{equation}\n\n";
+        }
+    }
+}
+//--------------------------------------------------------------------------
+void DataOfHarrixOptimizationTesting::makingHtmlReport()
+{
+    /*
+    Создает текст Html для отображения отчета о считывании XML файла.
+    Входные параметры:
+     Отсутствуют.
+    Возвращаемое значение:
+     Отсутствует. Значение возвращается в переменную HtmlReport, которую можно вызвать getHtmlReport
+     */
+    HtmlReport+=HQt_ShowHr();
+    HtmlReport+=HQt_ShowH1("Данные о файле");
+    HtmlReport+=HQt_ShowSimpleText("<b>Автор документа:</b> "+XML_Author+".");
+    HtmlReport+=HQt_ShowSimpleText("<b>Дата создания документа:</b> "+XML_Date+".");
+    HtmlReport+=HQt_ShowHr();
+    HtmlReport+=HQt_ShowH1("Данные о собранных данных");
+    HtmlReport+=HQt_ShowSimpleText("<b>Обозначение алгоритма:</b> "+XML_Name_Algorithm+".");
+    HtmlReport+=HQt_ShowSimpleText("<b>Полное название алгоритма:</b> "+XML_Full_Name_Algorithm+".");
+    HtmlReport+=HQt_ShowSimpleText("<b>Название тестовой функции:</b> "+XML_Name_Test_Function+".");
+    HtmlReport+=HQt_ShowSimpleText("<b>Полное название тестовой функции:</b> "+XML_Full_Name_Test_Function+".");
+    HtmlReport+=HQt_ShowSimpleText("<b>Размерность задачи оптимизации:</b> "+QString::number(XML_DimensionTestFunction)+".");
+    HtmlReport+=HQt_ShowSimpleText("<b>Количество измерений для каждого варианта настроек алгоритма:</b> "+QString::number(XML_Number_Of_Measuring)+".");
+    HtmlReport+=HQt_ShowSimpleText("<b>Количество запусков алгоритма в каждом из экспериментов:</b> "+QString::number(XML_Number_Of_Runs)+".");
+    HtmlReport+=HQt_ShowSimpleText("<b>Максимальное допустимое число вычислений целевой функции:</b> "+QString::number(XML_Max_Count_Of_Fitness)+".");
+    HtmlReport+=HQt_ShowSimpleText("<b>Количество проверяемых параметров алгоритма оптимизации:</b> "+QString::number(getNumberOfParameters())+".");
+    HtmlReport+=HQt_ShowSimpleText("<b>Количество комбинаций вариантов настроек:</b> "+QString::number(XML_Number_Of_Experiments)+".");
+    HtmlReport+=HQt_ShowHr();
+    HtmlReport+=HQt_ShowH1("Собранные данные");
+    HtmlReport+=THQt_ShowMatrix(MatrixOfEx,XML_Number_Of_Experiments,XML_Number_Of_Measuring,"Ошибки по входным параметрам","Ex");
+    HtmlReport+=THQt_ShowMatrix(MatrixOfEy,XML_Number_Of_Experiments,XML_Number_Of_Measuring,"Ошибки по значениям целевой функции","Ey");
+    HtmlReport+=THQt_ShowMatrix(MatrixOfR, XML_Number_Of_Experiments,XML_Number_Of_Measuring,"Надежности","R");
+    if (!Zero_Number_Of_Parameters)
+    {
+        HtmlReport+=THQt_ShowVector(NamesOfParameters,"Вектора названий параметров алгоримта","NamesOfParameters");
+        for (int j=0;j<XML_Number_Of_Parameters;j++)
+            HtmlReport+=THQt_ShowVector(ListOfParameterOptions[j],(NamesOfParameters).at(j) + "(возможные принимаемые значения)","ParameterOptions");
+        HtmlReport+=THQt_ShowMatrix(MatrixOfParameters,XML_Number_Of_Experiments,XML_Number_Of_Parameters,"Матрица параметров по номерам","MatrixOfParameters");
+    }
+    //HtmlReport+=THQt_ShowMatrix(MatrixOfNameParameters,XML_Number_Of_Experiments,"Матрица параметров по именам","MatrixOfParameters");
+}
+//--------------------------------------------------------------------------
+
+void DataOfHarrixOptimizationTesting::readXmlLeafTag()
+{
+    /*
+    Считывает и проверяет тэг, который должен являться "листом", то есть самым глубоким. Внутренная функция.
+    Учитывает все "листовые" тэги кроме тэгов данных.
+    Входные параметры:
+     Отсутствуют.
     Возвращаемое значение:
      Отсутствует.
-    */
-    QString VMHL_Result;
+     */
+    bool FindTag=false;
+    NameOfElement.clear();
 
-    VMHL_Result+="<p><b>"+TitleMatrix+":</b>";
-
-    VMHL_Result+="<table>\n";
-    VMHL_Result+="<tr>\n";
-
-    VMHL_Result+="<td class=\"middle\">\n";
-    VMHL_Result+="<font class=\"overline\">";
-    VMHL_Result+=NameMatrix;
-    VMHL_Result+="</font> = \n";
-    VMHL_Result+="</td>\n";
-
-    VMHL_Result+="<td>\n";
-    VMHL_Result+="<table class=\"matrixbrak\">\n";
-    VMHL_Result+="<tr>\n";
-    VMHL_Result+="<td class=\"lbrak\">&nbsp;</td>\n";
-
-    VMHL_Result+="<td>\n";
-    VMHL_Result+="<table class=\"matrix\">\n";
-
-    for (int i=0;i<VMHL_N;i++)
+    //проверка тэга number_of_parameters
+    if ((!Rxml.atEnd())&&(!Error))
     {
-        VMHL_Result+="<tr>\n";
-        for (int j=0;j<VMHL_Matrix[i].count();j++)
+        NameOfElement=Rxml.name().toString().toLower();
+        TextOfElement=Rxml.readElementText();
+        if (NameOfElement=="number_of_parameters")
         {
-            QString B=VMHL_Matrix[i].at(j);
-            if (B!=B.trimmed()) B="→|"+B+"|←";
-            B=B.replace(" ","&nbsp;");
-            VMHL_Result+="<td class=\"number\">"+B+"</td>\n";
-        }
+            XML_Number_Of_Parameters=TextOfElement.toInt();
+            if (XML_Number_Of_Parameters==0)
+            {
+                //чтобы  в дальнейших вычислениях не было путоницы, но всё равно считаем,
+                //что число параметров нулю
+                XML_Number_Of_Parameters=1;
+                Zero_Number_Of_Parameters=true;
+            }
 
-        VMHL_Result+="</tr>\n";
+            FindTag=true;
+        }
+        if (NameOfElement=="number_of_experiments")
+        {
+            XML_Number_Of_Experiments=TextOfElement.toInt();
+            FindTag=true;
+        }
+        if (NameOfElement=="max_count_of_fitness")
+        {
+            XML_Max_Count_Of_Fitness=TextOfElement.toInt();
+            FindTag=true;
+        }
+        if (NameOfElement=="number_of_runs")
+        {
+            XML_Number_Of_Runs=TextOfElement.toInt();
+            FindTag=true;
+        }
+        if (NameOfElement=="number_of_measuring")
+        {
+            XML_Number_Of_Measuring=TextOfElement.toInt();
+            FindTag=true;
+        }
+        if (NameOfElement=="dimension_test_function")
+        {
+            XML_DimensionTestFunction=TextOfElement.toInt();
+            FindTag=true;
+        }
+        if (NameOfElement=="full_name_test_function")
+        {
+            XML_Full_Name_Test_Function=TextOfElement;
+            FindTag=true;
+        }
+        if (NameOfElement=="name_test_function")
+        {
+            XML_Name_Test_Function=TextOfElement;
+            FindTag=true;
+        }
+        if (NameOfElement=="full_name_algorithm")
+        {
+            XML_Full_Name_Algorithm=TextOfElement;
+            FindTag=true;
+        }
+        if (NameOfElement=="name_algorithm")
+        {
+            XML_Name_Algorithm=TextOfElement;
+            FindTag=true;
+        }
+        if (NameOfElement=="date")
+        {
+            XML_Date=TextOfElement;
+            FindTag=true;
+        }
+        if (NameOfElement=="author")
+        {
+            XML_Author=TextOfElement;
+            FindTag=true;
+        }
+        if (NameOfElement=="email")
+        {
+            XML_Email=TextOfElement;
+            FindTag=true;
+        }
+        if (NameOfElement=="link_test_function")
+        {
+            XML_Link_Test_Function=TextOfElement;
+            FindTag=true;
+        }
+        if (NameOfElement=="link_algorithm")
+        {
+            XML_Link_Algorithm=TextOfElement;
+            FindTag=true;
+        }
+        if (NameOfElement=="format")
+        {
+            XML_Format=TextOfElement;
+            FindTag=true;
+        }
+        if (NameOfElement=="version")
+        {
+            XML_Version=TextOfElement;
+            FindTag=true;
+        }
+        if (NameOfElement=="link")
+        {
+            XML_Link=TextOfElement;
+            FindTag=true;
+        }
+        if (NameOfElement=="all_combinations")
+        {
+            XML_All_Combinations=TextOfElement.toInt();
+            FindTag=true;
+        }
     }
 
-    VMHL_Result+="</table>\n";
-    VMHL_Result+="</td>\n";
-    VMHL_Result+="<td class=\"rbrak\">&nbsp;</td>\n";
-    VMHL_Result+="</tr>\n";
-    VMHL_Result+="</table>\n";
-    VMHL_Result+="</td>\n";
-
-    VMHL_Result+="</tr>\n";
-    VMHL_Result+="</table></p>\n";
-
-    return VMHL_Result;
+    if (FindTag)
+    {
+        Rxml.readNext();while((!Rxml.isStartElement())&&(!Rxml.atEnd())){Rxml.readNext();}
+    }
+    else
+    {
+        if (NameOfElement.length()>0)
+            HtmlMessageOfError+=HQt_ShowAlert("Попался какой-то непонятный тэг "+NameOfElement+". Программа в непонятках! О_о");
+        else
+            HtmlMessageOfError+=HQt_ShowAlert("Ждали-ждали тэг, а тут вообще ничего нет.");
+        Error=true;
+    }
 }
-//---------------------------------------------------------------------------
+//--------------------------------------------------------------------------
 
-QString THQt_ShowMatrix (QStringList *VMHL_Matrix, int VMHL_N, QString NameMatrix)
+void DataOfHarrixOptimizationTesting::checkXmlLeafTags()
 {
     /*
-    Функция возвращает строку с выводом некоторой матрицы VMHL_Matrix с HTML кодами. Для добавление в html файл.
-    В качестве матрицы выступает массив QStringList, где количество QStringList - это количество строк. Каждый
-    QStringList - это одна строка.
+    Проверяет наличие тэгов и правильное их выполнение. Внутренная функция.
+    Учитывает все "листовые" тэги кроме тэгов данных.
     Входные параметры:
-     VMHL_Matrix - указатель на выводимую матрицу;
-     VMHL_N - количество строк в матрице;
-     NameMatrix - обозначение матрицы.
+     Отсутствуют.
     Возвращаемое значение:
      Отсутствует.
-    */
-    QString VMHL_Result;
-
-    VMHL_Result+="<p><table>\n";
-    VMHL_Result+="<tr>\n";
-
-    VMHL_Result+="<td class=\"middle\">\n";
-    VMHL_Result+="<font class=\"overline\">";
-    VMHL_Result+=NameMatrix;
-    VMHL_Result+="</font> = \n";
-    VMHL_Result+="</td>\n";
-
-    VMHL_Result+="<td>\n";
-    VMHL_Result+="<table class=\"matrixbrak\">\n";
-    VMHL_Result+="<tr>\n";
-    VMHL_Result+="<td class=\"lbrak\">&nbsp;</td>\n";
-
-    VMHL_Result+="<td>\n";
-    VMHL_Result+="<table class=\"matrix\">\n";
-
-    for (int i=0;i<VMHL_N;i++)
+     */
+    if (XML_Format!="Harrix Optimization Testing")
     {
-        VMHL_Result+="<tr>\n";
-        for (int j=0;j<VMHL_Matrix[i].count();j++)
-        {
-            QString B=VMHL_Matrix[i].at(j);
-            if (B!=B.trimmed()) B="→|"+B+"|←";
-            B=B.replace(" ","&nbsp;");
-            VMHL_Result+="<td class=\"number\">"+B+"</td>\n";
-        }
-
-        VMHL_Result+="</tr>\n";
+        HtmlMessageOfError+=HQt_ShowAlert("Неправильный формат данных. Это не Harrix Optimization Testing.");
+        Error=true;
+    }
+    if (XML_Link!="https://github.com/Harrix/HarrixFileFormats")
+    {
+        HtmlMessageOfError+=HQt_ShowAlert("Неправильный сайт в описании. Должен быть https://github.com/Harrix/HarrixFileFormats.");
+        Error=true;
+    }
+    if (XML_Version!="1.0")
+    {
+        HtmlMessageOfError+=HQt_ShowAlert("Неправильная версия формата Harrix Optimization Testing. Данная функция обрабатывает версию 1.0.");
+        Error=true;
+    }
+    if (XML_Number_Of_Parameters==-1)
+    {
+        HtmlMessageOfError+=HQt_ShowAlert("Нет тэга number_of_parameters.");
+        Error=true;
+    }
+    if (XML_Number_Of_Parameters==0)
+    {
+        HtmlMessageOfError+=HQt_ShowAlert("Ошибка в тэге number_of_parameters. Минимальное число параметров 1. Подробности в описании формата данных на https://github.com/Harrix/HarrixFileFormats.");
+        Error=true;
+    }
+    if ((XML_Number_Of_Parameters<0)&&(XML_Number_Of_Parameters!=-1))
+    {
+        HtmlMessageOfError+=HQt_ShowAlert("Ошибка в тэге number_of_parameters. Число параметров не может быть отрицательным.");
+        Error=true;
+    }
+    if (XML_Number_Of_Experiments==-1)
+    {
+        HtmlMessageOfError+=HQt_ShowAlert("Нет тэга number_of_experiments.");
+        Error=true;
+    }
+    if (XML_Number_Of_Experiments==0)
+    {
+        HtmlMessageOfError+=HQt_ShowAlert("Ошибка в тэге number_of_experiments. Минимальное число экспериментов 1.");
+        Error=true;
+    }
+    if ((XML_Number_Of_Experiments<0)&&(XML_Number_Of_Experiments!=-1))
+    {
+        HtmlMessageOfError+=HQt_ShowAlert("Ошибка в тэге number_of_experiments. Число параметров не может быть отрицательным.");
+        Error=true;
+    }
+    if (XML_Max_Count_Of_Fitness==-1)
+    {
+        HtmlMessageOfError+=HQt_ShowAlert("Нет тэга max_count_of_fitness.");
+        Error=true;
+    }
+    if (XML_Max_Count_Of_Fitness==0)
+    {
+        HtmlMessageOfError+=HQt_ShowAlert("Ошибка в тэге max_count_of_fitness. Минимальное число вычислений целевой функции 1, и то это очень мало.");
+        Error=true;
+    }
+    if ((XML_Max_Count_Of_Fitness<0)&&(XML_Max_Count_Of_Fitness!=-1))
+    {
+        HtmlMessageOfError+=HQt_ShowAlert("Ошибка в тэге max_count_of_fitness. Число вычислений целевой функции не может быть отрицательным.");
+        Error=true;
+    }
+    if (XML_Number_Of_Runs==-1)
+    {
+        HtmlMessageOfError+=HQt_ShowAlert("Нет тэга number_of_runs.");
+        Error=true;
+    }
+    if (XML_Number_Of_Runs==0)
+    {
+        HtmlMessageOfError+=HQt_ShowAlert("Ошибка в тэге number_of_runs. Минимальное число запусков алгоритма для усреднения 1 (желательно от 10).");
+        Error=true;
+    }
+    if ((XML_Number_Of_Runs<0)&&(XML_Number_Of_Runs!=-1))
+    {
+        HtmlMessageOfError+=HQt_ShowAlert("Ошибка в тэге number_of_runs. Число запусков алгоритма для усреднения не может быть отрицательным.");
+        Error=true;
+    }
+    if (XML_Number_Of_Measuring==-1)
+    {
+        HtmlMessageOfError+=HQt_ShowAlert("Нет тэга number_of_measuring.");
+        Error=true;
+    }
+    if (XML_Number_Of_Measuring==0)
+    {
+        HtmlMessageOfError+=HQt_ShowAlert("Ошибка в тэге number_of_measuring. Минимальное число измерений для настройки алгоритма 1 (желательно от 10).");
+        Error=true;
+    }
+    if ((XML_Number_Of_Measuring<0)&&(XML_Number_Of_Measuring!=-1))
+    {
+        HtmlMessageOfError+=HQt_ShowAlert("Ошибка в тэге number_of_measuring. Число измерений для настройки алгоритма не может быть отрицательным.");
+        Error=true;
+    }
+    if (XML_DimensionTestFunction==-1)
+    {
+        HtmlMessageOfError+=HQt_ShowAlert("Нет тэга о размерности тестовой задачи dimension_test_function.");
+        Error=true;
+    }
+    if (XML_DimensionTestFunction==0)
+    {
+        HtmlMessageOfError+=HQt_ShowAlert("Ошибка в тэге dimension_test_function. Минимальная длина хромосомы 1 (желательно от 10).");
+        Error=true;
+    }
+    if ((XML_DimensionTestFunction<0)&&(XML_DimensionTestFunction!=-1))
+    {
+        HtmlMessageOfError+=HQt_ShowAlert("Ошибка в тэге dimension_test_function. Длина хромосомы не может быть отрицательной.");
+        Error=true;
+    }
+    if (XML_Full_Name_Test_Function.isEmpty())
+    {
+        HtmlMessageOfError+=HQt_ShowAlert("Нет тэга о полном названии тестовой функции full_name_test_function.");
+        Error=true;
+    }
+    if (XML_Name_Test_Function.isEmpty())
+    {
+        HtmlMessageOfError+=HQt_ShowAlert("Нет тэга о названии тестовой функции name_test_function.");
+        Error=true;
+    }
+    if (XML_Full_Name_Algorithm.isEmpty())
+    {
+        HtmlMessageOfError+=HQt_ShowAlert("Нет тэга о полном названии алгоритма full_name_algorithm.");
+        Error=true;
+    }
+    if (XML_Name_Algorithm.isEmpty())
+    {
+        HtmlMessageOfError+=HQt_ShowAlert("Нет тэга об названии алгоритма name_algorithm.");
+        Error=true;
+    }
+    if (XML_Date.isEmpty())
+    {
+        HtmlMessageOfError+=HQt_ShowAlert("Нет тэга о дате создания документа date.");
+        Error=true;
+    }
+    if (XML_Author.isEmpty())
+    {
+        HtmlMessageOfError+=HQt_ShowAlert("Нет тэга об авторе author");
+        Error=true;
+    }
+    if (XML_Email.isEmpty())
+    {
+        HtmlMessageOfError+=HQt_ShowAlert("Нет тэга об электронной почте email. Если не хотите давать свою почту, то вставьте NULL.");
+        Error=true;
+    }
+    if (XML_Link_Algorithm.isEmpty())
+    {
+        HtmlMessageOfError+=HQt_ShowAlert("Нет тэга о ссылке на описание алгоритма link_algorithm.");
+        Error=true;
+    }
+    if (XML_Link_Test_Function.isEmpty())
+    {
+        HtmlMessageOfError+=HQt_ShowAlert("Нет тэга о ссылке на описание тестовой функции link_test_function.");
+        Error=true;
+    }
+    if (!((XML_All_Combinations==0)||(XML_All_Combinations==1)))
+    {
+        HtmlMessageOfError+=HQt_ShowAlert("Тэг all_combinations может принимать значение 0 или 1.");
+        Error=true;
     }
 
-    VMHL_Result+="</table>\n";
-    VMHL_Result+="</td>\n";
-    VMHL_Result+="<td class=\"rbrak\">&nbsp;</td>\n";
-    VMHL_Result+="</tr>\n";
-    VMHL_Result+="</table>\n";
-    VMHL_Result+="</td>\n";
-
-    VMHL_Result+="</tr>\n";
-    VMHL_Result+="</table></p>\n";
-
-    return VMHL_Result;
 }
-//---------------------------------------------------------------------------
+//--------------------------------------------------------------------------
 
-QString THQt_ShowMatrix (QStringList *VMHL_Matrix, int VMHL_N)
+void DataOfHarrixOptimizationTesting::memoryAllocation()
 {
     /*
-    Функция возвращает строку с выводом некоторой матрицы VMHL_Matrix с HTML кодами. Для добавление в html файл.
-    В качестве матрицы выступает массив QStringList, где количество QStringList - это количество строк. Каждый
-    QStringList - это одна строка.
+    Выделяет память под необходимые массивы. Внутренная функция.
     Входные параметры:
-     VMHL_Matrix - указатель на выводимую матрицу;
-     VMHL_N - количество строк в матрице.
+     Отсутствуют.
     Возвращаемое значение:
      Отсутствует.
-    */
-    QString VMHL_Result;
+     */
+    //Матрица значений ошибок Ex алгоритма оптимизации.
+    //Число строк равно числу комбинаций вариантов настроек.
+    //Число столбцов равно числу измерений для каждого варианта настроек алгоритма.
+    MatrixOfEx=new double*[XML_Number_Of_Experiments];
+    for (int i=0;i<XML_Number_Of_Experiments;i++) MatrixOfEx[i]=new double[XML_Number_Of_Measuring];
 
-    VMHL_Result+="<p><table>\n";
-    VMHL_Result+="<tr>\n";
+    //Матрица значений ошибок Ey алгоритма оптимизации.
+    //Число строк равно числу комбинаций вариантов настроек.
+    //Число столбцов равно числу измерений для каждого варианта настроек алгоритма.
+    MatrixOfEy=new double*[XML_Number_Of_Experiments];
+    for (int i=0;i<XML_Number_Of_Experiments;i++) MatrixOfEy[i]=new double[XML_Number_Of_Measuring];
 
-    VMHL_Result+="<td class=\"middle\">\n";
-    VMHL_Result+="<font class=\"overline\">";
-    VMHL_Result+="";
-    VMHL_Result+="</font> = \n";
-    VMHL_Result+="</td>\n";
+    //Матрица значений ошибок R алгоритма оптимизации.
+    //Число строк равно числу комбинаций вариантов настроек.
+    //Число столбцов равно числу измерений для каждого варианта настроек алгоритма.
+    MatrixOfR=new double*[XML_Number_Of_Experiments];
+    for (int i=0;i<XML_Number_Of_Experiments;i++) MatrixOfR[i]=new double[XML_Number_Of_Measuring];
 
-    VMHL_Result+="<td>\n";
-    VMHL_Result+="<table class=\"matrixbrak\">\n";
-    VMHL_Result+="<tr>\n";
-    VMHL_Result+="<td class=\"lbrak\">&nbsp;</td>\n";
+    //Вектор средних значений ошибок Ex алгоритма оптимизации по измерениям для каждой настройки.
+    //Число элементов равно числу комбинаций вариантов настроек.
+    MeanOfEx=new double[XML_Number_Of_Experiments];
 
-    VMHL_Result+="<td>\n";
-    VMHL_Result+="<table class=\"matrix\">\n";
+    //Вектор средних ошибок Ey алгоритма оптимизации по измерениям для каждой настройки.
+    //Число элементов равно числу комбинаций вариантов настроек.
+    MeanOfEy=new double[XML_Number_Of_Experiments];
 
-    for (int i=0;i<VMHL_N;i++)
+    //Вектор средних ошибок R алгоритма оптимизации по измерениям для каждой настройки.
+    //Число элементов равно числу комбинаций вариантов настроек.
+    MeanOfR=new double[XML_Number_Of_Experiments];
+
+    //Вектор дисперсий ошибок Ex алгоритма оптимизации по измерениям для каждой настройки.
+    //Число элементов равно числу комбинаций вариантов настроек.
+    VarianceOfEx=new double[XML_Number_Of_Experiments];
+
+    //Вектор дисперсий ошибок Ey алгоритма оптимизации по измерениям для каждой настройки.
+    //Число элементов равно числу комбинаций вариантов настроек.
+    VarianceOfEy=new double[XML_Number_Of_Experiments];
+
+    //Вектор дисперсий ошибок R алгоритма оптимизации по измерениям для каждой настройки.
+    //Число элементов равно числу комбинаций вариантов настроек.
+    VarianceOfR=new double[XML_Number_Of_Experiments];
+
+    //Матрица значений параметров для каждой комбинации вариантов настроек.
+    //Число строк равно числу комбинаций вариантов настроек.
+    //Число столбцов равно числу проверяемых параметров алгоритма оптимизации.
+    MatrixOfParameters=new int*[XML_Number_Of_Experiments];
+    for (int i=0;i<XML_Number_Of_Experiments;i++) MatrixOfParameters[i]=new int[XML_Number_Of_Parameters];
+
+    //Вектор названий вариантов параметров алгоритма оптимизации.
+    //Число элементов равно числу проверяемых параметров алгоритма оптимизации.
+    //Элементы будут заноситься по мере обнаружений новых вариантов алгоритма.
+    //Номера вариантов параметров алгоритма в конкретном списке QStringList будет совпадать
+    //с номерами из MatrixOfParameters. То есть, что записано в MatrixOfParameters в ListOfParameterOptions
+    //находится под номером соответствующим.
+    ListOfParameterOptions=new QStringList[XML_Number_Of_Parameters];
+
+    //Матрица значений параметров для каждой комбинации вариантов настроек.
+    //Элементы не в виде чисел, а в виде наименований этих параметров.
+    //Число строк равно числу комбинаций вариантов настроек.
+    //Число столбцов равно числу проверяемых параметров алгоритма оптимизации.
+    MatrixOfNameParameters=new QStringList[XML_Number_Of_Experiments];
+}
+//--------------------------------------------------------------------------
+
+void DataOfHarrixOptimizationTesting::readXmlDataTags()
+{
+    /*
+    Считывает и проверяет тэги данных. Внутренная функция.
+    Учитывает все "листовые" тэги кроме тэгов данных.
+    Входные параметры:
+     Отсутствуют.
+    Возвращаемое значение:
+     Отсутствует.
+     */
+
+    //Теперь должны пойти данные об экспериментах
+    int i=0;//номер варианта настройки алгоритма
+    bool bool_ex;
+    bool bool_ey;
+    bool bool_r;
+    bool is_number;
+    while(!Rxml.atEnd())
     {
-        VMHL_Result+="<tr>\n";
-        for (int j=0;j<VMHL_Matrix[i].count();j++)
+        if(Rxml.isStartElement())
         {
-            QString B=VMHL_Matrix[i].at(j);
-            if (B!=B.trimmed()) B="→|"+B+"|←";
-            B=B.replace(" ","&nbsp;");
-            VMHL_Result+="<td class=\"number\">"+B+"</td>\n";
+            NameOfElement=Rxml.name().toString().toLower();
+
+            if (NameOfElement=="experiment")
+            {
+                //если параметров нет, то имитируем один NULL парметр
+                if (Zero_Number_Of_Parameters)
+                {
+                    NamesOfParameters << "NULL";
+                    MatrixOfParameters[0][0]=0;
+                    MatrixOfNameParameters[0] << "NULL";
+                }
+                else
+                {
+                    for (int k=0;k<XML_Number_Of_Parameters;k++)
+                    {
+                        //считаем массив параметров алгоритма
+                        NameOfAttr="parameters_of_algorithm_"+QString::number(k+1);
+                        AttrOfElement = Rxml.attributes().value(NameOfAttr).toString();
+
+                        //считываеv названия параметров алгорима
+                        if (i==0) NamesOfParameters << HQt_TextBeforeEqualSign(AttrOfElement);
+
+                        //теперь значения параметров алгоритма
+                        ListOfParameterOptions[k] = HQt_AddUniqueQStringInQStringList (ListOfParameterOptions[k], HQt_TextAfterEqualSign(AttrOfElement));
+
+                        MatrixOfParameters[i][k]=HQt_SearchQStringInQStringList (ListOfParameterOptions[k], HQt_TextAfterEqualSign(AttrOfElement));
+                        MatrixOfNameParameters[i] << HQt_TextAfterEqualSign(AttrOfElement);
+                    }
+                }
+
+                for (int k=0;k<XML_Number_Of_Measuring;k++)
+                {
+                    Rxml.readNext();while((!Rxml.isStartElement())&&(!Rxml.atEnd())){Rxml.readNext();}
+                    NameOfElement=Rxml.name().toString().toLower();
+
+                    if (NameOfElement=="measuring")
+                    {
+                        bool_ex = false;
+                        bool_ey = false;
+                        bool_r = false;
+
+                        Rxml.readNext();while((!Rxml.isStartElement())&&(!Rxml.atEnd())){Rxml.readNext();}
+                        NameOfElement=Rxml.name().toString().toLower();
+                        TextOfElement=Rxml.readElementText();
+                        is_number=HQt_IsNumeric(TextOfElement);
+                        if (!is_number)
+                        {
+                            HtmlMessageOfError+=HQt_ShowAlert("Ошибка Ex не является числом. Вместо числа получили вот это: "+TextOfElement);
+                            Error=true;
+                        }
+
+                        if (NameOfElement=="ex")
+                        {
+                            MatrixOfEx[i][k]=HQt_QStringToNumber(TextOfElement);
+                            bool_ex=true;
+                        }
+
+                        if (NameOfElement=="ey")
+                        {
+                            MatrixOfEy[i][k]=HQt_QStringToNumber(TextOfElement);
+                            bool_ey=true;
+                        }
+
+                        if (NameOfElement=="r")
+                        {
+                            MatrixOfR[i][k]=HQt_QStringToNumber(TextOfElement);
+                            bool_r=true;
+                        }
+
+                        Rxml.readNext();while((!Rxml.isStartElement())&&(!Rxml.atEnd())){Rxml.readNext();}
+                        NameOfElement=Rxml.name().toString().toLower();
+                        TextOfElement=Rxml.readElementText();
+                        is_number=HQt_IsNumeric(TextOfElement);
+                        if (!is_number)
+                        {
+                            HtmlMessageOfError+=HQt_ShowAlert("Ошибка Ex не является числом. Вместо числа получили вот это: "+TextOfElement);
+                            Error=true;
+                        }
+
+                        if (NameOfElement=="ex")
+                        {
+                            MatrixOfEx[i][k]=HQt_QStringToNumber(TextOfElement);
+                            bool_ex=true;
+                        }
+
+                        if (NameOfElement=="ey")
+                        {
+                            MatrixOfEy[i][k]=HQt_QStringToNumber(TextOfElement);
+                            bool_ey=true;
+                        }
+
+                        if (NameOfElement=="r")
+                        {
+                            MatrixOfR[i][k]=HQt_QStringToNumber(TextOfElement);
+                            bool_r=true;
+                        }
+
+                        Rxml.readNext();while((!Rxml.isStartElement())&&(!Rxml.atEnd())){Rxml.readNext();}
+                        NameOfElement=Rxml.name().toString().toLower();
+                        TextOfElement=Rxml.readElementText();
+                        is_number=HQt_IsNumeric(TextOfElement);
+                        if (!is_number)
+                        {
+                            HtmlMessageOfError+=HQt_ShowAlert("Ошибка Ex не является числом. Вместо числа получили вот это: "+TextOfElement);
+                            Error=true;
+                        }
+
+                        if (NameOfElement=="ex")
+                        {
+                            MatrixOfEx[i][k]=HQt_QStringToNumber(TextOfElement);
+                            bool_ex=true;
+                        }
+
+                        if (NameOfElement=="ey")
+                        {
+                            MatrixOfEy[i][k]=HQt_QStringToNumber(TextOfElement);
+                            bool_ey=true;
+                        }
+
+                        if (NameOfElement=="r")
+                        {
+                            MatrixOfR[i][k]=HQt_QStringToNumber(TextOfElement);
+                            bool_r=true;
+
+                            if ((MatrixOfR[i][k]<0)||(MatrixOfR[i][k]>1))
+                            {
+                                HtmlMessageOfError+=HQt_ShowAlert("Сейчас просматривался тэг нажедности R. Надежность это величина от 0 до 1. У вас это не так.");
+                                Error=true;
+                            }
+                        }
+
+                        if (!((bool_ex)&&(bool_ey)&&(bool_r)))
+                        {
+                            HtmlMessageOfError+=HQt_ShowAlert("В тэге measuring были не все три тэга ex, ee, r (или вообще не было).");
+                            Error=true;
+                        }
+                    }
+                    else
+                    {
+                        //должен быть тэг measuring, а его нет
+                        HtmlMessageOfError+=HQt_ShowAlert("Анализатор ожидал тэга measuring. Что не так в струтуре или данных файла.");
+                        Error=true;
+                    }
+                }
+
+            }
+            else
+            {
+                //должен быть тэг experiment, а его нет
+                HtmlMessageOfError+=HQt_ShowAlert("Анализатор ожидал тэга experiment. Что не так в струтуре или данных файла.");
+                Error=true;
+            }
+
         }
 
-        VMHL_Result+="</tr>\n";
+        Rxml.readNext();while((!Rxml.isStartElement())&&(!Rxml.atEnd())){Rxml.readNext();}
+        i++;
     }
 
-    VMHL_Result+="</table>\n";
-    VMHL_Result+="</td>\n";
-    VMHL_Result+="<td class=\"rbrak\">&nbsp;</td>\n";
-    VMHL_Result+="</tr>\n";
-    VMHL_Result+="</table>\n";
-    VMHL_Result+="</td>\n";
-
-    VMHL_Result+="</tr>\n";
-    VMHL_Result+="</table></p>\n";
-
-    return VMHL_Result;
+    if (i!=XML_Number_Of_Experiments)
+    {
+        HtmlMessageOfError+=HQt_ShowAlert("Число экспериментов в тэге number_of_experiments не равно реальному числу экспериментов в xml файле.");
+        Error=true;
+    }
+//    bool CheckMatrix=TMHL_CheckForIdenticalRowsInMatrix(MatrixOfParameters,XML_Number_Of_Experiments,XML_Number_Of_Parameters);
+//    int TheoryAllOptions=1;
+//    if (!Zero_Number_Of_Parameters)
+//    {
+//        for (int j=0;j<XML_Number_Of_Parameters;j++)
+//        {
+//            TheoryAllOptions *= ListOfParameterOptions[j].count();
+//        }
+//    }
+//    Html+=THQt_ShowNumber(TheoryAllOptions);
+//    Html+=THQt_ShowNumber(CheckMatrix);
+//    if ((!CheckMatrix)&&(i==TheoryAllOptions))
+//    {
+//        //просмотрено все множество возможных вариантов
+//        AllOptions=true;
+//    }
+//    else
+//    {
+//        //имееются непроверенные комбинации настроек алгоритма
+//         AllOptions=false;
+//    }
 }
-//---------------------------------------------------------------------------
+//--------------------------------------------------------------------------
+bool DataOfHarrixOptimizationTesting::readXmlTreeTag(QString tag)
+{
+    /*
+    Считывает и проверяет тэг, который содержит внутри себя другие тэги. Внутренная функция.
+    Входные параметры:
+     tag - какой тэг мы ищем.
+    Возвращаемое значение:
+     true - текущий тэг это тот самый, что нам и нужен;
+     false - иначе.
+     */
+    bool FindTag=false;
+
+    NameOfElement.clear();
+
+    //проверка тэга number_of_parameters
+    if ((!Rxml.atEnd())&&(!Error))
+    {
+        NameOfElement=Rxml.name().toString().toLower();
+        if (NameOfElement==tag)
+        {
+            FindTag=true;
+        }
+    }
+
+    if (FindTag)
+    {
+        Rxml.readNext();while((!Rxml.isStartElement())&&(!Rxml.atEnd())){Rxml.readNext();}
+    }
+    else
+    {
+        if (NameOfElement.length()>0)
+            HtmlMessageOfError+=HQt_ShowAlert("Ожидался тэг "+tag+". Но этого не случилось, и получили этот "+NameOfElement+".");
+        else
+            HtmlMessageOfError+=HQt_ShowAlert("Ожидался тэг "+tag+". Но этого не случилось, и вообще никакого тэга не получили.");
+        Error=true;
+    }
+    return FindTag;
+}
+//--------------------------------------------------------------------------
+
+void DataOfHarrixOptimizationTesting::zeroArray()
+{
+    /*
+    Обнуляет массивы, в котрые записывается информация о данных из файла. Внутренная функция.
+    Входные параметры:
+     Отсутствуют.
+    Возвращаемое значение:
+     Отсутствует.
+     */
+    //"Обнулим" матрицы
+    TMHL_FillMatrix(MatrixOfEx, XML_Number_Of_Experiments, XML_Number_Of_Measuring, -1.);
+    TMHL_FillMatrix(MatrixOfEy, XML_Number_Of_Experiments, XML_Number_Of_Measuring, -1.);
+    TMHL_FillMatrix(MatrixOfR,  XML_Number_Of_Experiments, XML_Number_Of_Measuring, -1.);
+    TMHL_FillMatrix(MatrixOfParameters, XML_Number_Of_Experiments, XML_Number_Of_Parameters, -1);
+    TMHL_ZeroVector(MeanOfEx,XML_Number_Of_Experiments);
+    TMHL_ZeroVector(MeanOfEy,XML_Number_Of_Experiments);
+    TMHL_ZeroVector(MeanOfR ,XML_Number_Of_Experiments);
+    TMHL_ZeroVector(VarianceOfEx,XML_Number_Of_Experiments);
+    TMHL_ZeroVector(VarianceOfEy,XML_Number_Of_Experiments);
+    TMHL_ZeroVector(VarianceOfR ,XML_Number_Of_Experiments);
+    for (int k=0;k<XML_Number_Of_Parameters;k++) ListOfParameterOptions[k].clear();
+    (NamesOfParameters).clear();
+}
+//--------------------------------------------------------------------------
+
+void DataOfHarrixOptimizationTesting::makingAnalysis()
+{
+    /*
+    Выполняет анализ считанных данных. Внутренная функция.
+    Входные параметры:
+     Отсутствуют.
+    Возвращаемое значение:
+     Отсутствует.
+     */
+    MeanOfAllEx=0;
+    MeanOfAllEy=0;
+    MeanOfAllR=0;
+    VarianceOfAllEx=0;
+    VarianceOfAllEy=0;
+    VarianceOfAllR=0;
+
+    for (int i=0;i<XML_Number_Of_Experiments;i++)
+    {
+        //заполним значениями вектор средних значений критериев и дисперсий
+        for (int j=0;j<XML_Number_Of_Measuring;j++)
+        {
+            MeanOfEx[i]+=MatrixOfEx[i][j];
+            MeanOfEy[i]+=MatrixOfEy[i][j];
+            MeanOfR[i] +=MatrixOfR[i][j];
+
+            //для общих дисперсий
+            MeanOfAllEx+=MatrixOfEx[i][j];
+            MeanOfAllEy+=MatrixOfEy[i][j];
+            MeanOfAllR +=MatrixOfR[i][j];
+        }
+
+        MeanOfEx[i]/=double(XML_Number_Of_Measuring);
+        MeanOfEy[i]/=double(XML_Number_Of_Measuring);
+        MeanOfR[i] /=double(XML_Number_Of_Measuring);
+
+        VarianceOfEx[i]+=TMHL_Variance(MatrixOfEx[i],XML_Number_Of_Measuring);
+        VarianceOfEy[i]+=TMHL_Variance(MatrixOfEx[i],XML_Number_Of_Measuring);
+        VarianceOfR [i]+=TMHL_Variance(MatrixOfR [i],XML_Number_Of_Measuring);
+    }
+
+    //посчитаем общие средние значения
+    MeanOfAllEx/=double(XML_Number_Of_Measuring*XML_Number_Of_Experiments);
+    MeanOfAllEy/=double(XML_Number_Of_Measuring*XML_Number_Of_Experiments);
+    MeanOfAllR /=double(XML_Number_Of_Measuring*XML_Number_Of_Experiments);
+
+    //посчитаем дисперсии
+    for (int i=0;i<XML_Number_Of_Experiments;i++)
+        for (int j=0;j<XML_Number_Of_Measuring;j++)
+        {
+            VarianceOfAllEx+=(MatrixOfEx[i][j]-MeanOfAllEx)*(MatrixOfEx[i][j]-MeanOfAllEx);
+            VarianceOfAllEy+=(MatrixOfEy[i][j]-MeanOfAllEy)*(MatrixOfEy[i][j]-MeanOfAllEy);
+            VarianceOfAllR +=(MatrixOfR[i][j] -MeanOfAllR )*(MatrixOfR[i][j] -MeanOfAllR );
+        }
+    VarianceOfAllEx/=double(XML_Number_Of_Measuring*XML_Number_Of_Experiments-1);
+    VarianceOfAllEy/=double(XML_Number_Of_Measuring*XML_Number_Of_Experiments-1);
+    VarianceOfAllR/= double(XML_Number_Of_Measuring*XML_Number_Of_Experiments-1);
+}
+//--------------------------------------------------------------------------
+
+void DataOfHarrixOptimizationTesting::makingLatexAnalysis()
+{
+    /*
+    Создает текст LaTeX для отображения первоначального анализа данных.
+    Входные параметры:
+     Отсутствуют.
+    Возвращаемое значение:
+     Отсутствует. Значение возвращается в переменную LatexAnalysis, которую можно вызвать getLatexAnalysis
+     */
+    LatexAnalysis+="\\subsection {Первоначальный анализ данных}\n\n";
+    LatexAnalysis+="В данном разделе представлен первоначальный анализ данных исследования эффекстивности алгоритма оптимизации <<"+XML_Full_Name_Algorithm+">> на рассматриваемой тестовой функции <<"+XML_Full_Name_Test_Function+">> (размерность "+QString::number(XML_DimensionTestFunction)+"). ";
+    if (XML_Number_Of_Experiments==1)
+    {
+        //Алгоритм имеет только один эксперимент
+    }
+    else
+    {
+        if (XML_All_Combinations==true)
+        {
+            LatexAnalysis+="При данном исследовании было рассмотрено всё множество возможных настроек алгоритма. Поэтому можно сделать полный анализ работы алгоритма в рассматриваемых условиях.\n\n";
+        }
+        else
+        {
+            LatexAnalysis+="Данное исследование является частичным, так как рассмотрено не всё множество возможных настроек алгоритма. Поэтому ниже будут представлены неполные выводы, так как при нерассмотренных настройках алгоритм мог показать себя лучше или хуже.\n\n";
+        }
+
+    }
+}

@@ -21,9 +21,11 @@ const double MHL_SQRT_2=0.707106781186547524401;
 const double MHL_INFINITY=1.7E308;
 const double MHL_MINFINITY=-1.7E308;
 
-//ДЛЯ ГЕНЕРАТОРА СЛУЧАЙНЫХ ЧИСЕЛ
+//ДЛЯ ГЕНЕРАТОРОВ СЛУЧАЙНЫХ ЧИСЕЛ
+enum TypeOfRandomNumberGenerator { StandardRandomNumberGenerator, MersenneTwisterRandomNumberGenerator };//тип генератора случайных чисел: стандартный или MersenneTwister:
 void MHL_SeedRandom(void);//Инициализатор генератора случайных чисел
 double MHL_RandomNumber(void);//Генерирует вещественное случайное число из интервала (0;1)
+void MHL_SetRandomNumberGenerator(TypeOfRandomNumberGenerator T);//Переназначить генератор случайных чисел на другой
 
 //ПЕРЕМЕННЫЕ ПЕРЕЧИСЛЯЕМОГО ТИПА
 enum TypeOfTestFunction { TestFunction_Ackley, TestFunction_ParaboloidOfRevolution, TestFunction_Rastrigin, TestFunction_Rosenbrock, TestFunction_SumVector };

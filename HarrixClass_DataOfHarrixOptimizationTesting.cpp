@@ -4,9 +4,9 @@
 //https://github.com/Harrix/HarrixClass_DataOfHarrixOptimizationTesting
 //Библиотека распространяется по лицензии Apache License, Version 2.0.
 
-#include "QtHarrixLibrary.h"
-#include "QtHarrixLibraryForQWebView.h"
-#include "MathHarrixLibrary.h"
+#include "HarrixQtLibrary.h"
+#include "HarrixQtLibraryForQWebView.h"
+#include "HarrixMathLibrary.h"
 #include "HarrixClass_DataOfHarrixOptimizationTesting.h"
 
 HarrixClass_DataOfHarrixOptimizationTesting::HarrixClass_DataOfHarrixOptimizationTesting(QString filename)

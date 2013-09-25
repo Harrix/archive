@@ -15,6 +15,11 @@ https://github.com/Harrix/HarrixChart
 
 https://github.com/Harrix/HarrixFileFormats
 
+Примеры графиков
+----------------
+
+![alt text](https://github.com/Harrix/HarrixChart/images/PointsAndLine.png "Пример показа PointsAndLine.hdata")
+
 История проекта
 ---------------
 

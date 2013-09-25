@@ -24,6 +24,10 @@ https://github.com/Harrix/HarrixFileFormats
 
 ![alt text](../master/images/TwoIndependentLines.png "Пример показа TwoIndependentLines.hdata")
 
+![alt text](../master/images/SeveralLines.png "Пример показа SeveralLines.hdata")
+
+![alt text](../master/images/SeveralIndependentLines.png "Пример показа SeveralIndependentLines.hdata")
+
 История проекта
 ---------------
 

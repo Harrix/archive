@@ -1,23 +1,79 @@
 <!--Вывод графика-->
-<h2>Зависимость вероятности выбора индивида от размера турнира</h2><div id="BoxNJVZnL" class="jxgbox" style="width:600px; height:300px;"></div>
+<h2>Прозрачность озера</h2><div id="BoxDhCgUv" class="jxgbox" style="width:600px; height:300px;"></div>
 <script type="text/javascript">
-var BoardNJVZnL = JXG.JSXGraph.initBoard('BoxNJVZnL', {boundingbox: [-6.7, 0.133313, 119.4, -0.0221022], axis:false,keepaspectratio: false,showcopyright: false,showNavigation: false, zoom: {wheel: true}});
-var AxisXNJVZnL = BoardNJVZnL.create('axis', [[3, 0.00010001], [4, 0.00010001]],{withLabel: true, name: 'T, размер турнира',label: {position:'lft',offset:[10,-21]}});
-var AxisYNJVZnL = BoardNJVZnL.create('axis', [[3, 0.00010001], [3, 1.0001]],{withLabel: true, name: 'P, вероятность выбора индивида',label: { position:'lrt',offset: [20,0]}});
-var DataXNJVZnL = [3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100];
-var DataYNJVZnL = [0.111111, 0.0666667, 0.04, 0.0285714, 0.0204082, 0.015873, 0.0123457, 0.010101, 0.00826446, 0.00699301, 0.00591716, 0.00512821, 0.00444444, 0.00392157, 0.00346021, 0.00309598, 0.00277008, 0.00250627, 0.00226757, 0.00207039, 0.00189036, 0.00173913, 0.0016, 0.00148148, 0.00137174, 0.00127714, 0.00118906, 0.00111235, 0.00104058, 0.000977517, 0.000918274, 0.000865801, 0.000816327, 0.000772201, 0.00073046, 0.000693001, 0.000657462, 0.000625391, 0.000594884, 0.000567215, 0.000540833, 0.000516796, 0.000493827, 0.000472813, 0.000452694, 0.000434216, 0.000416493, 0.00040016, 0.000384468, 0.000369959, 0.000355999, 0.000343053, 0.000330579, 0.000318979, 0.000307787, 0.000297354, 0.000287274, 0.000277855, 0.000268745, 0.000260213, 0.000251953, 0.0002442, 0.000236686, 0.000229621, 0.000222767, 0.00021631, 0.00021004, 0.000204123, 0.000198373, 0.000192938, 0.000187652, 0.000182648, 0.000177778, 0.00017316, 0.000168663, 0.000164393, 0.000160231, 0.000156274, 0.000152416, 0.000148743, 0.000145159, 0.000141743, 0.000138408, 0.000135227, 0.000132118, 0.000129149, 0.000126247, 0.000123472, 0.000120758, 0.000118161, 0.00011562, 0.000113186, 0.000110803, 0.000108519, 0.000106281, 0.000104134, 0.00010203, 0.00010001];
-var ChartNJVZnL= BoardNJVZnL.createElement('chart', [DataXNJVZnL,DataYNJVZnL], {chartStyle:'line'});
-ChartNJVZnL[0].setProperty('strokeColor:#ff0000','highlightStrokeColor:#8b0909','strokeWidth:1');
-BoardNJVZnL.create('point',[3,0.00010001], {strokeColor:'#88969c',highlightStrokeColor:'#3c7693',fillColor:'white',highlightFillColor:'white',strokeWidth:'2pt',face:'o', size:1, name:'Min<sub>x</sub> = 3, Min<sub>y</sub> = 0.00010001',label:{fontsize:10}});
-BoardNJVZnL.create('point',[3,0.111111], {strokeColor:'#88969c',highlightStrokeColor:'#3c7693',fillColor:'white',highlightFillColor:'white',strokeWidth:'2pt',face:'o', size:1, name:'Max<sub>y</sub> = 0.111111',label:{fontsize:10}});
-BoardNJVZnL.create('point',[100,0.00010001], {strokeColor:'#88969c',highlightStrokeColor:'#3c7693',fillColor:'white',highlightFillColor:'white',strokeWidth:'2pt',face:'o', size:1, name:'Max<sub>x</sub> = 100',label:{fontsize:10}});
+var BoardDhCgUv = JXG.JSXGraph.initBoard('BoxDhCgUv', {boundingbox: [-3.4, 14.2, 14.8, -1.2], axis:false,keepaspectratio: false,showcopyright: false,showNavigation: false, zoom: {wheel: true}});
+var AxisXDhCgUv = BoardDhCgUv.create('axis', [[-2, 1], [-1, 1]],{withLabel: true, name: 'x, глубина озера',label: {position:'lft',offset:[10,-21]}});
+var AxisYDhCgUv = BoardDhCgUv.create('axis', [[-2, 1], [-2, 2]],{withLabel: true, name: 'k, коэффициент прозрачности',label: { position:'lrt',offset: [20,0]}});
+var DataX1DhCgUv = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+var DataY1DhCgUv = [1, 2, 5, 4, 5, 6, 7, 8, 9, 10];
+var DataX2DhCgUv = [5, 6, 7, 8, 9, 10, 11, 12];
+var DataY2DhCgUv = [12, 11, 10, 9, 8, 7, 6, 5];
+var DataX3DhCgUv = [-2, 1, 2, 7, 8, 9];
+var DataY3DhCgUv = [8, 9, 8, 7, 6, 7];
+var DataX4DhCgUv = [1.1, 1.3, 2.1, 4.2, 5.5, 7.2, 7.5];
+var DataY4DhCgUv = [8, 1, 5, 2, 4, 9, 3];
+var Chart4DhCgUv= BoardDhCgUv.createElement('chart', [DataX4DhCgUv,DataY4DhCgUv], {chartStyle:'line,point'});
+Chart4DhCgUv[0].setProperty('strokeColor:#e06c65','highlightStrokeColor:#9d2b24','strokeWidth:2');
+for(var i=0; i<7;i++) 
+    {
+    Chart4DhCgUv[1][i].setProperty({strokeColor:'#e06c65',highlightStrokeColor:'#9d2b24',fillColor:'white',highlightFillColor:'white',face:'x', size:3, strokeWidth:'2pt'});
+    }
+var Chart3DhCgUv= BoardDhCgUv.createElement('chart', [DataX3DhCgUv,DataY3DhCgUv], {chartStyle:'line,point'});
+Chart3DhCgUv[0].setProperty('strokeColor:#e7cc4c','highlightStrokeColor:#b49c28','strokeWidth:2');
+for(var i=0; i<6;i++) 
+    {
+    Chart3DhCgUv[1][i].setProperty({strokeColor:'#e7cc4c',highlightStrokeColor:'#b49c28',fillColor:'white',highlightFillColor:'white',face:'<>', size:3, strokeWidth:'2pt'});
+    }
+var Chart2DhCgUv= BoardDhCgUv.createElement('chart', [DataX2DhCgUv,DataY2DhCgUv], {chartStyle:'line,point'});
+Chart2DhCgUv[0].setProperty('strokeColor:#4ac955','highlightStrokeColor:#2b8c34','strokeWidth:2');
+for(var i=0; i<8;i++) 
+    {
+    Chart2DhCgUv[1][i].setProperty({strokeColor:'#4ac955',highlightStrokeColor:'#2b8c34',fillColor:'white',highlightFillColor:'white',face:'[]', size:2, strokeWidth:'2pt'});
+    }
+var Chart1DhCgUv= BoardDhCgUv.createElement('chart', [DataX1DhCgUv,DataY1DhCgUv], {chartStyle:'line,point'});
+Chart1DhCgUv[0].setProperty('strokeColor:#97bbcd','highlightStrokeColor:#3c7693','strokeWidth:2');
+for(var i=0; i<10;i++) 
+    {
+    Chart1DhCgUv[1][i].setProperty({strokeColor:'#97bbcd',highlightStrokeColor:'#3c7693',fillColor:'white',highlightFillColor:'white',face:'o', size:2, strokeWidth:'2pt'});
+    }
+BoardDhCgUv.create('point',[-2,1], {strokeColor:'#88969c',highlightStrokeColor:'#3c7693',fillColor:'white',highlightFillColor:'white',strokeWidth:'2pt',face:'o', size:1, name:'Min<sub>x</sub> = -2, Min<sub>y</sub> = 1',label:{fontsize:10}});
+BoardDhCgUv.create('point',[-2,12], {strokeColor:'#88969c',highlightStrokeColor:'#3c7693',fillColor:'white',highlightFillColor:'white',strokeWidth:'2pt',face:'o', size:1, name:'Max<sub>y</sub> = 12',label:{fontsize:10}});
+BoardDhCgUv.create('point',[12,1], {strokeColor:'#88969c',highlightStrokeColor:'#3c7693',fillColor:'white',highlightFillColor:'white',strokeWidth:'2pt',face:'o', size:1, name:'Max<sub>x</sub> = 12',label:{fontsize:10}});
 </script>
-<div id="BoxLegendoPXdTI" class="jxgbox" style="width:600px; height:50px;"></div>
+<div id="BoxLegendwqFSKI" class="jxgbox" style="width:600px; height:200px;"></div>
 <script type="text/javascript">
-var BoardLegendoPXdTI = JXG.JSXGraph.initBoard('BoxLegendoPXdTI', {boundingbox: [0, 2, 11.5, 0], axis:false,keepaspectratio: false,showcopyright: false,showNavigation: false, zoom: {wheel: false}});
-var DataXLegendoPXdTI = [1, 2];
-var DataYLegendoPXdTI = [1, 1];
-var ChartLegendoPXdTI= BoardLegendoPXdTI.createElement('chart', [DataXLegendoPXdTI,DataYLegendoPXdTI], {chartStyle:'line'});
-ChartLegendoPXdTI[0].setProperty('strokeColor:#ff0000','highlightStrokeColor:#8b0909','strokeWidth:1');
-TextLegendNJVZnL = BoardLegendoPXdTI.create('text',[2.2,1, "- вероятность выбора индивида от размера турнира."], {display:'internal', anchorX:'left',frozen: true, strokeColor:'#000000',highlightStrokeColor:'#000000'});
+var BoardLegendwqFSKI = JXG.JSXGraph.initBoard('BoxLegendwqFSKI', {boundingbox: [0, 5, 11.5, 0], axis:false,keepaspectratio: false,showcopyright: false,showNavigation: false, zoom: {wheel: false}});
+var DataXLegendwqFSKI = [1, 2];
+var DataY1LegendwqFSKI = [4, 4];
+var DataY2LegendwqFSKI = [3, 3];
+var DataY3LegendwqFSKI = [2, 2];
+var DataY4LegendwqFSKI = [1, 1];
+var Chart4LegendwqFSKI= BoardLegendwqFSKI.createElement('chart', [DataXLegendwqFSKI,DataY4LegendwqFSKI], {chartStyle:'line,point'});
+Chart4LegendwqFSKI[0].setProperty('strokeColor:#e06c65','highlightStrokeColor:#9d2b24','strokeWidth:2');
+for(var i=0; i<2;i++) 
+    {
+    Chart4LegendwqFSKI[1][i].setProperty({strokeColor:'#e06c65',highlightStrokeColor:'#9d2b24',fillColor:'white',highlightFillColor:'white',face:'x', size:3, strokeWidth:'2pt'});
+    }
+var Chart3LegendwqFSKI= BoardLegendwqFSKI.createElement('chart', [DataXLegendwqFSKI,DataY3LegendwqFSKI], {chartStyle:'line,point'});
+Chart3LegendwqFSKI[0].setProperty('strokeColor:#e7cc4c','highlightStrokeColor:#b49c28','strokeWidth:2');
+for(var i=0; i<2;i++) 
+    {
+    Chart3LegendwqFSKI[1][i].setProperty({strokeColor:'#e7cc4c',highlightStrokeColor:'#b49c28',fillColor:'white',highlightFillColor:'white',face:'<>', size:3, strokeWidth:'2pt'});
+    }
+var Chart2LegendwqFSKI= BoardLegendwqFSKI.createElement('chart', [DataXLegendwqFSKI,DataY2LegendwqFSKI], {chartStyle:'line,point'});
+Chart2LegendwqFSKI[0].setProperty('strokeColor:#4ac955','highlightStrokeColor:#2b8c34','strokeWidth:2');
+for(var i=0; i<2;i++) 
+    {
+    Chart2LegendwqFSKI[1][i].setProperty({strokeColor:'#4ac955',highlightStrokeColor:'#2b8c34',fillColor:'white',highlightFillColor:'white',face:'[]', size:2, strokeWidth:'2pt'});
+    }
+var Chart1LegendwqFSKI= BoardLegendwqFSKI.createElement('chart', [DataXLegendwqFSKI,DataY1LegendwqFSKI], {chartStyle:'line,point'});
+Chart1LegendwqFSKI[0].setProperty('strokeColor:#97bbcd','highlightStrokeColor:#3c7693','strokeWidth:2');
+for(var i=0; i<2;i++) 
+    {
+    Chart1LegendwqFSKI[1][i].setProperty({strokeColor:'#97bbcd',highlightStrokeColor:'#3c7693',fillColor:'white',highlightFillColor:'white',face:'o', size:2, strokeWidth:'2pt'});
+    }
+Text1LegendwqFSKI = BoardLegendwqFSKI.create('text',[2.2,4, "- Учум;"], {display:'internal', anchorX:'left',frozen: true, strokeColor:'#000000',highlightStrokeColor:'#000000'});
+Text2LegendwqFSKI = BoardLegendwqFSKI.create('text',[2.2,3, "- Круглое;"], {display:'internal', anchorX:'left',frozen: true, strokeColor:'#000000',highlightStrokeColor:'#000000'});
+Text3LegendwqFSKI = BoardLegendwqFSKI.create('text',[2.2,2, "- Большое;"], {display:'internal', anchorX:'left',frozen: true, strokeColor:'#000000',highlightStrokeColor:'#000000'});
+Text4LegendwqFSKI = BoardLegendwqFSKI.create('text',[2.2,1, "- Тус."], {display:'internal', anchorX:'left',frozen: true, strokeColor:'#000000',highlightStrokeColor:'#000000'});
 </script>

@@ -18,9 +18,9 @@ https://github.com/Harrix/HarrixFileFormats
 Примеры графиков
 ----------------
 
-![alt text](https://raw.github.com/Harrix/HarrixChart/master/images/PointsAndLine.png "Пример показа PointsAndLine.hdata")
+![alt text](../master/images/PointsAndLine.png "Пример показа PointsAndLine.hdata")
 
-![alt text](https://raw.github.com/Harrix/HarrixChart/master/images/Line_2.png "Пример показа Line_2.hdata")
+![alt text](../master/images/Line_2.png "Пример показа Line_2.hdata")
 
 ![alt text](../master/images/TwoIndependentLines.png "Пример показа TwoIndependentLines.hdata")
 

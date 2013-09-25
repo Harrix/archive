@@ -22,12 +22,12 @@ https://github.com/Harrix/HarrixFileFormats
 
 ![alt text](https://raw.github.com/Harrix/HarrixChart/master/images/Line_2.png "Пример показа Line_2.hdata")
 
-![alt text](../blob/master/TwoIndependentLines.png "Пример показа TwoIndependentLines.hdata")
+![alt text](../master/TwoIndependentLines.png "Пример показа TwoIndependentLines.hdata")
 
 История проекта
 ---------------
 
-Подробный список изменений в файле [CHANGELOG.md](../blob/master/CHANGELOG.md).
+Подробный список изменений в файле [CHANGELOG.md](../master/CHANGELOG.md).
 
 Контакты
 --------

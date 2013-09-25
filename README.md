@@ -20,6 +20,10 @@ https://github.com/Harrix/HarrixFileFormats
 
 ![alt text](https://raw.github.com/Harrix/HarrixChart/master/images/PointsAndLine.png "Пример показа PointsAndLine.hdata")
 
+![alt text](https://raw.github.com/Harrix/HarrixChart/master/images/Line_2.png "Пример показа Line_2.hdata")
+
+![alt text](https://raw.github.com/Harrix/HarrixChart/master/images/TwoIndependentLines.png "Пример показа TwoIndependentLines.hdata")
+
 История проекта
 ---------------
 

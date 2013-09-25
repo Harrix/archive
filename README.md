@@ -22,7 +22,7 @@ https://github.com/Harrix/HarrixFileFormats
 
 ![alt text](https://raw.github.com/Harrix/HarrixChart/master/images/Line_2.png "Пример показа Line_2.hdata")
 
-![alt text](../master/TwoIndependentLines.png "Пример показа TwoIndependentLines.hdata")
+![alt text](../master/images/TwoIndependentLines.png "Пример показа TwoIndependentLines.hdata")
 
 История проекта
 ---------------

@@ -13,26 +13,26 @@ https://github.com/Harrix/HarrixClass_DataOfHarrixOptimizationTesting
 
 https://github.com/Harrix/HarrixFileFormats
 
-Пример файла данного формата представлен в этом проекте как Example.xml.
+Пример файла данного формата представлен в этом проекте как [Example.xml](../master/Example.xml).
 
 Пример использования
 --------------------
 Скопируйте файлы из списка в папку с исходниками вашего проекта.
-- HarrixClass_DataOfHarrixOptimizationTesting.cpp
-- HarrixClass_DataOfHarrixOptimizationTesting.h
-- HarrixQtLibraryForQWebView.cpp
-- HarrixQtLibraryForQWebView.h
-- HarrixQtLibrary.cpp
-- HarrixQtLibrary.h
-- HarrixMathLibrary.cpp
-- HarrixMathLibrary.h
+- [HarrixClass_DataOfHarrixOptimizationTesting.cpp](../master/HarrixClass_DataOfHarrixOptimizationTesting.cpp)
+- [HarrixClass_DataOfHarrixOptimizationTesting.h](../master/HarrixClass_DataOfHarrixOptimizationTesting.h)
+- [HarrixQtLibraryForQWebView.cpp](../master/HarrixQtLibraryForQWebView.cpp)
+- [HarrixQtLibraryForQWebView.h](../master/HarrixQtLibraryForQWebView.h)
+- [HarrixQtLibrary.cpp](../master/HarrixQtLibrary.cpp)
+- [HarrixQtLibrary.h](../master/HarrixQtLibrary.h)
+- [HarrixMathLibrary.cpp](../master/HarrixMathLibrary.cpp)
+- [HarrixMathLibrary.h](../master/HarrixMathLibrary.h)
 
 А файлы из списка в папку с *.exe файлом вашего проекта.
-- папка images
-- index.html
-- jquery.js
-- jsxgraphcore.js
-- style.css
+- папка [images](../master/images)
+- [index.html](../master/index.html)
+- [jquery.js](../master/jquery.js)
+- [jsxgraphcore.js](../master/jsxgraphcore.js)
+- [style.css](../master/style.css)
 
 Добавьте  соответствующие инклуды:
 

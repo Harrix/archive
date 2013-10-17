@@ -7,7 +7,7 @@ Html страница для отображения информации в QWeb
 
 https://github.com/Harrix/HarrixHtmlForQWebView
 
-Библиотека распространяется по лицензии Apache License, Version 2.0.
+Библиотека распространяется по лицензии [Apache License, Version 2.0](../master/LICENSE.txt).
 
 Механизм работы
 ---------------

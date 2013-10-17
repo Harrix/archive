@@ -9,7 +9,7 @@ HarrixChart
 
 https://github.com/Harrix/HarrixChart
 
-Программа распространяется по лицензии Apache License, Version 2.0.
+Программа распространяется по лицензии [Apache License, Version 2.0](../master/LICENSE.txt).
 
 О формате *.hdata (Harrix Data) можно прочитать тут:
 

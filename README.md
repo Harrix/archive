@@ -7,7 +7,7 @@ HarrixQtLibraryForQWebView
 
 https://github.com/Harrix/HarrixQtLibraryForQWebView
 
-Библиотека распространяется по лицензии Apache License, Version 2.0.
+Библиотека распространяется по лицензии [Apache License, Version 2.0](../master/LICENSE.txt).
 
 Функции для получения HTML кода для вывода в QWebView
 -----------------------------------------------------

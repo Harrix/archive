@@ -14,6 +14,11 @@ https://github.com/Harrix/HarrixLaTeXSymbols
 
 Главным файлом является [**symbols.tex**](../master/symbols.tex).
 
+Скриншоты
+-------------------
+
+![alt text](../master/images/page.png "Страница данной главы")
+
 Сведения для редактирования файлов
 ----------------------------------
 

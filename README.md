@@ -24,6 +24,13 @@ https://github.com/Harrix/HarrixChart
 
 https://github.com/Harrix/HarrixClass_DataOfHarrixOptimizationTesting
 
+Сведения для редактирования файлов
+----------------------------------
+
+Для полноценной работы редактированию LaTeX документа вам потребуются программа для компиляции *.tex документов в *.pdf. Автор использует для этого связку [MiKTex](http://www.miktex.org/) и [TeXstudio](http://texstudio.sourceforge.net/). 
+
+В варианте, который использует автор, в *.tex файлах справок для отображения русских букв используется модуль pscyr. Об его установке можно прочитать (и скачать) в статье http://blog.harrix.org/?p=444.
+
 История проекта
 ---------------
 

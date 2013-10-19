@@ -233,22 +233,32 @@ https://github.com/Harrix/HarrixQtLibraryForQWebView
         QString HQt_DrawLine (double Left, double Right, double h, double (*Function)(double));  
 
 
+Скриншоты примеров вывода информации
+------------------------------------
+
+![alt text](../master/imagesforgithub/graph.png "Вывод графика")
+
+![alt text](../master/imagesforgithub/matrix.png "Вывод матриц")
+
+![alt text](../master/imagesforgithub/vectors.png "Вывод векторов")
+		
 Пример использования функция вывода в HTML файл
 -----------------------------------------------
-Режим постоянного отображения изменений осуществляется благодаря функции AJAX. Поэтому вы отображаете в QWebView файл **index.html**, а сохраняете данные в **temp.html**. Отображаемый файл **index.html** не трогаете.
+
+Режим постоянного отображения изменений осуществляется благодаря функции AJAX. Поэтому вы отображаете в QWebView файл [**index.html**](../master/index.html), а сохраняете данные в [**temp.html**](../master/temp.html). Отображаемый файл [**index.html**](../master/index.html) не трогаете.
 
 Скопируйте файлы из списка в папку с исходниками вашего проекта.
-- HarrixQtLibraryForQWebView.cpp
-- HarrixQtLibraryForQWebView.h
-- HarrixQtLibrary.cpp
-- HarrixQtLibrary.h
+- [HarrixQtLibraryForQWebView.cpp](../master/HarrixQtLibraryForQWebView.cpp)
+- [HarrixQtLibraryForQWebView.h](../master/HarrixQtLibraryForQWebView.h)
+- [HarrixQtLibrary.cpp](../master/HarrixQtLibrary.cpp)
+- [HarrixQtLibrary.h](../master/HarrixQtLibrary.h)
 
 А файлы из списка в папку с *.exe файлом вашего проекта.
-- папка images
-- index.html
-- jquery.js
-- jsxgraphcore.js
-- style.css
+- папка [images](../master/images)
+- [index.html](../master/index.html)
+- [jquery.js](../master/jquery.js)
+- [jsxgraphcore.js](../master/jsxgraphcore.js)
+- [style.css](../master/style.css)
 
 Добавьте  соответствующие инклуды:
 

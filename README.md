@@ -27,9 +27,9 @@ https://github.com/Harrix/HarrixClass_DataOfHarrixOptimizationTesting
 Скриншоты примеров файлов
 -------------------------
 
-![alt text](../master/images/hdata.png "Пример файла Harrix Data 1.0)
+![alt text](../master/images/hdata.png "Пример файла Harrix Data 1.0")
 
-![alt text](../master/images/xml.png "Пример файла Harrix Optimization Testing 1.0)
+![alt text](../master/images/xml.png "Пример файла Harrix Optimization Testing 1.0")
 
 Сведения для редактирования файлов
 ----------------------------------

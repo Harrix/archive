@@ -3,7 +3,7 @@ HarrixQtLibraryForQWebView
 
 Версия 1.10
 
-Библиотека для отображения различных данных в QWebView.
+Библиотека для отображения различных данных в [QWebView](http://qt-project.org/doc/qt-5.0/qtwebkit/qwebview.html).
 
 https://github.com/Harrix/HarrixQtLibraryForQWebView
 

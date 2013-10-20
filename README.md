@@ -5,7 +5,7 @@ HarrixChart
 
 Версия 1.3
 
-Приложение по отображению графиков из данных формата *.hdata.
+Приложение по отображению графиков из данных формата *.hdata (см. в папке [_HarrixChart](../master/_HarrixChart).
 
 https://github.com/Harrix/HarrixChart
 

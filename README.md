@@ -24,7 +24,7 @@ https://github.com/Harrix/HarrixHtmlForQWebView
 
 Для работы, вам нужно скопировать в папку с программой, которая использует данную библиотеку, файлы:
 
- * папку [**images**](../master/images);
+ * папку [images](../master/images);
  * [index.html](../master/index.html);
  * [jquery.js](../master/jquery.js);
  * [jsxgraphcore.js](../master/jsxgraphcore.js);

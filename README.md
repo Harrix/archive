@@ -78,9 +78,9 @@ if (Data.getSuccessReading())
 Скриншоты применения библиотеки
 -------------------------------
 
-![alt text](../master/images/example1.png "Пример вывода HTML кода")
+![alt text](../master/imagesforgithub/example1.png "Пример вывода HTML кода")
 
-![alt text](../master/images/example2.png "Пример вывода LaTeX кода")
+![alt text](../master/imagesforgithub/example2.png "Пример вывода LaTeX кода")
 
 История проекта
 ---------------

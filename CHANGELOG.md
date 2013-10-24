@@ -1,6 +1,10 @@
 HarrixClass_DataOfHarrixOptimizationTesting
 ===========================================
 
+1.13
+----
+ * Добавлены некторые новые модули сравнения данных.
+
 1.12
 ----
  * Переименование проекта на HarrixClass_DataOfHarrixOptimizationTesting.

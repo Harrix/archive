@@ -13,20 +13,24 @@ public:
     QString getHtml();//Получение текста переменной Html
     QString getHtmlReport();//Получение текста переменной HtmlReport. Это частm html документа в виде отчета о проделанной работе.
     QString getHtmlMessageOfError();//Получение текста переменной HtmlMessageOfError. Это частm html документа в виде кода о сообщениях ошибок.
+
     QString getLatex();//Получение текста переменной Latex
-    QString getFullLatex();//Получение текста переменной Latex в полном составе с началом и концовкой в Latex файле.
     QString getLatexTableEx();//Получение текста переменной LatexTableEx - отображение таблицы данных о ошибке Ex.
-    QString getFullLatexTableEx();//Получение текста переменной LatexTableEx - отображение сырых данных таблицы данных о ошибке Ex с началом и концовкой в Latex файле.
     QString getLatexTableEy();//Получение текста переменной LatexTableEy - отображение сырых данных ошибки по значениям целевой функции в виде полной таблицы.
-    QString getFullLatexTableEy();//Получение текста переменной LatexTableEy - отображение сырых данных таблицы данных о ошибке Ey с началом и концовкой в Latex файле.
     QString getLatexTableR();//Получение текста переменной LatexTableR - отображение сырых данных по надедности в виде полной таблицы.
-    QString getFullLatexTableR();//Получение текста переменной LatexTableR - отображение сырых данных по надежности в виде полной таблицы с началом и концовкой в Latex файле.
     QString getLatexInfo();//Получение текста переменной LatexTableR - отображение информации о исследовании.
-    QString getFullLatexInfo();//Получение текста переменной LatexInfo - отображение информации о исследовании с началом и концовкой в Latex файле.
     QString getLatexAboutParameters();//Получение текста переменной LatexAboutParameters - отображение данных о обнаруженных параметрах алгоритма и какие они бывают.
-    QString getFullLatexAboutParameters();//Получение текста переменной LatexAboutParameters - отображение данных о обнаруженных параметрах алгоритма и какие они бывают с началом и концовкой в Latex файле.
     QString getLatexAnalysis();//Получение текста переменной LatexAnalysis - отображение первоначального анализа данных.
+
+    QString getFullLatex();//Получение текста переменной Latex в полном составе с началом и концовкой в Latex файле.
+    QString getFullLatexTableEx();//Получение текста переменной LatexTableEx - отображение сырых данных таблицы данных о ошибке Ex с началом и концовкой в Latex файле.
+    QString getFullLatexTableEy();//Получение текста переменной LatexTableEy - отображение сырых данных таблицы данных о ошибке Ey с началом и концовкой в Latex файле.
+    QString getFullLatexTableR();//Получение текста переменной LatexTableR - отображение сырых данных по надежности в виде полной таблицы с началом и концовкой в Latex файле.
+    QString getFullLatexInfo();//Получение текста переменной LatexInfo - отображение информации о исследовании с началом и концовкой в Latex файле.
+    QString getFullLatexAboutParameters();//Получение текста переменной LatexAboutParameters - отображение данных о обнаруженных параметрах алгоритма и какие они бывают с началом и концовкой в Latex файле.
     QString getFullLatexAnalysis();//Получение текста переменной LatexAnalysis - отображение данных первоначального анализа данных.
+
+
     QString getAuthor();//Получение текста переменной XML_Author - Автор документа
     QString getDate();//Получение текста переменной  XML_Date - Дата создания документа
     QString getNameAlgorithm();//Получение текста переменной  XML_Name_Algorithm - Название алгоритма оптимизации
@@ -66,6 +70,7 @@ private:
     void makingHtmlReport();//Создает текст Html для отображения отчета о считывании XML файла.
     QString getLatexEnd();//Внутренная функция. Возвращает концовку для полноценного Latex файла.
     QString getLatexBegin();//Внутренная функция. Возвращает начало для полноценного Latex файла.
+
     void readXmlLeafTag();//Считывает и проверяет тэг, который должен являться "листом", то есть самым глубоким. Внутренная функция.
     void checkXmlLeafTags();//Проверяет наличие тэгов и правильное их выполнение. Внутренная функция.
     void memoryAllocation();//Выделяет память под необходимые массивы. Внутренная функция.
@@ -204,7 +209,6 @@ private:
     bool Error;//естm ли ошибка при анализе XML файла
     QXmlStreamReader Rxml;//непосредственно анализируемый xml файл
     bool Zero_Number_Of_Parameters;//Число параметров равно нулю или нет
-    //bool AllOptions;//Просмотрены ли все варианты настроек или нет
 };
 
 #endif // HARRIXCLASS_DATAOFHARRIXOPTIMIZATIONTESTING_H

@@ -1,5 +1,5 @@
 //HarrixClass_DataOfHarrixOptimizationTesting
-//Версия 1.12
+//Версия 1.13
 //Класс для считывания информации формата данных Harrix Optimization Testing на C++ для Qt.
 //https://github.com/Harrix/HarrixClass_DataOfHarrixOptimizationTesting
 //Библиотека распространяется по лицензии Apache License, Version 2.0.
@@ -1416,6 +1416,11 @@ void HarrixClass_DataOfHarrixOptimizationTesting::checkXmlLeafTags()
         HtmlMessageOfError+=HQt_ShowAlert("Нет тэга о названии тестовой функции name_test_function.");
         Error=true;
     }
+    if (XML_Name_Test_Function.contains(" "))
+    {
+        HtmlMessageOfError+=HQt_ShowAlert("Идентификатор тестовой функции должен быть одним словом. Пробелы не допускаются.");
+        Error=true;
+    }
     if (XML_Full_Name_Algorithm.isEmpty())
     {
         HtmlMessageOfError+=HQt_ShowAlert("Нет тэга о полном названии алгоритма full_name_algorithm.");
@@ -1424,6 +1429,11 @@ void HarrixClass_DataOfHarrixOptimizationTesting::checkXmlLeafTags()
     if (XML_Name_Algorithm.isEmpty())
     {
         HtmlMessageOfError+=HQt_ShowAlert("Нет тэга об названии алгоритма name_algorithm.");
+        Error=true;
+    }
+    if (XML_Name_Algorithm.contains(" "))
+    {
+        HtmlMessageOfError+=HQt_ShowAlert("Идентификатор алгоритма оптимизации должен быть одним словом. Пробелы не допускаются.");
         Error=true;
     }
     if (XML_Date.isEmpty())

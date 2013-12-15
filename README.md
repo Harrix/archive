@@ -1,7 +1,7 @@
 HarrixLaTeXSymbols
 ==================
 
-Версия 1.0
+Версия 1.1
 
 Глава о условных обозначениях, которые используются в LaTeX документах. Использую у себя в крупных работах с математическим уклоном. Для использования в связке с проектом HarrixLaTeXDocumentTemplate (https://github.com/Harrix/HarrixLaTeXDocumentTemplate).
 
@@ -13,6 +13,8 @@ https://github.com/Harrix/HarrixLaTeXSymbols
 ---------------------
 
 Главным файлом является [**symbols.tex**](../master/symbols.tex).
+
+Для документов, где не используется деление на главы, а делается через \section, нужно использовать файл (по содержанию аналогичен) [**section_symbols.tex**](../master/section_symbols.tex).
 
 Скриншоты
 -------------------

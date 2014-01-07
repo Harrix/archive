@@ -35,9 +35,9 @@ template <class T> QString THQt_ShowVector (T *VMHL_Vector, int VMHL_N);//Фун
 QString THQt_ShowVector (QStringList VMHL_Vector, QString TitleVector, QString NameVector);//Функция возвращает строку с выводом некоторого списка строк VMHL_Vector с HTML кодами. Для добавление в html файл.
 QString THQt_ShowVector (QStringList VMHL_Vector, QString NameVector);//Функция возвращает строку с выводом некоторого списка строк VMHL_Vector с HTML кодами. Для добавление в html файл.
 QString THQt_ShowVector (QStringList VMHL_Vector);//Функция возвращает строку с выводом некоторого списка строк VMHL_Vector с HTML кодами. Для добавление в html файл.
-template <class T> QString THQt_ShowVectorT (T *VMHL_Vector, int VMHL_N, QString TitleVector, QString NameVector);//Функция возвращает строку с выводом некоторый вектора VMHL_Vector в траснпонированном виде с HTML кодами.
-template <class T> QString THQt_ShowVectorT (T *VMHL_Vector, int VMHL_N, QString NameVector);//Функция возвращает строку с выводом некоторый вектора VMHL_Vector в траснпонированном виде с HTML кодами.
-template <class T> QString THQt_ShowVectorT (T *VMHL_Vector, int VMHL_N);//Функция возвращает строку с выводом некоторый вектора VMHL_Vector в траснпонированном виде с HTML кодами.
+template <class T> QString THQt_ShowVectorT (T *VMHL_Vector, int VMHL_N, QString TitleVector, QString NameVector);//Функция возвращает строку с выводом некоторый вектора VMHL_Vector в транспонированном виде с HTML кодами.
+template <class T> QString THQt_ShowVectorT (T *VMHL_Vector, int VMHL_N, QString NameVector);//Функция возвращает строку с выводом некоторый вектора VMHL_Vector в транспонированном виде с HTML кодами.
+template <class T> QString THQt_ShowVectorT (T *VMHL_Vector, int VMHL_N);//Функция возвращает строку с выводом некоторый вектора VMHL_Vector в транспонированном виде с HTML кодами.
 template <class T> QString THQt_ShowMatrix (T *VMHL_Matrix, int VMHL_N, int VMHL_M, QString TitleMatrix, QString NameMatrix);//Функция возвращает строку с выводом некоторой матрицы VMHL_Matrix с HTML кодами.
 template <class T> QString THQt_ShowMatrix (T *VMHL_Matrix, int VMHL_N, int VMHL_M, QString NameMatrix);//Функция возвращает строку с выводом некоторой матрицы VMHL_Matrix с HTML кодами.
 template <class T> QString THQt_ShowMatrix (T *VMHL_Matrix, int VMHL_N, int VMHL_M);//Функция возвращает строку с выводом некоторой матрицы VMHL_Matrix с HTML кодами.

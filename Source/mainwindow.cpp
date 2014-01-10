@@ -24,7 +24,11 @@ MainWindow::MainWindow(QWidget *parent,QString FileNameFromArgv) :
     qsrand(QDateTime::currentMSecsSinceEpoch () % 1000000);
 
     DS=QDir::separator();//какой разделитель используется в пути между папками
-    Path=QGuiApplication::applicationDirPath()+DS;//путь к папке, где находится приложение
+    if (Path.contains(QDir::separator())) DS=QDir::separator();
+    if (Path.contains("\\")) DS="\\";
+    if (Path.contains("/")) DS="/";
+    Path+=DS;
+
     HQt_BeginHtml(Path);
     ui->webView->setUrl(QUrl::fromLocalFile(Path+"index.html"));// и в webViewотображаем index.html (его вообще не трогаем)
 

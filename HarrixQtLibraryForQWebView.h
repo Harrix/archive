@@ -4064,7 +4064,7 @@ template <class T> QString THQt_ShowIndependentChartsOfLineFromMatrix (T **VMHL_
 
     if (ShowArea)
     {
-        //добавим точки для того, чтобы можно было закрасить спрошную область.
+        //добавим точки для того, чтобы можно было закрасить сплошную область.
 
         for (j=0;j<VMHL_M/2;j++)
         {
@@ -4808,6 +4808,7 @@ template <class T> QString THQt_ShowTwoIndependentChartsOfPointsAndLine (T *VMHL
     return VMHL_Result;
 }
 //---------------------------------------------------------------------------
+
 template <class T> QString THQt_ShowTwoIndependentChartsOfPointsAndLine (T *VMHL_VectorX1,T *VMHL_VectorY1,int VMHL_N1,T *VMHL_VectorX2,T *VMHL_VectorY2, int VMHL_N2, QString TitleChart, QString NameVectorX, QString NameVectorY,bool ShowLine,bool ShowPoints,bool ShowArea,bool ShowSpecPoints)
 {
     /*
@@ -4877,6 +4878,7 @@ template <class T> QString THQt_ShowTwoIndependentChartsOfPointsAndLine (T *VMHL
     return THQt_ShowTwoIndependentChartsOfPointsAndLine (VMHL_VectorX1,VMHL_VectorY1, VMHL_N1,VMHL_VectorX2,VMHL_VectorY2, VMHL_N2, TitleChart, NameVectorX, NameVectorY,"", "", ShowLine, ShowPoints, ShowArea, ShowSpecPoints);
 }
 //---------------------------------------------------------------------------
+
 template <class T> QString THQt_ShowTwoIndependentChartsOfPointsAndLine (T *VMHL_VectorX1,T *VMHL_VectorY1,int VMHL_N1,T *VMHL_VectorX2,T *VMHL_VectorY2, int VMHL_N2, QString TitleChart, QString NameVectorX, QString NameVectorY,QString NameLine1, QString NameLine2)
 {
     /*
@@ -4944,6 +4946,7 @@ template <class T> QString THQt_ShowTwoIndependentChartsOfPointsAndLine (T *VMHL
     return THQt_ShowTwoIndependentChartsOfPointsAndLine (VMHL_VectorX1,VMHL_VectorY1,VMHL_N1,VMHL_VectorX2,VMHL_VectorY2, VMHL_N2, TitleChart, NameVectorX, NameVectorY,NameLine1, NameLine2,true,false,false,true);
 }
 //---------------------------------------------------------------------------
+
 template <class T> QString THQt_ShowTwoIndependentChartsOfPointsAndLine (T *VMHL_VectorX1,T *VMHL_VectorY1,int VMHL_N1,T *VMHL_VectorX2,T *VMHL_VectorY2, int VMHL_N2)
 {
     /*

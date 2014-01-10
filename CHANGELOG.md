@@ -1,6 +1,10 @@
 HarrixQtLibraryForQWebView
 ==========================
 
+1.11
+----
+ * Исправление опечаток.
+
 1.10
 ----
  * Изменение функций HQt_BeginHtml и HQt_AddHtml ввиду изменений в файле index.html.

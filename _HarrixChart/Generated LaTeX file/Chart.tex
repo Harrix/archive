@@ -1,0 +1,113 @@
+\documentclass[a4paper,12pt]{report}
+
+\input{packages} %Подключаем модуль пакетов
+\input{styles} %Подключаем модуль стилей
+
+\begin{document}
+
+\input{names} %Подключаем модуль переименования некоторых команд
+
+% Вывод графика
+\begin{figure} [H]
+\centering
+\begin{tikzpicture}
+\begin{axis} [
+xlabel={$P$, количество фруктов},
+ylabel={$N$, номер участка},
+xmax=12.7333,
+ymax=12.7333,
+height=10cm,
+width=17cm,
+]
+
+\addplot[color=plotsecondgray, draw=none,fill, fill opacity = 0.4,forget plot] coordinates {
+ (5, 1) 
+ (5, 12) 
+ (6, 11) 
+ (7, 10) 
+ (8, 9) 
+ (9, 8) 
+ (10, 7) 
+ (11, 6) 
+ (12, 5) 
+ (12, 1) 
+};
+
+\addplot[color=plotsecondgray, mark=*,mark options={plotsecondgray,opacity = 1, fill=white,fill opacity = 1, thick,solid},very thick,dashed] coordinates {
+ (5, 12) 
+ (6, 11) 
+ (7, 10) 
+ (8, 9) 
+ (9, 8) 
+ (10, 7) 
+ (11, 6) 
+ (12, 5) 
+};
+\addlegendentry{груша};
+
+\addplot[color=plotmain, draw=none,fill, fill opacity = 0.5,forget plot] coordinates {
+ (1, 1) 
+ (1, 1) 
+ (2, 2) 
+ (3, 3) 
+ (4, 4) 
+ (5, 5) 
+ (6, 6) 
+ (7, 7) 
+ (8, 8) 
+ (9, 9) 
+ (10, 10) 
+ (10, 1) 
+};
+
+\addplot[color=plotmain, mark=*,mark options={plotmain,opacity = 1, fill=white,thick},very thick] coordinates {
+ (1, 1) 
+ (2, 2) 
+ (3, 3) 
+ (4, 4) 
+ (5, 5) 
+ (6, 6) 
+ (7, 7) 
+ (8, 8) 
+ (9, 9) 
+ (10, 10) 
+};
+\addlegendentry{яблоки};
+
+\addplot [
+black,
+mark = *,
+mark options={plotcoordinate, opacity = 1, fill=white, fill opacity = 1, thin, solid,scale=0.6},
+nodes near coords={$\min_{P}=1; \min_{N}=1 $},
+every node near coord/.style={black, anchor=south west,font=\tiny},
+fill=white,
+forget plot
+]
+coordinates {(1,1)};
+\addplot [
+black,
+mark = *,
+mark options={plotcoordinate, opacity = 1, fill=white, fill opacity = 1, thin, solid,scale=0.6},
+nodes near coords={$\max_{N} = 12 $},
+every node near coord/.style={black, anchor=south west,font=\tiny},
+fill=white,
+forget plot
+] 
+coordinates {(1,12)};
+\addplot [
+black,
+mark = *,
+mark options={plotcoordinate, opacity = 1, fill=white, fill opacity = 1, thin, solid,scale=0.6},
+nodes near coords={$\max_{P} = 12 $},
+every node near coord/.style={black, anchor=north west,font=\tiny, rotate=90},
+fill=white,
+forget plot
+] 
+coordinates {(12,1)};
+\end{axis}
+\end{tikzpicture}
+\caption{Количество фруктов}\label{ChartFNMWpBUG}
+\end{figure}
+
+
+\end{document}

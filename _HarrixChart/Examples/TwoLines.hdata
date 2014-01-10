@@ -1,0 +1,22 @@
+HarrixFileFormat = Harrix Data 1.0
+Site = https://github.com/Harrix/HarrixFileFormats
+Type = TwoLines
+Title = Диэлектрическая проницаемость в зависимости от температуры
+AxisX = &lambda;
+AxisY = &upsilon;
+Parameters = ShowLine, ShowPoints, ShowArea, ShowSpecPoints
+BeginNamesOfCharts
+T = 600
+T = 900
+EndNamesOfCharts
+BeginData
+3	5.111111	9
+7	7.0666667	-1
+5	4.04	12
+6	2.0285714	5
+7.1	8.0204082	8
+8	0.015873	4
+9	6.0123457	9
+5.5	4.010101	1
+11	15.00826446	7
+EndData

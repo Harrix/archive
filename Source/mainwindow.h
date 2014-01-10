@@ -23,6 +23,8 @@ private slots:
 
     void on_action_triggered();
 
+    void on_action_LaTeX_triggered();
+
 private:
     Ui::MainWindow *ui;
 };

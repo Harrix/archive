@@ -17,13 +17,15 @@ SOURCES += main.cpp\
     HarrixQtLibrary.cpp \
     HarrixMathLibrary.cpp \
     HarrixQtLibraryForQWebView.cpp \
-    mtrand.cpp
+    mtrand.cpp \
+    HarrixQtLibraryForLaTeX.cpp
 
 HEADERS  += mainwindow.h \
     HarrixQtLibrary.h \
     HarrixMathLibrary.h \
     HarrixQtLibraryForQWebView.h \
-    mtrand.h
+    mtrand.h \
+    HarrixQtLibraryForLaTeX.h
 
 FORMS    += mainwindow.ui
 

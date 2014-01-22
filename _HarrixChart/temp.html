@@ -1,113 +1,79 @@
-\documentclass[a4paper,12pt]{report}
-
-\input{packages} %Подключаем модуль пакетов
-\input{styles} %Подключаем модуль стилей
-
-\begin{document}
-
-\input{names} %Подключаем модуль переименования некоторых команд
-
-% Вывод графика
-\begin{figure} [H]
-\centering
-\begin{tikzpicture}
-\begin{axis} [
-xlabel={$P$, количество фруктов},
-ylabel={$N$, номер участка},
-xmax=12.7333,
-ymax=12.7333,
-height=10cm,
-width=17cm,
-]
-
-\addplot[color=plotsecondgray, draw=none,fill, fill opacity = 0.4,forget plot] coordinates {
- (5, 1) 
- (5, 12) 
- (6, 11) 
- (7, 10) 
- (8, 9) 
- (9, 8) 
- (10, 7) 
- (11, 6) 
- (12, 5) 
- (12, 1) 
-};
-
-\addplot[color=plotsecondgray, mark=*,mark options={plotsecondgray,opacity = 1, fill=white,fill opacity = 1, thick,solid},very thick,dashed] coordinates {
- (5, 12) 
- (6, 11) 
- (7, 10) 
- (8, 9) 
- (9, 8) 
- (10, 7) 
- (11, 6) 
- (12, 5) 
-};
-\addlegendentry{груша};
-
-\addplot[color=plotmain, draw=none,fill, fill opacity = 0.5,forget plot] coordinates {
- (1, 1) 
- (1, 1) 
- (2, 2) 
- (3, 3) 
- (4, 4) 
- (5, 5) 
- (6, 6) 
- (7, 7) 
- (8, 8) 
- (9, 9) 
- (10, 10) 
- (10, 1) 
-};
-
-\addplot[color=plotmain, mark=*,mark options={plotmain,opacity = 1, fill=white,thick},very thick] coordinates {
- (1, 1) 
- (2, 2) 
- (3, 3) 
- (4, 4) 
- (5, 5) 
- (6, 6) 
- (7, 7) 
- (8, 8) 
- (9, 9) 
- (10, 10) 
-};
-\addlegendentry{яблоки};
-
-\addplot [
-black,
-mark = *,
-mark options={plotcoordinate, opacity = 1, fill=white, fill opacity = 1, thin, solid,scale=0.6},
-nodes near coords={$\min_{P}=1; \min_{N}=1 $},
-every node near coord/.style={black, anchor=south west,font=\tiny},
-fill=white,
-forget plot
-]
-coordinates {(1,1)};
-\addplot [
-black,
-mark = *,
-mark options={plotcoordinate, opacity = 1, fill=white, fill opacity = 1, thin, solid,scale=0.6},
-nodes near coords={$\max_{N} = 12 $},
-every node near coord/.style={black, anchor=south west,font=\tiny},
-fill=white,
-forget plot
-] 
-coordinates {(1,12)};
-\addplot [
-black,
-mark = *,
-mark options={plotcoordinate, opacity = 1, fill=white, fill opacity = 1, thin, solid,scale=0.6},
-nodes near coords={$\max_{P} = 12 $},
-every node near coord/.style={black, anchor=north west,font=\tiny, rotate=90},
-fill=white,
-forget plot
-] 
-coordinates {(12,1)};
-\end{axis}
-\end{tikzpicture}
-\caption{Количество фруктов}\label{ChartFNMWpBUG}
-\end{figure}
-
-
-\end{document}<p>О компиляции файлов LaTeX: <a href="https://github.com/Harrix/HarrixLaTeXDocumentTemplate">https://github.com/Harrix/HarrixLaTeXDocumentTemplate</a>.</p>
+<!--Вывод графика-->
+<h2>Прозрачность озера</h2><div id="BoxWHXqir" class="jxgbox" style="width:600px; height:300px;"></div>
+<script type="text/javascript">
+var BoardWHXqir = JXG.JSXGraph.initBoard('BoxWHXqir', {boundingbox: [-3.4, 14.2, 14.8, -1.2], axis:false,keepaspectratio: false,showcopyright: false,showNavigation: false, zoom: {wheel: true}});
+var AxisXWHXqir = BoardWHXqir.create('axis', [[-2, 1], [-1, 1]],{withLabel: true, name: 'x, глубина озера',label: {position:'lft',offset:[10,-21]}});
+var AxisYWHXqir = BoardWHXqir.create('axis', [[-2, 1], [-2, 2]],{withLabel: true, name: 'k, коэффициент прозрачности',label: { position:'lrt',offset: [20,0]}});
+var DataX1WHXqir = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+var DataY1WHXqir = [1, 2, 5, 4, 5, 6, 7, 8, 9, 10];
+var DataX2WHXqir = [5, 6, 7, 8, 9, 10, 11, 12];
+var DataY2WHXqir = [12, 11, 10, 9, 8, 7, 6, 5];
+var DataX3WHXqir = [-2, 1, 2, 7, 8, 9];
+var DataY3WHXqir = [8, 9, 8, 7, 6, 7];
+var DataX4WHXqir = [1.1, 1.3, 2.1, 4.2, 5.5, 7.2, 7.5];
+var DataY4WHXqir = [8, 1, 5, 2, 4, 9, 3];
+var Chart4WHXqir= BoardWHXqir.createElement('chart', [DataX4WHXqir,DataY4WHXqir], {chartStyle:'line,point'});
+Chart4WHXqir[0].setProperty('strokeColor:#e06c65','highlightStrokeColor:#9d2b24','strokeWidth:2');
+for(var i=0; i<7;i++) 
+    {
+    Chart4WHXqir[1][i].setProperty({strokeColor:'#e06c65',highlightStrokeColor:'#9d2b24',fillColor:'white',highlightFillColor:'white',face:'x', size:3, strokeWidth:'2pt'});
+    }
+var Chart3WHXqir= BoardWHXqir.createElement('chart', [DataX3WHXqir,DataY3WHXqir], {chartStyle:'line,point'});
+Chart3WHXqir[0].setProperty('strokeColor:#e7cc4c','highlightStrokeColor:#b49c28','strokeWidth:2');
+for(var i=0; i<6;i++) 
+    {
+    Chart3WHXqir[1][i].setProperty({strokeColor:'#e7cc4c',highlightStrokeColor:'#b49c28',fillColor:'white',highlightFillColor:'white',face:'<>', size:3, strokeWidth:'2pt'});
+    }
+var Chart2WHXqir= BoardWHXqir.createElement('chart', [DataX2WHXqir,DataY2WHXqir], {chartStyle:'line,point'});
+Chart2WHXqir[0].setProperty('strokeColor:#4ac955','highlightStrokeColor:#2b8c34','strokeWidth:2');
+for(var i=0; i<8;i++) 
+    {
+    Chart2WHXqir[1][i].setProperty({strokeColor:'#4ac955',highlightStrokeColor:'#2b8c34',fillColor:'white',highlightFillColor:'white',face:'[]', size:2, strokeWidth:'2pt'});
+    }
+var Chart1WHXqir= BoardWHXqir.createElement('chart', [DataX1WHXqir,DataY1WHXqir], {chartStyle:'line,point'});
+Chart1WHXqir[0].setProperty('strokeColor:#97bbcd','highlightStrokeColor:#3c7693','strokeWidth:2');
+for(var i=0; i<10;i++) 
+    {
+    Chart1WHXqir[1][i].setProperty({strokeColor:'#97bbcd',highlightStrokeColor:'#3c7693',fillColor:'white',highlightFillColor:'white',face:'o', size:2, strokeWidth:'2pt'});
+    }
+BoardWHXqir.create('point',[-2,1], {strokeColor:'#88969c',highlightStrokeColor:'#3c7693',fillColor:'white',highlightFillColor:'white',strokeWidth:'2pt',face:'o', size:1, name:'Min<sub>x</sub> = -2, Min<sub>y</sub> = 1',label:{fontsize:10}});
+BoardWHXqir.create('point',[-2,12], {strokeColor:'#88969c',highlightStrokeColor:'#3c7693',fillColor:'white',highlightFillColor:'white',strokeWidth:'2pt',face:'o', size:1, name:'Max<sub>y</sub> = 12',label:{fontsize:10}});
+BoardWHXqir.create('point',[12,1], {strokeColor:'#88969c',highlightStrokeColor:'#3c7693',fillColor:'white',highlightFillColor:'white',strokeWidth:'2pt',face:'o', size:1, name:'Max<sub>x</sub> = 12',label:{fontsize:10}});
+</script>
+<div id="BoxLegendkKwquU" class="jxgbox" style="width:600px; height:200px;"></div>
+<script type="text/javascript">
+var BoardLegendkKwquU = JXG.JSXGraph.initBoard('BoxLegendkKwquU', {boundingbox: [0, 5, 11.5, 0], axis:false,keepaspectratio: false,showcopyright: false,showNavigation: false, zoom: {wheel: false}});
+var DataXLegendkKwquU = [1, 2];
+var DataY1LegendkKwquU = [4, 4];
+var DataY2LegendkKwquU = [3, 3];
+var DataY3LegendkKwquU = [2, 2];
+var DataY4LegendkKwquU = [1, 1];
+var Chart4LegendkKwquU= BoardLegendkKwquU.createElement('chart', [DataXLegendkKwquU,DataY4LegendkKwquU], {chartStyle:'line,point'});
+Chart4LegendkKwquU[0].setProperty('strokeColor:#e06c65','highlightStrokeColor:#9d2b24','strokeWidth:2');
+for(var i=0; i<2;i++) 
+    {
+    Chart4LegendkKwquU[1][i].setProperty({strokeColor:'#e06c65',highlightStrokeColor:'#9d2b24',fillColor:'white',highlightFillColor:'white',face:'x', size:3, strokeWidth:'2pt'});
+    }
+var Chart3LegendkKwquU= BoardLegendkKwquU.createElement('chart', [DataXLegendkKwquU,DataY3LegendkKwquU], {chartStyle:'line,point'});
+Chart3LegendkKwquU[0].setProperty('strokeColor:#e7cc4c','highlightStrokeColor:#b49c28','strokeWidth:2');
+for(var i=0; i<2;i++) 
+    {
+    Chart3LegendkKwquU[1][i].setProperty({strokeColor:'#e7cc4c',highlightStrokeColor:'#b49c28',fillColor:'white',highlightFillColor:'white',face:'<>', size:3, strokeWidth:'2pt'});
+    }
+var Chart2LegendkKwquU= BoardLegendkKwquU.createElement('chart', [DataXLegendkKwquU,DataY2LegendkKwquU], {chartStyle:'line,point'});
+Chart2LegendkKwquU[0].setProperty('strokeColor:#4ac955','highlightStrokeColor:#2b8c34','strokeWidth:2');
+for(var i=0; i<2;i++) 
+    {
+    Chart2LegendkKwquU[1][i].setProperty({strokeColor:'#4ac955',highlightStrokeColor:'#2b8c34',fillColor:'white',highlightFillColor:'white',face:'[]', size:2, strokeWidth:'2pt'});
+    }
+var Chart1LegendkKwquU= BoardLegendkKwquU.createElement('chart', [DataXLegendkKwquU,DataY1LegendkKwquU], {chartStyle:'line,point'});
+Chart1LegendkKwquU[0].setProperty('strokeColor:#97bbcd','highlightStrokeColor:#3c7693','strokeWidth:2');
+for(var i=0; i<2;i++) 
+    {
+    Chart1LegendkKwquU[1][i].setProperty({strokeColor:'#97bbcd',highlightStrokeColor:'#3c7693',fillColor:'white',highlightFillColor:'white',face:'o', size:2, strokeWidth:'2pt'});
+    }
+Text1LegendkKwquU = BoardLegendkKwquU.create('text',[2.2,4, "- Учум;"], {display:'internal', anchorX:'left',frozen: true, strokeColor:'#000000',highlightStrokeColor:'#000000'});
+Text2LegendkKwquU = BoardLegendkKwquU.create('text',[2.2,3, "- Круглое;"], {display:'internal', anchorX:'left',frozen: true, strokeColor:'#000000',highlightStrokeColor:'#000000'});
+Text3LegendkKwquU = BoardLegendkKwquU.create('text',[2.2,2, "- Большое;"], {display:'internal', anchorX:'left',frozen: true, strokeColor:'#000000',highlightStrokeColor:'#000000'});
+Text4LegendkKwquU = BoardLegendkKwquU.create('text',[2.2,1, "- Тус."], {display:'internal', anchorX:'left',frozen: true, strokeColor:'#000000',highlightStrokeColor:'#000000'});
+</script>

@@ -1,5 +1,5 @@
 //HarrixQtLibraryForQWebView
-//Версия 1.11
+//Версия 1.12
 //Библиотека для отображения различных данных в QWebView.
 //https://github.com/Harrix/HarrixQtLibraryForQWebView
 //Библиотека распространяется по лицензии Apache License, Version 2.0.
@@ -128,7 +128,7 @@ QString HQt_ReadHdataToHtmlChart (QString filename)
 {
     /*
     Функция возвращает строку с HTML кодом графика в результате считывания информации из *.hdata
-    версии Harrix Data 1.0. Для добавление в html файл.
+    версии Harrix Data 1.1 или 1.0. Для добавление в html файл.
     Входные параметры:
      filename - имя файла.
     Возвращаемое значение:
@@ -166,9 +166,9 @@ QString HQt_ReadHdataToHtmlChart (QString filename)
             VMHL_Result+=HQt_ShowAlert ("Это не формат HarrixFileFormat.");
             return VMHL_Result;
         }
-        if (HQt_TextAfterEqualSign (String)!="Harrix Data 1.0")
+        if ((HQt_TextAfterEqualSign (String)!="Harrix Data 1.1")&&(HQt_TextAfterEqualSign (String)!="Harrix Data 1.0"))
         {
-            VMHL_Result+=HQt_ShowAlert ("Это не версия Harrix Data 1.0.");
+            VMHL_Result+=HQt_ShowAlert ("Это не версия Harrix Data 1.1 или 1.0.");
             return VMHL_Result;
         }
 

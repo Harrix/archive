@@ -1,7 +1,7 @@
 HarrixQtLibraryForQWebView
 ==========================
 
-Версия 1.11
+Версия 1.12
 
 Библиотека для отображения различных данных в [QWebView](http://qt-project.org/doc/qt-5.0/qtwebkit/qwebview.html).
 

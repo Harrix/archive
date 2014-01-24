@@ -10,13 +10,13 @@ https://github.com/Harrix/HarrixFileFormats
 Форматы файлов
 --------------
 
-[**Harrix Data 1.0**](../master/Harrix Data 1.0/) - формат файлов вида \*.hdata для представления данных для обработки и отображения в графиках в программах Harrix.
+[**Harrix Data 1.1**](../master/Harrix Data 1.1/) - формат файлов вида \*.hdata для представления данных для обработки и отображения в графиках в программах Harrix.
 
 [**Harrix Optimization Testing 1.0**](../master/Harrix Optimization Testing 1.0/) - формат файлов вида \*.xml для представления данных об исследовании эффективности алгоритмов оптимизации на тестовых функциях.
 
 Данные распространяются по лицензии Apache License, Version 2.0.
 
-Для формата [**Harrix Data 1.0**](../master/Harrix Data 1.0/) есть проект HarrixChart для считывания данных:
+Для формата [**Harrix Data 1.1**](../master/Harrix Data 1.1/) есть проект HarrixChart для считывания данных:
 
 https://github.com/Harrix/HarrixChart
 

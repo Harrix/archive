@@ -11,8 +11,8 @@ public:
     ~HarrixClass_DataOfHarrixOptimizationTesting();
     bool getSuccessReading();//Получение значения переменной SuccessReading о удачности или неудачности прочитывания файла.
     QString getHtml();//Получение текста переменной Html
-    QString getHtmlReport();//Получение текста переменной HtmlReport. Это частm html документа в виде отчета о проделанной работе.
-    QString getHtmlMessageOfError();//Получение текста переменной HtmlMessageOfError. Это частm html документа в виде кода о сообщениях ошибок.
+    QString getHtmlReport();//Получение текста переменной HtmlReport. Это часть html документа в виде отчета о проделанной работе.
+    QString getHtmlMessageOfError();//Получение текста переменной HtmlMessageOfError. Это часть html документа в виде кода о сообщениях ошибок.
 
     QString getLatex();//Получение текста переменной Latex
     QString getLatexTableEx();//Получение текста переменной LatexTableEx - отображение таблицы данных о ошибке Ex.

@@ -20,7 +20,7 @@ HarrixClass_DataOfHarrixOptimizationTesting::HarrixClass_DataOfHarrixOptimizatio
     SuccessReading=true;
     XML_DimensionTestFunction=-1;//Размерность тестовой задачи (длина хромосомы решения)
     XML_Number_Of_Measuring=-1;//Количество экспериментов для каждого набора параметров алгоритма
-    XML_Number_Of_Runs=-1;//Количество прогонов по которому деляется усреднение для эксперимента
+    XML_Number_Of_Runs=-1;//Количество прогонов, по которому делается усреднение для эксперимента
     XML_Max_Count_Of_Fitness=-1;//Максимальное допустимое число вычислений целевой функции для алгоритма
     XML_Number_Of_Parameters=-1;//Количество проверяемых параметров алгоритма оптимизации
     Zero_Number_Of_Parameters=false;//пока ничего не известно
@@ -29,7 +29,7 @@ HarrixClass_DataOfHarrixOptimizationTesting::HarrixClass_DataOfHarrixOptimizatio
     Un=HQt_RandomString(5);//уникальная строка для Latex
     //AllOptions=true;//вначале наивно предполагаем, что в файле все настройки рассмотрены
 
-    QFile file(filename);//для открытия файла и запихивания его в Rxml
+    QFile file(filename);//для открытия файла и запихивания его в xml
 
     if (!file.open(QFile::ReadOnly | QFile::Text))
     {
@@ -153,7 +153,7 @@ QString HarrixClass_DataOfHarrixOptimizationTesting::getHtml()
 QString HarrixClass_DataOfHarrixOptimizationTesting::getHtmlReport()
 {
     /*
-     Получение текста переменной HtmlReport. Это частm html документа в виде отчета о проделанной работе.
+     Получение текста переменной HtmlReport. Это часть html документа в виде отчета о проделанной работе.
      Помните, что это не полноценный Html код. Его нужно применять в виде temp.html для макета:
      https://github.com/Harrix/QtHarrixLibraryForQWebView
      */
@@ -164,7 +164,7 @@ QString HarrixClass_DataOfHarrixOptimizationTesting::getHtmlReport()
 QString HarrixClass_DataOfHarrixOptimizationTesting::getHtmlMessageOfError()
 {
     /*
-     Получение текста переменной HtmlMessageOfError. Это частm html документа в виде кода о сообщениях ошибок.
+     Получение текста переменной HtmlMessageOfError. Это часть html документа в виде кода о сообщениях ошибок.
      Помните, что это не полноценный Html код. Его нужно применять в виде temp.html для макета:
      https://github.com/Harrix/QtHarrixLibraryForQWebView
      */

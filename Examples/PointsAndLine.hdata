@@ -1,4 +1,4 @@
-HarrixFileFormat = Harrix Data 1.0
+HarrixFileFormat = Harrix Data 1.1
 Site = https://github.com/Harrix/HarrixFileFormats
 Type = PointsAndLine
 Title = Сравнение идеального сигнала и сигнала с помехой

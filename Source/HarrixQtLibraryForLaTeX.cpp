@@ -1,5 +1,5 @@
 //HarrixQtLibraryForLaTeX
-//Версия 1.12
+//Версия 1.19
 //Библиотека для отображения различных данных в LaTeX файлах.
 //https://github.com/Harrix/HarrixQtLibraryForLaTeX
 //Библиотека распространяется по лицензии Apache License, Version 2.0.
@@ -15,6 +15,25 @@ QString HQt_LatexBegin()
     VMHL_Result+="\\documentclass[a4paper,12pt]{report}\n\n";
     VMHL_Result+="\\input{packages} %Подключаем модуль пакетов\n";
     VMHL_Result+="\\input{styles} %Подключаем модуль стилей\n\n";
+    VMHL_Result+="\\begin{document}\n\n";
+    VMHL_Result+="\\input{names} %Подключаем модуль переименования некоторых команд\n\n";
+
+    return VMHL_Result;
+}
+//--------------------------------------------------------------------------
+
+QString HQt_LatexBeginWithPgfplots()
+{
+    /*
+     Возвращает начало для полноценного Latex файла для шаблона https://github.com/Harrix/HarrixLaTeXDocumentTemplate
+     с использованием графиков через пакет pgfplots.
+     */
+    QString VMHL_Result;
+    VMHL_Result+="\\documentclass[a4paper,12pt]{report}\n\n";
+    VMHL_Result+="\\input{packages} %Подключаем модуль пакетов\n";
+    VMHL_Result+="\\input{styles} %Подключаем модуль стилей\n\n";
+    VMHL_Result+="\\usepgfplotslibrary{external}\n";
+    VMHL_Result+="\\tikzexternalize[prefix=TikzPictures/]\n\n";
     VMHL_Result+="\\begin{document}\n\n";
     VMHL_Result+="\\input{names} %Подключаем модуль переименования некоторых команд\n\n";
 
@@ -341,7 +360,6 @@ QString HQt_LatexDrawLine (double Left, double Right, double h, double (*Functio
 }
 //---------------------------------------------------------------------------
 
-
 QString HQt_LatexDrawLine (double Left, double Right, double h, double (*Function)(double), QString TitleChart, QString NameVectorX, QString NameVectorY, bool ShowLine, bool ShowPoints, bool ShowArea, bool ShowSpecPoints, bool RedLine)
 {
     /*
@@ -424,6 +442,276 @@ QString HQt_LatexDrawLine (double Left, double Right, double h, double (*Functio
     QString VMHL_Result;
 
     VMHL_Result += HQt_LatexDrawLine (Left, Right, h, Function, "", "x", "y", true, false, false, true, true);
+
+    return VMHL_Result;
+}
+//---------------------------------------------------------------------------
+
+QString THQt_LatexDraw3DPlot (double Left_X, double Right_X, double Left_Y, double Right_Y, int N, double (*Function)(double, double),  QString TitleChart, QString NameVectorX, QString NameVectorY, QString NameVectorZ, QString Label, QString ColorMap, TypeOf3DPlot Type, double Opacity, double AngleHorizontal, double AngleVertical, bool ColorBar, bool ForNormalSize)
+{
+    /*
+    Функция возвращает строку с Latex кодом отрисовки 3D поверхности по функции Function.
+    Входные параметры:
+     Left_X - левая граница по оси Ox;
+     Right_X - правая граница по оси Ox;
+     Left_Y - левая граница по оси Oy;
+     Right_Y - правая граница по оси Oy;
+     N - сколько нужно построить точек по каждой оси. В итоге получим N*N точек;
+     Function - ссылка на отрисовываемую двумерную функцию;
+     TitleChart - заголовок графика;
+     NameVectorX - название оси Ox. В формате: [обозначение], [расшифровка]. Например: u, Вероятность выбора;
+     NameVectorY - название оси Oy. В формате: [обозначение], [расшифровка]. Например: q, Количество абрикосов;
+     NameVectorZ - название оси Oz. В формате: [обозначение], [расшифровка]. Например: z, Вероятность;
+     Label - label для графика;
+     ColorMap - какой раскраски будет график. Возможны значения: mathcad, matlab, hot или тот, что вы хотите использовать. Рекомендуется mathcad;
+     Type - тип графика. Возможные значения:
+        Plot3D_Points - в виде точек,
+        Plot3D_Surface - в виде поверхности с непрерывной заливкой,
+        Plot3D_SurfaceGrid - в виде поверхности с сеточной заливкой,
+        Plot3D_TopView - вид сверху;
+     Opacity - прозначность графика. Может изменяться от 0 до 1;
+     AngleHorizontal - угол поворота графика по горизонтали в градусах от -180 до 180. Рекомендуется 25;
+     AngleVertical - угол поворота графика по вертикали в градусах от -180 до 180. Рекомендуется 30;
+     ColorBar - рисоватm с графиком колонку с градациями цветов или нет;
+     ForNormalSize - нормальный размер графика (на всю ширину), или для маленького размера график создается.
+    Возвращаемое значение:
+     Строка с Latex кодами с выводимым графиком.
+    */
+    QString VMHL_Result;//переменная итогового результата
+
+    double *x=new double [N];
+    double *y=new double [N];
+    double **z;
+    z=new double*[N];
+    for (int i=0;i<N;i++) z[i]=new double[N];
+
+    for (int i=0;i<N;i++)
+        x[i]=Left_X + i*(Right_X-Left_X)/double(N-1);
+    for (int j=0;j<N;j++)
+        y[j]=Left_Y + j*(Right_Y-Left_Y)/double(N-1);
+
+    for (int i=0;i<N;i++)
+        for (int j=0;j<N;j++)
+        {
+            z[i][j]=Function(x[i],y[j]);
+        }
+
+    VMHL_Result = THQt_LatexShow3DPlot (x, y, z,  N,  N, TitleChart,  NameVectorX, NameVectorY, NameVectorZ, Label, ColorMap, Type, Opacity, AngleHorizontal, AngleVertical, ColorBar,  ForNormalSize);
+
+    delete [] x;
+    delete [] y;
+    for (int i=0;i<N;i++) delete [] z[i];
+    delete [] z;
+
+    return VMHL_Result;
+}
+//---------------------------------------------------------------------------
+
+QString THQt_LatexDraw3DPlot (double Left_X, double Right_X, double Left_Y, double Right_Y, int N, double (*Function)(double, double),  QString TitleChart, QString NameVectorX, QString NameVectorY, QString NameVectorZ, QString Label, QString ColorMap, TypeOf3DPlot Type, bool ColorBar, bool ForNormalSize)
+{
+    /*
+    Функция возвращает строку с Latex кодом отрисовки 3D поверхности по функции Function.
+    По сравнению с основным сайтом отсутствуют параметры Opacity, AngleHorizontal, AngleVertical.
+    Входные параметры:
+     Left_X - левая граница по оси Ox;
+     Right_X - правая граница по оси Ox;
+     Left_Y - левая граница по оси Oy;
+     Right_Y - правая граница по оси Oy;
+     N - сколько нужно построить точек по каждой оси. В итоге получим N*N точек;
+     Function - ссылка на отрисовываемую двумерную функцию;
+     TitleChart - заголовок графика;
+     NameVectorX - название оси Ox. В формате: [обозначение], [расшифровка]. Например: u, Вероятность выбора;
+     NameVectorY - название оси Oy. В формате: [обозначение], [расшифровка]. Например: q, Количество абрикосов;
+     NameVectorZ - название оси Oz. В формате: [обозначение], [расшифровка]. Например: z, Вероятность;
+     Label - label для графика;
+     ColorMap - какой раскраски будет график. Возможны значения: mathcad, matlab, hot или тот, что вы хотите использовать. Рекомендуется mathcad;
+     Type - тип графика. Возможные значения:
+        Plot3D_Points - в виде точек,
+        Plot3D_Surface - в виде поверхности с непрерывной заливкой,
+        Plot3D_SurfaceGrid - в виде поверхности с сеточной заливкой,
+        Plot3D_TopView - вид сверху;
+     ColorBar - рисоватm с графиком колонку с градациями цветов или нет;
+     ForNormalSize - нормальный размер графика (на всю ширину), или для маленького размера график создается.
+    Возвращаемое значение:
+     Строка с Latex кодами с выводимым графиком.
+    */
+    QString VMHL_Result;//переменная итогового результата
+
+    double AngleHorizontalNew=25;
+    double AngleVerticalNew=30;
+    if (Type==Plot3D_TopView)
+    {
+       AngleHorizontalNew=0;
+       AngleVerticalNew=0;
+    }
+
+    VMHL_Result = THQt_LatexDraw3DPlot (Left_X, Right_X, Left_Y, Right_Y, N, Function,  TitleChart, NameVectorX,  NameVectorY, NameVectorZ, Label, ColorMap, Type, 1.0, AngleHorizontalNew, AngleVerticalNew, ColorBar, ForNormalSize);
+
+    return VMHL_Result;
+}
+//---------------------------------------------------------------------------
+
+QString THQt_LatexDraw3DPlot (double Left_X, double Right_X, double Left_Y, double Right_Y, int N, double (*Function)(double, double),  QString TitleChart, QString NameVectorX, QString NameVectorY, QString NameVectorZ, QString Label, QString ColorMap, TypeOf3DPlot Type, bool ColorBar)
+{
+    /*
+    Функция возвращает строку с Latex кодом отрисовки 3D поверхности по функции Function.
+    По сравнению с основным сайтом отсутствуют параметры Opacity, AngleHorizontal, AngleVertical и ForNormalSize.
+    Входные параметры:
+     Left_X - левая граница по оси Ox;
+     Right_X - правая граница по оси Ox;
+     Left_Y - левая граница по оси Oy;
+     Right_Y - правая граница по оси Oy;
+     N - сколько нужно построить точек по каждой оси. В итоге получим N*N точек;
+     Function - ссылка на отрисовываемую двумерную функцию;
+     TitleChart - заголовок графика;
+     NameVectorX - название оси Ox. В формате: [обозначение], [расшифровка]. Например: u, Вероятность выбора;
+     NameVectorY - название оси Oy. В формате: [обозначение], [расшифровка]. Например: q, Количество абрикосов;
+     NameVectorZ - название оси Oz. В формате: [обозначение], [расшифровка]. Например: z, Вероятность;
+     Label - label для графика;
+     ColorMap - какой раскраски будет график. Возможны значения: mathcad, matlab, hot или тот, что вы хотите использовать. Рекомендуется mathcad;
+     Type - тип графика. Возможные значения:
+        Plot3D_Points - в виде точек,
+        Plot3D_Surface - в виде поверхности с непрерывной заливкой,
+        Plot3D_SurfaceGrid - в виде поверхности с сеточной заливкой,
+        Plot3D_TopView - вид сверху;
+     ColorBar - рисоватm с графиком колонку с градациями цветов или нет.
+    Возвращаемое значение:
+     Строка с Latex кодами с выводимым графиком.
+    */
+    QString VMHL_Result;//переменная итогового результата
+
+    double AngleHorizontalNew=25;
+    double AngleVerticalNew=30;
+    if (Type==Plot3D_TopView)
+    {
+       AngleHorizontalNew=0;
+       AngleVerticalNew=0;
+    }
+
+    VMHL_Result = THQt_LatexDraw3DPlot (Left_X, Right_X, Left_Y, Right_Y, N, Function,  TitleChart, NameVectorX,  NameVectorY, NameVectorZ, Label, ColorMap, Type, 1.0, AngleHorizontalNew, AngleVerticalNew, ColorBar, true);
+
+    return VMHL_Result;
+}
+//---------------------------------------------------------------------------
+
+QString THQt_LatexDraw3DPlot (double Left_X, double Right_X, double Left_Y, double Right_Y, int N, double (*Function)(double, double),  QString TitleChart, QString NameVectorX, QString NameVectorY, QString NameVectorZ, QString Label, QString ColorMap, TypeOf3DPlot Type)
+{
+    /*
+    Функция возвращает строку с Latex кодом отрисовки 3D поверхности по функции Function.
+    По сравнению с основным сайтом отсутствуют параметры Opacity, AngleHorizontal, AngleVertical, ForNormalSize и ColorBar.
+    Входные параметры:
+     Left_X - левая граница по оси Ox;
+     Right_X - правая граница по оси Ox;
+     Left_Y - левая граница по оси Oy;
+     Right_Y - правая граница по оси Oy;
+     N - сколько нужно построить точек по каждой оси. В итоге получим N*N точек;
+     Function - ссылка на отрисовываемую двумерную функцию;
+     TitleChart - заголовок графика;
+     NameVectorX - название оси Ox. В формате: [обозначение], [расшифровка]. Например: u, Вероятность выбора;
+     NameVectorY - название оси Oy. В формате: [обозначение], [расшифровка]. Например: q, Количество абрикосов;
+     NameVectorZ - название оси Oz. В формате: [обозначение], [расшифровка]. Например: z, Вероятность;
+     Label - label для графика;
+     ColorMap - какой раскраски будет график. Возможны значения: mathcad, matlab, hot или тот, что вы хотите использовать. Рекомендуется mathcad;
+     Type - тип графика. Возможные значения:
+        Plot3D_Points - в виде точек,
+        Plot3D_Surface - в виде поверхности с непрерывной заливкой,
+        Plot3D_SurfaceGrid - в виде поверхности с сеточной заливкой,
+        Plot3D_TopView - вид сверху.
+    Возвращаемое значение:
+     Строка с Latex кодами с выводимым графиком.
+    */
+    QString VMHL_Result;//переменная итогового результата
+
+    double AngleHorizontalNew=25;
+    double AngleVerticalNew=30;
+    if (Type==Plot3D_TopView)
+    {
+       AngleHorizontalNew=0;
+       AngleVerticalNew=0;
+    }
+
+    VMHL_Result = THQt_LatexDraw3DPlot (Left_X, Right_X, Left_Y, Right_Y, N, Function,  TitleChart, NameVectorX,  NameVectorY, NameVectorZ, Label, ColorMap, Type, 1.0, AngleHorizontalNew, AngleVerticalNew, true, true);
+
+    return VMHL_Result;
+}
+//---------------------------------------------------------------------------
+
+QString THQt_LatexDraw3DPlot (double Left_X, double Right_X, double Left_Y, double Right_Y, int N, double (*Function)(double, double),  QString TitleChart, QString NameVectorX, QString NameVectorY, QString NameVectorZ, QString Label)
+{
+    /*
+    Функция возвращает строку с Latex кодом отрисовки 3D поверхности по функции Function.
+    По сравнению с основным сайтом отсутствуют параметры Opacity, AngleHorizontal, AngleVertical и ForNormalSize, ColorBar, ColorMap, Type.
+    Входные параметры:
+     Left_X - левая граница по оси Ox;
+     Right_X - правая граница по оси Ox;
+     Left_Y - левая граница по оси Oy;
+     Right_Y - правая граница по оси Oy;
+     N - сколько нужно построить точек по каждой оси. В итоге получим N*N точек;
+     Function - ссылка на отрисовываемую двумерную функцию;
+     TitleChart - заголовок графика;
+     NameVectorX - название оси Ox. В формате: [обозначение], [расшифровка]. Например: u, Вероятность выбора;
+     NameVectorY - название оси Oy. В формате: [обозначение], [расшифровка]. Например: q, Количество абрикосов;
+     NameVectorZ - название оси Oz. В формате: [обозначение], [расшифровка]. Например: z, Вероятность;
+     Label - label для графика.
+    Возвращаемое значение:
+     Строка с Latex кодами с выводимым графиком.
+    */
+    QString VMHL_Result;//переменная итогового результата
+
+    double AngleHorizontalNew=25;
+    double AngleVerticalNew=30;
+
+    VMHL_Result = THQt_LatexDraw3DPlot (Left_X, Right_X, Left_Y, Right_Y, N, Function,  TitleChart, NameVectorX,  NameVectorY, NameVectorZ, Label, "mathcad", Plot3D_Surface, 1.0, AngleHorizontalNew, AngleVerticalNew, true, true);
+
+    return VMHL_Result;
+}
+//---------------------------------------------------------------------------
+
+QString THQt_LatexDraw3DPlot (double Left_X, double Right_X, double Left_Y, double Right_Y, int N, double (*Function)(double, double))
+{
+    /*
+    Функция возвращает строку с Latex кодом отрисовки 3D поверхности по функции Function.
+    По сравнению с основным сайтом отсутствуют все дополнительные параметры.
+    Входные параметры:
+     Left_X - левая граница по оси Ox;
+     Right_X - правая граница по оси Ox;
+     Left_Y - левая граница по оси Oy;
+     Right_Y - правая граница по оси Oy;
+     N - сколько нужно построить точек по каждой оси. В итоге получим N*N точек;
+     Function - ссылка на отрисовываемую двумерную функцию.
+    Возвращаемое значение:
+     Строка с Latex кодами с выводимым графиком.
+    */
+    QString VMHL_Result;//переменная итогового результата
+
+    double AngleHorizontalNew=25;
+    double AngleVerticalNew=30;
+
+    VMHL_Result = THQt_LatexDraw3DPlot (Left_X, Right_X, Left_Y, Right_Y, N, Function,  "График", "x", "y", "z", "Plot3D"+HQt_RandomString(8), "mathcad", Plot3D_Surface, 1.0, AngleHorizontalNew, AngleVerticalNew, true, true);
+
+    return VMHL_Result;
+}
+//---------------------------------------------------------------------------
+
+QString THQt_LatexDraw3DPlot (double Left, double Right, int N, double (*Function)(double, double))
+{
+    /*
+    Функция возвращает строку с Latex кодом отрисовки 3D поверхности по функции Function.
+    По сравнению с основным сайтом отсутствуют все дополнительные параметры и для всех осей одинаковые границы изменения.
+    Входные параметры:
+     Left - левая граница по осям;
+     Right - правая граница по осям;
+     N - сколько нужно построить точек по каждой оси. В итоге получим N*N точек;
+     Function - ссылка на отрисовываемую двумерную функцию.
+    Возвращаемое значение:
+     Строка с Latex кодами с выводимым графиком.
+    */
+    QString VMHL_Result;//переменная итогового результата
+
+    double AngleHorizontalNew=25;
+    double AngleVerticalNew=30;
+
+    VMHL_Result = THQt_LatexDraw3DPlot (Left, Right, Left, Right, N, Function,  "График", "x", "y", "z", "Plot3D"+HQt_RandomString(8), "mathcad", Plot3D_Surface, 1.0, AngleHorizontalNew, AngleVerticalNew, true, true);
 
     return VMHL_Result;
 }
@@ -698,9 +986,9 @@ QString HQt_ReadHdataToLatexChart (QString filename)
             VMHL_Result+=HQt_LatexShowAlert ("Это не формат HarrixFileFormat.");
             return VMHL_Result;
         }
-        if (HQt_TextAfterEqualSign (String)!="Harrix Data 1.0")
+        if ((HQt_TextAfterEqualSign (String)!="Harrix Data 1.1")&&(HQt_TextAfterEqualSign (String)!="Harrix Data 1.0"))
         {
-            VMHL_Result+=HQt_LatexShowAlert ("Это не версия Harrix Data 1.0.");
+            VMHL_Result+=HQt_LatexShowAlert ("Это не версия Harrix Data 1.0 или 1.1.");
             return VMHL_Result;
         }
 
@@ -723,17 +1011,20 @@ QString HQt_ReadHdataToLatexChart (QString filename)
         QString Title;
         QString AxisX;
         QString AxisY;
+        QString AxisZ;
         bool ShowLine=false;
         bool ShowPoints=false;
         bool ShowArea=false;
         bool ShowSpecPoints=false;
         bool RedLine=false;
+        bool MinZero=false;
 
         //предварительные переменные
         QString TempType;
         QString TempTitle;
         QString TempAxisX;
         QString TempAxisY;
+        QString TempAxisZ;
         QString TempParameters;
 
         QString After;
@@ -754,6 +1045,7 @@ QString HQt_ReadHdataToLatexChart (QString filename)
             if (Before=="Title") TempTitle=After;
             if (Before=="AxisX") TempAxisX=After;
             if (Before=="AxisY") TempAxisY=After;
+            if (Before=="AxisZ") TempAxisZ=After;
             if (Before=="Parameters") TempParameters=After;
             i++;
         }
@@ -764,6 +1056,7 @@ QString HQt_ReadHdataToLatexChart (QString filename)
         Title=TempTitle;
         AxisX=TempAxisX;
         AxisY=TempAxisY;
+        AxisZ=TempAxisZ;
 
         if (TempType=="Line") Type="Line";
         if (TempType=="TwoLines") Type="TwoLines";
@@ -771,6 +1064,8 @@ QString HQt_ReadHdataToLatexChart (QString filename)
         if (TempType=="SeveralIndependentLines") Type="SeveralIndependentLines";
         if (TempType=="SeveralLines") Type="SeveralLines";
         if (TempType=="PointsAndLine") Type="PointsAndLine";
+        if (TempType=="Bar") Type="Bar";
+        if (TempType=="3DPoints") Type="3DPoints";
 
         QStringList ListParameters = TempParameters.split( ",", QString::SkipEmptyParts );
         for (int j=0;j<ListParameters.count();j++)
@@ -782,6 +1077,7 @@ QString HQt_ReadHdataToLatexChart (QString filename)
             if (String=="ShowArea") ShowArea=true;
             if (String=="ShowSpecPoints") ShowSpecPoints=true;
             if (String=="RedLine") RedLine=true;
+            if (String=="MinZero") MinZero=true;
         }
 
         if ((ShowLine==false)&&(ShowPoints==false)) ShowLine=true;
@@ -977,6 +1273,37 @@ QString HQt_ReadHdataToLatexChart (QString filename)
             delete []dataX2;
             delete []dataY1;
             delete []dataY2;
+        }
+        if (Type=="Bar")
+        {
+            int N=HQt_CountOfRowsFromQStringList(List);
+            double *data=new double [N];
+            THQt_ReadVectorFromQStringList(List,data);
+
+            if (ListNamesOfCharts.count()<1) ListNamesOfCharts << "";
+
+            VMHL_Result += THQt_LatexShowBar (data, N, Title, ListNamesOfCharts, AxisY, "Chart"+HQt_RandomString(8), true, MinZero);
+
+            delete []data;
+        }
+        if (Type=="3DPoints")
+        {
+            int N=HQt_CountOfRowsFromQStringList(List,0);
+            double *dataX=new double [N];
+            double *dataY=new double [N];
+            double *dataZ=new double [N];
+
+            THQt_ReadColFromQStringList(List,0,dataX);
+            THQt_ReadColFromQStringList(List,1,dataY);
+            THQt_ReadColFromQStringList(List,2,dataZ);
+
+            if (ListNamesOfCharts.count()<1) ListNamesOfCharts << "";
+
+            VMHL_Result +=THQt_LatexShow3DPlotPoints (dataX, dataY, dataZ, N, Title, AxisX, AxisY, AxisZ, "Chart"+HQt_RandomString(8), "mathcad",true);
+
+            delete []dataX;
+            delete []dataY;
+            delete []dataZ;
         }
     }
     catch(...)

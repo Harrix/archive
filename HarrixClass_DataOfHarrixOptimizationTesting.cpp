@@ -15,7 +15,7 @@ HarrixClass_DataOfHarrixOptimizationTesting::HarrixClass_DataOfHarrixOptimizatio
     Конструктор. Функция считывает данные о тестировании алгоритма оптимизации
     из файла формата HarrixOptimizationTesting.
     Входные параметры:
-     filename - полное имя считываемого файла;
+     filename - полное имя считываемого файла.
  */
     SuccessReading=true;
     XML_DimensionTestFunction=-1;//Размерность тестовой задачи (длина хромосомы решения)
@@ -331,7 +331,7 @@ QString HarrixClass_DataOfHarrixOptimizationTesting::getFullLatexAnalysis()
 QString HarrixClass_DataOfHarrixOptimizationTesting::getLatexBegin()
 {
     /*
-     Внутренная функция. Возвращает начало для полноценного Latex файла.
+     Внутренняя функция. Возвращает начало для полноценного Latex файла.
      */
     QString VMHL_Result;
     VMHL_Result+="\\documentclass[a4paper,12pt]{report}\n\n";
@@ -347,7 +347,7 @@ QString HarrixClass_DataOfHarrixOptimizationTesting::getLatexBegin()
 QString HarrixClass_DataOfHarrixOptimizationTesting::getLatexEnd()
 {
     /*
-     Внутренная функция. Возвращает концовку для полноценного Latex файла.
+     Внутренняя функция. Возвращает концовку для полноценного Latex файла.
      */
     return "\n\n\\end{document}";
 }
@@ -1156,7 +1156,7 @@ void HarrixClass_DataOfHarrixOptimizationTesting::makingHtmlReport()
 void HarrixClass_DataOfHarrixOptimizationTesting::readXmlLeafTag()
 {
     /*
-    Считывает и проверяет тэг, который должен являться "листом", то есть самым глубоким. Внутренная функция.
+    Считывает и проверяет тэг, который должен являться "листом", то есть самым глубоким. Внутренняя функция.
     Учитывает все "листовые" тэги кроме тэгов данных.
     Входные параметры:
      Отсутствуют.
@@ -1294,7 +1294,7 @@ void HarrixClass_DataOfHarrixOptimizationTesting::readXmlLeafTag()
 void HarrixClass_DataOfHarrixOptimizationTesting::checkXmlLeafTags()
 {
     /*
-    Проверяет наличие тэгов и правильное их выполнение. Внутренная функция.
+    Проверяет наличие тэгов и правильное их выполнение. Внутренняя функция.
     Учитывает все "листовые" тэги кроме тэгов данных.
     Входные параметры:
      Отсутствуют.
@@ -1473,7 +1473,7 @@ void HarrixClass_DataOfHarrixOptimizationTesting::checkXmlLeafTags()
 void HarrixClass_DataOfHarrixOptimizationTesting::memoryAllocation()
 {
     /*
-    Выделяет память под необходимые массивы. Внутренная функция.
+    Выделяет память под необходимые массивы. Внутренняя функция.
     Входные параметры:
      Отсутствуют.
     Возвращаемое значение:
@@ -1546,7 +1546,7 @@ void HarrixClass_DataOfHarrixOptimizationTesting::memoryAllocation()
 void HarrixClass_DataOfHarrixOptimizationTesting::readXmlDataTags()
 {
     /*
-    Считывает и проверяет тэги данных. Внутренная функция.
+    Считывает и проверяет тэги данных. Внутренняя функция.
     Учитывает все "листовые" тэги кроме тэгов данных.
     Входные параметры:
      Отсутствуют.
@@ -1754,7 +1754,7 @@ void HarrixClass_DataOfHarrixOptimizationTesting::readXmlDataTags()
 bool HarrixClass_DataOfHarrixOptimizationTesting::readXmlTreeTag(QString tag)
 {
     /*
-    Считывает и проверяет тэг, который содержит внутри себя другие тэги. Внутренная функция.
+    Считывает и проверяет тэг, который содержит внутри себя другие тэги. Внутренняя функция.
     Входные параметры:
      tag - какой тэг мы ищем.
     Возвращаемое значение:
@@ -1794,7 +1794,7 @@ bool HarrixClass_DataOfHarrixOptimizationTesting::readXmlTreeTag(QString tag)
 void HarrixClass_DataOfHarrixOptimizationTesting::zeroArray()
 {
     /*
-    Обнуляет массивы, в котрые записывается информация о данных из файла. Внутренная функция.
+    Обнуляет массивы, в котрые записывается информация о данных из файла. Внутренняя функция.
     Входные параметры:
      Отсутствуют.
     Возвращаемое значение:
@@ -1819,7 +1819,7 @@ void HarrixClass_DataOfHarrixOptimizationTesting::zeroArray()
 void HarrixClass_DataOfHarrixOptimizationTesting::makingAnalysis()
 {
     /*
-    Выполняет анализ считанных данных. Внутренная функция.
+    Выполняет анализ считанных данных. Внутренняя функция.
     Входные параметры:
      Отсутствуют.
     Возвращаемое значение:

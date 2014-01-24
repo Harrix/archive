@@ -444,7 +444,6 @@ QString HQt_ReadHdataToHtmlChart (QString filename)
     catch(...)
     {
         VMHL_Result+=HQt_ShowAlert ("Неизвестная ошибка.");
-        VMHL_Result="";
     }
 
     return VMHL_Result;

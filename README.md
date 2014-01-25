@@ -29,6 +29,8 @@ https://github.com/Harrix/HarrixFileFormats
 - [mtrand.cpp](../master/mtrand.cpp)
 - [mtrand.h](../master/mtrand.h)
 
+Добавьте эти файлы в ваш проект через правый клик мыши по проекту в Qt Creator и выбрав пункт Add Exsisting Files...
+
 А файлы из списка в папку с *.exe файлом вашего проекта.
 - папка [images](../master/images)
 - [index.html](../master/index.html)

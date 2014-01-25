@@ -1,7 +1,7 @@
 HarrixClass_HarrixData
 ===========================================
 
-Версия 1.0
+Версия 1.1
 
 Класс HarrixClass_HarrixData для считывания информации формата данных Harrix Data на C++ для Qt.
 

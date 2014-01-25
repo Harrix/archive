@@ -12,13 +12,16 @@ public:
     ~HarrixClass_HarrixData();
 
     QString getChartLatexCode ();//получить код Latex по отображению того или иного графика
+    QString getChartHtmlCode ();//получить код Html по отображению того или иного графика
     QString getErrorLatex ();//получить код Latex ошибок, которые накопились при считывании
+    QString getErrorHtml ();//получить код Html ошибок, которые накопились при считывании
 
 private:
     QStringList List;//сюда считываем наш файл (после конструктора тут только данные находятся)
     QStringList ListNamesOfCharts;//список названий столбцов или линий (согласно считываемому типу)
 
-    QString ErrorLatex;//Переменная для сохарнения сообщений об ошибках
+    QString ErrorLatex;//Переменная для сохарнения сообщений об ошибках в формате Latex
+    QString ErrorHtml;//Переменная для сохарнения сообщений об ошибках в формате Html
 
     //считываемые параметры
     QString Type;//тип формат данных, содержащихся в данном файле

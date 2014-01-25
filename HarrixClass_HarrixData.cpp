@@ -7,6 +7,7 @@
 #include "HarrixClass_HarrixData.h"
 #include "HarrixQtLibrary.h"
 #include "HarrixQtLibraryForLaTeX.h"
+#include "HarrixQtLibraryForQWebView.h"
 
 HarrixClass_HarrixData::HarrixClass_HarrixData(QString filename)
 {
@@ -21,10 +22,12 @@ HarrixClass_HarrixData::HarrixClass_HarrixData(QString filename)
         if (HQt_GetExpFromFilename(filename)!="hdata")
         {
             ErrorLatex+=HQt_LatexShowAlert ("Расширение файла не *.hdata.");
+            ErrorHtml +=HQt_ShowAlert ("Расширение файла не *.hdata.");
         }
         if (!HQt_FileExists(filename))
         {
             ErrorLatex+=HQt_LatexShowAlert ("Файл отсутствует.");
+            ErrorHtml +=HQt_ShowAlert ("Файл отсутствует.");
         }
 
         List = HQt_ReadFileToQStringList(filename);
@@ -32,6 +35,7 @@ HarrixClass_HarrixData::HarrixClass_HarrixData(QString filename)
         if (List.isEmpty())
         {
             ErrorLatex+=HQt_LatexShowAlert ("Файл пустой.");
+            ErrorHtml +=HQt_ShowAlert ("Файл пустой.");
         }
 
         QString String;
@@ -41,10 +45,12 @@ HarrixClass_HarrixData::HarrixClass_HarrixData(QString filename)
         if (HQt_TextBeforeEqualSign (String)!="HarrixFileFormat")
         {
             ErrorLatex+=HQt_LatexShowAlert ("Это не формат HarrixFileFormat.");
+            ErrorHtml +=HQt_ShowAlert ("Это не формат HarrixFileFormat.");
         }
         if ((HQt_TextAfterEqualSign (String)!="Harrix Data 1.1")&&(HQt_TextAfterEqualSign (String)!="Harrix Data 1.0"))
         {
             ErrorLatex+=HQt_LatexShowAlert ("Это не версия Harrix Data 1.0 или 1.1.");
+            ErrorHtml +=HQt_ShowAlert ("Это не версия Harrix Data 1.0 или 1.1.");
         }
 
         List.removeFirst();
@@ -53,10 +59,12 @@ HarrixClass_HarrixData::HarrixClass_HarrixData(QString filename)
         if (HQt_TextBeforeEqualSign (String)!="Site")
         {
             ErrorLatex+=HQt_LatexShowAlert ("Ошибка в структуре файла: нет второй строки в виде ссылки на сайт.");
+            ErrorHtml +=HQt_ShowAlert ("Ошибка в структуре файла: нет второй строки в виде ссылки на сайт.");
         }
         if (HQt_TextAfterEqualSign (String)!="https://github.com/Harrix/HarrixFileFormats")
         {
             ErrorLatex+=HQt_LatexShowAlert ("Ошибка в структуре файла: сайт указан неверно во второй строке.");
+            ErrorHtml +=HQt_ShowAlert ("Ошибка в структуре файла: сайт указан неверно во второй строке.");
         }
 
         if (ErrorLatex.isEmpty())
@@ -160,14 +168,16 @@ HarrixClass_HarrixData::HarrixClass_HarrixData(QString filename)
                 if (List.at(List.count()-1)!="EndData")
                 {
                     ErrorLatex+=HQt_LatexShowAlert ("Ошибка в структуре файла: нет в конце строчки EndData.");
+                    ErrorHtml +=HQt_ShowAlert ("Ошибка в структуре файла: нет в конце строчки EndData.");
                 }
                 List.removeFirst();
                 List.removeLast();
-                //теперь в List находитсz только нормальный объем данных
+                //теперь в List находится только нормальный объем данных
             }
             else
             {
                 ErrorLatex+=HQt_LatexShowAlert ("Ошибка в структуре файла: нет строчки BeginData.");
+                ErrorHtml +=HQt_ShowAlert ("Ошибка в структуре файла: нет строчки BeginData.");
             }
 
             //считываем данные
@@ -314,6 +324,7 @@ HarrixClass_HarrixData::HarrixClass_HarrixData(QString filename)
     catch(...)
     {
         ErrorLatex+=HQt_LatexShowAlert ("Неизвестная ошибка.");
+        ErrorHtml +=HQt_ShowAlert ("Неизвестная ошибка.");
     }
 }
 //---------------------------------------------------------------------------
@@ -367,7 +378,7 @@ HarrixClass_HarrixData::~HarrixClass_HarrixData()
 
     if ((Type=="Bar")&&(ErrorLatex.isEmpty()))
     {
-       delete []data;
+        delete []data;
     }
 
     if ((Type=="3DPoints")&&(ErrorLatex.isEmpty()))
@@ -425,9 +436,75 @@ QString HarrixClass_HarrixData::getChartLatexCode ()
         {
             VMHL_Result +=THQt_LatexShow3DPlotPoints (dataX, dataY, dataZ, N, Title, AxisX, AxisY, AxisZ, "Chart"+HQt_RandomString(8), "mathcad",true);
         }
+        if (Type=="NPoints")
+        {
+            VMHL_Result += HQt_LatexShowAlert ("Формат данных NPoints не поддерживается для вывода в график, так как данные представляют собой многомерную точку. Файлы данного формата предназначены для считывания данных, а не для отображения графика.");
+        }
+
+        if (VMHL_Result.isEmpty()) VMHL_Result +=ErrorLatex;
     }
     else
         VMHL_Result +=ErrorLatex;
+
+    return VMHL_Result;
+}
+//---------------------------------------------------------------------------
+
+QString HarrixClass_HarrixData::getChartHtmlCode ()
+{
+    /*
+    Получить код Html по отображению того или иного графика
+    Входные параметры:
+     Отсутствуют.
+    Возвращаемое значение:
+     Код Html графика
+     */
+
+    QString VMHL_Result;
+
+    if (ErrorLatex.isEmpty())
+    {
+        if (Type=="Line")
+        {
+            VMHL_Result += THQt_ShowChartOfLine (dataX,dataY,N,Title,AxisX,AxisY,ListNamesOfCharts.at(0),ShowLine,ShowPoints,ShowArea,ShowSpecPoints,RedLine);
+        }
+        if (Type=="TwoLines")
+        {
+            VMHL_Result += THQt_ShowTwoChartsOfLine (dataX,dataY1,dataY2,N,Title,AxisX,AxisY,ListNamesOfCharts.at(0),ListNamesOfCharts.at(1),ShowLine,ShowPoints,ShowArea,ShowSpecPoints);
+        }
+        if (Type=="TwoIndependentLines")
+        {
+            VMHL_Result += THQt_ShowTwoIndependentChartsOfLine (dataX1,dataY1,NX1,dataX2,dataY2,NX2,Title,AxisX,AxisY,ListNamesOfCharts.at(0),ListNamesOfCharts.at(1),ShowLine,ShowPoints,ShowArea,ShowSpecPoints);
+        }
+        if (Type=="SeveralLines")
+        {
+            VMHL_Result += THQt_ShowChartsOfLineFromMatrix (X,N,M,Title,AxisX,AxisY,NameLine,ShowLine,ShowPoints,ShowArea,ShowSpecPoints);
+        }
+        if (Type=="SeveralIndependentLines")
+        {
+            VMHL_Result += THQt_ShowIndependentChartsOfLineFromMatrix (X,N_EveryCol,M, Title,AxisX,AxisY,NameLine,ShowLine,ShowPoints,ShowArea,ShowSpecPoints);
+        }
+        if (Type=="PointsAndLine")
+        {
+            VMHL_Result += THQt_ShowTwoIndependentChartsOfPointsAndLine (dataX1,dataY1,NX1,dataX2,dataY2,NX2,Title,AxisX,AxisY,ListNamesOfCharts.at(0),ListNamesOfCharts.at(1),ShowLine,ShowPoints,ShowArea,ShowSpecPoints);
+        }
+        if (Type=="Bar")
+        {
+            VMHL_Result += HQt_ShowAlert ("Формат данных Bar в текущей версии для отображения в HTML не поддерживается. <br>Отображение в формат кода LaTeX поддерживается.");
+        }
+        if (Type=="3DPoints")
+        {
+            VMHL_Result += HQt_ShowAlert ("Формат данных 3DPoints в текущей версии для отображения в HTML не поддерживается. <br> Отображение в формат кода LaTeX поддерживается.");
+        }
+        if (Type=="NPoints")
+        {
+            VMHL_Result += HQt_ShowAlert ("Формат данных NPoints не поддерживается для вывода в график, так как данные представляют собой многомерную точку.<br> Файлы данного формата предназначены для считывания данных, а не для отображения графика.");
+        }
+
+        if (VMHL_Result.isEmpty()) VMHL_Result +=ErrorHtml;
+    }
+    else
+        VMHL_Result +=ErrorHtml;
 
     return VMHL_Result;
 }
@@ -440,12 +517,30 @@ QString HarrixClass_HarrixData::getErrorLatex ()
     Входные параметры:
      Отсутствуют.
     Возвращаемое значение:
-     Код LaTeX графика
+     Код LaTeX графика.
      */
 
     QString VMHL_Result;
 
     VMHL_Result +=ErrorLatex;
+
+    return VMHL_Result;
+}
+//---------------------------------------------------------------------------
+
+QString HarrixClass_HarrixData::getErrorHtml()
+{
+    /*
+    Получить код Html по отображению ошибок,  которые накопились при считывании
+    Входные параметры:
+     Отсутствуют.
+    Возвращаемое значение:
+     Код Html графика.
+     */
+
+    QString VMHL_Result;
+
+    VMHL_Result +=ErrorHtml;
 
     return VMHL_Result;
 }

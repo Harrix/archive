@@ -29,19 +29,19 @@ https://github.com/Harrix/HarrixFileFormats
 Примеры графиков для LaTeX
 --------------------------
 
-![alt text](../master/imagesforgithub/example2.png "Пример вывода")
+![alt text](../master/images/example2.png "Пример вывода")
 
-![alt text](../master/imagesforgithub/example3.png "Пример вывода")
+![alt text](../master/images/example3.png "Пример вывода")
 
-![alt text](../master/imagesforgithub/example24.png "Пример вывода")
+![alt text](../master/images/example24.png "Пример вывода")
 
-![alt text](../master/imagesforgithub/example5.png "Пример вывода")
+![alt text](../master/images/example5.png "Пример вывода")
 
-![alt text](../master/imagesforgithub/example6.png "Пример вывода")
+![alt text](../master/images/example6.png "Пример вывода")
 
-![alt text](../master/imagesforgithub/example7.png "Пример вывода")
+![alt text](../master/images/example7.png "Пример вывода")
 
-![alt text](../master/imagesforgithub/example8.png "Пример вывода")
+![alt text](../master/images/example8.png "Пример вывода")
 
 История проекта
 ---------------

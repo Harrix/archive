@@ -33,7 +33,7 @@ https://github.com/Harrix/HarrixFileFormats
 
 ![alt text](../master/images/example3.png "Пример вывода")
 
-![alt text](../master/images/example24.png "Пример вывода")
+![alt text](../master/images/example4.png "Пример вывода")
 
 ![alt text](../master/images/example5.png "Пример вывода")
 

@@ -26,6 +26,8 @@ https://github.com/Harrix/HarrixFileFormats
 - [HarrixQtLibrary.h](../master/HarrixQtLibrary.h)
 - [HarrixMathLibrary.cpp](../master/HarrixMathLibrary.cpp)
 - [HarrixMathLibrary.h](../master/HarrixMathLibrary.h)
+- [mtrand.cpp](../master/mtrand.cpp)
+- [mtrand.h](../master/mtrand.h)
 
 А файлы из списка в папку с *.exe файлом вашего проекта.
 - папка [images](../master/images)

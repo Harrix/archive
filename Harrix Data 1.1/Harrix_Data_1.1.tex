@@ -315,7 +315,7 @@ BeginNamesOfCharts
 EndNamesOfCharts
 \end{lstlisting}
 
-Пример данных, которые содержатся в между строчками \textbf{BeginData} и \textbf{EndData} (с этими строчками включительно) ниже.  Количество столбцов $n+1$.
+Пример данных, которые содержатся в между строчками \textbf{BeginData} и \textbf{EndData} (с этими строчками включительно) ниже.  Количество столбцов $n$.
 \begin{lstlisting}[label=NPoints_2,caption=Для NPoints ]
 BeginData
 0.029462501	0.14561098	1.393046208	2.241360938	3.1353736
@@ -387,16 +387,6 @@ Parameters = ShowLine, ShowPoints, ShowArea, ShowSpecPoints
 
 \section{Функции, которые обрабатывают данный формат файлов}
 
-В библиотеке \href {https://github.com/Harrix/HarrixQtLibraryForQWebView} {https://github.com/Harrix/HarrixQtLibraryForQWebView} на языке С++ имеются функции, которые обрабатывают данный формат файлов с среде Qt. К таким функциям относятся:
-
-\begin{itemize}
-\item QString \textbf{HQt\_ReadHdataToHtmlChart} (QString filename) --- функция возвращает строку с HTML кодом графика в результате считывания информации из *.hdata.
-\end{itemize}
-
-В библиотеке \href {https://github.com/Harrix/HarrixQtLibraryForLaTeX} {https://github.com/Harrix/HarrixQtLibraryForLaTeX} на языке С++ имеются функции, которые обрабатывают данный формат файлов с среде Qt. К таким функциям относятся:
-
-\begin{itemize}
-\item QString \textbf{HQt\_ReadHdataToLatexChart} (QString filename) --- функция возвращает строку с \LaTeX \ кодом графика в результате считывания информации из *.hdata.
-\end{itemize}
+В библиотеке \href {https://github.com/Harrix/HarrixClass\_HarrixData} {https://github.com/Harrix/HarrixClass\_HarrixData} на языке С++ имеется класс HarrixClass\_HarrixData, которые обрабатывает данный формат файлов с среде Qt. Там можно как вывести код графика в формате \LaTeX, Html, так и считать эти данные.
 
 \end{document}

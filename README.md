@@ -26,6 +26,23 @@ https://github.com/Harrix/HarrixFileFormats
 
 ![alt text](../master/images/SeveralIndependentLines.png "Пример показа SeveralIndependentLines.hdata")
 
+Примеры графиков для LaTeX
+--------------------------
+
+![alt text](../master/imagesforgithub/example2.png "Пример вывода")
+
+![alt text](../master/imagesforgithub/example3.png "Пример вывода")
+
+![alt text](../master/imagesforgithub/example24.png "Пример вывода")
+
+![alt text](../master/imagesforgithub/example5.png "Пример вывода")
+
+![alt text](../master/imagesforgithub/example6.png "Пример вывода")
+
+![alt text](../master/imagesforgithub/example7.png "Пример вывода")
+
+![alt text](../master/imagesforgithub/example8.png "Пример вывода")
+
 История проекта
 ---------------
 

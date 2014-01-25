@@ -1,7 +1,7 @@
 HarrixClass_HarrixData
 ===========================================
 
-Версия 1.1
+Версия 1.2
 
 Класс HarrixClass_HarrixData для считывания информации формата данных Harrix Data на C++ для Qt.
 
@@ -77,6 +77,44 @@ if (Data.getSuccessReading())
 Аналогично выводится Latex код через функцию getChartLatexCode();
 	
 И соответствующий текст должен отобразиться в QWebView максимум за 1 секунду: каждую секунду происходит проверка на наличие обновления.
+
+Как вывести все значения для пользования?
+
+```cpp
+HarrixClass_HarrixData H(filename);
+double x;
+for (int k=0;k<H.getNumberOfCharts();k++)//прогон по линиям
+{
+   for (int i=0;i<H.getNumberElementsInChart(k);i++)//прогон по точкам
+   {
+       for (int j=0;j<H.getNumberCoordinateInChart();j++)//прогон по координатам точки
+       {
+           x = H.getPointCoordinateOfData(k,i,j);
+       }
+   }
+}
+```
+
+Тут более конкретный пример с выводом данных.
+
+```cpp
+        Html += HQt_ShowText("Вывод данных");
+        for (int k=0;k<H.getNumberOfCharts();k++)//прогон по линиям
+        {
+           Html += HQt_ShowText("Набор данных №"+ QString::number(k+1));
+           for (int i=0;i<H.getNumberElementsInChart(k);i++)//прогон по точкам
+           {
+               QString Point = "(";
+               for (int j=0;j<H.getNumberCoordinateInChart();j++)//прогон по координатам точки
+               {
+                   Point += QString::number(H.getPointCoordinateOfData(k,i,j))+", ";
+               }
+               Point = Point.mid(0,Point.length()-2);
+               Point += ")";
+               Html += HQt_ShowSimpleText(Point);
+           }
+        }
+```
 
 Скриншоты применения библиотеки
 -------------------------------

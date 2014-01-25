@@ -1,5 +1,5 @@
 //HarrixClass_HarrixData
-//Версия 1.1
+//Версия 1.2
 //Класс для считывания информации формата данных Harrix Data на C++ для Qt.
 //https://github.com/Harrix/HarrixClass_HarrixData
 //Библиотека распространяется по лицензии Apache License, Version 2.0.
@@ -316,6 +316,26 @@ HarrixClass_HarrixData::HarrixClass_HarrixData(QString filename)
 
                     if (ListNamesOfCharts.count()<1) ListNamesOfCharts << "";
                 }
+
+                if (Type=="NPoints")
+                {
+                    M=HQt_CountOfColsFromQStringList(List);
+
+                    N_EveryCol=new int[M];
+
+                    N=HQt_CountOfRowsFromQStringList(List,N_EveryCol);
+
+                    X=new double*[N];
+                    for (int i=0;i<N;i++) X[i]=new double[M];
+
+                    THQt_ReadMatrixFromQStringList(List, X);
+
+                    if (ListNamesOfCharts.count()<M)
+                        for (int j=0;j<M-1-ListNamesOfCharts.count();j++) ListNamesOfCharts << "";
+
+                    NameLine=new QString[M];
+                    for (int i=0;i<M;i++)NameLine[i]=ListNamesOfCharts.at(i);
+                }
             }//if (ErrorLatex.isEmpty())
 
         }//if (ErrorLatex.isEmpty())
@@ -386,6 +406,13 @@ HarrixClass_HarrixData::~HarrixClass_HarrixData()
         delete []dataX;
         delete []dataY;
         delete []dataZ;
+    }
+    if ((Type=="NPoints")&&(ErrorLatex.isEmpty()))
+    {
+        for (int i=0;i<N;i++) delete [] X[i];
+        delete [] X;
+        delete [] N_EveryCol;
+        delete [] NameLine;
     }
 }
 //---------------------------------------------------------------------------
@@ -531,7 +558,7 @@ QString HarrixClass_HarrixData::getErrorLatex ()
 QString HarrixClass_HarrixData::getErrorHtml()
 {
     /*
-    Получить код Html по отображению ошибок,  которые накопились при считывании
+    Получить код Html по отображению ошибок,  которые накопились при считывании.
     Входные параметры:
      Отсутствуют.
     Возвращаемое значение:
@@ -543,5 +570,796 @@ QString HarrixClass_HarrixData::getErrorHtml()
     VMHL_Result +=ErrorHtml;
 
     return VMHL_Result;
+}
+//---------------------------------------------------------------------------
+
+int HarrixClass_HarrixData::getNumberOfRows()
+{
+    /*
+    Узнать сколько строчек данных содержится в файле.
+    Входные параметры:
+     Отсутствуют.
+    Возвращаемое значение:
+     Количество строчек данных, которое содержится в файле.
+     */
+    if (ErrorLatex.isEmpty())
+    {
+        if (Type=="Line")
+        {
+            return N;
+        }
+
+        if (Type=="TwoLines")
+        {
+            return N;
+        }
+
+        if (Type=="TwoIndependentLines")
+        {
+            int MaxN = NX1;
+
+            if (NY1>MaxN) MaxN=NY1;
+            if (NX2>MaxN) MaxN=NX2;
+            if (NY2>MaxN) MaxN=NY2;
+
+            return MaxN;
+        }
+
+        if (Type=="SeveralLines")
+        {
+            return N;
+        }
+
+        if (Type=="SeveralIndependentLines")
+        {
+            return N;
+        }
+
+        if (Type=="PointsAndLine")
+        {
+            int MaxN = NX1;
+
+            if (NY1>MaxN) MaxN=NY1;
+            if (NX2>MaxN) MaxN=NX2;
+            if (NY2>MaxN) MaxN=NY2;
+
+            return MaxN;
+        }
+
+        if (Type=="Bar")
+        {
+            return N;
+        }
+
+        if (Type=="3DPoints")
+        {
+            return N;
+        }
+
+        if (Type=="NDPoints")
+        {
+            return N;
+        }
+    }//if (ErrorLatex.isEmpty())
+
+    return 0;
+}
+//---------------------------------------------------------------------------
+
+int HarrixClass_HarrixData::getNumberOfCols()
+{
+    /*
+    Узнать сколько столбцов данных содержится в файле.
+    Входные параметры:
+     Отсутствуют.
+    Возвращаемое значение:
+     Количество столбцов данных, которое содержится в файле.
+     */
+    if (ErrorLatex.isEmpty())
+    {
+        if (Type=="Line")
+        {
+            return 2;
+        }
+
+        if (Type=="TwoLines")
+        {
+            return 4;
+        }
+
+        if (Type=="TwoIndependentLines")
+        {
+            return 4;
+        }
+
+        if (Type=="SeveralLines")
+        {
+            return M;
+        }
+
+        if (Type=="SeveralIndependentLines")
+        {
+            return M;
+        }
+
+        if (Type=="PointsAndLine")
+        {
+            return 4;
+        }
+
+        if (Type=="Bar")
+        {
+            return 1;
+        }
+
+        if (Type=="3DPoints")
+        {
+            return 3;
+        }
+
+        if (Type=="NDPoints")
+        {
+            return M;
+        }
+    }//if (ErrorLatex.isEmpty())
+
+    return 0;
+}
+//---------------------------------------------------------------------------
+
+QString HarrixClass_HarrixData::getType()
+{
+    /*
+    Узнать тип формата данных.
+    Входные параметры:
+     Отсутствуют.
+    Возвращаемое значение:
+     Название типа вормата данных.
+     */
+    return Type;
+}
+//---------------------------------------------------------------------------
+
+int HarrixClass_HarrixData::getNumberElementsInCol(int j)
+{
+    /*
+    Узнать сколько элементов содержится в данном столбце данных.
+    Входные параметры:
+     j - столбец в данных.
+    Возвращаемое значение:
+     Количество элементов данных, которое содержится в данном столбце данных.
+     */
+    if (ErrorLatex.isEmpty())
+    {
+        int MM=getNumberOfCols();
+
+        if (j<0)
+        {
+            ErrorLatex+=HQt_LatexShowAlert("Номер столбца в данных указан неверно");
+            ErrorHtml+=HQt_ShowAlert("Номер столбца в данных указан неверно");
+            return 0;
+        }
+        if (j>=MM)
+        {
+            ErrorLatex+=HQt_LatexShowAlert("Номер столбца в данных указан неверно");
+            ErrorHtml+=HQt_ShowAlert("Номер столбца в данных указан неверно");
+            return 0;
+        }
+
+        if (Type=="Line")
+        {
+            return N;
+        }
+
+        if (Type=="TwoLines")
+        {
+            return N;
+        }
+
+        if (Type=="TwoIndependentLines")
+        {
+            if (j==0) return NX1;
+            if (j==1) return NY1;
+            if (j==2) return NX2;
+            if (j==3) return NY2;
+        }
+
+        if (Type=="SeveralLines")
+        {
+            return N;
+        }
+
+        if (Type=="SeveralIndependentLines")
+        {
+            return N_EveryCol[j];
+        }
+
+        if (Type=="PointsAndLine")
+        {
+            if (j==0) return NX1;
+            if (j==1) return NY1;
+            if (j==2) return NX2;
+            if (j==3) return NY2;
+        }
+
+        if (Type=="Bar")
+        {
+            return N;
+        }
+
+        if (Type=="3DPoints")
+        {
+            return N;
+        }
+
+        if (Type=="NPoints")
+        {
+            return N;
+        }
+
+    }//if (ErrorLatex.isEmpty())
+
+    return 0;
+}
+//---------------------------------------------------------------------------
+
+QString HarrixClass_HarrixData::getNameOfLine(int i)
+{
+    /*
+    Получить имя данной линии или столбца согласно типу данных.
+    Входные параметры:
+     i - номер столбца в данных.
+    Возвращаемое значение:
+     Названия столбца или линии согласно типу данных.
+     */
+    if (ErrorLatex.isEmpty())
+    {
+        int MM=ListNamesOfCharts.count();
+
+        if (i<0)
+        {
+            ErrorLatex+=HQt_LatexShowAlert("Номер столбца в данных указан неверно");
+            ErrorHtml+=HQt_ShowAlert("Номер столбца в данных указан неверно");
+            return "NULL";
+        }
+        if (i>=MM)
+        {
+            ErrorLatex+=HQt_LatexShowAlert("Номер столбца в данных указан неверно");
+            ErrorHtml+=HQt_ShowAlert("Номер столбца в данных указан неверно");
+            return "NULL";
+        }
+
+        QString Result;
+
+        if (Type=="3DPoints")
+        {
+            Result=Title;
+        }
+        else
+        {
+            Result=ListNamesOfCharts.at(i);
+        }
+
+        return Result;
+
+    }//if (ErrorLatex.isEmpty())
+
+    ErrorLatex+=HQt_LatexShowAlert("Номер столбца в данных указан неверно");
+    ErrorHtml+=HQt_ShowAlert("Номер столбца в данных указан неверно");
+
+    return "NULL";
+}
+//---------------------------------------------------------------------------
+
+double HarrixClass_HarrixData::getElementOfData(int i, int j)
+{
+    /*
+    Получить значение элемента из данных согласно типу данных.
+    Входные параметры:
+     i - номер строки в данных;
+     j - номер столбца в данных.
+    Возвращаемое значение:
+     Значение элемента данных.
+     */
+    if (ErrorLatex.isEmpty())
+    {
+        if (j<0)
+        {
+            ErrorLatex+=HQt_LatexShowAlert("Номер столбца в данных указан неверно");
+            ErrorHtml+=HQt_ShowAlert("Номер столбца в данных указан неверно");
+            return 0;
+        }
+        if (j>=M)
+        {
+            ErrorLatex+=HQt_LatexShowAlert("Номер столбца в данных указан неверно");
+            ErrorHtml+=HQt_ShowAlert("Номер столбца в данных указан неверно");
+            return 0;
+        }
+
+        int NN=getNumberElementsInCol(j);
+
+        if (i<0)
+        {
+            ErrorLatex+=HQt_LatexShowAlert("Номер строки в данных указан неверно");
+            ErrorHtml+=HQt_ShowAlert("Номер строки в данных указан неверно");
+            return 0;
+        }
+        if (i>=NN)
+        {
+            ErrorLatex+=HQt_LatexShowAlert("Номер строки в данных указан неверно");
+            ErrorHtml+=HQt_ShowAlert("Номер строки в данных указан неверно");
+            return 0;
+        }
+
+        double ElementOfData=0;
+
+        if (Type=="Line")
+        {
+            if (j==0) ElementOfData=dataX[i];
+            if (j==1) ElementOfData=dataY[i];
+        }
+
+        if (Type=="TwoLines")
+        {
+            if (j==0) ElementOfData=dataX[i];
+            if (j==1) ElementOfData=dataY1[i];
+            if (j==2) ElementOfData=dataY2[i];
+        }
+
+        if (Type=="TwoIndependentLines")
+        {
+            if (j==0) ElementOfData=dataX1[i];
+            if (j==1) ElementOfData=dataY1[i];
+            if (j==2) ElementOfData=dataX2[i];
+            if (j==3) ElementOfData=dataY2[i];
+        }
+
+        if (Type=="SeveralLines")
+        {
+            ElementOfData=X[i][j];
+        }
+
+        if (Type=="SeveralIndependentLines")
+        {
+            ElementOfData=X[i][j];
+        }
+
+        if (Type=="PointsAndLine")
+        {
+            if (j==0) ElementOfData=dataX1[i];
+            if (j==1) ElementOfData=dataY1[i];
+            if (j==2) ElementOfData=dataX2[i];
+            if (j==3) ElementOfData=dataY2[i];
+        }
+
+        if (Type=="Bar")
+        {
+            ElementOfData=data[i];
+        }
+
+        if (Type=="3DPoints")
+        {
+            if (j==0) ElementOfData=dataX[i];
+            if (j==1) ElementOfData=dataY[i];
+            if (j==2) ElementOfData=dataZ[i];
+        }
+
+        if (Type=="NPoints")
+        {
+            ElementOfData=X[i][j];
+        }
+
+        return ElementOfData;
+
+    }//if (ErrorLatex.isEmpty())
+
+    ErrorLatex+=HQt_LatexShowAlert("Номер столбца или строки в данных указан неверно");
+    ErrorHtml+=HQt_ShowAlert("Номер столбца или строки в данных указан неверно");
+
+    return 0;
+}
+//---------------------------------------------------------------------------
+
+QString HarrixClass_HarrixData::getAxisX()
+{
+    /*
+    Узнать название оси Ox.
+    Входные параметры:
+     Отсутствуют.
+    Возвращаемое значение:
+     Название оси Ox.
+     */
+    return AxisX;
+}
+//---------------------------------------------------------------------------
+
+QString HarrixClass_HarrixData::getAxisY()
+{
+    /*
+    Узнать название оси Oy.
+    Входные параметры:
+     Отсутствуют.
+    Возвращаемое значение:
+     Название оси Oy.
+     */
+    return AxisY;
+}
+//---------------------------------------------------------------------------
+
+QString HarrixClass_HarrixData::getAxisZ()
+{
+    /*
+    Узнать название оси Oz.
+    Входные параметры:
+     Отсутствуют.
+    Возвращаемое значение:
+     Название оси Oz.
+     */
+    return AxisZ;
+}
+//---------------------------------------------------------------------------
+
+QString HarrixClass_HarrixData::getTitle()
+{
+    /*
+    Узнать название графика или набора данных.
+    Входные параметры:
+     Отсутствуют.
+    Возвращаемое значение:
+     Название графика или набора данных.
+     */
+    return Title;
+}
+//---------------------------------------------------------------------------
+
+int HarrixClass_HarrixData::getNumberOfCharts()
+{
+    /*
+    Cколько линий, поверхностей или наборов точек содержится в файле.
+    Входные параметры:
+     Отсутствуют.
+    Возвращаемое значение:
+     Количество линий, поверхностей или наборов точек содержится в файле.
+     */
+    if (ErrorLatex.isEmpty())
+    {
+        if (Type=="Line")
+        {
+            return 1;
+        }
+
+        if (Type=="TwoLines")
+        {
+            return 2;
+        }
+
+        if (Type=="TwoIndependentLines")
+        {
+            return 2;
+        }
+
+        if (Type=="SeveralLines")
+        {
+            return M-1;
+        }
+
+        if (Type=="SeveralIndependentLines")
+        {
+            return M/2;
+        }
+
+        if (Type=="PointsAndLine")
+        {
+            return 2;
+        }
+
+        if (Type=="Bar")
+        {
+            return 1;
+        }
+
+        if (Type=="3DPoints")
+        {
+            return 1;
+        }
+
+        if (Type=="NDPoints")
+        {
+            return 1;
+        }
+    }//if (ErrorLatex.isEmpty())
+
+    return 0;
+}
+//---------------------------------------------------------------------------
+
+int HarrixClass_HarrixData::getNumberCoordinateInChart()
+{
+    /*
+    Cколько координат содержится в выбранной линии (и др.) в данных.
+    Входные параметры:
+     Отсутствуют.
+    Возвращаемое значение:
+     Количество координат содержится в выбранной линии (и др.) в данных.
+     */
+    if (ErrorLatex.isEmpty())
+    {
+        if (Type=="Line")
+        {
+            return 2;
+        }
+
+        if (Type=="TwoLines")
+        {
+            return 2;
+        }
+
+        if (Type=="TwoIndependentLines")
+        {
+            return 2;
+        }
+
+        if (Type=="SeveralLines")
+        {
+            return 2;
+        }
+
+        if (Type=="SeveralIndependentLines")
+        {
+            return 2;
+        }
+
+        if (Type=="PointsAndLine")
+        {
+            return 2;
+        }
+
+        if (Type=="Bar")
+        {
+            return 1;
+        }
+
+        if (Type=="3DPoints")
+        {
+            return 3;
+        }
+
+        if (Type=="NDPoints")
+        {
+            return M;
+        }
+    }//if (ErrorLatex.isEmpty())
+
+    return 0;
+}
+//---------------------------------------------------------------------------
+
+int HarrixClass_HarrixData::getNumberElementsInChart(int k)
+{
+    /*
+    Сколько элементов (точек) содержится в выбранной линии (и др.) в данных.
+    Чем отличается от getNumberElementsInCol? Там просто берутся данные как из таблицы по номеру строки и столба,
+    бех учета их значения. Тут же получение координаты получается согласно семантики конкретного набора данных по его типу.
+    Входные параметры:
+     k - номер линии  (и др.).
+    Возвращаемое значение:
+     Количество элементов (точек) содержится в выбранной линии (и др.) в данных.
+     */
+    if (ErrorLatex.isEmpty())
+    {
+        int MM=getNumberOfCharts();
+
+        if (k<0)
+        {
+            ErrorLatex+=HQt_LatexShowAlert("Номер линии (и др.) указан неверно");
+            ErrorHtml+=HQt_ShowAlert("Номер линии (и др.) в данных указан неверно");
+            return 0;
+        }
+        if (k>=MM)
+        {
+            ErrorLatex+=HQt_LatexShowAlert("Номер линии (и др.) указан неверно");
+            ErrorHtml+=HQt_ShowAlert("Номер линии (и др.) указан неверно");
+            return 0;
+        }
+
+        if (Type=="Line")
+        {
+            return N;
+        }
+
+        if (Type=="TwoLines")
+        {
+            return N;
+        }
+
+        if (Type=="TwoIndependentLines")
+        {
+            if (k==0) return NX1;
+            if (k==1) return NX2;
+        }
+
+        if (Type=="SeveralLines")
+        {
+            return N;
+        }
+
+        if (Type=="SeveralIndependentLines")
+        {
+            return N_EveryCol[k*2];
+        }
+
+        if (Type=="PointsAndLine")
+        {
+            if (k==0) return NX1;
+            if (k==1) return NX2;
+        }
+
+        if (Type=="Bar")
+        {
+            return N;
+        }
+
+        if (Type=="3DPoints")
+        {
+            return N;
+        }
+
+        if (Type=="NPoints")
+        {
+            return N;
+        }
+    }//if (ErrorLatex.isEmpty())
+
+    return 0;
+}
+//---------------------------------------------------------------------------
+
+double HarrixClass_HarrixData::getPointCoordinateOfData(int k, int i, int j)
+{
+    /*
+    Получить значение координаты точки из данных.
+    Чем отличается от getElementOfData? Там просто берутся данные как из таблицы по номеру строки и столба,
+    бех учета их значения. Тут же получение координаты получается согласно семантики конкретного набора данных по его типу.
+    Входные параметры:
+     k - номер линии, графика, набора точек  (их количество смотри getNumberOfCharts());
+     i - номер элемента в выбранной линии;
+     j - номер координаты.
+    Возвращаемое значение:
+     Значение координаты точки из данных.
+     */
+    if (ErrorLatex.isEmpty())
+    {
+        int KK=getNumberOfCharts();
+
+        if (k<0)
+        {
+            ErrorLatex+=HQt_LatexShowAlert("Номер линии (и др.) в данных указан неверно");
+            ErrorHtml+=HQt_ShowAlert("Номер линии (и др.) в данных указан неверно");
+            return 0;
+        }
+        if (k>=KK)
+        {
+            ErrorLatex+=HQt_LatexShowAlert("Номер линии (и др.) в данных указан неверно");
+            ErrorHtml+=HQt_ShowAlert("Номер линии (и др.) в данных указан неверно");
+            return 0;
+        }
+
+        int MM=getNumberCoordinateInChart();
+
+        if (j<0)
+        {
+            ErrorLatex+=HQt_LatexShowAlert("Номер столбца в данных указан неверно");
+            ErrorHtml+=HQt_ShowAlert("Номер столбца в данных указан неверно");
+            return 0;
+        }
+        if (j>=MM)
+        {
+            ErrorLatex+=HQt_LatexShowAlert("Номер столбца в данных указан неверно");
+            ErrorHtml+=HQt_ShowAlert("Номер столбца в данных указан неверно");
+            return 0;
+        }
+
+        int NN=getNumberElementsInChart(k);
+
+        if (i<0)
+        {
+            ErrorLatex+=HQt_LatexShowAlert("Номер элемента в линии указан неверно");
+            ErrorHtml+=HQt_ShowAlert("Номер  элемента в линии указан неверно");
+            return 0;
+        }
+        if (i>=NN)
+        {
+            ErrorLatex+=HQt_LatexShowAlert("Номер строки в данных указан неверно");
+            ErrorHtml+=HQt_ShowAlert("Номер строки в данных указан неверно");
+            return 0;
+        }
+
+        double ElementOfChart=0;
+
+        if (Type=="Line")
+        {
+            if (j==0) ElementOfChart=dataX[i];
+            if (j==1) ElementOfChart=dataY[i];
+        }
+
+        if (Type=="TwoLines")
+        {
+            if (k==0)
+            {
+                if (j==0) ElementOfChart=dataX[i];
+                if (j==1) ElementOfChart=dataY1[i];
+            }
+            if (k==1)
+            {
+                if (j==0) ElementOfChart=dataX[i];
+                if (j==1) ElementOfChart=dataY2[i];
+            }
+        }
+
+        if (Type=="TwoIndependentLines")
+        {
+            if (k==0)
+            {
+                if (j==0) ElementOfChart=dataX1[i];
+                if (j==1) ElementOfChart=dataY1[i];
+            }
+            if (k==1)
+            {
+                if (j==0) ElementOfChart=dataX2[i];
+                if (j==1) ElementOfChart=dataY2[i];
+            }
+        }
+
+        if (Type=="SeveralLines")
+        {
+            if (j==0) ElementOfChart=X[i][0];
+            if (j==1) ElementOfChart=X[i][k+1];
+        }
+
+        if (Type=="SeveralIndependentLines")
+        {
+            if (j==0) ElementOfChart=X[i][2*k];
+            if (j==1) ElementOfChart=X[i][2*k+1];
+        }
+
+        if (Type=="PointsAndLine")
+        {
+            if (k==0)
+            {
+                if (j==0) ElementOfChart=dataX1[i];
+                if (j==1) ElementOfChart=dataY1[i];
+            }
+            if (k==1)
+            {
+                if (j==0) ElementOfChart=dataX2[i];
+                if (j==1) ElementOfChart=dataY2[i];
+            }
+        }
+
+        if (Type=="Bar")
+        {
+            ElementOfChart=data[i];
+        }
+
+        if (Type=="3DPoints")
+        {
+            if (j==0) ElementOfChart=dataX[i];
+            if (j==1) ElementOfChart=dataY[i];
+            if (j==2) ElementOfChart=dataZ[i];
+        }
+
+        if (Type=="NPoints")
+        {
+            ElementOfChart=X[i][j];
+        }
+
+        return ElementOfChart;
+
+    }//if (ErrorLatex.isEmpty())
+
+    ErrorLatex+=HQt_LatexShowAlert("Что-то неправильное вы спросили");
+    ErrorHtml+=HQt_ShowAlert("Что-то неправильное вы спросили");
+
+    return 0;
 }
 //---------------------------------------------------------------------------

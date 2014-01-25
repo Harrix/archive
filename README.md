@@ -123,7 +123,7 @@ for (int k=0;k<H.getNumberOfCharts();k++)//прогон по линиям
 
 ![alt text](../master/imagesforgithub/example3.png "Пример вывода")
 
-![alt text](../master/imagesforgithub/example24.png "Пример вывода")
+![alt text](../master/imagesforgithub/example4.png "Пример вывода")
 
 ![alt text](../master/imagesforgithub/example5.png "Пример вывода")
 

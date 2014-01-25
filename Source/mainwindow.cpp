@@ -64,7 +64,7 @@ void MainWindow::on_action_triggered()
     {
         HarrixClass_HarrixData H(filename);
         Html += H.getChartHtmlCode();
-    HQt_AddHtml(Html);
+        HQt_AddHtml(Html);
     }
 }
 
@@ -81,7 +81,7 @@ void MainWindow::on_action_LaTeX_triggered()
     if (filename.length()>0)
     {
         HarrixClass_HarrixData H(filename);
-    Latex += H.getChartLatexCode();
+        Latex += H.getChartLatexCode();
     }
 
     Latex+=HQt_LatexEnd();

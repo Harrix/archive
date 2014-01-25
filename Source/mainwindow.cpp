@@ -15,6 +15,7 @@
 #include "HarrixMathLibrary.h"
 #include "HarrixQtLibraryForQWebView.h"
 #include "HarrixQtLibraryForLaTeX.h"
+#include "HarrixClass_HarrixData.h"
 
 MainWindow::MainWindow(QWidget *parent,QString FileNameFromArgv) :
     QMainWindow(parent),
@@ -39,7 +40,9 @@ MainWindow::MainWindow(QWidget *parent,QString FileNameFromArgv) :
         QString Html;
         HQt_BeginHtml (Path);
 
-        Html=HQt_ReadHdataToHtmlChart (FileNameFromArgv);
+        HarrixClass_HarrixData H(FileNameFromArgv);
+        Html += H.getChartHtmlCode();
+
         HQt_AddHtml(Html);
     }
 }
@@ -55,11 +58,12 @@ void MainWindow::on_action_triggered()
     HQt_BeginHtml (Path);
 
     QString filename;
-    filename=QFileDialog::getOpenFileName(this, tr("Открыть файл с данными графика"),"",tr("Harrix Data 1.0 (*.hdata)"));
+    filename=QFileDialog::getOpenFileName(this, tr("Открыть файл с данными графика"),"",tr("Harrix Data 1.1 (*.hdata)"));
 
     if (filename.length()>0)
     {
-    Html=HQt_ReadHdataToHtmlChart (filename);
+        HarrixClass_HarrixData H(filename);
+        Html += H.getChartHtmlCode();
     HQt_AddHtml(Html);
     }
 }
@@ -76,7 +80,8 @@ void MainWindow::on_action_LaTeX_triggered()
 
     if (filename.length()>0)
     {
-    Latex += HQt_ReadHdataToLatexChart (filename);
+        HarrixClass_HarrixData H(filename);
+    Latex += H.getChartLatexCode();
     }
 
     Latex+=HQt_LatexEnd();

@@ -13,6 +13,11 @@ https://github.com/Harrix/HarrixChart
 
 https://github.com/Harrix/HarrixFileFormats
 
+Установка
+---------
+
+Прочитать подробно об установке и примерах использования можно тут http://blog.harrix.org/?p=970.
+
 Примеры графиков
 ----------------
 
@@ -42,6 +47,11 @@ https://github.com/Harrix/HarrixFileFormats
 ![alt text](../master/images/example7.png "Пример вывода")
 
 ![alt text](../master/images/example8.png "Пример вывода")
+
+Использованные технологии
+-------------------------
+
+- LaTeX, Qt, MiKTeX, TeXstudio, pscyr, pgfplots, JSXGraph, html, ajax, HarrixMathLibrary, HarrixQtLibrary, HarrixQtLibraryForLaTeX, HarrixQtLibraryForQWebView, HarrixLaTeXDocumentTemplate.
 
 История проекта
 ---------------

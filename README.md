@@ -16,6 +16,8 @@ https://github.com/Harrix/HarrixHtmlForQWebView
 
 Подробно о установке с подробным примером можно прочитать тут http://blog.harrix.org/?p=1059.
 
+О функциях добавления объектов в temp.html читайте в проекте https://github.com/Harrix/HarrixQtLibraryForQWebView.
+
 Механизм работы
 ---------------
 

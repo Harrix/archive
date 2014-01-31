@@ -3,11 +3,18 @@ HarrixHtmlForQWebView
 
 Версия 1.1
 
-Html страница для отображения информации в [QWebView](http://qt-project.org/doc/qt-5.0/qtwebkit/qwebview.html) через ajax запросы.
+Html страница для отображения информации в [QWebView](http://qt-project.org/doc/qt-5.0/qtwebkit/qwebview.html) через ajax запросы в системе Qt. В чем суть? Допустим, мы хотим отображать некоторую информацию в виде html контента через встроенный браузер в виде компонента QWebView. Допустим, что контент может изменяться довольно часто, например, с частотой 1  секунду. Если контент массивный, то постоянное обновление страницы будет мерцающим и не приемлемым.
+
+Данный проект является решением проблемы и обновление происходит через ajax и только, когда содержимое файла temp.html поменялось. При этом, если что-то новое добавилось, то производится автоматический скролл вниз страницы.
 
 https://github.com/Harrix/HarrixHtmlForQWebView
 
 Библиотека распространяется по лицензии [Apache License, Version 2.0](../master/LICENSE.txt).
+
+Установка
+---------
+
+Подробно о установке с подробным примером можно прочитать тут http://blog.harrix.org/?p=1059.
 
 Механизм работы
 ---------------
@@ -22,29 +29,12 @@ https://github.com/Harrix/HarrixHtmlForQWebView
 
 Итак, вы автоматически генерируете контент в файл [**temp.html**](../master/temp.html). После этого [**index.html**](../master/index.html), открытая в QWebView автоматически (плюс-минус одна секунда) обновит свое содержимое и отскроллит окно к низу.
 
-Для работы, вам нужно скопировать в папку с программой, которая использует данную библиотеку, файлы:
-
- * папку [images](../master/images);
- * [index.html](../master/index.html);
- * [jquery.js](../master/jquery.js);
- * [jsxgraphcore.js](../master/jsxgraphcore.js);
- * [style.css](../master/style.css);
- * [temp.html](../master/temp.html). 
-
 Предупреждение
 --------------
 
 Данная страница не будет работать на локальном компьютере через браузеры. То есть, если вы откроете файл [**index.html**](../master/index.html), например, в Chrome, то откроется пустая страница. Это связано с тем, что в браузерах обычно стоит запрет на ajax в локальных файлах. Но если загрузите на сервер, то все будет отображаться.
 
 Учтите, что программы, которые используют данную библиотеку напрямую, не должны запускаться несколькими экземплярами одновременно, чтобы не изменять файл [temp.html](../master/temp.html) одновременно.
-
-Проекты для работы с данной библиотекой и с примерами работы с ней
-------------------------------------------------------------------
-
- * **HarrixQtLibraryForQWebView** - библиотека для отображения различных данных в QWebView: https://github.com/Harrix/HarrixQtLibraryForQWebView
- * **HarrixChart** - приложение по отображению графиков из данных формата *.hdata: https://github.com/Harrix/HarrixChart
- * **HarrixClass_DataOfHarrixOptimizationTesting** - класс HarrixClass_DataOfHarrixOptimizationTesting для считывания информации формата данных Harrix Optimization Testing на C++ для Qt: https://github.com/Harrix/HarrixClass_DataOfHarrixOptimizationTesting
- * **HarrixMathLibrary** - сборник различных математических функций и шаблонов с открытым кодом на языке C++: https://github.com/Harrix/HarrixMathLibrary
  
 Скриншоты некотрых программ с этой библиотекой
 ----------------------------------------------
@@ -57,13 +47,11 @@ https://github.com/Harrix/HarrixHtmlForQWebView
 -----------------------
  * **jQuery** - для скролла страниц: http://jquery.com
  * **JSXGraph** - для отображения графиков: https://github.com/jsxgraph/jsxgraph
+ 
+Использованные технологии
+-------------------------
 
-Пример использования
---------------------
-
-Пример использования в Qt можно посмотреть в справке к проекту HarrixQtLibraryForQWebView:
-
-https://github.com/Harrix/HarrixQtLibraryForQWebView
+- Html, jQuery, JSXGraph, QWebView, Qt.
 
 История проекта
 ---------------

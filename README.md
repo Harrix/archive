@@ -54,6 +54,15 @@ https://github.com/Harrix/HarrixFileFormats
 - LaTeX, Qt, MiKTeX, TeXstudio, pscyr, pgfplots, JSXGraph, html, ajax.
 - HarrixMathLibrary, HarrixQtLibrary, HarrixQtLibraryForLaTeX, HarrixQtLibraryForQWebView, HarrixLaTeXDocumentTemplate.
 
+Сведения для редактирования файлов
+----------------------------------
+
+Для полноценной работы редактированию LaTeX документа вам потребуются программа для компиляции \*.tex документов в \*.pdf. Автор использует для этого связку [MiKTex](http://www.miktex.org/) и [TeXstudio](http://texstudio.sourceforge.net/). 
+
+В варианте, который использует автор, в \*.tex файлах справок для отображения русских букв используется модуль pscyr. Об его установке можно прочитать (и скачать) в статье http://blog.harrix.org/?p=444.
+
+Подробное описание установки и настройки связки MiKTeX + TeXstudio + pscyr можно прочитать в статье http://blog.harrix.org/?p=849.
+
 История проекта
 ---------------
 

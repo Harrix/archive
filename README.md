@@ -15,68 +15,10 @@ https://github.com/Harrix/HarrixFileFormats
 
 Пример файла данного формата представлен в этом проекте как [Example.xml](../master/Example.xml).
 
-Пример использования
---------------------
-Скопируйте файлы из списка в папку с исходниками вашего проекта.
-- [HarrixClass_DataOfHarrixOptimizationTesting.cpp](../master/HarrixClass_DataOfHarrixOptimizationTesting.cpp)
-- [HarrixClass_DataOfHarrixOptimizationTesting.h](../master/HarrixClass_DataOfHarrixOptimizationTesting.h)
-- [HarrixQtLibraryForQWebView.cpp](../master/HarrixQtLibraryForQWebView.cpp)
-- [HarrixQtLibraryForQWebView.h](../master/HarrixQtLibraryForQWebView.h)
-- [HarrixQtLibrary.cpp](../master/HarrixQtLibrary.cpp)
-- [HarrixQtLibrary.h](../master/HarrixQtLibrary.h)
-- [HarrixMathLibrary.cpp](../master/HarrixMathLibrary.cpp)
-- [HarrixMathLibrary.h](../master/HarrixMathLibrary.h)
-- [mtrand.cpp](../master/mtrand.cpp)
-- [mtrand.h](../master/mtrand.h)
+Установка
+---------
 
-Добавьте эти файлы в ваш проект через правый клик мыши по проекту в Qt Creator и выбрав пункт Add Exsisting Files...
-
-А файлы из списка в папку с *.exe файлом вашего проекта.
-- папка [images](../master/images)
-- [index.html](../master/index.html)
-- [jquery.js](../master/jquery.js)
-- [jsxgraphcore.js](../master/jsxgraphcore.js)
-- [style.css](../master/style.css)
-
-Добавьте  соответствующие инклуды:
-
-```cpp
-#include "HarrixClass_DataOfHarrixOptimizationTesting.h"
-```
-
-Объявите, например, в mainwindow.h глобальные переменные:
-
-```cpp
-QString DS;//разделитель между папками: слэш или иное в данной ОС
-QString Path;//путь к папке с программой
-QString Html;//сюда кладется выводимый текст
-```
-
-В проекте должен быть экземпляр QWebView.
-
-Вам нужно вызвать данные 4 строчки, например, в конструкторе ``MainWindow::MainWindow(QWidget *parent)``:
-
-```cpp
-DS=QDir::separator();//какой разделитель используется в пути между папками
-Path=QGuiApplication::applicationDirPath()+DS;//путь к папке, где находится приложение
-HQt_BeginHtml(Path);
-// и в webView отображаем index.html (его вообще не трогаем)
-ui->webView->setUrl(QUrl::fromLocalFile(Path+"index.html"));
-```
-	
-Теперь в любом месте, где хотите добавить текст html и его отобразить, пишите (filename - путь к файлу, который анализируется):
-
-```cpp
-QString Html;//сюда записывается код  HTML по анализу файла данных
-HarrixClass_DataOfHarrixOptimizationTesting Data(filename);
-if (Data.getSuccessReading())
-	{
-	Html=Data.getHtml();
-	HQt_AddHtml(Html);
-	}
-```
-	
-И соответствующий текст должен отобразиться в QWebView максимум за 1 секунду: каждую секунду происходит проверка на наличие обновления.
+Подробно о установке с подробным примером можно прочитать тут http://blog.harrix.org/?p=992.
 
 Скриншоты применения библиотеки
 -------------------------------

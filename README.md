@@ -51,7 +51,8 @@ https://github.com/Harrix/HarrixFileFormats
 Использованные технологии
 -------------------------
 
-- LaTeX, Qt, MiKTeX, TeXstudio, pscyr, pgfplots, JSXGraph, html, ajax, HarrixMathLibrary, HarrixQtLibrary, HarrixQtLibraryForLaTeX, HarrixQtLibraryForQWebView, HarrixLaTeXDocumentTemplate.
+- LaTeX, Qt, MiKTeX, TeXstudio, pscyr, pgfplots, JSXGraph, html, ajax.
+- HarrixMathLibrary, HarrixQtLibrary, HarrixQtLibraryForLaTeX, HarrixQtLibraryForQWebView, HarrixLaTeXDocumentTemplate.
 
 История проекта
 ---------------

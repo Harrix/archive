@@ -39,6 +39,24 @@ https://github.com/Harrix/HarrixFileFormats
 
 ![alt text](../master/imagesforgithub/example9.png "Пример вывода")
 
+Как вывести все значения для использования?
+-------------------------------------------
+
+```cpp
+HarrixClass_HarrixData H(filename);
+double x;
+for (int k=0;k<H.getNumberOfCharts();k++)//прогон по линиям
+{
+   for (int i=0;i<H.getNumberElementsInChart(k);i++)//прогон по точкам
+   {
+       for (int j=0;j<H.getNumberCoordinateInChart();j++)//прогон по координатам точки
+       {
+           x = H.getPointCoordinateOfData(k,i,j);
+       }
+   }
+}
+```
+
 Использованные технологии
 -------------------------
 

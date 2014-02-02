@@ -27,6 +27,12 @@ https://github.com/Harrix/HarrixFileFormats
 
 ![alt text](../master/imagesforgithub/example2.png "Пример вывода LaTeX кода")
 
+Использованные технологии
+-------------------------
+
+- Html, jQuery, JSXGraph, QWebView, Qt, LaTeX, BibTeX, MiKTeX, TeXstudio, ajax, pgfplots.
+- HarrixMathLibrary, HarrixQtLibrary, HarrixQtLibraryForLaTeX, HarrixQtLibraryForQWebView, HarrixHtmlForQWebView, HarrixLaTeXDocumentTemplate.
+
 История проекта
 ---------------
 

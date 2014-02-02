@@ -52,7 +52,7 @@ https://github.com/Harrix/HarrixFileFormats
 -------------------------
 
 - LaTeX, Qt, MiKTeX, TeXstudio, pscyr, pgfplots, JSXGraph, html, ajax.
-- HarrixMathLibrary, HarrixQtLibrary, HarrixQtLibraryForLaTeX, HarrixQtLibraryForQWebView, HarrixLaTeXDocumentTemplate.
+- HarrixMathLibrary, HarrixQtLibrary, HarrixQtLibraryForLaTeX, HarrixQtLibraryForQWebView, HarrixLaTeXDocumentTemplate, HarrixClass_HarrixData.
 
 Сведения для редактирования файлов
 ----------------------------------

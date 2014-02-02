@@ -1,7 +1,7 @@
 HarrixClass_DataOfHarrixOptimizationTesting
 ===========================================
 
-Версия 1.13
+Версия 1.14
 
 Класс HarrixClass_DataOfHarrixOptimizationTesting для считывания информации формата данных Harrix Optimization Testing на C++ для Qt.
 
@@ -42,9 +42,6 @@ https://github.com/Harrix/HarrixFileFormats
 
 ```cpp
 #include "HarrixClass_DataOfHarrixOptimizationTesting.h"
-#include "HarrixMathLibrary.h"
-#include "HarrixQtLibrary.h"
-#include "HarrixQtLibraryForQWebView.h"
 ```
 
 Объявите, например, в mainwindow.h глобальные переменные:

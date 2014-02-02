@@ -1,6 +1,10 @@
 HarrixClass_DataOfHarrixOptimizationTesting
 ===========================================
 
+1.14
+----
+ * Подключена библиотека HarrixQtLibraryForLaTeX.
+
 1.13
 ----
  * Добавлены некторые новые модули сравнения данных.

@@ -31,7 +31,7 @@ https://github.com/Harrix/HarrixFileFormats
 
 ![alt text](../master/imagesforgithub/example5.png "Пример вывода")
 
-![alt text](../master/imagesforgithub/example6.png "Пример вывода")
+![alt text](../master/imagesforgithub/example_6.png "Пример вывода")
 
 ![alt text](../master/imagesforgithub/example7.png "Пример вывода")
 

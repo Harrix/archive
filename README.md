@@ -9,6 +9,11 @@ https://github.com/Harrix/HarrixQtLibraryForQWebView
 
 Библиотека распространяется по лицензии [Apache License, Version 2.0](../master/LICENSE.txt).
 
+Установка
+---------
+
+Подробно о установке с подробным примером можно прочитать тут http://blog.harrix.org/?p=1196.
+
 Функции для получения HTML кода для вывода в QWebView
 -----------------------------------------------------
 
@@ -135,57 +140,11 @@ https://github.com/Harrix/HarrixQtLibraryForQWebView
 
 ![alt text](../master/imagesforgithub/vectors.png "Вывод векторов")
 		
-Пример использования функция вывода в HTML файл
------------------------------------------------
+Использованные технологии
+-------------------------
 
-Режим постоянного отображения изменений осуществляется благодаря функции AJAX. Поэтому вы отображаете в QWebView файл [**index.html**](../master/index.html), а сохраняете данные в [**temp.html**](../master/temp.html). Отображаемый файл [**index.html**](../master/index.html) не трогаете.
-
-Скопируйте файлы из списка в папку с исходниками вашего проекта.
-- [HarrixQtLibraryForQWebView.cpp](../master/HarrixQtLibraryForQWebView.cpp)
-- [HarrixQtLibraryForQWebView.h](../master/HarrixQtLibraryForQWebView.h)
-- [HarrixQtLibrary.cpp](../master/HarrixQtLibrary.cpp)
-- [HarrixQtLibrary.h](../master/HarrixQtLibrary.h)
-
-А файлы из списка в папку с *.exe файлом вашего проекта.
-- папка [images](../master/images)
-- [index.html](../master/index.html)
-- [jquery.js](../master/jquery.js)
-- [jsxgraphcore.js](../master/jsxgraphcore.js)
-- [style.css](../master/style.css)
-
-Добавьте  соответствующие инклуды:
-
-```cpp
-#include "HarrixQtLibrary.h"
-#include "HarrixQtLibraryForQWebView.h"
-```
-
-Объявите, например, в mainwindow.h глобальные переменные:
-
-```cpp
-QString DS;//разделитель между папками: слэш или иное в данной ОС
-QString Path;//путь к папке с программой
-QString Html;//сюда кладется выводимый текст
-```
-
-Вам нужно вызвать данные 4 строчки, например, в конструкторе ``MainWindow::MainWindow(QWidget *parent)``:
-
-```cpp
-DS=QDir::separator();//какой разделитель используется в пути между папками
-Path=QGuiApplication::applicationDirPath()+DS;//путь к папке, где находится приложение
-HQt_BeginHtml(Path);
-// и в webView отображаем index.html (его вообще не трогаем)
-ui->webView->setUrl(QUrl::fromLocalFile(Path+"index.html"));
-```
-	
-Теперь в любом месте, где хотите добавить текст html и его отобразить, пишите:
-
-```cpp
-Html="<b>Example</b>";
-HQt_AddHtml(Html);
-```
-	
-И соответствующий текст должен отобразиться в QWebView максимум за 1 секунду: каждую секунду происходит проверка на наличие обновления. Желательно добавлять текст Html не самостоятельно, а за счет функций данной библиотеки.
+- Qt, JSXGraph, html, ajax.
+- HarrixQtLibrary.
 
 История проекта
 ---------------

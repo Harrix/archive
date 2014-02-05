@@ -20,6 +20,9 @@ https://github.com/Harrix/HarrixFileFormats
 
 Данные распространяются по лицензии Apache License, Version 2.0.
 
+Проекты по форматам
+-------------------
+
 Для формата [**Harrix Data 1.1**](../master/Harrix Data 1.1/) есть проект HarrixChart для считывания данных:
 
 https://github.com/Harrix/HarrixChart

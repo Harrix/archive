@@ -16,9 +16,14 @@ https://github.com/Harrix/HarrixFileFormats
 
 Сами файлы располагаются тут: [**Harrix_Data_1.1.pdf**](../master/Harrix Data 1.1/Harrix_Data_1.1.pdf), [**Harrix_Optimization_Testing_1.0.pdf**](../master/Harrix Optimization Testing 1.0/Harrix_Optimization_Testing_1.0.pdf).
 
-Прямые ссылки на скачивание: [**Harrix_Data_1.1.pdf**](https://raw.github.com/Harrix/HarrixFileFormats/Harrix Data 1.1/Harrix_Data_1.1.pdf), [**Harrix_Optimization_Testing_1.0.pdf**](https://raw.github.com/Harrix/HarrixFileFormats/Harrix Optimization Testing 1.0/Harrix_Optimization_Testing_1.0.pdf).
+Прямые ссылки на скачивание: [**Harrix_Data_1.1.pdf**](https://raw.github.com/Harrix/HarrixFileFormats/master/Harrix Data 1.1/Harrix_Data_1.1.pdf), [**Harrix_Optimization_Testing_1.0.pdf**](https://raw.github.com/Harrix/HarrixFileFormats/master/Harrix Optimization Testing 1.0/Harrix_Optimization_Testing_1.0.pdf).
 
 Данные распространяются по лицензии Apache License, Version 2.0.
+
+Установка
+---------
+
+Прочитать подробно об установке можно тут http://blog.harrix.org/?p=1233.
 
 Проекты по форматам
 -------------------
@@ -50,6 +55,12 @@ https://github.com/Harrix/HarrixClass_DataOfHarrixOptimizationTesting
 В варианте, который использует автор, в \*.tex файлах справок для отображения русских букв используется модуль pscyr. Об его установке можно прочитать (и скачать) в статье http://blog.harrix.org/?p=444.
 
 Подробное описание установки и настройки связки MiKTeX + TeXstudio + pscyr можно прочитать в статье http://blog.harrix.org/?p=849.
+
+Использованные технологии
+-------------------------
+
+- LaTeX, MiKTeX, BibTex, TeXstudio, pscyr.
+- HarrixLaTeXDocumentTemplate.
 
 История проекта
 ---------------

@@ -14,11 +14,19 @@ https://github.com/Harrix/HarrixFileFormats
 
 [**Harrix Optimization Testing 1.0**](../master/Harrix Optimization Testing 1.0/) - формат файлов вида \*.xml для представления данных об исследовании эффективности алгоритмов оптимизации на тестовых функциях.
 
+Сами файлы располагаются тут: [**Harrix_Data_1.1.pdf**](../master/Harrix Data 1.1/Harrix_Data_1.1.pdf), [**Harrix_Optimization_Testing_1.0.pdf**](../master/Harrix Optimization Testing 1.0/Harrix_Optimization_Testing_1.0.pdf).
+
+Прямые ссылки на скачивание: [**Harrix_Data_1.1.pdf**](https://raw.github.com/Harrix/HarrixFileFormats/Harrix Data 1.1/Harrix_Data_1.1.pdf), [**Harrix_Optimization_Testing_1.0.pdf**](https://raw.github.com/Harrix/HarrixFileFormats/Harrix Optimization Testing 1.0/Harrix_Optimization_Testing_1.0.pdf).
+
 Данные распространяются по лицензии Apache License, Version 2.0.
 
 Для формата [**Harrix Data 1.1**](../master/Harrix Data 1.1/) есть проект HarrixChart для считывания данных:
 
 https://github.com/Harrix/HarrixChart
+
+Для формата [**Harrix Data 1.1**](../master/Harrix Data 1.1/) есть класс HarrixClass_HarrixData для считывания данных:
+
+https://github.com/Harrix/HarrixClass_HarrixData
 
 Для формата [**Harrix Optimization Testing 1.0**](../master/Harrix Optimization Testing 1.0/) есть класс HarrixClass_DataOfHarrixOptimizationTesting для считывания данных:
 

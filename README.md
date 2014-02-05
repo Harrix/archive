@@ -9,6 +9,11 @@ https://github.com/Harrix/HarrixLaTeXSymbols
 
 Шаблон распространяется по лицензии [Apache License, Version 2.0](../master/LICENSE.txt).
 
+Установка
+---------
+
+Прочитать подробно об установке можно тут http://blog.harrix.org/?p=1236.
+
 Про структуру проекта
 ---------------------
 
@@ -29,6 +34,12 @@ https://github.com/Harrix/HarrixLaTeXSymbols
 В варианте, который использует автор, в \*.tex файлах справок для отображения русских букв используется модуль pscyr. Об его установке можно прочитать (и скачать) в статье http://blog.harrix.org/?p=444.
 
 Подробное описание установки и настройки связки MiKTeX + TeXstudio + pscyr можно прочитать в статье http://blog.harrix.org/?p=849.
+
+Использованные технологии
+-------------------------
+
+- LaTeX, MiKTeX, TeXstudio, pscyr.
+- HarrixLaTeXDocumentTemplate.
 
 История проекта
 ---------------

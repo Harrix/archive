@@ -53,7 +53,7 @@ https://github.com/Harrix/HarrixHtmlForQWebView
 Использованные технологии
 -------------------------
 
-- Html, [jQuery](http://jquery.com/), JSXGraph, QWebView, Qt.
+- [Html](http://ru.wikipedia.org/wiki/HTML), [jQuery](http://jquery.com/), [AJAX](http://ru.wikipedia.org/wiki/AJAX), [JSXGraph](https://github.com/jsxgraph/jsxgraph), [QWebView](http://qt-project.org/doc/qt-5/qwebview.html), [Qt](http://qt-project.org/).
 
 История проекта
 ---------------

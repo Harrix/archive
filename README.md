@@ -38,8 +38,8 @@ https://github.com/Harrix/HarrixLaTeXSymbols
 Использованные технологии
 -------------------------
 
-- LaTeX, MiKTeX, TeXstudio, pscyr.
-- HarrixLaTeXDocumentTemplate.
+- [LaTeX](http://ru.wikipedia.org/wiki/LaTeX), [MiKTeX](http://miktex.org/), [TeXstudio](http://texstudio.sourceforge.net/), [PSCyr](http://blog.harrix.org/?p=444).
+- [HarrixLaTeXDocumentTemplate](https://github.com/Harrix/HarrixLaTeXDocumentTemplate).
 
 История проекта
 ---------------

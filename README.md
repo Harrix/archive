@@ -143,7 +143,7 @@ https://github.com/Harrix/HarrixQtLibraryForQWebView
 Использованные технологии
 -------------------------
 
-- Qt, JSXGraph, html, ajax.
+- Qt, JSXGraph, html, ajax, [jQuery](http://jquery.com/).
 - HarrixQtLibrary.
 
 История проекта

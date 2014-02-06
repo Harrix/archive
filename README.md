@@ -60,7 +60,7 @@ for (int k=0;k<H.getNumberOfCharts();k++)//прогон по линиям
 Использованные технологии
 -------------------------
 
-- Html, jQuery, JSXGraph, QWebView, Qt, LaTeX, MiKTeX, TeXstudio, ajax, pgfplots.
+- Html, [jQuery](http://jquery.com/), JSXGraph, QWebView, Qt, LaTeX, MiKTeX, TeXstudio, ajax, pgfplots.
 - HarrixQtLibrary, HarrixQtLibraryForLaTeX, HarrixQtLibraryForQWebView, HarrixHtmlForQWebView, HarrixLaTeXDocumentTemplate.
 
 Сведения для редактирования файлов

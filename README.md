@@ -30,7 +30,7 @@ https://github.com/Harrix/HarrixFileFormats
 Использованные технологии
 -------------------------
 
-- Html, jQuery, JSXGraph, QWebView, Qt, LaTeX, MiKTeX, TeXstudio, ajax, pgfplots.
+- Html, [jQuery](http://jquery.com/), JSXGraph, QWebView, Qt, LaTeX, MiKTeX, TeXstudio, ajax, pgfplots.
 - HarrixMathLibrary, HarrixQtLibrary, HarrixQtLibraryForLaTeX, HarrixQtLibraryForQWebView, HarrixHtmlForQWebView, HarrixLaTeXDocumentTemplate.
 
 Сведения для редактирования файлов

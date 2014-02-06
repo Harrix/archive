@@ -51,8 +51,8 @@ https://github.com/Harrix/HarrixFileFormats
 Использованные технологии
 -------------------------
 
-- LaTeX, Qt, MiKTeX, TeXstudio, pscyr, pgfplots, JSXGraph, html, ajax, [jQuery](http://jquery.com/).
-- HarrixMathLibrary, HarrixQtLibrary, HarrixQtLibraryForLaTeX, HarrixQtLibraryForQWebView, HarrixLaTeXDocumentTemplate, HarrixClass_HarrixData.
+- [LaTeX](http://ru.wikipedia.org/wiki/LaTeX), [Qt](http://qt-project.org/), [MiKTeX](http://miktex.org/), [TeXstudio](http://texstudio.sourceforge.net/), [PSCyr](http://blog.harrix.org/?p=444), [pgfplots](http://pgfplots.sourceforge.net/), [JSXGraph](https://github.com/jsxgraph/jsxgraph), [Html](http://ru.wikipedia.org/wiki/HTML), [AJAX](http://ru.wikipedia.org/wiki/AJAX), [jQuery](http://jquery.com/),[QWebView](http://qt-project.org/doc/qt-5/qwebview.html).
+- [HarrixMathLibrary](https://github.com/Harrix/HarrixMathLibrary), [HarrixQtLibrary](https://github.com/Harrix/HarrixQtLibrary), [HarrixQtLibraryForLaTeX](https://github.com/Harrix/HarrixQtLibraryForLaTeX), [HarrixQtLibraryForQWebView](https://github.com/Harrix/HarrixQtLibraryForQWebView), [HarrixLaTeXDocumentTemplate](https://github.com/Harrix/HarrixLaTeXDocumentTemplate), [HarrixClass_HarrixData](https://github.com/Harrix/HarrixClass_HarrixData).
 
 Сведения для редактирования файлов
 ----------------------------------

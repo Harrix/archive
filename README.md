@@ -51,7 +51,7 @@ https://github.com/Harrix/HarrixFileFormats
 Использованные технологии
 -------------------------
 
-- [LaTeX](http://ru.wikipedia.org/wiki/LaTeX), [Qt](http://qt-project.org/), [MiKTeX](http://miktex.org/), [TeXstudio](http://texstudio.sourceforge.net/), [PSCyr](http://blog.harrix.org/?p=444), [pgfplots](http://pgfplots.sourceforge.net/), [JSXGraph](https://github.com/jsxgraph/jsxgraph), [Html](http://ru.wikipedia.org/wiki/HTML), [AJAX](http://ru.wikipedia.org/wiki/AJAX), [jQuery](http://jquery.com/),[QWebView](http://qt-project.org/doc/qt-5/qwebview.html).
+- [LaTeX](http://ru.wikipedia.org/wiki/LaTeX), [Qt](http://qt-project.org/), [MiKTeX](http://miktex.org/), [TeXstudio](http://texstudio.sourceforge.net/), [PSCyr](http://blog.harrix.org/?p=444), [pgfplots](http://pgfplots.sourceforge.net/), [JSXGraph](https://github.com/jsxgraph/jsxgraph), [Html](http://ru.wikipedia.org/wiki/HTML), [AJAX](http://ru.wikipedia.org/wiki/AJAX), [jQuery](http://jquery.com/),[QWebView](http://qt-project.org/doc/qt-5/qwebview.html), [mtrand](http://www.bedaux.net/mtrand/).
 - [HarrixMathLibrary](https://github.com/Harrix/HarrixMathLibrary), [HarrixQtLibrary](https://github.com/Harrix/HarrixQtLibrary), [HarrixQtLibraryForLaTeX](https://github.com/Harrix/HarrixQtLibraryForLaTeX), [HarrixQtLibraryForQWebView](https://github.com/Harrix/HarrixQtLibraryForQWebView), [HarrixLaTeXDocumentTemplate](https://github.com/Harrix/HarrixLaTeXDocumentTemplate), [HarrixClass_HarrixData](https://github.com/Harrix/HarrixClass_HarrixData).
 
 Сведения для редактирования файлов

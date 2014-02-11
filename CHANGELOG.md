@@ -1,6 +1,10 @@
 HarrixQtLibraryForQWebView
 ==========================
 
+1.14
+----
+ * Доработка функции HQt_BeginHtml.
+
 1.13
 ----
  * Функция HQt_ReadHdataToHtmlChart удалена из библиотеки, так как ее функцию выполняет теперь класс HarrixClass_HarrixData.

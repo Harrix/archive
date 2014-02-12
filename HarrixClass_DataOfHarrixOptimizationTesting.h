@@ -4,6 +4,8 @@
 #include <QFile>
 #include <QXmlStreamReader>
 
+//После описания класса идут функции по работе с данным классом. Не пропустите!
+
 class HarrixClass_DataOfHarrixOptimizationTesting
 {
 public:
@@ -15,6 +17,7 @@ public:
     QString getHtmlMessageOfError();//Получение текста переменной HtmlMessageOfError. Это часть html документа в виде кода о сообщениях ошибок.
 
     QString getLatex();//Получение текста переменной Latex
+    QString getLatexTable();//Получение текста переменной LatexTable - всё без анализа
     QString getLatexTableEx();//Получение текста переменной LatexTableEx - отображение таблицы данных о ошибке Ex.
     QString getLatexTableEy();//Получение текста переменной LatexTableEy - отображение сырых данных ошибки по значениям целевой функции в виде полной таблицы.
     QString getLatexTableR();//Получение текста переменной LatexTableR - отображение сырых данных по надежности в виде полной таблицы.
@@ -23,13 +26,13 @@ public:
     QString getLatexAnalysis();//Получение текста переменной LatexAnalysis - отображение первоначального анализа данных.
 
     QString getFullLatex();//Получение текста переменной Latex в полном составе с началом и концовкой в Latex файле.
+    QString getFullLatexTable();//Получение текста переменной LatexTable - всё без анализа - в полном составе с началом и концовкой в Latex файле
     QString getFullLatexTableEx();//Получение текста переменной LatexTableEx - отображение сырых данных таблицы данных о ошибке Ex с началом и концовкой в Latex файле.
     QString getFullLatexTableEy();//Получение текста переменной LatexTableEy - отображение сырых данных таблицы данных о ошибке Ey с началом и концовкой в Latex файле.
     QString getFullLatexTableR();//Получение текста переменной LatexTableR - отображение сырых данных по надежности в виде полной таблицы с началом и концовкой в Latex файле.
     QString getFullLatexInfo();//Получение текста переменной LatexInfo - отображение информации о исследовании с началом и концовкой в Latex файле.
     QString getFullLatexAboutParameters();//Получение текста переменной LatexAboutParameters - отображение данных о обнаруженных параметрах алгоритма и какие они бывают с началом и концовкой в Latex файле.
     QString getFullLatexAnalysis();//Получение текста переменной LatexAnalysis - отображение данных первоначального анализа данных.
-
 
     QString getAuthor();//Получение текста переменной XML_Author - Автор документа
     QString getDate();//Получение текста переменной  XML_Date - Дата создания документа
@@ -60,6 +63,9 @@ public:
     QString getFormat();//Получение переменной XML_Format, то есть возвращает название формата документа.
     QString getVersion();//Получение переменной XML_Version, то есть возвращает версию формата документа.
     QString getLink();//Получение переменной XML_Site, то есть возвращает ссылку на описание формата файла.
+
+
+
 private:
     void makingLatexTableR();//Создает текст LaTeX для отображения сырых данных по надежности в виде полной таблицы.
     void makingLatexTableEy();//Создает текст LaTeX для отображения сырых данных ошибки по значениям целевой функции в виде полной таблицы.
@@ -86,18 +92,18 @@ private:
     QString XML_Full_Name_Algorithm;//Полное название алгоритма оптимизации
     QString XML_Name_Test_Function;//Название тестовой функции
     QString XML_Full_Name_Test_Function;//Полное название тестовой функции
-    int XML_DimensionTestFunction;//Размерность тестовой задачи (длина хромосомы решения)
-    int XML_Number_Of_Measuring;//Количество экспериментов для каждого набора параметров алгоритма
-    int XML_Number_Of_Runs;//Количество прогонов по которому делается усреднение для эксперимента
-    int XML_Max_Count_Of_Fitness;//Максимальное допустимое число вычислений целевой функции для алгоритма
-    int XML_Number_Of_Parameters;//Количество проверяемых параметров алгоритма оптимизации
-    int XML_Number_Of_Experiments;//Количество комбинаций вариантов настроек
+    qint64 XML_DimensionTestFunction;//Размерность тестовой задачи (длина хромосомы решения)
+    qint64 XML_Number_Of_Measuring;//Количество экспериментов для каждого набора параметров алгоритма
+    qint64 XML_Number_Of_Runs;//Количество прогонов по которому делается усреднение для эксперимента
+    qint64 XML_Max_Count_Of_Fitness;//Максимальное допустимое число вычислений целевой функции для алгоритма
+    qint64 XML_Number_Of_Parameters;//Количество проверяемых параметров алгоритма оптимизации
+    qint64 XML_Number_Of_Experiments;//Количество комбинаций вариантов настроек
     QString XML_Link_Test_Function;//Ссылка на описание тестовой функции
     QString XML_Link_Algorithm;//Ссылка на описание алгоритма оптимизации
     QString XML_Format;//Что за формат файла
     QString XML_Version;//Какая версия формата файла
     QString XML_Link;//Ссылка на описание формата файла
-    int XML_All_Combinations;//Все ли рассмотрены функции
+    qint64 XML_All_Combinations;//Все ли рассмотрены функции
 
     //Строка с возвращаемым HTML кодом
     QString Html;
@@ -107,6 +113,7 @@ private:
 
     //Строка с возвращаемым кодом  Latex для добавления в https://github.com/Harrix/Harrix-Document-Template-LaTeX
     QString Latex;
+    QString LatexTable;//Первичная информация плюс таблицы. Без анализа
     //далее идет набор переменных для кусков Latex кодов
     QString LatexTableEx;//для отображения таблицы данных о ошибке Ex
     QString LatexTableEy;//для отображения таблицы данных о ошибке Ey
@@ -210,5 +217,7 @@ private:
     QXmlStreamReader Rxml;//непосредственно анализируемый xml файл
     bool Zero_Number_Of_Parameters;//Число параметров равно нулю или нет
 };
+
+void HQt_GeneratedReportAboutAlgorithmFromDir(QString path, QString pathForSave, QString pathForTempHtml);//Генерирует отчет по алгоритму по файлам *.hdata одного алгоритма, просматривая все файлы в папке.
 
 #endif // HARRIXCLASS_DATAOFHARRIXOPTIMIZATIONTESTING_H

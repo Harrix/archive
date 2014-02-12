@@ -104,6 +104,7 @@ HarrixClass_DataOfHarrixOptimizationTesting::HarrixClass_DataOfHarrixOptimizatio
             makingLatexAnalysis();//заполняем LatexTableR
             //Latex+=LatexInfo+LatexAboutParameters+LatexTableEx+LatexTableEy+LatexTableR;
             Latex+=LatexInfo+LatexAboutParameters+LatexTableEx+LatexTableEy+LatexTableR+LatexAnalysis;
+            LatexTable+=LatexInfo+LatexAboutParameters+LatexTableEx+LatexTableEy+LatexTableR;
 
             Html+=HQt_ShowHr();
             Html+=HQt_ShowText("Обработка файла завершена. Ошибки не обнаружены");
@@ -178,7 +179,7 @@ QString HarrixClass_DataOfHarrixOptimizationTesting::getLatex()
     /*
      Получение текста переменной Latex.
      Здесь собран полный файл анализа данных из считываемого xml файла.
-     Помните, что это не полноценный Latex код .Его нужно применять внутри файла из макета:
+     Помните, что это не полноценный Latex код. Его нужно применять внутри файла из макета:
      https://github.com/Harrix/Harrix-Document-Template-LaTeX
      */
     return Latex;
@@ -194,6 +195,30 @@ QString HarrixClass_DataOfHarrixOptimizationTesting::getFullLatex()
      https://github.com/Harrix/Harrix-Document-Template-LaTeX
      */
     return getLatexBegin() + Latex + getLatexEnd();
+}
+//--------------------------------------------------------------------------
+
+QString HarrixClass_DataOfHarrixOptimizationTesting::getLatexTable()
+{
+    /*
+     Получение текста переменной LatexTable.
+     Здесь собран полный файл первичных данных из считываемого xml файла (без анализа).
+     Помните, что это не полноценный Latex код. Его нужно применять внутри файла из макета:
+     https://github.com/Harrix/Harrix-Document-Template-LaTeX
+     */
+    return LatexTable;
+}
+//--------------------------------------------------------------------------
+
+QString HarrixClass_DataOfHarrixOptimizationTesting::getFullLatexTable()
+{
+    /*
+     Получение текста переменной LatexTable в полном составе с началом и концовкой в Latex файле.
+     Здесь собран полный файл первичных данных из считываемого xml файла (без анализа).
+     Это полноценный Latex код. Его нужно применять с файлами из макета:
+     https://github.com/Harrix/Harrix-Document-Template-LaTeX
+     */
+    return getLatexBegin() + LatexTable + getLatexEnd();
 }
 //--------------------------------------------------------------------------
 
@@ -765,16 +790,16 @@ void HarrixClass_DataOfHarrixOptimizationTesting::makingLatexTableR()
     LatexTableR+="\\subsection {Надёжность $R$}\n\n";
     LatexTableR+="Третьим критерием, по которому происходит сравнение алгоритмов оптимизации является надёжность $R$. ";
     LatexTableR+="Конкретные формулы, по которым происходило подсчитывание критерия в виде ошибки по значениям целевой функции вы можете найти на сайте в описании конкретной тестовой функции: \n";
-    LatexTableR+="\\href{https://github.com/Harrix/HarrixTestFunctions}{https://github.com/Harrix/HarrixTestFunctions}.";
+    LatexTableR+="\\href{https://github.com/Harrix/HarrixTestFunctions}{https://github.com/Harrix/HarrixTestFunctions}.\n";
     LatexTableR+="\\begin{center}\n";
     LatexTableR+="{\\renewcommand{\\arraystretch}{1.5}\n";
-    LatexTableR+="\\footnotesize\\begin{longtable}[H]{|m{0.03\\linewidth}|m{2in}|m{0.2\\linewidth}|m{0.18\\linewidth}|m{0.18\\linewidth}|}\n";
+    //LatexTableR+="\\label{"+Un+":"+HQt_StringToLabelForLaTeX(XML_Name_Algorithm)+":TableR}\n";
+    LatexTableR+="\\footnotesize\\begin{longtable}[H]{|m{0.03\\linewidth}|m{2.1in}|m{0.2\\linewidth}|m{0.17\\linewidth}|m{0.17\\linewidth}|}\n";
     LatexTableR+="\\caption{Значения надёжности $R$ "+NameForHead+"}\n";
-    LatexTableR+="\\label{"+Un+":"+HQt_StringToLabelForLaTeX(XML_Name_Algorithm)+":TableR}\n";
     LatexTableR+="\\tabularnewline\\hline\n";
     LatexTableR+="\\centering \\textbf{№} & \\centering \\textbf{Настройки алгоритма}    & \\centering \\textbf{Значения ошибки $R$} & \\centering \\textbf{Среднее значение} & \\centering \\textbf{Дисперсия}  \\centering \\tabularnewline \\hline \\endhead\n";
-    LatexTableR+="\\hline \\multicolumn{5}{|r|}{{Продолжение на следующей странице...}} \\\\ \\hline \\endfoot\n";
-    LatexTableR+="\\endlastfoot";
+    LatexTableR+="\\multicolumn{5}{|r|}{{Продолжение на следующей странице...}} \\\\ \\hline \\endfoot\n";
+    LatexTableR+="\\endlastfoot\n";
 
     for (int i=0;i<XML_Number_Of_Experiments;i++)
     {
@@ -832,7 +857,7 @@ void HarrixClass_DataOfHarrixOptimizationTesting::makingLatexTableR()
         LatexTableR+=Cell1+" & "+Cell2+" & "+Cell3+" & "+Cell4+" & "+Cell5+"\\tabularnewline \\hline\n";
     }
 
-    LatexTableR+="\\end{longtable}\n";
+    LatexTableR+="\n\\end{longtable}\n";
     LatexTableR+="}\n";
     LatexTableR+="\\end{center}\n\n";
 
@@ -852,16 +877,16 @@ void HarrixClass_DataOfHarrixOptimizationTesting::makingLatexTableEy()
     LatexTableEy+="\\subsection {Ошибка по значениям целевой функции $E_y$}\n\n";
     LatexTableEy+="Другим критерием, по которому происходит сравнение алгоритмов оптимизации является ошибка по значениям целевой функции $E_y$. ";
     LatexTableEy+="Конкретные формулы, по которым происходило подсчитывание критерия в виде ошибки по значениям целевой функции вы можете найти на сайте в описании конкретной тестовой функции: \n";
-    LatexTableEy+="\\href{https://github.com/Harrix/HarrixTestFunctions}{https://github.com/Harrix/HarrixTestFunctions}.";
+    LatexTableEy+="\\href{https://github.com/Harrix/HarrixTestFunctions}{https://github.com/Harrix/HarrixTestFunctions}.\n";
     LatexTableEy+="\\begin{center}\n";
     LatexTableEy+="{\\renewcommand{\\arraystretch}{1.5}\n";
-    LatexTableEy+="\\footnotesize\\begin{longtable}[H]{|m{0.03\\linewidth}|m{2in}|m{0.2\\linewidth}|m{0.18\\linewidth}|m{0.18\\linewidth}|}\n";
+    //LatexTableEy+="\\label{"+Un+":"+HQt_StringToLabelForLaTeX(XML_Name_Algorithm)+":TableEy}\n";
+    LatexTableEy+="\\footnotesize\\begin{longtable}[H]{|m{0.03\\linewidth}|m{2.1in}|m{0.2\\linewidth}|m{0.17\\linewidth}|m{0.17\\linewidth}|}\n";
     LatexTableEy+="\\caption{Значения ошибки по значениям целевой функции $E_y$ "+NameForHead+"}\n";
-    LatexTableEy+="\\label{"+Un+":"+HQt_StringToLabelForLaTeX(XML_Name_Algorithm)+":TableEy}\n";
     LatexTableEy+="\\tabularnewline\\hline\n";
     LatexTableEy+="\\centering \\textbf{№} & \\centering \\textbf{Настройки алгоритма}    & \\centering \\textbf{Значения ошибки $E_y$} & \\centering \\textbf{Среднее значение} & \\centering \\textbf{Дисперсия}  \\centering \\tabularnewline \\hline \\endhead\n";
-    LatexTableEy+="\\hline \\multicolumn{5}{|r|}{{Продолжение на следующей странице...}} \\\\ \\hline \\endfoot\n";
-    LatexTableEy+="\\endlastfoot";
+    LatexTableEy+="\\multicolumn{5}{|r|}{{Продолжение на следующей странице...}} \\\\ \\hline \\endfoot\n";
+    LatexTableEy+="\\endlastfoot\n";
 
     for (int i=0;i<XML_Number_Of_Experiments;i++)
     {
@@ -919,7 +944,7 @@ void HarrixClass_DataOfHarrixOptimizationTesting::makingLatexTableEy()
         LatexTableEy+=Cell1+" & "+Cell2+" & "+Cell3+" & "+Cell4+" & "+Cell5+"\\tabularnewline \\hline\n";
     }
 
-    LatexTableEy+="\\end{longtable}\n";
+    LatexTableEy+="\n\\end{longtable}\n";
     LatexTableEy+="}\n";
     LatexTableEy+="\\end{center}\n\n";
 }
@@ -938,16 +963,16 @@ void HarrixClass_DataOfHarrixOptimizationTesting::makingLatexTableEx()
     LatexTableEx+="\\subsection {Ошибка по входным параметрам $E_x$}\n\n";
     LatexTableEx+="Одним из критериев, по которому происходит сравнение алгоритмов оптимизации является ошибка по входным параметрам $E_x$. ";
     LatexTableEx+="В результате проделанных экспериментов были получены следующие данные, представленные ниже в таблице. ";
-    LatexTableEx+="\\href{https://github.com/Harrix/HarrixTestFunctions}{https://github.com/Harrix/HarrixTestFunctions}.";
+    LatexTableEx+="\\href{https://github.com/Harrix/HarrixTestFunctions}{https://github.com/Harrix/HarrixTestFunctions}.\n";
     LatexTableEx+="\\begin{center}\n";
     LatexTableEx+="{\\renewcommand{\\arraystretch}{1.5}\n";
-    LatexTableEx+="\\footnotesize\\begin{longtable}[H]{|m{0.03\\linewidth}|m{2in}|m{0.2\\linewidth}|m{0.18\\linewidth}|m{0.18\\linewidth}|}\n";
+    //LatexTableEx+="\\label{"+Un+":"+HQt_StringToLabelForLaTeX(XML_Name_Algorithm)+":TableEx}\n";
+    LatexTableEx+="\\footnotesize\\begin{longtable}[H]{|m{0.03\\linewidth}|m{2.1in}|m{0.2\\linewidth}|m{0.17\\linewidth}|m{0.17\\linewidth}|}\n";
     LatexTableEx+="\\caption{Значения ошибки по выходным параметрам $E_x$ "+NameForHead+"}\n";
-    LatexTableEx+="\\label{"+Un+":"+HQt_StringToLabelForLaTeX(XML_Name_Algorithm)+":TableEx}\n";
     LatexTableEx+="\\tabularnewline\\hline\n";
     LatexTableEx+="\\centering \\textbf{№} & \\centering \\textbf{Настройки алгоритма}    & \\centering \\textbf{Значения ошибки $E_x$} & \\centering \\textbf{Среднее значение} & \\centering \\textbf{Дисперсия}  \\centering \\tabularnewline \\hline \\endhead\n";
-    LatexTableEx+="\\hline \\multicolumn{5}{|r|}{{Продолжение на следующей странице...}} \\\\ \\hline \\endfoot\n";
-    LatexTableEx+="\\endlastfoot";
+    LatexTableEx+="\\multicolumn{5}{|r|}{{Продолжение на следующей странице...}} \\\\ \\hline \\endfoot\n";
+    LatexTableEx+="\\endlastfoot\n";
 
     for (int i=0;i<XML_Number_Of_Experiments;i++)
     {
@@ -1005,7 +1030,7 @@ void HarrixClass_DataOfHarrixOptimizationTesting::makingLatexTableEx()
         LatexTableEx+=Cell1+" & "+Cell2+" & "+Cell3+" & "+Cell4+" & "+Cell5+"\\tabularnewline \\hline\n";
     }
 
-    LatexTableEx+="\\end{longtable}\n";
+    LatexTableEx+="\n\\end{longtable}\n";
     LatexTableEx+="}\n";
     LatexTableEx+="\\end{center}\n\n";
 }
@@ -1049,7 +1074,8 @@ void HarrixClass_DataOfHarrixOptimizationTesting::makingLatexInfo()
     }
 
     LatexInfo+="\\textbf{Количество комбинаций вариантов настроек}: & "+QString::number(XML_Number_Of_Experiments)+" \\\\ \n";
-    LatexInfo+="\\textbf{Общий объем максимального числа вычислений целевой функции во всем исследовании}: & "+QString::number(XML_Number_Of_Experiments*XML_Max_Count_Of_Fitness*XML_Number_Of_Measuring*XML_Number_Of_Runs)+" \\\\ \n";
+    qint64 Number=XML_Number_Of_Experiments*XML_Max_Count_Of_Fitness*XML_Number_Of_Measuring*XML_Number_Of_Runs;
+    LatexInfo+="\\textbf{Общий объем максимального числа вычислений целевой функции во всем исследовании}: & "+QString::number(Number)+" \\\\ \n";
     LatexInfo+="\\end{tabularwide08}\n\n";
     LatexInfo+="Информацию о исследуемой функции можно найти по адресу:\n\n";
     LatexInfo+="\\href{https://github.com/Harrix/HarrixTestFunctions}{https://github.com/Harrix/HarrixTestFunctions}\n\n";
@@ -1904,3 +1930,81 @@ void HarrixClass_DataOfHarrixOptimizationTesting::makingLatexAnalysis()
 
     }
 }
+
+//--------------------------------------------------------------------------
+
+////////////////////////////////////////////////////////////////////////////
+////////////////////// ФУНКЦИИ ПО РАБОТЕ С КЛАССОМ /////////////////////////
+////////////////////////////////////////////////////////////////////////////
+
+void HQt_GeneratedReportAboutAlgorithmFromDir(QString path, QString pathForSave, QString pathForTempHtml)
+{
+    /*
+    Генерирует отчет по алгоритму по файлам *.hdata одного алгоритма, просматривая все файлы в папке.
+    То, чтобы в папке были файлы только одного алгоритма, вы берете на себя.
+    В папке сохранения должны быть находиться файлы names.tex, packages.tex, styles.tex из проекта
+    https://github.com/Harrix/HarrixLaTeXDocumentTemplate
+    Для отчета в виде html берется проект:
+    https://github.com/Harrix/HarrixHtmlForQWebView
+    Входные параметры:
+     path - путь к папке, из которой считаем файлы.
+     pathForSave - путь к папке, куда сохраняем Latex файлы.
+     pathForTempHtml - путь к папке куда сохраняем во время работы функции отчет в виде temp.html.
+    Возвращаемое значение:
+     Отсутствует.
+     */
+
+    HQt_BeginHtml (pathForTempHtml);
+
+    if (path.length()>0)
+    {
+        QString Html;//сюда записывается код  HTML по анализу файла данных
+        QString Latex;//сюда записывается код  Latex для добавления в https://github.com/Harrix/HarrixLaTeXDocumentTemplate
+        QString LatexInclude;
+        QString filename;
+
+        Html=path;
+        HQt_AddHtml(Html);
+
+        QStringList Files = HQt_ListFilesInDirQStringList(path);
+
+        Files = HQt_NaturalSortingQStringList(Files);//сортируем правильно список файлов
+
+        Latex+=HQt_LatexBeginArticle();
+
+        for (int i=0;i<Files.count();i++)
+        {
+            filename=Files.at(i);
+            if (HQt_GetExpFromFilename(filename)=="xml")
+            {
+                Html=HQt_ShowSimpleText(filename);
+                HQt_AddHtml(Html);
+
+                HarrixClass_DataOfHarrixOptimizationTesting Data(path+"\\"+filename);
+
+                if (Data.getSuccessReading())
+                {
+                    LatexInclude=Data.getLatexTable();
+                    HQt_SaveFile(LatexInclude, pathForSave+"\\"+(HQt_GetNameFromFilename(filename)).replace("_","").replace(" ", "")+".tex");
+                    Latex += "\\input{"+(HQt_GetNameFromFilename(filename)).replace("_","").replace(" ", "")+"}\n";
+                }
+                else
+                {
+                    //выводим ошибку
+                    Html=Data.getHtml();
+                    HQt_AddHtml(Html);
+                }
+
+            }
+            QGuiApplication::processEvents();
+        }
+
+        Latex+=HQt_LatexEnd();
+        HQt_SaveFile(Latex, pathForSave+"\\"+"Ex.tex");
+
+        Html=HQt_ShowSimpleText("Сохранили");
+        HQt_AddHtml(Html);
+
+    }
+}
+//--------------------------------------------------------------------------

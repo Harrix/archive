@@ -1,6 +1,11 @@
 HarrixClass_DataOfHarrixOptimizationTesting
 ===========================================
 
+1.15
+----
+ * Дополнение функционала.
+ * Добавление функции HQt_GeneratedReportAboutAlgorithmFromDir.
+
 1.14
 ----
  * Подключена библиотека HarrixQtLibraryForLaTeX.
@@ -20,11 +25,11 @@ HarrixClass_DataOfHarrixOptimizationTesting
 
 1.10
 ----
- * исправления и дополнения.
+ * Исправления и дополнения.
 
 1.9
 ---
- * исправления и изменения во внутренностях методов.
+ * Исправления и изменения во внутренностях методов.
 
 1.8
 ---

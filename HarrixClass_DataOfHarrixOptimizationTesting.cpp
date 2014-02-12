@@ -1960,7 +1960,7 @@ void HQt_GeneratedReportAboutAlgorithmFromDir(QString path, QString pathForSave,
     {
         QString Html;//сюда записывается код  HTML по анализу файла данных
         QString Latex;//сюда записывается код  Latex для добавления в https://github.com/Harrix/HarrixLaTeXDocumentTemplate
-        QString LatexInclude;
+        QString LatexInclude;//сюда записывются отдельные исследования, которые сохраняются в отдельные файлы
         QString filename;
 
         Html=path;
@@ -1970,7 +1970,7 @@ void HQt_GeneratedReportAboutAlgorithmFromDir(QString path, QString pathForSave,
 
         Files = HQt_NaturalSortingQStringList(Files);//сортируем правильно список файлов
 
-        Latex+=HQt_LatexBeginArticle();
+        Latex+=HQt_LatexBeginArticle();//Начало LaTeX файла
 
         for (int i=0;i<Files.count();i++)
         {
@@ -1984,6 +1984,18 @@ void HQt_GeneratedReportAboutAlgorithmFromDir(QString path, QString pathForSave,
 
                 if (Data.getSuccessReading())
                 {
+                    Latex+="\\title{Исследование алгоритма оптимизации "+HQt_TextToTextForLatex(Data.getNameAlgorithm())+"}\n";
+                    Latex+="\\author{"+HQt_TextToTextForLatex(Data.getAuthor())+"}\n";
+                    Latex+="\\date{\\today}\n";
+                    Latex+="\\maketitle\n\n";
+                    Latex+="\\tableofcontents\n";
+                    Latex+="\\newpage\n\n";
+                    Latex+="\\section{Вводная информация}\n\n";
+                    Latex+="Данный файл и другие исследования располагаются по адресу \\href {https://github.com/Harrix/HarrixPDFDataOfOptimizationTesting} {https://github.com/Harrix/HarrixPDFDataOfOptimizationTesting}.\n\n";
+                    Latex+="Данные исследований взяты из базы исследований алгоритмов оптимизации \\href {https://github.com/Harrix/HarrixDataOfOptimizationTesting} {https://github.com/Harrix/HarrixDataOfOptimizationTesting}.\n\n";
+                    Latex+="О методологии проведения исследований можно прочитать в описании формата данных <<Harrix Optimization Testing>> по адресу \\href {https://github.com/Harrix/HarrixFileFormats} {https://github.com/Harrix/HarrixFileFormats} в главе <<Идея проведения исследований эффективности алгоритмов>>.\n\n";
+                    Latex+="С автором можно связаться по адресу \\href {mailto:sergienkoanton@mail.ru} {sergienkoanton@mail.ru} или  \\href {http://vk.com/harrix} {http://vk.com/harrix}. Сайт автора, где публикуются последние новости: \\href {http://blog.harrix.org} {http://blog.harrix.org}, а проекты располагаются по адресу \\href {http://harrix.org} {http://harrix.org}.";
+
                     LatexInclude=Data.getLatexTable();
                     HQt_SaveFile(LatexInclude, pathForSave+"\\"+(HQt_GetNameFromFilename(filename)).replace("_","").replace(" ", "")+".tex");
                     Latex += "\\input{"+(HQt_GetNameFromFilename(filename)).replace("_","").replace(" ", "")+"}\n";

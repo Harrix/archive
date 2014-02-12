@@ -1051,7 +1051,7 @@ void HarrixClass_DataOfHarrixOptimizationTesting::makingLatexInfo()
     LatexInfo+="\\begin{tabularwide}\n";
     LatexInfo+="\\textbf{Автор исследования}: & "+HQt_StringForLaTeX(XML_Author)+". \\\\ \n";
     if (XML_Email!="NULL")
-    LatexInfo+="\\textbf{Дата создания исследования}: & "+HQt_StringForLaTeX(XML_Date)+". \\\\ \n";
+        LatexInfo+="\\textbf{Дата создания исследования}: & "+HQt_StringForLaTeX(XML_Date)+". \\\\ \n";
     LatexInfo+="\\textbf{Дата создания исследования}: & "+HQt_StringForLaTeX(XML_Date)+". \\\\ \n";
     LatexInfo+="\\textbf{Идентификатор алгоритма}: & "+HQt_StringForLaTeX(XML_Name_Algorithm)+". \\\\ \n";
     LatexInfo+="\\textbf{Полное название алгоритма}: & "+HQt_StringForLaTeX(XML_Full_Name_Algorithm)+". \\\\ \n";
@@ -1755,27 +1755,27 @@ void HarrixClass_DataOfHarrixOptimizationTesting::readXmlDataTags()
         HtmlMessageOfError+=HQt_ShowAlert("Число экспериментов в тэге number_of_experiments не равно реальному числу экспериментов в xml файле.");
         Error=true;
     }
-//    bool CheckMatrix=TMHL_CheckForIdenticalRowsInMatrix(MatrixOfParameters,XML_Number_Of_Experiments,XML_Number_Of_Parameters);
-//    int TheoryAllOptions=1;
-//    if (!Zero_Number_Of_Parameters)
-//    {
-//        for (int j=0;j<XML_Number_Of_Parameters;j++)
-//        {
-//            TheoryAllOptions *= ListOfParameterOptions[j].count();
-//        }
-//    }
-//    Html+=THQt_ShowNumber(TheoryAllOptions);
-//    Html+=THQt_ShowNumber(CheckMatrix);
-//    if ((!CheckMatrix)&&(i==TheoryAllOptions))
-//    {
-//        //просмотрено все множество возможных вариантов
-//        AllOptions=true;
-//    }
-//    else
-//    {
-//        //имееются непроверенные комбинации настроек алгоритма
-//         AllOptions=false;
-//    }
+    //    bool CheckMatrix=TMHL_CheckForIdenticalRowsInMatrix(MatrixOfParameters,XML_Number_Of_Experiments,XML_Number_Of_Parameters);
+    //    int TheoryAllOptions=1;
+    //    if (!Zero_Number_Of_Parameters)
+    //    {
+    //        for (int j=0;j<XML_Number_Of_Parameters;j++)
+    //        {
+    //            TheoryAllOptions *= ListOfParameterOptions[j].count();
+    //        }
+    //    }
+    //    Html+=THQt_ShowNumber(TheoryAllOptions);
+    //    Html+=THQt_ShowNumber(CheckMatrix);
+    //    if ((!CheckMatrix)&&(i==TheoryAllOptions))
+    //    {
+    //        //просмотрено все множество возможных вариантов
+    //        AllOptions=true;
+    //    }
+    //    else
+    //    {
+    //        //имееются непроверенные комбинации настроек алгоритма
+    //         AllOptions=false;
+    //    }
 }
 //--------------------------------------------------------------------------
 bool HarrixClass_DataOfHarrixOptimizationTesting::readXmlTreeTag(QString tag)
@@ -1960,8 +1960,9 @@ void HQt_GeneratedReportAboutAlgorithmFromDir(QString path, QString pathForSave,
     {
         QString Html;//сюда записывается код  HTML по анализу файла данных
         QString Latex;//сюда записывается код  Latex для добавления в https://github.com/Harrix/HarrixLaTeXDocumentTemplate
-        QString LatexInclude;//сюда записывются отдельные исследования, которые сохраняются в отдельные файлы
+        QString LatexInclude;//сюда записываются отдельные исследования, которые сохраняются в отдельные файлы
         QString filename;
+        QString namealg;
 
         Html=path;
         HQt_AddHtml(Html);
@@ -1984,17 +1985,22 @@ void HQt_GeneratedReportAboutAlgorithmFromDir(QString path, QString pathForSave,
 
                 if (Data.getSuccessReading())
                 {
-                    Latex+="\\title{Исследование алгоритма оптимизации "+HQt_TextToTextForLatex(Data.getNameAlgorithm())+"}\n";
-                    Latex+="\\author{"+HQt_TextToTextForLatex(Data.getAuthor())+"}\n";
-                    Latex+="\\date{\\today}\n";
-                    Latex+="\\maketitle\n\n";
-                    Latex+="\\tableofcontents\n";
-                    Latex+="\\newpage\n\n";
-                    Latex+="\\section{Вводная информация}\n\n";
-                    Latex+="Данный файл и другие исследования располагаются по адресу \\href {https://github.com/Harrix/HarrixPDFDataOfOptimizationTesting} {https://github.com/Harrix/HarrixPDFDataOfOptimizationTesting}.\n\n";
-                    Latex+="Данные исследований взяты из базы исследований алгоритмов оптимизации \\href {https://github.com/Harrix/HarrixDataOfOptimizationTesting} {https://github.com/Harrix/HarrixDataOfOptimizationTesting}.\n\n";
-                    Latex+="О методологии проведения исследований можно прочитать в описании формата данных <<Harrix Optimization Testing>> по адресу \\href {https://github.com/Harrix/HarrixFileFormats} {https://github.com/Harrix/HarrixFileFormats} в главе <<Идея проведения исследований эффективности алгоритмов>>.\n\n";
-                    Latex+="С автором можно связаться по адресу \\href {mailto:sergienkoanton@mail.ru} {sergienkoanton@mail.ru} или  \\href {http://vk.com/harrix} {http://vk.com/harrix}. Сайт автора, где публикуются последние новости: \\href {http://blog.harrix.org} {http://blog.harrix.org}, а проекты располагаются по адресу \\href {http://harrix.org} {http://harrix.org}.";
+                    if (i==0)
+                    {
+                        Latex+="\\title{Исследование алгоритма оптимизации "+HQt_TextToTextForLatex(Data.getNameAlgorithm())+"}\n";
+                        namealg=Data.getNameAlgorithm();
+
+                        Latex+="\\author{"+HQt_TextToTextForLatex(Data.getAuthor())+"}\n";
+                        Latex+="\\date{\\today}\n";
+                        Latex+="\\maketitle\n\n";
+                        Latex+="\\tableofcontents\n";
+                        Latex+="\\newpage\n\n";
+                        Latex+="\\section{Вводная информация}\n\n";
+                        Latex+="Данный файл и другие исследования располагаются по адресу \\href {https://github.com/Harrix/HarrixPDFDataOfOptimizationTesting} {https://github.com/Harrix/HarrixPDFDataOfOptimizationTesting}.\n\n";
+                        Latex+="Данные исследований взяты из базы исследований алгоритмов оптимизации \\href {https://github.com/Harrix/HarrixDataOfOptimizationTesting} {https://github.com/Harrix/HarrixDataOfOptimizationTesting}.\n\n";
+                        Latex+="О методологии проведения исследований можно прочитать в описании формата данных <<Harrix Optimization Testing>> по адресу \\href {https://github.com/Harrix/HarrixFileFormats} {https://github.com/Harrix/HarrixFileFormats} в главе <<Идея проведения исследований эффективности алгоритмов>>.\n\n";
+                        Latex+="С автором можно связаться по адресу \\href {mailto:sergienkoanton@mail.ru} {sergienkoanton@mail.ru} или  \\href {http://vk.com/harrix} {http://vk.com/harrix}. Сайт автора, где публикуются последние новости: \\href {http://blog.harrix.org} {http://blog.harrix.org}, а проекты располагаются по адресу \\href {http://harrix.org} {http://harrix.org}.";
+                    }
 
                     LatexInclude=Data.getLatexTable();
                     HQt_SaveFile(LatexInclude, pathForSave+"\\"+(HQt_GetNameFromFilename(filename)).replace("_","").replace(" ", "")+".tex");
@@ -2012,7 +2018,7 @@ void HQt_GeneratedReportAboutAlgorithmFromDir(QString path, QString pathForSave,
         }
 
         Latex+=HQt_LatexEnd();
-        HQt_SaveFile(Latex, pathForSave+"\\"+"Ex.tex");
+        HQt_SaveFile(Latex, pathForSave+"\\"+namealg.replace("_","").replace(" ", "")+".tex");
 
         Html=HQt_ShowSimpleText("Сохранили");
         HQt_AddHtml(Html);

@@ -1953,6 +1953,9 @@ void HQt_GeneratedReportAboutAlgorithmFromDir(QString path, QString pathForSave,
     Возвращаемое значение:
      Отсутствует.
      */
+    path = QDir::toNativeSeparators(path);
+    pathForSave = QDir::toNativeSeparators(pathForSave);
+    pathForTempHtml = QDir::toNativeSeparators(pathForTempHtml);
 
     HQt_BeginHtml (pathForTempHtml);
 
@@ -1963,6 +1966,11 @@ void HQt_GeneratedReportAboutAlgorithmFromDir(QString path, QString pathForSave,
         QString LatexInclude;//сюда записываются отдельные исследования, которые сохраняются в отдельные файлы
         QString filename;
         QString namealg;
+
+        //Вытащим название папки, из которой всё считываем
+        QStringList dirs = path.split( "\\", QString::SkipEmptyParts );
+        namealg = dirs.at(dirs.count()-1);
+        if (namealg.at(0)=='_') namealg = namealg.mid(1);
 
         Html=path;
         HQt_AddHtml(Html);
@@ -1987,8 +1995,8 @@ void HQt_GeneratedReportAboutAlgorithmFromDir(QString path, QString pathForSave,
                 {
                     if (i==0)
                     {
-                        Latex+="\\title{Исследование алгоритма оптимизации "+HQt_TextToTextForLatex(Data.getNameAlgorithm())+"}\n";
-                        namealg=Data.getNameAlgorithm();
+                        Latex+="\\title{Исследование алгоритма оптимизации "+HQt_TextToTextForLatex(namealg)+"}\n";
+                        //namealg=Data.getNameAlgorithm();
 
                         Latex+="\\author{"+HQt_TextToTextForLatex(Data.getAuthor())+"}\n";
                         Latex+="\\date{\\today}\n";
@@ -1996,9 +2004,11 @@ void HQt_GeneratedReportAboutAlgorithmFromDir(QString path, QString pathForSave,
                         Latex+="\\tableofcontents\n";
                         Latex+="\\newpage\n\n";
                         Latex+="\\section{Вводная информация}\n\n";
-                        Latex+="Данный файл и другие исследования располагаются по адресу \\href {https://github.com/Harrix/HarrixPDFDataOfOptimizationTesting} {https://github.com/Harrix/HarrixPDFDataOfOptimizationTesting}.\n\n";
-                        Latex+="Данные исследований взяты из базы исследований алгоритмов оптимизации \\href {https://github.com/Harrix/HarrixDataOfOptimizationTesting} {https://github.com/Harrix/HarrixDataOfOptimizationTesting}.\n\n";
-                        Latex+="О методологии проведения исследований можно прочитать в описании формата данных <<Harrix Optimization Testing>> по адресу \\href {https://github.com/Harrix/HarrixFileFormats} {https://github.com/Harrix/HarrixFileFormats} в главе <<Идея проведения исследований эффективности алгоритмов>>.\n\n";
+                        Latex+="Данный файл и другие исследования располагаются по адресу:\n\n \\href {https://github.com/Harrix/HarrixPDFDataOfOptimizationTesting} {https://github.com/Harrix/HarrixPDFDataOfOptimizationTesting}.\n\n";
+                        Latex+="Данные исследований взяты из базы исследований алгоритмов оптимизации:\n\n \\href {https://github.com/Harrix/HarrixDataOfOptimizationTesting} {https://github.com/Harrix/HarrixDataOfOptimizationTesting}.\n\n";
+                        Latex+="О методологии проведения исследований можно прочитать в описании формата данных <<Harrix Optimization Testing>> в главе <<Идея проведения исследований эффективности алгоритмов>> по адресу:\n\n \\href {https://github.com/Harrix/HarrixFileFormats} {https://github.com/Harrix/HarrixFileFormats}.\n\n";
+                        Latex+="Описание алгоритма оптимизации можно найти по адресу:\n\n \\href {https://github.com/Harrix/HarrixOptimizationAlgorithms} {https://github.com/Harrix/HarrixOptimizationAlgorithms}.\n\n";
+                        Latex+="Описание тестовых функций можно найти по адресу:\n\n \\href {https://github.com/Harrix/HarrixTestFunctions} {https://github.com/Harrix/HarrixTestFunctions}.\n\n";
                         Latex+="С автором можно связаться по адресу \\href {mailto:sergienkoanton@mail.ru} {sergienkoanton@mail.ru} или  \\href {http://vk.com/harrix} {http://vk.com/harrix}. Сайт автора, где публикуются последние новости: \\href {http://blog.harrix.org} {http://blog.harrix.org}, а проекты располагаются по адресу \\href {http://harrix.org} {http://harrix.org}.";
                     }
 
@@ -2018,7 +2028,7 @@ void HQt_GeneratedReportAboutAlgorithmFromDir(QString path, QString pathForSave,
         }
 
         Latex+=HQt_LatexEnd();
-        HQt_SaveFile(Latex, pathForSave+"\\"+namealg.replace("_","").replace(" ", "")+".tex");
+        HQt_SaveFile(Latex, pathForSave+"\\"+namealg+".tex");
 
         Html=HQt_ShowSimpleText("Сохранили");
         HQt_AddHtml(Html);

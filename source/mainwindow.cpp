@@ -25,7 +25,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_pushButton_clicked()
 {
-    //Сборка проекта Harrix Math Library
+    //Сборка проекта Harrix Library
     QTime myTimer;
     myTimer.start();//запуск таймера работы сборки библиотеки
 

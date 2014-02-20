@@ -33,10 +33,10 @@ void MainWindow::on_pushButton_clicked()
 
     ui->textEdit->clear();
 
-    QString DS=QDir::separator();
-    QString path=QGuiApplication::applicationDirPath()+DS+".."+DS+"source_library"+DS;//путь к папке
+    QString DS="\\";
+    QString path=QDir::toNativeSeparators(QGuiApplication::applicationDirPath())+DS+".."+DS+"source_library"+DS;//путь к папке
     QString temp_library_path;//папка где находятся собранные файлы
-    temp_library_path=QGuiApplication::applicationDirPath()+DS+".."+DS+"temp_library"+DS;//путь к папке
+    temp_library_path=QDir::toNativeSeparators(QGuiApplication::applicationDirPath())+DS+".."+DS+"temp_library"+DS;//путь к папке
 
     if (!(QDir(temp_library_path).exists()==true) )
     {
@@ -72,63 +72,9 @@ void MainWindow::on_pushButton_clicked()
     bool b;
     ui->textEdit->insertHtml("<font color=\"#858585\">Начало формирования файлов библиотеки...<\font><br>");
 
-    ResultH += "#ifndef HARRIXMATHLIBRARY_H\n";
-    ResultH += "#define HARRIXMATHLIBRARY_H\n";
-
     ResultTpp += "//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n";
     ResultTpp += "// РЕАЛИЗАЦИЯ ШАБЛОНОВ\n";//добавляем название папки (раздела)
     ResultTpp += "//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n\n";
-
-    Temp = HQt_ReadFile(path+"Header.cpp")+"\n\n";//основа cpp файла
-    ResultCpp += Temp;
-    if (!(Temp.trimmed().isEmpty())) ui->textEdit->insertHtml("Загрузили файл <b>Header.cpp</b><br>");
-    else {MessageError="<font color=\"red\">Ошибка с файлом <b>Header.cpp</b><\font><br>";AllMessageError+=MessageError;ui->textEdit->insertHtml(MessageError);countoferrors++;}
-
-    Temp = HQt_ReadFile(path+"AdditionalVariables.cpp")+"\n\n";//дополнительные глобальные переменные
-    ResultCpp += Temp;
-    if (!(Temp.trimmed().isEmpty())) ui->textEdit->insertHtml("Загрузили файл <b>AdditionalVariables.cpp</b><br>");
-    else {MessageError="<font color=\"red\">Ошибка с файлом <b>AdditionalVariables.cpp</b><\font><br>";AllMessageError+=MessageError;ui->textEdit->insertHtml(MessageError);countoferrors++;}
-
-
-    Temp = HQt_ReadFile(path+"Random.cpp")+"\n\n";//две основные функции по случайнм числам
-    ResultCpp += Temp;
-    if (!(Temp.trimmed().isEmpty())) ui->textEdit->insertHtml("Загрузили файл <b>Random.cpp</b><br>");
-    else {MessageError="<font color=\"red\">Ошибка с файлом <b>Random.cpp</b><\font><br>";AllMessageError+=MessageError;ui->textEdit->insertHtml(MessageError);countoferrors++;}
-
-    Temp = HQt_ReadFile(path+"Const.h")+"\n\n";//константы
-    ResultH += Temp;
-    if (!(Temp.trimmed().isEmpty())) ui->textEdit->insertHtml("Загрузили файл <b>Const.h</b><br>");
-    else {MessageError="<font color=\"red\">Ошибка с файлом <b>Const.h</b><\font><br>";AllMessageError+=MessageError;ui->textEdit->insertHtml(MessageError);countoferrors++;}
-
-    Temp = HQt_ReadFile(path+"Random.h")+"\n\n";//две основные функции по случайнм числам
-    ResultH += Temp;
-    if (!(Temp.trimmed().isEmpty())) ui->textEdit->insertHtml("Загрузили файл <b>Random.h</b><br>");
-    else {MessageError="<font color=\"red\">Ошибка с файлом <b>Random.h</b><\font><br>";AllMessageError+=MessageError;ui->textEdit->insertHtml(MessageError);countoferrors++;}
-
-    Temp = HQt_ReadFile(path+"Enum.h")+"\n\n";//переменные перечисляемого типа
-    ResultH += Temp;
-    if (!(Temp.trimmed().isEmpty())) ui->textEdit->insertHtml("Загрузили файл <b>Enum.h</b><br>");
-    else {MessageError="<font color=\"red\">Ошибка с файлом <b>Enum.h</b><\font><br>";AllMessageError+=MessageError;ui->textEdit->insertHtml(MessageError);countoferrors++;}
-
-    Temp = HQt_ReadFile(path+"Install.tex")+"\n\n";//содержит информацию об установке и использованию библиотеки
-    ResultTex += Temp;
-    if (!(Temp.trimmed().isEmpty())) ui->textEdit->insertHtml("Загрузили файл <b>Install.tex</b><br>");
-    else {MessageError="<font color=\"red\">Ошибка с файлом <b>Install.tex</b><\font><br>";AllMessageError+=MessageError;ui->textEdit->insertHtml(MessageError);countoferrors++;}
-
-    Temp = HQt_ReadFile(path+"Random.tex")+"\n\n";//информация о случайных числах в библиотеке
-    ResultTex += Temp;
-    if (!(Temp.trimmed().isEmpty())) ui->textEdit->insertHtml("Загрузили файл <b>Random.tex</b><br>");
-    else {MessageError="<font color=\"red\">Ошибка с файлом <b>Random.tex</b><\font><br>";AllMessageError+=MessageError;ui->textEdit->insertHtml(MessageError);countoferrors++;}
-
-    Temp = HQt_ReadFile(path+"Addnew.tex")+"\n\n";//информация о том, как добавлять новые функции в библиотеку
-    ResultTex += Temp;
-    if (!(Temp.trimmed().isEmpty())) ui->textEdit->insertHtml("Загрузили файл <b>Addnew.tex</b><br>");
-    else {MessageError="<font color=\"red\">Ошибка с файлом <b>Addnew.tex</b><\font><br>";AllMessageError+=MessageError;ui->textEdit->insertHtml(MessageError);countoferrors++;}
-
-    Temp = HQt_ReadFile(path+"Thirdparty.tex")+"\n\n";//информация j сторонних библиотеках
-    ResultTex += Temp;
-    if (!(Temp.trimmed().isEmpty())) ui->textEdit->insertHtml("Загрузили файл <b>Thirdparty.tex</b><br>");
-    else {MessageError="<font color=\"red\">Ошибка с файлом <b>Thirdparty.tex</b><\font><br>";AllMessageError+=MessageError;ui->textEdit->insertHtml(MessageError);countoferrors++;}
 
     ResultH += "//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n";
     ResultH += "// ОБЪЯВЛЕНИЯ ФУНКЦИЙ\n";//добавляем название папки (раздела)
@@ -394,70 +340,20 @@ void MainWindow::on_pushButton_clicked()
 
     ResultTex+=ResultTexList+"\n";
     ResultTex+=ResultTexFunctions;
-    ResultTex+="\\phantomsection\n";
-    ResultTex+="\\addcontentsline{toc}{section}{Список литературы}\n";
-    ResultTex+="\\bibliographystyle{utf8gost705u}  %% стилевой файл для оформления по ГОСТу\n";
-    ResultTex+="\\bibliography{biblio}     %% имя библиографической базы (bib-файла)\n";
-    ResultTex+="\\newpage\n\n\\end{document}";
+//    ResultTex+="\\phantomsection\n";
+//    ResultTex+="\\addcontentsline{toc}{section}{Список литературы}\n";
+//    ResultTex+="\\bibliographystyle{utf8gost705u}  %% стилевой файл для оформления по ГОСТу\n";
+//    ResultTex+="\\bibliography{biblio}     %% имя библиографической базы (bib-файла)\n";
+//    ResultTex+="\\newpage\n\n\\end{document}";
 
 
-    Temp = HQt_ReadFile(path+"Description_part2.tex")+"\n\n";//описание библиотеки
-    ResultTex = Temp+ResultTex;
-    if (!(Temp.trimmed().isEmpty())) ui->textEdit->insertHtml("<br>Загрузили файл <b>Description_part2.tex</b><br>");
-    else {MessageError="<font color=\"red\">Ошибка с файлом <b>Description_part2.tex</b><\font><br>";AllMessageError+=MessageError;ui->textEdit->insertHtml(MessageError);countoferrors++;}
+    HQt_SaveFile(ResultCpp,temp_library_path+"Library.cpp");
+    ui->textEdit->insertHtml("<br>Сохранили файл <b>Library.cpp</b><br>");
+    HQt_SaveFile(ResultH,temp_library_path+"Library.h");
+    ui->textEdit->insertHtml("Сохранили файл <b>Library.h</b><br>");
 
-    countfunction+=3;//Три случайные функции в самом начале cpp файла
-
-    ResultTex=QString::number(countfunction)+ResultTex;
-
-    Temp = HQt_ReadFile(path+"Description_part1.tex");//описание библиотеки
-    ResultTex = Temp+ResultTex;
-    if (!(Temp.trimmed().isEmpty())) ui->textEdit->insertHtml("Загрузили файл <b>Description_part1.tex</b><br>");
-    else {MessageError="<font color=\"red\">Ошибка с файлом <b>Description_part1.tex</b><\font><br>";AllMessageError+=MessageError;ui->textEdit->insertHtml(MessageError);countoferrors++;}
-
-    Temp = HQt_ReadFile(path+"Title.tex")+"\n\n";// титульная информация и содержание справки
-    ResultTex = Temp+ResultTex;
-    if (!(Temp.trimmed().isEmpty())) ui->textEdit->insertHtml("Загрузили файл <b>Title.tex</b><br>");
-    else {MessageError="<font color=\"red\">Ошибка с файлом <b>Title.tex</b><\font><br>";AllMessageError+=MessageError;ui->textEdit->insertHtml(MessageError);countoferrors++;}
-
-    ResultH += "\n#endif // HARRIXMATHLIBRARY_H";
-
-    HQt_SaveFile(ResultCpp,temp_library_path+"HarrixMathLibrary.cpp");
-    ui->textEdit->insertHtml("<br>Сохранили файл <b>HarrixMathLibrary.cpp</b><br>");
-    HQt_SaveFile(ResultH,temp_library_path+"HarrixMathLibrary.h");
-    ui->textEdit->insertHtml("Сохранили файл <b>HarrixMathLibrary.h</b><br>");
-
-    HQt_SaveFile(ResultTex,temp_library_path+"HarrixMathLibrary_Help.tex");
-    ui->textEdit->insertHtml("Сохранили файл <b>HarrixMathLibrary_Help.tex</b><br>");
-
-    //Начнем копирование некоторых файлов целиком
-    b=HQt_CopyFile(path+"biblio.bib", temp_library_path,true);
-    if (b) ui->textEdit->insertHtml("<br>Скопировали файл <b>biblio.bib</b>");
-    else {MessageError="<font color=\"red\">Ошибка с файлом <b>biblio.bib</b><\font><br>";AllMessageError+=MessageError;ui->textEdit->insertHtml(MessageError);countoferrors++;}
-
-    b=HQt_CopyFile(path+"utf8gost705u.bst", temp_library_path,true);
-    if (b) ui->textEdit->insertHtml("<br>Скопировали файл <b>utf8gost705u.bst</b>");
-    else {MessageError="<font color=\"red\">Ошибка с файлом <b>utf8gost705u.bst</b><\font><br>";AllMessageError+=MessageError;ui->textEdit->insertHtml(MessageError);countoferrors++;}
-
-    b=HQt_CopyFile(path+"mtrand.cpp", temp_library_path,true);
-    if (b) ui->textEdit->insertHtml("<br>Скопировали файл <b>mtrand.cpp</b>");
-    else {MessageError="<font color=\"red\">Ошибка с файлом <b>mtrand.cpp</b><\font><br>";AllMessageError+=MessageError;ui->textEdit->insertHtml(MessageError);countoferrors++;}
-
-    b=HQt_CopyFile(path+"mtrand.h", temp_library_path,true);
-    if (b) ui->textEdit->insertHtml("<br>Скопировали файл <b>mtrand.h</b>");
-    else {MessageError="<font color=\"red\">Ошибка с файлом <b>mtrand.h</b><\font><br>";AllMessageError+=MessageError;ui->textEdit->insertHtml(MessageError);countoferrors++;}
-
-    b=HQt_CopyFile(path+"names.tex", temp_library_path,true);
-    if (b) ui->textEdit->insertHtml("<br>Скопировали файл <b>names.tex</b>");
-    else {MessageError="<font color=\"red\">Ошибка с файлом <b>names.tex</b><\font><br>";AllMessageError+=MessageError;ui->textEdit->insertHtml(MessageError);countoferrors++;}
-
-    b=HQt_CopyFile(path+"packages.tex", temp_library_path,true);
-    if (b) ui->textEdit->insertHtml("<br>Скопировали файл <b>packages.tex</b>");
-    else {MessageError="<font color=\"red\">Ошибка с файлом <b>packages.tex</b><\font><br>";AllMessageError+=MessageError;ui->textEdit->insertHtml(MessageError);countoferrors++;}
-
-    b=HQt_CopyFile(path+"styles.tex", temp_library_path,true);
-    if (b)  ui->textEdit->insertHtml("<br>Скопировали файл <b>styles.tex</b><br>");
-    else {MessageError="<font color=\"red\">Ошибка с файлом <b>styles.tex</b><\font><br>";AllMessageError+=MessageError;ui->textEdit->insertHtml(MessageError);countoferrors++;}
+    HQt_SaveFile(ResultTex,temp_library_path+"Library_Help.tex");
+    ui->textEdit->insertHtml("Сохранили файл <b>Library_Help.tex</b><br>");
 
     if (countoferrors==0) ui->textEdit->insertHtml("<br>Ошибки не были зафиксированы.<br>");
     else ui->textEdit->insertHtml("<br><font color=\"red\">Ошибок <b>"+QString::number(countoferrors)+"</b> штук<\font><br>");

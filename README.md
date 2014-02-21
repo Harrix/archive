@@ -24,7 +24,7 @@ https://github.com/Harrix/HarrixMakeLibrary
  * [**_HarrixMakeLibrary**](../master/_HarrixMakeLibrary) - непосредственно папка программы. В папке содержится последний билд.
  * [**source_library**](../master/source_library) - папка с исходным текстом библиотеки, который потом собирается программой. Тут располагается пример набора функций.
  * [**source**](../master/source_make) - папка с исходным текстом программы и справки по ней.
- * [**LICENSE.txt**](../master/LICENSE.txt), [**NOTICE.txt**](../master/NOTICE.txt)**** - файлы лицензии Apache License, Version 2.0.
+ * [**LICENSE.txt**](../master/LICENSE.txt), [**NOTICE.txt**](../master/NOTICE.txt) - файлы лицензии Apache License, Version 2.0.
  * [**README.md**](../master/README.md) - непосредственно этот файл.
  * [**images**](../master/images) - в папке находятся служебные рисунки для отображения в этом файле.
  

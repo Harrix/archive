@@ -14,7 +14,7 @@ https://github.com/Harrix/HarrixMakeLibrary
 Установка
 ---------
 
-Прочитать подробно об установке можно тут http://blog.harrix.org/?p=.
+Прочитать подробно об установке можно тут http://blog.harrix.org/?p=1271.
 
 Структура папок на GitHub
 -------------------------

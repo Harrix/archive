@@ -5,7 +5,6 @@
 //Библиотека распространяется по лицензии Apache License, Version 2.0.
 
 #include "HarrixMathLibraryForTestFunctions.h"
-#include "HarrixMathLibrary.h"
 
 TypeOfTestFunction VMHL_TypeOfTestFunction;//для функций по работе с тестовыми функциями для анализа эффективности алгоритмов
 int CountOfFitness;//количество вызовов тестовой функции при запуске алгоритма оптимизации

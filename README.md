@@ -24,7 +24,7 @@ https://github.com/Harrix/HarrixMathLibraryForTestFunctions
  * [**_library**](../master/_library) - непосредственно сама библиотека. В папке содержится последний билд библиотеки.
  * [**demo**](../master/demo) - папка с программой [HarrixMathLibraryForTestFunctions.exe](../master/demo/HarrixMathLibraryForTestFunctions.exe), демонстрирующей работу функций библиотеки.
  * [**make**](../master/make) - папка с программой [HarrixMakeLibrary.exe](../master/make/HarrixMakeLibrary.exe), которая формирует из исходников в папке source_library библиотеку и справку к ней.
- * [**source_demo**](../master/source_demo) - папка с исходным текстом программы [DemoHarrixMathLibraryForTestFunctions.exe](../master/demo/DemoHarrixMathLibraryForTestFunctions.exe).
+ * [**source_demo**](../master/source_demo) - папка с исходным текстом программы [DemoHarrixMathLibraryForTestFunctions.exe](../master/demo/HarrixMathLibraryForTestFunctions.exe).
  * [**source_library**](../master/source_library) - папка с исходным текстом библиотеки, который потом собирается программой [HarrixMakeLibrary.exe](../master/make/HarrixMakeLibrary.exe) из папки [make](../master/make).
  * [**LICENSE.txt**](../master/LICENSE.txt), [**NOTICE.txt**](../master/NOTICE.txt) - файлы лицензии Apache License, Version 2.0.
  * [**README.md**](../master/README.md) - непосредственно этот файл.

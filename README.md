@@ -14,7 +14,7 @@ https://github.com/Harrix/HarrixMathLibraryForTestFunctions
 Установка
 ---------
 
-Прочитать подробно об установке можно тут http://blog.harrix.org/?p=.
+Прочитать подробно об установке можно тут http://blog.harrix.org/?p=1279.
 
 Структура папок на GitHub
 -------------------------

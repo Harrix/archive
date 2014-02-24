@@ -3,11 +3,11 @@ HarrixChart
 
 Версия 1.7
 
-Приложение по отображению графиков из данных формата *.hdata (см. в папке [_HarrixChart](https://github.com/Harrix/HarrixChart/blob/master/master/_HarrixChart)).
+Приложение по отображению графиков из данных формата *.hdata (см. в папке [_HarrixChart](https://github.com/Harrix/HarrixChart/blob/master/_HarrixChart)).
 
 [https://github.com/Harrix/HarrixChart](https://github.com/Harrix/HarrixChart)
 
-Программа распространяется по лицензии [Apache License, Version 2.0](https://github.com/Harrix/HarrixChart/blob/master/master/LICENSE.txt).
+Программа распространяется по лицензии [Apache License, Version 2.0](https://github.com/Harrix/HarrixChart/blob/master/LICENSE.txt).
 
 О формате *.hdata (Harrix Data) можно прочитать тут:
 
@@ -21,32 +21,32 @@ HarrixChart
 Примеры графиков
 ----------------
 
-![alt text](https://raw.github.com/Harrix/HarrixChart/master/master/images/PointsAndLine.png "Пример показа PointsAndLine.hdata")
+![alt text](https://raw.github.com/Harrix/HarrixChart/master/images/PointsAndLine.png "Пример показа PointsAndLine.hdata")
 
-![alt text](https://raw.github.com/Harrix/HarrixChart/master/master/images/Line_2.png "Пример показа Line_2.hdata")
+![alt text](https://raw.github.com/Harrix/HarrixChart/master/images/Line_2.png "Пример показа Line_2.hdata")
 
-![alt text](https://raw.github.com/Harrix/HarrixChart/master/master/images/TwoIndependentLines.png "Пример показа TwoIndependentLines.hdata")
+![alt text](https://raw.github.com/Harrix/HarrixChart/master/images/TwoIndependentLines.png "Пример показа TwoIndependentLines.hdata")
 
-![alt text](https://raw.github.com/Harrix/HarrixChart/master/master/images/SeveralLines.png "Пример показа SeveralLines.hdata")
+![alt text](https://raw.github.com/Harrix/HarrixChart/master/images/SeveralLines.png "Пример показа SeveralLines.hdata")
 
-![alt text](https://raw.github.com/Harrix/HarrixChart/master/master/images/SeveralIndependentLines.png "Пример показа SeveralIndependentLines.hdata")
+![alt text](https://raw.github.com/Harrix/HarrixChart/master/images/SeveralIndependentLines.png "Пример показа SeveralIndependentLines.hdata")
 
 Примеры графиков для LaTeX
 --------------------------
 
-![alt text](https://raw.github.com/Harrix/HarrixChart/master/master/images/example2.png "Пример вывода")
+![alt text](https://raw.github.com/Harrix/HarrixChart/master/images/example2.png "Пример вывода")
 
-![alt text](https://raw.github.com/Harrix/HarrixChart/master/master/images/example3.png "Пример вывода")
+![alt text](https://raw.github.com/Harrix/HarrixChart/master/images/example3.png "Пример вывода")
 
-![alt text](https://raw.github.com/Harrix/HarrixChart/master/master/images/example4.png "Пример вывода")
+![alt text](https://raw.github.com/Harrix/HarrixChart/master/images/example4.png "Пример вывода")
 
-![alt text](https://raw.github.com/Harrix/HarrixChart/master/master/images/example5.png "Пример вывода")
+![alt text](https://raw.github.com/Harrix/HarrixChart/master/images/example5.png "Пример вывода")
 
-![alt text](https://raw.github.com/Harrix/HarrixChart/master/master/images/example6.png "Пример вывода")
+![alt text](https://raw.github.com/Harrix/HarrixChart/master/images/example6.png "Пример вывода")
 
-![alt text](https://raw.github.com/Harrix/HarrixChart/master/master/images/example7.png "Пример вывода")
+![alt text](https://raw.github.com/Harrix/HarrixChart/master/images/example7.png "Пример вывода")
 
-![alt text](https://raw.github.com/Harrix/HarrixChart/master/master/images/example8.png "Пример вывода")
+![alt text](https://raw.github.com/Harrix/HarrixChart/master/images/example8.png "Пример вывода")
 
 Использованные технологии
 -------------------------
@@ -66,7 +66,7 @@ HarrixChart
 История проекта
 ---------------
 
-Подробный список изменений в файле [CHANGELOG.md](https://github.com/Harrix/HarrixChart/blob/master/master/CHANGELOG.md).
+Подробный список изменений в файле [CHANGELOG.md](https://github.com/Harrix/HarrixChart/blob/master/CHANGELOG.md).
 
 Контакты
 --------

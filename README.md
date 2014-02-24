@@ -9,7 +9,7 @@ HarrixClass_DataOfHarrixOptimizationTesting
 
 Библиотека распространяется по лицензии [Apache License, Version 2.0](https://github.com/Harrix/HarrixClass_DataOfHarrixOptimizationTesting/blob/master/LICENSE.txt).
 
-Описание формата [**Harrix Optimization Testing 1.0**](https://github.com/Harrix/HarrixClass_DataOfHarrixOptimizationTesting/blob/master/Harrix Optimization Testing 1.0/) вы найдете тут:
+Описание формата [**Harrix Optimization Testing 1.0**](https://github.com/Harrix/HarrixFileFormats/tree/master/Harrix%20Optimization%20Testing%201.0) вы найдете тут:
 
 [https://github.com/Harrix/HarrixFileFormats](https://github.com/Harrix/HarrixFileFormats)
 

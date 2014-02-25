@@ -5,14 +5,14 @@ HarrixQtLibraryForQWebView
 
 Библиотека для отображения различных данных в [QWebView](http://qt-project.org/doc/qt-5.0/qtwebkit/qwebview.html), включая графики.
 
-https://github.com/Harrix/HarrixQtLibraryForQWebView
+[https://github.com/Harrix/HarrixQtLibraryForQWebView](https://github.com/Harrix/HarrixQtLibraryForQWebView)
 
-Библиотека распространяется по лицензии [Apache License, Version 2.0](../master/LICENSE.txt).
+Библиотека распространяется по лицензии [Apache License, Version 2.0](https://github.com/Harrix/HarrixQtLibraryForQWebView/blob/master/LICENSE.txt).
 
 Установка
 ---------
 
-Подробно о установке с подробным примером можно прочитать тут http://blog.harrix.org/?p=1196.
+Подробно о установке с подробным примером можно прочитать тут [http://blog.harrix.org/?p=1196](http://blog.harrix.org/?p=1196).
 
 Функции для получения HTML кода для вывода в QWebView
 -----------------------------------------------------
@@ -134,11 +134,11 @@ https://github.com/Harrix/HarrixQtLibraryForQWebView
 Скриншоты примеров вывода информации
 ------------------------------------
 
-![alt text](../master/imagesforgithub/graph.png "Вывод графика")
+![alt text](https://raw.github.com/Harrix/HarrixQtLibraryForQWebView/master/imagesforgithub/graph.png "Вывод графика")
 
-![alt text](../master/imagesforgithub/matrix.png "Вывод матриц")
+![alt text](https://raw.github.com/Harrix/HarrixQtLibraryForQWebView/master/imagesforgithub/matrix.png "Вывод матриц")
 
-![alt text](../master/imagesforgithub/vectors.png "Вывод векторов")
+![alt text](https://raw.github.com/Harrix/HarrixQtLibraryForQWebView/master/imagesforgithub/vectors.png "Вывод векторов")
 		
 Использованные технологии
 -------------------------
@@ -149,7 +149,7 @@ https://github.com/Harrix/HarrixQtLibraryForQWebView
 История проекта
 ---------------
 
-Подробный список изменений в файле [CHANGELOG.md](../master/CHANGELOG.md).
+Подробный список изменений в файле [CHANGELOG.md](https://github.com/Harrix/HarrixQtLibraryForQWebView/blob/master/CHANGELOG.md).
 
 Контакты
 --------

@@ -7,48 +7,48 @@ Html страница для отображения информации в [QWe
 
 Данный проект является решением проблемы и обновление происходит через ajax и только, когда содержимое файла temp.html поменялось. При этом, если что-то новое добавилось, то производится автоматический скролл вниз страницы.
 
-https://github.com/Harrix/HarrixHtmlForQWebView
+[https://github.com/Harrix/HarrixHtmlForQWebView](https://github.com/Harrix/HarrixHtmlForQWebView)
 
-Библиотека распространяется по лицензии [Apache License, Version 2.0](../master/LICENSE.txt).
+Библиотека распространяется по лицензии [Apache License, Version 2.0](https://github.com/Harrix/HarrixHtmlForQWebView/blob/master/LICENSE.txt).
 
 Установка
 ---------
 
-Подробно о установке с подробным примером можно прочитать тут http://blog.harrix.org/?p=1059.
+Подробно о установке с подробным примером можно прочитать тут [http://blog.harrix.org/?p=1059](http://blog.harrix.org/?p=1059).
 
-О функциях добавления объектов в temp.html читайте в проекте https://github.com/Harrix/HarrixQtLibraryForQWebView.
+О функциях добавления объектов в temp.html читайте в проекте [https://github.com/Harrix/HarrixQtLibraryForQWebView](https://github.com/Harrix/HarrixQtLibraryForQWebView).
 
 Механизм работы
 ---------------
 
-В [**index.html**](../master/index.html) есть слой, куда с помощью ajax добавляется контент:
+В [**index.html**](https://github.com/Harrix/HarrixHtmlForQWebView/blob/master/index.html) есть слой, куда с помощью ajax добавляется контент:
 
 ```html
 <div id="content"></div>
 ```
 
-В этот слой копируется содержимое файла из файла [**temp.html**](../master/temp.html) (тут в библиотеке он и должен быть пустым!). При этом копирование содержимого производится только в том случае, если содержимое файла [**temp.html**](../master/temp.html) поменялось. Это делается для того, чтобы обновление страницы происходило только когда это нужно, а не каждую секунду.
+В этот слой копируется содержимое файла из файла [**temp.html**](https://github.com/Harrix/HarrixHtmlForQWebView/blob/master/temp.html) (тут в библиотеке он и должен быть пустым!). При этом копирование содержимого производится только в том случае, если содержимое файла [**temp.html**](https://github.com/Harrix/HarrixHtmlForQWebView/blob/master/temp.html) поменялось. Это делается для того, чтобы обновление страницы происходило только когда это нужно, а не каждую секунду.
 
-Итак, вы автоматически генерируете контент в файл [**temp.html**](../master/temp.html). После этого [**index.html**](../master/index.html), открытая в QWebView автоматически (плюс-минус одна секунда) обновит свое содержимое и отскроллит окно к низу.
+Итак, вы автоматически генерируете контент в файл [**temp.html**](https://github.com/Harrix/HarrixHtmlForQWebView/blob/master/temp.html). После этого [**index.html**](https://github.com/Harrix/HarrixHtmlForQWebView/blob/master/index.html), открытая в QWebView автоматически (плюс-минус одна секунда) обновит свое содержимое и отскроллит окно к низу.
 
 Предупреждение
 --------------
 
-Данная страница не будет работать на локальном компьютере через браузеры. То есть, если вы откроете файл [**index.html**](../master/index.html), например, в Chrome, то откроется пустая страница. Это связано с тем, что в браузерах обычно стоит запрет на ajax в локальных файлах. Но если загрузите на сервер, то все будет отображаться.
+Данная страница не будет работать на локальном компьютере через браузеры. То есть, если вы откроете файл [**index.html**](https://github.com/Harrix/HarrixHtmlForQWebView/blob/master/index.html), например, в Chrome, то откроется пустая страница. Это связано с тем, что в браузерах обычно стоит запрет на ajax в локальных файлах. Но если загрузите на сервер, то все будет отображаться.
 
-Учтите, что программы, которые используют данную библиотеку напрямую, не должны запускаться несколькими экземплярами одновременно, чтобы не изменять файл [temp.html](../master/temp.html) одновременно.
+Учтите, что программы, которые используют данную библиотеку напрямую, не должны запускаться несколькими экземплярами одновременно, чтобы не изменять файл [temp.html](https://github.com/Harrix/HarrixHtmlForQWebView/blob/master/temp.html) одновременно.
  
 Скриншоты некотрых программ с этой библиотекой
 ----------------------------------------------
 
-![alt text](../master/imagesforgithub/example1.png "Проект HarrixChart")
+![alt text](https://raw.github.com/Harrix/HarrixHtmlForQWebView/master/imagesforgithub/example1.png "Проект HarrixChart")
 
-![alt text](../master/imagesforgithub/example2.png "Проект HarrixMathLibrary")
+![alt text](https://raw.github.com/Harrix/HarrixHtmlForQWebView/master/imagesforgithub/example2.png "Проект HarrixMathLibrary")
 
 Подключенные библиотеки
 -----------------------
- * **jQuery** - для скролла страниц: http://jquery.com
- * **JSXGraph** - для отображения графиков: https://github.com/jsxgraph/jsxgraph
+ * **jQuery** - для скролла страниц: [http://jquery.com](http://jquery.com)
+ * **JSXGraph** - для отображения графиков: [https://github.com/jsxgraph/jsxgraph](https://github.com/jsxgraph/jsxgraph)
  
 Использованные технологии
 -------------------------
@@ -58,7 +58,7 @@ https://github.com/Harrix/HarrixHtmlForQWebView
 История проекта
 ---------------
 
-Подробный список изменений в файле [CHANGELOG.md](../master/CHANGELOG.md).
+Подробный список изменений в файле [CHANGELOG.md](https://github.com/Harrix/HarrixHtmlForQWebView/blob/master/CHANGELOG.md).
 
 Контакты
 --------

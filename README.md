@@ -9,7 +9,7 @@ HarrixClass_HarrixData
 
 Библиотека распространяется по лицензии [Apache License, Version 2.0](https://github.com/Harrix/HarrixClass_HarrixData/blob/master/LICENSE.txt).
 
-Описание формата [**Harrix Data 1.1**](https://github.com/Harrix/HarrixClass_HarrixData/blob/master/Harrix Data 1.1/) вы найдете тут:
+Описание формата [**Harrix Data 1.1**](https://github.com/Harrix/HarrixClass_HarrixData/blob/master/Harrix%20Optimization%20Testing%201.0) вы найдете тут:
 
 [https://github.com/Harrix/HarrixFileFormats](https://github.com/Harrix/HarrixFileFormats)
 

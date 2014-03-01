@@ -32,7 +32,7 @@ void HQt_AddHtml(QString Html);
 - Функция выводит число VMHL_X в строку.
 
 ```
-template <class T> QString THQt_NumberToText (T VMHL_X);  
+template <class T> QString THQt_NumberToText (T VMHL_X);
 ```
 
 - Функция возвращает строку с выводом некоторой строки с HTML кодами. Для добавление в html файл.
@@ -44,25 +44,25 @@ QString HQt_ShowText (QString TitleX);
 - Функция возвращает строку с выводом некоторой строки с HTML кодами без всякого излишеств. Для добавление в html файл.
 
 ```
-QString HQt_ShowSimpleText (QString String);  
+QString HQt_ShowSimpleText (QString String);
 ```
 
 - Функция возвращает строку с выводом некоторой строки в виде заголовка. Для добавление в html файл.
 
 ```
-QString HQt_ShowH1 (QString String);  
+QString HQt_ShowH1 (QString String);
 ```
 
 - Функция возвращает строку с выводом горизонтальной линии. Для добавление в html файл.
 
 ```
-QString HQt_ShowHr ();  
+QString HQt_ShowHr ();
 ```
 
 - Функция возвращает строку с выводом некоторого предупреждения. Для добавление в html файл.
 
 ```
-QString HQt_ShowAlert (QString String);  
+QString HQt_ShowAlert (QString String);
 ```
 
 - Функция возвращает строку с выводом некоторого числа VMHL_X с HTML кодами.
@@ -81,7 +81,7 @@ template <class T> QString THQt_ShowVector (T *VMHL_Vector, int VMHL_N, QString 
 template <class T> QString THQt_ShowVector (T *VMHL_Vector, int VMHL_N);
 QString THQt_ShowVector (QStringList VMHL_Vector, QString TitleVector, QString NameVector); 
 QString THQt_ShowVector (QStringList VMHL_Vector, QString NameVector);
-QString THQt_ShowVector (QStringList VMHL_Vector);  	
+QString THQt_ShowVector (QStringList VMHL_Vector);
 ```
 
 - Функция возвращает строку с выводом некоторый вектора VMHL_Vector в транспонированном виде с HTML кодами.
@@ -106,7 +106,7 @@ QString THQt_ShowMatrix (QStringList *VMHL_Matrix, int VMHL_N);
 - Функция возвращает строку с выводом некоторого графика по точкам с HTML кодами. Для добавление в HTML файл.
 
 ```
-template <class T> QString THQt_ShowChartOfLine (T *VMHL_VectorX,T *VMHL_VectorY, int VMHL_N, QString TitleChart, QString NameVectorX, QString NameVectorY, QString NameLine, bool ShowLine, bool ShowPoints, bool ShowArea, bool ShowSpecPoints, bool RedLine); 
+template <class T> QString THQt_ShowChartOfLine (T *VMHL_VectorX,T *VMHL_VectorY, int VMHL_N, QString TitleChart, QString NameVectorX, QString NameVectorY, QString NameLine, bool ShowLine, bool ShowPoints, bool ShowArea, bool ShowSpecPoints, bool RedLine);
 ``` 
 
 - Функция возвращает строку с выводом некоторого графика по точкам с HTML кодами. Для добавление в HTML файл. Отличается от основной функцией отсутствием параметра NameLine(название первого графика (для легенды)).

@@ -1,5 +1,5 @@
 //HarrixClass_DataOfHarrixOptimizationTesting
-//Версия 1.16
+//Версия 1.17
 //Класс для считывания информации формата данных Harrix Optimization Testing на C++ для Qt.
 //https://github.com/Harrix/HarrixClass_DataOfHarrixOptimizationTesting
 //Библиотека распространяется по лицензии Apache License, Version 2.0.
@@ -2037,5 +2037,24 @@ void HQt_GeneratedReportAboutAlgorithmFromDir(QString path, QString pathForSave,
         HQt_AddHtml(Html);
 
     }
+}
+//--------------------------------------------------------------------------
+
+bool HQt_CompareOfDataForNameAlgorithm (HarrixClass_DataOfHarrixOptimizationTesting Data1, HarrixClass_DataOfHarrixOptimizationTesting Data2)
+{
+    /*
+    Проверяет равенство индентификаторов алгоритмов оптимизации: в данных содержится один и тот же алгоритм или же нет.
+    Входные параметры:
+     Data1 - первое исследование;
+     Data2 - второе исследование.
+    Возвращаемое значение:
+     true - если имена алгоритмов одинаковы.
+     false - если разные.
+     */
+    bool VMHL_Result=false;
+
+    if (Data1.getNameAlgorithm()==Data1.getNameAlgorithm()) VMHL_Result=true;
+
+    return VMHL_Result;
 }
 //--------------------------------------------------------------------------

@@ -1,5 +1,5 @@
 //HarrixMathLibraryForTestFunctions
-//Версия 1.0
+//Версия 1.1
 //Сборник различных математических функций и шаблонов с открытым кодом на языке C++.
 //https://github.com/Harrix/HarrixMathLibraryForTestFunctions
 //Библиотека распространяется по лицензии Apache License, Version 2.0.
@@ -112,6 +112,9 @@ int MHL_ClassOfTestFunction(TypeOfTestFunction Type)
         return 2;
 		
 	if (Type==TestFunction_RastriginNovgorod)
+        return 2;
+		
+	if (Type==TestFunction_Bosom)
         return 2;
 
     return VMHL_Result;
@@ -388,6 +391,11 @@ int MHL_CountOfFitnessOfTestFunction_Real(int Dimension)
         if (Dimension==10) VMHL_Result = 5776;
         if (Dimension==20) VMHL_Result = 15876;
         if (Dimension==30) VMHL_Result = 28224;
+    }
+	
+	if (VMHL_TypeOfTestFunction==TestFunction_Bosom)
+    {
+        if (Dimension==2)  VMHL_Result = 324;
     }
 
     return VMHL_Result;
@@ -710,6 +718,11 @@ int MHL_DimensionTestFunction_Real(int i)
         if (i==5) VMHL_Result = 20;
         if (i==6) VMHL_Result = 30;
     }
+	
+	if (VMHL_TypeOfTestFunction==TestFunction_Bosom)
+    {
+        if (i==0) VMHL_Result = 2;
+    }
 
     return VMHL_Result;
 }
@@ -846,6 +859,26 @@ double MHL_ErrorExOfTestFunction_Real(double *x, int VMHL_N)
 	
 	delete [] Ex;
     }
+	
+	if (VMHL_TypeOfTestFunction==TestFunction_Bosom)
+    {
+	double *Ex = new double[2];
+	for (i=0;i<VMHL_N;i++) Ex[i]=0;
+	
+	Optimum[0]=( 4.0); Optimum[1]=(4.0);
+	for (i=0;i<VMHL_N;i++)
+        Ex[0]+=(x[i]-Optimum[i])*(x[i]-Optimum[i]);
+    Ex[0]=sqrt(Ex[0])/double(VMHL_N);
+	
+	Optimum[0]=(-4.0); Optimum[1]=(-4.0);
+	for (i=0;i<VMHL_N;i++)
+        Ex[1]+=(x[i]-Optimum[i])*(x[i]-Optimum[i]);
+    Ex[1]=sqrt(Ex[1])/double(VMHL_N);
+	
+	VMHL_Result_Ex = TMHL_MinimumOfVector(Ex,2);
+	
+	delete [] Ex;
+    }
 
     delete [] Optimum;
 
@@ -941,7 +974,7 @@ double MHL_ErrorEyOfTestFunction_Real(double FitnessOfx, int VMHL_N)
 
     double FitnessOfOptimum=MHL_FitnessOfOptimumOfTestFunction_Real(VMHL_N);
 
-    if ((VMHL_TypeOfTestFunction==TestFunction_Ackley)||(VMHL_TypeOfTestFunction==TestFunction_ParaboloidOfRevolution)||(VMHL_TypeOfTestFunction==TestFunction_Rastrigin)||(VMHL_TypeOfTestFunction==TestFunction_Rosenbrock)||(VMHL_TypeOfTestFunction==TestFunction_AdditivePotential)||(VMHL_TypeOfTestFunction==TestFunction_MultiplicativePotential)||(VMHL_TypeOfTestFunction==TestFunction_ReverseGriewank)||(VMHL_TypeOfTestFunction==TestFunction_HyperEllipsoid)||(VMHL_TypeOfTestFunction==TestFunction_RotatedHyperEllipsoid)||(VMHL_TypeOfTestFunction==TestFunction_Wave)||(VMHL_TypeOfTestFunction==TestFunction_Multiextremal)||(VMHL_TypeOfTestFunction==TestFunction_Multiextremal2)||(VMHL_TypeOfTestFunction==TestFunction_Sombrero)||(VMHL_TypeOfTestFunction==TestFunction_Himmelblau)||(VMHL_TypeOfTestFunction==TestFunction_Katnikov)||(VMHL_TypeOfTestFunction==TestFunction_Multiextremal3)||(VMHL_TypeOfTestFunction==TestFunction_Multiextremal4)||(VMHL_TypeOfTestFunction==TestFunction_StepFunction)||(VMHL_TypeOfTestFunction==TestFunction_Rana)||(VMHL_TypeOfTestFunction==TestFunction_ShekelsFoxholes)||(VMHL_TypeOfTestFunction==TestFunction_EggHolder)||(VMHL_TypeOfTestFunction==TestFunction_RastriginWithChange)||(VMHL_TypeOfTestFunction==TestFunction_RastriginWithTurning)||(VMHL_TypeOfTestFunction==TestFunction_Schwefel)||(VMHL_TypeOfTestFunction==TestFunction_Griewangk)||(VMHL_TypeOfTestFunction==TestFunction_InvertedRosenbrock)||(VMHL_TypeOfTestFunction==TestFunction_GaussianQuartic)||(VMHL_TypeOfTestFunction==TestFunction_RastriginNovgorod))
+    if ((VMHL_TypeOfTestFunction==TestFunction_Ackley)||(VMHL_TypeOfTestFunction==TestFunction_ParaboloidOfRevolution)||(VMHL_TypeOfTestFunction==TestFunction_Rastrigin)||(VMHL_TypeOfTestFunction==TestFunction_Rosenbrock)||(VMHL_TypeOfTestFunction==TestFunction_AdditivePotential)||(VMHL_TypeOfTestFunction==TestFunction_MultiplicativePotential)||(VMHL_TypeOfTestFunction==TestFunction_ReverseGriewank)||(VMHL_TypeOfTestFunction==TestFunction_HyperEllipsoid)||(VMHL_TypeOfTestFunction==TestFunction_RotatedHyperEllipsoid)||(VMHL_TypeOfTestFunction==TestFunction_Wave)||(VMHL_TypeOfTestFunction==TestFunction_Multiextremal)||(VMHL_TypeOfTestFunction==TestFunction_Multiextremal2)||(VMHL_TypeOfTestFunction==TestFunction_Sombrero)||(VMHL_TypeOfTestFunction==TestFunction_Himmelblau)||(VMHL_TypeOfTestFunction==TestFunction_Katnikov)||(VMHL_TypeOfTestFunction==TestFunction_Multiextremal3)||(VMHL_TypeOfTestFunction==TestFunction_Multiextremal4)||(VMHL_TypeOfTestFunction==TestFunction_StepFunction)||(VMHL_TypeOfTestFunction==TestFunction_Rana)||(VMHL_TypeOfTestFunction==TestFunction_ShekelsFoxholes)||(VMHL_TypeOfTestFunction==TestFunction_EggHolder)||(VMHL_TypeOfTestFunction==TestFunction_RastriginWithChange)||(VMHL_TypeOfTestFunction==TestFunction_RastriginWithTurning)||(VMHL_TypeOfTestFunction==TestFunction_Schwefel)||(VMHL_TypeOfTestFunction==TestFunction_Griewangk)||(VMHL_TypeOfTestFunction==TestFunction_InvertedRosenbrock)||(VMHL_TypeOfTestFunction==TestFunction_GaussianQuartic)||(VMHL_TypeOfTestFunction==TestFunction_RastriginNovgorod)||(VMHL_TypeOfTestFunction==TestFunction_Bosom))
     {
         VMHL_Result_Ey=fabs(MHL_MaximumOrMinimumOfTestFunction_Real()*FitnessOfx-FitnessOfOptimum);
     }
@@ -1054,6 +1087,15 @@ double MHL_ErrorROfTestFunction_Real(double *x, int VMHL_N)
         {
             if (fabs(x[i]-Optimum[i])>=MHL_PrecisionOfCalculationsOfTestFunction_Real()) VMHL_Result_R=0;
         }
+    }
+	
+	if (VMHL_TypeOfTestFunction==TestFunction_Bosom)
+    {
+	VMHL_Result_R = 0;
+	double p=MHL_PrecisionOfCalculationsOfTestFunction_Real();
+	
+	if ( (fabs(x[0]-( 4.0))<p) && (fabs(x[1]-( 4.0))<p)) VMHL_Result_R = 1;
+	if ( (fabs(x[0]-(-4.0))<p) && (fabs(x[1]-(-4.0))<p)) VMHL_Result_R = 1;
     }
 	
 	if (VMHL_TypeOfTestFunction==TestFunction_Himmelblau)
@@ -1294,6 +1336,11 @@ double MHL_FitnessOfOptimumOfTestFunction_Real(double VMHL_N)
     {
 		VMHL_Result = 0;
     }
+	
+	if (VMHL_TypeOfTestFunction==TestFunction_Bosom)
+    {
+		VMHL_Result = 1.150000077;
+    }
 
     return VMHL_Result;
 }
@@ -1527,6 +1574,11 @@ int MHL_GetCountOfSubProblems_Real()
     {
         VMHL_Result = 7;
     }
+	
+	if (VMHL_TypeOfTestFunction==TestFunction_Bosom)
+    {
+        VMHL_Result = 1;
+    }
 
     return VMHL_Result;
 }
@@ -1734,6 +1786,12 @@ void MHL_LeftAndRightBorderOfTestFunction_Real(double *Left, double *Right,int V
     {
         for (i=0;i<VMHL_N;i++) Left[i]=-2;
         for (i=0;i<VMHL_N;i++) Right[i]=2;
+    }
+	
+	if (VMHL_TypeOfTestFunction==TestFunction_Bosom)
+    {
+        for (i=0;i<VMHL_N;i++) Left[i]=-12;
+        for (i=0;i<VMHL_N;i++) Right[i]=12;
     }
 }
 //---------------------------------------------------------------------------
@@ -1958,6 +2016,11 @@ double MHL_MaximumOrMinimumOfTestFunction_Real()
     {
         VMHL_Result=-1;
     }
+	
+	if (VMHL_TypeOfTestFunction==TestFunction_Bosom)
+    {
+        VMHL_Result=1;
+    }
 
     return VMHL_Result;
 }
@@ -2002,7 +2065,7 @@ double MHL_NumberOfPartsOfTestFunction_Real(int *NumberOfParts, int VMHL_N)
     double VMHL_Result_E = 0;
     int i;
 
-    if ((VMHL_TypeOfTestFunction==TestFunction_Ackley)||(VMHL_TypeOfTestFunction==TestFunction_ParaboloidOfRevolution)||(VMHL_TypeOfTestFunction==TestFunction_Rastrigin)||(VMHL_TypeOfTestFunction==TestFunction_Rosenbrock)||(VMHL_TypeOfTestFunction==TestFunction_AdditivePotential)||(VMHL_TypeOfTestFunction==TestFunction_MultiplicativePotential)||(VMHL_TypeOfTestFunction==TestFunction_ReverseGriewank)||(VMHL_TypeOfTestFunction==TestFunction_HyperEllipsoid)||(VMHL_TypeOfTestFunction==TestFunction_RotatedHyperEllipsoid)||(VMHL_TypeOfTestFunction==TestFunction_Wave)||(VMHL_TypeOfTestFunction==TestFunction_Multiextremal)||(VMHL_TypeOfTestFunction==TestFunction_Multiextremal2)||(VMHL_TypeOfTestFunction==TestFunction_Multiextremal2)||(VMHL_TypeOfTestFunction==TestFunction_Sombrero)||(VMHL_TypeOfTestFunction==TestFunction_Himmelblau)||(VMHL_TypeOfTestFunction==TestFunction_Katnikov)||(VMHL_TypeOfTestFunction==TestFunction_Multiextremal3)||(VMHL_TypeOfTestFunction==TestFunction_Multiextremal4)||(VMHL_TypeOfTestFunction==TestFunction_StepFunction)||(VMHL_TypeOfTestFunction==TestFunction_Rana)||(VMHL_TypeOfTestFunction==TestFunction_ShekelsFoxholes)||(VMHL_TypeOfTestFunction==TestFunction_EggHolder)||(VMHL_TypeOfTestFunction==TestFunction_RastriginWithChange)||(VMHL_TypeOfTestFunction==TestFunction_RastriginWithTurning)||(VMHL_TypeOfTestFunction==TestFunction_Schwefel)||(VMHL_TypeOfTestFunction==TestFunction_Griewangk)||(VMHL_TypeOfTestFunction==TestFunction_InvertedRosenbrock)||(VMHL_TypeOfTestFunction==TestFunction_GaussianQuartic)||(VMHL_TypeOfTestFunction==TestFunction_RastriginNovgorod))
+    if ((VMHL_TypeOfTestFunction==TestFunction_Ackley)||(VMHL_TypeOfTestFunction==TestFunction_ParaboloidOfRevolution)||(VMHL_TypeOfTestFunction==TestFunction_Rastrigin)||(VMHL_TypeOfTestFunction==TestFunction_Rosenbrock)||(VMHL_TypeOfTestFunction==TestFunction_AdditivePotential)||(VMHL_TypeOfTestFunction==TestFunction_MultiplicativePotential)||(VMHL_TypeOfTestFunction==TestFunction_ReverseGriewank)||(VMHL_TypeOfTestFunction==TestFunction_HyperEllipsoid)||(VMHL_TypeOfTestFunction==TestFunction_RotatedHyperEllipsoid)||(VMHL_TypeOfTestFunction==TestFunction_Wave)||(VMHL_TypeOfTestFunction==TestFunction_Multiextremal)||(VMHL_TypeOfTestFunction==TestFunction_Multiextremal2)||(VMHL_TypeOfTestFunction==TestFunction_Multiextremal2)||(VMHL_TypeOfTestFunction==TestFunction_Sombrero)||(VMHL_TypeOfTestFunction==TestFunction_Himmelblau)||(VMHL_TypeOfTestFunction==TestFunction_Katnikov)||(VMHL_TypeOfTestFunction==TestFunction_Multiextremal3)||(VMHL_TypeOfTestFunction==TestFunction_Multiextremal4)||(VMHL_TypeOfTestFunction==TestFunction_StepFunction)||(VMHL_TypeOfTestFunction==TestFunction_Rana)||(VMHL_TypeOfTestFunction==TestFunction_ShekelsFoxholes)||(VMHL_TypeOfTestFunction==TestFunction_EggHolder)||(VMHL_TypeOfTestFunction==TestFunction_RastriginWithChange)||(VMHL_TypeOfTestFunction==TestFunction_RastriginWithTurning)||(VMHL_TypeOfTestFunction==TestFunction_Schwefel)||(VMHL_TypeOfTestFunction==TestFunction_Griewangk)||(VMHL_TypeOfTestFunction==TestFunction_InvertedRosenbrock)||(VMHL_TypeOfTestFunction==TestFunction_GaussianQuartic)||(VMHL_TypeOfTestFunction==TestFunction_RastriginNovgorod)||(VMHL_TypeOfTestFunction==TestFunction_Bosom))
     {
         for (i=0;i<VMHL_N;i++) NumberOfParts[i]=4095;
     }
@@ -2247,6 +2310,14 @@ double MHL_OptimumOfTestFunction_Real(double *Optimum, int VMHL_N)
 	if (VMHL_TypeOfTestFunction==TestFunction_RastriginNovgorod)
     {
         for (i=0;i<VMHL_N;i++) Optimum[i]=0;
+    }
+	
+	if (VMHL_TypeOfTestFunction==TestFunction_Bosom)
+    {
+	// один из 2 оптимумов
+        for (i=0;i<VMHL_N;i++) Optimum[i]=0;
+        Optimum[0]=4;
+		Optimum[1]=4;
     }
 
     VMHL_Result = MHL_FitnessOfOptimumOfTestFunction_Real(VMHL_N);
@@ -2610,6 +2681,9 @@ double MHL_TestFunction_Real(double *x, int VMHL_N)
 		
 	if (VMHL_TypeOfTestFunction==TestFunction_RastriginNovgorod)
         VMHL_Result = MHL_MaximumOrMinimumOfTestFunction_Real()*MHL_TestFunction_RastriginNovgorod(x, VMHL_N);
+		
+	if (VMHL_TypeOfTestFunction==TestFunction_Bosom)
+        VMHL_Result = MHL_MaximumOrMinimumOfTestFunction_Real()*MHL_TestFunction_Bosom(x[0], x[1]);
 
     CountOfFitness++;//увеличиваем число вызовов целевой функции
     return VMHL_Result;
@@ -2636,4 +2710,3 @@ double MHL_TestFunction_Real(double *x, int VMHL_N, TypeOfTestFunction Type)
     return VMHL_Result;
 }
 //---------------------------------------------------------------------------
-

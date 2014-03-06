@@ -162,6 +162,14 @@ double MHL_OptimumOfTestFunction_Real(double *Optimum, int VMHL_N)
     {
         for (i=0;i<VMHL_N;i++) Optimum[i]=0;
     }
+	
+	if (VMHL_TypeOfTestFunction==TestFunction_Bosom)
+    {
+	// один из 2 оптимумов
+        for (i=0;i<VMHL_N;i++) Optimum[i]=0;
+        Optimum[0]=4;
+		Optimum[1]=4;
+    }
 
     VMHL_Result = MHL_FitnessOfOptimumOfTestFunction_Real(VMHL_N);
 

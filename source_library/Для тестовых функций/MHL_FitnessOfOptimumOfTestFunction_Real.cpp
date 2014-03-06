@@ -156,6 +156,11 @@ double MHL_FitnessOfOptimumOfTestFunction_Real(double VMHL_N)
     {
 		VMHL_Result = 0;
     }
+	
+	if (VMHL_TypeOfTestFunction==TestFunction_Bosom)
+    {
+		VMHL_Result = 1.150000077;
+    }
 
     return VMHL_Result;
 }

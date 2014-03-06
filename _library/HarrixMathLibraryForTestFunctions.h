@@ -3,7 +3,7 @@
 #include <math.h>
 
 //ПЕРЕМЕННЫЕ ПЕРЕЧИСЛЯЕМОГО ТИПА
-enum TypeOfTestFunction { TestFunction_Ackley, TestFunction_ParaboloidOfRevolution, TestFunction_Rastrigin, TestFunction_Rosenbrock, TestFunction_SumVector, TestFunction_AdditivePotential, TestFunction_MultiplicativePotential, TestFunction_ReverseGriewank, TestFunction_HyperEllipsoid, TestFunction_RotatedHyperEllipsoid, TestFunction_Wave, TestFunction_Multiextremal, TestFunction_Multiextremal2, TestFunction_Sombrero, TestFunction_Himmelblau, TestFunction_Katnikov, TestFunction_Multiextremal3, TestFunction_Multiextremal4, TestFunction_StepFunction, TestFunction_Rana, TestFunction_ShekelsFoxholes, TestFunction_EggHolder, TestFunction_RastriginWithChange, TestFunction_RastriginWithTurning, TestFunction_Schwefel, TestFunction_Griewangk, TestFunction_InvertedRosenbrock, TestFunction_GaussianQuartic, TestFunction_RastriginNovgorod };
+enum TypeOfTestFunction { TestFunction_Ackley, TestFunction_ParaboloidOfRevolution, TestFunction_Rastrigin, TestFunction_Rosenbrock, TestFunction_SumVector, TestFunction_AdditivePotential, TestFunction_MultiplicativePotential, TestFunction_ReverseGriewank, TestFunction_HyperEllipsoid, TestFunction_RotatedHyperEllipsoid, TestFunction_Wave, TestFunction_Multiextremal, TestFunction_Multiextremal2, TestFunction_Sombrero, TestFunction_Himmelblau, TestFunction_Katnikov, TestFunction_Multiextremal3, TestFunction_Multiextremal4, TestFunction_StepFunction, TestFunction_Rana, TestFunction_ShekelsFoxholes, TestFunction_EggHolder, TestFunction_RastriginWithChange, TestFunction_RastriginWithTurning, TestFunction_Schwefel, TestFunction_Griewangk, TestFunction_InvertedRosenbrock, TestFunction_GaussianQuartic, TestFunction_RastriginNovgorod, TestFunction_Bosom };
 
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 // ОБЪЯВЛЕНИЯ ФУНКЦИЙ
@@ -68,5 +68,6 @@ double MHL_TestFunction_Real(double *x, int VMHL_N, TypeOfTestFunction Type);
 //*****************************************************************
 //Для тестовых функций
 //*****************************************************************
+
 
 #endif // HARRIXMATHLIBRARYFORTESTFUNCTIONS_H

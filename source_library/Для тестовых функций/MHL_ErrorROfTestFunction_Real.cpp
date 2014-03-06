@@ -27,6 +27,15 @@ double MHL_ErrorROfTestFunction_Real(double *x, int VMHL_N)
         }
     }
 	
+	if (VMHL_TypeOfTestFunction==TestFunction_Bosom)
+    {
+	VMHL_Result_R = 0;
+	double p=MHL_PrecisionOfCalculationsOfTestFunction_Real();
+	
+	if ( (fabs(x[0]-( 4.0))<p) && (fabs(x[1]-( 4.0))<p)) VMHL_Result_R = 1;
+	if ( (fabs(x[0]-(-4.0))<p) && (fabs(x[1]-(-4.0))<p)) VMHL_Result_R = 1;
+    }
+	
 	if (VMHL_TypeOfTestFunction==TestFunction_Himmelblau)
     {
 	VMHL_Result_R = 0;

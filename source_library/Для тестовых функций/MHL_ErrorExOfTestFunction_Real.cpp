@@ -55,6 +55,26 @@ double MHL_ErrorExOfTestFunction_Real(double *x, int VMHL_N)
 	
 	delete [] Ex;
     }
+	
+	if (VMHL_TypeOfTestFunction==TestFunction_Bosom)
+    {
+	double *Ex = new double[2];
+	for (i=0;i<VMHL_N;i++) Ex[i]=0;
+	
+	Optimum[0]=( 4.0); Optimum[1]=(4.0);
+	for (i=0;i<VMHL_N;i++)
+        Ex[0]+=(x[i]-Optimum[i])*(x[i]-Optimum[i]);
+    Ex[0]=sqrt(Ex[0])/double(VMHL_N);
+	
+	Optimum[0]=(-4.0); Optimum[1]=(-4.0);
+	for (i=0;i<VMHL_N;i++)
+        Ex[1]+=(x[i]-Optimum[i])*(x[i]-Optimum[i]);
+    Ex[1]=sqrt(Ex[1])/double(VMHL_N);
+	
+	VMHL_Result_Ex = TMHL_MinimumOfVector(Ex,2);
+	
+	delete [] Ex;
+    }
 
     delete [] Optimum;
 

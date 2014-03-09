@@ -28,7 +28,7 @@ HarrixFileFormats
 Проекты по форматам
 -------------------
 
-Для формата [**Harrix Data 1.1**](https://github.com/Harrix/HarrixFileFormats/blob/master/Harrix%20Data%201.1/) есть проект HarrixChart для считывания данных:
+Для формата [**Harrix Data 1.1**](https://github.com/Harrix/HarrixFileFormats/blob/master/Harrix%20Data%201.1/) есть проект-программа HarrixChart для считывания данных:
 
 [https://github.com/Harrix/HarrixChart](https://github.com/Harrix/HarrixChart)
 

@@ -32,7 +32,7 @@ HarrixFileFormats
 
 [https://github.com/Harrix/HarrixChart](https://github.com/Harrix/HarrixChart)
 
-Для формата [**Harrix Data 1.1**](https://github.com/Harrix/HarrixFileFormats/blob/master/Harrix%20Data%201.1/) есть класс HarrixClass_HarrixData для считывания данных:
+Для формата [**Harrix Data 1.1**](https://github.com/Harrix/HarrixFileFormats/blob/master/Harrix%20Data%201.1/) есть класс C++ HarrixClass_HarrixData для считывания данных:
 
 [https://github.com/Harrix/HarrixClass_HarrixData](https://github.com/Harrix/HarrixClass_HarrixData)
 

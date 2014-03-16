@@ -218,6 +218,6 @@ private:
     bool Zero_Number_Of_Parameters;//Число параметров равно нулю или нет
 };
 
-void HQt_GeneratedReportAboutAlgorithmFromDir(QString path, QString pathForSave, QString pathForTempHtml);//Генерирует отчет по алгоритму по файлам *.hdata одного алгоритма, просматривая все файлы в папке.
+void HQt_HCDOHOT_GeneratedReportAboutAlgorithmFromDir(QString path, QString pathForSave, QString pathForTempHtml);//Генерирует отчет по алгоритму по файлам *.hdata одного алгоритма, просматривая все файлы в папке.
 
 #endif // HARRIXCLASS_DATAOFHARRIXOPTIMIZATIONTESTING_H

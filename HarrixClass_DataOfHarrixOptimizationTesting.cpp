@@ -4,6 +4,8 @@
 //https://github.com/Harrix/HarrixClass_DataOfHarrixOptimizationTesting
 //Библиотека распространяется по лицензии Apache License, Version 2.0.
 
+#include <QVector>
+
 #include "HarrixQtLibrary.h"
 #include "HarrixQtLibraryForQWebView.h"
 #include "HarrixQtLibraryForLaTeX.h"
@@ -1937,7 +1939,7 @@ void HarrixClass_DataOfHarrixOptimizationTesting::makingLatexAnalysis()
 ////////////////////// ФУНКЦИИ ПО РАБОТЕ С КЛАССОМ /////////////////////////
 ////////////////////////////////////////////////////////////////////////////
 
-void HQt_GeneratedReportAboutAlgorithmFromDir(QString path, QString pathForSave, QString pathForTempHtml)
+void HQt_HCDOHOT_GeneratedReportAboutAlgorithmFromDir(QString path, QString pathForSave, QString pathForTempHtml)
 {
     /*
     Генерирует отчет по алгоритму по файлам *.hdata одного алгоритма, просматривая все файлы в папке.
@@ -2053,7 +2055,7 @@ bool HQt_CompareOfDataForNameAlgorithm (HarrixClass_DataOfHarrixOptimizationTest
      */
     bool VMHL_Result=false;
 
-    if (Data1.getNameAlgorithm()==Data1.getNameAlgorithm()) VMHL_Result=true;
+    if (Data1.getNameAlgorithm()==Data2.getNameAlgorithm()) VMHL_Result=true;
 
     return VMHL_Result;
 }

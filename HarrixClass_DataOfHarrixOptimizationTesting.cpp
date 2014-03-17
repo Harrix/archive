@@ -117,6 +117,110 @@ HarrixClass_DataOfHarrixOptimizationTesting::HarrixClass_DataOfHarrixOptimizatio
 }
 //--------------------------------------------------------------------------
 
+HarrixClass_DataOfHarrixOptimizationTesting::HarrixClass_DataOfHarrixOptimizationTesting()
+{
+    /*
+    Конструктор. Создает пустой экзмепляр.
+    Входные параметры:
+     Отсутствуют.
+ */
+    SuccessReading=true;
+    XML_DimensionTestFunction=-1;//Размерность тестовой задачи (длина хромосомы решения)
+    XML_Number_Of_Measuring=-1;//Количество экспериментов для каждого набора параметров алгоритма
+    XML_Number_Of_Runs=-1;//Количество прогонов, по которому делается усреднение для эксперимента
+    XML_Max_Count_Of_Fitness=-1;//Максимальное допустимое число вычислений целевой функции для алгоритма
+    XML_Number_Of_Parameters=-1;//Количество проверяемых параметров алгоритма оптимизации
+    Zero_Number_Of_Parameters=false;//пока ничего не известно
+    XML_Number_Of_Experiments=-1;//Количество комбинаций вариантов настроек
+    Error=false;//типа вначале нет ошибок в файле
+    Un=HQt_RandomString(5);//уникальная строка для Latex
+    //AllOptions=true;//вначале наивно предполагаем, что в файле все настройки рассмотрены
+
+    QFile file(filename);//для открытия файла и запихивания его в xml
+
+    if (!file.open(QFile::ReadOnly | QFile::Text))
+    {
+        HtmlMessageOfError+=HQt_ShowAlert("Файл "+HQt_GetFilenameFromFullFilename(filename)+" не открывается");
+        Error=true;
+    }
+    else
+    {
+        Html+=HQt_ShowText("Файл <font color=\"#00b400\">"+HQt_GetFilenameFromFullFilename(filename)+"</font> загружен");
+
+        //Первоначальные действия
+        Rxml.setDevice(&file);
+        Rxml.readNext();while((!Rxml.isStartElement())&&(!Rxml.atEnd())){Rxml.readNext();}//первый нормальный элемент
+
+        //Начнем анализ документа
+        if (readXmlTreeTag("document"))
+        {
+            if (readXmlTreeTag("harrix_file_format"))
+            {
+                //далее должны идти тэги format, version, site
+                for (int k=0;k<3;k++)
+                    readXmlLeafTag();//считает тэг
+
+                if (readXmlTreeTag("about"))
+                {
+                    //далее должны идти тэги author, date, email
+                    for (int k=0;k<3;k++)
+                        readXmlLeafTag();//считает тэг
+
+                    if (readXmlTreeTag("about_data"))
+                    {
+                        //далее должны идти 13 тэгов по информации о данных
+                        for (int k=0;k<13;k++)
+                            readXmlLeafTag();//считает тэг
+
+                        readXmlTreeTag("data");
+                    }
+                }
+                checkXmlLeafTags();//проверим наличие всех тэгов
+            }
+        }
+
+        if (!Error)
+        {
+            memoryAllocation();//выделение памяти под массивы
+            zeroArray();//обнулим массивы
+            readXmlDataTags();//считаем данные непосредственно
+        }
+
+        if ((Rxml.hasError())||(Error))
+        {
+            HtmlMessageOfError+=HQt_ShowAlert("В процессе разбора файла обнаружены ошибки. Помните, что для этой функции обработки XML файла требуется правильный порядок следования тэгов.");
+            Html+=HtmlMessageOfError;
+            SuccessReading=false;
+        }
+        else
+        {
+            makingAnalysis();//выполняем анализ данных
+
+            //Обработка полученной информации Html
+            makingHtmlReport();
+            Html+=HtmlReport;
+
+            //Обработка полученной информации Latex
+            NameForHead="алгоритма оптимизации <<"+HQt_ForcedWordWrap(HQt_StringForLaTeX(XML_Full_Name_Algorithm))+">>на тестовой функции <<"+HQt_ForcedWordWrap(HQt_StringForLaTeX(XML_Full_Name_Test_Function))+">> (размерность равна "+QString::number(XML_DimensionTestFunction)+")";
+            makingLatexInfo();
+            makingLatexAboutParameters();
+            makingLatexTableEx();//заполняем LatexTableEx
+            makingLatexTableEy();//заполняем LatexTableEy
+            makingLatexTableR();//заполняем LatexTableR
+            makingLatexAnalysis();//заполняем LatexTableR
+            //Latex+=LatexInfo+LatexAboutParameters+LatexTableEx+LatexTableEy+LatexTableR;
+            Latex+=LatexInfo+LatexAboutParameters+LatexTableEx+LatexTableEy+LatexTableR+LatexAnalysis;
+            LatexTable+=LatexInfo+LatexAboutParameters+LatexTableEx+LatexTableEy+LatexTableR;
+
+            Html+=HQt_ShowHr();
+            Html+=HQt_ShowText("Обработка файла завершена. Ошибки не обнаружены");
+        }
+    }
+
+    file.close();
+}
+//--------------------------------------------------------------------------
+
 HarrixClass_DataOfHarrixOptimizationTesting::~HarrixClass_DataOfHarrixOptimizationTesting()
 {
     /*
@@ -1939,7 +2043,7 @@ void HarrixClass_DataOfHarrixOptimizationTesting::makingLatexAnalysis()
 ////////////////////// ФУНКЦИИ ПО РАБОТЕ С КЛАССОМ /////////////////////////
 ////////////////////////////////////////////////////////////////////////////
 
-void HQt_HCDOHOT_GeneratedReportAboutAlgorithmFromDir(QString path, QString pathForSave, QString pathForTempHtml)
+void HCDOHOT_GeneratedReportAboutAlgorithmFromDir(QString path, QString pathForSave, QString pathForTempHtml)
 {
     /*
     Генерирует отчет по алгоритму по файлам *.hdata одного алгоритма, просматривая все файлы в папке.
@@ -1957,9 +2061,9 @@ void HQt_HCDOHOT_GeneratedReportAboutAlgorithmFromDir(QString path, QString path
      */
     path = QDir::toNativeSeparators(path);
     pathForSave = QDir::toNativeSeparators(pathForSave);
-    pathForTempHtml = QDir::toNativeSeparators(pathForTempHtml);
+    if (!pathForTempHtml.isEmpty()) pathForTempHtml = QDir::toNativeSeparators(pathForTempHtml);
 
-    HQt_BeginHtml (pathForTempHtml);
+    if (!pathForTempHtml.isEmpty()) HQt_BeginHtml (pathForTempHtml);
 
     if (path.length()>0)
     {
@@ -1976,7 +2080,7 @@ void HQt_HCDOHOT_GeneratedReportAboutAlgorithmFromDir(QString path, QString path
         if (namealg.at(0)=='_') namealg = namealg.mid(1);
 
         Html=path;
-        HQt_AddHtml(Html);
+        if (!pathForTempHtml.isEmpty()) HQt_AddHtml(Html);
 
         QStringList Files = HQt_ListFilesInDirQStringList(path);
 
@@ -1990,7 +2094,7 @@ void HQt_HCDOHOT_GeneratedReportAboutAlgorithmFromDir(QString path, QString path
             if (HQt_GetExpFromFilename(filename)=="xml")
             {
                 Html=HQt_ShowSimpleText(filename);
-                HQt_AddHtml(Html);
+                if (!pathForTempHtml.isEmpty()) HQt_AddHtml(Html);
 
                 HarrixClass_DataOfHarrixOptimizationTesting Data(path+"\\"+filename);
 
@@ -2025,7 +2129,7 @@ void HQt_HCDOHOT_GeneratedReportAboutAlgorithmFromDir(QString path, QString path
                 {
                     //выводим ошибку
                     Html=Data.getHtml();
-                    HQt_AddHtml(Html);
+                    if (!pathForTempHtml.isEmpty()) HQt_AddHtml(Html);
                 }
 
             }
@@ -2036,13 +2140,112 @@ void HQt_HCDOHOT_GeneratedReportAboutAlgorithmFromDir(QString path, QString path
         HQt_SaveFile(Latex, pathForSave+"\\"+namealgNameForSave+".tex");
 
         Html=HQt_ShowSimpleText("Сохранили");
-        HQt_AddHtml(Html);
+        if (!pathForTempHtml.isEmpty()) HQt_AddHtml(Html);
 
     }
 }
 //--------------------------------------------------------------------------
 
-bool HQt_CompareOfDataForNameAlgorithm (HarrixClass_DataOfHarrixOptimizationTesting Data1, HarrixClass_DataOfHarrixOptimizationTesting Data2)
+void HCDOHOT_GeneratedReportAboutAlgorithmFromDir(QString path, QString pathForSave)
+{
+    /*
+    Генерирует отчет по алгоритму по файлам *.hdata одного алгоритма, просматривая все файлы в папке без сохранения отчета в HTML.
+    То, чтобы в папке были файлы только одного алгоритма, вы берете на себя.
+    В папке сохранения должны быть находиться файлы names.tex, packages.tex, styles.tex из проекта
+    https://github.com/Harrix/HarrixLaTeXDocumentTemplate
+    Входные параметры:
+     path - путь к папке, из которой считаем файлы.
+     pathForSave - путь к папке, куда сохраняем Latex файлы.
+    Возвращаемое значение:
+     Отсутствует.
+     */
+    HCDOHOT_GeneratedReportAboutAlgorithmFromDir(path, pathForSave, "");
+}
+//--------------------------------------------------------------------------
+
+int HCDOHOT_NumberFilesInDie(QString path)
+{
+    /*
+    Подсчитывает число HarrixClass_DataOfHarrixOptimizationTesting файлов в папке.
+    Входные параметры:
+     path - путь к папке, из которой считаем файлы.
+    Возвращаемое значение:
+     Число файлов HarrixClass_DataOfHarrixOptimizationTesting файлов в папке.
+     */
+    int Result;
+
+    path = QDir::toNativeSeparators(path);
+
+    if (path.length()>0)
+    {
+        QString filename;
+
+        QStringList Files = HQt_ListFilesInDirQStringList(path);
+
+        Files = HQt_NaturalSortingQStringList(Files);//сортируем правильно список файлов
+
+        for (int i=0;i<Files.count();i++)
+        {
+            filename=Files.at(i);
+            if (HQt_GetExpFromFilename(filename)=="xml")
+            {
+                HarrixClass_DataOfHarrixOptimizationTesting Data(path+"\\"+filename);
+
+                if (Data.getSuccessReading())
+                {
+                Result++;
+                }
+            }
+        }
+        QGuiApplication::processEvents();
+    }
+
+    return Result;
+}
+//--------------------------------------------------------------------------
+
+//QString HCDOHOT_NumberFilesInDie(QString path, HarrixClass_DataOfHarrixOptimizationTesting *Data, int N)
+//{
+//    /*
+//    Подсчитывает число HarrixClass_DataOfHarrixOptimizationTesting файлов в папке.
+//    Входные параметры:
+//     path - путь к папке, из которой считаем файлы.
+//    Возвращаемое значение:
+//     Число файлов HarrixClass_DataOfHarrixOptimizationTesting файлов в папке.
+//     */
+//    int Result;
+
+//    path = QDir::toNativeSeparators(path);
+
+//    if (path.length()>0)
+//    {
+//        QString filename;
+
+//        QStringList Files = HQt_ListFilesInDirQStringList(path);
+
+//        Files = HQt_NaturalSortingQStringList(Files);//сортируем правильно список файлов
+
+//        for (int i=0;i<Files.count();i++)
+//        {
+//            filename=Files.at(i);
+//            if (HQt_GetExpFromFilename(filename)=="xml")
+//            {
+//                Data[i](path+"\\"+filename);
+
+//                if (Data.getSuccessReading())
+//                {
+//                Result++;
+//                }
+//            }
+//        }
+//        QGuiApplication::processEvents();
+//    }
+
+//    return Result;
+//}
+////--------------------------------------------------------------------------
+
+bool HCDOHOT_CompareOfDataForNameAlgorithm (HarrixClass_DataOfHarrixOptimizationTesting Data1, HarrixClass_DataOfHarrixOptimizationTesting Data2)
 {
     /*
     Проверяет равенство индентификаторов алгоритмов оптимизации: в данных содержится один и тот же алгоритм или же нет.

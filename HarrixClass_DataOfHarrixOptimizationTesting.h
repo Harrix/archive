@@ -218,6 +218,11 @@ private:
     bool Zero_Number_Of_Parameters;//Число параметров равно нулю или нет
 };
 
-void HQt_HCDOHOT_GeneratedReportAboutAlgorithmFromDir(QString path, QString pathForSave, QString pathForTempHtml);//Генерирует отчет по алгоритму по файлам *.hdata одного алгоритма, просматривая все файлы в папке.
+void HCDOHOT_GeneratedReportAboutAlgorithmFromDir(QString path, QString pathForSave, QString pathForTempHtml);//Генерирует отчет по алгоритму по файлам *.hdata одного алгоритма, просматривая все файлы в папке.
+void HCDOHOT_GeneratedReportAboutAlgorithmFromDir(QString path, QString pathForSave);//Генерирует отчет по алгоритму по файлам *.hdata одного алгоритма, просматривая все файлы в папке без сохранения отчета в HTML.
+
+int HCDOHOT_NumberFilesInDie(QString path);//Подсчитывает число HarrixClass_DataOfHarrixOptimizationTesting файлов в папке.
+
+bool HCDOHOT_CompareOfDataForNameAlgorithm (HarrixClass_DataOfHarrixOptimizationTesting Data1, HarrixClass_DataOfHarrixOptimizationTesting Data2);//Проверяет равенство индентификаторов алгоритмов оптимизации: в данных содержится один и тот же алгоритм или же нет.
 
 #endif // HARRIXCLASS_DATAOFHARRIXOPTIMIZATIONTESTING_H

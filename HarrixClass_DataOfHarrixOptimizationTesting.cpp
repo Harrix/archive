@@ -2248,7 +2248,7 @@ int HCDOHOT_NumberFilesInDie(QString path)
 bool HCDOHOT_CompareOfDataForNameAlgorithm (HarrixClass_DataOfHarrixOptimizationTesting Data1, HarrixClass_DataOfHarrixOptimizationTesting Data2)
 {
     /*
-    Проверяет равенство индентификаторов алгоритмов оптимизации: в данных содержится один и тот же алгоритм или же нет.
+    Проверяет равенство идентификаторов алгоритмов оптимизации: в данных содержится один и тот же алгоритм или же нет.
     Входные параметры:
      Data1 - первое исследование;
      Data2 - второе исследование.

@@ -36,7 +36,10 @@ HarrixClass_DataOfHarrixOptimizationTesting::HarrixClass_DataOfHarrixOptimizatio
 
     if (!file.open(QFile::ReadOnly | QFile::Text))
     {
-        HtmlMessageOfError+=HQt_ShowAlert("Файл "+HQt_GetFilenameFromFullFilename(filename)+" не открывается");
+        if (filename.isEmpty())
+            HtmlMessageOfError+=HQt_ShowAlert("Это пустой экземпляр класса");
+        else
+            HtmlMessageOfError+=HQt_ShowAlert("Файл "+HQt_GetFilenameFromFullFilename(filename)+" не открывается");
         Error=true;
     }
     else
@@ -124,100 +127,7 @@ HarrixClass_DataOfHarrixOptimizationTesting::HarrixClass_DataOfHarrixOptimizatio
     Входные параметры:
      Отсутствуют.
  */
-    SuccessReading=true;
-    XML_DimensionTestFunction=-1;//Размерность тестовой задачи (длина хромосомы решения)
-    XML_Number_Of_Measuring=-1;//Количество экспериментов для каждого набора параметров алгоритма
-    XML_Number_Of_Runs=-1;//Количество прогонов, по которому делается усреднение для эксперимента
-    XML_Max_Count_Of_Fitness=-1;//Максимальное допустимое число вычислений целевой функции для алгоритма
-    XML_Number_Of_Parameters=-1;//Количество проверяемых параметров алгоритма оптимизации
-    Zero_Number_Of_Parameters=false;//пока ничего не известно
-    XML_Number_Of_Experiments=-1;//Количество комбинаций вариантов настроек
-    Error=false;//типа вначале нет ошибок в файле
-    Un=HQt_RandomString(5);//уникальная строка для Latex
-    //AllOptions=true;//вначале наивно предполагаем, что в файле все настройки рассмотрены
-
-    QFile file(filename);//для открытия файла и запихивания его в xml
-
-    if (!file.open(QFile::ReadOnly | QFile::Text))
-    {
-        HtmlMessageOfError+=HQt_ShowAlert("Файл "+HQt_GetFilenameFromFullFilename(filename)+" не открывается");
-        Error=true;
-    }
-    else
-    {
-        Html+=HQt_ShowText("Файл <font color=\"#00b400\">"+HQt_GetFilenameFromFullFilename(filename)+"</font> загружен");
-
-        //Первоначальные действия
-        Rxml.setDevice(&file);
-        Rxml.readNext();while((!Rxml.isStartElement())&&(!Rxml.atEnd())){Rxml.readNext();}//первый нормальный элемент
-
-        //Начнем анализ документа
-        if (readXmlTreeTag("document"))
-        {
-            if (readXmlTreeTag("harrix_file_format"))
-            {
-                //далее должны идти тэги format, version, site
-                for (int k=0;k<3;k++)
-                    readXmlLeafTag();//считает тэг
-
-                if (readXmlTreeTag("about"))
-                {
-                    //далее должны идти тэги author, date, email
-                    for (int k=0;k<3;k++)
-                        readXmlLeafTag();//считает тэг
-
-                    if (readXmlTreeTag("about_data"))
-                    {
-                        //далее должны идти 13 тэгов по информации о данных
-                        for (int k=0;k<13;k++)
-                            readXmlLeafTag();//считает тэг
-
-                        readXmlTreeTag("data");
-                    }
-                }
-                checkXmlLeafTags();//проверим наличие всех тэгов
-            }
-        }
-
-        if (!Error)
-        {
-            memoryAllocation();//выделение памяти под массивы
-            zeroArray();//обнулим массивы
-            readXmlDataTags();//считаем данные непосредственно
-        }
-
-        if ((Rxml.hasError())||(Error))
-        {
-            HtmlMessageOfError+=HQt_ShowAlert("В процессе разбора файла обнаружены ошибки. Помните, что для этой функции обработки XML файла требуется правильный порядок следования тэгов.");
-            Html+=HtmlMessageOfError;
-            SuccessReading=false;
-        }
-        else
-        {
-            makingAnalysis();//выполняем анализ данных
-
-            //Обработка полученной информации Html
-            makingHtmlReport();
-            Html+=HtmlReport;
-
-            //Обработка полученной информации Latex
-            NameForHead="алгоритма оптимизации <<"+HQt_ForcedWordWrap(HQt_StringForLaTeX(XML_Full_Name_Algorithm))+">>на тестовой функции <<"+HQt_ForcedWordWrap(HQt_StringForLaTeX(XML_Full_Name_Test_Function))+">> (размерность равна "+QString::number(XML_DimensionTestFunction)+")";
-            makingLatexInfo();
-            makingLatexAboutParameters();
-            makingLatexTableEx();//заполняем LatexTableEx
-            makingLatexTableEy();//заполняем LatexTableEy
-            makingLatexTableR();//заполняем LatexTableR
-            makingLatexAnalysis();//заполняем LatexTableR
-            //Latex+=LatexInfo+LatexAboutParameters+LatexTableEx+LatexTableEy+LatexTableR;
-            Latex+=LatexInfo+LatexAboutParameters+LatexTableEx+LatexTableEy+LatexTableR+LatexAnalysis;
-            LatexTable+=LatexInfo+LatexAboutParameters+LatexTableEx+LatexTableEy+LatexTableR;
-
-            Html+=HQt_ShowHr();
-            Html+=HQt_ShowText("Обработка файла завершена. Ошибки не обнаружены");
-        }
-    }
-
-    file.close();
+    HarrixClass_DataOfHarrixOptimizationTesting("");
 }
 //--------------------------------------------------------------------------
 
@@ -2163,7 +2073,7 @@ void HCDOHOT_GeneratedReportAboutAlgorithmFromDir(QString path, QString pathForS
 }
 //--------------------------------------------------------------------------
 
-int HCDOHOT_NumberFilesInDie(QString path)
+int HCDOHOT_NumberFilesInDir(QString path)
 {
     /*
     Подсчитывает число HarrixClass_DataOfHarrixOptimizationTesting файлов в папке.
@@ -2172,7 +2082,7 @@ int HCDOHOT_NumberFilesInDie(QString path)
     Возвращаемое значение:
      Число файлов HarrixClass_DataOfHarrixOptimizationTesting файлов в папке.
      */
-    int Result;
+    int Result=0;
 
     path = QDir::toNativeSeparators(path);
 
@@ -2193,7 +2103,7 @@ int HCDOHOT_NumberFilesInDie(QString path)
 
                 if (Data.getSuccessReading())
                 {
-                Result++;
+                    Result++;
                 }
             }
         }
@@ -2204,51 +2114,10 @@ int HCDOHOT_NumberFilesInDie(QString path)
 }
 //--------------------------------------------------------------------------
 
-//QString HCDOHOT_NumberFilesInDie(QString path, HarrixClass_DataOfHarrixOptimizationTesting *Data, int N)
-//{
-//    /*
-//    Подсчитывает число HarrixClass_DataOfHarrixOptimizationTesting файлов в папке.
-//    Входные параметры:
-//     path - путь к папке, из которой считаем файлы.
-//    Возвращаемое значение:
-//     Число файлов HarrixClass_DataOfHarrixOptimizationTesting файлов в папке.
-//     */
-//    int Result;
-
-//    path = QDir::toNativeSeparators(path);
-
-//    if (path.length()>0)
-//    {
-//        QString filename;
-
-//        QStringList Files = HQt_ListFilesInDirQStringList(path);
-
-//        Files = HQt_NaturalSortingQStringList(Files);//сортируем правильно список файлов
-
-//        for (int i=0;i<Files.count();i++)
-//        {
-//            filename=Files.at(i);
-//            if (HQt_GetExpFromFilename(filename)=="xml")
-//            {
-//                Data[i](path+"\\"+filename);
-
-//                if (Data.getSuccessReading())
-//                {
-//                Result++;
-//                }
-//            }
-//        }
-//        QGuiApplication::processEvents();
-//    }
-
-//    return Result;
-//}
-////--------------------------------------------------------------------------
-
 bool HCDOHOT_CompareOfDataForNameAlgorithm (HarrixClass_DataOfHarrixOptimizationTesting Data1, HarrixClass_DataOfHarrixOptimizationTesting Data2)
 {
     /*
-    Проверяет равенство идентификаторов алгоритмов оптимизации: в данных содержится один и тот же алгоритм или же нет.
+    Проверяет равенство индентификаторов алгоритмов оптимизации: в данных содержится один и тот же алгоритм или же нет.
     Входные параметры:
      Data1 - первое исследование;
      Data2 - второе исследование.

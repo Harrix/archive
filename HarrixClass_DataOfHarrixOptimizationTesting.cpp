@@ -157,6 +157,32 @@ HarrixClass_DataOfHarrixOptimizationTesting::~HarrixClass_DataOfHarrixOptimizati
 }
 //--------------------------------------------------------------------------
 
+void HarrixClass_DataOfHarrixOptimizationTesting::operator = (HarrixClass_DataOfHarrixOptimizationTesting& B)
+{
+    //Вначале учничтожим все массивы если они были.
+    if (!Error)
+    {
+        for (int i=0;i<XML_Number_Of_Experiments;i++) delete [] MatrixOfEx[i];
+        delete [] MatrixOfEx;
+        for (int i=0;i<XML_Number_Of_Experiments;i++) delete [] MatrixOfEy[i];
+        delete [] MatrixOfEy;
+        for (int i=0;i<XML_Number_Of_Experiments;i++) delete [] MatrixOfR[i];
+        delete [] MatrixOfR;
+        for (int i=0;i<XML_Number_Of_Experiments;i++) delete [] MatrixOfParameters[i];
+        delete [] MatrixOfParameters;
+        delete [] ListOfParameterOptions;
+        delete [] MeanOfEx;
+        delete [] MeanOfEy;
+        delete [] MeanOfR;
+        delete [] VarianceOfEx;
+        delete [] VarianceOfEy;
+        delete [] VarianceOfR;
+    }
+
+    //Теперь начнем копирование
+}
+//--------------------------------------------------------------------------
+
 QString HarrixClass_DataOfHarrixOptimizationTesting::getHtml()
 {
     /*

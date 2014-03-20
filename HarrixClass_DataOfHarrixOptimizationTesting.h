@@ -12,6 +12,8 @@ public:
     HarrixClass_DataOfHarrixOptimizationTesting(QString filename);
     HarrixClass_DataOfHarrixOptimizationTesting();
     ~HarrixClass_DataOfHarrixOptimizationTesting();
+    void operator = (HarrixClass_DataOfHarrixOptimizationTesting& B);
+
     bool getSuccessReading();//Получение значения переменной SuccessReading о удачности или неудачности прочитывания файла.
     QString getHtml();//Получение текста переменной Html
     QString getHtmlReport();//Получение текста переменной HtmlReport. Это часть html документа в виде отчета о проделанной работе.

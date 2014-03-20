@@ -20,21 +20,9 @@ HarrixClass_DataOfHarrixOptimizationTesting::HarrixClass_DataOfHarrixOptimizatio
     Входные параметры:
      filename - полное имя считываемого файла.
  */
-    SuccessReading=true;
-    XML_DimensionTestFunction=-1;//Размерность тестовой задачи (длина хромосомы решения)
-    XML_Number_Of_Measuring=-1;//Количество экспериментов для каждого набора параметров алгоритма
-    XML_Number_Of_Runs=-1;//Количество прогонов, по которому делается усреднение для эксперимента
-    XML_Max_Count_Of_Fitness=-1;//Максимальное допустимое число вычислений целевой функции для алгоритма
-    XML_Number_Of_Parameters=-1;//Количество проверяемых параметров алгоритма оптимизации
-    Zero_Number_Of_Parameters=false;//пока ничего не известно
-    XML_Number_Of_Experiments=-1;//Количество комбинаций вариантов настроек
-    Error=false;//типа вначале нет ошибок в файле
-    Un=HQt_RandomString(5);//уникальная строка для Latex
-    //AllOptions=true;//вначале наивно предполагаем, что в файле все настройки рассмотрены
+    initializationOfVariables();
 
-    QFile file(filename);//для открытия файла и запихивания его в xml
-
-    if (!file.open(QFile::ReadOnly | QFile::Text))
+    if (!HQt_FileExists(filename))
     {
         if (filename.isEmpty())
             HtmlMessageOfError+=HQt_ShowAlert("Это пустой экземпляр класса");
@@ -47,76 +35,11 @@ HarrixClass_DataOfHarrixOptimizationTesting::HarrixClass_DataOfHarrixOptimizatio
         Html+=HQt_ShowText("Файл <font color=\"#00b400\">"+HQt_GetFilenameFromFullFilename(filename)+"</font> загружен");
 
         //Первоначальные действия
-        Rxml.setDevice(&file);
-        Rxml.readNext();while((!Rxml.isStartElement())&&(!Rxml.atEnd())){Rxml.readNext();}//первый нормальный элемент
+        FileXML=HQt_ReadFile(filename);
+        Rxml.addData(FileXML);
 
-        //Начнем анализ документа
-        if (readXmlTreeTag("document"))
-        {
-            if (readXmlTreeTag("harrix_file_format"))
-            {
-                //далее должны идти тэги format, version, site
-                for (int k=0;k<3;k++)
-                    readXmlLeafTag();//считает тэг
-
-                if (readXmlTreeTag("about"))
-                {
-                    //далее должны идти тэги author, date, email
-                    for (int k=0;k<3;k++)
-                        readXmlLeafTag();//считает тэг
-
-                    if (readXmlTreeTag("about_data"))
-                    {
-                        //далее должны идти 13 тэгов по информации о данных
-                        for (int k=0;k<13;k++)
-                            readXmlLeafTag();//считает тэг
-
-                        readXmlTreeTag("data");
-                    }
-                }
-                checkXmlLeafTags();//проверим наличие всех тэгов
-            }
-        }
-
-        if (!Error)
-        {
-            memoryAllocation();//выделение памяти под массивы
-            zeroArray();//обнулим массивы
-            readXmlDataTags();//считаем данные непосредственно
-        }
-
-        if ((Rxml.hasError())||(Error))
-        {
-            HtmlMessageOfError+=HQt_ShowAlert("В процессе разбора файла обнаружены ошибки. Помните, что для этой функции обработки XML файла требуется правильный порядок следования тэгов.");
-            Html+=HtmlMessageOfError;
-            SuccessReading=false;
-        }
-        else
-        {
-            makingAnalysis();//выполняем анализ данных
-
-            //Обработка полученной информации Html
-            makingHtmlReport();
-            Html+=HtmlReport;
-
-            //Обработка полученной информации Latex
-            NameForHead="алгоритма оптимизации <<"+HQt_ForcedWordWrap(HQt_StringForLaTeX(XML_Full_Name_Algorithm))+">>на тестовой функции <<"+HQt_ForcedWordWrap(HQt_StringForLaTeX(XML_Full_Name_Test_Function))+">> (размерность равна "+QString::number(XML_DimensionTestFunction)+")";
-            makingLatexInfo();
-            makingLatexAboutParameters();
-            makingLatexTableEx();//заполняем LatexTableEx
-            makingLatexTableEy();//заполняем LatexTableEy
-            makingLatexTableR();//заполняем LatexTableR
-            makingLatexAnalysis();//заполняем LatexTableR
-            //Latex+=LatexInfo+LatexAboutParameters+LatexTableEx+LatexTableEy+LatexTableR;
-            Latex+=LatexInfo+LatexAboutParameters+LatexTableEx+LatexTableEy+LatexTableR+LatexAnalysis;
-            LatexTable+=LatexInfo+LatexAboutParameters+LatexTableEx+LatexTableEy+LatexTableR;
-
-            Html+=HQt_ShowHr();
-            Html+=HQt_ShowText("Обработка файла завершена. Ошибки не обнаружены");
-        }
+        readXml();//считывание XML файла и все остальные анализы запускаются в этой функции
     }
-
-    file.close();
 }
 //--------------------------------------------------------------------------
 
@@ -136,50 +59,107 @@ HarrixClass_DataOfHarrixOptimizationTesting::~HarrixClass_DataOfHarrixOptimizati
     /*
      Деконструктор класса.
      */
-    if (!Error)
-    {
-        for (int i=0;i<XML_Number_Of_Experiments;i++) delete [] MatrixOfEx[i];
-        delete [] MatrixOfEx;
-        for (int i=0;i<XML_Number_Of_Experiments;i++) delete [] MatrixOfEy[i];
-        delete [] MatrixOfEy;
-        for (int i=0;i<XML_Number_Of_Experiments;i++) delete [] MatrixOfR[i];
-        delete [] MatrixOfR;
-        for (int i=0;i<XML_Number_Of_Experiments;i++) delete [] MatrixOfParameters[i];
-        delete [] MatrixOfParameters;
-        delete [] ListOfParameterOptions;
-        delete [] MeanOfEx;
-        delete [] MeanOfEy;
-        delete [] MeanOfR;
-        delete [] VarianceOfEx;
-        delete [] VarianceOfEy;
-        delete [] VarianceOfR;
-    }
+    memoryDeallocation();
 }
 //--------------------------------------------------------------------------
 
 void HarrixClass_DataOfHarrixOptimizationTesting::operator = (HarrixClass_DataOfHarrixOptimizationTesting& B)
 {
     //Вначале учничтожим все массивы если они были.
-    if (!Error)
+    memoryDeallocation();
+
+    initializationOfVariables();
+
+    FileXML=B.FileXML;
+
+    if (FileXML.isEmpty())
     {
-        for (int i=0;i<XML_Number_Of_Experiments;i++) delete [] MatrixOfEx[i];
-        delete [] MatrixOfEx;
-        for (int i=0;i<XML_Number_Of_Experiments;i++) delete [] MatrixOfEy[i];
-        delete [] MatrixOfEy;
-        for (int i=0;i<XML_Number_Of_Experiments;i++) delete [] MatrixOfR[i];
-        delete [] MatrixOfR;
-        for (int i=0;i<XML_Number_Of_Experiments;i++) delete [] MatrixOfParameters[i];
-        delete [] MatrixOfParameters;
-        delete [] ListOfParameterOptions;
-        delete [] MeanOfEx;
-        delete [] MeanOfEy;
-        delete [] MeanOfR;
-        delete [] VarianceOfEx;
-        delete [] VarianceOfEy;
-        delete [] VarianceOfR;
+        HtmlMessageOfError+=HQt_ShowAlert("Это пустой экземпляр класса");
+        Error=true;
+    }
+    else
+    {
+        Rxml.addData(FileXML);
+
+        readXml();//считывание XML файла и все остальные анализы запускаются в этой функции
+
+        Html+=HQt_ShowText("Экземпляр скопирован");
     }
 
-    //Теперь начнем копирование
+}
+//--------------------------------------------------------------------------
+
+void HarrixClass_DataOfHarrixOptimizationTesting::readXml()
+{
+    /*
+     Считывание XML файла и осуществление всех остальных анализов и др.
+     */
+
+    Rxml.readNext();while((!Rxml.isStartElement())&&(!Rxml.atEnd())){Rxml.readNext();}//первый нормальный элемент
+
+    //Начнем анализ документа
+    if (readXmlTreeTag("document"))
+    {
+        if (readXmlTreeTag("harrix_file_format"))
+        {
+            //далее должны идти тэги format, version, site
+            for (int k=0;k<3;k++)
+                readXmlLeafTag();//считает тэг
+
+            if (readXmlTreeTag("about"))
+            {
+                //далее должны идти тэги author, date, email
+                for (int k=0;k<3;k++)
+                    readXmlLeafTag();//считает тэг
+
+                if (readXmlTreeTag("about_data"))
+                {
+                    //далее должны идти 13 тэгов по информации о данных
+                    for (int k=0;k<13;k++)
+                        readXmlLeafTag();//считает тэг
+
+                    readXmlTreeTag("data");
+                }
+            }
+            checkXmlLeafTags();//проверим наличие всех тэгов
+        }
+    }
+
+    if (!Error)
+    {
+        memoryAllocation();//выделение памяти под массивы
+        zeroArray();//обнулим массивы
+        readXmlDataTags();//считаем данные непосредственно
+    }
+    if ((Rxml.hasError())||(Error))
+    {
+        HtmlMessageOfError+=HQt_ShowAlert("В процессе разбора файла обнаружены ошибки. Помните, что для этой функции обработки XML файла требуется правильный порядок следования тэгов.");
+        Html+=HtmlMessageOfError;
+        SuccessReading=false;
+    }
+    else
+    {
+        makingAnalysis();//выполняем анализ данных
+
+        //Обработка полученной информации Html
+        makingHtmlReport();
+        Html+=HtmlReport;
+
+        //Обработка полученной информации Latex
+        NameForHead="алгоритма оптимизации <<"+HQt_ForcedWordWrap(HQt_StringForLaTeX(XML_Full_Name_Algorithm))+">>на тестовой функции <<"+HQt_ForcedWordWrap(HQt_StringForLaTeX(XML_Full_Name_Test_Function))+">> (размерность равна "+QString::number(XML_DimensionTestFunction)+")";
+        makingLatexInfo();
+        makingLatexAboutParameters();
+        makingLatexTableEx();//заполняем LatexTableEx
+        makingLatexTableEy();//заполняем LatexTableEy
+        makingLatexTableR();//заполняем LatexTableR
+        makingLatexAnalysis();//заполняем LatexTableR
+        //Latex+=LatexInfo+LatexAboutParameters+LatexTableEx+LatexTableEy+LatexTableR;
+        Latex+=LatexInfo+LatexAboutParameters+LatexTableEx+LatexTableEy+LatexTableR+LatexAnalysis;
+        LatexTable+=LatexInfo+LatexAboutParameters+LatexTableEx+LatexTableEy+LatexTableR;
+
+        Html+=HQt_ShowHr();
+        Html+=HQt_ShowText("Обработка файла завершена. Ошибки не обнаружены");
+    }
 }
 //--------------------------------------------------------------------------
 
@@ -1612,6 +1592,60 @@ void HarrixClass_DataOfHarrixOptimizationTesting::memoryAllocation()
 }
 //--------------------------------------------------------------------------
 
+void HarrixClass_DataOfHarrixOptimizationTesting::memoryDeallocation()
+{
+    /*
+    Удаляет память из-под массивов. Внутренняя функция.
+    Входные параметры:
+     Отсутствуют.
+    Возвращаемое значение:
+     Отсутствует.
+     */
+    if (!Error)
+    {
+        for (int i=0;i<XML_Number_Of_Experiments;i++) delete [] MatrixOfEx[i];
+        delete [] MatrixOfEx;
+        for (int i=0;i<XML_Number_Of_Experiments;i++) delete [] MatrixOfEy[i];
+        delete [] MatrixOfEy;
+        for (int i=0;i<XML_Number_Of_Experiments;i++) delete [] MatrixOfR[i];
+        delete [] MatrixOfR;
+        for (int i=0;i<XML_Number_Of_Experiments;i++) delete [] MatrixOfParameters[i];
+        delete [] MatrixOfParameters;
+        delete [] ListOfParameterOptions;
+        delete [] MeanOfEx;
+        delete [] MeanOfEy;
+        delete [] MeanOfR;
+        delete [] VarianceOfEx;
+        delete [] VarianceOfEy;
+        delete [] VarianceOfR;
+    }
+}
+//--------------------------------------------------------------------------
+
+void HarrixClass_DataOfHarrixOptimizationTesting::initializationOfVariables()
+{
+    /*
+    Обнуление пемеренных. Внутренняя функция.
+    Входные параметры:
+     Отсутствуют.
+    Возвращаемое значение:
+     Отсутствует.
+     */
+    Rxml.clear();
+    SuccessReading=true;
+    XML_DimensionTestFunction=-1;//Размерность тестовой задачи (длина хромосомы решения)
+    XML_Number_Of_Measuring=-1;//Количество экспериментов для каждого набора параметров алгоритма
+    XML_Number_Of_Runs=-1;//Количество прогонов, по которому делается усреднение для эксперимента
+    XML_Max_Count_Of_Fitness=-1;//Максимальное допустимое число вычислений целевой функции для алгоритма
+    XML_Number_Of_Parameters=-1;//Количество проверяемых параметров алгоритма оптимизации
+    Zero_Number_Of_Parameters=false;//пока ничего не известно
+    XML_Number_Of_Experiments=-1;//Количество комбинаций вариантов настроек
+    Error=false;//типа вначале нет ошибок в файле
+    Un=HQt_RandomString(5);//уникальная строка для Latex
+    //AllOptions=true;//вначале наивно предполагаем, что в файле все настройки рассмотрены
+}
+//--------------------------------------------------------------------------
+
 void HarrixClass_DataOfHarrixOptimizationTesting::readXmlDataTags()
 {
     /*
@@ -1982,7 +2016,7 @@ void HarrixClass_DataOfHarrixOptimizationTesting::makingLatexAnalysis()
 void HCDOHOT_GeneratedReportAboutAlgorithmFromDir(QString path, QString pathForSave, QString pathForTempHtml)
 {
     /*
-    Генерирует отчет по алгоритму по файлам *.hdata одного алгоритма, просматривая все файлы в папке.
+    Генерирует отчет Latex по алгоритму по файлам *.hdata алгоритма, просматривая все файлы в папке.
     То, чтобы в папке были файлы только одного алгоритма, вы берете на себя.
     В папке сохранения должны быть находиться файлы names.tex, packages.tex, styles.tex из проекта
     https://github.com/Harrix/HarrixLaTeXDocumentTemplate
@@ -2085,7 +2119,7 @@ void HCDOHOT_GeneratedReportAboutAlgorithmFromDir(QString path, QString pathForS
 void HCDOHOT_GeneratedReportAboutAlgorithmFromDir(QString path, QString pathForSave)
 {
     /*
-    Генерирует отчет по алгоритму по файлам *.hdata одного алгоритма, просматривая все файлы в папке без сохранения отчета в HTML.
+    Генерирует отчет Latex по алгоритму по файлам *.hdata алгоритма, просматривая все файлы в папке без сохранения отчета в HTML.
     То, чтобы в папке были файлы только одного алгоритма, вы берете на себя.
     В папке сохранения должны быть находиться файлы names.tex, packages.tex, styles.tex из проекта
     https://github.com/Harrix/HarrixLaTeXDocumentTemplate
@@ -2096,6 +2130,83 @@ void HCDOHOT_GeneratedReportAboutAlgorithmFromDir(QString path, QString pathForS
      Отсутствует.
      */
     HCDOHOT_GeneratedReportAboutAlgorithmFromDir(path, pathForSave, "");
+}
+//--------------------------------------------------------------------------
+
+void HCDOHOT_GeneratedSimpleReportFromFile(QString filename, QString pathForSave, QString pathForTempHtml)
+{
+    /*
+    Генерирует простой отчет Latex по алгоритму по файлу *.hdata.
+    В папке сохранения должны быть находиться файлы names.tex, packages.tex, styles.tex из проекта
+    https://github.com/Harrix/HarrixLaTeXDocumentTemplate
+    Для отчета в виде html берется проект:
+    https://github.com/Harrix/HarrixHtmlForQWebView
+    Входные параметры:
+     filename - путь к файлу, из которого считываем данные.
+     pathForSave - путь к папке, куда сохраняем Latex файлы.
+     pathForTempHtml - путь к папке куда сохраняем во время работы функции отчет в виде temp.html.
+    Возвращаемое значение:
+     Отсутствует.
+     */
+    filename = QDir::toNativeSeparators(filename);
+    pathForSave = QDir::toNativeSeparators(pathForSave);
+    if (!pathForTempHtml.isEmpty()) pathForTempHtml = QDir::toNativeSeparators(pathForTempHtml);
+
+    if (!pathForTempHtml.isEmpty()) HQt_BeginHtml (pathForTempHtml);
+
+    if (filename.length()>0)
+    {
+        QString Html;//сюда записывается код  HTML по анализу файла данных
+        QString Latex;//сюда записывается код  Latex для добавления в https://github.com/Harrix/HarrixLaTeXDocumentTemplate
+
+        HarrixClass_DataOfHarrixOptimizationTesting Data(filename);
+
+        if (Data.getSuccessReading())
+        {
+            Html=Data.getHtml();
+
+            Latex=Data.getFullLatexTable();
+
+            HQt_SaveFile(Latex, pathForSave+"\\Report.tex");
+
+            if (!pathForTempHtml.isEmpty())
+            {
+                HQt_AddHtml(Html);
+
+                //HQt_AddHtml(THQt_ShowNumber(Data.getErrorEx(0,0),"x"));
+                //HQt_AddHtml(THQt_ShowNumber(Data.getErrorEx(Data.getNumberOfExperiments(), Data.getNumberOfMeasuring())));
+                //HQt_AddHtml(HQt_ShowText(Data.getNameParameter(1,4)));
+                //HQt_AddHtml(THQt_ShowNumber(Data.getNumberOfOption("1222"),"x"));
+                //HQt_AddHtml(THQt_ShowNumber(Data.getNumberOfOption("Тип формирования нового поколения"),"x"));
+                //HQt_AddHtml(HQt_ShowText(Data.getNameOption(3)));
+            }
+        }
+        else
+        {
+            //выводим ошибку
+            Html=Data.getHtml();
+            if (!pathForTempHtml.isEmpty()) HQt_AddHtml(Html);
+        }
+
+    }
+}
+//--------------------------------------------------------------------------
+
+void HCDOHOT_GeneratedSimpleReportFromFile(QString filename, QString pathForSave)
+{
+    /*
+    Генерирует простой отчет Latex по алгоритму по файлу *.hdata без вывода в HTML.
+    В папке сохранения должны быть находиться файлы names.tex, packages.tex, styles.tex из проекта
+    https://github.com/Harrix/HarrixLaTeXDocumentTemplate
+    Для отчета в виде html берется проект:
+    https://github.com/Harrix/HarrixHtmlForQWebView
+    Входные параметры:
+     filename - путь к файлу, из которого считываем данные.
+     pathForSave - путь к папке, куда сохраняем Latex файлы.
+    Возвращаемое значение:
+     Отсутствует.
+     */
+    HCDOHOT_GeneratedSimpleReportFromFile(filename, pathForSave, "");
 }
 //--------------------------------------------------------------------------
 

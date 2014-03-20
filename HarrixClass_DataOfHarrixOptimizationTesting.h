@@ -70,6 +70,7 @@ public:
 
 
 private:
+    void readXml();//Считывание XML файла и осуществление всех остальных анализов и др.
     void makingLatexTableR();//Создает текст LaTeX для отображения сырых данных по надежности в виде полной таблицы.
     void makingLatexTableEy();//Создает текст LaTeX для отображения сырых данных ошибки по значениям целевой функции в виде полной таблицы.
     void makingLatexTableEx();//Создает текст LaTeX для отображения сырых данных ошибки по входным параметрам в виде полной таблицы.
@@ -83,10 +84,14 @@ private:
     void readXmlLeafTag();//Считывает и проверяет тэг, который должен являться "листом", то есть самым глубоким. Внутренняя функция.
     void checkXmlLeafTags();//Проверяет наличие тэгов и правильное их выполнение. Внутренняя функция.
     void memoryAllocation();//Выделяет память под необходимые массивы. Внутренняя функция.
+    void memoryDeallocation();//Удаляет память из-под массивов. Внутренняя функция.
+    void initializationOfVariables();//Обнуление пемеренных. Внутренняя функция.
     void readXmlDataTags();//Считывает и проверяет тэги данных. Внутренняя функция.
     bool readXmlTreeTag(QString tag);//Считывает и проверяет тэг, который содержит внутри себя другие тэги. Внутренняя функция.
     void zeroArray();//Обнуляет массивы, в котрые записывается информация о данных из файла. Внутренняя функция.
     void makingAnalysis();//Выполняет анализ считанных данных. Внутренняя функция.
+
+    QString FileXML;//сохраняем на всякий случай содержимое файла
 
     QString XML_Author;//Автор документа
     QString XML_Date;//Дата создания документа
@@ -221,8 +226,10 @@ private:
     bool Zero_Number_Of_Parameters;//Число параметров равно нулю или нет
 };
 
-void HCDOHOT_GeneratedReportAboutAlgorithmFromDir(QString path, QString pathForSave, QString pathForTempHtml);//Генерирует отчет по алгоритму по файлам *.hdata одного алгоритма, просматривая все файлы в папке.
-void HCDOHOT_GeneratedReportAboutAlgorithmFromDir(QString path, QString pathForSave);//Генерирует отчет по алгоритму по файлам *.hdata одного алгоритма, просматривая все файлы в папке без сохранения отчета в HTML.
+void HCDOHOT_GeneratedReportAboutAlgorithmFromDir(QString path, QString pathForSave, QString pathForTempHtml);//Генерирует отчет Latex по алгоритму по файлам *.hdata одного алгоритма, просматривая все файлы в папке.
+void HCDOHOT_GeneratedReportAboutAlgorithmFromDir(QString path, QString pathForSave);//Генерирует отчет Latex по алгоритму по файлам *.hdata одного алгоритма, просматривая все файлы в папке без сохранения отчета в HTML.
+void HCDOHOT_GeneratedSimpleReportFromFile(QString filename, QString pathForSave, QString pathForTempHtml);//Генерирует простой отчет Latex по алгоритму по файлу *.hdata.
+void HCDOHOT_GeneratedSimpleReportFromFile(QString filename, QString pathForSave);//Генерирует простой отчет Latex по алгоритму по файлу *.hdata без вывода в HTML.
 
 int HCDOHOT_NumberFilesInDir(QString path);//Подсчитывает число HarrixClass_DataOfHarrixOptimizationTesting файлов в папке.
 

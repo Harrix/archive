@@ -1,5 +1,5 @@
 //HarrixClass_DataOfHarrixOptimizationTesting
-//Версия 1.17
+//Версия 1.18
 //Класс для считывания информации формата данных Harrix Optimization Testing на C++ для Qt.
 //https://github.com/Harrix/HarrixClass_DataOfHarrixOptimizationTesting
 //Библиотека распространяется по лицензии Apache License, Version 2.0.
@@ -416,6 +416,33 @@ QString HarrixClass_DataOfHarrixOptimizationTesting::getDate()
      Получение текста переменной  XML_Date - Дата создания документа
      */
     return XML_Date;
+}
+//--------------------------------------------------------------------------
+
+QString HarrixClass_DataOfHarrixOptimizationTesting::getEmail()
+{
+    /*
+     Получение текста переменной  XML_Email - Email автора, чтобы можно было с ним связаться
+     */
+    return XML_Email;
+}
+//--------------------------------------------------------------------------
+
+QString HarrixClass_DataOfHarrixOptimizationTesting::getLinkTestFunction()
+{
+    /*
+     Получение текста переменной  XML_Link_Test_Function - Ссылка на описание тестовой функции
+     */
+    return XML_Link_Test_Function;
+}
+//--------------------------------------------------------------------------
+
+QString HarrixClass_DataOfHarrixOptimizationTesting::getLinkAlgorithm()
+{
+    /*
+     Получение текста переменной  XML_Link_Algorithm - Ссылка на описание алгоритма оптимизации
+     */
+    return XML_Link_Algorithm;
 }
 //--------------------------------------------------------------------------
 
@@ -2013,6 +2040,44 @@ void HarrixClass_DataOfHarrixOptimizationTesting::makingLatexAnalysis()
 ////////////////////// ФУНКЦИИ ПО РАБОТЕ С КЛАССОМ /////////////////////////
 ////////////////////////////////////////////////////////////////////////////
 
+int HCDOHOT_NumberFilesInDir(QString path)
+{
+    /*
+    Подсчитывает число HarrixClass_DataOfHarrixOptimizationTesting файлов в папке.
+    Входные параметры:
+     path - путь к папке, из которой считаем файлы.
+    Возвращаемое значение:
+     Число файлов HarrixClass_DataOfHarrixOptimizationTesting файлов в папке.
+     */
+    int Result=0;
+
+    path = QDir::toNativeSeparators(path);
+
+    if (path.length()>0)
+    {
+        QString filename;
+
+        QStringList Files = HQt_ListFilesInDirQStringList(path);
+
+        Files = HQt_NaturalSortingQStringList(Files);//сортируем правильно список файлов
+
+        for (int i=0;i<Files.count();i++)
+        {
+            filename=Files.at(i);
+            if (HQt_GetExpFromFilename(filename)=="xml")
+            {
+                //HarrixClass_DataOfHarrixOptimizationTesting Data(path+"\\"+filename);
+
+                Result++;
+            }
+        QGuiApplication::processEvents();
+        }
+    }
+
+    return Result;
+}
+//--------------------------------------------------------------------------
+
 void HCDOHOT_GeneratedReportAboutAlgorithmFromDir(QString path, QString pathForSave, QString pathForTempHtml)
 {
     /*
@@ -2033,7 +2098,7 @@ void HCDOHOT_GeneratedReportAboutAlgorithmFromDir(QString path, QString pathForS
     pathForSave = QDir::toNativeSeparators(pathForSave);
     if (!pathForTempHtml.isEmpty()) pathForTempHtml = QDir::toNativeSeparators(pathForTempHtml);
 
-    if (!pathForTempHtml.isEmpty()) HQt_BeginHtml (pathForTempHtml);
+    //if (!pathForTempHtml.isEmpty()) HQt_BeginHtml (pathForTempHtml);
 
     if (path.length()>0)
     {
@@ -2152,7 +2217,7 @@ void HCDOHOT_GeneratedSimpleReportFromFile(QString filename, QString pathForSave
     pathForSave = QDir::toNativeSeparators(pathForSave);
     if (!pathForTempHtml.isEmpty()) pathForTempHtml = QDir::toNativeSeparators(pathForTempHtml);
 
-    if (!pathForTempHtml.isEmpty()) HQt_BeginHtml (pathForTempHtml);
+    //if (!pathForTempHtml.isEmpty()) HQt_BeginHtml (pathForTempHtml);
 
     if (filename.length()>0)
     {
@@ -2210,18 +2275,27 @@ void HCDOHOT_GeneratedSimpleReportFromFile(QString filename, QString pathForSave
 }
 //--------------------------------------------------------------------------
 
-int HCDOHOT_NumberFilesInDir(QString path)
+int HCDOHOT_ReadFilesInDir(HarrixClass_DataOfHarrixOptimizationTesting *SeveralData, QString path, QString pathForTempHtml)
 {
     /*
-    Подсчитывает число HarrixClass_DataOfHarrixOptimizationTesting файлов в папке.
+    Заполняет массив SeveralData данными из всех файлов *.hdata из папки.
     Входные параметры:
+     SeveralData - массив, в который записываем данные.
      path - путь к папке, из которой считаем файлы.
+     pathForTempHtml - путь к папке куда сохраняем во время работы функции отчет в виде temp.html.
     Возвращаемое значение:
      Число файлов HarrixClass_DataOfHarrixOptimizationTesting файлов в папке.
+    Примечание.
+     Подсчитать число файлов в папке до вызова этой функции можно функцией HCDOHOT_NumberFilesInDir.
      */
     int Result=0;
 
     path = QDir::toNativeSeparators(path);
+
+    if (!pathForTempHtml.isEmpty()) pathForTempHtml = QDir::toNativeSeparators(pathForTempHtml);
+    //if (!pathForTempHtml.isEmpty()) HQt_BeginHtml (pathForTempHtml);
+
+    QString Html;
 
     if (path.length()>0)
     {
@@ -2238,14 +2312,46 @@ int HCDOHOT_NumberFilesInDir(QString path)
             {
                 HarrixClass_DataOfHarrixOptimizationTesting Data(path+"\\"+filename);
 
-                if (Data.getSuccessReading())
+                SeveralData[i]=Data;
+
+                if (!pathForTempHtml.isEmpty())
                 {
-                    Result++;
+                    if (Data.getSuccessReading())
+                    {
+                        Html=HQt_ShowSimpleText(filename);
+                        if (!pathForTempHtml.isEmpty()) HQt_AddHtml(Html);
+                    }
+                    else
+                      {
+                        Html=HQt_ShowAlert("Ошибка при считывании файла "+ filename);
+                        if (!pathForTempHtml.isEmpty()) HQt_AddHtml(Html);
+                    }
                 }
+
+                Result++;
             }
+            QGuiApplication::processEvents();
         }
-        QGuiApplication::processEvents();
     }
+
+    return Result;
+}
+//--------------------------------------------------------------------------
+
+int HCDOHOT_ReadFilesInDir(HarrixClass_DataOfHarrixOptimizationTesting *SeveralData, QString path)
+{
+    /*
+    Заполняет массив SeveralData данными из всех файлов *.hdata из папки без генерации отчета в HTML.
+    Входные параметры:
+     SeveralData - массив, в который записываем данные.
+     path - путь к папке, из которой считаем файлы.
+     pathForTempHtml - путь к папке куда сохраняем во время работы функции отчет в виде temp.html.
+    Возвращаемое значение:
+     Число файлов HarrixClass_DataOfHarrixOptimizationTesting файлов в папке.
+    Примечание.
+     Подсчитать число файлов в папке до вызова этой функции можно функцией HCDOHOT_NumberFilesInDir.
+     */
+    int Result=HCDOHOT_ReadFilesInDir(SeveralData, path, "");
 
     return Result;
 }
@@ -2262,9 +2368,721 @@ bool HCDOHOT_CompareOfDataForNameAlgorithm (HarrixClass_DataOfHarrixOptimization
      true - если имена алгоритмов одинаковы.
      false - если разные.
      */
-    bool VMHL_Result=false;
+    bool VMHL_Result=true;
 
-    if (Data1.getNameAlgorithm()==Data2.getNameAlgorithm()) VMHL_Result=true;
+    if (Data1.getNameAlgorithm()!=Data2.getNameAlgorithm()) VMHL_Result=false;
+
+    return VMHL_Result;
+}
+//--------------------------------------------------------------------------
+
+bool HCDOHOT_CompareOfDataForNameAlgorithm (HarrixClass_DataOfHarrixOptimizationTesting *SeveralData, int N)
+{
+    /*
+    Проверяет равенство индентификаторов алгоритмов оптимизации: в данных содержится один и тот же алгоритм или же нет.
+    Входные параметры:
+     SeveralData - массив исследований;
+     N - количество исследований в массиве.
+    Возвращаемое значение:
+     true - если имена алгоритмов одинаковы.
+     false - если разные.
+     */
+    bool VMHL_Result=true;
+
+    QString Info=SeveralData[0].getNameAlgorithm();
+
+    for (int i=1;i<N;i++)
+    {
+      if ( Info!=SeveralData[i].getNameAlgorithm() ) VMHL_Result=false;
+    }
+
+    return VMHL_Result;
+}
+//--------------------------------------------------------------------------
+
+bool HCDOHOT_CompareOfDataForAuthor (HarrixClass_DataOfHarrixOptimizationTesting Data1, HarrixClass_DataOfHarrixOptimizationTesting Data2)
+{
+    /*
+    Проверяет равенство авторов исследований.
+    Входные параметры:
+     Data1 - первое исследование;
+     Data2 - второе исследование.
+    Возвращаемое значение:
+     true - если исследуемый параметр алгоритмов одинаков.
+     false - если разные.
+     */
+    bool VMHL_Result=true;
+
+    if (Data1.getAuthor()!=Data2.getAuthor()) VMHL_Result=false;
+
+    return VMHL_Result;
+}
+//--------------------------------------------------------------------------
+
+bool HCDOHOT_CompareOfDataForAuthor (HarrixClass_DataOfHarrixOptimizationTesting *SeveralData, int N)
+{
+    /*
+    Проверяет равенство авторов исследований.
+    Входные параметры:
+     SeveralData - массив исследований;
+     N - количество исследований в массиве.
+    Возвращаемое значение:
+     true - если исследуемый параметр алгоритмов одинаков.
+     false - если разные.
+     */
+    bool VMHL_Result=true;
+
+    QString Info=SeveralData[0].getAuthor();
+
+    for (int i=1;i<N;i++)
+    {
+      if ( Info!=SeveralData[i].getAuthor() ) VMHL_Result=false;
+    }
+
+    return VMHL_Result;
+}
+//--------------------------------------------------------------------------
+
+bool HCDOHOT_CompareOfDataForDate (HarrixClass_DataOfHarrixOptimizationTesting Data1, HarrixClass_DataOfHarrixOptimizationTesting Data2)
+{
+    /*
+    Проверяет равенство дат исследований.
+    Входные параметры:
+     Data1 - первое исследование;
+     Data2 - второе исследование.
+    Возвращаемое значение:
+     true - если исследуемый параметр алгоритмов одинаков.
+     false - если разные.
+     */
+    bool VMHL_Result=true;
+
+    if (Data1.getDate()!=Data2.getDate()) VMHL_Result=false;
+
+    return VMHL_Result;
+}
+//--------------------------------------------------------------------------
+
+bool HCDOHOT_CompareOfDataForDate (HarrixClass_DataOfHarrixOptimizationTesting *SeveralData, int N)
+{
+    /*
+    Проверяет равенство дат исследований.
+    Входные параметры:
+     SeveralData - массив исследований;
+     N - количество исследований в массиве.
+    Возвращаемое значение:
+     true - если исследуемый параметр алгоритмов одинаков.
+     false - если разные.
+     */
+    bool VMHL_Result=true;
+
+    QString Info=SeveralData[0].getDate();
+
+    for (int i=1;i<N;i++)
+    {
+      if ( Info!=SeveralData[i].getDate() ) VMHL_Result=false;
+    }
+
+    return VMHL_Result;
+}
+//--------------------------------------------------------------------------
+
+bool HCDOHOT_CompareOfDataForEmail (HarrixClass_DataOfHarrixOptimizationTesting Data1, HarrixClass_DataOfHarrixOptimizationTesting Data2)
+{
+    /*
+    Проверяет равенство email авторов исследований.
+    Входные параметры:
+     Data1 - первое исследование;
+     Data2 - второе исследование.
+    Возвращаемое значение:
+     true - если исследуемый параметр алгоритмов одинаков.
+     false - если разные.
+     */
+    bool VMHL_Result=true;
+
+    if (Data1.getEmail()!=Data2.getEmail()) VMHL_Result=false;
+
+    return VMHL_Result;
+}
+//--------------------------------------------------------------------------
+
+bool HCDOHOT_CompareOfDataForEmail (HarrixClass_DataOfHarrixOptimizationTesting *SeveralData, int N)
+{
+    /*
+    Проверяет равенство email авторов исследований.
+    Входные параметры:
+     SeveralData - массив исследований;
+     N - количество исследований в массиве.
+    Возвращаемое значение:
+     true - если исследуемый параметр алгоритмов одинаков.
+     false - если разные.
+     */
+    bool VMHL_Result=true;
+
+    QString Info=SeveralData[0].getEmail();
+
+    for (int i=1;i<N;i++)
+    {
+      if ( Info!=SeveralData[i].getEmail() ) VMHL_Result=false;
+    }
+
+    return VMHL_Result;
+}
+//--------------------------------------------------------------------------
+
+bool HCDOHOT_CompareOfDataForFullNameAlgorithm (HarrixClass_DataOfHarrixOptimizationTesting Data1, HarrixClass_DataOfHarrixOptimizationTesting Data2)
+{
+    /*
+    Проверяет равенство полных названий алгоритмов в исследованиях
+    Входные параметры:
+     Data1 - первое исследование;
+     Data2 - второе исследование.
+    Возвращаемое значение:
+     true - если исследуемый параметр алгоритмов одинаков.
+     false - если разные.
+     */
+    bool VMHL_Result=true;
+
+    if (Data1.getFullNameAlgorithm()!=Data2.getFullNameAlgorithm()) VMHL_Result=false;
+
+    return VMHL_Result;
+}
+//--------------------------------------------------------------------------
+
+bool HCDOHOT_CompareOfDataForFullNameAlgorithm (HarrixClass_DataOfHarrixOptimizationTesting *SeveralData, int N)
+{
+    /*
+    Проверяет равенство полных названий алгоритмов в исследованиях.
+    Входные параметры:
+     SeveralData - массив исследований;
+     N - количество исследований в массиве.
+    Возвращаемое значение:
+     true - если исследуемый параметр алгоритмов одинаков.
+     false - если разные.
+     */
+    bool VMHL_Result=true;
+
+    QString Info=SeveralData[0].getFullNameAlgorithm();
+
+    for (int i=1;i<N;i++)
+    {
+      if ( Info!=SeveralData[i].getFullNameAlgorithm() ) VMHL_Result=false;
+    }
+
+    return VMHL_Result;
+}
+//--------------------------------------------------------------------------
+
+bool HCDOHOT_CompareOfDataForNameTestFunction (HarrixClass_DataOfHarrixOptimizationTesting Data1, HarrixClass_DataOfHarrixOptimizationTesting Data2)
+{
+    /*
+    Проверяет равенство идентификаторов тестовых функций в исследованиях
+    Входные параметры:
+     Data1 - первое исследование;
+     Data2 - второе исследование.
+    Возвращаемое значение:
+     true - если исследуемый параметр алгоритмов одинаков.
+     false - если разные.
+     */
+    bool VMHL_Result=true;
+
+    if (Data1.getNameTestFunction()!=Data2.getNameTestFunction()) VMHL_Result=false;
+
+    return VMHL_Result;
+}
+//--------------------------------------------------------------------------
+
+bool HCDOHOT_CompareOfDataForForNameTestFunction (HarrixClass_DataOfHarrixOptimizationTesting *SeveralData, int N)
+{
+    /*
+    Проверяет равенство идентификаторов тестовых функций в исследованиях.
+    Входные параметры:
+     SeveralData - массив исследований;
+     N - количество исследований в массиве.
+    Возвращаемое значение:
+     true - если исследуемый параметр алгоритмов одинаков.
+     false - если разные.
+     */
+    bool VMHL_Result=true;
+
+    QString Info=SeveralData[0].getNameTestFunction();
+
+    for (int i=1;i<N;i++)
+    {
+      if ( Info!=SeveralData[i].getNameTestFunction() ) VMHL_Result=false;
+    }
+
+    return VMHL_Result;
+}
+//--------------------------------------------------------------------------
+
+bool HCDOHOT_CompareOfDataForFullNameTestFunction (HarrixClass_DataOfHarrixOptimizationTesting Data1, HarrixClass_DataOfHarrixOptimizationTesting Data2)
+{
+    /*
+    Проверяет равенство полных названий тестовых функций в исследованиях
+    Входные параметры:
+     Data1 - первое исследование;
+     Data2 - второе исследование.
+    Возвращаемое значение:
+     true - если исследуемый параметр алгоритмов одинаков.
+     false - если разные.
+     */
+    bool VMHL_Result=true;
+
+    if (Data1.getFullNameTestFunction()!=Data2.getFullNameTestFunction()) VMHL_Result=false;
+
+    return VMHL_Result;
+}
+//--------------------------------------------------------------------------
+
+bool HCDOHOT_CompareOfDataForForFullNameTestFunction (HarrixClass_DataOfHarrixOptimizationTesting *SeveralData, int N)
+{
+    /*
+    Проверяет равенство полных названий тестовых функций в исследованиях.
+    Входные параметры:
+     SeveralData - массив исследований;
+     N - количество исследований в массиве.
+    Возвращаемое значение:
+     true - если исследуемый параметр алгоритмов одинаков.
+     false - если разные.
+     */
+    bool VMHL_Result=true;
+
+    QString Info=SeveralData[0].getFullNameTestFunction();
+
+    for (int i=1;i<N;i++)
+    {
+      if ( Info!=SeveralData[i].getFullNameTestFunction() ) VMHL_Result=false;
+    }
+
+    return VMHL_Result;
+}
+//--------------------------------------------------------------------------
+
+bool HCDOHOT_CompareOfDataForDimensionTestFunction (HarrixClass_DataOfHarrixOptimizationTesting Data1, HarrixClass_DataOfHarrixOptimizationTesting Data2)
+{
+    /*
+    Проверяет равенство размерностей тестовой задачи (длина хромосомы решения) в исследованиях
+    Входные параметры:
+     Data1 - первое исследование;
+     Data2 - второе исследование.
+    Возвращаемое значение:
+     true - если исследуемый параметр алгоритмов одинаков.
+     false - если разные.
+     */
+    bool VMHL_Result=true;
+
+    if (Data1.getDimensionTestFunction()!=Data2.getDimensionTestFunction()) VMHL_Result=false;
+
+    return VMHL_Result;
+}
+//--------------------------------------------------------------------------
+
+bool HCDOHOT_CompareOfDataForForDimensionTestFunction (HarrixClass_DataOfHarrixOptimizationTesting *SeveralData, int N)
+{
+    /*
+    Проверяет равенство размерностей тестовой задачи (длина хромосомы решения) в исследованиях.
+    Входные параметры:
+     SeveralData - массив исследований;
+     N - количество исследований в массиве.
+    Возвращаемое значение:
+     true - если исследуемый параметр алгоритмов одинаков.
+     false - если разные.
+     */
+    bool VMHL_Result=true;
+
+    qint64 Info=SeveralData[0].getDimensionTestFunction();
+
+    for (int i=1;i<N;i++)
+    {
+      if ( Info!=SeveralData[i].getDimensionTestFunction() ) VMHL_Result=false;
+    }
+
+    return VMHL_Result;
+}
+//--------------------------------------------------------------------------
+
+bool HCDOHOT_CompareOfDataForNumberOfMeasuring (HarrixClass_DataOfHarrixOptimizationTesting Data1, HarrixClass_DataOfHarrixOptimizationTesting Data2)
+{
+    /*
+    Проверяет равенство количества экспериментов для каждого набора параметров алгоритма в исследованиях.
+    Входные параметры:
+     Data1 - первое исследование;
+     Data2 - второе исследование.
+    Возвращаемое значение:
+     true - если исследуемый параметр алгоритмов одинаков.
+     false - если разные.
+     */
+    bool VMHL_Result=true;
+
+    if (Data1.getNumberOfMeasuring()!=Data2.getNumberOfMeasuring()) VMHL_Result=false;
+
+    return VMHL_Result;
+}
+//--------------------------------------------------------------------------
+
+bool HCDOHOT_CompareOfDataForNumberOfMeasuring (HarrixClass_DataOfHarrixOptimizationTesting *SeveralData, int N)
+{
+    /*
+    Проверяет равенство количества экспериментов для каждого набора параметров алгоритма в исследованиях.
+    Входные параметры:
+     SeveralData - массив исследований;
+     N - количество исследований в массиве.
+    Возвращаемое значение:
+     true - если исследуемый параметр алгоритмов одинаков.
+     false - если разные.
+     */
+    bool VMHL_Result=true;
+
+    qint64 Info=SeveralData[0].getNumberOfMeasuring();
+
+    for (int i=1;i<N;i++)
+    {
+      if ( Info!=SeveralData[i].getNumberOfMeasuring() ) VMHL_Result=false;
+    }
+
+    return VMHL_Result;
+}
+//--------------------------------------------------------------------------
+
+bool HCDOHOT_CompareOfDataForNumberOfRuns (HarrixClass_DataOfHarrixOptimizationTesting Data1, HarrixClass_DataOfHarrixOptimizationTesting Data2)
+{
+    /*
+    Проверяет равенство количества прогонов, по которому делается усреднение для эксперимента в исследованиях.
+    Входные параметры:
+     Data1 - первое исследование;
+     Data2 - второе исследование.
+    Возвращаемое значение:
+     true - если исследуемый параметр алгоритмов одинаков.
+     false - если разные.
+     */
+    bool VMHL_Result=true;
+
+    if (Data1.getNumberOfRuns()!=Data2.getNumberOfRuns()) VMHL_Result=false;
+
+    return VMHL_Result;
+}
+//--------------------------------------------------------------------------
+
+bool HCDOHOT_CompareOfDataForNumberOfRuns (HarrixClass_DataOfHarrixOptimizationTesting *SeveralData, int N)
+{
+    /*
+    Проверяет равенство количества прогонов, по которому делается усреднение для эксперимента в исследованиях.
+    Входные параметры:
+     SeveralData - массив исследований;
+     N - количество исследований в массиве.
+    Возвращаемое значение:
+     true - если исследуемый параметр алгоритмов одинаков.
+     false - если разные.
+     */
+    bool VMHL_Result=true;
+
+    qint64 Info=SeveralData[0].getNumberOfRuns();
+
+    for (int i=1;i<N;i++)
+    {
+      if ( Info!=SeveralData[i].getNumberOfRuns() ) VMHL_Result=false;
+    }
+
+    return VMHL_Result;
+}
+//--------------------------------------------------------------------------
+
+bool HCDOHOT_CompareOfDataForMaxCountOfFitness (HarrixClass_DataOfHarrixOptimizationTesting Data1, HarrixClass_DataOfHarrixOptimizationTesting Data2)
+{
+    /*
+    Проверяет равенство максимальных допустимых чисел вычислений целевой функции для алгоритма в исследованиях.
+    Входные параметры:
+     Data1 - первое исследование;
+     Data2 - второе исследование.
+    Возвращаемое значение:
+     true - если исследуемый параметр алгоритмов одинаков.
+     false - если разные.
+     */
+    bool VMHL_Result=true;
+
+    if (Data1.getMaxCountOfFitness()!=Data2.getMaxCountOfFitness()) VMHL_Result=false;
+
+    return VMHL_Result;
+}
+//--------------------------------------------------------------------------
+
+bool HCDOHOT_CompareOfDataForMaxCountOfFitness (HarrixClass_DataOfHarrixOptimizationTesting *SeveralData, int N)
+{
+    /*
+    Проверяет равенство максимальных допустимых чисел вычислений целевой функции для алгоритма в исследованиях.
+    Входные параметры:
+     SeveralData - массив исследований;
+     N - количество исследований в массиве.
+    Возвращаемое значение:
+     true - если исследуемый параметр алгоритмов одинаков.
+     false - если разные.
+     */
+    bool VMHL_Result=true;
+
+    qint64 Info=SeveralData[0].getMaxCountOfFitness();
+
+    for (int i=1;i<N;i++)
+    {
+      if ( Info!=SeveralData[i].getMaxCountOfFitness() ) VMHL_Result=false;
+    }
+
+    return VMHL_Result;
+}
+//--------------------------------------------------------------------------
+
+bool HCDOHOT_CompareOfDataForNumberOfParameters (HarrixClass_DataOfHarrixOptimizationTesting Data1, HarrixClass_DataOfHarrixOptimizationTesting Data2)
+{
+    /*
+    Проверяет равенство количества проверяемых параметров алгоритма оптимизации в исследованиях.
+    Входные параметры:
+     Data1 - первое исследование;
+     Data2 - второе исследование.
+    Возвращаемое значение:
+     true - если исследуемый параметр алгоритмов одинаков.
+     false - если разные.
+     */
+    bool VMHL_Result=true;
+
+    if (Data1.getNumberOfParameters()!=Data2.getNumberOfParameters()) VMHL_Result=false;
+
+    return VMHL_Result;
+}
+//--------------------------------------------------------------------------
+
+bool HCDOHOT_CompareOfDataForNumberOfParameters (HarrixClass_DataOfHarrixOptimizationTesting *SeveralData, int N)
+{
+    /*
+    Проверяет равенство количества проверяемых параметров алгоритма оптимизации в исследованиях.
+    Входные параметры:
+     SeveralData - массив исследований;
+     N - количество исследований в массиве.
+    Возвращаемое значение:
+     true - если исследуемый параметр алгоритмов одинаков.
+     false - если разные.
+     */
+    bool VMHL_Result=true;
+
+    qint64 Info=SeveralData[0].getNumberOfParameters();
+
+    for (int i=1;i<N;i++)
+    {
+      if ( Info!=SeveralData[i].getNumberOfParameters() ) VMHL_Result=false;
+    }
+
+    return VMHL_Result;
+}
+//--------------------------------------------------------------------------
+
+bool HCDOHOT_CompareOfDataForNumberOfExperiments (HarrixClass_DataOfHarrixOptimizationTesting Data1, HarrixClass_DataOfHarrixOptimizationTesting Data2)
+{
+    /*
+    Проверяет равенство количества комбинаций вариантов настроек в исследованиях.
+    Входные параметры:
+     Data1 - первое исследование;
+     Data2 - второе исследование.
+    Возвращаемое значение:
+     true - если исследуемый параметр алгоритмов одинаков.
+     false - если разные.
+     */
+    bool VMHL_Result=true;
+
+    if (Data1.getNumberOfExperiments()!=Data2.getNumberOfExperiments()) VMHL_Result=false;
+
+    return VMHL_Result;
+}
+//--------------------------------------------------------------------------
+
+bool HCDOHOT_CompareOfDataForNumberOfExperiments (HarrixClass_DataOfHarrixOptimizationTesting *SeveralData, int N)
+{
+    /*
+    Проверяет равенство количества комбинаций вариантов настроек в исследованиях.
+    Входные параметры:
+     SeveralData - массив исследований;
+     N - количество исследований в массиве.
+    Возвращаемое значение:
+     true - если исследуемый параметр алгоритмов одинаков.
+     false - если разные.
+     */
+    bool VMHL_Result=true;
+
+    qint64 Info=SeveralData[0].getNumberOfExperiments();
+
+    for (int i=1;i<N;i++)
+    {
+      if ( Info!=SeveralData[i].getNumberOfExperiments() ) VMHL_Result=false;
+    }
+
+    return VMHL_Result;
+}
+//--------------------------------------------------------------------------
+
+bool HCDOHOT_CompareOfDataForFormat (HarrixClass_DataOfHarrixOptimizationTesting Data1, HarrixClass_DataOfHarrixOptimizationTesting Data2)
+{
+    /*
+    Проверяет равенство форматов файлов в исследованиях.
+    Входные параметры:
+     Data1 - первое исследование;
+     Data2 - второе исследование.
+    Возвращаемое значение:
+     true - если исследуемый параметр алгоритмов одинаков.
+     false - если разные.
+     */
+    bool VMHL_Result=true;
+
+    if (Data1.getFormat()!=Data2.getFormat()) VMHL_Result=false;
+
+    return VMHL_Result;
+}
+//--------------------------------------------------------------------------
+
+bool HCDOHOT_CompareOfDataForFormat (HarrixClass_DataOfHarrixOptimizationTesting *SeveralData, int N)
+{
+    /*
+    Проверяет равенство форматов файлов в исследованиях.
+    Входные параметры:
+     SeveralData - массив исследований;
+     N - количество исследований в массиве.
+    Возвращаемое значение:
+     true - если исследуемый параметр алгоритмов одинаков.
+     false - если разные.
+     */
+    bool VMHL_Result=true;
+
+    QString Info=SeveralData[0].getFormat();
+
+    for (int i=1;i<N;i++)
+    {
+      if ( Info!=SeveralData[i].getFormat() ) VMHL_Result=false;
+    }
+
+    return VMHL_Result;
+}
+//--------------------------------------------------------------------------
+
+bool HCDOHOT_CompareOfDataForVersion (HarrixClass_DataOfHarrixOptimizationTesting Data1, HarrixClass_DataOfHarrixOptimizationTesting Data2)
+{
+    /*
+    Проверяет равенство версий формата файла в исследованиях.
+    Входные параметры:
+     Data1 - первое исследование;
+     Data2 - второе исследование.
+    Возвращаемое значение:
+     true - если исследуемый параметр алгоритмов одинаков.
+     false - если разные.
+     */
+    bool VMHL_Result=true;
+
+    if (Data1.getVersion()!=Data2.getVersion()) VMHL_Result=false;
+
+    return VMHL_Result;
+}
+//--------------------------------------------------------------------------
+
+bool HCDOHOT_CompareOfDataForVersion (HarrixClass_DataOfHarrixOptimizationTesting *SeveralData, int N)
+{
+    /*
+    Проверяет равенство версий формата файла в исследованиях.
+    Входные параметры:
+     SeveralData - массив исследований;
+     N - количество исследований в массиве.
+    Возвращаемое значение:
+     true - если исследуемый параметр алгоритмов одинаков.
+     false - если разные.
+     */
+    bool VMHL_Result=true;
+
+    QString Info=SeveralData[0].getVersion();
+
+    for (int i=1;i<N;i++)
+    {
+      if ( Info!=SeveralData[i].getVersion() ) VMHL_Result=false;
+    }
+
+    return VMHL_Result;
+}
+//--------------------------------------------------------------------------
+
+bool HCDOHOT_CompareOfDataForLink (HarrixClass_DataOfHarrixOptimizationTesting Data1, HarrixClass_DataOfHarrixOptimizationTesting Data2)
+{
+    /*
+    Проверяет равенство ссылок на описание версий формата файла в исследованиях.
+    Входные параметры:
+     Data1 - первое исследование;
+     Data2 - второе исследование.
+    Возвращаемое значение:
+     true - если исследуемый параметр алгоритмов одинаков.
+     false - если разные.
+     */
+    bool VMHL_Result=true;
+
+    if (Data1.getLink()!=Data2.getLink()) VMHL_Result=false;
+
+    return VMHL_Result;
+}
+//--------------------------------------------------------------------------
+
+bool HCDOHOT_CompareOfDataForLink (HarrixClass_DataOfHarrixOptimizationTesting *SeveralData, int N)
+{
+    /*
+    Проверяет равенство ссылок на описание версий формата файла в исследованиях.
+    Входные параметры:
+     SeveralData - массив исследований;
+     N - количество исследований в массиве.
+    Возвращаемое значение:
+     true - если исследуемый параметр алгоритмов одинаков.
+     false - если разные.
+     */
+    bool VMHL_Result=true;
+
+    QString Info=SeveralData[0].getLink();
+
+    for (int i=1;i<N;i++)
+    {
+      if ( Info!=SeveralData[i].getLink() ) VMHL_Result=false;
+    }
+
+    return VMHL_Result;
+}
+//--------------------------------------------------------------------------
+
+bool HCDOHOT_CompareOfDataForCheckAllCombinations (HarrixClass_DataOfHarrixOptimizationTesting Data1, HarrixClass_DataOfHarrixOptimizationTesting Data2)
+{
+    /*
+    Проверяет равенство переменной, котороая говорит все ли рассмотрены функции в исследованиях.
+    Входные параметры:
+     Data1 - первое исследование;
+     Data2 - второе исследование.
+    Возвращаемое значение:
+     true - если исследуемый параметр алгоритмов одинаков.
+     false - если разные.
+     */
+    bool VMHL_Result=true;
+
+    if (Data1.getCheckAllCombinations()!=Data2.getCheckAllCombinations()) VMHL_Result=false;
+
+    return VMHL_Result;
+}
+//--------------------------------------------------------------------------
+
+bool HCDOHOT_CompareOfDataForCheckAllCombinations (HarrixClass_DataOfHarrixOptimizationTesting *SeveralData, int N)
+{
+    /*
+    Проверяет равенство переменной, котороая говорит все ли рассмотрены функции в исследованиях.
+    Входные параметры:
+     SeveralData - массив исследований;
+     N - количество исследований в массиве.
+    Возвращаемое значение:
+     true - если исследуемый параметр алгоритмов одинаков.
+     false - если разные.
+     */
+    bool VMHL_Result=true;
+
+    int Info=SeveralData[0].getCheckAllCombinations();
+
+    for (int i=1;i<N;i++)
+    {
+      if ( Info!=SeveralData[i].getCheckAllCombinations() ) VMHL_Result=false;
+    }
 
     return VMHL_Result;
 }

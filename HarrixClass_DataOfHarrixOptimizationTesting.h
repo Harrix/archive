@@ -38,18 +38,21 @@ public:
     QString getFullLatexAnalysis();//Получение текста переменной LatexAnalysis - отображение данных первоначального анализа данных.
 
     QString getAuthor();//Получение текста переменной XML_Author - Автор документа
-    QString getDate();//Получение текста переменной  XML_Date - Дата создания документа
-    QString getNameAlgorithm();//Получение текста переменной  XML_Name_Algorithm - Название алгоритма оптимизации
-    QString getFullNameAlgorithm();//Получение текста переменной  XML_Full_Name_Algorithm - Полное название алгоритма оптимизации
-    QString getNameTestFunction();//Получение текста переменной  XML_Name_Test_Function - Название тестовой функции
-    QString getFullNameTestFunction();//Получение текста переменной  XML_Full_Name_Test_Function - Полное название тестовой функции
-    int getDimensionTestFunction();//Получение текста переменной  XML_DimensionTestFunction - Размерность тестовой задачи (длина хромосомы решения)
-    int getNumberOfMeasuring();//Получение текста переменной  XML_Number_Of_Measuring - Размерность тестовой задачи (длина хромосомы решения)
-    int getNumberOfRuns();//Получение текста переменной  XML_Number_Of_Runs - Количество прогонов по которому делается усреднение для эксперимента
-    int getMaxCountOfFitness();//Получение текста переменной  Max_Count_Of_Fitness - Максимальное допустимое число вычислений целевой функции для алгоритма
-    int getNumberOfParameters();//Получение текста переменной  XML_Number_Of_Parameters - Количество проверяемых параметров алгоритма оптимизации
-    int getNumberOfExperiments();//Получение текста переменной  XML_Number_Of_Experiments - Количество комбинаций вариантов настроек
-    bool getCheckAllCombinations();//Получение текста переменной  XML_All_Combinations - Все ли комбинации вариантов настроек просмотрены: 0 bли 1
+    QString getDate();//Получение текста переменной XML_Date - Дата создания документа
+    QString getEmail();//Получение текста переменной XML_Email - Email автора, чтобы можно было с ним связаться
+    QString getLinkTestFunction();//Получение текста переменной XML_Link_Test_Function - Ссылка на описание тестовой функции
+    QString getLinkAlgorithm();//Получение текста переменной XML_Link_Algorithm - Ссылка на описание алгоритма оптимизации
+    QString getNameAlgorithm();//Получение текста переменной XML_Name_Algorithm - Название алгоритма оптимизации
+    QString getFullNameAlgorithm();//Получение текста переменной XML_Full_Name_Algorithm - Полное название алгоритма оптимизации
+    QString getNameTestFunction();//Получение текста переменной XML_Name_Test_Function - Название тестовой функции
+    QString getFullNameTestFunction();//Получение текста переменной XML_Full_Name_Test_Function - Полное название тестовой функции
+    int getDimensionTestFunction();//Получение текста переменной XML_DimensionTestFunction - Размерность тестовой задачи (длина хромосомы решения)
+    int getNumberOfMeasuring();//Получение текста переменной XML_Number_Of_Measuring - Размерность тестовой задачи (длина хромосомы решения)
+    int getNumberOfRuns();//Получение текста переменной XML_Number_Of_Runs - Количество прогонов по которому делается усреднение для эксперимента
+    int getMaxCountOfFitness();//Получение текста переменной Max_Count_Of_Fitness - Максимальное допустимое число вычислений целевой функции для алгоритма
+    int getNumberOfParameters();//Получение текста переменной XML_Number_Of_Parameters - Количество проверяемых параметров алгоритма оптимизации
+    int getNumberOfExperiments();//Получение текста переменной XML_Number_Of_Experiments - Количество комбинаций вариантов настроек
+    bool getCheckAllCombinations();//Получение текста переменной XML_All_Combinations - Все ли комбинации вариантов настроек просмотрены: 0 bли 1
     double getErrorEx(int Number_Of_Experiment, int Number_Of_Measuring);//Получение значения ошибки Ex.
     double getErrorEy(int Number_Of_Experiment, int Number_Of_Measuring);//Получение значения ошибки Ey.
     double getErrorR(int Number_Of_Experiment, int Number_Of_Measuring);//Получение значения надежности R.
@@ -66,8 +69,6 @@ public:
     QString getFormat();//Получение переменной XML_Format, то есть возвращает название формата документа.
     QString getVersion();//Получение переменной XML_Version, то есть возвращает версию формата документа.
     QString getLink();//Получение переменной XML_Site, то есть возвращает ссылку на описание формата файла.
-
-
 
 private:
     void readXml();//Считывание XML файла и осуществление всех остальных анализов и др.
@@ -102,7 +103,7 @@ private:
     QString XML_Full_Name_Test_Function;//Полное название тестовой функции
     qint64 XML_DimensionTestFunction;//Размерность тестовой задачи (длина хромосомы решения)
     qint64 XML_Number_Of_Measuring;//Количество экспериментов для каждого набора параметров алгоритма
-    qint64 XML_Number_Of_Runs;//Количество прогонов по которому делается усреднение для эксперимента
+    qint64 XML_Number_Of_Runs;//Количество прогонов, по которому делается усреднение для эксперимента
     qint64 XML_Max_Count_Of_Fitness;//Максимальное допустимое число вычислений целевой функции для алгоритма
     qint64 XML_Number_Of_Parameters;//Количество проверяемых параметров алгоритма оптимизации
     qint64 XML_Number_Of_Experiments;//Количество комбинаций вариантов настроек
@@ -111,7 +112,7 @@ private:
     QString XML_Format;//Что за формат файла
     QString XML_Version;//Какая версия формата файла
     QString XML_Link;//Ссылка на описание формата файла
-    qint64 XML_All_Combinations;//Все ли рассмотрены функции
+    int XML_All_Combinations;//Все ли рассмотрены функции
 
     //Строка с возвращаемым HTML кодом
     QString Html;
@@ -226,13 +227,94 @@ private:
     bool Zero_Number_Of_Parameters;//Число параметров равно нулю или нет
 };
 
-void HCDOHOT_GeneratedReportAboutAlgorithmFromDir(QString path, QString pathForSave, QString pathForTempHtml);//Генерирует отчет Latex по алгоритму по файлам *.hdata одного алгоритма, просматривая все файлы в папке.
-void HCDOHOT_GeneratedReportAboutAlgorithmFromDir(QString path, QString pathForSave);//Генерирует отчет Latex по алгоритму по файлам *.hdata одного алгоритма, просматривая все файлы в папке без сохранения отчета в HTML.
-void HCDOHOT_GeneratedSimpleReportFromFile(QString filename, QString pathForSave, QString pathForTempHtml);//Генерирует простой отчет Latex по алгоритму по файлу *.hdata.
-void HCDOHOT_GeneratedSimpleReportFromFile(QString filename, QString pathForSave);//Генерирует простой отчет Latex по алгоритму по файлу *.hdata без вывода в HTML.
+////////////////////////////////////////////////////////////////////////////
+////////////////////// ФУНКЦИИ ПО РАБОТЕ С КЛАССОМ /////////////////////////
+////////////////////////////////////////////////////////////////////////////
 
-int HCDOHOT_NumberFilesInDir(QString path);//Подсчитывает число HarrixClass_DataOfHarrixOptimizationTesting файлов в папке.
+//Подсчитывает число HarrixClass_DataOfHarrixOptimizationTesting файлов в папке.
+int HCDOHOT_NumberFilesInDir(QString path);
 
-bool HCDOHOT_CompareOfDataForNameAlgorithm (HarrixClass_DataOfHarrixOptimizationTesting Data1, HarrixClass_DataOfHarrixOptimizationTesting Data2);//Проверяет равенство индентификаторов алгоритмов оптимизации: в данных содержится один и тот же алгоритм или же нет.
+//Генерирует отчет Latex по алгоритму по файлам *.hdata одного алгоритма, просматривая все файлы в папке.
+void HCDOHOT_GeneratedReportAboutAlgorithmFromDir(QString path, QString pathForSave, QString pathForTempHtml);
+void HCDOHOT_GeneratedReportAboutAlgorithmFromDir(QString path, QString pathForSave);
+
+//Генерирует простой отчет Latex по алгоритму по файлу *.hdata.
+void HCDOHOT_GeneratedSimpleReportFromFile(QString filename, QString pathForSave, QString pathForTempHtml);
+void HCDOHOT_GeneratedSimpleReportFromFile(QString filename, QString pathForSave);
+
+//Заполняет массив SeveralData данными из всех файлов *.hdata из папки.
+int HCDOHOT_ReadFilesInDir(HarrixClass_DataOfHarrixOptimizationTesting *SeveralData, QString path, QString pathForTempHtml);
+int HCDOHOT_ReadFilesInDir(HarrixClass_DataOfHarrixOptimizationTesting *SeveralData, QString path);
+
+/// БЛОК ФУНКЦИЙ ПРОВЕРКИ РАВЕНСТВА ПЕРЕМННЫХ НЕСКОЛЬКИХ ИССЛЕДОВАНИЙ //////
+////////////////////////////////////////////////////////////////////////////
+
+//Проверяет равенство индентификаторов алгоритмов оптимизации: в данных содержится один и тот же алгоритм или же нет.
+bool HCDOHOT_CompareOfDataForNameAlgorithm (HarrixClass_DataOfHarrixOptimizationTesting Data1, HarrixClass_DataOfHarrixOptimizationTesting Data2);
+bool HCDOHOT_CompareOfDataForNameAlgorithm (HarrixClass_DataOfHarrixOptimizationTesting *SeveralData, int N);
+
+//Проверяет равенство авторов исследований.
+bool HCDOHOT_CompareOfDataForAuthor (HarrixClass_DataOfHarrixOptimizationTesting Data1, HarrixClass_DataOfHarrixOptimizationTesting Data2);
+bool HCDOHOT_CompareOfDataForAuthor (HarrixClass_DataOfHarrixOptimizationTesting *SeveralData, int N);
+
+//Проверяет равенство дат исследований.
+bool HCDOHOT_CompareOfDataForDate (HarrixClass_DataOfHarrixOptimizationTesting Data1, HarrixClass_DataOfHarrixOptimizationTesting Data2);
+bool HCDOHOT_CompareOfDataForDate (HarrixClass_DataOfHarrixOptimizationTesting *SeveralData, int N);
+
+//Проверяет равенство email авторов исследований.
+bool HCDOHOT_CompareOfDataForEmail (HarrixClass_DataOfHarrixOptimizationTesting Data1, HarrixClass_DataOfHarrixOptimizationTesting Data2);
+bool HCDOHOT_CompareOfDataForEmail (HarrixClass_DataOfHarrixOptimizationTesting *SeveralData, int N);
+
+//Проверяет равенство полных названий алгоритмов в исследованиях
+bool HCDOHOT_CompareOfDataForFullNameAlgorithm (HarrixClass_DataOfHarrixOptimizationTesting Data1, HarrixClass_DataOfHarrixOptimizationTesting Data2);
+bool HCDOHOT_CompareOfDataForFullNameAlgorithm (HarrixClass_DataOfHarrixOptimizationTesting *SeveralData, int N);
+
+//Проверяет равенство идентификаторов тестовых функций в исследованиях
+bool HCDOHOT_CompareOfDataForNameTestFunction (HarrixClass_DataOfHarrixOptimizationTesting Data1, HarrixClass_DataOfHarrixOptimizationTesting Data2);
+bool HCDOHOT_CompareOfDataForForNameTestFunction (HarrixClass_DataOfHarrixOptimizationTesting *SeveralData, int N);
+
+//Проверяет равенство полных названий тестовых функций в исследованиях
+bool HCDOHOT_CompareOfDataForFullNameTestFunction (HarrixClass_DataOfHarrixOptimizationTesting Data1, HarrixClass_DataOfHarrixOptimizationTesting Data2);
+bool HCDOHOT_CompareOfDataForForFullNameTestFunction (HarrixClass_DataOfHarrixOptimizationTesting *SeveralData, int N);
+
+//Проверяет равенство размерностей тестовой задачи (длина хромосомы решения) в исследованиях
+bool HCDOHOT_CompareOfDataForDimensionTestFunction (HarrixClass_DataOfHarrixOptimizationTesting Data1, HarrixClass_DataOfHarrixOptimizationTesting Data2);
+bool HCDOHOT_CompareOfDataForForDimensionTestFunction (HarrixClass_DataOfHarrixOptimizationTesting *SeveralData, int N);
+
+//Проверяет равенство количества экспериментов для каждого набора параметров алгоритма в исследованиях.
+bool HCDOHOT_CompareOfDataForNumberOfMeasuring (HarrixClass_DataOfHarrixOptimizationTesting Data1, HarrixClass_DataOfHarrixOptimizationTesting Data2);
+bool HCDOHOT_CompareOfDataForNumberOfMeasuring (HarrixClass_DataOfHarrixOptimizationTesting *SeveralData, int N);
+
+//Проверяет равенство количества прогонов, по которому делается усреднение для эксперимента в исследованиях.
+bool HCDOHOT_CompareOfDataForNumberOfRuns (HarrixClass_DataOfHarrixOptimizationTesting Data1, HarrixClass_DataOfHarrixOptimizationTesting Data2);
+bool HCDOHOT_CompareOfDataForNumberOfRuns (HarrixClass_DataOfHarrixOptimizationTesting *SeveralData, int N);
+
+//Проверяет равенство максимальных допустимых чисел вычислений целевой функции для алгоритма в исследованиях.
+bool HCDOHOT_CompareOfDataForMaxCountOfFitness (HarrixClass_DataOfHarrixOptimizationTesting Data1, HarrixClass_DataOfHarrixOptimizationTesting Data2);
+bool HCDOHOT_CompareOfDataForMaxCountOfFitness (HarrixClass_DataOfHarrixOptimizationTesting *SeveralData, int N);
+
+//Проверяет равенство количества проверяемых параметров алгоритма оптимизации в исследованиях.
+bool HCDOHOT_CompareOfDataForNumberOfParameters (HarrixClass_DataOfHarrixOptimizationTesting Data1, HarrixClass_DataOfHarrixOptimizationTesting Data2);
+bool HCDOHOT_CompareOfDataForNumberOfParameters (HarrixClass_DataOfHarrixOptimizationTesting *SeveralData, int N);
+
+//Проверяет равенство количества комбинаций вариантов настроек в исследованиях.
+bool HCDOHOT_CompareOfDataForNumberOfExperiments (HarrixClass_DataOfHarrixOptimizationTesting Data1, HarrixClass_DataOfHarrixOptimizationTesting Data2);
+bool HCDOHOT_CompareOfDataForNumberOfExperiments (HarrixClass_DataOfHarrixOptimizationTesting *SeveralData, int N);
+
+//Проверяет равенство форматов файлов в исследованиях.
+bool HCDOHOT_CompareOfDataForFormat (HarrixClass_DataOfHarrixOptimizationTesting Data1, HarrixClass_DataOfHarrixOptimizationTesting Data2);
+bool HCDOHOT_CompareOfDataForFormat (HarrixClass_DataOfHarrixOptimizationTesting *SeveralData, int N);
+
+//Проверяет равенство версий формата файла в исследованиях.
+bool HCDOHOT_CompareOfDataForVersion (HarrixClass_DataOfHarrixOptimizationTesting Data1, HarrixClass_DataOfHarrixOptimizationTesting Data2);
+bool HCDOHOT_CompareOfDataForVersion (HarrixClass_DataOfHarrixOptimizationTesting *SeveralData, int N);
+
+//Проверяет равенство ссылок на описание версий формата файла в исследованиях.
+bool HCDOHOT_CompareOfDataForLink (HarrixClass_DataOfHarrixOptimizationTesting Data1, HarrixClass_DataOfHarrixOptimizationTesting Data2);
+bool HCDOHOT_CompareOfDataForLink (HarrixClass_DataOfHarrixOptimizationTesting *SeveralData, int N);
+
+//Проверяет равенство переменной, котороая говорит все ли рассмотрены функции в исследованиях.
+bool HCDOHOT_CompareOfDataForCheckAllCombinations (HarrixClass_DataOfHarrixOptimizationTesting Data1, HarrixClass_DataOfHarrixOptimizationTesting Data2);
+bool HCDOHOT_CompareOfDataForCheckAllCombinations (HarrixClass_DataOfHarrixOptimizationTesting *SeveralData, int N);
 
 #endif // HARRIXCLASS_DATAOFHARRIXOPTIMIZATIONTESTING_H

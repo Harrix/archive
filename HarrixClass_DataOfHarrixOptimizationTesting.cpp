@@ -372,7 +372,7 @@ QString HarrixClass_DataOfHarrixOptimizationTesting::getFullLatexAnalysis()
      Это полноценный Latex код. Его нужно применять с файлами из макета:
      https://github.com/Harrix/Harrix-Document-Template-LaTeX
      */
-    return getLatexBegin() + LatexAnalysis + getLatexEnd();
+    return getLatexBegin() + LatexInfo + LatexAnalysis + getLatexEnd();
 }
 //--------------------------------------------------------------------------
 
@@ -2070,7 +2070,7 @@ int HCDOHOT_NumberFilesInDir(QString path)
 
                 Result++;
             }
-        QGuiApplication::processEvents();
+            QGuiApplication::processEvents();
         }
     }
 
@@ -2275,6 +2275,84 @@ void HCDOHOT_GeneratedSimpleReportFromFile(QString filename, QString pathForSave
 }
 //--------------------------------------------------------------------------
 
+void HCDOHOT_GeneratedAnalysisReportFromFile(QString filename, QString pathForSave, QString pathForTempHtml)
+{
+    /*
+    Генерирует отчет-анализ Latex по алгоритму по файлу *.hdata.
+    В папке сохранения должны быть находиться файлы names.tex, packages.tex, styles.tex из проекта
+    https://github.com/Harrix/HarrixLaTeXDocumentTemplate
+    Для отчета в виде html берется проект:
+    https://github.com/Harrix/HarrixHtmlForQWebView
+    Входные параметры:
+     filename - путь к файлу, из которого считываем данные.
+     pathForSave - путь к папке, куда сохраняем Latex файлы.
+     pathForTempHtml - путь к папке куда сохраняем во время работы функции отчет в виде temp.html.
+    Возвращаемое значение:
+     Отсутствует.
+     */
+    filename = QDir::toNativeSeparators(filename);
+    pathForSave = QDir::toNativeSeparators(pathForSave);
+    if (!pathForTempHtml.isEmpty()) pathForTempHtml = QDir::toNativeSeparators(pathForTempHtml);
+
+    //if (!pathForTempHtml.isEmpty()) HQt_BeginHtml (pathForTempHtml);
+
+    if (filename.length()>0)
+    {
+        QString Html;//сюда записывается код  HTML по анализу файла данных
+        QString Latex;//сюда записывается код  Latex для добавления в https://github.com/Harrix/HarrixLaTeXDocumentTemplate
+
+        HarrixClass_DataOfHarrixOptimizationTesting Data(filename);
+
+        if (Data.getSuccessReading())
+        {
+            Html=Data.getHtml();
+
+            Latex=Data.getFullLatexAnalysis();
+
+            HQt_SaveFile(Latex, pathForSave+"\\Report.tex");
+
+            if (!pathForTempHtml.isEmpty())
+            {
+                HQt_AddHtml(Html);
+
+                //HQt_AddHtml(THQt_ShowNumber(Data.getErrorEx(0,0),"x"));
+                //HQt_AddHtml(THQt_ShowNumber(Data.getErrorEx(Data.getNumberOfExperiments(), Data.getNumberOfMeasuring())));
+                //HQt_AddHtml(HQt_ShowText(Data.getNameParameter(1,4)));
+                //HQt_AddHtml(THQt_ShowNumber(Data.getNumberOfOption("1222"),"x"));
+                //HQt_AddHtml(THQt_ShowNumber(Data.getNumberOfOption("Тип формирования нового поколения"),"x"));
+                //HQt_AddHtml(HQt_ShowText(Data.getNameOption(3)));
+            }
+        }
+        else
+        {
+            //выводим ошибку
+            Html=Data.getHtml();
+            if (!pathForTempHtml.isEmpty()) HQt_AddHtml(Html);
+        }
+
+    }
+}
+//--------------------------------------------------------------------------
+
+void HCDOHOT_GeneratedAnalysisReportFromFile(QString filename, QString pathForSave)
+{
+    /*
+    Генерирует отчет-анализ Latex по алгоритму по файлу *.hdata без генерации Html отчета.
+    В папке сохранения должны быть находиться файлы names.tex, packages.tex, styles.tex из проекта
+    https://github.com/Harrix/HarrixLaTeXDocumentTemplate
+    Для отчета в виде html берется проект:
+    https://github.com/Harrix/HarrixHtmlForQWebView
+    Входные параметры:
+     filename - путь к файлу, из которого считываем данные.
+     pathForSave - путь к папке, куда сохраняем Latex файлы.
+     pathForTempHtml - путь к папке куда сохраняем во время работы функции отчет в виде temp.html.
+    Возвращаемое значение:
+     Отсутствует.
+     */
+    HCDOHOT_GeneratedAnalysisReportFromFile(filename, pathForSave, "");
+}
+//--------------------------------------------------------------------------
+
 int HCDOHOT_ReadFilesInDir(HarrixClass_DataOfHarrixOptimizationTesting *SeveralData, QString path, QString pathForTempHtml)
 {
     /*
@@ -2322,7 +2400,7 @@ int HCDOHOT_ReadFilesInDir(HarrixClass_DataOfHarrixOptimizationTesting *SeveralD
                         if (!pathForTempHtml.isEmpty()) HQt_AddHtml(Html);
                     }
                     else
-                      {
+                    {
                         Html=HQt_ShowAlert("Ошибка при считывании файла "+ filename);
                         if (!pathForTempHtml.isEmpty()) HQt_AddHtml(Html);
                     }
@@ -2393,7 +2471,7 @@ bool HCDOHOT_CompareOfDataForNameAlgorithm (HarrixClass_DataOfHarrixOptimization
 
     for (int i=1;i<N;i++)
     {
-      if ( Info!=SeveralData[i].getNameAlgorithm() ) VMHL_Result=false;
+        if ( Info!=SeveralData[i].getNameAlgorithm() ) VMHL_Result=false;
     }
 
     return VMHL_Result;
@@ -2436,7 +2514,7 @@ bool HCDOHOT_CompareOfDataForAuthor (HarrixClass_DataOfHarrixOptimizationTesting
 
     for (int i=1;i<N;i++)
     {
-      if ( Info!=SeveralData[i].getAuthor() ) VMHL_Result=false;
+        if ( Info!=SeveralData[i].getAuthor() ) VMHL_Result=false;
     }
 
     return VMHL_Result;
@@ -2479,7 +2557,7 @@ bool HCDOHOT_CompareOfDataForDate (HarrixClass_DataOfHarrixOptimizationTesting *
 
     for (int i=1;i<N;i++)
     {
-      if ( Info!=SeveralData[i].getDate() ) VMHL_Result=false;
+        if ( Info!=SeveralData[i].getDate() ) VMHL_Result=false;
     }
 
     return VMHL_Result;
@@ -2522,7 +2600,7 @@ bool HCDOHOT_CompareOfDataForEmail (HarrixClass_DataOfHarrixOptimizationTesting 
 
     for (int i=1;i<N;i++)
     {
-      if ( Info!=SeveralData[i].getEmail() ) VMHL_Result=false;
+        if ( Info!=SeveralData[i].getEmail() ) VMHL_Result=false;
     }
 
     return VMHL_Result;
@@ -2565,7 +2643,7 @@ bool HCDOHOT_CompareOfDataForFullNameAlgorithm (HarrixClass_DataOfHarrixOptimiza
 
     for (int i=1;i<N;i++)
     {
-      if ( Info!=SeveralData[i].getFullNameAlgorithm() ) VMHL_Result=false;
+        if ( Info!=SeveralData[i].getFullNameAlgorithm() ) VMHL_Result=false;
     }
 
     return VMHL_Result;
@@ -2608,7 +2686,7 @@ bool HCDOHOT_CompareOfDataForForNameTestFunction (HarrixClass_DataOfHarrixOptimi
 
     for (int i=1;i<N;i++)
     {
-      if ( Info!=SeveralData[i].getNameTestFunction() ) VMHL_Result=false;
+        if ( Info!=SeveralData[i].getNameTestFunction() ) VMHL_Result=false;
     }
 
     return VMHL_Result;
@@ -2651,7 +2729,7 @@ bool HCDOHOT_CompareOfDataForForFullNameTestFunction (HarrixClass_DataOfHarrixOp
 
     for (int i=1;i<N;i++)
     {
-      if ( Info!=SeveralData[i].getFullNameTestFunction() ) VMHL_Result=false;
+        if ( Info!=SeveralData[i].getFullNameTestFunction() ) VMHL_Result=false;
     }
 
     return VMHL_Result;
@@ -2694,7 +2772,7 @@ bool HCDOHOT_CompareOfDataForForDimensionTestFunction (HarrixClass_DataOfHarrixO
 
     for (int i=1;i<N;i++)
     {
-      if ( Info!=SeveralData[i].getDimensionTestFunction() ) VMHL_Result=false;
+        if ( Info!=SeveralData[i].getDimensionTestFunction() ) VMHL_Result=false;
     }
 
     return VMHL_Result;
@@ -2737,7 +2815,7 @@ bool HCDOHOT_CompareOfDataForNumberOfMeasuring (HarrixClass_DataOfHarrixOptimiza
 
     for (int i=1;i<N;i++)
     {
-      if ( Info!=SeveralData[i].getNumberOfMeasuring() ) VMHL_Result=false;
+        if ( Info!=SeveralData[i].getNumberOfMeasuring() ) VMHL_Result=false;
     }
 
     return VMHL_Result;
@@ -2780,7 +2858,7 @@ bool HCDOHOT_CompareOfDataForNumberOfRuns (HarrixClass_DataOfHarrixOptimizationT
 
     for (int i=1;i<N;i++)
     {
-      if ( Info!=SeveralData[i].getNumberOfRuns() ) VMHL_Result=false;
+        if ( Info!=SeveralData[i].getNumberOfRuns() ) VMHL_Result=false;
     }
 
     return VMHL_Result;
@@ -2823,7 +2901,7 @@ bool HCDOHOT_CompareOfDataForMaxCountOfFitness (HarrixClass_DataOfHarrixOptimiza
 
     for (int i=1;i<N;i++)
     {
-      if ( Info!=SeveralData[i].getMaxCountOfFitness() ) VMHL_Result=false;
+        if ( Info!=SeveralData[i].getMaxCountOfFitness() ) VMHL_Result=false;
     }
 
     return VMHL_Result;
@@ -2866,7 +2944,7 @@ bool HCDOHOT_CompareOfDataForNumberOfParameters (HarrixClass_DataOfHarrixOptimiz
 
     for (int i=1;i<N;i++)
     {
-      if ( Info!=SeveralData[i].getNumberOfParameters() ) VMHL_Result=false;
+        if ( Info!=SeveralData[i].getNumberOfParameters() ) VMHL_Result=false;
     }
 
     return VMHL_Result;
@@ -2909,7 +2987,7 @@ bool HCDOHOT_CompareOfDataForNumberOfExperiments (HarrixClass_DataOfHarrixOptimi
 
     for (int i=1;i<N;i++)
     {
-      if ( Info!=SeveralData[i].getNumberOfExperiments() ) VMHL_Result=false;
+        if ( Info!=SeveralData[i].getNumberOfExperiments() ) VMHL_Result=false;
     }
 
     return VMHL_Result;
@@ -2952,7 +3030,7 @@ bool HCDOHOT_CompareOfDataForFormat (HarrixClass_DataOfHarrixOptimizationTesting
 
     for (int i=1;i<N;i++)
     {
-      if ( Info!=SeveralData[i].getFormat() ) VMHL_Result=false;
+        if ( Info!=SeveralData[i].getFormat() ) VMHL_Result=false;
     }
 
     return VMHL_Result;
@@ -2995,7 +3073,7 @@ bool HCDOHOT_CompareOfDataForVersion (HarrixClass_DataOfHarrixOptimizationTestin
 
     for (int i=1;i<N;i++)
     {
-      if ( Info!=SeveralData[i].getVersion() ) VMHL_Result=false;
+        if ( Info!=SeveralData[i].getVersion() ) VMHL_Result=false;
     }
 
     return VMHL_Result;
@@ -3038,7 +3116,7 @@ bool HCDOHOT_CompareOfDataForLink (HarrixClass_DataOfHarrixOptimizationTesting *
 
     for (int i=1;i<N;i++)
     {
-      if ( Info!=SeveralData[i].getLink() ) VMHL_Result=false;
+        if ( Info!=SeveralData[i].getLink() ) VMHL_Result=false;
     }
 
     return VMHL_Result;
@@ -3081,7 +3159,7 @@ bool HCDOHOT_CompareOfDataForCheckAllCombinations (HarrixClass_DataOfHarrixOptim
 
     for (int i=1;i<N;i++)
     {
-      if ( Info!=SeveralData[i].getCheckAllCombinations() ) VMHL_Result=false;
+        if ( Info!=SeveralData[i].getCheckAllCombinations() ) VMHL_Result=false;
     }
 
     return VMHL_Result;

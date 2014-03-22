@@ -234,6 +234,13 @@ private:
 //Подсчитывает число HarrixClass_DataOfHarrixOptimizationTesting файлов в папке.
 int HCDOHOT_NumberFilesInDir(QString path);
 
+//Заполняет массив SeveralData данными из всех файлов *.hdata из папки.
+int HCDOHOT_ReadFilesInDir(HarrixClass_DataOfHarrixOptimizationTesting *SeveralData, QString path, QString pathForTempHtml);
+int HCDOHOT_ReadFilesInDir(HarrixClass_DataOfHarrixOptimizationTesting *SeveralData, QString path);
+
+/////////////////////////// ГЕНЕРАЦИЯ ОТЧЕТОВ //////////////////////////////
+////////////////////////////////////////////////////////////////////////////
+
 //Генерирует отчет Latex по алгоритму по файлам *.hdata одного алгоритма, просматривая все файлы в папке.
 void HCDOHOT_GeneratedReportAboutAlgorithmFromDir(QString path, QString pathForSave, QString pathForTempHtml);
 void HCDOHOT_GeneratedReportAboutAlgorithmFromDir(QString path, QString pathForSave);
@@ -242,9 +249,9 @@ void HCDOHOT_GeneratedReportAboutAlgorithmFromDir(QString path, QString pathForS
 void HCDOHOT_GeneratedSimpleReportFromFile(QString filename, QString pathForSave, QString pathForTempHtml);
 void HCDOHOT_GeneratedSimpleReportFromFile(QString filename, QString pathForSave);
 
-//Заполняет массив SeveralData данными из всех файлов *.hdata из папки.
-int HCDOHOT_ReadFilesInDir(HarrixClass_DataOfHarrixOptimizationTesting *SeveralData, QString path, QString pathForTempHtml);
-int HCDOHOT_ReadFilesInDir(HarrixClass_DataOfHarrixOptimizationTesting *SeveralData, QString path);
+//Генерирует отчет-анализ Latex по алгоритму по файлу *.hdata.
+void HCDOHOT_GeneratedAnalysisReportFromFile(QString filename, QString pathForSave, QString pathForTempHtml);
+void HCDOHOT_GeneratedAnalysisReportFromFile(QString filename, QString pathForSave);
 
 /// БЛОК ФУНКЦИЙ ПРОВЕРКИ РАВЕНСТВА ПЕРЕМННЫХ НЕСКОЛЬКИХ ИССЛЕДОВАНИЙ //////
 ////////////////////////////////////////////////////////////////////////////

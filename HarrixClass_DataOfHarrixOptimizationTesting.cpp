@@ -152,14 +152,18 @@ void HarrixClass_DataOfHarrixOptimizationTesting::readXml()
         makingLatexTableEx();//заполняем LatexTableEx
         makingLatexTableEy();//заполняем LatexTableEy
         makingLatexTableR();//заполняем LatexTableR
+        makingListOfVectorParameterOptions();
+        makingLatexListOfVectorParameterOptions();
         makingLatexAnalysis();//заполняем LatexTableR
         //Latex+=LatexInfo+LatexAboutParameters+LatexTableEx+LatexTableEy+LatexTableR;
-        Latex+=LatexInfo+LatexAboutParameters+LatexTableEx+LatexTableEy+LatexTableR+LatexAnalysis;
+        Latex+=LatexInfo+LatexAboutParameters+LatexTableEx+LatexTableEy+LatexTableR+LatexListOfVectorParameterOptions+LatexAnalysis;
         LatexTable+=LatexInfo+LatexAboutParameters+LatexTableEx+LatexTableEy+LatexTableR;
 
         Html+=HQt_ShowHr();
         Html+=HQt_ShowText("Обработка файла завершена. Ошибки не обнаружены");
     }
+
+    Rxml.clear();//больше не будем использовать, так что удаляем
 }
 //--------------------------------------------------------------------------
 
@@ -361,7 +365,7 @@ QString HarrixClass_DataOfHarrixOptimizationTesting::getLatexAnalysis()
      Помните, что это не полноценный Latex код.Его нужно применять внутри файла из макета:
      https://github.com/Harrix/Harrix-Document-Template-LaTeX
      */
-    return LatexAnalysis;
+    return LatexAboutParameters+LatexListOfVectorParameterOptions+LatexAnalysis;
 }
 //--------------------------------------------------------------------------
 
@@ -372,7 +376,7 @@ QString HarrixClass_DataOfHarrixOptimizationTesting::getFullLatexAnalysis()
      Это полноценный Latex код. Его нужно применять с файлами из макета:
      https://github.com/Harrix/Harrix-Document-Template-LaTeX
      */
-    return getLatexBegin() + LatexInfo + LatexAnalysis + getLatexEnd();
+    return getLatexBegin() + LatexInfo + LatexAboutParameters + LatexListOfVectorParameterOptions + LatexAnalysis + getLatexEnd();
 }
 //--------------------------------------------------------------------------
 
@@ -1616,6 +1620,10 @@ void HarrixClass_DataOfHarrixOptimizationTesting::memoryAllocation()
     //Число строк равно числу комбинаций вариантов настроек.
     //Число столбцов равно числу проверяемых параметров алгоритма оптимизации.
     MatrixOfNameParameters=new QStringList[XML_Number_Of_Experiments];
+
+    //Номера комбинаций вариантов настроек
+    //Содержит номера от 1 до XML_Number_Of_Experiments
+    NumberOfListOfVectorParameterOptions=new double[XML_Number_Of_Experiments];
 }
 //--------------------------------------------------------------------------
 
@@ -1645,6 +1653,7 @@ void HarrixClass_DataOfHarrixOptimizationTesting::memoryDeallocation()
         delete [] VarianceOfEx;
         delete [] VarianceOfEy;
         delete [] VarianceOfR;
+        delete [] NumberOfListOfVectorParameterOptions;
     }
 }
 //--------------------------------------------------------------------------
@@ -1942,7 +1951,9 @@ void HarrixClass_DataOfHarrixOptimizationTesting::zeroArray()
     TMHL_ZeroVector(VarianceOfEy,XML_Number_Of_Experiments);
     TMHL_ZeroVector(VarianceOfR ,XML_Number_Of_Experiments);
     for (int k=0;k<XML_Number_Of_Parameters;k++) ListOfParameterOptions[k].clear();
-    (NamesOfParameters).clear();
+    (NamesOfParameters).clear();    
+    ListOfVectorParameterOptions.clear();
+    TMHL_ZeroVector(NumberOfListOfVectorParameterOptions,XML_Number_Of_Experiments);
 }
 //--------------------------------------------------------------------------
 
@@ -2005,6 +2016,89 @@ void HarrixClass_DataOfHarrixOptimizationTesting::makingAnalysis()
 }
 //--------------------------------------------------------------------------
 
+void HarrixClass_DataOfHarrixOptimizationTesting::makingListOfVectorParameterOptions()
+{
+    /*
+    Заполняет список вектора названий вариантов параметров алгоритма оптимизации.
+    Входные параметры:
+     Отсутствуют.
+    Возвращаемое значение:
+     Отсутствует. Значение возвращается в переменную LatexListOfParameterOptions
+     */
+
+    ListOfVectorParameterOptions.clear();
+
+    for (int i=0;i<XML_Number_Of_Experiments;i++)
+    {
+        Cell2.clear();
+
+        //получим значения параметров алгоритма
+        for (int j=0;j<XML_Number_Of_Parameters;j++)
+        {
+            if (MatrixOfNameParameters[i][j]=="NULL")
+                Cell2+="Отсутствует \\\\ ";
+            else
+                if (!HQt_IsNumeric(MatrixOfNameParameters[i][j]))
+                    if (MatrixOfNameParameters[i][j].length()>=5)
+                        Cell2+=MatrixOfNameParameters[i][j] +". ";
+                    else
+                        Cell2+=NamesOfParameters[j] + " = " + MatrixOfNameParameters[i][j] +".  ";
+                else
+                    Cell2+=NamesOfParameters[j] + " = " + MatrixOfNameParameters[i][j] +". ";
+        }
+
+        //получим значения критерий
+
+        ListOfVectorParameterOptions<<Cell2;
+
+        NumberOfListOfVectorParameterOptions[i]=i+1;
+    }
+}
+
+//--------------------------------------------------------------------------
+
+void HarrixClass_DataOfHarrixOptimizationTesting::makingLatexListOfVectorParameterOptions()
+{
+    /*
+    Создает текст LaTeX для отображения списка вектора названий вариантов параметров алгоритма оптимизации.
+    Входные параметры:
+     Отсутствуют.
+    Возвращаемое значение:
+     Отсутствует. Значение возвращается в переменную LatexListOfParameterOptions
+     */
+    LatexListOfVectorParameterOptions+="\\subsection {Список вектора названий вариантов параметров алгоритма оптимизации}\n\n";
+    LatexListOfVectorParameterOptions+="Ниже представлена таблица, в которой представлен нумерованный список вариантов  параметров алгоритма оптимизации. ";
+    LatexListOfVectorParameterOptions+="\\begin{center}\n";
+    LatexListOfVectorParameterOptions+="{\\renewcommand{\\arraystretch}{1.5}\n";
+    LatexListOfVectorParameterOptions+="\\footnotesize\\begin{longtable}[H]{|m{0.03\\linewidth}|m{0.9\\linewidth}|}\n";
+    LatexListOfVectorParameterOptions+="\\caption{Список вектора названий вариантов параметров "+NameForHead+"}\n";
+    LatexListOfVectorParameterOptions+="\\tabularnewline\\hline\n";
+    LatexListOfVectorParameterOptions+="\\centering \\textbf{№} & \\centering \\textbf{Настройки алгоритма} \\centering \\tabularnewline \\hline \\endhead\n";
+    LatexListOfVectorParameterOptions+="\\multicolumn{2}{|r|}{{Продолжение на следующей странице...}} \\\\ \\hline \\endfoot\n";
+    LatexListOfVectorParameterOptions+="\\endlastfoot\n";
+
+    for (int i=0;i<XML_Number_Of_Experiments;i++)
+    {
+        Cell1.clear();
+        Cell2.clear();
+        //получим номер
+        Cell1=QString::number(NumberOfListOfVectorParameterOptions[i]);
+        Cell1="\\centering \\footnotesize "+Cell1;
+
+        Cell2="\\footnotesize "+ListOfVectorParameterOptions.at(i);
+
+        //получим значения критерий
+
+        LatexListOfVectorParameterOptions+=Cell1+" & "+Cell2+"\\tabularnewline \\hline\n";
+    }
+
+    LatexListOfVectorParameterOptions+="\n\\end{longtable}\n";
+    LatexListOfVectorParameterOptions+="}\n";
+    LatexListOfVectorParameterOptions+="\\end{center}\n\n";
+}
+
+//--------------------------------------------------------------------------
+
 void HarrixClass_DataOfHarrixOptimizationTesting::makingLatexAnalysis()
 {
     /*
@@ -2019,6 +2113,15 @@ void HarrixClass_DataOfHarrixOptimizationTesting::makingLatexAnalysis()
     if (XML_Number_Of_Experiments==1)
     {
         //Алгоритм имеет только один эксперимент
+
+        if (XML_All_Combinations==true)
+        {
+            LatexAnalysis+="Исследуемый алгоритм оптимизации относится к алгоритмам множества варьируемых параметров самого алгоритма. Поэтому при исследовании алгоритма на тестовой функции надо было провести <<эксперимент>> только один раз (многократно его повторяя). Мы можем сделать полный анализ работы алгоритма в рассматриваемых условиях.\n\n";
+        }
+        else
+        {
+            LatexAnalysis+="Данное исследование является частичным, так как рассмотрено не всё множество возможных настроек алгоритма. Поэтому ниже будут представлены неполные выводы, так как при нерассмотренных настройках алгоритм мог показать себя лучше или хуже.\n\n";
+        }
     }
     else
     {
@@ -2030,6 +2133,8 @@ void HarrixClass_DataOfHarrixOptimizationTesting::makingLatexAnalysis()
         {
             LatexAnalysis+="Данное исследование является частичным, так как рассмотрено не всё множество возможных настроек алгоритма. Поэтому ниже будут представлены неполные выводы, так как при нерассмотренных настройках алгоритм мог показать себя лучше или хуже.\n\n";
         }
+
+        LatexAnalysis += THQt_LatexShowChartOfLine (NumberOfListOfVectorParameterOptions, MeanOfEx, XML_Number_Of_Experiments, "MeanOfEx", "Номер", "MeanOfEx", "Вектор", "MeanOfEx"+HQt_RandomString(5), true, true, false, true, false , true);
 
     }
 }

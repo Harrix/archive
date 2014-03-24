@@ -386,11 +386,13 @@ QString HarrixClass_DataOfHarrixOptimizationTesting::getLatexBegin()
      Внутренняя функция. Возвращает начало для полноценного Latex файла.
      */
     QString VMHL_Result;
-    VMHL_Result+="\\documentclass[a4paper,12pt]{article}\n\n";
+    VMHL_Result+="\\documentclass[a4paper,12pt]{report}\n\n";
     VMHL_Result+="\\input{packages} %Подключаем модуль пакетов\n";
     VMHL_Result+="\\input{styles} %Подключаем модуль стилей\n\n";
+    VMHL_Result+="\\usepgfplotslibrary{external}\n";
+    VMHL_Result+="\\tikzexternalize[prefix=TikzPictures/]\n\n";
     VMHL_Result+="\\begin{document}\n\n";
-    VMHL_Result+="\\input{names} %Подключаем модуль перемиенования некоторых команд\n\n";
+    VMHL_Result+="\\input{names} %Подключаем модуль переименования некоторых команд\n\n";
 
     return VMHL_Result;
 }
@@ -2134,7 +2136,13 @@ void HarrixClass_DataOfHarrixOptimizationTesting::makingLatexAnalysis()
             LatexAnalysis+="Данное исследование является частичным, так как рассмотрено не всё множество возможных настроек алгоритма. Поэтому ниже будут представлены неполные выводы, так как при нерассмотренных настройках алгоритм мог показать себя лучше или хуже.\n\n";
         }
 
-        LatexAnalysis += THQt_LatexShowChartOfLine (NumberOfListOfVectorParameterOptions, MeanOfEx, XML_Number_Of_Experiments, "MeanOfEx", "Номер", "MeanOfEx", "Вектор", "MeanOfEx"+HQt_RandomString(5), true, true, false, true, false , true);
+        LatexAnalysis += THQt_LatexShowChartOfLine (NumberOfListOfVectorParameterOptions, MeanOfEx, XML_Number_Of_Experiments, "Ошибка по входным параметрам по порядку номеров комбинаций", "N, Номер комбинации настроек", "E_x", "Ошибка по входным параметрам", "MeanOfEx"+HQt_RandomString(5), true, true, false, true, false , true);
+
+         LatexAnalysis += THQt_LatexShowChartOfLine (NumberOfListOfVectorParameterOptions, MeanOfEy, XML_Number_Of_Experiments, "Ошибка по значениям целевой функции по порядку номеров комбинаций", "N, Номер комбинации настроек", "E_y", "Ошибка по значениям целевой функции", "MeanOfEy"+HQt_RandomString(5), true, true, false, true, false , true);
+
+         LatexAnalysis += THQt_LatexShowChartOfLine (NumberOfListOfVectorParameterOptions, MeanOfR, XML_Number_Of_Experiments, "Надёжность по порядку номеров комбинаций", "N, Номер комбинации настроек", "R", "Надёжность", "MeanOfR"+HQt_RandomString(5), true, true, false, true, false , true);
+
+        LatexAnalysis += "\n\n7877\n\n";
 
     }
 }

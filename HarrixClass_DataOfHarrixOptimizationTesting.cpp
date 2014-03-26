@@ -1,5 +1,5 @@
 //HarrixClass_DataOfHarrixOptimizationTesting
-//Версия 1.18
+//Версия 1.19
 //Класс для считывания информации формата данных Harrix Optimization Testing на C++ для Qt.
 //https://github.com/Harrix/HarrixClass_DataOfHarrixOptimizationTesting
 //Библиотека распространяется по лицензии Apache License, Version 2.0.
@@ -11,6 +11,8 @@
 #include "HarrixQtLibraryForLaTeX.h"
 #include "HarrixMathLibrary.h"
 #include "HarrixClass_DataOfHarrixOptimizationTesting.h"
+#include "HarrixClass_OnlyDataOfHarrixOptimizationTesting.h"
+#include "Functions_For_HarrixClass_DataOfHarrixOptimizationTesting.h"
 
 HarrixClass_DataOfHarrixOptimizationTesting::HarrixClass_DataOfHarrixOptimizationTesting(QString filename)
 {
@@ -128,6 +130,7 @@ void HarrixClass_DataOfHarrixOptimizationTesting::readXml()
     if (!Error)
     {
         memoryAllocation();//выделение памяти под массивы
+        Data.memoryAllocation();
         zeroArray();//обнулим массивы
         readXmlDataTags();//считаем данные непосредственно
     }
@@ -135,7 +138,7 @@ void HarrixClass_DataOfHarrixOptimizationTesting::readXml()
     {
         HtmlMessageOfError+=HQt_ShowAlert("В процессе разбора файла обнаружены ошибки. Помните, что для этой функции обработки XML файла требуется правильный порядок следования тэгов.");
         Html+=HtmlMessageOfError;
-        SuccessReading=false;
+        Data.setSuccessReading(false);
     }
     else
     {
@@ -146,7 +149,7 @@ void HarrixClass_DataOfHarrixOptimizationTesting::readXml()
         Html+=HtmlReport;
 
         //Обработка полученной информации Latex
-        NameForHead="алгоритма оптимизации <<"+HQt_ForcedWordWrap(HQt_StringForLaTeX(XML_Full_Name_Algorithm))+">>на тестовой функции <<"+HQt_ForcedWordWrap(HQt_StringForLaTeX(XML_Full_Name_Test_Function))+">> (размерность равна "+QString::number(XML_DimensionTestFunction)+")";
+        NameForHead="алгоритма оптимизации <<"+HQt_ForcedWordWrap(HQt_StringForLaTeX(Data.getFullNameAlgorithm()))+">>на тестовой функции <<"+HQt_ForcedWordWrap(HQt_StringForLaTeX(Data.getFullNameTestFunction()))+">> (размерность равна "+QString::number(Data.getDimensionTestFunction())+")";
         makingLatexInfo();
         makingLatexAboutParameters();
         makingLatexTableEx();//заполняем LatexTableEx
@@ -412,7 +415,7 @@ QString HarrixClass_DataOfHarrixOptimizationTesting::getAuthor()
     /*
      Получение текста переменной XML_Author - Автор документа
      */
-    return XML_Author;
+    return Data.getAuthor();
 }
 //--------------------------------------------------------------------------
 
@@ -421,7 +424,7 @@ QString HarrixClass_DataOfHarrixOptimizationTesting::getDate()
     /*
      Получение текста переменной  XML_Date - Дата создания документа
      */
-    return XML_Date;
+    return Data.getDate();
 }
 //--------------------------------------------------------------------------
 
@@ -430,7 +433,7 @@ QString HarrixClass_DataOfHarrixOptimizationTesting::getEmail()
     /*
      Получение текста переменной  XML_Email - Email автора, чтобы можно было с ним связаться
      */
-    return XML_Email;
+    return Data.getEmail();
 }
 //--------------------------------------------------------------------------
 
@@ -439,7 +442,7 @@ QString HarrixClass_DataOfHarrixOptimizationTesting::getLinkTestFunction()
     /*
      Получение текста переменной  XML_Link_Test_Function - Ссылка на описание тестовой функции
      */
-    return XML_Link_Test_Function;
+    return Data.getLinkTestFunction();
 }
 //--------------------------------------------------------------------------
 
@@ -448,7 +451,7 @@ QString HarrixClass_DataOfHarrixOptimizationTesting::getLinkAlgorithm()
     /*
      Получение текста переменной  XML_Link_Algorithm - Ссылка на описание алгоритма оптимизации
      */
-    return XML_Link_Algorithm;
+    return Data.getLinkAlgorithm();
 }
 //--------------------------------------------------------------------------
 
@@ -457,7 +460,7 @@ QString HarrixClass_DataOfHarrixOptimizationTesting::getNameAlgorithm()
     /*
      Получение текста переменной  XML_Name_Algorithm - Название алгоритма оптимизации
      */
-    return XML_Name_Algorithm;
+    return Data.getNameAlgorithm();
 }
 //--------------------------------------------------------------------------
 
@@ -466,7 +469,7 @@ QString HarrixClass_DataOfHarrixOptimizationTesting::getFullNameAlgorithm()
     /*
      Получение текста переменной  XML_Full_Name_Algorithm - Полное название алгоритма оптимизации
      */
-    return XML_Full_Name_Algorithm;
+    return Data.getFullNameAlgorithm();
 }
 //--------------------------------------------------------------------------
 
@@ -475,7 +478,7 @@ QString HarrixClass_DataOfHarrixOptimizationTesting::getNameTestFunction()
     /*
      Получение текста переменной  XML_Name_Test_Function - Название тестовой функции
      */
-    return XML_Name_Test_Function;
+    return Data.getNameTestFunction();
 }
 //--------------------------------------------------------------------------
 
@@ -484,71 +487,71 @@ QString HarrixClass_DataOfHarrixOptimizationTesting::getFullNameTestFunction()
     /*
      Получение текста переменной  XML_Full_Name_Test_Function - Полное название тестовой функции
      */
-    return XML_Full_Name_Test_Function;
+    return Data.getFullNameTestFunction();
 }
 //--------------------------------------------------------------------------
 
-int HarrixClass_DataOfHarrixOptimizationTesting::getDimensionTestFunction()
+qint64 HarrixClass_DataOfHarrixOptimizationTesting::getDimensionTestFunction()
 {
     /*
      Получение текста переменной  XML_DimensionTestFunction - Размерность тестовой задачи
      */
-    return XML_DimensionTestFunction;
+    return Data.getDimensionTestFunction();
 }
 //--------------------------------------------------------------------------
 
-int HarrixClass_DataOfHarrixOptimizationTesting::getNumberOfMeasuring()
+qint64 HarrixClass_DataOfHarrixOptimizationTesting::getNumberOfMeasuring()
 {
     /*
      Получение текста переменной  XML_Number_Of_Measuring - Размерность тестовой задачи (длина хромосомы решения)
      */
-    return XML_Number_Of_Measuring;
+    return Data.getNumberOfMeasuring();
 }
 //--------------------------------------------------------------------------
 
-int HarrixClass_DataOfHarrixOptimizationTesting::getNumberOfRuns()
+qint64 HarrixClass_DataOfHarrixOptimizationTesting::getNumberOfRuns()
 {
     /*
      Получение текста переменной  XML_Number_Of_Runs - Количество прогонов по которому деляется усреднение для эксперимента
      */
-    return XML_Number_Of_Runs;
+    return Data.getNumberOfRuns();
 }
 //--------------------------------------------------------------------------
 
-int HarrixClass_DataOfHarrixOptimizationTesting::getMaxCountOfFitness()
+qint64 HarrixClass_DataOfHarrixOptimizationTesting::getMaxCountOfFitness()
 {
     /*
      Получение текста переменной  Max_Count_Of_Fitness - Максимальное допустимое число вычислений целевой функции для алгоритма
      */
-    return XML_Max_Count_Of_Fitness;
+    return Data.getMaxCountOfFitness();
 }
 //--------------------------------------------------------------------------
 
-int HarrixClass_DataOfHarrixOptimizationTesting::getNumberOfParameters()
+qint64 HarrixClass_DataOfHarrixOptimizationTesting::getNumberOfParameters()
 {
     /*
      Получение текста переменной  XML_Number_Of_Parameters - Количество проверяемых параметров алгоритма оптимизации
      */
     if (Zero_Number_Of_Parameters) return 0;
-    return XML_Number_Of_Parameters;
+    return Data.getNumberOfParameters();
 }
 //--------------------------------------------------------------------------
 
-int HarrixClass_DataOfHarrixOptimizationTesting::getNumberOfExperiments()
+qint64 HarrixClass_DataOfHarrixOptimizationTesting::getNumberOfExperiments()
 {
     /*
      Получение текста переменной  XML_Number_Of_Experiments - Количество комбинаций вариантов настроек
      */
-    return XML_Number_Of_Experiments;
+    return Data.getNumberOfExperiments();
 }
 //--------------------------------------------------------------------------
 
 bool HarrixClass_DataOfHarrixOptimizationTesting::getCheckAllCombinations()
 {
     /*
-     Получение текста переменй  XML_All_Combinations - Все ли комбинации вариантов настроек просмотрены: 0 или 1
+     Получение текста переменной  XML_All_Combinations - Все ли комбинации вариантов настроек просмотрены: 0 bли 1
      */
-    return bool(XML_All_Combinations);
+    return bool(Data.getCheckAllCombinations());
 }
 //--------------------------------------------------------------------------
 
@@ -563,12 +566,12 @@ double HarrixClass_DataOfHarrixOptimizationTesting::getErrorEx(int Number_Of_Exp
      Значения ошибки Ex.
      */
     if (Number_Of_Experiment<0) Number_Of_Experiment=0;
-    if (Number_Of_Experiment>XML_Number_Of_Experiments-1) Number_Of_Experiment=XML_Number_Of_Experiments-1;
+    if (Number_Of_Experiment>Data.getNumberOfExperiments()-1) Number_Of_Experiment=Data.getNumberOfExperiments()-1;
 
     if (Number_Of_Measuring<0) Number_Of_Measuring=0;
-    if (Number_Of_Measuring>XML_Number_Of_Measuring-1) Number_Of_Measuring=XML_Number_Of_Measuring-1;
+    if (Number_Of_Measuring>Data.getNumberOfMeasuring()-1) Number_Of_Measuring=Data.getNumberOfMeasuring()-1;
 
-    return MatrixOfEx[Number_Of_Experiment][Number_Of_Measuring];
+    return Data.getErrorEx(Number_Of_Experiment,Number_Of_Measuring);
 }
 //--------------------------------------------------------------------------
 
@@ -583,12 +586,12 @@ double HarrixClass_DataOfHarrixOptimizationTesting::getErrorEy(int Number_Of_Exp
      Значения ошибки Ey.
      */
     if (Number_Of_Experiment<0) Number_Of_Experiment=0;
-    if (Number_Of_Experiment>XML_Number_Of_Experiments-1) Number_Of_Experiment=XML_Number_Of_Experiments-1;
+    if (Number_Of_Experiment>Data.getNumberOfExperiments()-1) Number_Of_Experiment=Data.getNumberOfExperiments()-1;
 
     if (Number_Of_Measuring<0) Number_Of_Measuring=0;
-    if (Number_Of_Measuring>XML_Number_Of_Measuring-1) Number_Of_Measuring=XML_Number_Of_Measuring-1;
+    if (Number_Of_Measuring>Data.getNumberOfMeasuring()-1) Number_Of_Measuring=Data.getNumberOfMeasuring()-1;
 
-    return MatrixOfEy[Number_Of_Experiment][Number_Of_Measuring];
+    return Data.getErrorEy(Number_Of_Experiment,Number_Of_Measuring);
 }
 //--------------------------------------------------------------------------
 
@@ -603,12 +606,12 @@ double HarrixClass_DataOfHarrixOptimizationTesting::getErrorR(int Number_Of_Expe
      Значения надежности R.
      */
     if (Number_Of_Experiment<0) Number_Of_Experiment=0;
-    if (Number_Of_Experiment>XML_Number_Of_Experiments-1) Number_Of_Experiment=XML_Number_Of_Experiments-1;
+    if (Number_Of_Experiment>Data.getNumberOfExperiments()-1) Number_Of_Experiment=Data.getNumberOfExperiments()-1;
 
     if (Number_Of_Measuring<0) Number_Of_Measuring=0;
-    if (Number_Of_Measuring>XML_Number_Of_Measuring-1) Number_Of_Measuring=XML_Number_Of_Measuring-1;
+    if (Number_Of_Measuring>Data.getNumberOfMeasuring()-1) Number_Of_Measuring=Data.getNumberOfMeasuring()-1;
 
-    return MatrixOfR[Number_Of_Experiment][Number_Of_Measuring];
+    return Data.getErrorR(Number_Of_Experiment,Number_Of_Measuring);
 }
 //--------------------------------------------------------------------------
 
@@ -622,7 +625,7 @@ double HarrixClass_DataOfHarrixOptimizationTesting::getMeanEx(int Number_Of_Expe
      Значения среднего значения Ex.
      */
     if (Number_Of_Experiment<0) Number_Of_Experiment=0;
-    if (Number_Of_Experiment>XML_Number_Of_Experiments-1) Number_Of_Experiment=XML_Number_Of_Experiments-1;
+    if (Number_Of_Experiment>Data.getNumberOfExperiments()-1) Number_Of_Experiment=Data.getNumberOfExperiments()-1;
 
     return MeanOfEx[Number_Of_Experiment];
 }
@@ -638,7 +641,7 @@ double HarrixClass_DataOfHarrixOptimizationTesting::getMeanEy(int Number_Of_Expe
      Значения среднего значения Ey.
      */
     if (Number_Of_Experiment<0) Number_Of_Experiment=0;
-    if (Number_Of_Experiment>XML_Number_Of_Experiments-1) Number_Of_Experiment=XML_Number_Of_Experiments-1;
+    if (Number_Of_Experiment>Data.getNumberOfExperiments()-1) Number_Of_Experiment=Data.getNumberOfExperiments()-1;
 
     return MeanOfEy[Number_Of_Experiment];
 }
@@ -654,7 +657,7 @@ double HarrixClass_DataOfHarrixOptimizationTesting::getMeanR(int Number_Of_Exper
      Значения среднего значения Ey.
      */
     if (Number_Of_Experiment<0) Number_Of_Experiment=0;
-    if (Number_Of_Experiment>XML_Number_Of_Experiments-1) Number_Of_Experiment=XML_Number_Of_Experiments-1;
+    if (Number_Of_Experiment>Data.getNumberOfExperiments()-1) Number_Of_Experiment=Data.getNumberOfExperiments()-1;
 
     return MeanOfR[Number_Of_Experiment];
 }
@@ -670,7 +673,7 @@ double HarrixClass_DataOfHarrixOptimizationTesting::getVarianceOfEx(int Number_O
      Значения дисперсии значения Ex.
      */
     if (Number_Of_Experiment<0) Number_Of_Experiment=0;
-    if (Number_Of_Experiment>XML_Number_Of_Experiments-1) Number_Of_Experiment=XML_Number_Of_Experiments-1;
+    if (Number_Of_Experiment>Data.getNumberOfExperiments()-1) Number_Of_Experiment=Data.getNumberOfExperiments()-1;
 
     return VarianceOfEx[Number_Of_Experiment];
 }
@@ -686,7 +689,7 @@ double HarrixClass_DataOfHarrixOptimizationTesting::getVarianceOfEy(int Number_O
      Значения дисперсии значения Ey.
      */
     if (Number_Of_Experiment<0) Number_Of_Experiment=0;
-    if (Number_Of_Experiment>XML_Number_Of_Experiments-1) Number_Of_Experiment=XML_Number_Of_Experiments-1;
+    if (Number_Of_Experiment>Data.getNumberOfExperiments()-1) Number_Of_Experiment=Data.getNumberOfExperiments()-1;
 
     return VarianceOfEy[Number_Of_Experiment];
 }
@@ -702,7 +705,7 @@ double HarrixClass_DataOfHarrixOptimizationTesting::getVarianceOfR(int Number_Of
      Значения дисперсии значения надежности R.
      */
     if (Number_Of_Experiment<0) Number_Of_Experiment=0;
-    if (Number_Of_Experiment>XML_Number_Of_Experiments-1) Number_Of_Experiment=XML_Number_Of_Experiments-1;
+    if (Number_Of_Experiment>Data.getNumberOfExperiments()-1) Number_Of_Experiment=Data.getNumberOfExperiments()-1;
 
     return VarianceOfR[Number_Of_Experiment];
 }
@@ -713,7 +716,7 @@ bool HarrixClass_DataOfHarrixOptimizationTesting::getSuccessReading()
     /*
     Получение значения переменной SuccessReading о удачности или неудачности прочитывания файла.
      */
-    return SuccessReading;
+    return Data.getSuccessReading();
 }
 //--------------------------------------------------------------------------
 
@@ -728,10 +731,10 @@ int HarrixClass_DataOfHarrixOptimizationTesting::getParameter(int Number_Of_Expe
      Значения параметра в виде числа (соответствие находим в ListOfParameterOptions).
      */
     if (Number_Of_Experiment<0) Number_Of_Experiment=0;
-    if (Number_Of_Experiment>XML_Number_Of_Experiments-1) Number_Of_Experiment=XML_Number_Of_Experiments-1;
+    if (Number_Of_Experiment>Data.getNumberOfExperiments()-1) Number_Of_Experiment=Data.getNumberOfExperiments()-1;
 
     if (Number_Of_Parameter<0) Number_Of_Parameter=0;
-    if (Number_Of_Parameter>XML_Number_Of_Parameters-1) Number_Of_Parameter=XML_Number_Of_Parameters-1;
+    if (Number_Of_Parameter>Data.getNumberOfParameters()-1) Number_Of_Parameter=Data.getNumberOfParameters()-1;
 
     return MatrixOfParameters[Number_Of_Experiment][Number_Of_Parameter];
 }
@@ -748,10 +751,10 @@ QString HarrixClass_DataOfHarrixOptimizationTesting::getNameParameter(int Number
      Значения параметра в виде наименования.
      */
     if (Number_Of_Experiment<0) Number_Of_Experiment=0;
-    if (Number_Of_Experiment>XML_Number_Of_Experiments-1) Number_Of_Experiment=XML_Number_Of_Experiments-1;
+    if (Number_Of_Experiment>Data.getNumberOfExperiments()-1) Number_Of_Experiment=Data.getNumberOfExperiments()-1;
 
     if (Number_Of_Parameter<0) Number_Of_Parameter=0;
-    if (Number_Of_Parameter>XML_Number_Of_Parameters-1) Number_Of_Parameter=XML_Number_Of_Parameters-1;
+    if (Number_Of_Parameter>Data.getNumberOfParameters()-1) Number_Of_Parameter=Data.getNumberOfParameters()-1;
 
     return MatrixOfNameParameters[Number_Of_Experiment][Number_Of_Parameter];
 }
@@ -767,7 +770,7 @@ QString HarrixClass_DataOfHarrixOptimizationTesting::getNameOption(int Number_Of
      Значения параметра в виде наименования.
      */
     if (Number_Of_Parameter<0) Number_Of_Parameter=0;
-    if (Number_Of_Parameter>XML_Number_Of_Parameters-1) Number_Of_Parameter=XML_Number_Of_Parameters-1;
+    if (Number_Of_Parameter>Data.getNumberOfParameters()-1) Number_Of_Parameter=Data.getNumberOfParameters()-1;
 
     return NamesOfParameters[Number_Of_Parameter];
 }
@@ -800,7 +803,7 @@ QString HarrixClass_DataOfHarrixOptimizationTesting::getFormat()
      Если документ без ошибок в описании формата, то всегда должно возвращаться "Harrix Optimization Testing".
      */
 
-    return XML_Format;
+    return Data.getFormat();
 }
 //--------------------------------------------------------------------------
 
@@ -814,7 +817,7 @@ QString HarrixClass_DataOfHarrixOptimizationTesting::getVersion()
      Если документ без ошибок в описании формата, то всегда должно возвращаться "1.0".
      */
 
-    return XML_Version;
+    return Data.getVersion();
 }
 //--------------------------------------------------------------------------
 
@@ -828,7 +831,7 @@ QString HarrixClass_DataOfHarrixOptimizationTesting::getLink()
      Если документ без ошибок в описании формата, то всегда должно возвращаться "https://github.com/Harrix/HarrixFileFormats".
      */
 
-    return XML_Link;
+    return Data.getLink();
 }
 //--------------------------------------------------------------------------
 
@@ -848,7 +851,7 @@ void HarrixClass_DataOfHarrixOptimizationTesting::makingLatexTableR()
     LatexTableR+="\\href{https://github.com/Harrix/HarrixTestFunctions}{https://github.com/Harrix/HarrixTestFunctions}.\n";
     LatexTableR+="\\begin{center}\n";
     LatexTableR+="{\\renewcommand{\\arraystretch}{1.5}\n";
-    //LatexTableR+="\\label{"+Un+":"+HQt_StringToLabelForLaTeX(XML_Name_Algorithm)+":TableR}\n";
+    //LatexTableR+="\\label{"+Un+":"+HQt_StringToLabelForLaTeX(Data.getNameAlgorithm())+":TableR}\n";
     LatexTableR+="\\footnotesize\\begin{longtable}[H]{|m{0.03\\linewidth}|m{2.1in}|m{0.2\\linewidth}|m{0.17\\linewidth}|m{0.17\\linewidth}|}\n";
     LatexTableR+="\\caption{Значения надёжности $R$ "+NameForHead+"}\n";
     LatexTableR+="\\tabularnewline\\hline\n";
@@ -856,7 +859,7 @@ void HarrixClass_DataOfHarrixOptimizationTesting::makingLatexTableR()
     LatexTableR+="\\multicolumn{5}{|r|}{{Продолжение на следующей странице...}} \\\\ \\hline \\endfoot\n";
     LatexTableR+="\\endlastfoot\n";
 
-    for (int i=0;i<XML_Number_Of_Experiments;i++)
+    for (int i=0;i<Data.getNumberOfExperiments();i++)
     {
         Cell1.clear();
         Cell2.clear();
@@ -870,7 +873,7 @@ void HarrixClass_DataOfHarrixOptimizationTesting::makingLatexTableR()
         //получим значения параметров алгоритма
         Cell2="\\specialcelltwoin{";
 
-        for (int j=0;j<XML_Number_Of_Parameters;j++)
+        for (int j=0;j<Data.getNumberOfParameters();j++)
         {
             if (MatrixOfNameParameters[i][j]=="NULL")
                 Cell2+="Отсутствует \\\\ ";
@@ -890,9 +893,9 @@ void HarrixClass_DataOfHarrixOptimizationTesting::makingLatexTableR()
         //получим значения критерий
         Cell3="\\specialcell{";
 
-        for (int j=0;j<XML_Number_Of_Measuring;j++)
+        for (int j=0;j<Data.getNumberOfMeasuring();j++)
         {
-            Cell3+=QString::number(MatrixOfR[i][j])+" \\\\ ";
+            Cell3+=QString::number(Data.getErrorR(i,j))+" \\\\ ";
         }
 
         Cell3+="}";
@@ -935,7 +938,7 @@ void HarrixClass_DataOfHarrixOptimizationTesting::makingLatexTableEy()
     LatexTableEy+="\\href{https://github.com/Harrix/HarrixTestFunctions}{https://github.com/Harrix/HarrixTestFunctions}.\n";
     LatexTableEy+="\\begin{center}\n";
     LatexTableEy+="{\\renewcommand{\\arraystretch}{1.5}\n";
-    //LatexTableEy+="\\label{"+Un+":"+HQt_StringToLabelForLaTeX(XML_Name_Algorithm)+":TableEy}\n";
+    //LatexTableEy+="\\label{"+Un+":"+HQt_StringToLabelForLaTeX(Data.getNameAlgorithm())+":TableEy}\n";
     LatexTableEy+="\\footnotesize\\begin{longtable}[H]{|m{0.03\\linewidth}|m{2.1in}|m{0.2\\linewidth}|m{0.17\\linewidth}|m{0.17\\linewidth}|}\n";
     LatexTableEy+="\\caption{Значения ошибки по значениям целевой функции $E_y$ "+NameForHead+"}\n";
     LatexTableEy+="\\tabularnewline\\hline\n";
@@ -943,7 +946,7 @@ void HarrixClass_DataOfHarrixOptimizationTesting::makingLatexTableEy()
     LatexTableEy+="\\multicolumn{5}{|r|}{{Продолжение на следующей странице...}} \\\\ \\hline \\endfoot\n";
     LatexTableEy+="\\endlastfoot\n";
 
-    for (int i=0;i<XML_Number_Of_Experiments;i++)
+    for (int i=0;i<Data.getNumberOfExperiments();i++)
     {
         Cell1.clear();
         Cell2.clear();
@@ -957,7 +960,7 @@ void HarrixClass_DataOfHarrixOptimizationTesting::makingLatexTableEy()
         //получим значения параметров алгоритма
         Cell2="\\specialcelltwoin{";
 
-        for (int j=0;j<XML_Number_Of_Parameters;j++)
+        for (int j=0;j<Data.getNumberOfParameters();j++)
         {
             if (MatrixOfNameParameters[i][j]=="NULL")
                 Cell2+="Отсутствует \\\\ ";
@@ -977,9 +980,9 @@ void HarrixClass_DataOfHarrixOptimizationTesting::makingLatexTableEy()
         //получим значения критерий
         Cell3="\\specialcell{";
 
-        for (int j=0;j<XML_Number_Of_Measuring;j++)
+        for (int j=0;j<Data.getNumberOfMeasuring();j++)
         {
-            Cell3+=QString::number(MatrixOfEy[i][j])+" \\\\ ";
+            Cell3+=QString::number(Data.getErrorEy(i,j))+" \\\\ ";
         }
 
         Cell3+="}";
@@ -1021,7 +1024,7 @@ void HarrixClass_DataOfHarrixOptimizationTesting::makingLatexTableEx()
     LatexTableEx+="\\href{https://github.com/Harrix/HarrixTestFunctions}{https://github.com/Harrix/HarrixTestFunctions}.\n";
     LatexTableEx+="\\begin{center}\n";
     LatexTableEx+="{\\renewcommand{\\arraystretch}{1.5}\n";
-    //LatexTableEx+="\\label{"+Un+":"+HQt_StringToLabelForLaTeX(XML_Name_Algorithm)+":TableEx}\n";
+    //LatexTableEx+="\\label{"+Un+":"+HQt_StringToLabelForLaTeX(Data.getNameAlgorithm())+":TableEx}\n";
     LatexTableEx+="\\footnotesize\\begin{longtable}[H]{|m{0.03\\linewidth}|m{2.1in}|m{0.2\\linewidth}|m{0.17\\linewidth}|m{0.17\\linewidth}|}\n";
     LatexTableEx+="\\caption{Значения ошибки по выходным параметрам $E_x$ "+NameForHead+"}\n";
     LatexTableEx+="\\tabularnewline\\hline\n";
@@ -1029,7 +1032,7 @@ void HarrixClass_DataOfHarrixOptimizationTesting::makingLatexTableEx()
     LatexTableEx+="\\multicolumn{5}{|r|}{{Продолжение на следующей странице...}} \\\\ \\hline \\endfoot\n";
     LatexTableEx+="\\endlastfoot\n";
 
-    for (int i=0;i<XML_Number_Of_Experiments;i++)
+    for (int i=0;i<Data.getNumberOfExperiments();i++)
     {
         Cell1.clear();
         Cell2.clear();
@@ -1043,7 +1046,7 @@ void HarrixClass_DataOfHarrixOptimizationTesting::makingLatexTableEx()
         //получим значения параметров алгоритма
         Cell2="\\specialcelltwoin{";
 
-        for (int j=0;j<XML_Number_Of_Parameters;j++)
+        for (int j=0;j<Data.getNumberOfParameters();j++)
         {
             if (MatrixOfNameParameters[i][j]=="NULL")
                 Cell2+="Отсутствует \\\\ ";
@@ -1063,9 +1066,9 @@ void HarrixClass_DataOfHarrixOptimizationTesting::makingLatexTableEx()
         //получим значения критерий
         Cell3="\\specialcell{";
 
-        for (int j=0;j<XML_Number_Of_Measuring;j++)
+        for (int j=0;j<Data.getNumberOfMeasuring();j++)
         {
-            Cell3+=QString::number(MatrixOfEx[i][j])+" \\\\ ";
+            Cell3+=QString::number(Data.getErrorEx(i,j))+" \\\\ ";
         }
 
         Cell3+="}";
@@ -1100,36 +1103,36 @@ void HarrixClass_DataOfHarrixOptimizationTesting::makingLatexInfo()
     Возвращаемое значение:
      Отсутствует. Значение возвращается в переменную LatexTableEx, которую можно вызвать getLatexInfo
      */
-    LatexInfo+="\\section{Исследование эффективности "+NameForHead+"}\\label{"+Un+":"+HQt_StringToLabelForLaTeX(XML_Name_Algorithm)+":Name_Algorithm}\n\n";
-    LatexInfo+="В данной работе, автором проведено исследование алгоритма <<"+HQt_StringForLaTeX(XML_Full_Name_Algorithm)+">>. Ниже приведена информация об этом исследовании.\n\n";
+    LatexInfo+="\\section{Исследование эффективности "+NameForHead+"}\\label{"+Un+":"+HQt_StringToLabelForLaTeX(Data.getNameAlgorithm())+":Name_Algorithm}\n\n";
+    LatexInfo+="В данной работе, автором проведено исследование алгоритма <<"+HQt_StringForLaTeX(Data.getFullNameAlgorithm())+">>. Ниже приведена информация об этом исследовании.\n\n";
     LatexInfo+="\\subsection {Информация об исследовании}\n\n";
     LatexInfo+="\\begin{tabularwide}\n";
-    LatexInfo+="\\textbf{Автор исследования}: & "+HQt_StringForLaTeX(XML_Author)+". \\\\ \n";
-    if (XML_Email!="NULL")
-        LatexInfo+="\\textbf{Дата создания исследования}: & "+HQt_StringForLaTeX(XML_Date)+". \\\\ \n";
-    LatexInfo+="\\textbf{Дата создания исследования}: & "+HQt_StringForLaTeX(XML_Date)+". \\\\ \n";
-    LatexInfo+="\\textbf{Идентификатор алгоритма}: & "+HQt_ForcedWordWrap(HQt_StringForLaTeX(XML_Name_Algorithm))+". \\\\ \n";
-    LatexInfo+="\\textbf{Полное название алгоритма}: & "+HQt_StringForLaTeX(XML_Full_Name_Algorithm)+". \\\\ \n";
-    LatexInfo+="\\textbf{Идентификатор исследуемой тестовой функции}: & "+HQt_ForcedWordWrap(HQt_StringForLaTeX(XML_Name_Test_Function))+". \\\\ \n";
-    LatexInfo+="\\textbf{Полное название тестовой функции}: & "+HQt_StringForLaTeX(XML_Full_Name_Test_Function)+". \\\\ \n";
+    LatexInfo+="\\textbf{Автор исследования}: & "+HQt_StringForLaTeX(Data.getAuthor())+". \\\\ \n";
+    if (Data.getEmail()!="NULL")
+        LatexInfo+="\\textbf{Дата создания исследования}: & "+HQt_StringForLaTeX(Data.getDate())+". \\\\ \n";
+    LatexInfo+="\\textbf{Дата создания исследования}: & "+HQt_StringForLaTeX(Data.getDate())+". \\\\ \n";
+    LatexInfo+="\\textbf{Идентификатор алгоритма}: & "+HQt_ForcedWordWrap(HQt_StringForLaTeX(Data.getNameAlgorithm()))+". \\\\ \n";
+    LatexInfo+="\\textbf{Полное название алгоритма}: & "+HQt_StringForLaTeX(Data.getFullNameAlgorithm())+". \\\\ \n";
+    LatexInfo+="\\textbf{Идентификатор исследуемой тестовой функции}: & "+HQt_ForcedWordWrap(HQt_StringForLaTeX(Data.getNameTestFunction()))+". \\\\ \n";
+    LatexInfo+="\\textbf{Полное название тестовой функции}: & "+HQt_StringForLaTeX(Data.getFullNameTestFunction())+". \\\\ \n";
     LatexInfo+="\\end{tabularwide}\n\n";
     LatexInfo+="\\begin{tabularwide08}\n";
-    LatexInfo+="\\textbf{Размерность тестовой функции:} & "+QString::number(XML_DimensionTestFunction)+" \\\\ \n";
-    LatexInfo+="\\textbf{Количество измерений для каждого варианта настроек алгоритма}: & "+QString::number(XML_Number_Of_Measuring)+" \\\\ \n";
-    LatexInfo+="\\textbf{Количество запусков алгоритма в каждом из экспериментов}: & "+QString::number(XML_Number_Of_Runs)+" \\\\ \n";
-    LatexInfo+="\\textbf{Максимальное допустимое число вычислений целевой функции}: & "+QString::number(XML_Max_Count_Of_Fitness)+" \\\\ \n";
+    LatexInfo+="\\textbf{Размерность тестовой функции:} & "+QString::number(Data.getDimensionTestFunction())+" \\\\ \n";
+    LatexInfo+="\\textbf{Количество измерений для каждого варианта настроек алгоритма}: & "+QString::number(Data.getNumberOfMeasuring())+" \\\\ \n";
+    LatexInfo+="\\textbf{Количество запусков алгоритма в каждом из экспериментов}: & "+QString::number(Data.getNumberOfRuns())+" \\\\ \n";
+    LatexInfo+="\\textbf{Максимальное допустимое число вычислений целевой функции}: & "+QString::number(Data.getMaxCountOfFitness())+" \\\\ \n";
 
-    if ((XML_Number_Of_Parameters==1)&&(NamesOfParameters.at(0)=="NULL"))
+    if ((Data.getNumberOfParameters()==1)&&(NamesOfParameters.at(0)=="NULL"))
     {
         LatexInfo+="\\textbf{Количество проверяемых параметров алгоритма оптимизации}: & Отсутствуют \\\\ \n";
     }
     else
     {
-        LatexInfo+="\\textbf{Количество проверяемых параметров алгоритма оптимизации}: & "+QString::number(XML_Number_Of_Parameters)+" \\\\ \n";
+        LatexInfo+="\\textbf{Количество проверяемых параметров алгоритма оптимизации}: & "+QString::number(Data.getNumberOfParameters())+" \\\\ \n";
     }
 
-    LatexInfo+="\\textbf{Количество комбинаций вариантов настроек}: & "+QString::number(XML_Number_Of_Experiments)+" \\\\ \n";
-    qint64 Number=XML_Number_Of_Experiments*XML_Max_Count_Of_Fitness*XML_Number_Of_Measuring*XML_Number_Of_Runs;
+    LatexInfo+="\\textbf{Количество комбинаций вариантов настроек}: & "+QString::number(Data.getNumberOfExperiments())+" \\\\ \n";
+    qint64 Number=Data.getNumberOfExperiments()*Data.getMaxCountOfFitness()*Data.getNumberOfMeasuring()*Data.getNumberOfRuns();
     LatexInfo+="\\textbf{Общий объем максимального числа вычислений целевой функции во всем исследовании}: & "+QString::number(Number)+" \\\\ \n";
     LatexInfo+="\\end{tabularwide08}\n\n";
     LatexInfo+="Информацию о исследуемой функции можно найти по адресу:\n\n";
@@ -1149,17 +1152,17 @@ void HarrixClass_DataOfHarrixOptimizationTesting::makingLatexAboutParameters()
      Отсутствует. Значение возвращается в переменную LatexTableEx, которую можно вызвать getLatexAboutParameters
      */
     LatexAboutParameters+="\\subsection {Параметры алгоритма оптимизации}\n\n";
-    if ((XML_Number_Of_Parameters==1)&&(NamesOfParameters.at(0)=="NULL"))
+    if ((Data.getNumberOfParameters()==1)&&(NamesOfParameters.at(0)=="NULL"))
     {
         LatexAboutParameters+="В данном исследуемом алгоритме оптимизации нет настраеваемых параметров. Поэтому в таблице ниже приведены даные только одного эксперимента.";
     }
     else
     {
         LatexAboutParameters+="Исследуемый алгоритм оптимизации проверялся по эффективности по некоторому конечному множеству возможных настроек алгоритма. ";
-        LatexAboutParameters+="Как написано выше, всего возможных параметров алгоритма было "+QString::number(XML_Number_Of_Parameters)+" штук. ";
-        LatexAboutParameters+="В формуле \\ref{"+Un+":"+HQt_StringToLabelForLaTeX(XML_Name_Algorithm)+":Parameters} показано множество проверяемых параметров алгоритма.\n\n";
+        LatexAboutParameters+="Как написано выше, всего возможных параметров алгоритма было "+QString::number(Data.getNumberOfParameters())+" штук. ";
+        LatexAboutParameters+="В формуле \\ref{"+Un+":"+HQt_StringToLabelForLaTeX(Data.getNameAlgorithm())+":Parameters} показано множество проверяемых параметров алгоритма.\n\n";
         LatexAboutParameters+="\\begin{equation}\n";
-        LatexAboutParameters+="\\label{"+Un+":"+HQt_StringToLabelForLaTeX(XML_Name_Algorithm)+":Parameters}\n";
+        LatexAboutParameters+="\\label{"+Un+":"+HQt_StringToLabelForLaTeX(Data.getNameAlgorithm())+":Parameters}\n";
         LatexAboutParameters+="Parameters = \\left( \\begin{array}{c} ";
         if (HQt_MaxCountOfQStringList(NamesOfParameters)>57)
             Parbox="\\parbox{\\dimexpr \\linewidth-3in}";
@@ -1174,10 +1177,10 @@ void HarrixClass_DataOfHarrixOptimizationTesting::makingLatexAboutParameters()
         LatexAboutParameters+="\\end{equation}\n\n";
         LatexAboutParameters+="Теперь рассмотрим, какие значения может принимать каждый из параметров.";
 
-        for (int j=0;j<XML_Number_Of_Parameters;j++)
+        for (int j=0;j<Data.getNumberOfParameters();j++)
         {
             LatexAboutParameters+="\\begin{equation}\n";
-            LatexAboutParameters+="\\label{"+Un+":"+HQt_StringToLabelForLaTeX(XML_Name_Algorithm)+":parameter_"+QString::number(j+1)+"}\n";
+            LatexAboutParameters+="\\label{"+Un+":"+HQt_StringToLabelForLaTeX(Data.getNameAlgorithm())+":parameter_"+QString::number(j+1)+"}\n";
             LatexAboutParameters+="Parameters^{"+QString::number(j+1)+"} \\in \\left\\lbrace  \\begin{array}{c} ";
             if (HQt_MaxCountOfQStringList(ListOfParameterOptions[j])>57)
                 Parbox="\\parbox{\\dimexpr \\linewidth-3in}";
@@ -1205,33 +1208,51 @@ void HarrixClass_DataOfHarrixOptimizationTesting::makingHtmlReport()
      */
     HtmlReport+=HQt_ShowHr();
     HtmlReport+=HQt_ShowH1("Данные о файле");
-    HtmlReport+=HQt_ShowSimpleText("<b>Автор документа:</b> "+XML_Author+".");
-    HtmlReport+=HQt_ShowSimpleText("<b>Дата создания документа:</b> "+XML_Date+".");
+    HtmlReport+=HQt_ShowSimpleText("<b>Автор документа:</b> "+Data.getAuthor()+".");
+    HtmlReport+=HQt_ShowSimpleText("<b>Дата создания документа:</b> "+Data.getDate()+".");
     HtmlReport+=HQt_ShowHr();
     HtmlReport+=HQt_ShowH1("Данные о собранных данных");
-    HtmlReport+=HQt_ShowSimpleText("<b>Обозначение алгоритма:</b> "+XML_Name_Algorithm+".");
-    HtmlReport+=HQt_ShowSimpleText("<b>Полное название алгоритма:</b> "+XML_Full_Name_Algorithm+".");
-    HtmlReport+=HQt_ShowSimpleText("<b>Название тестовой функции:</b> "+XML_Name_Test_Function+".");
-    HtmlReport+=HQt_ShowSimpleText("<b>Полное название тестовой функции:</b> "+XML_Full_Name_Test_Function+".");
-    HtmlReport+=HQt_ShowSimpleText("<b>Размерность задачи оптимизации:</b> "+QString::number(XML_DimensionTestFunction)+".");
-    HtmlReport+=HQt_ShowSimpleText("<b>Количество измерений для каждого варианта настроек алгоритма:</b> "+QString::number(XML_Number_Of_Measuring)+".");
-    HtmlReport+=HQt_ShowSimpleText("<b>Количество запусков алгоритма в каждом из экспериментов:</b> "+QString::number(XML_Number_Of_Runs)+".");
-    HtmlReport+=HQt_ShowSimpleText("<b>Максимальное допустимое число вычислений целевой функции:</b> "+QString::number(XML_Max_Count_Of_Fitness)+".");
+    HtmlReport+=HQt_ShowSimpleText("<b>Обозначение алгоритма:</b> "+Data.getNameAlgorithm()+".");
+    HtmlReport+=HQt_ShowSimpleText("<b>Полное название алгоритма:</b> "+Data.getFullNameAlgorithm()+".");
+    HtmlReport+=HQt_ShowSimpleText("<b>Название тестовой функции:</b> "+Data.getNameTestFunction()+".");
+    HtmlReport+=HQt_ShowSimpleText("<b>Полное название тестовой функции:</b> "+Data.getFullNameTestFunction()+".");
+    HtmlReport+=HQt_ShowSimpleText("<b>Размерность задачи оптимизации:</b> "+QString::number(Data.getDimensionTestFunction())+".");
+    HtmlReport+=HQt_ShowSimpleText("<b>Количество измерений для каждого варианта настроек алгоритма:</b> "+QString::number(Data.getNumberOfMeasuring())+".");
+    HtmlReport+=HQt_ShowSimpleText("<b>Количество запусков алгоритма в каждом из экспериментов:</b> "+QString::number(Data.getNumberOfRuns())+".");
+    HtmlReport+=HQt_ShowSimpleText("<b>Максимальное допустимое число вычислений целевой функции:</b> "+QString::number(Data.getMaxCountOfFitness())+".");
     HtmlReport+=HQt_ShowSimpleText("<b>Количество проверяемых параметров алгоритма оптимизации:</b> "+QString::number(getNumberOfParameters())+".");
-    HtmlReport+=HQt_ShowSimpleText("<b>Количество комбинаций вариантов настроек:</b> "+QString::number(XML_Number_Of_Experiments)+".");
+    HtmlReport+=HQt_ShowSimpleText("<b>Количество комбинаций вариантов настроек:</b> "+QString::number(Data.getNumberOfExperiments())+".");
     HtmlReport+=HQt_ShowHr();
     HtmlReport+=HQt_ShowH1("Собранные данные");
-    HtmlReport+=THQt_ShowMatrix(MatrixOfEx,XML_Number_Of_Experiments,XML_Number_Of_Measuring,"Ошибки по входным параметрам","Ex");
-    HtmlReport+=THQt_ShowMatrix(MatrixOfEy,XML_Number_Of_Experiments,XML_Number_Of_Measuring,"Ошибки по значениям целевой функции","Ey");
-    HtmlReport+=THQt_ShowMatrix(MatrixOfR, XML_Number_Of_Experiments,XML_Number_Of_Measuring,"Надежности","R");
+
+    double **MOfEx;
+    MOfEx=new double*[Data.getNumberOfExperiments()];
+    for (int i=0;i<Data.getNumberOfExperiments();i++) MOfEx[i]=new double[Data.getNumberOfMeasuring()];
+    HtmlReport+=THQt_ShowMatrix(MOfEx,Data.getNumberOfExperiments(),Data.getNumberOfMeasuring(),"Ошибки по входным параметрам","Ex");
+    for (int i=0;i<Data.getNumberOfExperiments();i++) delete [] MOfEx[i];
+    delete [] MOfEx;
+
+    double **MOfEy;
+    MOfEy=new double*[Data.getNumberOfExperiments()];
+    for (int i=0;i<Data.getNumberOfExperiments();i++) MOfEy[i]=new double[Data.getNumberOfMeasuring()];
+    HtmlReport+=THQt_ShowMatrix(MOfEy,Data.getNumberOfExperiments(),Data.getNumberOfMeasuring(),"Ошибки по значениям целевой функции","Ey");
+    for (int i=0;i<Data.getNumberOfExperiments();i++) delete [] MOfEy[i];
+    delete [] MOfEy;
+
+    double **MOfR;
+    MOfR=new double*[Data.getNumberOfExperiments()];
+    for (int i=0;i<Data.getNumberOfExperiments();i++) MOfR[i]=new double[Data.getNumberOfMeasuring()];
+    HtmlReport+=THQt_ShowMatrix(MOfR,Data.getNumberOfExperiments(),Data.getNumberOfMeasuring(),"Надежности","R");
+    for (int i=0;i<Data.getNumberOfExperiments();i++) delete [] MOfR[i];
+    delete [] MOfR;
+
     if (!Zero_Number_Of_Parameters)
     {
         HtmlReport+=THQt_ShowVector(NamesOfParameters,"Вектора названий параметров алгоримта","NamesOfParameters");
-        for (int j=0;j<XML_Number_Of_Parameters;j++)
+        for (int j=0;j<Data.getNumberOfParameters();j++)
             HtmlReport+=THQt_ShowVector(ListOfParameterOptions[j],(NamesOfParameters).at(j) + "(возможные принимаемые значения)","ParameterOptions");
-        HtmlReport+=THQt_ShowMatrix(MatrixOfParameters,XML_Number_Of_Experiments,XML_Number_Of_Parameters,"Матрица параметров по номерам","MatrixOfParameters");
+        HtmlReport+=THQt_ShowMatrix(MatrixOfParameters,Data.getNumberOfExperiments(),Data.getNumberOfParameters(),"Матрица параметров по номерам","MatrixOfParameters");
     }
-    //HtmlReport+=THQt_ShowMatrix(MatrixOfNameParameters,XML_Number_Of_Experiments,"Матрица параметров по именам","MatrixOfParameters");
 }
 //--------------------------------------------------------------------------
 
@@ -1255,12 +1276,12 @@ void HarrixClass_DataOfHarrixOptimizationTesting::readXmlLeafTag()
         TextOfElement=Rxml.readElementText();
         if (NameOfElement=="number_of_parameters")
         {
-            XML_Number_Of_Parameters=TextOfElement.toInt();
-            if (XML_Number_Of_Parameters==0)
+            Data.setNumberOfParameters(TextOfElement.toInt());
+            if (Data.getNumberOfParameters()==0)
             {
                 //чтобы  в дальнейших вычислениях не было путоницы, но всё равно считаем,
                 //что число параметров нулю
-                XML_Number_Of_Parameters=1;
+                Data.setNumberOfParameters(1);
                 Zero_Number_Of_Parameters=true;
             }
 
@@ -1268,92 +1289,92 @@ void HarrixClass_DataOfHarrixOptimizationTesting::readXmlLeafTag()
         }
         if (NameOfElement=="number_of_experiments")
         {
-            XML_Number_Of_Experiments=TextOfElement.toInt();
+            Data.setNumberOfExperiments(TextOfElement.toInt());
             FindTag=true;
         }
         if (NameOfElement=="max_count_of_fitness")
         {
-            XML_Max_Count_Of_Fitness=TextOfElement.toInt();
+            Data.setMaxCountOfFitness(TextOfElement.toInt());
             FindTag=true;
         }
         if (NameOfElement=="number_of_runs")
         {
-            XML_Number_Of_Runs=TextOfElement.toInt();
+            Data.setNumberOfRuns(TextOfElement.toInt());
             FindTag=true;
         }
         if (NameOfElement=="number_of_measuring")
         {
-            XML_Number_Of_Measuring=TextOfElement.toInt();
+            Data.setNumberOfMeasuring(TextOfElement.toInt());
             FindTag=true;
         }
         if (NameOfElement=="dimension_test_function")
         {
-            XML_DimensionTestFunction=TextOfElement.toInt();
+            Data.setDimensionTestFunction(TextOfElement.toInt());
             FindTag=true;
         }
         if (NameOfElement=="full_name_test_function")
         {
-            XML_Full_Name_Test_Function=TextOfElement;
+            Data.setFullNameTestFunction(TextOfElement);
             FindTag=true;
         }
         if (NameOfElement=="name_test_function")
         {
-            XML_Name_Test_Function=TextOfElement;
+            Data.setNameTestFunction(TextOfElement);
             FindTag=true;
         }
         if (NameOfElement=="full_name_algorithm")
         {
-            XML_Full_Name_Algorithm=TextOfElement;
+            Data.setFullNameAlgorithm(TextOfElement);
             FindTag=true;
         }
         if (NameOfElement=="name_algorithm")
         {
-            XML_Name_Algorithm=TextOfElement;
+            Data.setNameAlgorithm(TextOfElement);
             FindTag=true;
         }
         if (NameOfElement=="date")
         {
-            XML_Date=TextOfElement;
+            Data.setDate(TextOfElement);
             FindTag=true;
         }
         if (NameOfElement=="author")
         {
-            XML_Author=TextOfElement;
+            Data.setAuthor(TextOfElement);
             FindTag=true;
         }
         if (NameOfElement=="email")
         {
-            XML_Email=TextOfElement;
+            Data.setEmail(TextOfElement);
             FindTag=true;
         }
         if (NameOfElement=="link_test_function")
         {
-            XML_Link_Test_Function=TextOfElement;
+            Data.setLinkTestFunction(TextOfElement);
             FindTag=true;
         }
         if (NameOfElement=="link_algorithm")
         {
-            XML_Link_Algorithm=TextOfElement;
+            Data.setLinkAlgorithm(TextOfElement);
             FindTag=true;
         }
         if (NameOfElement=="format")
         {
-            XML_Format=TextOfElement;
+            Data.setFormat(TextOfElement);
             FindTag=true;
         }
         if (NameOfElement=="version")
         {
-            XML_Version=TextOfElement;
+            Data.setVersion(TextOfElement);
             FindTag=true;
         }
         if (NameOfElement=="link")
         {
-            XML_Link=TextOfElement;
+            Data.setLink(TextOfElement);
             FindTag=true;
         }
         if (NameOfElement=="all_combinations")
         {
-            XML_All_Combinations=TextOfElement.toInt();
+            Data.setCheckAllCombinations(TextOfElement.toInt());
             FindTag=true;
         }
     }
@@ -1383,167 +1404,167 @@ void HarrixClass_DataOfHarrixOptimizationTesting::checkXmlLeafTags()
     Возвращаемое значение:
      Отсутствует.
      */
-    if (XML_Format!="Harrix Optimization Testing")
+    if (Data.getFormat()!="Harrix Optimization Testing")
     {
         HtmlMessageOfError+=HQt_ShowAlert("Неправильный формат данных. Это не Harrix Optimization Testing.");
         Error=true;
     }
-    if (XML_Link!="https://github.com/Harrix/HarrixFileFormats")
+    if (Data.getLink()!="https://github.com/Harrix/HarrixFileFormats")
     {
         HtmlMessageOfError+=HQt_ShowAlert("Неправильный сайт в описании. Должен быть https://github.com/Harrix/HarrixFileFormats.");
         Error=true;
     }
-    if (XML_Version!="1.0")
+    if (Data.getVersion()!="1.0")
     {
         HtmlMessageOfError+=HQt_ShowAlert("Неправильная версия формата Harrix Optimization Testing. Данная функция обрабатывает версию 1.0.");
         Error=true;
     }
-    if (XML_Number_Of_Parameters==-1)
+    if (Data.getNumberOfParameters()==-1)
     {
         HtmlMessageOfError+=HQt_ShowAlert("Нет тэга number_of_parameters.");
         Error=true;
     }
-    if (XML_Number_Of_Parameters==0)
+    if (Data.getNumberOfParameters()==0)
     {
         HtmlMessageOfError+=HQt_ShowAlert("Ошибка в тэге number_of_parameters. Минимальное число параметров 1. Подробности в описании формата данных на https://github.com/Harrix/HarrixFileFormats.");
         Error=true;
     }
-    if ((XML_Number_Of_Parameters<0)&&(XML_Number_Of_Parameters!=-1))
+    if ((Data.getNumberOfParameters()<0)&&(Data.getNumberOfParameters()!=-1))
     {
         HtmlMessageOfError+=HQt_ShowAlert("Ошибка в тэге number_of_parameters. Число параметров не может быть отрицательным.");
         Error=true;
     }
-    if (XML_Number_Of_Experiments==-1)
+    if (Data.getNumberOfExperiments()==-1)
     {
         HtmlMessageOfError+=HQt_ShowAlert("Нет тэга number_of_experiments.");
         Error=true;
     }
-    if (XML_Number_Of_Experiments==0)
+    if (Data.getNumberOfExperiments()==0)
     {
         HtmlMessageOfError+=HQt_ShowAlert("Ошибка в тэге number_of_experiments. Минимальное число экспериментов 1.");
         Error=true;
     }
-    if ((XML_Number_Of_Experiments<0)&&(XML_Number_Of_Experiments!=-1))
+    if ((Data.getNumberOfExperiments()<0)&&(Data.getNumberOfExperiments()!=-1))
     {
         HtmlMessageOfError+=HQt_ShowAlert("Ошибка в тэге number_of_experiments. Число параметров не может быть отрицательным.");
         Error=true;
     }
-    if (XML_Max_Count_Of_Fitness==-1)
+    if (Data.getMaxCountOfFitness()==-1)
     {
         HtmlMessageOfError+=HQt_ShowAlert("Нет тэга max_count_of_fitness.");
         Error=true;
     }
-    if (XML_Max_Count_Of_Fitness==0)
+    if (Data.getMaxCountOfFitness()==0)
     {
         HtmlMessageOfError+=HQt_ShowAlert("Ошибка в тэге max_count_of_fitness. Минимальное число вычислений целевой функции 1, и то это очень мало.");
         Error=true;
     }
-    if ((XML_Max_Count_Of_Fitness<0)&&(XML_Max_Count_Of_Fitness!=-1))
+    if ((Data.getMaxCountOfFitness()<0)&&(Data.getMaxCountOfFitness()!=-1))
     {
         HtmlMessageOfError+=HQt_ShowAlert("Ошибка в тэге max_count_of_fitness. Число вычислений целевой функции не может быть отрицательным.");
         Error=true;
     }
-    if (XML_Number_Of_Runs==-1)
+    if (Data.getNumberOfRuns()==-1)
     {
         HtmlMessageOfError+=HQt_ShowAlert("Нет тэга number_of_runs.");
         Error=true;
     }
-    if (XML_Number_Of_Runs==0)
+    if (Data.getNumberOfRuns()==0)
     {
         HtmlMessageOfError+=HQt_ShowAlert("Ошибка в тэге number_of_runs. Минимальное число запусков алгоритма для усреднения 1 (желательно от 10).");
         Error=true;
     }
-    if ((XML_Number_Of_Runs<0)&&(XML_Number_Of_Runs!=-1))
+    if ((Data.getNumberOfRuns()<0)&&(Data.getNumberOfRuns()!=-1))
     {
         HtmlMessageOfError+=HQt_ShowAlert("Ошибка в тэге number_of_runs. Число запусков алгоритма для усреднения не может быть отрицательным.");
         Error=true;
     }
-    if (XML_Number_Of_Measuring==-1)
+    if (Data.getNumberOfMeasuring()==-1)
     {
         HtmlMessageOfError+=HQt_ShowAlert("Нет тэга number_of_measuring.");
         Error=true;
     }
-    if (XML_Number_Of_Measuring==0)
+    if (Data.getNumberOfMeasuring()==0)
     {
         HtmlMessageOfError+=HQt_ShowAlert("Ошибка в тэге number_of_measuring. Минимальное число измерений для настройки алгоритма 1 (желательно от 10).");
         Error=true;
     }
-    if ((XML_Number_Of_Measuring<0)&&(XML_Number_Of_Measuring!=-1))
+    if ((Data.getNumberOfMeasuring()<0)&&(Data.getNumberOfMeasuring()!=-1))
     {
         HtmlMessageOfError+=HQt_ShowAlert("Ошибка в тэге number_of_measuring. Число измерений для настройки алгоритма не может быть отрицательным.");
         Error=true;
     }
-    if (XML_DimensionTestFunction==-1)
+    if (Data.getDimensionTestFunction()==-1)
     {
         HtmlMessageOfError+=HQt_ShowAlert("Нет тэга о размерности тестовой задачи dimension_test_function.");
         Error=true;
     }
-    if (XML_DimensionTestFunction==0)
+    if (Data.getDimensionTestFunction()==0)
     {
         HtmlMessageOfError+=HQt_ShowAlert("Ошибка в тэге dimension_test_function. Минимальная длина хромосомы 1 (желательно от 10).");
         Error=true;
     }
-    if ((XML_DimensionTestFunction<0)&&(XML_DimensionTestFunction!=-1))
+    if ((Data.getDimensionTestFunction()<0)&&(Data.getDimensionTestFunction()!=-1))
     {
         HtmlMessageOfError+=HQt_ShowAlert("Ошибка в тэге dimension_test_function. Длина хромосомы не может быть отрицательной.");
         Error=true;
     }
-    if (XML_Full_Name_Test_Function.isEmpty())
+    if (Data.getFullNameTestFunction().isEmpty())
     {
         HtmlMessageOfError+=HQt_ShowAlert("Нет тэга о полном названии тестовой функции full_name_test_function.");
         Error=true;
     }
-    if (XML_Name_Test_Function.isEmpty())
+    if (Data.getNameTestFunction().isEmpty())
     {
         HtmlMessageOfError+=HQt_ShowAlert("Нет тэга о названии тестовой функции name_test_function.");
         Error=true;
     }
-    if (XML_Name_Test_Function.contains(" "))
+    if (Data.getNameTestFunction().contains(" "))
     {
         HtmlMessageOfError+=HQt_ShowAlert("Идентификатор тестовой функции должен быть одним словом. Пробелы не допускаются.");
         Error=true;
     }
-    if (XML_Full_Name_Algorithm.isEmpty())
+    if (Data.getFullNameAlgorithm().isEmpty())
     {
         HtmlMessageOfError+=HQt_ShowAlert("Нет тэга о полном названии алгоритма full_name_algorithm.");
         Error=true;
     }
-    if (XML_Name_Algorithm.isEmpty())
+    if (Data.getNameAlgorithm().isEmpty())
     {
         HtmlMessageOfError+=HQt_ShowAlert("Нет тэга об названии алгоритма name_algorithm.");
         Error=true;
     }
-    if (XML_Name_Algorithm.contains(" "))
+    if (Data.getNameAlgorithm().contains(" "))
     {
         HtmlMessageOfError+=HQt_ShowAlert("Идентификатор алгоритма оптимизации должен быть одним словом. Пробелы не допускаются.");
         Error=true;
     }
-    if (XML_Date.isEmpty())
+    if (Data.getDate().isEmpty())
     {
         HtmlMessageOfError+=HQt_ShowAlert("Нет тэга о дате создания документа date.");
         Error=true;
     }
-    if (XML_Author.isEmpty())
+    if (Data.getAuthor().isEmpty())
     {
         HtmlMessageOfError+=HQt_ShowAlert("Нет тэга об авторе author");
         Error=true;
     }
-    if (XML_Email.isEmpty())
+    if (Data.getEmail().isEmpty())
     {
         HtmlMessageOfError+=HQt_ShowAlert("Нет тэга об электронной почте email. Если не хотите давать свою почту, то вставьте NULL.");
         Error=true;
     }
-    if (XML_Link_Algorithm.isEmpty())
+    if (Data.getLinkAlgorithm().isEmpty())
     {
         HtmlMessageOfError+=HQt_ShowAlert("Нет тэга о ссылке на описание алгоритма link_algorithm.");
         Error=true;
     }
-    if (XML_Link_Test_Function.isEmpty())
+    if (Data.getLinkTestFunction().isEmpty())
     {
         HtmlMessageOfError+=HQt_ShowAlert("Нет тэга о ссылке на описание тестовой функции link_test_function.");
         Error=true;
     }
-    if (!((XML_All_Combinations==0)||(XML_All_Combinations==1)))
+    if (!((Data.getCheckAllCombinations()==0)||(Data.getCheckAllCombinations()==1)))
     {
         HtmlMessageOfError+=HQt_ShowAlert("Тэг all_combinations может принимать значение 0 или 1.");
         Error=true;
@@ -1561,53 +1582,36 @@ void HarrixClass_DataOfHarrixOptimizationTesting::memoryAllocation()
     Возвращаемое значение:
      Отсутствует.
      */
-    //Матрица значений ошибок Ex алгоритма оптимизации.
-    //Число строк равно числу комбинаций вариантов настроек.
-    //Число столбцов равно числу измерений для каждого варианта настроек алгоритма.
-    MatrixOfEx=new double*[XML_Number_Of_Experiments];
-    for (int i=0;i<XML_Number_Of_Experiments;i++) MatrixOfEx[i]=new double[XML_Number_Of_Measuring];
-
-    //Матрица значений ошибок Ey алгоритма оптимизации.
-    //Число строк равно числу комбинаций вариантов настроек.
-    //Число столбцов равно числу измерений для каждого варианта настроек алгоритма.
-    MatrixOfEy=new double*[XML_Number_Of_Experiments];
-    for (int i=0;i<XML_Number_Of_Experiments;i++) MatrixOfEy[i]=new double[XML_Number_Of_Measuring];
-
-    //Матрица значений ошибок R алгоритма оптимизации.
-    //Число строк равно числу комбинаций вариантов настроек.
-    //Число столбцов равно числу измерений для каждого варианта настроек алгоритма.
-    MatrixOfR=new double*[XML_Number_Of_Experiments];
-    for (int i=0;i<XML_Number_Of_Experiments;i++) MatrixOfR[i]=new double[XML_Number_Of_Measuring];
 
     //Вектор средних значений ошибок Ex алгоритма оптимизации по измерениям для каждой настройки.
     //Число элементов равно числу комбинаций вариантов настроек.
-    MeanOfEx=new double[XML_Number_Of_Experiments];
+    MeanOfEx=new double[Data.getNumberOfExperiments()];
 
     //Вектор средних ошибок Ey алгоритма оптимизации по измерениям для каждой настройки.
     //Число элементов равно числу комбинаций вариантов настроек.
-    MeanOfEy=new double[XML_Number_Of_Experiments];
+    MeanOfEy=new double[Data.getNumberOfExperiments()];
 
     //Вектор средних ошибок R алгоритма оптимизации по измерениям для каждой настройки.
     //Число элементов равно числу комбинаций вариантов настроек.
-    MeanOfR=new double[XML_Number_Of_Experiments];
+    MeanOfR=new double[Data.getNumberOfExperiments()];
 
     //Вектор дисперсий ошибок Ex алгоритма оптимизации по измерениям для каждой настройки.
     //Число элементов равно числу комбинаций вариантов настроек.
-    VarianceOfEx=new double[XML_Number_Of_Experiments];
+    VarianceOfEx=new double[Data.getNumberOfExperiments()];
 
     //Вектор дисперсий ошибок Ey алгоритма оптимизации по измерениям для каждой настройки.
     //Число элементов равно числу комбинаций вариантов настроек.
-    VarianceOfEy=new double[XML_Number_Of_Experiments];
+    VarianceOfEy=new double[Data.getNumberOfExperiments()];
 
     //Вектор дисперсий ошибок R алгоритма оптимизации по измерениям для каждой настройки.
     //Число элементов равно числу комбинаций вариантов настроек.
-    VarianceOfR=new double[XML_Number_Of_Experiments];
+    VarianceOfR=new double[Data.getNumberOfExperiments()];
 
     //Матрица значений параметров для каждой комбинации вариантов настроек.
     //Число строк равно числу комбинаций вариантов настроек.
     //Число столбцов равно числу проверяемых параметров алгоритма оптимизации.
-    MatrixOfParameters=new int*[XML_Number_Of_Experiments];
-    for (int i=0;i<XML_Number_Of_Experiments;i++) MatrixOfParameters[i]=new int[XML_Number_Of_Parameters];
+    MatrixOfParameters=new int*[Data.getNumberOfExperiments()];
+    for (int i=0;i<Data.getNumberOfExperiments();i++) MatrixOfParameters[i]=new int[Data.getNumberOfParameters()];
 
     //Вектор названий вариантов параметров алгоритма оптимизации.
     //Число элементов равно числу проверяемых параметров алгоритма оптимизации.
@@ -1615,17 +1619,17 @@ void HarrixClass_DataOfHarrixOptimizationTesting::memoryAllocation()
     //Номера вариантов параметров алгоритма в конкретном списке QStringList будет совпадать
     //с номерами из MatrixOfParameters. То есть, что записано в MatrixOfParameters в ListOfParameterOptions
     //находится под номером соответствующим.
-    ListOfParameterOptions=new QStringList[XML_Number_Of_Parameters];
+    ListOfParameterOptions=new QStringList[Data.getNumberOfParameters()];
 
     //Матрица значений параметров для каждой комбинации вариантов настроек.
     //Элементы не в виде чисел, а в виде наименований этих параметров.
     //Число строк равно числу комбинаций вариантов настроек.
     //Число столбцов равно числу проверяемых параметров алгоритма оптимизации.
-    MatrixOfNameParameters=new QStringList[XML_Number_Of_Experiments];
+    MatrixOfNameParameters=new QStringList[Data.getNumberOfExperiments()];
 
     //Номера комбинаций вариантов настроек
-    //Содержит номера от 1 до XML_Number_Of_Experiments
-    NumberOfListOfVectorParameterOptions=new double[XML_Number_Of_Experiments];
+    //Содержит номера от 1 до Data.getNumberOfExperiments()
+    NumberOfListOfVectorParameterOptions=new double[Data.getNumberOfExperiments()];
 }
 //--------------------------------------------------------------------------
 
@@ -1638,15 +1642,9 @@ void HarrixClass_DataOfHarrixOptimizationTesting::memoryDeallocation()
     Возвращаемое значение:
      Отсутствует.
      */
-    if (!Error)
+    if (!Data.getSuccessReading())
     {
-        for (int i=0;i<XML_Number_Of_Experiments;i++) delete [] MatrixOfEx[i];
-        delete [] MatrixOfEx;
-        for (int i=0;i<XML_Number_Of_Experiments;i++) delete [] MatrixOfEy[i];
-        delete [] MatrixOfEy;
-        for (int i=0;i<XML_Number_Of_Experiments;i++) delete [] MatrixOfR[i];
-        delete [] MatrixOfR;
-        for (int i=0;i<XML_Number_Of_Experiments;i++) delete [] MatrixOfParameters[i];
+        for (int i=0;i<Data.getNumberOfExperiments();i++) delete [] MatrixOfParameters[i];
         delete [] MatrixOfParameters;
         delete [] ListOfParameterOptions;
         delete [] MeanOfEx;
@@ -1670,14 +1668,14 @@ void HarrixClass_DataOfHarrixOptimizationTesting::initializationOfVariables()
      Отсутствует.
      */
     Rxml.clear();
-    SuccessReading=true;
-    XML_DimensionTestFunction=-1;//Размерность тестовой задачи (длина хромосомы решения)
-    XML_Number_Of_Measuring=-1;//Количество экспериментов для каждого набора параметров алгоритма
-    XML_Number_Of_Runs=-1;//Количество прогонов, по которому делается усреднение для эксперимента
-    XML_Max_Count_Of_Fitness=-1;//Максимальное допустимое число вычислений целевой функции для алгоритма
-    XML_Number_Of_Parameters=-1;//Количество проверяемых параметров алгоритма оптимизации
+    Data.setSuccessReading(false);
+    Data.setDimensionTestFunction(-1);//Размерность тестовой задачи (длина хромосомы решения)
+    Data.setNumberOfMeasuring(-1);//Количество экспериментов для каждого набора параметров алгоритма
+    Data.setNumberOfRuns(-1);//Количество прогонов, по которому делается усреднение для эксперимента
+    Data.setMaxCountOfFitness(-1);//Максимальное допустимое число вычислений целевой функции для алгоритма
+    Data.setNumberOfParameters(-1);//Количество проверяемых параметров алгоритма оптимизации
     Zero_Number_Of_Parameters=false;//пока ничего не известно
-    XML_Number_Of_Experiments=-1;//Количество комбинаций вариантов настроек
+    Data.setNumberOfExperiments(-1);//Количество комбинаций вариантов настроек
     Error=false;//типа вначале нет ошибок в файле
     Un=HQt_RandomString(5);//уникальная строка для Latex
     //AllOptions=true;//вначале наивно предполагаем, что в файле все настройки рассмотрены
@@ -1718,7 +1716,7 @@ void HarrixClass_DataOfHarrixOptimizationTesting::readXmlDataTags()
                 }
                 else
                 {
-                    for (int k=0;k<XML_Number_Of_Parameters;k++)
+                    for (int k=0;k<Data.getNumberOfParameters();k++)
                     {
                         //считаем массив параметров алгоритма
                         NameOfAttr="parameters_of_algorithm_"+QString::number(k+1);
@@ -1735,7 +1733,7 @@ void HarrixClass_DataOfHarrixOptimizationTesting::readXmlDataTags()
                     }
                 }
 
-                for (int k=0;k<XML_Number_Of_Measuring;k++)
+                for (int k=0;k<Data.getNumberOfMeasuring();k++)
                 {
                     Rxml.readNext();while((!Rxml.isStartElement())&&(!Rxml.atEnd())){Rxml.readNext();}
                     NameOfElement=Rxml.name().toString().toLower();
@@ -1758,19 +1756,19 @@ void HarrixClass_DataOfHarrixOptimizationTesting::readXmlDataTags()
 
                         if (NameOfElement=="ex")
                         {
-                            MatrixOfEx[i][k]=HQt_QStringToNumber(TextOfElement);
+                            Data.setErrorEx(HQt_QStringToNumber(TextOfElement),i,k);
                             bool_ex=true;
                         }
 
                         if (NameOfElement=="ey")
                         {
-                            MatrixOfEy[i][k]=HQt_QStringToNumber(TextOfElement);
+                            Data.setErrorEy(HQt_QStringToNumber(TextOfElement),i,k);
                             bool_ey=true;
                         }
 
                         if (NameOfElement=="r")
                         {
-                            MatrixOfR[i][k]=HQt_QStringToNumber(TextOfElement);
+                            Data.setErrorR(HQt_QStringToNumber(TextOfElement),i,k);
                             bool_r=true;
                         }
 
@@ -1786,19 +1784,19 @@ void HarrixClass_DataOfHarrixOptimizationTesting::readXmlDataTags()
 
                         if (NameOfElement=="ex")
                         {
-                            MatrixOfEx[i][k]=HQt_QStringToNumber(TextOfElement);
+                            Data.setErrorEx(HQt_QStringToNumber(TextOfElement),i,k);
                             bool_ex=true;
                         }
 
                         if (NameOfElement=="ey")
                         {
-                            MatrixOfEy[i][k]=HQt_QStringToNumber(TextOfElement);
+                            Data.setErrorEy(HQt_QStringToNumber(TextOfElement),i,k);
                             bool_ey=true;
                         }
 
                         if (NameOfElement=="r")
                         {
-                            MatrixOfR[i][k]=HQt_QStringToNumber(TextOfElement);
+                            Data.setErrorR(HQt_QStringToNumber(TextOfElement),i,k);
                             bool_r=true;
                         }
 
@@ -1814,22 +1812,22 @@ void HarrixClass_DataOfHarrixOptimizationTesting::readXmlDataTags()
 
                         if (NameOfElement=="ex")
                         {
-                            MatrixOfEx[i][k]=HQt_QStringToNumber(TextOfElement);
+                            Data.setErrorEx(HQt_QStringToNumber(TextOfElement),i,k);
                             bool_ex=true;
                         }
 
                         if (NameOfElement=="ey")
                         {
-                            MatrixOfEy[i][k]=HQt_QStringToNumber(TextOfElement);
+                            Data.setErrorEy(HQt_QStringToNumber(TextOfElement),i,k);
                             bool_ey=true;
                         }
 
                         if (NameOfElement=="r")
                         {
-                            MatrixOfR[i][k]=HQt_QStringToNumber(TextOfElement);
+                            Data.setErrorR(HQt_QStringToNumber(TextOfElement),i,k);
                             bool_r=true;
 
-                            if ((MatrixOfR[i][k]<0)||(MatrixOfR[i][k]>1))
+                            if ((Data.getErrorR(i,k)<0)||(Data.getErrorR(i,k)>1))
                             {
                                 HtmlMessageOfError+=HQt_ShowAlert("Сейчас просматривался тэг нажедности R. Надежность это величина от 0 до 1. У вас это не так.");
                                 Error=true;
@@ -1864,32 +1862,11 @@ void HarrixClass_DataOfHarrixOptimizationTesting::readXmlDataTags()
         i++;
     }
 
-    if (i!=XML_Number_Of_Experiments)
+    if (i!=Data.getNumberOfExperiments())
     {
         HtmlMessageOfError+=HQt_ShowAlert("Число экспериментов в тэге number_of_experiments не равно реальному числу экспериментов в xml файле.");
         Error=true;
     }
-    //    bool CheckMatrix=TMHL_CheckForIdenticalRowsInMatrix(MatrixOfParameters,XML_Number_Of_Experiments,XML_Number_Of_Parameters);
-    //    int TheoryAllOptions=1;
-    //    if (!Zero_Number_Of_Parameters)
-    //    {
-    //        for (int j=0;j<XML_Number_Of_Parameters;j++)
-    //        {
-    //            TheoryAllOptions *= ListOfParameterOptions[j].count();
-    //        }
-    //    }
-    //    Html+=THQt_ShowNumber(TheoryAllOptions);
-    //    Html+=THQt_ShowNumber(CheckMatrix);
-    //    if ((!CheckMatrix)&&(i==TheoryAllOptions))
-    //    {
-    //        //просмотрено все множество возможных вариантов
-    //        AllOptions=true;
-    //    }
-    //    else
-    //    {
-    //        //имееются непроверенные комбинации настроек алгоритма
-    //         AllOptions=false;
-    //    }
 }
 //--------------------------------------------------------------------------
 bool HarrixClass_DataOfHarrixOptimizationTesting::readXmlTreeTag(QString tag)
@@ -1942,20 +1919,17 @@ void HarrixClass_DataOfHarrixOptimizationTesting::zeroArray()
      Отсутствует.
      */
     //"Обнулим" матрицы
-    TMHL_FillMatrix(MatrixOfEx, XML_Number_Of_Experiments, XML_Number_Of_Measuring, -1.);
-    TMHL_FillMatrix(MatrixOfEy, XML_Number_Of_Experiments, XML_Number_Of_Measuring, -1.);
-    TMHL_FillMatrix(MatrixOfR,  XML_Number_Of_Experiments, XML_Number_Of_Measuring, -1.);
-    TMHL_FillMatrix(MatrixOfParameters, XML_Number_Of_Experiments, XML_Number_Of_Parameters, -1);
-    TMHL_ZeroVector(MeanOfEx,XML_Number_Of_Experiments);
-    TMHL_ZeroVector(MeanOfEy,XML_Number_Of_Experiments);
-    TMHL_ZeroVector(MeanOfR ,XML_Number_Of_Experiments);
-    TMHL_ZeroVector(VarianceOfEx,XML_Number_Of_Experiments);
-    TMHL_ZeroVector(VarianceOfEy,XML_Number_Of_Experiments);
-    TMHL_ZeroVector(VarianceOfR ,XML_Number_Of_Experiments);
-    for (int k=0;k<XML_Number_Of_Parameters;k++) ListOfParameterOptions[k].clear();
-    (NamesOfParameters).clear();    
+    TMHL_FillMatrix(MatrixOfParameters, Data.getNumberOfExperiments(), Data.getNumberOfParameters(), -1);
+    TMHL_ZeroVector(MeanOfEx,Data.getNumberOfExperiments());
+    TMHL_ZeroVector(MeanOfEy,Data.getNumberOfExperiments());
+    TMHL_ZeroVector(MeanOfR ,Data.getNumberOfExperiments());
+    TMHL_ZeroVector(VarianceOfEx,Data.getNumberOfExperiments());
+    TMHL_ZeroVector(VarianceOfEy,Data.getNumberOfExperiments());
+    TMHL_ZeroVector(VarianceOfR ,Data.getNumberOfExperiments());
+    for (int k=0;k<Data.getNumberOfParameters();k++) ListOfParameterOptions[k].clear();
+    (NamesOfParameters).clear();
     ListOfVectorParameterOptions.clear();
-    TMHL_ZeroVector(NumberOfListOfVectorParameterOptions,XML_Number_Of_Experiments);
+    TMHL_ZeroVector(NumberOfListOfVectorParameterOptions,Data.getNumberOfExperiments());
 }
 //--------------------------------------------------------------------------
 
@@ -1975,46 +1949,56 @@ void HarrixClass_DataOfHarrixOptimizationTesting::makingAnalysis()
     VarianceOfAllEy=0;
     VarianceOfAllR=0;
 
-    for (int i=0;i<XML_Number_Of_Experiments;i++)
+    for (int i=0;i<Data.getNumberOfExperiments();i++)
     {
         //заполним значениями вектор средних значений критериев и дисперсий
-        for (int j=0;j<XML_Number_Of_Measuring;j++)
+        for (int j=0;j<Data.getNumberOfMeasuring();j++)
         {
-            MeanOfEx[i]+=MatrixOfEx[i][j];
-            MeanOfEy[i]+=MatrixOfEy[i][j];
-            MeanOfR[i] +=MatrixOfR[i][j];
+            MeanOfEx[i]+=Data.getErrorEx(i,j);
+            MeanOfEy[i]+=Data.getErrorEy(i,j);
+            MeanOfR[i] +=Data.getErrorR(i,j);
 
             //для общих дисперсий
-            MeanOfAllEx+=MatrixOfEx[i][j];
-            MeanOfAllEy+=MatrixOfEy[i][j];
-            MeanOfAllR +=MatrixOfR[i][j];
+            MeanOfAllEx+=Data.getErrorEx(i,j);
+            MeanOfAllEy+=Data.getErrorEy(i,j);
+            MeanOfAllR +=Data.getErrorR(i,j);
         }
 
-        MeanOfEx[i]/=double(XML_Number_Of_Measuring);
-        MeanOfEy[i]/=double(XML_Number_Of_Measuring);
-        MeanOfR[i] /=double(XML_Number_Of_Measuring);
+        MeanOfEx[i]/=double(Data.getNumberOfMeasuring());
+        MeanOfEy[i]/=double(Data.getNumberOfMeasuring());
+        MeanOfR[i] /=double(Data.getNumberOfMeasuring());
 
-        VarianceOfEx[i]+=TMHL_Variance(MatrixOfEx[i],XML_Number_Of_Measuring);
-        VarianceOfEy[i]+=TMHL_Variance(MatrixOfEx[i],XML_Number_Of_Measuring);
-        VarianceOfR [i]+=TMHL_Variance(MatrixOfR [i],XML_Number_Of_Measuring);
+        VarianceOfEx[i]=0;
+        VarianceOfEy[i]=0;
+        VarianceOfR [i]=0;
+        for (int j=0;j<Data.getNumberOfMeasuring();j++)
+        {
+            VarianceOfEx[i]+=(Data.getErrorEx(i,j)-MeanOfEx[i])*(Data.getErrorEx(i,j)-MeanOfEx[i]);
+            VarianceOfEy[i]+=(Data.getErrorEy(i,j)-MeanOfEy[i])*(Data.getErrorEy(i,j)-MeanOfEy[i]);
+            VarianceOfR [i]+=(Data.getErrorR(i,j) -MeanOfR[i] )*(Data.getErrorR(i,j) -MeanOfR[i] );
+        }
+        VarianceOfEx[i]/=double(Data.getNumberOfMeasuring()-1);
+        VarianceOfEy[i]/=double(Data.getNumberOfMeasuring()-1);
+        VarianceOfR [i]/=double(Data.getNumberOfMeasuring()-1);
+
     }
 
     //посчитаем общие средние значения
-    MeanOfAllEx/=double(XML_Number_Of_Measuring*XML_Number_Of_Experiments);
-    MeanOfAllEy/=double(XML_Number_Of_Measuring*XML_Number_Of_Experiments);
-    MeanOfAllR /=double(XML_Number_Of_Measuring*XML_Number_Of_Experiments);
+    MeanOfAllEx/=double(Data.getNumberOfMeasuring()*Data.getNumberOfExperiments());
+    MeanOfAllEy/=double(Data.getNumberOfMeasuring()*Data.getNumberOfExperiments());
+    MeanOfAllR /=double(Data.getNumberOfMeasuring()*Data.getNumberOfExperiments());
 
     //посчитаем дисперсии
-    for (int i=0;i<XML_Number_Of_Experiments;i++)
-        for (int j=0;j<XML_Number_Of_Measuring;j++)
+    for (int i=0;i<Data.getNumberOfExperiments();i++)
+        for (int j=0;j<Data.getNumberOfMeasuring();j++)
         {
-            VarianceOfAllEx+=(MatrixOfEx[i][j]-MeanOfAllEx)*(MatrixOfEx[i][j]-MeanOfAllEx);
-            VarianceOfAllEy+=(MatrixOfEy[i][j]-MeanOfAllEy)*(MatrixOfEy[i][j]-MeanOfAllEy);
-            VarianceOfAllR +=(MatrixOfR[i][j] -MeanOfAllR )*(MatrixOfR[i][j] -MeanOfAllR );
+            VarianceOfAllEx+=(Data.getErrorEx(i,j)-MeanOfAllEx)*(Data.getErrorEx(i,j)-MeanOfAllEx);
+            VarianceOfAllEy+=(Data.getErrorEy(i,j)-MeanOfAllEy)*(Data.getErrorEy(i,j)-MeanOfAllEy);
+            VarianceOfAllR +=(Data.getErrorR(i,j) -MeanOfAllR )*(Data.getErrorR(i,j) -MeanOfAllR );
         }
-    VarianceOfAllEx/=double(XML_Number_Of_Measuring*XML_Number_Of_Experiments-1);
-    VarianceOfAllEy/=double(XML_Number_Of_Measuring*XML_Number_Of_Experiments-1);
-    VarianceOfAllR/= double(XML_Number_Of_Measuring*XML_Number_Of_Experiments-1);
+    VarianceOfAllEx/=double(Data.getNumberOfMeasuring()*Data.getNumberOfExperiments()-1);
+    VarianceOfAllEy/=double(Data.getNumberOfMeasuring()*Data.getNumberOfExperiments()-1);
+    VarianceOfAllR/= double(Data.getNumberOfMeasuring()*Data.getNumberOfExperiments()-1);
 }
 //--------------------------------------------------------------------------
 
@@ -2030,12 +2014,12 @@ void HarrixClass_DataOfHarrixOptimizationTesting::makingListOfVectorParameterOpt
 
     ListOfVectorParameterOptions.clear();
 
-    for (int i=0;i<XML_Number_Of_Experiments;i++)
+    for (int i=0;i<Data.getNumberOfExperiments();i++)
     {
         Cell2.clear();
 
         //получим значения параметров алгоритма
-        for (int j=0;j<XML_Number_Of_Parameters;j++)
+        for (int j=0;j<Data.getNumberOfParameters();j++)
         {
             if (MatrixOfNameParameters[i][j]=="NULL")
                 Cell2+="Отсутствует \\\\ ";
@@ -2079,7 +2063,7 @@ void HarrixClass_DataOfHarrixOptimizationTesting::makingLatexListOfVectorParamet
     LatexListOfVectorParameterOptions+="\\multicolumn{2}{|r|}{{Продолжение на следующей странице...}} \\\\ \\hline \\endfoot\n";
     LatexListOfVectorParameterOptions+="\\endlastfoot\n";
 
-    for (int i=0;i<XML_Number_Of_Experiments;i++)
+    for (int i=0;i<Data.getNumberOfExperiments();i++)
     {
         Cell1.clear();
         Cell2.clear();
@@ -2111,12 +2095,12 @@ void HarrixClass_DataOfHarrixOptimizationTesting::makingLatexAnalysis()
      Отсутствует. Значение возвращается в переменную LatexAnalysis, которую можно вызвать getLatexAnalysis
      */
     LatexAnalysis+="\\subsection {Первоначальный анализ данных}\n\n";
-    LatexAnalysis+="В данном разделе представлен первоначальный анализ данных исследования эффекстивности алгоритма оптимизации <<"+XML_Full_Name_Algorithm+">> на рассматриваемой тестовой функции <<"+XML_Full_Name_Test_Function+">> (размерность "+QString::number(XML_DimensionTestFunction)+"). ";
-    if (XML_Number_Of_Experiments==1)
+    LatexAnalysis+="В данном разделе представлен первоначальный анализ данных исследования эффекстивности алгоритма оптимизации <<"+Data.getFullNameAlgorithm()+">> на рассматриваемой тестовой функции <<"+Data.getFullNameTestFunction()+">> (размерность "+QString::number(Data.getDimensionTestFunction())+"). ";
+    if (Data.getNumberOfExperiments()==1)
     {
         //Алгоритм имеет только один эксперимент
 
-        if (XML_All_Combinations==true)
+        if (Data.getCheckAllCombinations()==true)
         {
             LatexAnalysis+="Исследуемый алгоритм оптимизации относится к алгоритмам множества варьируемых параметров самого алгоритма. Поэтому при исследовании алгоритма на тестовой функции надо было провести <<эксперимент>> только один раз (многократно его повторяя). Мы можем сделать полный анализ работы алгоритма в рассматриваемых условиях.\n\n";
         }
@@ -2127,7 +2111,7 @@ void HarrixClass_DataOfHarrixOptimizationTesting::makingLatexAnalysis()
     }
     else
     {
-        if (XML_All_Combinations==true)
+        if (Data.getCheckAllCombinations()==true)
         {
             LatexAnalysis+="При данном исследовании было рассмотрено всё множество возможных настроек алгоритма. Поэтому можно сделать полный анализ работы алгоритма в рассматриваемых условиях.\n\n";
         }
@@ -2136,1145 +2120,15 @@ void HarrixClass_DataOfHarrixOptimizationTesting::makingLatexAnalysis()
             LatexAnalysis+="Данное исследование является частичным, так как рассмотрено не всё множество возможных настроек алгоритма. Поэтому ниже будут представлены неполные выводы, так как при нерассмотренных настройках алгоритм мог показать себя лучше или хуже.\n\n";
         }
 
-        LatexAnalysis += THQt_LatexShowChartOfLine (NumberOfListOfVectorParameterOptions, MeanOfEx, XML_Number_Of_Experiments, "Ошибка по входным параметрам по порядку номеров комбинаций", "N, Номер комбинации настроек", "E_x", "Ошибка по входным параметрам", "MeanOfEx"+HQt_RandomString(5), true, true, false, true, false , true);
+        LatexAnalysis += THQt_LatexShowChartOfLine (NumberOfListOfVectorParameterOptions, MeanOfEx, Data.getNumberOfExperiments(), "Ошибка по входным параметрам по порядку номеров комбинаций", "N, Номер комбинации настроек", "E_x", "Ошибка по входным параметрам", "MeanOfEx"+HQt_RandomString(5), true, true, false, true, false , true);
 
-         LatexAnalysis += THQt_LatexShowChartOfLine (NumberOfListOfVectorParameterOptions, MeanOfEy, XML_Number_Of_Experiments, "Ошибка по значениям целевой функции по порядку номеров комбинаций", "N, Номер комбинации настроек", "E_y", "Ошибка по значениям целевой функции", "MeanOfEy"+HQt_RandomString(5), true, true, false, true, false , true);
+        LatexAnalysis += THQt_LatexShowChartOfLine (NumberOfListOfVectorParameterOptions, MeanOfEy, Data.getNumberOfExperiments(), "Ошибка по значениям целевой функции по порядку номеров комбинаций", "N, Номер комбинации настроек", "E_y", "Ошибка по значениям целевой функции", "MeanOfEy"+HQt_RandomString(5), true, true, false, true, false , true);
 
-         LatexAnalysis += THQt_LatexShowChartOfLine (NumberOfListOfVectorParameterOptions, MeanOfR, XML_Number_Of_Experiments, "Надёжность по порядку номеров комбинаций", "N, Номер комбинации настроек", "R", "Надёжность", "MeanOfR"+HQt_RandomString(5), true, true, false, true, false , true);
+        LatexAnalysis += THQt_LatexShowChartOfLine (NumberOfListOfVectorParameterOptions, MeanOfR, Data.getNumberOfExperiments(), "Надёжность по порядку номеров комбинаций", "N, Номер комбинации настроек", "R", "Надёжность", "MeanOfR"+HQt_RandomString(5), true, true, false, true, false , true);
 
         LatexAnalysis += "\n\n7877\n\n";
 
     }
 }
 
-//--------------------------------------------------------------------------
-
-////////////////////////////////////////////////////////////////////////////
-////////////////////// ФУНКЦИИ ПО РАБОТЕ С КЛАССОМ /////////////////////////
-////////////////////////////////////////////////////////////////////////////
-
-int HCDOHOT_NumberFilesInDir(QString path)
-{
-    /*
-    Подсчитывает число HarrixClass_DataOfHarrixOptimizationTesting файлов в папке.
-    Входные параметры:
-     path - путь к папке, из которой считаем файлы.
-    Возвращаемое значение:
-     Число файлов HarrixClass_DataOfHarrixOptimizationTesting файлов в папке.
-     */
-    int Result=0;
-
-    path = QDir::toNativeSeparators(path);
-
-    if (path.length()>0)
-    {
-        QString filename;
-
-        QStringList Files = HQt_ListFilesInDirQStringList(path);
-
-        Files = HQt_NaturalSortingQStringList(Files);//сортируем правильно список файлов
-
-        for (int i=0;i<Files.count();i++)
-        {
-            filename=Files.at(i);
-            if (HQt_GetExpFromFilename(filename)=="xml")
-            {
-                //HarrixClass_DataOfHarrixOptimizationTesting Data(path+"\\"+filename);
-
-                Result++;
-            }
-            QGuiApplication::processEvents();
-        }
-    }
-
-    return Result;
-}
-//--------------------------------------------------------------------------
-
-void HCDOHOT_GeneratedReportAboutAlgorithmFromDir(QString path, QString pathForSave, QString pathForTempHtml)
-{
-    /*
-    Генерирует отчет Latex по алгоритму по файлам *.hdata алгоритма, просматривая все файлы в папке.
-    То, чтобы в папке были файлы только одного алгоритма, вы берете на себя.
-    В папке сохранения должны быть находиться файлы names.tex, packages.tex, styles.tex из проекта
-    https://github.com/Harrix/HarrixLaTeXDocumentTemplate
-    Для отчета в виде html берется проект:
-    https://github.com/Harrix/HarrixHtmlForQWebView
-    Входные параметры:
-     path - путь к папке, из которой считаем файлы.
-     pathForSave - путь к папке, куда сохраняем Latex файлы.
-     pathForTempHtml - путь к папке куда сохраняем во время работы функции отчет в виде temp.html.
-    Возвращаемое значение:
-     Отсутствует.
-     */
-    path = QDir::toNativeSeparators(path);
-    pathForSave = QDir::toNativeSeparators(pathForSave);
-    if (!pathForTempHtml.isEmpty()) pathForTempHtml = QDir::toNativeSeparators(pathForTempHtml);
-
-    //if (!pathForTempHtml.isEmpty()) HQt_BeginHtml (pathForTempHtml);
-
-    if (path.length()>0)
-    {
-        QString Html;//сюда записывается код  HTML по анализу файла данных
-        QString Latex;//сюда записывается код  Latex для добавления в https://github.com/Harrix/HarrixLaTeXDocumentTemplate
-        QString LatexInclude;//сюда записываются отдельные исследования, которые сохраняются в отдельные файлы
-        QString filename;
-        QString namealg;
-
-        //Вытащим название папки, из которой всё считываем
-        QStringList dirs = path.split( "\\", QString::SkipEmptyParts );
-        namealg = dirs.at(dirs.count()-1);
-        QString namealgNameForSave=namealg;
-        if (namealg.at(0)=='_') namealg = namealg.mid(1);
-
-        Html=path;
-        if (!pathForTempHtml.isEmpty()) HQt_AddHtml(Html);
-
-        QStringList Files = HQt_ListFilesInDirQStringList(path);
-
-        Files = HQt_NaturalSortingQStringList(Files);//сортируем правильно список файлов
-
-        Latex+=HQt_LatexBeginArticle();//Начало LaTeX файла
-
-        for (int i=0;i<Files.count();i++)
-        {
-            filename=Files.at(i);
-            if (HQt_GetExpFromFilename(filename)=="xml")
-            {
-                Html=HQt_ShowSimpleText(filename);
-                if (!pathForTempHtml.isEmpty()) HQt_AddHtml(Html);
-
-                HarrixClass_DataOfHarrixOptimizationTesting Data(path+"\\"+filename);
-
-                if (Data.getSuccessReading())
-                {
-                    if (i==0)
-                    {
-                        Latex+="\\title{Исследование алгоритма оптимизации "+HQt_ForcedWordWrap(HQt_TextToTextForLatex(namealg))+"}\n";
-                        //namealg=Data.getNameAlgorithm();
-
-                        Latex+="\\author{"+HQt_TextToTextForLatex(Data.getAuthor())+"}\n";
-                        Latex+="\\date{\\today}\n";
-                        Latex+="\\maketitle\n\n";
-                        Latex+="\\tableofcontents\n";
-                        Latex+="\\newpage\n\n";
-                        Latex+="\\section{Вводная информация}\n\n";
-                        Latex+="Данный файл и другие исследования располагаются по адресу:\n\n \\href {https://github.com/Harrix/HarrixPDFDataOfOptimizationTesting} {https://github.com/Harrix/HarrixPDFDataOfOptimizationTesting}.\n\n";
-                        Latex+="Анализ данных исследований можно посмотреть по адресу:\n\n \\href {https://github.com/Harrix/HarrixAnalysisPDFDataOfOptimizationTesting} {https://github.com/Harrix/HarrixAnalysisPDFDataOfOptimizationTesting}.\n\n";
-
-                        Latex+="Данные исследований взяты из базы исследований алгоритмов оптимизации:\n\n \\href {https://github.com/Harrix/HarrixDataOfOptimizationTesting} {https://github.com/Harrix/HarrixDataOfOptimizationTesting}.\n\n";
-                        Latex+="О методологии проведения исследований можно прочитать в описании формата данных <<Harrix Optimization Testing>> в главе <<Идея проведения исследований эффективности алгоритмов>> по адресу:\n\n \\href {https://github.com/Harrix/HarrixFileFormats} {https://github.com/Harrix/HarrixFileFormats}.\n\n";
-                        Latex+="Описание алгоритма оптимизации можно найти по адресу:\n\n \\href {https://github.com/Harrix/HarrixOptimizationAlgorithms} {https://github.com/Harrix/HarrixOptimizationAlgorithms}.\n\n";
-                        Latex+="Описание тестовых функций можно найти по адресу:\n\n \\href {https://github.com/Harrix/HarrixTestFunctions} {https://github.com/Harrix/HarrixTestFunctions}.\n\n";
-                        Latex+="С автором можно связаться по адресу \\href {mailto:sergienkoanton@mail.ru} {sergienkoanton@mail.ru} или  \\href {http://vk.com/harrix} {http://vk.com/harrix}. Сайт автора, где публикуются последние новости: \\href {http://blog.harrix.org} {http://blog.harrix.org}, а проекты располагаются по адресу \\href {http://harrix.org} {http://harrix.org}.\n\n";
-                    }
-
-                    LatexInclude=Data.getLatexTable();
-                    HQt_SaveFile(LatexInclude, pathForSave+"\\"+(HQt_GetNameFromFilename(filename)).replace("_","").replace(" ", "")+".tex");
-                    Latex += "\\input{"+(HQt_GetNameFromFilename(filename)).replace("_","").replace(" ", "")+"}\n";
-                }
-                else
-                {
-                    //выводим ошибку
-                    Html=Data.getHtml();
-                    if (!pathForTempHtml.isEmpty()) HQt_AddHtml(Html);
-                }
-
-            }
-            QGuiApplication::processEvents();
-        }
-
-        Latex+=HQt_LatexEnd();
-        HQt_SaveFile(Latex, pathForSave+"\\"+namealgNameForSave+".tex");
-
-        Html=HQt_ShowSimpleText("Сохранили");
-        if (!pathForTempHtml.isEmpty()) HQt_AddHtml(Html);
-
-    }
-}
-//--------------------------------------------------------------------------
-
-void HCDOHOT_GeneratedReportAboutAlgorithmFromDir(QString path, QString pathForSave)
-{
-    /*
-    Генерирует отчет Latex по алгоритму по файлам *.hdata алгоритма, просматривая все файлы в папке без сохранения отчета в HTML.
-    То, чтобы в папке были файлы только одного алгоритма, вы берете на себя.
-    В папке сохранения должны быть находиться файлы names.tex, packages.tex, styles.tex из проекта
-    https://github.com/Harrix/HarrixLaTeXDocumentTemplate
-    Входные параметры:
-     path - путь к папке, из которой считаем файлы.
-     pathForSave - путь к папке, куда сохраняем Latex файлы.
-    Возвращаемое значение:
-     Отсутствует.
-     */
-    HCDOHOT_GeneratedReportAboutAlgorithmFromDir(path, pathForSave, "");
-}
-//--------------------------------------------------------------------------
-
-void HCDOHOT_GeneratedSimpleReportFromFile(QString filename, QString pathForSave, QString pathForTempHtml)
-{
-    /*
-    Генерирует простой отчет Latex по алгоритму по файлу *.hdata.
-    В папке сохранения должны быть находиться файлы names.tex, packages.tex, styles.tex из проекта
-    https://github.com/Harrix/HarrixLaTeXDocumentTemplate
-    Для отчета в виде html берется проект:
-    https://github.com/Harrix/HarrixHtmlForQWebView
-    Входные параметры:
-     filename - путь к файлу, из которого считываем данные.
-     pathForSave - путь к папке, куда сохраняем Latex файлы.
-     pathForTempHtml - путь к папке куда сохраняем во время работы функции отчет в виде temp.html.
-    Возвращаемое значение:
-     Отсутствует.
-     */
-    filename = QDir::toNativeSeparators(filename);
-    pathForSave = QDir::toNativeSeparators(pathForSave);
-    if (!pathForTempHtml.isEmpty()) pathForTempHtml = QDir::toNativeSeparators(pathForTempHtml);
-
-    //if (!pathForTempHtml.isEmpty()) HQt_BeginHtml (pathForTempHtml);
-
-    if (filename.length()>0)
-    {
-        QString Html;//сюда записывается код  HTML по анализу файла данных
-        QString Latex;//сюда записывается код  Latex для добавления в https://github.com/Harrix/HarrixLaTeXDocumentTemplate
-
-        HarrixClass_DataOfHarrixOptimizationTesting Data(filename);
-
-        if (Data.getSuccessReading())
-        {
-            Html=Data.getHtml();
-
-            Latex=Data.getFullLatexTable();
-
-            HQt_SaveFile(Latex, pathForSave+"\\Report.tex");
-
-            if (!pathForTempHtml.isEmpty())
-            {
-                HQt_AddHtml(Html);
-
-                //HQt_AddHtml(THQt_ShowNumber(Data.getErrorEx(0,0),"x"));
-                //HQt_AddHtml(THQt_ShowNumber(Data.getErrorEx(Data.getNumberOfExperiments(), Data.getNumberOfMeasuring())));
-                //HQt_AddHtml(HQt_ShowText(Data.getNameParameter(1,4)));
-                //HQt_AddHtml(THQt_ShowNumber(Data.getNumberOfOption("1222"),"x"));
-                //HQt_AddHtml(THQt_ShowNumber(Data.getNumberOfOption("Тип формирования нового поколения"),"x"));
-                //HQt_AddHtml(HQt_ShowText(Data.getNameOption(3)));
-            }
-        }
-        else
-        {
-            //выводим ошибку
-            Html=Data.getHtml();
-            if (!pathForTempHtml.isEmpty()) HQt_AddHtml(Html);
-        }
-
-    }
-}
-//--------------------------------------------------------------------------
-
-void HCDOHOT_GeneratedSimpleReportFromFile(QString filename, QString pathForSave)
-{
-    /*
-    Генерирует простой отчет Latex по алгоритму по файлу *.hdata без вывода в HTML.
-    В папке сохранения должны быть находиться файлы names.tex, packages.tex, styles.tex из проекта
-    https://github.com/Harrix/HarrixLaTeXDocumentTemplate
-    Для отчета в виде html берется проект:
-    https://github.com/Harrix/HarrixHtmlForQWebView
-    Входные параметры:
-     filename - путь к файлу, из которого считываем данные.
-     pathForSave - путь к папке, куда сохраняем Latex файлы.
-    Возвращаемое значение:
-     Отсутствует.
-     */
-    HCDOHOT_GeneratedSimpleReportFromFile(filename, pathForSave, "");
-}
-//--------------------------------------------------------------------------
-
-void HCDOHOT_GeneratedAnalysisReportFromFile(QString filename, QString pathForSave, QString pathForTempHtml)
-{
-    /*
-    Генерирует отчет-анализ Latex по алгоритму по файлу *.hdata.
-    В папке сохранения должны быть находиться файлы names.tex, packages.tex, styles.tex из проекта
-    https://github.com/Harrix/HarrixLaTeXDocumentTemplate
-    Для отчета в виде html берется проект:
-    https://github.com/Harrix/HarrixHtmlForQWebView
-    Входные параметры:
-     filename - путь к файлу, из которого считываем данные.
-     pathForSave - путь к папке, куда сохраняем Latex файлы.
-     pathForTempHtml - путь к папке куда сохраняем во время работы функции отчет в виде temp.html.
-    Возвращаемое значение:
-     Отсутствует.
-     */
-    filename = QDir::toNativeSeparators(filename);
-    pathForSave = QDir::toNativeSeparators(pathForSave);
-    if (!pathForTempHtml.isEmpty()) pathForTempHtml = QDir::toNativeSeparators(pathForTempHtml);
-
-    //if (!pathForTempHtml.isEmpty()) HQt_BeginHtml (pathForTempHtml);
-
-    if (filename.length()>0)
-    {
-        QString Html;//сюда записывается код  HTML по анализу файла данных
-        QString Latex;//сюда записывается код  Latex для добавления в https://github.com/Harrix/HarrixLaTeXDocumentTemplate
-
-        HarrixClass_DataOfHarrixOptimizationTesting Data(filename);
-
-        if (Data.getSuccessReading())
-        {
-            Html=Data.getHtml();
-
-            Latex=Data.getFullLatexAnalysis();
-
-            HQt_SaveFile(Latex, pathForSave+"\\Report.tex");
-
-            if (!pathForTempHtml.isEmpty())
-            {
-                HQt_AddHtml(Html);
-
-                //HQt_AddHtml(THQt_ShowNumber(Data.getErrorEx(0,0),"x"));
-                //HQt_AddHtml(THQt_ShowNumber(Data.getErrorEx(Data.getNumberOfExperiments(), Data.getNumberOfMeasuring())));
-                //HQt_AddHtml(HQt_ShowText(Data.getNameParameter(1,4)));
-                //HQt_AddHtml(THQt_ShowNumber(Data.getNumberOfOption("1222"),"x"));
-                //HQt_AddHtml(THQt_ShowNumber(Data.getNumberOfOption("Тип формирования нового поколения"),"x"));
-                //HQt_AddHtml(HQt_ShowText(Data.getNameOption(3)));
-            }
-        }
-        else
-        {
-            //выводим ошибку
-            Html=Data.getHtml();
-            if (!pathForTempHtml.isEmpty()) HQt_AddHtml(Html);
-        }
-
-    }
-}
-//--------------------------------------------------------------------------
-
-void HCDOHOT_GeneratedAnalysisReportFromFile(QString filename, QString pathForSave)
-{
-    /*
-    Генерирует отчет-анализ Latex по алгоритму по файлу *.hdata без генерации Html отчета.
-    В папке сохранения должны быть находиться файлы names.tex, packages.tex, styles.tex из проекта
-    https://github.com/Harrix/HarrixLaTeXDocumentTemplate
-    Для отчета в виде html берется проект:
-    https://github.com/Harrix/HarrixHtmlForQWebView
-    Входные параметры:
-     filename - путь к файлу, из которого считываем данные.
-     pathForSave - путь к папке, куда сохраняем Latex файлы.
-     pathForTempHtml - путь к папке куда сохраняем во время работы функции отчет в виде temp.html.
-    Возвращаемое значение:
-     Отсутствует.
-     */
-    HCDOHOT_GeneratedAnalysisReportFromFile(filename, pathForSave, "");
-}
-//--------------------------------------------------------------------------
-
-int HCDOHOT_ReadFilesInDir(HarrixClass_DataOfHarrixOptimizationTesting *SeveralData, QString path, QString pathForTempHtml)
-{
-    /*
-    Заполняет массив SeveralData данными из всех файлов *.hdata из папки.
-    Входные параметры:
-     SeveralData - массив, в который записываем данные.
-     path - путь к папке, из которой считаем файлы.
-     pathForTempHtml - путь к папке куда сохраняем во время работы функции отчет в виде temp.html.
-    Возвращаемое значение:
-     Число файлов HarrixClass_DataOfHarrixOptimizationTesting файлов в папке.
-    Примечание.
-     Подсчитать число файлов в папке до вызова этой функции можно функцией HCDOHOT_NumberFilesInDir.
-     */
-    int Result=0;
-
-    path = QDir::toNativeSeparators(path);
-
-    if (!pathForTempHtml.isEmpty()) pathForTempHtml = QDir::toNativeSeparators(pathForTempHtml);
-    //if (!pathForTempHtml.isEmpty()) HQt_BeginHtml (pathForTempHtml);
-
-    QString Html;
-
-    if (path.length()>0)
-    {
-        QString filename;
-
-        QStringList Files = HQt_ListFilesInDirQStringList(path);
-
-        Files = HQt_NaturalSortingQStringList(Files);//сортируем правильно список файлов
-
-        for (int i=0;i<Files.count();i++)
-        {
-            filename=Files.at(i);
-            if (HQt_GetExpFromFilename(filename)=="xml")
-            {
-                HarrixClass_DataOfHarrixOptimizationTesting Data(path+"\\"+filename);
-
-                SeveralData[i]=Data;
-
-                if (!pathForTempHtml.isEmpty())
-                {
-                    if (Data.getSuccessReading())
-                    {
-                        Html=HQt_ShowSimpleText(filename);
-                        if (!pathForTempHtml.isEmpty()) HQt_AddHtml(Html);
-                    }
-                    else
-                    {
-                        Html=HQt_ShowAlert("Ошибка при считывании файла "+ filename);
-                        if (!pathForTempHtml.isEmpty()) HQt_AddHtml(Html);
-                    }
-                }
-
-                Result++;
-            }
-            QGuiApplication::processEvents();
-        }
-    }
-
-    return Result;
-}
-//--------------------------------------------------------------------------
-
-int HCDOHOT_ReadFilesInDir(HarrixClass_DataOfHarrixOptimizationTesting *SeveralData, QString path)
-{
-    /*
-    Заполняет массив SeveralData данными из всех файлов *.hdata из папки без генерации отчета в HTML.
-    Входные параметры:
-     SeveralData - массив, в который записываем данные.
-     path - путь к папке, из которой считаем файлы.
-     pathForTempHtml - путь к папке куда сохраняем во время работы функции отчет в виде temp.html.
-    Возвращаемое значение:
-     Число файлов HarrixClass_DataOfHarrixOptimizationTesting файлов в папке.
-    Примечание.
-     Подсчитать число файлов в папке до вызова этой функции можно функцией HCDOHOT_NumberFilesInDir.
-     */
-    int Result=HCDOHOT_ReadFilesInDir(SeveralData, path, "");
-
-    return Result;
-}
-//--------------------------------------------------------------------------
-
-bool HCDOHOT_CompareOfDataForNameAlgorithm (HarrixClass_DataOfHarrixOptimizationTesting Data1, HarrixClass_DataOfHarrixOptimizationTesting Data2)
-{
-    /*
-    Проверяет равенство индентификаторов алгоритмов оптимизации: в данных содержится один и тот же алгоритм или же нет.
-    Входные параметры:
-     Data1 - первое исследование;
-     Data2 - второе исследование.
-    Возвращаемое значение:
-     true - если имена алгоритмов одинаковы.
-     false - если разные.
-     */
-    bool VMHL_Result=true;
-
-    if (Data1.getNameAlgorithm()!=Data2.getNameAlgorithm()) VMHL_Result=false;
-
-    return VMHL_Result;
-}
-//--------------------------------------------------------------------------
-
-bool HCDOHOT_CompareOfDataForNameAlgorithm (HarrixClass_DataOfHarrixOptimizationTesting *SeveralData, int N)
-{
-    /*
-    Проверяет равенство индентификаторов алгоритмов оптимизации: в данных содержится один и тот же алгоритм или же нет.
-    Входные параметры:
-     SeveralData - массив исследований;
-     N - количество исследований в массиве.
-    Возвращаемое значение:
-     true - если имена алгоритмов одинаковы.
-     false - если разные.
-     */
-    bool VMHL_Result=true;
-
-    QString Info=SeveralData[0].getNameAlgorithm();
-
-    for (int i=1;i<N;i++)
-    {
-        if ( Info!=SeveralData[i].getNameAlgorithm() ) VMHL_Result=false;
-    }
-
-    return VMHL_Result;
-}
-//--------------------------------------------------------------------------
-
-bool HCDOHOT_CompareOfDataForAuthor (HarrixClass_DataOfHarrixOptimizationTesting Data1, HarrixClass_DataOfHarrixOptimizationTesting Data2)
-{
-    /*
-    Проверяет равенство авторов исследований.
-    Входные параметры:
-     Data1 - первое исследование;
-     Data2 - второе исследование.
-    Возвращаемое значение:
-     true - если исследуемый параметр алгоритмов одинаков.
-     false - если разные.
-     */
-    bool VMHL_Result=true;
-
-    if (Data1.getAuthor()!=Data2.getAuthor()) VMHL_Result=false;
-
-    return VMHL_Result;
-}
-//--------------------------------------------------------------------------
-
-bool HCDOHOT_CompareOfDataForAuthor (HarrixClass_DataOfHarrixOptimizationTesting *SeveralData, int N)
-{
-    /*
-    Проверяет равенство авторов исследований.
-    Входные параметры:
-     SeveralData - массив исследований;
-     N - количество исследований в массиве.
-    Возвращаемое значение:
-     true - если исследуемый параметр алгоритмов одинаков.
-     false - если разные.
-     */
-    bool VMHL_Result=true;
-
-    QString Info=SeveralData[0].getAuthor();
-
-    for (int i=1;i<N;i++)
-    {
-        if ( Info!=SeveralData[i].getAuthor() ) VMHL_Result=false;
-    }
-
-    return VMHL_Result;
-}
-//--------------------------------------------------------------------------
-
-bool HCDOHOT_CompareOfDataForDate (HarrixClass_DataOfHarrixOptimizationTesting Data1, HarrixClass_DataOfHarrixOptimizationTesting Data2)
-{
-    /*
-    Проверяет равенство дат исследований.
-    Входные параметры:
-     Data1 - первое исследование;
-     Data2 - второе исследование.
-    Возвращаемое значение:
-     true - если исследуемый параметр алгоритмов одинаков.
-     false - если разные.
-     */
-    bool VMHL_Result=true;
-
-    if (Data1.getDate()!=Data2.getDate()) VMHL_Result=false;
-
-    return VMHL_Result;
-}
-//--------------------------------------------------------------------------
-
-bool HCDOHOT_CompareOfDataForDate (HarrixClass_DataOfHarrixOptimizationTesting *SeveralData, int N)
-{
-    /*
-    Проверяет равенство дат исследований.
-    Входные параметры:
-     SeveralData - массив исследований;
-     N - количество исследований в массиве.
-    Возвращаемое значение:
-     true - если исследуемый параметр алгоритмов одинаков.
-     false - если разные.
-     */
-    bool VMHL_Result=true;
-
-    QString Info=SeveralData[0].getDate();
-
-    for (int i=1;i<N;i++)
-    {
-        if ( Info!=SeveralData[i].getDate() ) VMHL_Result=false;
-    }
-
-    return VMHL_Result;
-}
-//--------------------------------------------------------------------------
-
-bool HCDOHOT_CompareOfDataForEmail (HarrixClass_DataOfHarrixOptimizationTesting Data1, HarrixClass_DataOfHarrixOptimizationTesting Data2)
-{
-    /*
-    Проверяет равенство email авторов исследований.
-    Входные параметры:
-     Data1 - первое исследование;
-     Data2 - второе исследование.
-    Возвращаемое значение:
-     true - если исследуемый параметр алгоритмов одинаков.
-     false - если разные.
-     */
-    bool VMHL_Result=true;
-
-    if (Data1.getEmail()!=Data2.getEmail()) VMHL_Result=false;
-
-    return VMHL_Result;
-}
-//--------------------------------------------------------------------------
-
-bool HCDOHOT_CompareOfDataForEmail (HarrixClass_DataOfHarrixOptimizationTesting *SeveralData, int N)
-{
-    /*
-    Проверяет равенство email авторов исследований.
-    Входные параметры:
-     SeveralData - массив исследований;
-     N - количество исследований в массиве.
-    Возвращаемое значение:
-     true - если исследуемый параметр алгоритмов одинаков.
-     false - если разные.
-     */
-    bool VMHL_Result=true;
-
-    QString Info=SeveralData[0].getEmail();
-
-    for (int i=1;i<N;i++)
-    {
-        if ( Info!=SeveralData[i].getEmail() ) VMHL_Result=false;
-    }
-
-    return VMHL_Result;
-}
-//--------------------------------------------------------------------------
-
-bool HCDOHOT_CompareOfDataForFullNameAlgorithm (HarrixClass_DataOfHarrixOptimizationTesting Data1, HarrixClass_DataOfHarrixOptimizationTesting Data2)
-{
-    /*
-    Проверяет равенство полных названий алгоритмов в исследованиях
-    Входные параметры:
-     Data1 - первое исследование;
-     Data2 - второе исследование.
-    Возвращаемое значение:
-     true - если исследуемый параметр алгоритмов одинаков.
-     false - если разные.
-     */
-    bool VMHL_Result=true;
-
-    if (Data1.getFullNameAlgorithm()!=Data2.getFullNameAlgorithm()) VMHL_Result=false;
-
-    return VMHL_Result;
-}
-//--------------------------------------------------------------------------
-
-bool HCDOHOT_CompareOfDataForFullNameAlgorithm (HarrixClass_DataOfHarrixOptimizationTesting *SeveralData, int N)
-{
-    /*
-    Проверяет равенство полных названий алгоритмов в исследованиях.
-    Входные параметры:
-     SeveralData - массив исследований;
-     N - количество исследований в массиве.
-    Возвращаемое значение:
-     true - если исследуемый параметр алгоритмов одинаков.
-     false - если разные.
-     */
-    bool VMHL_Result=true;
-
-    QString Info=SeveralData[0].getFullNameAlgorithm();
-
-    for (int i=1;i<N;i++)
-    {
-        if ( Info!=SeveralData[i].getFullNameAlgorithm() ) VMHL_Result=false;
-    }
-
-    return VMHL_Result;
-}
-//--------------------------------------------------------------------------
-
-bool HCDOHOT_CompareOfDataForNameTestFunction (HarrixClass_DataOfHarrixOptimizationTesting Data1, HarrixClass_DataOfHarrixOptimizationTesting Data2)
-{
-    /*
-    Проверяет равенство идентификаторов тестовых функций в исследованиях
-    Входные параметры:
-     Data1 - первое исследование;
-     Data2 - второе исследование.
-    Возвращаемое значение:
-     true - если исследуемый параметр алгоритмов одинаков.
-     false - если разные.
-     */
-    bool VMHL_Result=true;
-
-    if (Data1.getNameTestFunction()!=Data2.getNameTestFunction()) VMHL_Result=false;
-
-    return VMHL_Result;
-}
-//--------------------------------------------------------------------------
-
-bool HCDOHOT_CompareOfDataForForNameTestFunction (HarrixClass_DataOfHarrixOptimizationTesting *SeveralData, int N)
-{
-    /*
-    Проверяет равенство идентификаторов тестовых функций в исследованиях.
-    Входные параметры:
-     SeveralData - массив исследований;
-     N - количество исследований в массиве.
-    Возвращаемое значение:
-     true - если исследуемый параметр алгоритмов одинаков.
-     false - если разные.
-     */
-    bool VMHL_Result=true;
-
-    QString Info=SeveralData[0].getNameTestFunction();
-
-    for (int i=1;i<N;i++)
-    {
-        if ( Info!=SeveralData[i].getNameTestFunction() ) VMHL_Result=false;
-    }
-
-    return VMHL_Result;
-}
-//--------------------------------------------------------------------------
-
-bool HCDOHOT_CompareOfDataForFullNameTestFunction (HarrixClass_DataOfHarrixOptimizationTesting Data1, HarrixClass_DataOfHarrixOptimizationTesting Data2)
-{
-    /*
-    Проверяет равенство полных названий тестовых функций в исследованиях
-    Входные параметры:
-     Data1 - первое исследование;
-     Data2 - второе исследование.
-    Возвращаемое значение:
-     true - если исследуемый параметр алгоритмов одинаков.
-     false - если разные.
-     */
-    bool VMHL_Result=true;
-
-    if (Data1.getFullNameTestFunction()!=Data2.getFullNameTestFunction()) VMHL_Result=false;
-
-    return VMHL_Result;
-}
-//--------------------------------------------------------------------------
-
-bool HCDOHOT_CompareOfDataForForFullNameTestFunction (HarrixClass_DataOfHarrixOptimizationTesting *SeveralData, int N)
-{
-    /*
-    Проверяет равенство полных названий тестовых функций в исследованиях.
-    Входные параметры:
-     SeveralData - массив исследований;
-     N - количество исследований в массиве.
-    Возвращаемое значение:
-     true - если исследуемый параметр алгоритмов одинаков.
-     false - если разные.
-     */
-    bool VMHL_Result=true;
-
-    QString Info=SeveralData[0].getFullNameTestFunction();
-
-    for (int i=1;i<N;i++)
-    {
-        if ( Info!=SeveralData[i].getFullNameTestFunction() ) VMHL_Result=false;
-    }
-
-    return VMHL_Result;
-}
-//--------------------------------------------------------------------------
-
-bool HCDOHOT_CompareOfDataForDimensionTestFunction (HarrixClass_DataOfHarrixOptimizationTesting Data1, HarrixClass_DataOfHarrixOptimizationTesting Data2)
-{
-    /*
-    Проверяет равенство размерностей тестовой задачи (длина хромосомы решения) в исследованиях
-    Входные параметры:
-     Data1 - первое исследование;
-     Data2 - второе исследование.
-    Возвращаемое значение:
-     true - если исследуемый параметр алгоритмов одинаков.
-     false - если разные.
-     */
-    bool VMHL_Result=true;
-
-    if (Data1.getDimensionTestFunction()!=Data2.getDimensionTestFunction()) VMHL_Result=false;
-
-    return VMHL_Result;
-}
-//--------------------------------------------------------------------------
-
-bool HCDOHOT_CompareOfDataForForDimensionTestFunction (HarrixClass_DataOfHarrixOptimizationTesting *SeveralData, int N)
-{
-    /*
-    Проверяет равенство размерностей тестовой задачи (длина хромосомы решения) в исследованиях.
-    Входные параметры:
-     SeveralData - массив исследований;
-     N - количество исследований в массиве.
-    Возвращаемое значение:
-     true - если исследуемый параметр алгоритмов одинаков.
-     false - если разные.
-     */
-    bool VMHL_Result=true;
-
-    qint64 Info=SeveralData[0].getDimensionTestFunction();
-
-    for (int i=1;i<N;i++)
-    {
-        if ( Info!=SeveralData[i].getDimensionTestFunction() ) VMHL_Result=false;
-    }
-
-    return VMHL_Result;
-}
-//--------------------------------------------------------------------------
-
-bool HCDOHOT_CompareOfDataForNumberOfMeasuring (HarrixClass_DataOfHarrixOptimizationTesting Data1, HarrixClass_DataOfHarrixOptimizationTesting Data2)
-{
-    /*
-    Проверяет равенство количества экспериментов для каждого набора параметров алгоритма в исследованиях.
-    Входные параметры:
-     Data1 - первое исследование;
-     Data2 - второе исследование.
-    Возвращаемое значение:
-     true - если исследуемый параметр алгоритмов одинаков.
-     false - если разные.
-     */
-    bool VMHL_Result=true;
-
-    if (Data1.getNumberOfMeasuring()!=Data2.getNumberOfMeasuring()) VMHL_Result=false;
-
-    return VMHL_Result;
-}
-//--------------------------------------------------------------------------
-
-bool HCDOHOT_CompareOfDataForNumberOfMeasuring (HarrixClass_DataOfHarrixOptimizationTesting *SeveralData, int N)
-{
-    /*
-    Проверяет равенство количества экспериментов для каждого набора параметров алгоритма в исследованиях.
-    Входные параметры:
-     SeveralData - массив исследований;
-     N - количество исследований в массиве.
-    Возвращаемое значение:
-     true - если исследуемый параметр алгоритмов одинаков.
-     false - если разные.
-     */
-    bool VMHL_Result=true;
-
-    qint64 Info=SeveralData[0].getNumberOfMeasuring();
-
-    for (int i=1;i<N;i++)
-    {
-        if ( Info!=SeveralData[i].getNumberOfMeasuring() ) VMHL_Result=false;
-    }
-
-    return VMHL_Result;
-}
-//--------------------------------------------------------------------------
-
-bool HCDOHOT_CompareOfDataForNumberOfRuns (HarrixClass_DataOfHarrixOptimizationTesting Data1, HarrixClass_DataOfHarrixOptimizationTesting Data2)
-{
-    /*
-    Проверяет равенство количества прогонов, по которому делается усреднение для эксперимента в исследованиях.
-    Входные параметры:
-     Data1 - первое исследование;
-     Data2 - второе исследование.
-    Возвращаемое значение:
-     true - если исследуемый параметр алгоритмов одинаков.
-     false - если разные.
-     */
-    bool VMHL_Result=true;
-
-    if (Data1.getNumberOfRuns()!=Data2.getNumberOfRuns()) VMHL_Result=false;
-
-    return VMHL_Result;
-}
-//--------------------------------------------------------------------------
-
-bool HCDOHOT_CompareOfDataForNumberOfRuns (HarrixClass_DataOfHarrixOptimizationTesting *SeveralData, int N)
-{
-    /*
-    Проверяет равенство количества прогонов, по которому делается усреднение для эксперимента в исследованиях.
-    Входные параметры:
-     SeveralData - массив исследований;
-     N - количество исследований в массиве.
-    Возвращаемое значение:
-     true - если исследуемый параметр алгоритмов одинаков.
-     false - если разные.
-     */
-    bool VMHL_Result=true;
-
-    qint64 Info=SeveralData[0].getNumberOfRuns();
-
-    for (int i=1;i<N;i++)
-    {
-        if ( Info!=SeveralData[i].getNumberOfRuns() ) VMHL_Result=false;
-    }
-
-    return VMHL_Result;
-}
-//--------------------------------------------------------------------------
-
-bool HCDOHOT_CompareOfDataForMaxCountOfFitness (HarrixClass_DataOfHarrixOptimizationTesting Data1, HarrixClass_DataOfHarrixOptimizationTesting Data2)
-{
-    /*
-    Проверяет равенство максимальных допустимых чисел вычислений целевой функции для алгоритма в исследованиях.
-    Входные параметры:
-     Data1 - первое исследование;
-     Data2 - второе исследование.
-    Возвращаемое значение:
-     true - если исследуемый параметр алгоритмов одинаков.
-     false - если разные.
-     */
-    bool VMHL_Result=true;
-
-    if (Data1.getMaxCountOfFitness()!=Data2.getMaxCountOfFitness()) VMHL_Result=false;
-
-    return VMHL_Result;
-}
-//--------------------------------------------------------------------------
-
-bool HCDOHOT_CompareOfDataForMaxCountOfFitness (HarrixClass_DataOfHarrixOptimizationTesting *SeveralData, int N)
-{
-    /*
-    Проверяет равенство максимальных допустимых чисел вычислений целевой функции для алгоритма в исследованиях.
-    Входные параметры:
-     SeveralData - массив исследований;
-     N - количество исследований в массиве.
-    Возвращаемое значение:
-     true - если исследуемый параметр алгоритмов одинаков.
-     false - если разные.
-     */
-    bool VMHL_Result=true;
-
-    qint64 Info=SeveralData[0].getMaxCountOfFitness();
-
-    for (int i=1;i<N;i++)
-    {
-        if ( Info!=SeveralData[i].getMaxCountOfFitness() ) VMHL_Result=false;
-    }
-
-    return VMHL_Result;
-}
-//--------------------------------------------------------------------------
-
-bool HCDOHOT_CompareOfDataForNumberOfParameters (HarrixClass_DataOfHarrixOptimizationTesting Data1, HarrixClass_DataOfHarrixOptimizationTesting Data2)
-{
-    /*
-    Проверяет равенство количества проверяемых параметров алгоритма оптимизации в исследованиях.
-    Входные параметры:
-     Data1 - первое исследование;
-     Data2 - второе исследование.
-    Возвращаемое значение:
-     true - если исследуемый параметр алгоритмов одинаков.
-     false - если разные.
-     */
-    bool VMHL_Result=true;
-
-    if (Data1.getNumberOfParameters()!=Data2.getNumberOfParameters()) VMHL_Result=false;
-
-    return VMHL_Result;
-}
-//--------------------------------------------------------------------------
-
-bool HCDOHOT_CompareOfDataForNumberOfParameters (HarrixClass_DataOfHarrixOptimizationTesting *SeveralData, int N)
-{
-    /*
-    Проверяет равенство количества проверяемых параметров алгоритма оптимизации в исследованиях.
-    Входные параметры:
-     SeveralData - массив исследований;
-     N - количество исследований в массиве.
-    Возвращаемое значение:
-     true - если исследуемый параметр алгоритмов одинаков.
-     false - если разные.
-     */
-    bool VMHL_Result=true;
-
-    qint64 Info=SeveralData[0].getNumberOfParameters();
-
-    for (int i=1;i<N;i++)
-    {
-        if ( Info!=SeveralData[i].getNumberOfParameters() ) VMHL_Result=false;
-    }
-
-    return VMHL_Result;
-}
-//--------------------------------------------------------------------------
-
-bool HCDOHOT_CompareOfDataForNumberOfExperiments (HarrixClass_DataOfHarrixOptimizationTesting Data1, HarrixClass_DataOfHarrixOptimizationTesting Data2)
-{
-    /*
-    Проверяет равенство количества комбинаций вариантов настроек в исследованиях.
-    Входные параметры:
-     Data1 - первое исследование;
-     Data2 - второе исследование.
-    Возвращаемое значение:
-     true - если исследуемый параметр алгоритмов одинаков.
-     false - если разные.
-     */
-    bool VMHL_Result=true;
-
-    if (Data1.getNumberOfExperiments()!=Data2.getNumberOfExperiments()) VMHL_Result=false;
-
-    return VMHL_Result;
-}
-//--------------------------------------------------------------------------
-
-bool HCDOHOT_CompareOfDataForNumberOfExperiments (HarrixClass_DataOfHarrixOptimizationTesting *SeveralData, int N)
-{
-    /*
-    Проверяет равенство количества комбинаций вариантов настроек в исследованиях.
-    Входные параметры:
-     SeveralData - массив исследований;
-     N - количество исследований в массиве.
-    Возвращаемое значение:
-     true - если исследуемый параметр алгоритмов одинаков.
-     false - если разные.
-     */
-    bool VMHL_Result=true;
-
-    qint64 Info=SeveralData[0].getNumberOfExperiments();
-
-    for (int i=1;i<N;i++)
-    {
-        if ( Info!=SeveralData[i].getNumberOfExperiments() ) VMHL_Result=false;
-    }
-
-    return VMHL_Result;
-}
-//--------------------------------------------------------------------------
-
-bool HCDOHOT_CompareOfDataForFormat (HarrixClass_DataOfHarrixOptimizationTesting Data1, HarrixClass_DataOfHarrixOptimizationTesting Data2)
-{
-    /*
-    Проверяет равенство форматов файлов в исследованиях.
-    Входные параметры:
-     Data1 - первое исследование;
-     Data2 - второе исследование.
-    Возвращаемое значение:
-     true - если исследуемый параметр алгоритмов одинаков.
-     false - если разные.
-     */
-    bool VMHL_Result=true;
-
-    if (Data1.getFormat()!=Data2.getFormat()) VMHL_Result=false;
-
-    return VMHL_Result;
-}
-//--------------------------------------------------------------------------
-
-bool HCDOHOT_CompareOfDataForFormat (HarrixClass_DataOfHarrixOptimizationTesting *SeveralData, int N)
-{
-    /*
-    Проверяет равенство форматов файлов в исследованиях.
-    Входные параметры:
-     SeveralData - массив исследований;
-     N - количество исследований в массиве.
-    Возвращаемое значение:
-     true - если исследуемый параметр алгоритмов одинаков.
-     false - если разные.
-     */
-    bool VMHL_Result=true;
-
-    QString Info=SeveralData[0].getFormat();
-
-    for (int i=1;i<N;i++)
-    {
-        if ( Info!=SeveralData[i].getFormat() ) VMHL_Result=false;
-    }
-
-    return VMHL_Result;
-}
-//--------------------------------------------------------------------------
-
-bool HCDOHOT_CompareOfDataForVersion (HarrixClass_DataOfHarrixOptimizationTesting Data1, HarrixClass_DataOfHarrixOptimizationTesting Data2)
-{
-    /*
-    Проверяет равенство версий формата файла в исследованиях.
-    Входные параметры:
-     Data1 - первое исследование;
-     Data2 - второе исследование.
-    Возвращаемое значение:
-     true - если исследуемый параметр алгоритмов одинаков.
-     false - если разные.
-     */
-    bool VMHL_Result=true;
-
-    if (Data1.getVersion()!=Data2.getVersion()) VMHL_Result=false;
-
-    return VMHL_Result;
-}
-//--------------------------------------------------------------------------
-
-bool HCDOHOT_CompareOfDataForVersion (HarrixClass_DataOfHarrixOptimizationTesting *SeveralData, int N)
-{
-    /*
-    Проверяет равенство версий формата файла в исследованиях.
-    Входные параметры:
-     SeveralData - массив исследований;
-     N - количество исследований в массиве.
-    Возвращаемое значение:
-     true - если исследуемый параметр алгоритмов одинаков.
-     false - если разные.
-     */
-    bool VMHL_Result=true;
-
-    QString Info=SeveralData[0].getVersion();
-
-    for (int i=1;i<N;i++)
-    {
-        if ( Info!=SeveralData[i].getVersion() ) VMHL_Result=false;
-    }
-
-    return VMHL_Result;
-}
-//--------------------------------------------------------------------------
-
-bool HCDOHOT_CompareOfDataForLink (HarrixClass_DataOfHarrixOptimizationTesting Data1, HarrixClass_DataOfHarrixOptimizationTesting Data2)
-{
-    /*
-    Проверяет равенство ссылок на описание версий формата файла в исследованиях.
-    Входные параметры:
-     Data1 - первое исследование;
-     Data2 - второе исследование.
-    Возвращаемое значение:
-     true - если исследуемый параметр алгоритмов одинаков.
-     false - если разные.
-     */
-    bool VMHL_Result=true;
-
-    if (Data1.getLink()!=Data2.getLink()) VMHL_Result=false;
-
-    return VMHL_Result;
-}
-//--------------------------------------------------------------------------
-
-bool HCDOHOT_CompareOfDataForLink (HarrixClass_DataOfHarrixOptimizationTesting *SeveralData, int N)
-{
-    /*
-    Проверяет равенство ссылок на описание версий формата файла в исследованиях.
-    Входные параметры:
-     SeveralData - массив исследований;
-     N - количество исследований в массиве.
-    Возвращаемое значение:
-     true - если исследуемый параметр алгоритмов одинаков.
-     false - если разные.
-     */
-    bool VMHL_Result=true;
-
-    QString Info=SeveralData[0].getLink();
-
-    for (int i=1;i<N;i++)
-    {
-        if ( Info!=SeveralData[i].getLink() ) VMHL_Result=false;
-    }
-
-    return VMHL_Result;
-}
-//--------------------------------------------------------------------------
-
-bool HCDOHOT_CompareOfDataForCheckAllCombinations (HarrixClass_DataOfHarrixOptimizationTesting Data1, HarrixClass_DataOfHarrixOptimizationTesting Data2)
-{
-    /*
-    Проверяет равенство переменной, котороая говорит все ли рассмотрены функции в исследованиях.
-    Входные параметры:
-     Data1 - первое исследование;
-     Data2 - второе исследование.
-    Возвращаемое значение:
-     true - если исследуемый параметр алгоритмов одинаков.
-     false - если разные.
-     */
-    bool VMHL_Result=true;
-
-    if (Data1.getCheckAllCombinations()!=Data2.getCheckAllCombinations()) VMHL_Result=false;
-
-    return VMHL_Result;
-}
-//--------------------------------------------------------------------------
-
-bool HCDOHOT_CompareOfDataForCheckAllCombinations (HarrixClass_DataOfHarrixOptimizationTesting *SeveralData, int N)
-{
-    /*
-    Проверяет равенство переменной, котороая говорит все ли рассмотрены функции в исследованиях.
-    Входные параметры:
-     SeveralData - массив исследований;
-     N - количество исследований в массиве.
-    Возвращаемое значение:
-     true - если исследуемый параметр алгоритмов одинаков.
-     false - если разные.
-     */
-    bool VMHL_Result=true;
-
-    int Info=SeveralData[0].getCheckAllCombinations();
-
-    for (int i=1;i<N;i++)
-    {
-        if ( Info!=SeveralData[i].getCheckAllCombinations() ) VMHL_Result=false;
-    }
-
-    return VMHL_Result;
-}
 //--------------------------------------------------------------------------

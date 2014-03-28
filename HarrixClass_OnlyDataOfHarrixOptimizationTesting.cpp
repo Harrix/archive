@@ -64,6 +64,21 @@ void HarrixClass_OnlyDataOfHarrixOptimizationTesting::operator = (HarrixClass_On
     XML_Version = B.XML_Version;//Какая версия формата файла
     XML_Link = B.XML_Link;//Ссылка на описание формата файла
     XML_All_Combinations = B.XML_All_Combinations;//Все ли рассмотрены функции
+
+    SuccessReading=B.SuccessReading;
+
+    memoryAllocation();
+
+    if (SuccessReading)
+    {
+        for (int i=0;i<XML_Number_Of_Experiments;i++)
+            for (int j=0;j<XML_Number_Of_Measuring;j++)
+            {
+                MatrixOfEx[i][j]=B.MatrixOfEx[i][j];
+                MatrixOfEy[i][j]=B.MatrixOfEy[i][j];
+                MatrixOfR [i][j]=B.MatrixOfR [i][j];
+            }
+    }
 }
 //--------------------------------------------------------------------------
 

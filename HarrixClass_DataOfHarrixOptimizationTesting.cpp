@@ -67,7 +67,7 @@ HarrixClass_DataOfHarrixOptimizationTesting::~HarrixClass_DataOfHarrixOptimizati
 
 void HarrixClass_DataOfHarrixOptimizationTesting::operator = (HarrixClass_DataOfHarrixOptimizationTesting& B)
 {
-    //Вначале учничтожим все массивы если они были.
+    //Вначале уничтожим все массивы если они были.
     memoryDeallocation();
 
     initializationOfVariables();

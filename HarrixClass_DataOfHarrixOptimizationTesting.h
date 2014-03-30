@@ -8,6 +8,7 @@
 #define HARRIXCLASS_DATAOFHARRIXOPTIMIZATIONTESTING_H
 
 #include "HarrixClass_OnlyDataOfHarrixOptimizationTesting.h"
+#include <QXmlStreamReader>
 
 class HarrixClass_DataOfHarrixOptimizationTesting
 {

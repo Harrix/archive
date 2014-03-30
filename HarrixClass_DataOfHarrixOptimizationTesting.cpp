@@ -736,7 +736,7 @@ int HarrixClass_DataOfHarrixOptimizationTesting::getParameter(int Number_Of_Expe
     if (Number_Of_Parameter<0) Number_Of_Parameter=0;
     if (Number_Of_Parameter>Data.getNumberOfParameters()-1) Number_Of_Parameter=Data.getNumberOfParameters()-1;
 
-    return MatrixOfParameters[Number_Of_Experiment][Number_Of_Parameter];
+    return Data.getParameter(Number_Of_Experiment,Number_Of_Parameter);
 }
 //--------------------------------------------------------------------------
 
@@ -760,22 +760,6 @@ QString HarrixClass_DataOfHarrixOptimizationTesting::getNameParameter(int Number
 }
 //--------------------------------------------------------------------------
 
-QString HarrixClass_DataOfHarrixOptimizationTesting::getNameOption(int Number_Of_Parameter)
-{
-    /*
-    Получение имени параметра алгоритма по его номеру.
-    Входные параметры:
-     Number_Of_Parameter - номер параметра.
-    Возвращаемое значение:
-     Значения параметра в виде наименования.
-     */
-    if (Number_Of_Parameter<0) Number_Of_Parameter=0;
-    if (Number_Of_Parameter>Data.getNumberOfParameters()-1) Number_Of_Parameter=Data.getNumberOfParameters()-1;
-
-    return NamesOfParameters[Number_Of_Parameter];
-}
-//--------------------------------------------------------------------------
-
 int HarrixClass_DataOfHarrixOptimizationTesting::getNumberOfOption(QString NameOption)
 {
     /*
@@ -787,7 +771,7 @@ int HarrixClass_DataOfHarrixOptimizationTesting::getNumberOfOption(QString NameO
      */
     int VMHL_Result=-1;
 
-    VMHL_Result = HQt_SearchQStringInQStringList (NamesOfParameters, NameOption);
+    VMHL_Result = HQt_SearchQStringInQStringList (Data.getNamesOfParameters(), NameOption);
 
     return VMHL_Result;
 }
@@ -882,9 +866,9 @@ void HarrixClass_DataOfHarrixOptimizationTesting::makingLatexTableR()
                     if (MatrixOfNameParameters[i][j].length()>=5)
                         Cell2+=MatrixOfNameParameters[i][j] +" \\\\ ";
                     else
-                        Cell2+=NamesOfParameters[j] + " = " + MatrixOfNameParameters[i][j] +" \\\\ ";
+                        Cell2+=Data.getNameOption(j) + " = " + MatrixOfNameParameters[i][j] +" \\\\ ";
                 else
-                    Cell2+=NamesOfParameters[j] + " = " + MatrixOfNameParameters[i][j] +" \\\\ ";
+                    Cell2+=Data.getNameOption(j) + " = " + MatrixOfNameParameters[i][j] +" \\\\ ";
         }
 
         Cell2+="}";
@@ -969,9 +953,9 @@ void HarrixClass_DataOfHarrixOptimizationTesting::makingLatexTableEy()
                     if (MatrixOfNameParameters[i][j].length()>=5)
                         Cell2+=MatrixOfNameParameters[i][j] +" \\\\ ";
                     else
-                        Cell2+=NamesOfParameters[j] + " = " + MatrixOfNameParameters[i][j] +" \\\\ ";
+                        Cell2+=Data.getNameOption(j) + " = " + MatrixOfNameParameters[i][j] +" \\\\ ";
                 else
-                    Cell2+=NamesOfParameters[j] + " = " + MatrixOfNameParameters[i][j] +" \\\\ ";
+                    Cell2+=Data.getNameOption(j) + " = " + MatrixOfNameParameters[i][j] +" \\\\ ";
         }
 
         Cell2+="}";
@@ -1055,9 +1039,9 @@ void HarrixClass_DataOfHarrixOptimizationTesting::makingLatexTableEx()
                     if (MatrixOfNameParameters[i][j].length()>=5)
                         Cell2+=MatrixOfNameParameters[i][j] +" \\\\ ";
                     else
-                        Cell2+=NamesOfParameters[j] + " = " + MatrixOfNameParameters[i][j] +" \\\\ ";
+                        Cell2+=Data.getNameOption(j) + " = " + MatrixOfNameParameters[i][j] +" \\\\ ";
                 else
-                    Cell2+=NamesOfParameters[j] + " = " + MatrixOfNameParameters[i][j] +" \\\\ ";
+                    Cell2+=Data.getNameOption(j) + " = " + MatrixOfNameParameters[i][j] +" \\\\ ";
         }
 
         Cell2+="}";
@@ -1122,7 +1106,7 @@ void HarrixClass_DataOfHarrixOptimizationTesting::makingLatexInfo()
     LatexInfo+="\\textbf{Количество запусков алгоритма в каждом из экспериментов}: & "+QString::number(Data.getNumberOfRuns())+" \\\\ \n";
     LatexInfo+="\\textbf{Максимальное допустимое число вычислений целевой функции}: & "+QString::number(Data.getMaxCountOfFitness())+" \\\\ \n";
 
-    if ((Data.getNumberOfParameters()==1)&&(NamesOfParameters.at(0)=="NULL"))
+    if ((Data.getNumberOfParameters()==1)&&(Data.getNameOption(0)=="NULL"))
     {
         LatexInfo+="\\textbf{Количество проверяемых параметров алгоритма оптимизации}: & Отсутствуют \\\\ \n";
     }
@@ -1152,7 +1136,7 @@ void HarrixClass_DataOfHarrixOptimizationTesting::makingLatexAboutParameters()
      Отсутствует. Значение возвращается в переменную LatexTableEx, которую можно вызвать getLatexAboutParameters
      */
     LatexAboutParameters+="\\subsection {Параметры алгоритма оптимизации}\n\n";
-    if ((Data.getNumberOfParameters()==1)&&(NamesOfParameters.at(0)=="NULL"))
+    if ((Data.getNumberOfParameters()==1)&&(Data.getNameOption(0)=="NULL"))
     {
         LatexAboutParameters+="В данном исследуемом алгоритме оптимизации нет настраеваемых параметров. Поэтому в таблице ниже приведены даные только одного эксперимента.";
     }
@@ -1164,14 +1148,14 @@ void HarrixClass_DataOfHarrixOptimizationTesting::makingLatexAboutParameters()
         LatexAboutParameters+="\\begin{equation}\n";
         LatexAboutParameters+="\\label{"+Un+":"+HQt_StringToLabelForLaTeX(Data.getNameAlgorithm())+":Parameters}\n";
         LatexAboutParameters+="Parameters = \\left( \\begin{array}{c} ";
-        if (HQt_MaxCountOfQStringList(NamesOfParameters)>57)
+        if (HQt_MaxCountOfQStringList(Data.getNamesOfParameters())>57)
             Parbox="\\parbox{\\dimexpr \\linewidth-3in}";
         else
             Parbox="";
-        for (int i=0;i<NamesOfParameters.count();i++)
+        for (int i=0;i<Data.getNamesOfParameters().count();i++)
         {
-            LatexAboutParameters+=Parbox+"{\\centering\\textit{"+HQt_StringForLaTeX(NamesOfParameters.at(i))+"}} ";
-            if (i!=NamesOfParameters.count()-1) LatexAboutParameters+="\\\\ ";
+            LatexAboutParameters+=Parbox+"{\\centering\\textit{"+HQt_StringForLaTeX(Data.getNameOption(i))+"}} ";
+            if (i!=Data.getNamesOfParameters().count()-1) LatexAboutParameters+="\\\\ ";
         }
         LatexAboutParameters+="\\end{array}\\right). ";
         LatexAboutParameters+="\\end{equation}\n\n";
@@ -1248,10 +1232,16 @@ void HarrixClass_DataOfHarrixOptimizationTesting::makingHtmlReport()
 
     if (!Zero_Number_Of_Parameters)
     {
-        HtmlReport+=THQt_ShowVector(NamesOfParameters,"Вектора названий параметров алгоримта","NamesOfParameters");
+        HtmlReport+=THQt_ShowVector(Data.getNamesOfParameters(),"Вектора названий параметров алгоримта","NamesOfParameters");
         for (int j=0;j<Data.getNumberOfParameters();j++)
-            HtmlReport+=THQt_ShowVector(ListOfParameterOptions[j],(NamesOfParameters).at(j) + "(возможные принимаемые значения)","ParameterOptions");
-        HtmlReport+=THQt_ShowMatrix(MatrixOfParameters,Data.getNumberOfExperiments(),Data.getNumberOfParameters(),"Матрица параметров по номерам","MatrixOfParameters");
+            HtmlReport+=THQt_ShowVector(ListOfParameterOptions[j],Data.getNameOption(j) + "(возможные принимаемые значения)","ParameterOptions");
+
+        double **MOfP;
+        MOfP=new double*[Data.getNumberOfExperiments()];
+        for (int i=0;i<Data.getNumberOfExperiments();i++) MOfP[i]=new double[Data.getNumberOfParameters()];
+        HtmlReport+=THQt_ShowMatrix(MOfP,Data.getNumberOfExperiments(),Data.getNumberOfParameters(),"Матрица параметров по номерам","MatrixOfParameters");
+        for (int i=0;i<Data.getNumberOfExperiments();i++) delete [] MOfP[i];
+        delete [] MOfP;
     }
 }
 //--------------------------------------------------------------------------
@@ -1607,12 +1597,6 @@ void HarrixClass_DataOfHarrixOptimizationTesting::memoryAllocation()
     //Число элементов равно числу комбинаций вариантов настроек.
     VarianceOfR=new double[Data.getNumberOfExperiments()];
 
-    //Матрица значений параметров для каждой комбинации вариантов настроек.
-    //Число строк равно числу комбинаций вариантов настроек.
-    //Число столбцов равно числу проверяемых параметров алгоритма оптимизации.
-    MatrixOfParameters=new int*[Data.getNumberOfExperiments()];
-    for (int i=0;i<Data.getNumberOfExperiments();i++) MatrixOfParameters[i]=new int[Data.getNumberOfParameters()];
-
     //Вектор названий вариантов параметров алгоритма оптимизации.
     //Число элементов равно числу проверяемых параметров алгоритма оптимизации.
     //Элементы будут заноситься по мере обнаружений новых вариантов алгоритма.
@@ -1644,8 +1628,6 @@ void HarrixClass_DataOfHarrixOptimizationTesting::memoryDeallocation()
      */
     if (!Data.getSuccessReading())
     {
-        for (int i=0;i<Data.getNumberOfExperiments();i++) delete [] MatrixOfParameters[i];
-        delete [] MatrixOfParameters;
         delete [] ListOfParameterOptions;
         delete [] MeanOfEx;
         delete [] MeanOfEy;
@@ -1710,8 +1692,8 @@ void HarrixClass_DataOfHarrixOptimizationTesting::readXmlDataTags()
                 //если параметров нет, то имитируем один NULL парметр
                 if (Zero_Number_Of_Parameters)
                 {
-                    NamesOfParameters << "NULL";
-                    MatrixOfParameters[0][0]=0;
+                    Data.addNameOption("NULL");
+                    Data.setParameter(0,0,0);
                     MatrixOfNameParameters[0] << "NULL";
                 }
                 else
@@ -1723,12 +1705,12 @@ void HarrixClass_DataOfHarrixOptimizationTesting::readXmlDataTags()
                         AttrOfElement = Rxml.attributes().value(NameOfAttr).toString();
 
                         //считываеv названия параметров алгорима
-                        if (i==0) NamesOfParameters << HQt_TextBeforeEqualSign(AttrOfElement);
+                        if (i==0) Data.addNameOption(HQt_TextBeforeEqualSign(AttrOfElement));
 
                         //теперь значения параметров алгоритма
                         ListOfParameterOptions[k] = HQt_AddUniqueQStringInQStringList (ListOfParameterOptions[k], HQt_TextAfterEqualSign(AttrOfElement));
 
-                        MatrixOfParameters[i][k]=HQt_SearchQStringInQStringList (ListOfParameterOptions[k], HQt_TextAfterEqualSign(AttrOfElement));
+                        Data.setParameter(HQt_SearchQStringInQStringList (ListOfParameterOptions[k], HQt_TextAfterEqualSign(AttrOfElement)),i,k);
                         MatrixOfNameParameters[i] << HQt_TextAfterEqualSign(AttrOfElement);
                     }
                 }
@@ -1919,7 +1901,6 @@ void HarrixClass_DataOfHarrixOptimizationTesting::zeroArray()
      Отсутствует.
      */
     //"Обнулим" матрицы
-    TMHL_FillMatrix(MatrixOfParameters, Data.getNumberOfExperiments(), Data.getNumberOfParameters(), -1);
     TMHL_ZeroVector(MeanOfEx,Data.getNumberOfExperiments());
     TMHL_ZeroVector(MeanOfEy,Data.getNumberOfExperiments());
     TMHL_ZeroVector(MeanOfR ,Data.getNumberOfExperiments());
@@ -1927,7 +1908,6 @@ void HarrixClass_DataOfHarrixOptimizationTesting::zeroArray()
     TMHL_ZeroVector(VarianceOfEy,Data.getNumberOfExperiments());
     TMHL_ZeroVector(VarianceOfR ,Data.getNumberOfExperiments());
     for (int k=0;k<Data.getNumberOfParameters();k++) ListOfParameterOptions[k].clear();
-    (NamesOfParameters).clear();
     ListOfVectorParameterOptions.clear();
     TMHL_ZeroVector(NumberOfListOfVectorParameterOptions,Data.getNumberOfExperiments());
 }
@@ -2028,9 +2008,9 @@ void HarrixClass_DataOfHarrixOptimizationTesting::makingListOfVectorParameterOpt
                     if (MatrixOfNameParameters[i][j].length()>=5)
                         Cell2+=MatrixOfNameParameters[i][j] +". ";
                     else
-                        Cell2+=NamesOfParameters[j] + " = " + MatrixOfNameParameters[i][j] +".  ";
+                        Cell2+=Data.getNameOption(j) + " = " + MatrixOfNameParameters[i][j] +".  ";
                 else
-                    Cell2+=NamesOfParameters[j] + " = " + MatrixOfNameParameters[i][j] +". ";
+                    Cell2+=Data.getNameOption(j) + " = " + MatrixOfNameParameters[i][j] +". ";
         }
 
         //получим значения критерий

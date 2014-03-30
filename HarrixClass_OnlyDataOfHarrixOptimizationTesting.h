@@ -67,6 +67,11 @@ public:
     void setErrorEy(double ErrorEx,int Number_Of_Experiment, int Number_Of_Measuring);//Задание значения ошибки Ey.
     double getErrorR(int Number_Of_Experiment, int Number_Of_Measuring);//Получение значения ошибки R.
     void setErrorR(double ErrorEx,int Number_Of_Experiment, int Number_Of_Measuring);//Задание значения ошибки R.
+    int getParameter(int Number_Of_Experiment, int Number_Of_Parameter);//Получение значения параметра настройки какой-то.
+    void setParameter(int Parameter, int Number_Of_Experiment, int Number_Of_Parameter);//Задание значения параметра настройки какой-то.
+    QString getNameOption(int Number_Of_Parameter);//Получение имени параметра алгоритма по его номеру.
+    void addNameOption(QString Option);//Добавление имени параметра алгоритма по его номеру.
+    QStringList getNamesOfParameters();//Получение списка параметров алгоритма (тип селекции, тип скрещивания).
 
 private:
     QString XML_Author;//Автор документа
@@ -105,6 +110,15 @@ private:
     //Число строк равно числу комбинаций вариантов настроек.
     //Число столбцов равно числу измерений для каждого варианта настроек алгоритма.
     double **MatrixOfR;
+
+    //Матрица значений параметров для каждой комбинации вариантов настроек.
+    //Число строк равно числу комбинаций вариантов настроек.
+    //Число столбцов равно числу проверяемых параметров алгоритма оптимизации.
+    int **MatrixOfParameters;
+
+    //Сюда будем записывать названия параметров алгоритма оптимизации.
+    //Например, тип скрещивания или тип селекции.
+    QStringList NamesOfParameters;
 };
 
 #endif // HARRIXCLASS_ONLYDATAOFHARRIXOPTIMIZATIONTESTING_H

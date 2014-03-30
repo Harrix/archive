@@ -78,6 +78,12 @@ void HarrixClass_OnlyDataOfHarrixOptimizationTesting::operator = (HarrixClass_On
                 MatrixOfEy[i][j]=B.MatrixOfEy[i][j];
                 MatrixOfR [i][j]=B.MatrixOfR [i][j];
             }
+
+        for (int i=0;i<XML_Number_Of_Experiments;i++)
+            for (int j=0;j<XML_Number_Of_Parameters;j++)
+            {
+                MatrixOfParameters[i][j]=B.MatrixOfParameters[i][j];
+            }
     }
 }
 //--------------------------------------------------------------------------
@@ -115,8 +121,8 @@ void HarrixClass_OnlyDataOfHarrixOptimizationTesting::memoryAllocation()
     //Матрица значений параметров для каждой комбинации вариантов настроек.
     //Число строк равно числу комбинаций вариантов настроек.
     //Число столбцов равно числу проверяемых параметров алгоритма оптимизации.
-    //MatrixOfParameters=new int*[XML_Number_Of_Experiments];
-    //for (int i=0;i<XML_Number_Of_Experiments;i++) MatrixOfParameters[i]=new int[XML_Number_Of_Parameters];
+    MatrixOfParameters=new int*[XML_Number_Of_Experiments];
+    for (int i=0;i<XML_Number_Of_Experiments;i++) MatrixOfParameters[i]=new int[XML_Number_Of_Parameters];
 
     //Вектор названий вариантов параметров алгоритма оптимизации.
     //Число элементов равно числу проверяемых параметров алгоритма оптимизации.
@@ -155,8 +161,8 @@ void HarrixClass_OnlyDataOfHarrixOptimizationTesting::memoryDeallocation()
         delete [] MatrixOfEy;
         for (int i=0;i<XML_Number_Of_Experiments;i++) delete [] MatrixOfR[i];
         delete [] MatrixOfR;
-        //for (int i=0;i<XML_Number_Of_Experiments;i++) delete [] MatrixOfParameters[i];
-        //delete [] MatrixOfParameters;
+        for (int i=0;i<XML_Number_Of_Experiments;i++) delete [] MatrixOfParameters[i];
+        delete [] MatrixOfParameters;
         //delete [] ListOfParameterOptions;
         //delete [] NumberOfListOfVectorParameterOptions;
     }
@@ -180,6 +186,7 @@ void HarrixClass_OnlyDataOfHarrixOptimizationTesting::initializationOfVariables(
     XML_Number_Of_Parameters=-1;//Количество проверяемых параметров алгоритма оптимизации
     //Zero_Number_Of_Parameters=false;//пока ничего не известно
     XML_Number_Of_Experiments=-1;//Количество комбинаций вариантов настроек
+    NamesOfParameters.clear();
 }
 //--------------------------------------------------------------------------
 
@@ -664,5 +671,88 @@ void HarrixClass_OnlyDataOfHarrixOptimizationTesting::setErrorR(double ErrorR,in
     if (Number_Of_Measuring>XML_Number_Of_Measuring-1) Number_Of_Measuring=XML_Number_Of_Measuring-1;
 
     MatrixOfR[Number_Of_Experiment][Number_Of_Measuring] = ErrorR;
+}
+//--------------------------------------------------------------------------
+
+int HarrixClass_OnlyDataOfHarrixOptimizationTesting::getParameter(int Number_Of_Experiment, int Number_Of_Parameter)
+{
+    /*
+    Получение значения параметра настройки какой-то.
+    Входные параметры:
+     Number_Of_Experiment - номер комбинации вариантов настроек;
+     Number_Of_Parameter - номер параметра.
+    Возвращаемое значение:
+     Значения параметра в виде числа (соответствие находим в ListOfParameterOptions).
+     */
+    if (Number_Of_Experiment<0) Number_Of_Experiment=0;
+    if (Number_Of_Experiment>XML_Number_Of_Experiments-1) Number_Of_Experiment=XML_Number_Of_Experiments-1;
+
+    if (Number_Of_Parameter<0) Number_Of_Parameter=0;
+    if (Number_Of_Parameter>XML_Number_Of_Parameters-1) Number_Of_Parameter=XML_Number_Of_Parameters-1;
+
+    return MatrixOfParameters[Number_Of_Experiment][Number_Of_Parameter];
+}
+//--------------------------------------------------------------------------
+
+void HarrixClass_OnlyDataOfHarrixOptimizationTesting::setParameter(int Parameter, int Number_Of_Experiment, int Number_Of_Parameter)
+{
+    /*
+    Задание значения параметра настройки какой-то.
+    Входные параметры:
+     Number_Of_Experiment - номер комбинации вариантов настроек;
+     Number_Of_Parameter - номер параметра.
+    Возвращаемое значение:
+     Значения параметра в виде числа (соответствие находим в ListOfParameterOptions).
+     */
+    if (Number_Of_Experiment<0) Number_Of_Experiment=0;
+    if (Number_Of_Experiment>XML_Number_Of_Experiments-1) Number_Of_Experiment=XML_Number_Of_Experiments-1;
+
+    if (Number_Of_Parameter<0) Number_Of_Parameter=0;
+    if (Number_Of_Parameter>XML_Number_Of_Parameters-1) Number_Of_Parameter=XML_Number_Of_Parameters-1;
+
+    MatrixOfParameters[Number_Of_Experiment][Number_Of_Parameter] = Parameter;
+}
+//--------------------------------------------------------------------------
+
+QStringList HarrixClass_OnlyDataOfHarrixOptimizationTesting::getNamesOfParameters()
+{
+    /*
+    Получение списка параметров алгоритма (тип селекции, тип скрещивания).
+    Входные параметры:
+     Отсутствуют.
+    Возвращаемое значение:
+     Спискок параметров алгоритма.
+     */
+
+    return NamesOfParameters;
+}
+//--------------------------------------------------------------------------
+
+QString HarrixClass_OnlyDataOfHarrixOptimizationTesting::getNameOption(int Number_Of_Parameter)
+{
+    /*
+    Получение имени параметра алгоритма по его номеру.
+    Входные параметры:
+     Number_Of_Parameter - номер параметра.
+    Возвращаемое значение:
+     Значения параметра в виде наименования.
+     */
+    if (Number_Of_Parameter<0) Number_Of_Parameter=0;
+    if (Number_Of_Parameter>XML_Number_Of_Parameters-1) Number_Of_Parameter=XML_Number_Of_Parameters-1;
+
+    return NamesOfParameters.at(Number_Of_Parameter);
+}
+//--------------------------------------------------------------------------
+
+void HarrixClass_OnlyDataOfHarrixOptimizationTesting::addNameOption(QString Option)
+{
+    /*
+    Добавление имени параметра алгоритма по его номеру.
+    Входные параметры:
+     Number_Of_Parameter - номер параметра.
+    Возвращаемое значение:
+     Значения параметра в виде наименования.
+     */
+    NamesOfParameters<<Option;
 }
 //--------------------------------------------------------------------------

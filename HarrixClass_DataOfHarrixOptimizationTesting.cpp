@@ -1166,14 +1166,14 @@ void HarrixClass_DataOfHarrixOptimizationTesting::makingLatexAboutParameters()
             LatexAboutParameters+="\\begin{equation}\n";
             LatexAboutParameters+="\\label{"+Un+":"+HQt_StringToLabelForLaTeX(Data.getNameAlgorithm())+":parameter_"+QString::number(j+1)+"}\n";
             LatexAboutParameters+="Parameters^{"+QString::number(j+1)+"} \\in \\left\\lbrace  \\begin{array}{c} ";
-            if (HQt_MaxCountOfQStringList(ListOfParameterOptions[j])>57)
+            if (HQt_MaxCountOfQStringList(Data.getListOfParameterOptions(j))>57)
                 Parbox="\\parbox{\\dimexpr \\linewidth-3in}";
             else
                 Parbox="";
-            for (int i=0;i<ListOfParameterOptions[j].count();i++)
+            for (int i=0;i<Data.getListOfParameterOptions(j).count();i++)
             {
-                LatexAboutParameters+=Parbox+"{\\centering\\textit{"+HQt_StringForLaTeX(ListOfParameterOptions[j].at(i))+"}} ";
-                if (i!=ListOfParameterOptions[j].count()-1) LatexAboutParameters+="\\\\ ";
+                LatexAboutParameters+=Parbox+"{\\centering\\textit{"+HQt_StringForLaTeX(Data.getOptionFromListOfParameterOptions(j,i))+"}} ";
+                if (i!=Data.getListOfParameterOptions(j).count()-1) LatexAboutParameters+="\\\\ ";
             }
             LatexAboutParameters+="\\end{array}\\right\\rbrace . ";
             LatexAboutParameters+="\\end{equation}\n\n";
@@ -1212,6 +1212,9 @@ void HarrixClass_DataOfHarrixOptimizationTesting::makingHtmlReport()
     double **MOfEx;
     MOfEx=new double*[Data.getNumberOfExperiments()];
     for (int i=0;i<Data.getNumberOfExperiments();i++) MOfEx[i]=new double[Data.getNumberOfMeasuring()];
+    for (int i=0;i<Data.getNumberOfExperiments();i++)
+        for (int j=0;j<Data.getNumberOfMeasuring();j++)
+        MOfEx[i][j] = Data.getErrorEx(i,j);
     HtmlReport+=THQt_ShowMatrix(MOfEx,Data.getNumberOfExperiments(),Data.getNumberOfMeasuring(),"Ошибки по входным параметрам","Ex");
     for (int i=0;i<Data.getNumberOfExperiments();i++) delete [] MOfEx[i];
     delete [] MOfEx;
@@ -1219,6 +1222,9 @@ void HarrixClass_DataOfHarrixOptimizationTesting::makingHtmlReport()
     double **MOfEy;
     MOfEy=new double*[Data.getNumberOfExperiments()];
     for (int i=0;i<Data.getNumberOfExperiments();i++) MOfEy[i]=new double[Data.getNumberOfMeasuring()];
+    for (int i=0;i<Data.getNumberOfExperiments();i++)
+        for (int j=0;j<Data.getNumberOfMeasuring();j++)
+        MOfEy[i][j] = Data.getErrorEy(i,j);
     HtmlReport+=THQt_ShowMatrix(MOfEy,Data.getNumberOfExperiments(),Data.getNumberOfMeasuring(),"Ошибки по значениям целевой функции","Ey");
     for (int i=0;i<Data.getNumberOfExperiments();i++) delete [] MOfEy[i];
     delete [] MOfEy;
@@ -1226,6 +1232,9 @@ void HarrixClass_DataOfHarrixOptimizationTesting::makingHtmlReport()
     double **MOfR;
     MOfR=new double*[Data.getNumberOfExperiments()];
     for (int i=0;i<Data.getNumberOfExperiments();i++) MOfR[i]=new double[Data.getNumberOfMeasuring()];
+    for (int i=0;i<Data.getNumberOfExperiments();i++)
+        for (int j=0;j<Data.getNumberOfMeasuring();j++)
+        MOfR[i][j] = Data.getErrorR(i,j);
     HtmlReport+=THQt_ShowMatrix(MOfR,Data.getNumberOfExperiments(),Data.getNumberOfMeasuring(),"Надежности","R");
     for (int i=0;i<Data.getNumberOfExperiments();i++) delete [] MOfR[i];
     delete [] MOfR;
@@ -1234,11 +1243,14 @@ void HarrixClass_DataOfHarrixOptimizationTesting::makingHtmlReport()
     {
         HtmlReport+=THQt_ShowVector(Data.getNamesOfParameters(),"Вектора названий параметров алгоримта","NamesOfParameters");
         for (int j=0;j<Data.getNumberOfParameters();j++)
-            HtmlReport+=THQt_ShowVector(ListOfParameterOptions[j],Data.getNameOption(j) + "(возможные принимаемые значения)","ParameterOptions");
+            HtmlReport+=THQt_ShowVector(Data.getListOfParameterOptions(j),Data.getNameOption(j) + "(возможные принимаемые значения)","ParameterOptions");
 
         double **MOfP;
         MOfP=new double*[Data.getNumberOfExperiments()];
         for (int i=0;i<Data.getNumberOfExperiments();i++) MOfP[i]=new double[Data.getNumberOfParameters()];
+        for (int i=0;i<Data.getNumberOfExperiments();i++)
+            for (int j=0;j<Data.getNumberOfParameters();j++)
+            MOfP[i][j] = Data.getParameter(i,j);
         HtmlReport+=THQt_ShowMatrix(MOfP,Data.getNumberOfExperiments(),Data.getNumberOfParameters(),"Матрица параметров по номерам","MatrixOfParameters");
         for (int i=0;i<Data.getNumberOfExperiments();i++) delete [] MOfP[i];
         delete [] MOfP;
@@ -1597,14 +1609,6 @@ void HarrixClass_DataOfHarrixOptimizationTesting::memoryAllocation()
     //Число элементов равно числу комбинаций вариантов настроек.
     VarianceOfR=new double[Data.getNumberOfExperiments()];
 
-    //Вектор названий вариантов параметров алгоритма оптимизации.
-    //Число элементов равно числу проверяемых параметров алгоритма оптимизации.
-    //Элементы будут заноситься по мере обнаружений новых вариантов алгоритма.
-    //Номера вариантов параметров алгоритма в конкретном списке QStringList будет совпадать
-    //с номерами из MatrixOfParameters. То есть, что записано в MatrixOfParameters в ListOfParameterOptions
-    //находится под номером соответствующим.
-    ListOfParameterOptions=new QStringList[Data.getNumberOfParameters()];
-
     //Матрица значений параметров для каждой комбинации вариантов настроек.
     //Элементы не в виде чисел, а в виде наименований этих параметров.
     //Число строк равно числу комбинаций вариантов настроек.
@@ -1628,7 +1632,6 @@ void HarrixClass_DataOfHarrixOptimizationTesting::memoryDeallocation()
      */
     if (!Data.getSuccessReading())
     {
-        delete [] ListOfParameterOptions;
         delete [] MeanOfEx;
         delete [] MeanOfEy;
         delete [] MeanOfR;
@@ -1708,9 +1711,10 @@ void HarrixClass_DataOfHarrixOptimizationTesting::readXmlDataTags()
                         if (i==0) Data.addNameOption(HQt_TextBeforeEqualSign(AttrOfElement));
 
                         //теперь значения параметров алгоритма
-                        ListOfParameterOptions[k] = HQt_AddUniqueQStringInQStringList (ListOfParameterOptions[k], HQt_TextAfterEqualSign(AttrOfElement));
+                        Data.setListOfParameterOptions(HQt_AddUniqueQStringInQStringList (Data.getListOfParameterOptions(k), HQt_TextAfterEqualSign(AttrOfElement)),k);
 
-                        Data.setParameter(HQt_SearchQStringInQStringList (ListOfParameterOptions[k], HQt_TextAfterEqualSign(AttrOfElement)),i,k);
+                        Data.setParameter(HQt_SearchQStringInQStringList (Data.getListOfParameterOptions(k), HQt_TextAfterEqualSign(AttrOfElement)),i,k);
+
                         MatrixOfNameParameters[i] << HQt_TextAfterEqualSign(AttrOfElement);
                     }
                 }
@@ -1907,8 +1911,6 @@ void HarrixClass_DataOfHarrixOptimizationTesting::zeroArray()
     TMHL_ZeroVector(VarianceOfEx,Data.getNumberOfExperiments());
     TMHL_ZeroVector(VarianceOfEy,Data.getNumberOfExperiments());
     TMHL_ZeroVector(VarianceOfR ,Data.getNumberOfExperiments());
-    for (int k=0;k<Data.getNumberOfParameters();k++) ListOfParameterOptions[k].clear();
-    ListOfVectorParameterOptions.clear();
     TMHL_ZeroVector(NumberOfListOfVectorParameterOptions,Data.getNumberOfExperiments());
 }
 //--------------------------------------------------------------------------

@@ -72,6 +72,10 @@ public:
     QString getNameOption(int Number_Of_Parameter);//Получение имени параметра алгоритма по его номеру.
     void addNameOption(QString Option);//Добавление имени параметра алгоритма по его номеру.
     QStringList getNamesOfParameters();//Получение списка параметров алгоритма (тип селекции, тип скрещивания).
+    QStringList getListOfParameterOptions(int Number_Of_Parameter);//Получение списка вектора названий вариантов параметров алгоритма оптимизации.
+    QString getOptionFromListOfParameterOptions(int Number_Of_Parameter, int Number_Of_Option);//Получение названия вариантов параметров алгоритма оптимизации.
+    void addListOfParameterOptions(QString Option, int Number_Of_Parameter);//Добавление списка вектора названий вариантов параметров алгоритма оптимизации.
+    void setListOfParameterOptions(QStringList List, int Number_Of_Parameter);//Задание списка вектора названий вариантов параметров алгоритма оптимизации.
 
 private:
     QString XML_Author;//Автор документа
@@ -119,6 +123,15 @@ private:
     //Сюда будем записывать названия параметров алгоритма оптимизации.
     //Например, тип скрещивания или тип селекции.
     QStringList NamesOfParameters;
+
+    //Вектор названий вариантов параметров алгоритма оптимизации.
+    //Число элементов равно числу проверяемых параметров алгоритма оптимизации.
+    //Элементы будут заноситься по мере обнаружений новых вариантов алгоритма.
+    //Номера вариантов параметров алгоритма в конкретном списке QStringList будет совпадать
+    //с номерами из MatrixOfParameters. То есть, что записано в MatrixOfParameters в
+    //ListOfParameterOptions находится под номером соответствующим.
+    //То есть какие бывают типы скрещивания и так далее
+    QStringList *ListOfParameterOptions;
 };
 
 #endif // HARRIXCLASS_ONLYDATAOFHARRIXOPTIMIZATIONTESTING_H

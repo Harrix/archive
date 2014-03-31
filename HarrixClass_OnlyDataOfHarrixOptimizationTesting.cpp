@@ -84,6 +84,8 @@ void HarrixClass_OnlyDataOfHarrixOptimizationTesting::operator = (HarrixClass_On
             {
                 MatrixOfParameters[i][j]=B.MatrixOfParameters[i][j];
             }
+
+        NamesOfParameters=B.NamesOfParameters;
     }
 }
 //--------------------------------------------------------------------------
@@ -130,7 +132,8 @@ void HarrixClass_OnlyDataOfHarrixOptimizationTesting::memoryAllocation()
     //Номера вариантов параметров алгоритма в конкретном списке QStringList будет совпадать
     //с номерами из MatrixOfParameters. То есть, что записано в MatrixOfParameters в ListOfParameterOptions
     //находится под номером соответствующим.
-    //ListOfParameterOptions=new QStringList[XML_Number_Of_Parameters];
+    ListOfParameterOptions=new QStringList[XML_Number_Of_Parameters];
+    for (int i=0;i<XML_Number_Of_Parameters;i++) ListOfParameterOptions[i].clear();
 
     //Матрица значений параметров для каждой комбинации вариантов настроек.
     //Элементы не в виде чисел, а в виде наименований этих параметров.
@@ -163,7 +166,7 @@ void HarrixClass_OnlyDataOfHarrixOptimizationTesting::memoryDeallocation()
         delete [] MatrixOfR;
         for (int i=0;i<XML_Number_Of_Experiments;i++) delete [] MatrixOfParameters[i];
         delete [] MatrixOfParameters;
-        //delete [] ListOfParameterOptions;
+        delete [] ListOfParameterOptions;
         //delete [] NumberOfListOfVectorParameterOptions;
     }
 }
@@ -580,7 +583,7 @@ void HarrixClass_OnlyDataOfHarrixOptimizationTesting::setErrorEx(double ErrorEx,
      Number_Of_Experiment - номер комбинации вариантов настроек;
      Number_Of_Measuring - номер измерения варианта настроек.
     Возвращаемое значение:
-     Значения ошибки Ex.
+     Отсуствует.
      */
     if (Number_Of_Experiment<0) Number_Of_Experiment=0;
     if (Number_Of_Experiment>XML_Number_Of_Experiments-1) Number_Of_Experiment=XML_Number_Of_Experiments-1;
@@ -621,7 +624,7 @@ void HarrixClass_OnlyDataOfHarrixOptimizationTesting::setErrorEy(double ErrorEy,
      Number_Of_Experiment - номер комбинации вариантов настроек;
      Number_Of_Measuring - номер измерения варианта настроек.
     Возвращаемое значение:
-     Значения ошибки Ey.
+     Отсуствует.
      */
     if (Number_Of_Experiment<0) Number_Of_Experiment=0;
     if (Number_Of_Experiment>XML_Number_Of_Experiments-1) Number_Of_Experiment=XML_Number_Of_Experiments-1;
@@ -662,7 +665,7 @@ void HarrixClass_OnlyDataOfHarrixOptimizationTesting::setErrorR(double ErrorR,in
      Number_Of_Experiment - номер комбинации вариантов настроек;
      Number_Of_Measuring - номер измерения варианта настроек.
     Возвращаемое значение:
-     Значения надежности R.
+     Отсуствует.
      */
     if (Number_Of_Experiment<0) Number_Of_Experiment=0;
     if (Number_Of_Experiment>XML_Number_Of_Experiments-1) Number_Of_Experiment=XML_Number_Of_Experiments-1;
@@ -702,7 +705,7 @@ void HarrixClass_OnlyDataOfHarrixOptimizationTesting::setParameter(int Parameter
      Number_Of_Experiment - номер комбинации вариантов настроек;
      Number_Of_Parameter - номер параметра.
     Возвращаемое значение:
-     Значения параметра в виде числа (соответствие находим в ListOfParameterOptions).
+     Отсуствует.
      */
     if (Number_Of_Experiment<0) Number_Of_Experiment=0;
     if (Number_Of_Experiment>XML_Number_Of_Experiments-1) Number_Of_Experiment=XML_Number_Of_Experiments-1;
@@ -751,8 +754,77 @@ void HarrixClass_OnlyDataOfHarrixOptimizationTesting::addNameOption(QString Opti
     Входные параметры:
      Number_Of_Parameter - номер параметра.
     Возвращаемое значение:
-     Значения параметра в виде наименования.
+     Отсуствует.
      */
     NamesOfParameters<<Option;
+}
+//--------------------------------------------------------------------------
+
+QStringList HarrixClass_OnlyDataOfHarrixOptimizationTesting::getListOfParameterOptions(int Number_Of_Parameter)
+{
+    /*
+    Получение списка вектора названий вариантов параметров алгоритма оптимизации.
+    Входные параметры:
+     Number_Of_Parameter - номер параметра.
+    Возвращаемое значение:
+     Список вектора названий вариантов параметров алгоритма оптимизации.
+     */
+
+    if (Number_Of_Parameter<0) Number_Of_Parameter=0;
+    if (Number_Of_Parameter>XML_Number_Of_Parameters-1) Number_Of_Parameter=XML_Number_Of_Parameters-1;
+
+    return ListOfParameterOptions[Number_Of_Parameter];
+}
+//--------------------------------------------------------------------------
+
+QString HarrixClass_OnlyDataOfHarrixOptimizationTesting::getOptionFromListOfParameterOptions(int Number_Of_Parameter, int Number_Of_Option)
+{
+    /*
+    Получение названия вариантов параметров алгоритма оптимизации.
+    Входные параметры:
+     Number_Of_Parameter - номер параметра.
+     Number_Of_Option - номер считываемой опции у параметра алгоритма оптимизации.
+    Возвращаемое значение:
+     Название вариантов параметров алгоритма оптимизации
+     */
+
+    if (Number_Of_Parameter<0) Number_Of_Parameter=0;
+    if (Number_Of_Parameter>XML_Number_Of_Parameters-1) Number_Of_Parameter=XML_Number_Of_Parameters-1;
+
+    return ListOfParameterOptions[Number_Of_Parameter].at(Number_Of_Option);
+}
+//--------------------------------------------------------------------------
+
+void HarrixClass_OnlyDataOfHarrixOptimizationTesting::addListOfParameterOptions(QString Option, int Number_Of_Parameter)
+{
+    /*
+    Добавление списка вектора названий вариантов параметров алгоритма оптимизации.
+    Входные параметры:
+     Option - добавляемое название варианта параметра алгоритма.
+     Number_Of_Parameter - номер параметра.
+    Возвращаемое значение:
+     Значения параметра в виде наименования.
+     */
+    if (Number_Of_Parameter<0) Number_Of_Parameter=0;
+    if (Number_Of_Parameter>XML_Number_Of_Parameters-1) Number_Of_Parameter=XML_Number_Of_Parameters-1;
+
+    ListOfParameterOptions[Number_Of_Parameter]<<Option;
+}
+//--------------------------------------------------------------------------
+
+void HarrixClass_OnlyDataOfHarrixOptimizationTesting::setListOfParameterOptions(QStringList List, int Number_Of_Parameter)
+{
+    /*
+    Задание списка вектора названий вариантов параметров алгоритма оптимизации.
+    Входные параметры:
+     List - список названий парметров, которым будем заменять текущий список.
+     Number_Of_Parameter - номер параметра.
+    Возвращаемое значение:
+     Значения параметра в виде наименования.
+     */
+    if (Number_Of_Parameter<0) Number_Of_Parameter=0;
+    if (Number_Of_Parameter>XML_Number_Of_Parameters-1) Number_Of_Parameter=XML_Number_Of_Parameters-1;
+
+    ListOfParameterOptions[Number_Of_Parameter] = List;
 }
 //--------------------------------------------------------------------------

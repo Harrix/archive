@@ -1,5 +1,5 @@
 //HarrixClass_DataOfHarrixOptimizationTesting
-//Версия 1.19
+//Версия 1.20
 //Класс для считывания информации формата данных Harrix Optimization Testing на C++ для Qt.
 //https://github.com/Harrix/HarrixClass_DataOfHarrixOptimizationTesting
 //Библиотека распространяется по лицензии Apache License, Version 2.0.
@@ -16,12 +16,12 @@
 
 //Класс, который только содержит сырые данные исследований, которые считываются
 //классом HarrixClass_DataOfHarrixOptimizationTesting. В данном классе нет ни проверки
-//корректности ввоод информации и др. Это служебный класс.
+//корректности ввода информации и др. Это служебный класс.
 
 HarrixClass_OnlyDataOfHarrixOptimizationTesting::HarrixClass_OnlyDataOfHarrixOptimizationTesting()
 {
     /*
-    Конструктор. Создает пустой экзмепляр.
+    Конструктор. Создает пустой экземпляр.
     Входные параметры:
      Отсутствуют.
  */
@@ -40,7 +40,7 @@ HarrixClass_OnlyDataOfHarrixOptimizationTesting::~HarrixClass_OnlyDataOfHarrixOp
 
 void HarrixClass_OnlyDataOfHarrixOptimizationTesting::operator = (HarrixClass_OnlyDataOfHarrixOptimizationTesting& B)
 {
-    //Вначале учничтожим все массивы если они были.
+    //Вначале уничтожим все массивы если они были.
     memoryDeallocation();
     //B обнулим переменные
     initializationOfVariables();
@@ -86,6 +86,32 @@ void HarrixClass_OnlyDataOfHarrixOptimizationTesting::operator = (HarrixClass_On
             }
 
         NamesOfParameters=B.NamesOfParameters;
+
+        for (int i=0;i<XML_Number_Of_Parameters;i++)
+            ListOfParameterOptions[i]= B.ListOfParameterOptions[i];
+
+        for (int i=0;i<XML_Number_Of_Experiments;i++)
+            NumberOfListOfVectorParameterOptions[i]= B.NumberOfListOfVectorParameterOptions[i];
+
+        for (int i=0;i<XML_Number_Of_Experiments;i++)
+            MatrixOfNameParameters[i]= B.MatrixOfNameParameters[i];
+
+        ListOfVectorParameterOptions = B.ListOfVectorParameterOptions;
+
+        for (int i=0;i<XML_Number_Of_Experiments;i++) MeanOfEx[i]=B.MeanOfEx[i];
+        for (int i=0;i<XML_Number_Of_Experiments;i++) MeanOfEy[i]=B.MeanOfEy[i];
+        for (int i=0;i<XML_Number_Of_Experiments;i++) MeanOfR [i]=B.MeanOfR [i];
+
+        for (int i=0;i<XML_Number_Of_Experiments;i++) VarianceOfEx[i]=B.VarianceOfEx[i];
+        for (int i=0;i<XML_Number_Of_Experiments;i++) VarianceOfEy[i]=B.VarianceOfEy[i];
+        for (int i=0;i<XML_Number_Of_Experiments;i++) VarianceOfR [i]=B.VarianceOfR [i];
+
+        MeanOfAllEx=B.MeanOfAllEx;
+        MeanOfAllEy=B.MeanOfAllEy;
+        MeanOfAllR=B.MeanOfAllR;
+        VarianceOfAllR=B.VarianceOfAllR;
+        VarianceOfAllEx=B.VarianceOfAllEx;
+        VarianceOfAllEy=B.VarianceOfAllEy;
     }
 }
 //--------------------------------------------------------------------------
@@ -113,7 +139,7 @@ void HarrixClass_OnlyDataOfHarrixOptimizationTesting::memoryAllocation()
     for (int i=0;i<XML_Number_Of_Experiments;i++) MatrixOfEy[i]=new double[XML_Number_Of_Measuring];
     TMHL_FillMatrix(MatrixOfEy, XML_Number_Of_Experiments, XML_Number_Of_Measuring, -1.);
 
-    //Матрица значений ошибок R алгоритма оптимизации.
+    //Матрица значений надежностей R алгоритма оптимизации.
     //Число строк равно числу комбинаций вариантов настроек.
     //Число столбцов равно числу измерений для каждого варианта настроек алгоритма.
     MatrixOfR=new double*[XML_Number_Of_Experiments];
@@ -125,10 +151,11 @@ void HarrixClass_OnlyDataOfHarrixOptimizationTesting::memoryAllocation()
     //Число столбцов равно числу проверяемых параметров алгоритма оптимизации.
     MatrixOfParameters=new int*[XML_Number_Of_Experiments];
     for (int i=0;i<XML_Number_Of_Experiments;i++) MatrixOfParameters[i]=new int[XML_Number_Of_Parameters];
+    TMHL_FillMatrix(MatrixOfParameters, XML_Number_Of_Experiments, XML_Number_Of_Parameters, -1);
 
     //Вектор названий вариантов параметров алгоритма оптимизации.
     //Число элементов равно числу проверяемых параметров алгоритма оптимизации.
-    //Элементы будут заноситься по мере обнаружений новых вариантов алгоритма.
+    //Элементы будут заноситься по мере обнаружения новых вариантов алгоритма.
     //Номера вариантов параметров алгоритма в конкретном списке QStringList будет совпадать
     //с номерами из MatrixOfParameters. То есть, что записано в MatrixOfParameters в ListOfParameterOptions
     //находится под номером соответствующим.
@@ -139,11 +166,44 @@ void HarrixClass_OnlyDataOfHarrixOptimizationTesting::memoryAllocation()
     //Элементы не в виде чисел, а в виде наименований этих параметров.
     //Число строк равно числу комбинаций вариантов настроек.
     //Число столбцов равно числу проверяемых параметров алгоритма оптимизации.
-    //MatrixOfNameParameters=new QStringList[XML_Number_Of_Experiments];
+    MatrixOfNameParameters=new QStringList[XML_Number_Of_Experiments];
+    for (int i=0;i<XML_Number_Of_Experiments;i++) MatrixOfNameParameters[i].clear();
 
     //Номера комбинаций вариантов настроек
     //Содержит номера от 1 до XML_Number_Of_Experiments
-    //NumberOfListOfVectorParameterOptions=new double[XML_Number_Of_Experiments];
+    NumberOfListOfVectorParameterOptions=new double[XML_Number_Of_Experiments];
+    for (int i=0;i<XML_Number_Of_Experiments;i++)
+        NumberOfListOfVectorParameterOptions[i]=i+1;
+
+    //Вектор средних значений ошибок Ex алгоритма оптимизации по измерениям для каждой настройки.
+    //Число элементов равно числу комбинаций вариантов настроек.
+    MeanOfEx=new double[XML_Number_Of_Experiments];
+    for (int i=0;i<XML_Number_Of_Experiments;i++) MeanOfEx[i]=0;
+
+    //Вектор средних ошибок Ey алгоритма оптимизации по измерениям для каждой настройки.
+    //Число элементов равно числу комбинаций вариантов настроек.
+    MeanOfEy=new double[XML_Number_Of_Experiments];
+    for (int i=0;i<XML_Number_Of_Experiments;i++) MeanOfEy[i]=0;
+
+    //Вектор средних надежностей R алгоритма оптимизации по измерениям для каждой настройки.
+    //Число элементов равно числу комбинаций вариантов настроек.
+    MeanOfR=new double[XML_Number_Of_Experiments];
+    for (int i=0;i<XML_Number_Of_Experiments;i++) MeanOfR[i]=0;
+
+    //Вектор дисперсий ошибок Ex алгоритма оптимизации по измерениям для каждой настройки.
+    //Число элементов равно числу комбинаций вариантов настроек.
+    VarianceOfEx=new double[XML_Number_Of_Experiments];
+    for (int i=0;i<XML_Number_Of_Experiments;i++) VarianceOfEx[i]=0;
+
+    //Вектор дисперсий ошибок Ey алгоритма оптимизации по измерениям для каждой настройки.
+    //Число элементов равно числу комбинаций вариантов настроек.
+    VarianceOfEy=new double[XML_Number_Of_Experiments];
+    for (int i=0;i<XML_Number_Of_Experiments;i++) VarianceOfEy[i]=0;
+
+    //Вектор дисперсий надежностей R алгоритма оптимизации по измерениям для каждой настройки.
+    //Число элементов равно числу комбинаций вариантов настроек.
+    VarianceOfR=new double[XML_Number_Of_Experiments];
+    for (int i=0;i<XML_Number_Of_Experiments;i++) VarianceOfR[i]=0;
 }
 //--------------------------------------------------------------------------
 
@@ -167,7 +227,14 @@ void HarrixClass_OnlyDataOfHarrixOptimizationTesting::memoryDeallocation()
         for (int i=0;i<XML_Number_Of_Experiments;i++) delete [] MatrixOfParameters[i];
         delete [] MatrixOfParameters;
         delete [] ListOfParameterOptions;
-        //delete [] NumberOfListOfVectorParameterOptions;
+        delete [] NumberOfListOfVectorParameterOptions;
+        delete [] MatrixOfNameParameters;
+        delete [] MeanOfEx;
+        delete [] MeanOfEy;
+        delete [] MeanOfR;
+        delete [] VarianceOfEx;
+        delete [] VarianceOfEy;
+        delete [] VarianceOfR;
     }
 }
 //--------------------------------------------------------------------------
@@ -175,7 +242,7 @@ void HarrixClass_OnlyDataOfHarrixOptimizationTesting::memoryDeallocation()
 void HarrixClass_OnlyDataOfHarrixOptimizationTesting::initializationOfVariables()
 {
     /*
-    Обнуление пемеренных. Внутренняя функция.
+    Обнуление переменных. Внутренняя функция.
     Входные параметры:
      Отсутствуют.
     Возвращаемое значение:
@@ -190,6 +257,14 @@ void HarrixClass_OnlyDataOfHarrixOptimizationTesting::initializationOfVariables(
     //Zero_Number_Of_Parameters=false;//пока ничего не известно
     XML_Number_Of_Experiments=-1;//Количество комбинаций вариантов настроек
     NamesOfParameters.clear();
+    ListOfVectorParameterOptions.clear();
+
+    MeanOfAllEx=0;
+    MeanOfAllEy=0;
+    MeanOfAllR=0;
+    VarianceOfAllR=0;
+    VarianceOfAllEx=0;
+    VarianceOfAllEy=0;
 }
 //--------------------------------------------------------------------------
 
@@ -579,11 +654,11 @@ void HarrixClass_OnlyDataOfHarrixOptimizationTesting::setErrorEx(double ErrorEx,
     /*
     Задание значения ошибки Ex.
     Входные параметры:
-     ErrorEx - задаваниемое значение ошибки;
+     ErrorEx - задаваемое значение ошибки;
      Number_Of_Experiment - номер комбинации вариантов настроек;
      Number_Of_Measuring - номер измерения варианта настроек.
     Возвращаемое значение:
-     Отсуствует.
+     Отсутствует.
      */
     if (Number_Of_Experiment<0) Number_Of_Experiment=0;
     if (Number_Of_Experiment>XML_Number_Of_Experiments-1) Number_Of_Experiment=XML_Number_Of_Experiments-1;
@@ -620,11 +695,11 @@ void HarrixClass_OnlyDataOfHarrixOptimizationTesting::setErrorEy(double ErrorEy,
     /*
     Задание значения ошибки Ey.
     Входные параметры:
-     ErrorEy - задаваниемое значение ошибки;
+     ErrorEy - задаваемое значение ошибки;
      Number_Of_Experiment - номер комбинации вариантов настроек;
      Number_Of_Measuring - номер измерения варианта настроек.
     Возвращаемое значение:
-     Отсуствует.
+     Отсутствует.
      */
     if (Number_Of_Experiment<0) Number_Of_Experiment=0;
     if (Number_Of_Experiment>XML_Number_Of_Experiments-1) Number_Of_Experiment=XML_Number_Of_Experiments-1;
@@ -661,11 +736,11 @@ void HarrixClass_OnlyDataOfHarrixOptimizationTesting::setErrorR(double ErrorR,in
     /*
     Задание значения надежности R.
     Входные параметры:
-     ErrorR - задаваниемое значение надежности;
+     ErrorR - задаваемое значение надежности;
      Number_Of_Experiment - номер комбинации вариантов настроек;
      Number_Of_Measuring - номер измерения варианта настроек.
     Возвращаемое значение:
-     Отсуствует.
+     Отсутствует.
      */
     if (Number_Of_Experiment<0) Number_Of_Experiment=0;
     if (Number_Of_Experiment>XML_Number_Of_Experiments-1) Number_Of_Experiment=XML_Number_Of_Experiments-1;
@@ -705,7 +780,7 @@ void HarrixClass_OnlyDataOfHarrixOptimizationTesting::setParameter(int Parameter
      Number_Of_Experiment - номер комбинации вариантов настроек;
      Number_Of_Parameter - номер параметра.
     Возвращаемое значение:
-     Отсуствует.
+     Отсутствует.
      */
     if (Number_Of_Experiment<0) Number_Of_Experiment=0;
     if (Number_Of_Experiment>XML_Number_Of_Experiments-1) Number_Of_Experiment=XML_Number_Of_Experiments-1;
@@ -724,9 +799,8 @@ QStringList HarrixClass_OnlyDataOfHarrixOptimizationTesting::getNamesOfParameter
     Входные параметры:
      Отсутствуют.
     Возвращаемое значение:
-     Спискок параметров алгоритма.
+     Список параметров алгоритма.
      */
-
     return NamesOfParameters;
 }
 //--------------------------------------------------------------------------
@@ -754,7 +828,7 @@ void HarrixClass_OnlyDataOfHarrixOptimizationTesting::addNameOption(QString Opti
     Входные параметры:
      Number_Of_Parameter - номер параметра.
     Возвращаемое значение:
-     Отсуствует.
+     Отсутствует.
      */
     NamesOfParameters<<Option;
 }
@@ -803,7 +877,7 @@ void HarrixClass_OnlyDataOfHarrixOptimizationTesting::addListOfParameterOptions(
      Option - добавляемое название варианта параметра алгоритма.
      Number_Of_Parameter - номер параметра.
     Возвращаемое значение:
-     Значения параметра в виде наименования.
+     Отсутствует.
      */
     if (Number_Of_Parameter<0) Number_Of_Parameter=0;
     if (Number_Of_Parameter>XML_Number_Of_Parameters-1) Number_Of_Parameter=XML_Number_Of_Parameters-1;
@@ -817,7 +891,7 @@ void HarrixClass_OnlyDataOfHarrixOptimizationTesting::setListOfParameterOptions(
     /*
     Задание списка вектора названий вариантов параметров алгоритма оптимизации.
     Входные параметры:
-     List - список названий парметров, которым будем заменять текущий список.
+     List - список названий параметров, которым будем заменять текущий список.
      Number_Of_Parameter - номер параметра.
     Возвращаемое значение:
      Значения параметра в виде наименования.
@@ -826,5 +900,407 @@ void HarrixClass_OnlyDataOfHarrixOptimizationTesting::setListOfParameterOptions(
     if (Number_Of_Parameter>XML_Number_Of_Parameters-1) Number_Of_Parameter=XML_Number_Of_Parameters-1;
 
     ListOfParameterOptions[Number_Of_Parameter] = List;
+}
+//--------------------------------------------------------------------------
+
+double HarrixClass_OnlyDataOfHarrixOptimizationTesting::getNumberOfListOfVectorParameterOptions(int Number)
+{
+    /*
+     Получение значения элемента массива NumberOfListOfVectorParameterOptions
+     */
+    return NumberOfListOfVectorParameterOptions[Number];
+}
+//--------------------------------------------------------------------------
+
+void HarrixClass_OnlyDataOfHarrixOptimizationTesting::setNumberOfListOfVectorParameterOptions(double Num,int Number)
+{
+    /*
+     Задание значения элемента массива NumberOfListOfVectorParameterOptions
+     */
+    NumberOfListOfVectorParameterOptions[Number] = Num;
+}
+//--------------------------------------------------------------------------
+
+QString HarrixClass_OnlyDataOfHarrixOptimizationTesting::getNameParameter(int Number_Of_Experiment, int Number_Of_Parameter)
+{
+    /*
+    Получение значения параметра настройки какой-то в виде полного наименования.
+    Входные параметры:
+     Number_Of_Experiment - номер комбинации вариантов настроек;
+     Number_Of_Parameter - номер параметра.
+    Возвращаемое значение:
+     Значения параметра в виде наименования.
+     */
+    if (Number_Of_Experiment<0) Number_Of_Experiment=0;
+    if (Number_Of_Experiment>XML_Number_Of_Experiments-1) Number_Of_Experiment=XML_Number_Of_Experiments-1;
+
+    if (Number_Of_Parameter<0) Number_Of_Parameter=0;
+    if (Number_Of_Parameter>XML_Number_Of_Parameters-1) Number_Of_Parameter=XML_Number_Of_Parameters-1;
+
+    return MatrixOfNameParameters[Number_Of_Experiment].at(Number_Of_Parameter);
+}
+//--------------------------------------------------------------------------
+
+void HarrixClass_OnlyDataOfHarrixOptimizationTesting::addNameParameter(QString Name, int Number_Of_Experiment)
+{
+    /*
+    Получение значения параметра настройки какой-то в виде полного наименования.
+    Входные параметры:
+     Number_Of_Experiment - номер комбинации вариантов настроек;
+     Number_Of_Parameter - номер параметра.
+    Возвращаемое значение:
+     Отсутствует.
+     */
+    if (Number_Of_Experiment<0) Number_Of_Experiment=0;
+    if (Number_Of_Experiment>XML_Number_Of_Experiments-1) Number_Of_Experiment=XML_Number_Of_Experiments-1;
+
+    MatrixOfNameParameters[Number_Of_Experiment] <<Name;
+}
+//--------------------------------------------------------------------------
+
+QStringList HarrixClass_OnlyDataOfHarrixOptimizationTesting::getListOfVectorParameterOptions()
+{
+    /*
+    Получение списка вектора названий вариантов параметров алгоритма оптимизации - это сборник строк из MatrixOfNameParameters, где объединены столбцы.
+    Входные параметры:
+     Отсутствуют.
+    Возвращаемое значение:
+     Список параметров алгоритма.
+     */
+
+    return ListOfVectorParameterOptions;
+}
+//--------------------------------------------------------------------------
+
+QString HarrixClass_OnlyDataOfHarrixOptimizationTesting::getListOfVectorParameterOptions(int Number_Of_Experiment)
+{
+    /*
+    Получение строки параметров эксперимента из списка вектора названий вариантов параметров алгоритма оптимизации - это сборник строк из MatrixOfNameParameters, где объединены столбцы.
+    Входные параметры:
+     Number_Of_Experiment - номер эксперимента.
+    Возвращаемое значение:
+     Значения строки параметров эксперимента.
+     */
+    if (Number_Of_Experiment<0) Number_Of_Experiment=0;
+    if (Number_Of_Experiment>XML_Number_Of_Experiments-1) Number_Of_Experiment=XML_Number_Of_Experiments-1;
+
+    return ListOfVectorParameterOptions.at(Number_Of_Experiment);
+}
+//--------------------------------------------------------------------------
+
+void HarrixClass_OnlyDataOfHarrixOptimizationTesting::addListOfVectorParameterOptions(QString Option)
+{
+    /*
+    Добавление строки параметров эксперимента из списка вектора названий вариантов параметров алгоритма оптимизации - это сборник строк из MatrixOfNameParameters, где объединены столбцы.
+    Входные параметры:
+     Option - добавляемая строка.
+    Возвращаемое значение:
+     Отсутствует.
+     */
+    ListOfVectorParameterOptions<<Option;
+}
+//--------------------------------------------------------------------------
+
+
+double HarrixClass_OnlyDataOfHarrixOptimizationTesting::getMeanEx(int Number_Of_Experiment)
+{
+    /*
+    Получение среднего значения ошибки Ex по измерениям для настройки (сколько точек было по столько и усредняем).
+    Входные параметры:
+     Number_Of_Experiment - номер комбинации вариантов настроек.
+    Возвращаемое значение:
+     Значения среднего значения Ex.
+     */
+    if (Number_Of_Experiment<0) Number_Of_Experiment=0;
+    if (Number_Of_Experiment>XML_Number_Of_Experiments-1) Number_Of_Experiment=XML_Number_Of_Experiments-1;
+
+    return MeanOfEx[Number_Of_Experiment];
+}
+//--------------------------------------------------------------------------
+
+void HarrixClass_OnlyDataOfHarrixOptimizationTesting::setMeanEx(double MeanEx, int Number_Of_Experiment)
+{
+    /*
+    Задание среднего значения ошибки Ex по измерениям для настройки (сколько точек было по столько и усредняем).
+    Входные параметры:
+     MeanEx - значение ошибки;
+     Number_Of_Experiment - номер комбинации вариантов настроек.
+    Возвращаемое значение:
+     Отсутствует.
+     */
+    if (Number_Of_Experiment<0) Number_Of_Experiment=0;
+    if (Number_Of_Experiment>XML_Number_Of_Experiments-1) Number_Of_Experiment=XML_Number_Of_Experiments-1;
+
+    MeanOfEx[Number_Of_Experiment] = MeanEx;
+}
+//--------------------------------------------------------------------------
+
+double HarrixClass_OnlyDataOfHarrixOptimizationTesting::getMeanEy(int Number_Of_Experiment)
+{
+    /*
+    Получение среднего значения ошибки Ey по измерениям для настройки (сколько точек было по столько и усредняем).
+    Входные параметры:
+     Number_Of_Experiment - номер комбинации вариантов настроек.
+    Возвращаемое значение:
+     Значения среднего значения Ey.
+     */
+    if (Number_Of_Experiment<0) Number_Of_Experiment=0;
+    if (Number_Of_Experiment>XML_Number_Of_Experiments-1) Number_Of_Experiment=XML_Number_Of_Experiments-1;
+
+    return MeanOfEy[Number_Of_Experiment];
+}
+//--------------------------------------------------------------------------
+
+void HarrixClass_OnlyDataOfHarrixOptimizationTesting::setMeanEy(double MeanEy, int Number_Of_Experiment)
+{
+    /*
+    Задание среднего значения ошибки Ey по измерениям для настройки (сколько точек было по столько и усредняем).
+    Входные параметры:
+     MeanEy - значение ошибки;
+     Number_Of_Experiment - номер комбинации вариантов настроек.
+    Возвращаемое значение:
+     Отсутствует.
+     */
+    if (Number_Of_Experiment<0) Number_Of_Experiment=0;
+    if (Number_Of_Experiment>XML_Number_Of_Experiments-1) Number_Of_Experiment=XML_Number_Of_Experiments-1;
+
+    MeanOfEy[Number_Of_Experiment] = MeanEy;
+}
+//--------------------------------------------------------------------------
+
+double HarrixClass_OnlyDataOfHarrixOptimizationTesting::getMeanR(int Number_Of_Experiment)
+{
+    /*
+    Получение среднего значения надежности R по измерениям для настройки (сколько точек было по столько и усредняем).
+    Входные параметры:
+     Number_Of_Experiment - номер комбинации вариантов настроек.
+    Возвращаемое значение:
+     Значения среднего значения R.
+     */
+    if (Number_Of_Experiment<0) Number_Of_Experiment=0;
+    if (Number_Of_Experiment>XML_Number_Of_Experiments-1) Number_Of_Experiment=XML_Number_Of_Experiments-1;
+
+    return MeanOfR[Number_Of_Experiment];
+}
+//--------------------------------------------------------------------------
+
+void HarrixClass_OnlyDataOfHarrixOptimizationTesting::setMeanR(double MeanR, int Number_Of_Experiment)
+{
+    /*
+	Задание среднего значения надежности R по измерениям для настройки (сколько точек было по столько и усредняем).
+    Входные параметры:
+     MeanR - значение ошибки;
+     Number_Of_Experiment - номер комбинации вариантов настроек.
+    Возвращаемое значение:
+     Отсутствует.
+     */
+    if (Number_Of_Experiment<0) Number_Of_Experiment=0;
+    if (Number_Of_Experiment>XML_Number_Of_Experiments-1) Number_Of_Experiment=XML_Number_Of_Experiments-1;
+
+    MeanOfR[Number_Of_Experiment] = MeanR;
+}
+//--------------------------------------------------------------------------
+
+double HarrixClass_OnlyDataOfHarrixOptimizationTesting::getVarianceOfEx(int Number_Of_Experiment)
+{
+    /*
+    Получение дисперсии значения ошибки Ex по измерениям для настройки (сколько точек было по столько и усредняем).
+    Входные параметры:
+     Number_Of_Experiment - номер комбинации вариантов настроек.
+    Возвращаемое значение:
+     Значения дисперсии значения Ex.
+     */
+    if (Number_Of_Experiment<0) Number_Of_Experiment=0;
+    if (Number_Of_Experiment>XML_Number_Of_Experiments-1) Number_Of_Experiment=XML_Number_Of_Experiments-1;
+
+    return VarianceOfEx[Number_Of_Experiment];
+}
+//--------------------------------------------------------------------------
+
+void HarrixClass_OnlyDataOfHarrixOptimizationTesting::setVarianceOfEx(double Variance, int Number_Of_Experiment)
+{
+    /*
+    Получение дисперсии значения ошибки Ex по измерениям для настройки (сколько точек было по столько и усредняем).
+    Входные параметры:
+     Number_Of_Experiment - номер комбинации вариантов настроек.
+    Возвращаемое значение:
+     Отсутствует.
+     */
+    if (Number_Of_Experiment<0) Number_Of_Experiment=0;
+    if (Number_Of_Experiment>XML_Number_Of_Experiments-1) Number_Of_Experiment=XML_Number_Of_Experiments-1;
+
+    VarianceOfEx[Number_Of_Experiment] = Variance;
+}
+//--------------------------------------------------------------------------
+
+double HarrixClass_OnlyDataOfHarrixOptimizationTesting::getVarianceOfEy(int Number_Of_Experiment)
+{
+    /*
+    Получение дисперсии значения ошибки Ey по измерениям для настройки (сколько точек было по столько и усредняем).
+    Входные параметры:
+     Number_Of_Experiment - номер комбинации вариантов настроек.
+    Возвращаемое значение:
+     Значения дисперсии значения Ey.
+     */
+    if (Number_Of_Experiment<0) Number_Of_Experiment=0;
+    if (Number_Of_Experiment>XML_Number_Of_Experiments-1) Number_Of_Experiment=XML_Number_Of_Experiments-1;
+
+    return VarianceOfEy[Number_Of_Experiment];
+}
+//--------------------------------------------------------------------------
+
+void HarrixClass_OnlyDataOfHarrixOptimizationTesting::setVarianceOfEy(double Variance, int Number_Of_Experiment)
+{
+    /*
+    Получение дисперсии значения ошибки Ey по измерениям для настройки (сколько точек было по столько и усредняем).
+    Входные параметры:
+     Number_Of_Experiment - номер комбинации вариантов настроек.
+    Возвращаемое значение:
+     Отсутствует.
+     */
+    if (Number_Of_Experiment<0) Number_Of_Experiment=0;
+    if (Number_Of_Experiment>XML_Number_Of_Experiments-1) Number_Of_Experiment=XML_Number_Of_Experiments-1;
+
+    VarianceOfEy[Number_Of_Experiment] = Variance;
+}
+//--------------------------------------------------------------------------
+
+double HarrixClass_OnlyDataOfHarrixOptimizationTesting::getVarianceOfR(int Number_Of_Experiment)
+{
+    /*
+    Получение дисперсии значения надежности R по измерениям для настройки (сколько точек было по столько и усредняем).
+    Входные параметры:
+     Number_Of_Experiment - номер комбинации вариантов настроек.
+    Возвращаемое значение:
+     Значения дисперсии значения надежности R.
+     */
+    if (Number_Of_Experiment<0) Number_Of_Experiment=0;
+    if (Number_Of_Experiment>XML_Number_Of_Experiments-1) Number_Of_Experiment=XML_Number_Of_Experiments-1;
+
+    return VarianceOfR[Number_Of_Experiment];
+}
+//--------------------------------------------------------------------------
+
+void HarrixClass_OnlyDataOfHarrixOptimizationTesting::setVarianceOfR(double Variance, int Number_Of_Experiment)
+{
+    /*
+    Получение дисперсии значения надежности R по измерениям для настройки (сколько точек было по столько и усредняем).
+    Входные параметры:
+     Number_Of_Experiment - номер комбинации вариантов настроек.
+    Возвращаемое значение:
+     Отсутствует.
+     */
+    if (Number_Of_Experiment<0) Number_Of_Experiment=0;
+    if (Number_Of_Experiment>XML_Number_Of_Experiments-1) Number_Of_Experiment=XML_Number_Of_Experiments-1;
+
+    VarianceOfR[Number_Of_Experiment] = Variance;
+}
+//--------------------------------------------------------------------------
+
+double HarrixClass_OnlyDataOfHarrixOptimizationTesting::getMeanOfAllEx()
+{
+    /*
+     Получение значения переменной MeanOfAllEx - среднее значение ошибок Ex алгоритма оптимизации по измерениям по всем измерениям вообще
+     */
+    return MeanOfAllEx;
+}
+//--------------------------------------------------------------------------
+
+void HarrixClass_OnlyDataOfHarrixOptimizationTesting::setMeanOfAllEx(double Mean)
+{
+    /*
+     Задание значения переменной MeanOfAllEx - среднее значение ошибок Ex алгоритма оптимизации по измерениям по всем измерениям вообще
+     */
+    MeanOfAllEx = Mean;
+}
+//--------------------------------------------------------------------------
+
+double HarrixClass_OnlyDataOfHarrixOptimizationTesting::getMeanOfAllEy()
+{
+    /*
+     Получение значения переменной MeanOfAllEy - среднее значение ошибок Ey алгоритма оптимизации по измерениям по всем измерениям вообще
+     */
+    return MeanOfAllEy;
+}
+//--------------------------------------------------------------------------
+
+void HarrixClass_OnlyDataOfHarrixOptimizationTesting::setMeanOfAllEy(double Mean)
+{
+    /*
+     Задание значения переменной MeanOfAllEy - среднее значение ошибок Ey алгоритма оптимизации по измерениям по всем измерениям вообще
+     */
+    MeanOfAllEy = Mean;
+}
+//--------------------------------------------------------------------------
+
+double HarrixClass_OnlyDataOfHarrixOptimizationTesting::getMeanOfAllR()
+{
+    /*
+     Получение значения переменной MeanOfAllR - среднее значение надежностей R алгоритма оптимизации по измерениям по всем измерениям вообще
+     */
+    return MeanOfAllR;
+}
+//--------------------------------------------------------------------------
+
+void HarrixClass_OnlyDataOfHarrixOptimizationTesting::setMeanOfAllR(double Mean)
+{
+    /*
+     Задание значения переменной MeanOfAllR - среднее значение надежностей R алгоритма оптимизации по измерениям по всем измерениям вообще
+     */
+    MeanOfAllR = Mean;
+}
+//--------------------------------------------------------------------------
+
+double HarrixClass_OnlyDataOfHarrixOptimizationTesting::getVarianceOfAllEx()
+{
+    /*
+     Получение значения переменной VarianceOfAllEx - дисперсия ошибок Ex алгоритма оптимизации по измерениям по всем измерениям вообще
+     */
+    return VarianceOfAllEx;
+}
+//--------------------------------------------------------------------------
+
+void HarrixClass_OnlyDataOfHarrixOptimizationTesting::setVarianceOfAllEx(double Variance)
+{
+    /*
+     Задание значения переменной VarianceOfAllEx - дисперсия ошибок Ex алгоритма оптимизации по измерениям по всем измерениям вообще
+     */
+    VarianceOfAllEx = Variance;
+}
+//--------------------------------------------------------------------------
+
+double HarrixClass_OnlyDataOfHarrixOptimizationTesting::getVarianceOfAllEy()
+{
+    /*
+     Получение значения переменной VarianceOfAllEy - дисперсия ошибок Ey алгоритма оптимизации по измерениям по всем измерениям вообще
+     */
+    return VarianceOfAllEy;
+}
+//--------------------------------------------------------------------------
+
+void HarrixClass_OnlyDataOfHarrixOptimizationTesting::setVarianceOfAllEy(double Variance)
+{
+    /*
+     Задание значения переменной VarianceOfAllEy - дисперсия ошибок Ey алгоритма оптимизации по измерениям по всем измерениям вообще
+     */
+    VarianceOfAllEy = Variance;
+}
+//--------------------------------------------------------------------------
+
+double HarrixClass_OnlyDataOfHarrixOptimizationTesting::getVarianceOfAllR()
+{
+    /*
+     Получение значения переменной VarianceOfAllR - дисперсия надежностей R алгоритма оптимизации по измерениям по всем измерениям вообще
+     */
+    return VarianceOfAllR;
+}
+//--------------------------------------------------------------------------
+
+void HarrixClass_OnlyDataOfHarrixOptimizationTesting::setVarianceOfAllR(double Variance)
+{
+    /*
+     Задание значения переменной VarianceOfAllR - дисперсия надежностей R алгоритма оптимизации по измерениям по всем измерениям вообще
+     */
+    VarianceOfAllR = Variance;
 }
 //--------------------------------------------------------------------------

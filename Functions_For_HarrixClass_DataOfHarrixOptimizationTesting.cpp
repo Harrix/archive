@@ -1,5 +1,5 @@
 //HarrixClass_DataOfHarrixOptimizationTesting
-//Версия 1.19
+//Версия 1.20
 //Класс для считывания информации формата данных Harrix Optimization Testing на C++ для Qt.
 //https://github.com/Harrix/HarrixClass_DataOfHarrixOptimizationTesting
 //Библиотека распространяется по лицензии Apache License, Version 2.0.
@@ -414,7 +414,7 @@ int HCDOHOT_ReadFilesInDir(HarrixClass_DataOfHarrixOptimizationTesting *SeveralD
 bool HCDOHOT_CompareOfDataForNameAlgorithm (HarrixClass_DataOfHarrixOptimizationTesting Data1, HarrixClass_DataOfHarrixOptimizationTesting Data2)
 {
     /*
-    Проверяет равенство индентификаторов алгоритмов оптимизации: в данных содержится один и тот же алгоритм или же нет.
+    Проверяет равенство идентификаторов алгоритмов оптимизации: в данных содержится один и тот же алгоритм или же нет.
     Входные параметры:
      Data1 - первое исследование;
      Data2 - второе исследование.
@@ -433,7 +433,7 @@ bool HCDOHOT_CompareOfDataForNameAlgorithm (HarrixClass_DataOfHarrixOptimization
 bool HCDOHOT_CompareOfDataForNameAlgorithm (HarrixClass_DataOfHarrixOptimizationTesting *SeveralData, int N)
 {
     /*
-    Проверяет равенство индентификаторов алгоритмов оптимизации: в данных содержится один и тот же алгоритм или же нет.
+    Проверяет равенство идентификаторов алгоритмов оптимизации: в данных содержится один и тот же алгоритм или же нет.
     Входные параметры:
      SeveralData - массив исследований;
      N - количество исследований в массиве.
@@ -586,7 +586,7 @@ bool HCDOHOT_CompareOfDataForEmail (HarrixClass_DataOfHarrixOptimizationTesting 
 bool HCDOHOT_CompareOfDataForFullNameAlgorithm (HarrixClass_DataOfHarrixOptimizationTesting Data1, HarrixClass_DataOfHarrixOptimizationTesting Data2)
 {
     /*
-    Проверяет равенство полных названий алгоритмов в исследованиях
+    Проверяет равенство полных названий алгоритмов в исследованиях.
     Входные параметры:
      Data1 - первое исследование;
      Data2 - второе исследование.
@@ -1102,7 +1102,7 @@ bool HCDOHOT_CompareOfDataForLink (HarrixClass_DataOfHarrixOptimizationTesting *
 bool HCDOHOT_CompareOfDataForCheckAllCombinations (HarrixClass_DataOfHarrixOptimizationTesting Data1, HarrixClass_DataOfHarrixOptimizationTesting Data2)
 {
     /*
-    Проверяет равенство переменной, котороая говорит все ли рассмотрены функции в исследованиях.
+    Проверяет равенство переменной, которая говорит все ли рассмотрены функции в исследованиях.
     Входные параметры:
      Data1 - первое исследование;
      Data2 - второе исследование.
@@ -1121,7 +1121,7 @@ bool HCDOHOT_CompareOfDataForCheckAllCombinations (HarrixClass_DataOfHarrixOptim
 bool HCDOHOT_CompareOfDataForCheckAllCombinations (HarrixClass_DataOfHarrixOptimizationTesting *SeveralData, int N)
 {
     /*
-    Проверяет равенство переменной, котороая говорит все ли рассмотрены функции в исследованиях.
+    Проверяет равенство переменной, которая говорит все ли рассмотрены функции в исследованиях.
     Входные параметры:
      SeveralData - массив исследований;
      N - количество исследований в массиве.

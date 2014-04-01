@@ -1,5 +1,5 @@
 //HarrixClass_DataOfHarrixOptimizationTesting
-//Версия 1.19
+//Версия 1.20
 //Класс для считывания информации формата данных Harrix Optimization Testing на C++ для Qt.
 //https://github.com/Harrix/HarrixClass_DataOfHarrixOptimizationTesting
 //Библиотека распространяется по лицензии Apache License, Version 2.0.
@@ -48,7 +48,7 @@ HarrixClass_DataOfHarrixOptimizationTesting::HarrixClass_DataOfHarrixOptimizatio
 HarrixClass_DataOfHarrixOptimizationTesting::HarrixClass_DataOfHarrixOptimizationTesting()
 {
     /*
-    Конструктор. Создает пустой экзмепляр.
+    Конструктор. Создает пустой экземпляр.
     Входные параметры:
      Отсутствуют.
  */
@@ -142,6 +142,7 @@ void HarrixClass_DataOfHarrixOptimizationTesting::readXml()
     }
     else
     {
+        Data.setSuccessReading(true);
         makingAnalysis();//выполняем анализ данных
 
         //Обработка полученной информации Html
@@ -512,7 +513,7 @@ qint64 HarrixClass_DataOfHarrixOptimizationTesting::getNumberOfMeasuring()
 qint64 HarrixClass_DataOfHarrixOptimizationTesting::getNumberOfRuns()
 {
     /*
-     Получение текста переменной  XML_Number_Of_Runs - Количество прогонов по которому деляется усреднение для эксперимента
+     Получение текста переменной  XML_Number_Of_Runs - Количество прогонов, по которому делается усреднение для эксперимента
      */
     return Data.getNumberOfRuns();
 }
@@ -549,7 +550,7 @@ qint64 HarrixClass_DataOfHarrixOptimizationTesting::getNumberOfExperiments()
 bool HarrixClass_DataOfHarrixOptimizationTesting::getCheckAllCombinations()
 {
     /*
-     Получение текста переменной  XML_All_Combinations - Все ли комбинации вариантов настроек просмотрены: 0 bли 1
+     Получение текста переменной  XML_All_Combinations - Все ли комбинации вариантов настроек просмотрены: 0 или 1
      */
     return bool(Data.getCheckAllCombinations());
 }
@@ -627,7 +628,7 @@ double HarrixClass_DataOfHarrixOptimizationTesting::getMeanEx(int Number_Of_Expe
     if (Number_Of_Experiment<0) Number_Of_Experiment=0;
     if (Number_Of_Experiment>Data.getNumberOfExperiments()-1) Number_Of_Experiment=Data.getNumberOfExperiments()-1;
 
-    return MeanOfEx[Number_Of_Experiment];
+    return Data.getMeanEx(Number_Of_Experiment);
 }
 //--------------------------------------------------------------------------
 
@@ -643,7 +644,7 @@ double HarrixClass_DataOfHarrixOptimizationTesting::getMeanEy(int Number_Of_Expe
     if (Number_Of_Experiment<0) Number_Of_Experiment=0;
     if (Number_Of_Experiment>Data.getNumberOfExperiments()-1) Number_Of_Experiment=Data.getNumberOfExperiments()-1;
 
-    return MeanOfEy[Number_Of_Experiment];
+    return Data.getMeanEy(Number_Of_Experiment);
 }
 //--------------------------------------------------------------------------
 
@@ -654,12 +655,12 @@ double HarrixClass_DataOfHarrixOptimizationTesting::getMeanR(int Number_Of_Exper
     Входные параметры:
      Number_Of_Experiment - номер комбинации вариантов настроек.
     Возвращаемое значение:
-     Значения среднего значения Ey.
+     Значения среднего значения R.
      */
     if (Number_Of_Experiment<0) Number_Of_Experiment=0;
     if (Number_Of_Experiment>Data.getNumberOfExperiments()-1) Number_Of_Experiment=Data.getNumberOfExperiments()-1;
 
-    return MeanOfR[Number_Of_Experiment];
+    return Data.getMeanR(Number_Of_Experiment);
 }
 //--------------------------------------------------------------------------
 
@@ -675,7 +676,7 @@ double HarrixClass_DataOfHarrixOptimizationTesting::getVarianceOfEx(int Number_O
     if (Number_Of_Experiment<0) Number_Of_Experiment=0;
     if (Number_Of_Experiment>Data.getNumberOfExperiments()-1) Number_Of_Experiment=Data.getNumberOfExperiments()-1;
 
-    return VarianceOfEx[Number_Of_Experiment];
+    return Data.getVarianceOfEx(Number_Of_Experiment);
 }
 //--------------------------------------------------------------------------
 
@@ -691,7 +692,7 @@ double HarrixClass_DataOfHarrixOptimizationTesting::getVarianceOfEy(int Number_O
     if (Number_Of_Experiment<0) Number_Of_Experiment=0;
     if (Number_Of_Experiment>Data.getNumberOfExperiments()-1) Number_Of_Experiment=Data.getNumberOfExperiments()-1;
 
-    return VarianceOfEy[Number_Of_Experiment];
+    return Data.getVarianceOfEy(Number_Of_Experiment);
 }
 //--------------------------------------------------------------------------
 
@@ -707,14 +708,14 @@ double HarrixClass_DataOfHarrixOptimizationTesting::getVarianceOfR(int Number_Of
     if (Number_Of_Experiment<0) Number_Of_Experiment=0;
     if (Number_Of_Experiment>Data.getNumberOfExperiments()-1) Number_Of_Experiment=Data.getNumberOfExperiments()-1;
 
-    return VarianceOfR[Number_Of_Experiment];
+    return Data.getVarianceOfR(Number_Of_Experiment);
 }
 //--------------------------------------------------------------------------
 
 bool HarrixClass_DataOfHarrixOptimizationTesting::getSuccessReading()
 {
     /*
-    Получение значения переменной SuccessReading о удачности или неудачности прочитывания файла.
+    Получение значения переменной SuccessReading о удачности или неудачности считывания файла.
      */
     return Data.getSuccessReading();
 }
@@ -756,7 +757,7 @@ QString HarrixClass_DataOfHarrixOptimizationTesting::getNameParameter(int Number
     if (Number_Of_Parameter<0) Number_Of_Parameter=0;
     if (Number_Of_Parameter>Data.getNumberOfParameters()-1) Number_Of_Parameter=Data.getNumberOfParameters()-1;
 
-    return MatrixOfNameParameters[Number_Of_Experiment][Number_Of_Parameter];
+    return Data.getNameParameter(Number_Of_Experiment,Number_Of_Parameter);
 }
 //--------------------------------------------------------------------------
 
@@ -859,16 +860,16 @@ void HarrixClass_DataOfHarrixOptimizationTesting::makingLatexTableR()
 
         for (int j=0;j<Data.getNumberOfParameters();j++)
         {
-            if (MatrixOfNameParameters[i][j]=="NULL")
+            if (Data.getNameParameter(i,j)=="NULL")
                 Cell2+="Отсутствует \\\\ ";
             else
-                if (!HQt_IsNumeric(MatrixOfNameParameters[i][j]))
-                    if (MatrixOfNameParameters[i][j].length()>=5)
-                        Cell2+=MatrixOfNameParameters[i][j] +" \\\\ ";
+                if (!HQt_IsNumeric(Data.getNameParameter(i,j)))
+                    if (Data.getNameParameter(i,j).length()>=5)
+                        Cell2+=Data.getNameParameter(i,j) +" \\\\ ";
                     else
-                        Cell2+=Data.getNameOption(j) + " = " + MatrixOfNameParameters[i][j] +" \\\\ ";
+                        Cell2+=Data.getNameOption(j) + " = " + Data.getNameParameter(i,j) +" \\\\ ";
                 else
-                    Cell2+=Data.getNameOption(j) + " = " + MatrixOfNameParameters[i][j] +" \\\\ ";
+                    Cell2+=Data.getNameOption(j) + " = " + Data.getNameParameter(i,j) +" \\\\ ";
         }
 
         Cell2+="}";
@@ -887,12 +888,12 @@ void HarrixClass_DataOfHarrixOptimizationTesting::makingLatexTableR()
         Cell3="\\centering "+Cell3;
 
         //получим средние значения критерия
-        Cell4=QString::number(MeanOfR[i]);
+        Cell4=QString::number(Data.getMeanR(i));
 
         Cell4="\\centering "+Cell4;
 
         //получим значения дисперсии
-        Cell5=QString::number(VarianceOfR[i]);
+        Cell5=QString::number(Data.getVarianceOfR(i));
 
         Cell5="\\centering "+Cell5;
 
@@ -946,16 +947,16 @@ void HarrixClass_DataOfHarrixOptimizationTesting::makingLatexTableEy()
 
         for (int j=0;j<Data.getNumberOfParameters();j++)
         {
-            if (MatrixOfNameParameters[i][j]=="NULL")
+            if (Data.getNameParameter(i,j)=="NULL")
                 Cell2+="Отсутствует \\\\ ";
             else
-                if (!HQt_IsNumeric(MatrixOfNameParameters[i][j]))
-                    if (MatrixOfNameParameters[i][j].length()>=5)
-                        Cell2+=MatrixOfNameParameters[i][j] +" \\\\ ";
+                if (!HQt_IsNumeric(Data.getNameParameter(i,j)))
+                    if (Data.getNameParameter(i,j).length()>=5)
+                        Cell2+=Data.getNameParameter(i,j) +" \\\\ ";
                     else
-                        Cell2+=Data.getNameOption(j) + " = " + MatrixOfNameParameters[i][j] +" \\\\ ";
+                        Cell2+=Data.getNameOption(j) + " = " + Data.getNameParameter(i,j) +" \\\\ ";
                 else
-                    Cell2+=Data.getNameOption(j) + " = " + MatrixOfNameParameters[i][j] +" \\\\ ";
+                    Cell2+=Data.getNameOption(j) + " = " + Data.getNameParameter(i,j) +" \\\\ ";
         }
 
         Cell2+="}";
@@ -974,12 +975,12 @@ void HarrixClass_DataOfHarrixOptimizationTesting::makingLatexTableEy()
         Cell3="\\centering "+Cell3;
 
         //получим средние значения критерия
-        Cell4=QString::number(MeanOfEy[i]);
+        Cell4=QString::number(Data.getMeanEy(i));
 
         Cell4="\\centering "+Cell4;
 
         //получим значения дисперсии
-        Cell5=QString::number(VarianceOfEy[i]);
+        Cell5=QString::number(Data.getVarianceOfEy(i));
 
         Cell5="\\centering "+Cell5;
 
@@ -1032,16 +1033,16 @@ void HarrixClass_DataOfHarrixOptimizationTesting::makingLatexTableEx()
 
         for (int j=0;j<Data.getNumberOfParameters();j++)
         {
-            if (MatrixOfNameParameters[i][j]=="NULL")
+            if (Data.getNameParameter(i,j)=="NULL")
                 Cell2+="Отсутствует \\\\ ";
             else
-                if (!HQt_IsNumeric(MatrixOfNameParameters[i][j]))
-                    if (MatrixOfNameParameters[i][j].length()>=5)
-                        Cell2+=MatrixOfNameParameters[i][j] +" \\\\ ";
+                if (!HQt_IsNumeric(Data.getNameParameter(i,j)))
+                    if (Data.getNameParameter(i,j).length()>=5)
+                        Cell2+=Data.getNameParameter(i,j) +" \\\\ ";
                     else
-                        Cell2+=Data.getNameOption(j) + " = " + MatrixOfNameParameters[i][j] +" \\\\ ";
+                        Cell2+=Data.getNameOption(j) + " = " + Data.getNameParameter(i,j) +" \\\\ ";
                 else
-                    Cell2+=Data.getNameOption(j) + " = " + MatrixOfNameParameters[i][j] +" \\\\ ";
+                    Cell2+=Data.getNameOption(j) + " = " + Data.getNameParameter(i,j) +" \\\\ ";
         }
 
         Cell2+="}";
@@ -1060,12 +1061,12 @@ void HarrixClass_DataOfHarrixOptimizationTesting::makingLatexTableEx()
         Cell3="\\centering "+Cell3;
 
         //получим средние значения критерия
-        Cell4=QString::number(MeanOfEx[i]);
+        Cell4=QString::number(Data.getMeanEx(i));
 
         Cell4="\\centering "+Cell4;
 
         //получим значения дисперсии
-        Cell5=QString::number(VarianceOfEx[i]);
+        Cell5=QString::number(Data.getVarianceOfEx(i));
 
         Cell5="\\centering "+Cell5;
 
@@ -1138,7 +1139,7 @@ void HarrixClass_DataOfHarrixOptimizationTesting::makingLatexAboutParameters()
     LatexAboutParameters+="\\subsection {Параметры алгоритма оптимизации}\n\n";
     if ((Data.getNumberOfParameters()==1)&&(Data.getNameOption(0)=="NULL"))
     {
-        LatexAboutParameters+="В данном исследуемом алгоритме оптимизации нет настраеваемых параметров. Поэтому в таблице ниже приведены даные только одного эксперимента.";
+        LatexAboutParameters+="В данном исследуемом алгоритме оптимизации нет настраиваемых параметров. Поэтому в таблице ниже приведены даные только одного эксперимента.";
     }
     else
     {
@@ -1214,7 +1215,7 @@ void HarrixClass_DataOfHarrixOptimizationTesting::makingHtmlReport()
     for (int i=0;i<Data.getNumberOfExperiments();i++) MOfEx[i]=new double[Data.getNumberOfMeasuring()];
     for (int i=0;i<Data.getNumberOfExperiments();i++)
         for (int j=0;j<Data.getNumberOfMeasuring();j++)
-        MOfEx[i][j] = Data.getErrorEx(i,j);
+            MOfEx[i][j] = Data.getErrorEx(i,j);
     HtmlReport+=THQt_ShowMatrix(MOfEx,Data.getNumberOfExperiments(),Data.getNumberOfMeasuring(),"Ошибки по входным параметрам","Ex");
     for (int i=0;i<Data.getNumberOfExperiments();i++) delete [] MOfEx[i];
     delete [] MOfEx;
@@ -1224,7 +1225,7 @@ void HarrixClass_DataOfHarrixOptimizationTesting::makingHtmlReport()
     for (int i=0;i<Data.getNumberOfExperiments();i++) MOfEy[i]=new double[Data.getNumberOfMeasuring()];
     for (int i=0;i<Data.getNumberOfExperiments();i++)
         for (int j=0;j<Data.getNumberOfMeasuring();j++)
-        MOfEy[i][j] = Data.getErrorEy(i,j);
+            MOfEy[i][j] = Data.getErrorEy(i,j);
     HtmlReport+=THQt_ShowMatrix(MOfEy,Data.getNumberOfExperiments(),Data.getNumberOfMeasuring(),"Ошибки по значениям целевой функции","Ey");
     for (int i=0;i<Data.getNumberOfExperiments();i++) delete [] MOfEy[i];
     delete [] MOfEy;
@@ -1234,14 +1235,14 @@ void HarrixClass_DataOfHarrixOptimizationTesting::makingHtmlReport()
     for (int i=0;i<Data.getNumberOfExperiments();i++) MOfR[i]=new double[Data.getNumberOfMeasuring()];
     for (int i=0;i<Data.getNumberOfExperiments();i++)
         for (int j=0;j<Data.getNumberOfMeasuring();j++)
-        MOfR[i][j] = Data.getErrorR(i,j);
+            MOfR[i][j] = Data.getErrorR(i,j);
     HtmlReport+=THQt_ShowMatrix(MOfR,Data.getNumberOfExperiments(),Data.getNumberOfMeasuring(),"Надежности","R");
     for (int i=0;i<Data.getNumberOfExperiments();i++) delete [] MOfR[i];
     delete [] MOfR;
 
     if (!Zero_Number_Of_Parameters)
     {
-        HtmlReport+=THQt_ShowVector(Data.getNamesOfParameters(),"Вектора названий параметров алгоримта","NamesOfParameters");
+        HtmlReport+=THQt_ShowVector(Data.getNamesOfParameters(),"Вектора названий параметров алгоритма","NamesOfParameters");
         for (int j=0;j<Data.getNumberOfParameters();j++)
             HtmlReport+=THQt_ShowVector(Data.getListOfParameterOptions(j),Data.getNameOption(j) + "(возможные принимаемые значения)","ParameterOptions");
 
@@ -1250,7 +1251,7 @@ void HarrixClass_DataOfHarrixOptimizationTesting::makingHtmlReport()
         for (int i=0;i<Data.getNumberOfExperiments();i++) MOfP[i]=new double[Data.getNumberOfParameters()];
         for (int i=0;i<Data.getNumberOfExperiments();i++)
             for (int j=0;j<Data.getNumberOfParameters();j++)
-            MOfP[i][j] = Data.getParameter(i,j);
+                MOfP[i][j] = Data.getParameter(i,j);
         HtmlReport+=THQt_ShowMatrix(MOfP,Data.getNumberOfExperiments(),Data.getNumberOfParameters(),"Матрица параметров по номерам","MatrixOfParameters");
         for (int i=0;i<Data.getNumberOfExperiments();i++) delete [] MOfP[i];
         delete [] MOfP;
@@ -1584,37 +1585,6 @@ void HarrixClass_DataOfHarrixOptimizationTesting::memoryAllocation()
     Возвращаемое значение:
      Отсутствует.
      */
-
-    //Вектор средних значений ошибок Ex алгоритма оптимизации по измерениям для каждой настройки.
-    //Число элементов равно числу комбинаций вариантов настроек.
-    MeanOfEx=new double[Data.getNumberOfExperiments()];
-
-    //Вектор средних ошибок Ey алгоритма оптимизации по измерениям для каждой настройки.
-    //Число элементов равно числу комбинаций вариантов настроек.
-    MeanOfEy=new double[Data.getNumberOfExperiments()];
-
-    //Вектор средних ошибок R алгоритма оптимизации по измерениям для каждой настройки.
-    //Число элементов равно числу комбинаций вариантов настроек.
-    MeanOfR=new double[Data.getNumberOfExperiments()];
-
-    //Вектор дисперсий ошибок Ex алгоритма оптимизации по измерениям для каждой настройки.
-    //Число элементов равно числу комбинаций вариантов настроек.
-    VarianceOfEx=new double[Data.getNumberOfExperiments()];
-
-    //Вектор дисперсий ошибок Ey алгоритма оптимизации по измерениям для каждой настройки.
-    //Число элементов равно числу комбинаций вариантов настроек.
-    VarianceOfEy=new double[Data.getNumberOfExperiments()];
-
-    //Вектор дисперсий ошибок R алгоритма оптимизации по измерениям для каждой настройки.
-    //Число элементов равно числу комбинаций вариантов настроек.
-    VarianceOfR=new double[Data.getNumberOfExperiments()];
-
-    //Матрица значений параметров для каждой комбинации вариантов настроек.
-    //Элементы не в виде чисел, а в виде наименований этих параметров.
-    //Число строк равно числу комбинаций вариантов настроек.
-    //Число столбцов равно числу проверяемых параметров алгоритма оптимизации.
-    MatrixOfNameParameters=new QStringList[Data.getNumberOfExperiments()];
-
     //Номера комбинаций вариантов настроек
     //Содержит номера от 1 до Data.getNumberOfExperiments()
     NumberOfListOfVectorParameterOptions=new double[Data.getNumberOfExperiments()];
@@ -1632,12 +1602,6 @@ void HarrixClass_DataOfHarrixOptimizationTesting::memoryDeallocation()
      */
     if (!Data.getSuccessReading())
     {
-        delete [] MeanOfEx;
-        delete [] MeanOfEy;
-        delete [] MeanOfR;
-        delete [] VarianceOfEx;
-        delete [] VarianceOfEy;
-        delete [] VarianceOfR;
         delete [] NumberOfListOfVectorParameterOptions;
     }
 }
@@ -1646,7 +1610,7 @@ void HarrixClass_DataOfHarrixOptimizationTesting::memoryDeallocation()
 void HarrixClass_DataOfHarrixOptimizationTesting::initializationOfVariables()
 {
     /*
-    Обнуление пемеренных. Внутренняя функция.
+    Обнуление переменных. Внутренняя функция.
     Входные параметры:
      Отсутствуют.
     Возвращаемое значение:
@@ -1697,7 +1661,7 @@ void HarrixClass_DataOfHarrixOptimizationTesting::readXmlDataTags()
                 {
                     Data.addNameOption("NULL");
                     Data.setParameter(0,0,0);
-                    MatrixOfNameParameters[0] << "NULL";
+                    Data.addNameParameter("NULL",0);
                 }
                 else
                 {
@@ -1707,7 +1671,7 @@ void HarrixClass_DataOfHarrixOptimizationTesting::readXmlDataTags()
                         NameOfAttr="parameters_of_algorithm_"+QString::number(k+1);
                         AttrOfElement = Rxml.attributes().value(NameOfAttr).toString();
 
-                        //считываеv названия параметров алгорима
+                        //считывает названия параметров алгоритма
                         if (i==0) Data.addNameOption(HQt_TextBeforeEqualSign(AttrOfElement));
 
                         //теперь значения параметров алгоритма
@@ -1715,7 +1679,7 @@ void HarrixClass_DataOfHarrixOptimizationTesting::readXmlDataTags()
 
                         Data.setParameter(HQt_SearchQStringInQStringList (Data.getListOfParameterOptions(k), HQt_TextAfterEqualSign(AttrOfElement)),i,k);
 
-                        MatrixOfNameParameters[i] << HQt_TextAfterEqualSign(AttrOfElement);
+                        Data.addNameParameter(HQt_TextAfterEqualSign(AttrOfElement),i);
                     }
                 }
 
@@ -1822,14 +1786,14 @@ void HarrixClass_DataOfHarrixOptimizationTesting::readXmlDataTags()
 
                         if (!((bool_ex)&&(bool_ey)&&(bool_r)))
                         {
-                            HtmlMessageOfError+=HQt_ShowAlert("В тэге measuring были не все три тэга ex, ee, r (или вообще не было).");
+                            HtmlMessageOfError+=HQt_ShowAlert("В тэге measuring были не все три тэга ex, ey, r (или вообще не было).");
                             Error=true;
                         }
                     }
                     else
                     {
                         //должен быть тэг measuring, а его нет
-                        HtmlMessageOfError+=HQt_ShowAlert("Анализатор ожидал тэга measuring. Что не так в струтуре или данных файла.");
+                        HtmlMessageOfError+=HQt_ShowAlert("Анализатор ожидал тэга measuring. Что не так в структуре или данных файла.");
                         Error=true;
                     }
                 }
@@ -1838,7 +1802,7 @@ void HarrixClass_DataOfHarrixOptimizationTesting::readXmlDataTags()
             else
             {
                 //должен быть тэг experiment, а его нет
-                HtmlMessageOfError+=HQt_ShowAlert("Анализатор ожидал тэга experiment. Что не так в струтуре или данных файла.");
+                HtmlMessageOfError+=HQt_ShowAlert("Анализатор ожидал тэга experiment. Что не так в структуре или данных файла.");
                 Error=true;
             }
 
@@ -1905,12 +1869,6 @@ void HarrixClass_DataOfHarrixOptimizationTesting::zeroArray()
      Отсутствует.
      */
     //"Обнулим" матрицы
-    TMHL_ZeroVector(MeanOfEx,Data.getNumberOfExperiments());
-    TMHL_ZeroVector(MeanOfEy,Data.getNumberOfExperiments());
-    TMHL_ZeroVector(MeanOfR ,Data.getNumberOfExperiments());
-    TMHL_ZeroVector(VarianceOfEx,Data.getNumberOfExperiments());
-    TMHL_ZeroVector(VarianceOfEy,Data.getNumberOfExperiments());
-    TMHL_ZeroVector(VarianceOfR ,Data.getNumberOfExperiments());
     TMHL_ZeroVector(NumberOfListOfVectorParameterOptions,Data.getNumberOfExperiments());
 }
 //--------------------------------------------------------------------------
@@ -1924,63 +1882,62 @@ void HarrixClass_DataOfHarrixOptimizationTesting::makingAnalysis()
     Возвращаемое значение:
      Отсутствует.
      */
-    MeanOfAllEx=0;
-    MeanOfAllEy=0;
-    MeanOfAllR=0;
-    VarianceOfAllEx=0;
-    VarianceOfAllEy=0;
-    VarianceOfAllR=0;
-
     for (int i=0;i<Data.getNumberOfExperiments();i++)
     {
         //заполним значениями вектор средних значений критериев и дисперсий
         for (int j=0;j<Data.getNumberOfMeasuring();j++)
         {
-            MeanOfEx[i]+=Data.getErrorEx(i,j);
-            MeanOfEy[i]+=Data.getErrorEy(i,j);
-            MeanOfR[i] +=Data.getErrorR(i,j);
+            Data.setMeanEx(Data.getMeanEx(i)+Data.getErrorEx(i,j),i);
+            Data.setMeanEy(Data.getMeanEy(i)+Data.getErrorEy(i,j),i);
+            Data.setMeanR (Data.getMeanR (i)+Data.getErrorR (i,j),i);
 
             //для общих дисперсий
-            MeanOfAllEx+=Data.getErrorEx(i,j);
-            MeanOfAllEy+=Data.getErrorEy(i,j);
-            MeanOfAllR +=Data.getErrorR(i,j);
+            Data.setMeanOfAllEx(Data.getMeanOfAllEx()+Data.getErrorEx(i,j));
+            Data.setMeanOfAllEy(Data.getMeanOfAllEy()+Data.getErrorEy(i,j));
+            Data.setMeanOfAllR (Data.getMeanOfAllR ()+Data.getErrorR (i,j));
         }
+        Data.setMeanEx(Data.getMeanEx(i)/double(Data.getNumberOfMeasuring()),i);
+        Data.setMeanEy(Data.getMeanEy(i)/double(Data.getNumberOfMeasuring()),i);
+        Data.setMeanR (Data.getMeanR (i)/double(Data.getNumberOfMeasuring()),i);
 
-        MeanOfEx[i]/=double(Data.getNumberOfMeasuring());
-        MeanOfEy[i]/=double(Data.getNumberOfMeasuring());
-        MeanOfR[i] /=double(Data.getNumberOfMeasuring());
-
-        VarianceOfEx[i]=0;
-        VarianceOfEy[i]=0;
-        VarianceOfR [i]=0;
+        Data.setVarianceOfEx(0,i);
+        Data.setVarianceOfEy(0,i);
+        Data.setVarianceOfR (0,i);
+        double sd;
         for (int j=0;j<Data.getNumberOfMeasuring();j++)
         {
-            VarianceOfEx[i]+=(Data.getErrorEx(i,j)-MeanOfEx[i])*(Data.getErrorEx(i,j)-MeanOfEx[i]);
-            VarianceOfEy[i]+=(Data.getErrorEy(i,j)-MeanOfEy[i])*(Data.getErrorEy(i,j)-MeanOfEy[i]);
-            VarianceOfR [i]+=(Data.getErrorR(i,j) -MeanOfR[i] )*(Data.getErrorR(i,j) -MeanOfR[i] );
+            sd=(Data.getErrorEx(i,j)-Data.getMeanEx(i))*(Data.getErrorEx(i,j)-Data.getMeanEx(i));
+            Data.setVarianceOfEx(Data.getVarianceOfEx(i)+sd,i);
+            sd=(Data.getErrorEy(i,j)-Data.getMeanEy(i))*(Data.getErrorEy(i,j)-Data.getMeanEy(i));
+            Data.setVarianceOfEy(Data.getVarianceOfEy(i)+sd,i);
+            sd=(Data.getErrorR(i,j) -Data.getMeanR (i))*(Data.getErrorR(i,j) -Data.getMeanR (i));
+            Data.setVarianceOfR(Data.getVarianceOfR(i)+sd,i);
         }
-        VarianceOfEx[i]/=double(Data.getNumberOfMeasuring()-1);
-        VarianceOfEy[i]/=double(Data.getNumberOfMeasuring()-1);
-        VarianceOfR [i]/=double(Data.getNumberOfMeasuring()-1);
-
+        Data.setVarianceOfEx(Data.getVarianceOfEx(i)/double(Data.getNumberOfMeasuring()-1),i);
+        Data.setVarianceOfEy(Data.getVarianceOfEy(i)/double(Data.getNumberOfMeasuring()-1),i);
+        Data.setVarianceOfR (Data.getVarianceOfR (i)/double(Data.getNumberOfMeasuring()-1),i);
     }
 
     //посчитаем общие средние значения
-    MeanOfAllEx/=double(Data.getNumberOfMeasuring()*Data.getNumberOfExperiments());
-    MeanOfAllEy/=double(Data.getNumberOfMeasuring()*Data.getNumberOfExperiments());
-    MeanOfAllR /=double(Data.getNumberOfMeasuring()*Data.getNumberOfExperiments());
+    Data.setMeanOfAllEx(Data.getMeanOfAllEx()/double(Data.getNumberOfMeasuring()*Data.getNumberOfExperiments()));
+    Data.setMeanOfAllEy(Data.getMeanOfAllEy()/double(Data.getNumberOfMeasuring()*Data.getNumberOfExperiments()));
+    Data.setMeanOfAllR (Data.getMeanOfAllR ()/double(Data.getNumberOfMeasuring()*Data.getNumberOfExperiments()));
 
+    double sd;
     //посчитаем дисперсии
     for (int i=0;i<Data.getNumberOfExperiments();i++)
         for (int j=0;j<Data.getNumberOfMeasuring();j++)
         {
-            VarianceOfAllEx+=(Data.getErrorEx(i,j)-MeanOfAllEx)*(Data.getErrorEx(i,j)-MeanOfAllEx);
-            VarianceOfAllEy+=(Data.getErrorEy(i,j)-MeanOfAllEy)*(Data.getErrorEy(i,j)-MeanOfAllEy);
-            VarianceOfAllR +=(Data.getErrorR(i,j) -MeanOfAllR )*(Data.getErrorR(i,j) -MeanOfAllR );
+            sd=(Data.getErrorEx(i,j)-Data.getMeanOfAllEx())*(Data.getErrorEx(i,j)-Data.getMeanOfAllEx());
+            Data.setVarianceOfAllEx(Data.getVarianceOfAllEx()+sd);
+            sd=(Data.getErrorEy(i,j)-Data.getMeanOfAllEy())*(Data.getErrorEy(i,j)-Data.getMeanOfAllEy());
+            Data.setVarianceOfAllEy(Data.getVarianceOfAllEy()+sd);
+            sd=(Data.getErrorR(i,j) -Data.getMeanOfAllR() )*(Data.getErrorR(i,j) -Data.getMeanOfAllR() );
+            Data.setVarianceOfAllR (Data.getVarianceOfAllR ()+sd);
         }
-    VarianceOfAllEx/=double(Data.getNumberOfMeasuring()*Data.getNumberOfExperiments()-1);
-    VarianceOfAllEy/=double(Data.getNumberOfMeasuring()*Data.getNumberOfExperiments()-1);
-    VarianceOfAllR/= double(Data.getNumberOfMeasuring()*Data.getNumberOfExperiments()-1);
+    Data.setVarianceOfAllEx(Data.getVarianceOfAllEx()/double(Data.getNumberOfMeasuring()*Data.getNumberOfExperiments()-1));
+    Data.setVarianceOfAllEy(Data.getVarianceOfAllEy()/double(Data.getNumberOfMeasuring()*Data.getNumberOfExperiments()-1));
+    Data.setVarianceOfAllR (Data.getVarianceOfAllR ()/double(Data.getNumberOfMeasuring()*Data.getNumberOfExperiments()-1));
 }
 //--------------------------------------------------------------------------
 
@@ -1994,8 +1951,6 @@ void HarrixClass_DataOfHarrixOptimizationTesting::makingListOfVectorParameterOpt
      Отсутствует. Значение возвращается в переменную LatexListOfParameterOptions
      */
 
-    ListOfVectorParameterOptions.clear();
-
     for (int i=0;i<Data.getNumberOfExperiments();i++)
     {
         Cell2.clear();
@@ -2003,21 +1958,21 @@ void HarrixClass_DataOfHarrixOptimizationTesting::makingListOfVectorParameterOpt
         //получим значения параметров алгоритма
         for (int j=0;j<Data.getNumberOfParameters();j++)
         {
-            if (MatrixOfNameParameters[i][j]=="NULL")
+            if (Data.getNameParameter(i,j)=="NULL")
                 Cell2+="Отсутствует \\\\ ";
             else
-                if (!HQt_IsNumeric(MatrixOfNameParameters[i][j]))
-                    if (MatrixOfNameParameters[i][j].length()>=5)
-                        Cell2+=MatrixOfNameParameters[i][j] +". ";
+                if (!HQt_IsNumeric(Data.getNameParameter(i,j)))
+                    if (Data.getNameParameter(i,j).length()>=5)
+                        Cell2+=Data.getNameParameter(i,j) +". ";
                     else
-                        Cell2+=Data.getNameOption(j) + " = " + MatrixOfNameParameters[i][j] +".  ";
+                        Cell2+=Data.getNameOption(j) + " = " + Data.getNameParameter(i,j) +".  ";
                 else
-                    Cell2+=Data.getNameOption(j) + " = " + MatrixOfNameParameters[i][j] +". ";
+                    Cell2+=Data.getNameOption(j) + " = " + Data.getNameParameter(i,j) +". ";
         }
 
         //получим значения критерий
 
-        ListOfVectorParameterOptions<<Cell2;
+        Data.addListOfVectorParameterOptions(Cell2);
 
         NumberOfListOfVectorParameterOptions[i]=i+1;
     }
@@ -2053,7 +2008,7 @@ void HarrixClass_DataOfHarrixOptimizationTesting::makingLatexListOfVectorParamet
         Cell1=QString::number(NumberOfListOfVectorParameterOptions[i]);
         Cell1="\\centering \\footnotesize "+Cell1;
 
-        Cell2="\\footnotesize "+ListOfVectorParameterOptions.at(i);
+        Cell2="\\footnotesize "+  Data.getListOfVectorParameterOptions(i);
 
         //получим значения критерий
 
@@ -2077,7 +2032,7 @@ void HarrixClass_DataOfHarrixOptimizationTesting::makingLatexAnalysis()
      Отсутствует. Значение возвращается в переменную LatexAnalysis, которую можно вызвать getLatexAnalysis
      */
     LatexAnalysis+="\\subsection {Первоначальный анализ данных}\n\n";
-    LatexAnalysis+="В данном разделе представлен первоначальный анализ данных исследования эффекстивности алгоритма оптимизации <<"+Data.getFullNameAlgorithm()+">> на рассматриваемой тестовой функции <<"+Data.getFullNameTestFunction()+">> (размерность "+QString::number(Data.getDimensionTestFunction())+"). ";
+    LatexAnalysis+="В данном разделе представлен первоначальный анализ данных исследования эффективности алгоритма оптимизации <<"+Data.getFullNameAlgorithm()+">> на рассматриваемой тестовой функции <<"+Data.getFullNameTestFunction()+">> (размерность "+QString::number(Data.getDimensionTestFunction())+"). ";
     if (Data.getNumberOfExperiments()==1)
     {
         //Алгоритм имеет только один эксперимент
@@ -2102,11 +2057,20 @@ void HarrixClass_DataOfHarrixOptimizationTesting::makingLatexAnalysis()
             LatexAnalysis+="Данное исследование является частичным, так как рассмотрено не всё множество возможных настроек алгоритма. Поэтому ниже будут представлены неполные выводы, так как при нерассмотренных настройках алгоритм мог показать себя лучше или хуже.\n\n";
         }
 
-        LatexAnalysis += THQt_LatexShowChartOfLine (NumberOfListOfVectorParameterOptions, MeanOfEx, Data.getNumberOfExperiments(), "Ошибка по входным параметрам по порядку номеров комбинаций", "N, Номер комбинации настроек", "E_x", "Ошибка по входным параметрам", "MeanOfEx"+HQt_RandomString(5), true, true, false, true, false , true);
+        double *MOEx=new double[Data.getNumberOfExperiments()];
+        for (int i=0;i<Data.getNumberOfExperiments();i++) MOEx[i]=Data.getMeanEx(i);
+        LatexAnalysis += THQt_LatexShowChartOfLine (NumberOfListOfVectorParameterOptions, MOEx, Data.getNumberOfExperiments(), "Ошибка по входным параметрам по порядку номеров комбинаций", "N, Номер комбинации настроек", "E_x", "Ошибка по входным параметрам", "MeanOfEx"+HQt_RandomString(5), true, true, false, true, false , true);
+        delete [] MOEx;
 
-        LatexAnalysis += THQt_LatexShowChartOfLine (NumberOfListOfVectorParameterOptions, MeanOfEy, Data.getNumberOfExperiments(), "Ошибка по значениям целевой функции по порядку номеров комбинаций", "N, Номер комбинации настроек", "E_y", "Ошибка по значениям целевой функции", "MeanOfEy"+HQt_RandomString(5), true, true, false, true, false , true);
+        double *MOEy=new double[Data.getNumberOfExperiments()];
+        for (int i=0;i<Data.getNumberOfExperiments();i++) MOEy[i]=Data.getMeanEy(i);
+        LatexAnalysis += THQt_LatexShowChartOfLine (NumberOfListOfVectorParameterOptions, MOEy, Data.getNumberOfExperiments(), "Ошибка по значениям целевой функции по порядку номеров комбинаций", "N, Номер комбинации настроек", "E_y", "Ошибка по значениям целевой функции", "MeanOfEy"+HQt_RandomString(5), true, true, false, true, false , true);
+        delete [] MOEy;
 
-        LatexAnalysis += THQt_LatexShowChartOfLine (NumberOfListOfVectorParameterOptions, MeanOfR, Data.getNumberOfExperiments(), "Надёжность по порядку номеров комбинаций", "N, Номер комбинации настроек", "R", "Надёжность", "MeanOfR"+HQt_RandomString(5), true, true, false, true, false , true);
+        double *MOR=new double[Data.getNumberOfExperiments()];
+        for (int i=0;i<Data.getNumberOfExperiments();i++) MOR[i]=Data.getMeanR(i);
+        LatexAnalysis += THQt_LatexShowChartOfLine (NumberOfListOfVectorParameterOptions, MOR, Data.getNumberOfExperiments(), "Надёжность по порядку номеров комбинаций", "N, Номер комбинации настроек", "R", "Надёжность", "MeanOfR"+HQt_RandomString(5), true, true, false, true, false , true);
+        delete [] MOR;
 
         LatexAnalysis += "\n\n7877\n\n";
 

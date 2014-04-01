@@ -1,5 +1,5 @@
 //HarrixClass_DataOfHarrixOptimizationTesting
-//Версия 1.19
+//Версия 1.20
 //Класс для считывания информации формата данных Harrix Optimization Testing на C++ для Qt.
 //https://github.com/Harrix/HarrixClass_DataOfHarrixOptimizationTesting
 //Библиотека распространяется по лицензии Apache License, Version 2.0.
@@ -36,7 +36,7 @@ void HCDOHOT_GeneratedAnalysisReportFromFile(QString filename, QString pathForSa
 /// БЛОК ФУНКЦИЙ ПРОВЕРКИ РАВЕНСТВА ПЕРЕМННЫХ НЕСКОЛЬКИХ ИССЛЕДОВАНИЙ //////
 ////////////////////////////////////////////////////////////////////////////
 
-//Проверяет равенство индентификаторов алгоритмов оптимизации: в данных содержится один и тот же алгоритм или же нет.
+//Проверяет равенство идентификаторов алгоритмов оптимизации: в данных содержится один и тот же алгоритм или же нет.
 bool HCDOHOT_CompareOfDataForNameAlgorithm (HarrixClass_DataOfHarrixOptimizationTesting Data1, HarrixClass_DataOfHarrixOptimizationTesting Data2);
 bool HCDOHOT_CompareOfDataForNameAlgorithm (HarrixClass_DataOfHarrixOptimizationTesting *SeveralData, int N);
 
@@ -100,7 +100,7 @@ bool HCDOHOT_CompareOfDataForVersion (HarrixClass_DataOfHarrixOptimizationTestin
 bool HCDOHOT_CompareOfDataForLink (HarrixClass_DataOfHarrixOptimizationTesting Data1, HarrixClass_DataOfHarrixOptimizationTesting Data2);
 bool HCDOHOT_CompareOfDataForLink (HarrixClass_DataOfHarrixOptimizationTesting *SeveralData, int N);
 
-//Проверяет равенство переменной, котороая говорит все ли рассмотрены функции в исследованиях.
+//Проверяет равенство переменной, которая говорит все ли рассмотрены функции в исследованиях.
 bool HCDOHOT_CompareOfDataForCheckAllCombinations (HarrixClass_DataOfHarrixOptimizationTesting Data1, HarrixClass_DataOfHarrixOptimizationTesting Data2);
 bool HCDOHOT_CompareOfDataForCheckAllCombinations (HarrixClass_DataOfHarrixOptimizationTesting *SeveralData, int N);
 

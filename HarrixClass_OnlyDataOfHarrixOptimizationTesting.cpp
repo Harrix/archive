@@ -216,7 +216,7 @@ void HarrixClass_OnlyDataOfHarrixOptimizationTesting::memoryDeallocation()
     Возвращаемое значение:
      Отсутствует.
      */
-    if (!SuccessReading)
+    if (SuccessReading)
     {
         for (int i=0;i<XML_Number_Of_Experiments;i++) delete [] MatrixOfEx[i];
         delete [] MatrixOfEx;

@@ -1,5 +1,5 @@
 //HarrixClass_DataOfHarrixOptimizationTesting
-//Версия 1.21
+//Версия 1.22
 //Класс для считывания информации формата данных Harrix Optimization Testing на C++ для Qt.
 //https://github.com/Harrix/HarrixClass_DataOfHarrixOptimizationTesting
 //Библиотека распространяется по лицензии Apache License, Version 2.0.
@@ -408,6 +408,15 @@ QString HarrixClass_DataOfHarrixOptimizationTesting::getLatexEnd()
      Внутренняя функция. Возвращает концовку для полноценного Latex файла.
      */
     return "\n\n\\end{document}";
+}
+//--------------------------------------------------------------------------
+
+HarrixClass_OnlyDataOfHarrixOptimizationTesting& HarrixClass_DataOfHarrixOptimizationTesting::getData()
+{
+    /*
+     Возвращает содержимое исследований в висде экзмепляра класса.
+     */
+    return Data;
 }
 //--------------------------------------------------------------------------
 

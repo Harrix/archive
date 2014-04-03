@@ -1,5 +1,5 @@
 //HarrixClass_DataOfHarrixOptimizationTesting
-//Версия 1.21
+//Версия 1.22
 //Класс для считывания информации формата данных Harrix Optimization Testing на C++ для Qt.
 //https://github.com/Harrix/HarrixClass_DataOfHarrixOptimizationTesting
 //Библиотека распространяется по лицензии Apache License, Version 2.0.
@@ -41,6 +41,7 @@ public:
     QString getFullLatexAboutParameters();//Получение текста переменной LatexAboutParameters - отображение данных о обнаруженных параметрах алгоритма и какие они бывают с началом и концовкой в Latex файле.
     QString getFullLatexAnalysis();//Получение текста переменной LatexAnalysis - отображение данных первоначального анализа данных.
 
+    HarrixClass_OnlyDataOfHarrixOptimizationTesting& getData();//Возвращает содержимое исследований в висде экзмепляра класса.
     QString getAuthor();//Получение текста переменной XML_Author - Автор документа
     QString getDate();//Получение текста переменной XML_Date - Дата создания документа
     QString getEmail();//Получение текста переменной XML_Email - Email автора, чтобы можно было с ним связаться

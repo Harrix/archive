@@ -1,5 +1,5 @@
 //HarrixClass_DataOfHarrixOptimizationTesting
-//Версия 1.22
+//Версия 1.23
 //Класс для считывания информации формата данных Harrix Optimization Testing на C++ для Qt.
 //https://github.com/Harrix/HarrixClass_DataOfHarrixOptimizationTesting
 //Библиотека распространяется по лицензии Apache License, Version 2.0.
@@ -1022,7 +1022,7 @@ void HarrixClass_DataOfHarrixOptimizationTesting::makingLatexTableEx()
     LatexTableEx+="\\footnotesize\\begin{longtable}[H]{|m{0.03\\linewidth}|m{2.1in}|m{0.2\\linewidth}|m{0.17\\linewidth}|m{0.17\\linewidth}|}\n";
     LatexTableEx+="\\caption{Значения ошибки по выходным параметрам $E_x$ "+NameForHead+"}\n";
     LatexTableEx+="\\tabularnewline\\hline\n";
-    LatexTableEx+="\\centering \\textbf{№} & \\centering \\textbf{Настройки алгоритма}    & \\centering \\textbf{Значения ошибки $E_x$} & \\centering \\textbf{Среднее значение} & \\centering \\textbf{Дисперсия}  \\centering \\tabularnewline \\hline \\endhead\n";
+    LatexTableEx+="\\centering \\textbf{№} & \\centering \\textbf{Настройки алгоритма}    & \\centering \\textbf{Значения ошибки $E_x$} & \\centering \\textbf{Выборочное среднее} & \\centering \\textbf{Выборочная дисперсия}  \\centering \\tabularnewline \\hline \\endhead\n";
     LatexTableEx+="\\multicolumn{5}{|r|}{{Продолжение на следующей странице...}} \\\\ \\hline \\endfoot\n";
     LatexTableEx+="\\endlastfoot\n";
 
@@ -2065,6 +2065,21 @@ void HarrixClass_DataOfHarrixOptimizationTesting::makingLatexAnalysis()
         {
             LatexAnalysis+="Данное исследование является частичным, так как рассмотрено не всё множество возможных настроек алгоритма. Поэтому ниже будут представлены неполные выводы, так как при нерассмотренных настройках алгоритм мог показать себя лучше или хуже.\n\n";
         }
+
+        QStringList Col1, Col2, Col3;
+        Col1 << "Ошибка по входным параметрам, $E_x$";
+        Col2 << QString::number(Data.getMeanOfAllEx());
+        Col3 << QString::number(Data.getVarianceOfAllEx());
+
+        Col1 << "Ошибка по значениям целевой функции, $E_y$";
+        Col2 << QString::number(Data.getMeanOfAllEy());
+        Col3 << QString::number(Data.getVarianceOfAllEy());
+
+        Col1 << "Надёжность, $R$";
+        Col2 << QString::number(Data.getMeanOfAllR());
+        Col3 << QString::number(Data.getVarianceOfAllR());
+
+        LatexAnalysis+=HQt_LatexShowTable (Col1, Col2, Col3, "Измеряемая характеристика", "Выборочное среднее", "Выборочная дисперсия", 60,20, "Значения характеристик эффективности алгоритма оптимизации на множестве всех проведенных экспериментов");
 
         double *MOEx=new double[Data.getNumberOfExperiments()];
         for (int i=0;i<Data.getNumberOfExperiments();i++) MOEx[i]=Data.getMeanEx(i);

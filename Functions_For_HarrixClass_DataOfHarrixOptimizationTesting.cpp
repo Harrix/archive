@@ -1,5 +1,5 @@
 //HarrixClass_DataOfHarrixOptimizationTesting
-//Версия 1.22
+//Версия 1.23
 //Класс для считывания информации формата данных Harrix Optimization Testing на C++ для Qt.
 //https://github.com/Harrix/HarrixClass_DataOfHarrixOptimizationTesting
 //Библиотека распространяется по лицензии Apache License, Version 2.0.
@@ -487,7 +487,7 @@ void HCDOHOT_GeneratedAnalysisReportFromFile(QString filename, QString pathForSa
 /// БЛОК ФУНКЦИЙ ПРОВЕРКИ РАВЕНСТВА ПЕРЕМННЫХ НЕСКОЛЬКИХ ИССЛЕДОВАНИЙ //////
 ////////////////////////////////////////////////////////////////////////////
 
-bool HCDOHOT_CompareOfDataForNameAlgorithm (HarrixClass_DataOfHarrixOptimizationTesting Data1, HarrixClass_DataOfHarrixOptimizationTesting Data2)
+bool HCDOHOT_CompareOfDataForNameAlgorithm (HarrixClass_DataOfHarrixOptimizationTesting *Data1, HarrixClass_DataOfHarrixOptimizationTesting *Data2)
 {
     /*
     Проверяет равенство идентификаторов алгоритмов оптимизации: в данных содержится один и тот же алгоритм или же нет.
@@ -500,7 +500,7 @@ bool HCDOHOT_CompareOfDataForNameAlgorithm (HarrixClass_DataOfHarrixOptimization
      */
     bool VMHL_Result=true;
 
-    if (Data1.getNameAlgorithm()!=Data2.getNameAlgorithm()) VMHL_Result=false;
+    if ((*Data1).getNameAlgorithm()!=(*Data2).getNameAlgorithm()) VMHL_Result=false;
 
     return VMHL_Result;
 }
@@ -554,7 +554,7 @@ bool HCDOHOT_CompareOfDataForNameAlgorithm (HarrixClass_OnlyDataOfHarrixOptimiza
 }
 //--------------------------------------------------------------------------
 
-bool HCDOHOT_CompareOfDataForAuthor (HarrixClass_DataOfHarrixOptimizationTesting Data1, HarrixClass_DataOfHarrixOptimizationTesting Data2)
+bool HCDOHOT_CompareOfDataForAuthor (HarrixClass_DataOfHarrixOptimizationTesting *Data1, HarrixClass_DataOfHarrixOptimizationTesting *Data2)
 {
     /*
     Проверяет равенство авторов исследований.
@@ -567,7 +567,7 @@ bool HCDOHOT_CompareOfDataForAuthor (HarrixClass_DataOfHarrixOptimizationTesting
      */
     bool VMHL_Result=true;
 
-    if (Data1.getAuthor()!=Data2.getAuthor()) VMHL_Result=false;
+    if ((*Data1).getAuthor()!=(*Data2).getAuthor()) VMHL_Result=false;
 
     return VMHL_Result;
 }
@@ -621,7 +621,7 @@ bool HCDOHOT_CompareOfDataForAuthor (HarrixClass_OnlyDataOfHarrixOptimizationTes
 }
 //--------------------------------------------------------------------------
 
-bool HCDOHOT_CompareOfDataForDate (HarrixClass_DataOfHarrixOptimizationTesting Data1, HarrixClass_DataOfHarrixOptimizationTesting Data2)
+bool HCDOHOT_CompareOfDataForDate (HarrixClass_DataOfHarrixOptimizationTesting *Data1, HarrixClass_DataOfHarrixOptimizationTesting *Data2)
 {
     /*
     Проверяет равенство дат исследований.
@@ -634,7 +634,7 @@ bool HCDOHOT_CompareOfDataForDate (HarrixClass_DataOfHarrixOptimizationTesting D
      */
     bool VMHL_Result=true;
 
-    if (Data1.getDate()!=Data2.getDate()) VMHL_Result=false;
+    if ((*Data1).getDate()!=(*Data2).getDate()) VMHL_Result=false;
 
     return VMHL_Result;
 }
@@ -688,7 +688,7 @@ bool HCDOHOT_CompareOfDataForDate (HarrixClass_OnlyDataOfHarrixOptimizationTesti
 }
 //--------------------------------------------------------------------------
 
-bool HCDOHOT_CompareOfDataForEmail (HarrixClass_DataOfHarrixOptimizationTesting Data1, HarrixClass_DataOfHarrixOptimizationTesting Data2)
+bool HCDOHOT_CompareOfDataForEmail (HarrixClass_DataOfHarrixOptimizationTesting *Data1, HarrixClass_DataOfHarrixOptimizationTesting *Data2)
 {
     /*
     Проверяет равенство email авторов исследований.
@@ -701,7 +701,7 @@ bool HCDOHOT_CompareOfDataForEmail (HarrixClass_DataOfHarrixOptimizationTesting 
      */
     bool VMHL_Result=true;
 
-    if (Data1.getEmail()!=Data2.getEmail()) VMHL_Result=false;
+    if ((*Data1).getEmail()!=(*Data2).getEmail()) VMHL_Result=false;
 
     return VMHL_Result;
 }
@@ -755,7 +755,7 @@ bool HCDOHOT_CompareOfDataForEmail (HarrixClass_OnlyDataOfHarrixOptimizationTest
 }
 //--------------------------------------------------------------------------
 
-bool HCDOHOT_CompareOfDataForFullNameAlgorithm (HarrixClass_DataOfHarrixOptimizationTesting Data1, HarrixClass_DataOfHarrixOptimizationTesting Data2)
+bool HCDOHOT_CompareOfDataForFullNameAlgorithm (HarrixClass_DataOfHarrixOptimizationTesting *Data1, HarrixClass_DataOfHarrixOptimizationTesting *Data2)
 {
     /*
     Проверяет равенство полных названий алгоритмов в исследованиях.
@@ -768,7 +768,7 @@ bool HCDOHOT_CompareOfDataForFullNameAlgorithm (HarrixClass_DataOfHarrixOptimiza
      */
     bool VMHL_Result=true;
 
-    if (Data1.getFullNameAlgorithm()!=Data2.getFullNameAlgorithm()) VMHL_Result=false;
+    if ((*Data1).getFullNameAlgorithm()!=(*Data2).getFullNameAlgorithm()) VMHL_Result=false;
 
     return VMHL_Result;
 }
@@ -822,7 +822,7 @@ bool HCDOHOT_CompareOfDataForFullNameAlgorithm (HarrixClass_OnlyDataOfHarrixOpti
 }
 //--------------------------------------------------------------------------
 
-bool HCDOHOT_CompareOfDataForNameTestFunction (HarrixClass_DataOfHarrixOptimizationTesting Data1, HarrixClass_DataOfHarrixOptimizationTesting Data2)
+bool HCDOHOT_CompareOfDataForNameTestFunction (HarrixClass_DataOfHarrixOptimizationTesting *Data1, HarrixClass_DataOfHarrixOptimizationTesting *Data2)
 {
     /*
     Проверяет равенство идентификаторов тестовых функций в исследованиях
@@ -835,7 +835,7 @@ bool HCDOHOT_CompareOfDataForNameTestFunction (HarrixClass_DataOfHarrixOptimizat
      */
     bool VMHL_Result=true;
 
-    if (Data1.getNameTestFunction()!=Data2.getNameTestFunction()) VMHL_Result=false;
+    if ((*Data1).getNameTestFunction()!=(*Data2).getNameTestFunction()) VMHL_Result=false;
 
     return VMHL_Result;
 }
@@ -889,7 +889,7 @@ bool HCDOHOT_CompareOfDataForForNameTestFunction (HarrixClass_OnlyDataOfHarrixOp
 }
 //--------------------------------------------------------------------------
 
-bool HCDOHOT_CompareOfDataForFullNameTestFunction (HarrixClass_DataOfHarrixOptimizationTesting Data1, HarrixClass_DataOfHarrixOptimizationTesting Data2)
+bool HCDOHOT_CompareOfDataForFullNameTestFunction (HarrixClass_DataOfHarrixOptimizationTesting *Data1, HarrixClass_DataOfHarrixOptimizationTesting *Data2)
 {
     /*
     Проверяет равенство полных названий тестовых функций в исследованиях
@@ -902,7 +902,7 @@ bool HCDOHOT_CompareOfDataForFullNameTestFunction (HarrixClass_DataOfHarrixOptim
      */
     bool VMHL_Result=true;
 
-    if (Data1.getFullNameTestFunction()!=Data2.getFullNameTestFunction()) VMHL_Result=false;
+    if ((*Data1).getFullNameTestFunction()!=(*Data2).getFullNameTestFunction()) VMHL_Result=false;
 
     return VMHL_Result;
 }
@@ -956,7 +956,7 @@ bool HCDOHOT_CompareOfDataForForFullNameTestFunction (HarrixClass_OnlyDataOfHarr
 }
 //--------------------------------------------------------------------------
 
-bool HCDOHOT_CompareOfDataForDimensionTestFunction (HarrixClass_DataOfHarrixOptimizationTesting Data1, HarrixClass_DataOfHarrixOptimizationTesting Data2)
+bool HCDOHOT_CompareOfDataForDimensionTestFunction (HarrixClass_DataOfHarrixOptimizationTesting *Data1, HarrixClass_DataOfHarrixOptimizationTesting *Data2)
 {
     /*
     Проверяет равенство размерностей тестовой задачи (длина хромосомы решения) в исследованиях
@@ -969,7 +969,7 @@ bool HCDOHOT_CompareOfDataForDimensionTestFunction (HarrixClass_DataOfHarrixOpti
      */
     bool VMHL_Result=true;
 
-    if (Data1.getDimensionTestFunction()!=Data2.getDimensionTestFunction()) VMHL_Result=false;
+    if ((*Data1).getDimensionTestFunction()!=(*Data2).getDimensionTestFunction()) VMHL_Result=false;
 
     return VMHL_Result;
 }
@@ -1023,7 +1023,7 @@ bool HCDOHOT_CompareOfDataForForDimensionTestFunction (HarrixClass_OnlyDataOfHar
 }
 //--------------------------------------------------------------------------
 
-bool HCDOHOT_CompareOfDataForNumberOfMeasuring (HarrixClass_DataOfHarrixOptimizationTesting Data1, HarrixClass_DataOfHarrixOptimizationTesting Data2)
+bool HCDOHOT_CompareOfDataForNumberOfMeasuring (HarrixClass_DataOfHarrixOptimizationTesting *Data1, HarrixClass_DataOfHarrixOptimizationTesting *Data2)
 {
     /*
     Проверяет равенство количества экспериментов для каждого набора параметров алгоритма в исследованиях.
@@ -1036,7 +1036,7 @@ bool HCDOHOT_CompareOfDataForNumberOfMeasuring (HarrixClass_DataOfHarrixOptimiza
      */
     bool VMHL_Result=true;
 
-    if (Data1.getNumberOfMeasuring()!=Data2.getNumberOfMeasuring()) VMHL_Result=false;
+    if ((*Data1).getNumberOfMeasuring()!=(*Data2).getNumberOfMeasuring()) VMHL_Result=false;
 
     return VMHL_Result;
 }
@@ -1090,7 +1090,7 @@ bool HCDOHOT_CompareOfDataForNumberOfMeasuring (HarrixClass_OnlyDataOfHarrixOpti
 }
 //--------------------------------------------------------------------------
 
-bool HCDOHOT_CompareOfDataForNumberOfRuns (HarrixClass_DataOfHarrixOptimizationTesting Data1, HarrixClass_DataOfHarrixOptimizationTesting Data2)
+bool HCDOHOT_CompareOfDataForNumberOfRuns (HarrixClass_DataOfHarrixOptimizationTesting *Data1, HarrixClass_DataOfHarrixOptimizationTesting *Data2)
 {
     /*
     Проверяет равенство количества прогонов, по которому делается усреднение для эксперимента в исследованиях.
@@ -1103,7 +1103,7 @@ bool HCDOHOT_CompareOfDataForNumberOfRuns (HarrixClass_DataOfHarrixOptimizationT
      */
     bool VMHL_Result=true;
 
-    if (Data1.getNumberOfRuns()!=Data2.getNumberOfRuns()) VMHL_Result=false;
+    if ((*Data1).getNumberOfRuns()!=(*Data2).getNumberOfRuns()) VMHL_Result=false;
 
     return VMHL_Result;
 }
@@ -1157,7 +1157,7 @@ bool HCDOHOT_CompareOfDataForNumberOfRuns (HarrixClass_OnlyDataOfHarrixOptimizat
 }
 //--------------------------------------------------------------------------
 
-bool HCDOHOT_CompareOfDataForMaxCountOfFitness (HarrixClass_DataOfHarrixOptimizationTesting Data1, HarrixClass_DataOfHarrixOptimizationTesting Data2)
+bool HCDOHOT_CompareOfDataForMaxCountOfFitness (HarrixClass_DataOfHarrixOptimizationTesting *Data1, HarrixClass_DataOfHarrixOptimizationTesting *Data2)
 {
     /*
     Проверяет равенство максимальных допустимых чисел вычислений целевой функции для алгоритма в исследованиях.
@@ -1170,7 +1170,7 @@ bool HCDOHOT_CompareOfDataForMaxCountOfFitness (HarrixClass_DataOfHarrixOptimiza
      */
     bool VMHL_Result=true;
 
-    if (Data1.getMaxCountOfFitness()!=Data2.getMaxCountOfFitness()) VMHL_Result=false;
+    if ((*Data1).getMaxCountOfFitness()!=(*Data2).getMaxCountOfFitness()) VMHL_Result=false;
 
     return VMHL_Result;
 }
@@ -1224,7 +1224,7 @@ bool HCDOHOT_CompareOfDataForMaxCountOfFitness (HarrixClass_OnlyDataOfHarrixOpti
 }
 //--------------------------------------------------------------------------
 
-bool HCDOHOT_CompareOfDataForNumberOfParameters (HarrixClass_DataOfHarrixOptimizationTesting Data1, HarrixClass_DataOfHarrixOptimizationTesting Data2)
+bool HCDOHOT_CompareOfDataForNumberOfParameters (HarrixClass_DataOfHarrixOptimizationTesting *Data1, HarrixClass_DataOfHarrixOptimizationTesting *Data2)
 {
     /*
     Проверяет равенство количества проверяемых параметров алгоритма оптимизации в исследованиях.
@@ -1237,7 +1237,7 @@ bool HCDOHOT_CompareOfDataForNumberOfParameters (HarrixClass_DataOfHarrixOptimiz
      */
     bool VMHL_Result=true;
 
-    if (Data1.getNumberOfParameters()!=Data2.getNumberOfParameters()) VMHL_Result=false;
+    if ((*Data1).getNumberOfParameters()!=(*Data2).getNumberOfParameters()) VMHL_Result=false;
 
     return VMHL_Result;
 }
@@ -1291,7 +1291,7 @@ bool HCDOHOT_CompareOfDataForNumberOfParameters (HarrixClass_OnlyDataOfHarrixOpt
 }
 //--------------------------------------------------------------------------
 
-bool HCDOHOT_CompareOfDataForNumberOfExperiments (HarrixClass_DataOfHarrixOptimizationTesting Data1, HarrixClass_DataOfHarrixOptimizationTesting Data2)
+bool HCDOHOT_CompareOfDataForNumberOfExperiments (HarrixClass_DataOfHarrixOptimizationTesting *Data1, HarrixClass_DataOfHarrixOptimizationTesting *Data2)
 {
     /*
     Проверяет равенство количества комбинаций вариантов настроек в исследованиях.
@@ -1304,7 +1304,7 @@ bool HCDOHOT_CompareOfDataForNumberOfExperiments (HarrixClass_DataOfHarrixOptimi
      */
     bool VMHL_Result=true;
 
-    if (Data1.getNumberOfExperiments()!=Data2.getNumberOfExperiments()) VMHL_Result=false;
+    if ((*Data1).getNumberOfExperiments()!=(*Data2).getNumberOfExperiments()) VMHL_Result=false;
 
     return VMHL_Result;
 }
@@ -1358,7 +1358,7 @@ bool HCDOHOT_CompareOfDataForNumberOfExperiments (HarrixClass_OnlyDataOfHarrixOp
 }
 //--------------------------------------------------------------------------
 
-bool HCDOHOT_CompareOfDataForFormat (HarrixClass_DataOfHarrixOptimizationTesting Data1, HarrixClass_DataOfHarrixOptimizationTesting Data2)
+bool HCDOHOT_CompareOfDataForFormat (HarrixClass_DataOfHarrixOptimizationTesting *Data1, HarrixClass_DataOfHarrixOptimizationTesting *Data2)
 {
     /*
     Проверяет равенство форматов файлов в исследованиях.
@@ -1371,7 +1371,7 @@ bool HCDOHOT_CompareOfDataForFormat (HarrixClass_DataOfHarrixOptimizationTesting
      */
     bool VMHL_Result=true;
 
-    if (Data1.getFormat()!=Data2.getFormat()) VMHL_Result=false;
+    if ((*Data1).getFormat()!=(*Data2).getFormat()) VMHL_Result=false;
 
     return VMHL_Result;
 }
@@ -1425,7 +1425,7 @@ bool HCDOHOT_CompareOfDataForFormat (HarrixClass_OnlyDataOfHarrixOptimizationTes
 }
 //--------------------------------------------------------------------------
 
-bool HCDOHOT_CompareOfDataForVersion (HarrixClass_DataOfHarrixOptimizationTesting Data1, HarrixClass_DataOfHarrixOptimizationTesting Data2)
+bool HCDOHOT_CompareOfDataForVersion (HarrixClass_DataOfHarrixOptimizationTesting *Data1, HarrixClass_DataOfHarrixOptimizationTesting *Data2)
 {
     /*
     Проверяет равенство версий формата файла в исследованиях.
@@ -1438,7 +1438,7 @@ bool HCDOHOT_CompareOfDataForVersion (HarrixClass_DataOfHarrixOptimizationTestin
      */
     bool VMHL_Result=true;
 
-    if (Data1.getVersion()!=Data2.getVersion()) VMHL_Result=false;
+    if ((*Data1).getVersion()!=(*Data2).getVersion()) VMHL_Result=false;
 
     return VMHL_Result;
 }
@@ -1492,7 +1492,7 @@ bool HCDOHOT_CompareOfDataForVersion (HarrixClass_OnlyDataOfHarrixOptimizationTe
 }
 //--------------------------------------------------------------------------
 
-bool HCDOHOT_CompareOfDataForLink (HarrixClass_DataOfHarrixOptimizationTesting Data1, HarrixClass_DataOfHarrixOptimizationTesting Data2)
+bool HCDOHOT_CompareOfDataForLink (HarrixClass_DataOfHarrixOptimizationTesting *Data1, HarrixClass_DataOfHarrixOptimizationTesting *Data2)
 {
     /*
     Проверяет равенство ссылок на описание версий формата файла в исследованиях.
@@ -1505,7 +1505,7 @@ bool HCDOHOT_CompareOfDataForLink (HarrixClass_DataOfHarrixOptimizationTesting D
      */
     bool VMHL_Result=true;
 
-    if (Data1.getLink()!=Data2.getLink()) VMHL_Result=false;
+    if ((*Data1).getLink()!=(*Data2).getLink()) VMHL_Result=false;
 
     return VMHL_Result;
 }
@@ -1559,7 +1559,7 @@ bool HCDOHOT_CompareOfDataForLink (HarrixClass_OnlyDataOfHarrixOptimizationTesti
 }
 //--------------------------------------------------------------------------
 
-bool HCDOHOT_CompareOfDataForCheckAllCombinations (HarrixClass_DataOfHarrixOptimizationTesting Data1, HarrixClass_DataOfHarrixOptimizationTesting Data2)
+bool HCDOHOT_CompareOfDataForCheckAllCombinations (HarrixClass_DataOfHarrixOptimizationTesting *Data1, HarrixClass_DataOfHarrixOptimizationTesting *Data2)
 {
     /*
     Проверяет равенство переменной, которая говорит все ли рассмотрены функции в исследованиях.
@@ -1572,7 +1572,7 @@ bool HCDOHOT_CompareOfDataForCheckAllCombinations (HarrixClass_DataOfHarrixOptim
      */
     bool VMHL_Result=true;
 
-    if (Data1.getCheckAllCombinations()!=Data2.getCheckAllCombinations()) VMHL_Result=false;
+    if ((*Data1).getCheckAllCombinations()!=(*Data2).getCheckAllCombinations()) VMHL_Result=false;
 
     return VMHL_Result;
 }
@@ -1621,6 +1621,60 @@ bool HCDOHOT_CompareOfDataForCheckAllCombinations (HarrixClass_OnlyDataOfHarrixO
     {
         if ( Info!=SeveralData[i].getCheckAllCombinations() ) VMHL_Result=false;
     }
+
+    return VMHL_Result;
+}
+//--------------------------------------------------------------------------
+
+int HCDOHOT_CompareOfDataByWilcoxonW (HarrixClass_OnlyDataOfHarrixOptimizationTesting *Data1, HarrixClass_OnlyDataOfHarrixOptimizationTesting *Data2, double Q)
+{
+    /*
+    Проверяет по критерию Вилкосона два исследования алгоритмов.
+    Входные параметры:
+     Data1 - первое исследование;
+     Data2 - второе исследование;
+     Q - уровень значимости. Может принимать значения:
+       0.002;
+       0.01;
+       0.02;
+       0.05;
+       0.1;
+       0.2.
+    Возвращаемое значение:
+     -2 - уровень значимости выбран неправильно (не из допустимого множества);
+     -1 - объемы выборок не позволяют провести проверку при данном уровне значимости (или они не положительные);
+     0 - выборки не однородны  при данном уровне значимости;
+     1 - выборки однородны  при данном уровне значимости;
+     */
+    int VMHL_Result=1;
+
+    int i,j;
+
+    int N1 = (*Data1).getNumberOfExperiments()*(*Data1).getNumberOfMeasuring();
+    int N2 = (*Data2).getNumberOfExperiments()*(*Data2).getNumberOfMeasuring();
+
+    double *Vector1 = new double [N1];
+    double *Vector2 = new double [N2];
+
+    for (i=0;i<N1;i++) Vector1[i]=0;
+    for (i=0;i<N2;i++) Vector2[i]=0;
+
+    for (i=0;i<(*Data1).getNumberOfExperiments();i++)
+        for (j=0;j<(*Data1).getNumberOfMeasuring();j++)
+        {
+            Vector1[i*(*Data1).getNumberOfMeasuring()+j]=(*Data1).getErrorEx(i,j);
+        }
+
+    for (i=0;i<(*Data2).getNumberOfExperiments();i++)
+        for (j=0;j<(*Data2).getNumberOfMeasuring();j++)
+        {
+            Vector2[i*(*Data2).getNumberOfMeasuring()+j]=(*Data2).getErrorEx(i,j);
+        }
+
+    VMHL_Result = MHL_WilcoxonW(Vector1, Vector2, N1, N2, Q);
+
+    delete [] Vector1;
+    delete [] Vector2;
 
     return VMHL_Result;
 }

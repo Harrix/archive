@@ -2066,6 +2066,8 @@ void HarrixClass_DataOfHarrixOptimizationTesting::makingLatexAnalysis()
             LatexAnalysis+="Данное исследование является частичным, так как рассмотрено не всё множество возможных настроек алгоритма. Поэтому ниже будут представлены неполные выводы, так как при нерассмотренных настройках алгоритм мог показать себя лучше или хуже.\n\n";
         }
 
+        LatexAnalysis+="В таблице ниже приведены значения характеристик эффективности алгоритма оптимизации на множестве всех проведенных экспериментов. На основании их можно ценить среднюю эффективность алгоритма.\n\n";
+
         QStringList Col1, Col2, Col3;
         Col1 << "Ошибка по входным параметрам, $E_x$";
         Col2 << QString::number(Data.getMeanOfAllEx());
@@ -2081,22 +2083,91 @@ void HarrixClass_DataOfHarrixOptimizationTesting::makingLatexAnalysis()
 
         LatexAnalysis+=HQt_LatexShowTable (Col1, Col2, Col3, "Измеряемая характеристика", "Выборочное среднее", "Выборочная дисперсия", 60,20, "Значения характеристик эффективности алгоритма оптимизации на множестве всех проведенных экспериментов");
 
+        LatexAnalysis+="Построим теперь графики арактеристик эффективности алгоритма по выборочным средним для каждой комбинации настроек алгоритма оптимизации.\n\n";
+
         double *MOEx=new double[Data.getNumberOfExperiments()];
         for (int i=0;i<Data.getNumberOfExperiments();i++) MOEx[i]=Data.getMeanEx(i);
         LatexAnalysis += THQt_LatexShowChartOfLine (NumberOfListOfVectorParameterOptions, MOEx, Data.getNumberOfExperiments(), "Ошибка по входным параметрам по порядку номеров комбинаций", "N, Номер комбинации настроек", "E_x", "Ошибка по входным параметрам", "MeanOfEx"+HQt_RandomString(5), true, true, false, true, false , true);
-        delete [] MOEx;
 
         double *MOEy=new double[Data.getNumberOfExperiments()];
         for (int i=0;i<Data.getNumberOfExperiments();i++) MOEy[i]=Data.getMeanEy(i);
         LatexAnalysis += THQt_LatexShowChartOfLine (NumberOfListOfVectorParameterOptions, MOEy, Data.getNumberOfExperiments(), "Ошибка по значениям целевой функции по порядку номеров комбинаций", "N, Номер комбинации настроек", "E_y", "Ошибка по значениям целевой функции", "MeanOfEy"+HQt_RandomString(5), true, true, false, true, false , true);
-        delete [] MOEy;
 
         double *MOR=new double[Data.getNumberOfExperiments()];
         for (int i=0;i<Data.getNumberOfExperiments();i++) MOR[i]=Data.getMeanR(i);
         LatexAnalysis += THQt_LatexShowChartOfLine (NumberOfListOfVectorParameterOptions, MOR, Data.getNumberOfExperiments(), "Надёжность по порядку номеров комбинаций", "N, Номер комбинации настроек", "R", "Надёжность", "MeanOfR"+HQt_RandomString(5), true, true, false, true, false , true);
-        delete [] MOR;
 
-        LatexAnalysis += "\n\n7877\n\n";
+        int Temp;
+        double Q=0.05;
+
+        for (int ii=0;ii<6;ii++)
+        {
+            if (ii==0) Q=0.002;
+            if (ii==1) Q=0.01;
+            if (ii==2) Q=0.02;
+            if (ii==3) Q=0.05;
+            if (ii==4) Q=0.1;
+            if (ii==5) Q=0.2;
+
+            int iBestEx = TMHL_NumberOfMinimumOfVector(MOEx,Data.getNumberOfExperiments());
+            LatexAnalysis += "На основании этих графиков можно выделить оптимальные комбинации настроек алгоритмов.\n\n";
+            LatexAnalysis += "В нашем случае относительно ошибки по входным параметра наименьшее значение наблюдается у комбинации настройки под номером "+QString::number(iBestEx+1)+", а именно: <<\\textbf{"+Data.getListOfVectorParameterOptions(iBestEx).trimmed()+"}>>. ";
+            //Найдем те экмперименты, которые по критерию Вилкоксона не хуже, чем лучшее.
+            double *BestExperimentEx = new double [Data.getNumberOfMeasuring()];
+            double *TempExperimentEx = new double [Data.getNumberOfMeasuring()];
+            int *NumbersBestEx= new int[Data.getNumberOfExperiments()];
+            NumbersBestEx[0] = iBestEx;
+            int NumberOfBest=1;
+
+            for (int j=0;j<Data.getNumberOfMeasuring();j++)
+                BestExperimentEx[j] = Data.getErrorEx(iBestEx,j);
+
+            for (int i=0;i<Data.getNumberOfExperiments();i++)
+            {
+                if (i!=iBestEx)
+                {
+                    for (int j=0;j<Data.getNumberOfMeasuring();j++)
+                        TempExperimentEx[j] = Data.getErrorEx(i,j);
+                    Temp = MHL_WilcoxonW(BestExperimentEx, TempExperimentEx, Data.getNumberOfMeasuring(), Data.getNumberOfMeasuring(), Q);
+                    if (Temp==1)
+                    {
+                        NumbersBestEx[NumberOfBest] = i;
+                        NumberOfBest++;
+                    }
+                }
+            }
+
+            if (NumberOfBest>1)
+            {
+                LatexAnalysis += "При критерию Вилкосона при $Q="+QString::number(Q)+"$ есть другие комбинации настроек алгоритма, которые бы статистически не отличались от наилучшей комбинации, рассмотренной выше, в количестве "+QString::number(NumberOfBest-1)+" штук. ";
+            }
+            else
+            {
+                LatexAnalysis += "При критерию Вилкосона при $Q="+QString::number(Q)+"$ нет других комбинаций настроек алгоритма, которые бы статистически не отличались от наилучшей комбинации, рассмотренной выше. ";
+            }
+
+            LatexAnalysis += "В таблице ниже представлено множество лучших комбинаций настроек алгоритма по $Ex$.\n\n";
+
+            Col1.clear();
+            Col2.clear();
+
+            for (int j=0;j<NumberOfBest;j++)
+            {
+                Col1 << QString::number(j+1);
+                Col2 << Data.getListOfVectorParameterOptions(NumbersBestEx[j]).trimmed();
+            }
+
+            LatexAnalysis+=HQt_LatexShowTable (Col1, Col2, "№", "Комбинация настроек",5, "Множество лучших комбинаций настроек алгоритма по $Ex$");
+            delete [] BestExperimentEx;
+            delete [] TempExperimentEx;
+            delete [] NumbersBestEx;
+
+        }
+
+
+        delete [] MOEx;
+        delete [] MOEy;
+        delete [] MOR;
 
     }
 }

@@ -17,7 +17,9 @@ HarrixClass_EvaluateFunction
 Скриншоты применения библиотеки
 -------------------------------
 
-![alt text](https://raw.github.com/Harrix/HarrixClass_EvaluateFunction/master/imagesforgithub/example2.png "Пример вывода")
+![alt text](https://raw.github.com/Harrix/HarrixClass_EvaluateFunction/master/imagesforgithub/1.png "Пример кода применения")
+
+![alt text](https://raw.github.com/Harrix/HarrixClass_EvaluateFunction/master/imagesforgithub/2.png "Пример программы")
 
 Использованные технологии
 -------------------------

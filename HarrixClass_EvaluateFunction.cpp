@@ -1,5 +1,5 @@
 //HarrixClass_EvaluateFunction
-//Версия 1.0
+//Версия 1.1
 //Класс для вычисления значений функции с помощью QtScript.
 //https://github.com/Harrix/HarrixClass_EvaluateFunction
 //Библиотека распространяется по лицензии Apache License, Version 2.0.
@@ -61,6 +61,11 @@ QString HarrixClass_EvaluateFunction::getBeginFunction ()
       BeginFunction = "function fun(x,y)\n {\n var RESULT=0;\n";
     }
 
+    if (Type==EvaluateFunctionThreeVariables)
+    {
+      BeginFunction = "function fun(x,y,z)\n {\n var RESULT=0;\n";
+    }
+
     return BeginFunction;
 }
 //---------------------------------------------------------------------------
@@ -76,7 +81,7 @@ QString HarrixClass_EvaluateFunction::getEndFunction ()
 */
     QString EndFunction;
 
-    if ((Type==EvaluateFunctionOneVariable)||(Type==EvaluateFunctionTwoVariables))
+    if ((Type==EvaluateFunctionOneVariable)||(Type==EvaluateFunctionTwoVariables)||(Type==EvaluateFunctionThreeVariables))
     {
       EndFunction = "\n return RESULT;\n}\n";
     }
@@ -136,6 +141,11 @@ double HarrixClass_EvaluateFunction::getEvaluateFunction (double x)
       Result = scriptFun.call(QScriptValue(), QScriptValueList() << x << 0).toNumber();
     }
 
+    if (Type==EvaluateFunctionThreeVariables)
+    {
+      Result = scriptFun.call(QScriptValue(), QScriptValueList() << x << 0 << 0).toNumber();
+    }
+
     return Result;
 }
 //---------------------------------------------------------------------------
@@ -160,6 +170,43 @@ double HarrixClass_EvaluateFunction::getEvaluateFunction (double x, double y)
     if (Type==EvaluateFunctionTwoVariables)
     {
       Result = scriptFun.call(QScriptValue(), QScriptValueList() << x << y).toNumber();
+    }
+
+    if (Type==EvaluateFunctionThreeVariables)
+    {
+      Result = scriptFun.call(QScriptValue(), QScriptValueList() << x << y << 0).toNumber();
+    }
+
+    return Result;
+}
+//---------------------------------------------------------------------------
+
+double HarrixClass_EvaluateFunction::getEvaluateFunction (double x, double y, double z)
+{
+/*
+    Получить значение функции в точке (x,y,z).
+    Входные параметры:
+     x - первый входной параметр в трехмерной функции.
+     y - второй входной параметр в трехмерной функции.
+     z - третий входной параметр в трехмерной функции.
+    Возвращаемое значение:
+     Значение функции в точке.
+*/
+    Result = 0;
+
+    if (Type==EvaluateFunctionOneVariable)
+    {
+      Result = scriptFun.call(QScriptValue(), QScriptValueList() << x).toNumber();
+    }
+
+    if (Type==EvaluateFunctionTwoVariables)
+    {
+      Result = scriptFun.call(QScriptValue(), QScriptValueList() << x << y).toNumber();
+    }
+
+    if (Type==EvaluateFunctionThreeVariables)
+    {
+      Result = scriptFun.call(QScriptValue(), QScriptValueList() << x << y << z).toNumber();
     }
 
     return Result;

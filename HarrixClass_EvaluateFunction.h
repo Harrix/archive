@@ -5,7 +5,7 @@
 #include <QElapsedTimer>
 
 //Тип вычисляемой функции
-enum TypeOfEvaluateFunction {EvaluateFunctionOneVariable, EvaluateFunctionTwoVariables};
+enum TypeOfEvaluateFunction {EvaluateFunctionOneVariable, EvaluateFunctionTwoVariables, EvaluateFunctionThreeVariables};
 
 class HarrixClass_EvaluateFunction
 {
@@ -17,6 +17,7 @@ public:
     void setCodeFunction (QString Code);//Задать код функции в QtScript.ss
     double getEvaluateFunction (double x);//Получить значение функции в точке x.
     double getEvaluateFunction (double x, double y);//Получить значение функции в точке (x,y).
+    double getEvaluateFunction (double x, double y, double z);//Получить значение функции в точке (x,y,z).
 
 private:
     void initialization ();//Инициализация движка QtScript

@@ -1,7 +1,7 @@
 HarrixClass_EvaluateFunction
 ============================
 
-Версия 1.3
+Версия 1.4
 
 Класс HarrixClass_EvaluateFunction для вычисления значений функции с помощью QtScript.
 

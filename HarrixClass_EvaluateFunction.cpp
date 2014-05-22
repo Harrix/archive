@@ -1,5 +1,5 @@
 //HarrixClass_EvaluateFunction
-//Версия 1.2
+//Версия 1.3
 //Класс для вычисления значений функции с помощью QtScript.
 //https://github.com/Harrix/HarrixClass_EvaluateFunction
 //Библиотека распространяется по лицензии Apache License, Version 2.0.
@@ -11,7 +11,7 @@
 
 HarrixClass_EvaluateFunction::HarrixClass_EvaluateFunction()
 {
-/*
+    /*
     Конструктор.
 */
     Type = EvaluateFunctionOneVariable;//по умолчанию одномерная функция
@@ -28,7 +28,7 @@ HarrixClass_EvaluateFunction::~HarrixClass_EvaluateFunction()
 
 void HarrixClass_EvaluateFunction::initialization ()
 {
-/*
+    /*
     Инициализация движка QtScript. Внутренная функция
     Входные параметры:
      Отсутствуют.
@@ -42,7 +42,7 @@ void HarrixClass_EvaluateFunction::initialization ()
 
 QString HarrixClass_EvaluateFunction::getBeginFunction ()
 {
-/*
+    /*
     Получить начало кода функции в QtScript. Внутренная функция
     Входные параметры:
      Отсутствуют.
@@ -53,22 +53,27 @@ QString HarrixClass_EvaluateFunction::getBeginFunction ()
 
     if (Type==EvaluateFunctionOneVariable)
     {
-      BeginFunction = "function fun(x)\n {\n var RESULT=0;\n";
+        BeginFunction = "function fun(x)\n {\n var RESULT=0;\n";
     }
 
     if (Type==EvaluateFunctionTwoVariables)
     {
-      BeginFunction = "function fun(x,y)\n {\n var RESULT=0;\n";
+        BeginFunction = "function fun(x,y)\n {\n var RESULT=0;\n";
     }
 
     if (Type==EvaluateFunctionThreeVariables)
     {
-      BeginFunction = "function fun(x,y,z)\n {\n var RESULT=0;\n";
+        BeginFunction = "function fun(x,y,z)\n {\n var RESULT=0;\n";
     }
 
     if (Type==EvaluateFunctionFourVariables)
     {
-      BeginFunction = "function fun(x,y,z,k)\n {\n var RESULT=0;\n";
+        BeginFunction = "function fun(x,y,z,k)\n {\n var RESULT=0;\n";
+    }
+
+    if (Type==EvaluateFunctionFiveVariables)
+    {
+        BeginFunction = "function fun(x1,x2,x3,x4,x5)\n {\n var RESULT=0;\n";
     }
 
     return BeginFunction;
@@ -77,7 +82,7 @@ QString HarrixClass_EvaluateFunction::getBeginFunction ()
 
 QString HarrixClass_EvaluateFunction::getEndFunction ()
 {
-/*
+    /*
     Получить конец кода функции в QtScript. Внутренная функция
     Входные параметры:
      Отсутствуют.
@@ -86,10 +91,7 @@ QString HarrixClass_EvaluateFunction::getEndFunction ()
 */
     QString EndFunction;
 
-    if ((Type==EvaluateFunctionOneVariable)||(Type==EvaluateFunctionTwoVariables)||(Type==EvaluateFunctionThreeVariables)||(Type==EvaluateFunctionFourVariables))
-    {
-      EndFunction = "\n return RESULT;\n}\n";
-    }
+    EndFunction = "\n return RESULT;\n}\n";
 
     return EndFunction;
 }
@@ -97,7 +99,7 @@ QString HarrixClass_EvaluateFunction::getEndFunction ()
 
 void HarrixClass_EvaluateFunction::setCodeFunction (QString Code)
 {
-/*
+    /*
     Задать код функции в QtScript.
     Входные параметры:
      Code - код функции в QtScript.
@@ -112,7 +114,7 @@ void HarrixClass_EvaluateFunction::setCodeFunction (QString Code)
 
 void HarrixClass_EvaluateFunction::setTypeFunction (TypeOfEvaluateFunction T)
 {
-/*
+    /*
     Задать тип функции в QtScript.
     Входные параметры:
      T - тип вычисляемой функции.
@@ -127,7 +129,7 @@ void HarrixClass_EvaluateFunction::setTypeFunction (TypeOfEvaluateFunction T)
 
 double HarrixClass_EvaluateFunction::getEvaluateFunction (double x)
 {
-/*
+    /*
     Получить значение функции в точке x.
     Входные параметры:
      x - входной параметр в одномерной функции.
@@ -138,22 +140,27 @@ double HarrixClass_EvaluateFunction::getEvaluateFunction (double x)
 
     if (Type==EvaluateFunctionOneVariable)
     {
-      Result = scriptFun.call(QScriptValue(), QScriptValueList() << x).toNumber();
+        Result = scriptFun.call(QScriptValue(), QScriptValueList() << x).toNumber();
     }
 
     if (Type==EvaluateFunctionTwoVariables)
     {
-      Result = scriptFun.call(QScriptValue(), QScriptValueList() << x << 0).toNumber();
+        Result = scriptFun.call(QScriptValue(), QScriptValueList() << x << 0).toNumber();
     }
 
     if (Type==EvaluateFunctionThreeVariables)
     {
-      Result = scriptFun.call(QScriptValue(), QScriptValueList() << x << 0 << 0).toNumber();
+        Result = scriptFun.call(QScriptValue(), QScriptValueList() << x << 0 << 0).toNumber();
     }
 
     if (Type==EvaluateFunctionFourVariables)
     {
-      Result = scriptFun.call(QScriptValue(), QScriptValueList() << x << 0 << 0 << 0).toNumber();
+        Result = scriptFun.call(QScriptValue(), QScriptValueList() << x << 0 << 0 << 0).toNumber();
+    }
+
+    if (Type==EvaluateFunctionFiveVariables)
+    {
+        Result = scriptFun.call(QScriptValue(), QScriptValueList() << x << 0 << 0 << 0 << 0).toNumber();
     }
 
     return Result;
@@ -162,7 +169,7 @@ double HarrixClass_EvaluateFunction::getEvaluateFunction (double x)
 
 double HarrixClass_EvaluateFunction::getEvaluateFunction (double x, double y)
 {
-/*
+    /*
     Получить значение функции в точке (x,y).
     Входные параметры:
      x - первый входной параметр в двумерной функции.
@@ -174,22 +181,27 @@ double HarrixClass_EvaluateFunction::getEvaluateFunction (double x, double y)
 
     if (Type==EvaluateFunctionOneVariable)
     {
-      Result = scriptFun.call(QScriptValue(), QScriptValueList() << x).toNumber();
+        Result = scriptFun.call(QScriptValue(), QScriptValueList() << x).toNumber();
     }
 
     if (Type==EvaluateFunctionTwoVariables)
     {
-      Result = scriptFun.call(QScriptValue(), QScriptValueList() << x << y).toNumber();
+        Result = scriptFun.call(QScriptValue(), QScriptValueList() << x << y).toNumber();
     }
 
     if (Type==EvaluateFunctionThreeVariables)
     {
-      Result = scriptFun.call(QScriptValue(), QScriptValueList() << x << y << 0).toNumber();
+        Result = scriptFun.call(QScriptValue(), QScriptValueList() << x << y << 0).toNumber();
     }
 
     if (Type==EvaluateFunctionFourVariables)
     {
-      Result = scriptFun.call(QScriptValue(), QScriptValueList() << x << y << 0 << 0).toNumber();
+        Result = scriptFun.call(QScriptValue(), QScriptValueList() << x << y << 0 << 0).toNumber();
+    }
+
+    if (Type==EvaluateFunctionFiveVariables)
+    {
+        Result = scriptFun.call(QScriptValue(), QScriptValueList() << x << y << 0 << 0 << 0).toNumber();
     }
 
     return Result;
@@ -198,7 +210,7 @@ double HarrixClass_EvaluateFunction::getEvaluateFunction (double x, double y)
 
 double HarrixClass_EvaluateFunction::getEvaluateFunction (double x, double y, double z)
 {
-/*
+    /*
     Получить значение функции в точке (x,y,z).
     Входные параметры:
      x - первый входной параметр в трехмерной функции.
@@ -211,22 +223,27 @@ double HarrixClass_EvaluateFunction::getEvaluateFunction (double x, double y, do
 
     if (Type==EvaluateFunctionOneVariable)
     {
-      Result = scriptFun.call(QScriptValue(), QScriptValueList() << x).toNumber();
+        Result = scriptFun.call(QScriptValue(), QScriptValueList() << x).toNumber();
     }
 
     if (Type==EvaluateFunctionTwoVariables)
     {
-      Result = scriptFun.call(QScriptValue(), QScriptValueList() << x << y).toNumber();
+        Result = scriptFun.call(QScriptValue(), QScriptValueList() << x << y).toNumber();
     }
 
     if (Type==EvaluateFunctionThreeVariables)
     {
-      Result = scriptFun.call(QScriptValue(), QScriptValueList() << x << y << z).toNumber();
+        Result = scriptFun.call(QScriptValue(), QScriptValueList() << x << y << z).toNumber();
     }
 
     if (Type==EvaluateFunctionFourVariables)
     {
-      Result = scriptFun.call(QScriptValue(), QScriptValueList() << x << y << z << 0).toNumber();
+        Result = scriptFun.call(QScriptValue(), QScriptValueList() << x << y << z << 0).toNumber();
+    }
+
+    if (Type==EvaluateFunctionFiveVariables)
+    {
+        Result = scriptFun.call(QScriptValue(), QScriptValueList() << x << y << z << 0 << 0).toNumber();
     }
 
     return Result;
@@ -235,7 +252,7 @@ double HarrixClass_EvaluateFunction::getEvaluateFunction (double x, double y, do
 
 double HarrixClass_EvaluateFunction::getEvaluateFunction (double x, double y, double z, double k)
 {
-/*
+    /*
     Получить значение функции в точке (x,y,z,k).
     Входные параметры:
      x - первый входной параметр в четырехмерной функции.
@@ -249,22 +266,71 @@ double HarrixClass_EvaluateFunction::getEvaluateFunction (double x, double y, do
 
     if (Type==EvaluateFunctionOneVariable)
     {
-      Result = scriptFun.call(QScriptValue(), QScriptValueList() << x).toNumber();
+        Result = scriptFun.call(QScriptValue(), QScriptValueList() << x).toNumber();
     }
 
     if (Type==EvaluateFunctionTwoVariables)
     {
-      Result = scriptFun.call(QScriptValue(), QScriptValueList() << x << y).toNumber();
+        Result = scriptFun.call(QScriptValue(), QScriptValueList() << x << y).toNumber();
     }
 
     if (Type==EvaluateFunctionThreeVariables)
     {
-      Result = scriptFun.call(QScriptValue(), QScriptValueList() << x << y << z).toNumber();
+        Result = scriptFun.call(QScriptValue(), QScriptValueList() << x << y << z).toNumber();
     }
 
     if (Type==EvaluateFunctionFourVariables)
     {
-      Result = scriptFun.call(QScriptValue(), QScriptValueList() << x << y << z << k).toNumber();
+        Result = scriptFun.call(QScriptValue(), QScriptValueList() << x << y << z << k).toNumber();
+    }
+
+    if (Type==EvaluateFunctionFiveVariables)
+    {
+        Result = scriptFun.call(QScriptValue(), QScriptValueList() << x << y << z << k << 0).toNumber();
+    }
+
+    return Result;
+}
+//---------------------------------------------------------------------------
+
+double HarrixClass_EvaluateFunction::getEvaluateFunction (double x1, double x2, double x3, double x4, double x5)
+{
+    /*
+    Получить значение функции в точке (x1,x2,x3,x4,x5).
+    Входные параметры:
+     x1 - первый входной параметр в четырехмерной функции.
+     x2 - второй входной параметр в четырехмерной функции.
+     x3 - третий входной параметр в четырехмерной функции.
+     x4 - четвертый входной параметр в четырехмерной функции.
+     x5 - пятый входной параметр в четырехмерной функции.
+    Возвращаемое значение:
+     Значение функции в точке.
+*/
+    Result = 0;
+
+    if (Type==EvaluateFunctionOneVariable)
+    {
+        Result = scriptFun.call(QScriptValue(), QScriptValueList() << x1).toNumber();
+    }
+
+    if (Type==EvaluateFunctionTwoVariables)
+    {
+        Result = scriptFun.call(QScriptValue(), QScriptValueList() << x1 << x2).toNumber();
+    }
+
+    if (Type==EvaluateFunctionThreeVariables)
+    {
+        Result = scriptFun.call(QScriptValue(), QScriptValueList() << x1 << x2 << x3).toNumber();
+    }
+
+    if (Type==EvaluateFunctionFourVariables)
+    {
+        Result = scriptFun.call(QScriptValue(), QScriptValueList() << x1 << x2 << x3 << x4).toNumber();
+    }
+
+    if (Type==EvaluateFunctionFiveVariables)
+    {
+        Result = scriptFun.call(QScriptValue(), QScriptValueList() << x1 << x2 << x3 << x4 << x5).toNumber();
     }
 
     return Result;

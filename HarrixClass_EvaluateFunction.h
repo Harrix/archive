@@ -6,7 +6,7 @@
 
 //Тип вычисляемой функции
 enum TypeOfEvaluateFunction {EvaluateFunctionOneVariable, EvaluateFunctionTwoVariables, EvaluateFunctionThreeVariables,
-                            EvaluateFunctionFourVariables};
+                            EvaluateFunctionFourVariables, EvaluateFunctionFiveVariables};
 
 class HarrixClass_EvaluateFunction
 {
@@ -20,6 +20,7 @@ public:
     double getEvaluateFunction (double x, double y);//Получить значение функции в точке (x,y).
     double getEvaluateFunction (double x, double y, double z);//Получить значение функции в точке (x,y,z).
     double getEvaluateFunction (double x, double y, double z, double k);//Получить значение функции в точке (x,y,z,k).
+    double getEvaluateFunction (double x1, double x2, double x3, double x4, double x5);//Получить значение функции в точке (x1,x2,x3,x4,x5).
 
 private:
     void initialization ();//Инициализация движка QtScript

@@ -1,5 +1,5 @@
 //HarrixClass_EvaluateFunction
-//Версия 1.4
+//Версия 1.5
 //Класс для вычисления значений функции с помощью QtScript.
 //https://github.com/Harrix/HarrixClass_EvaluateFunction
 //Библиотека распространяется по лицензии Apache License, Version 2.0.
@@ -79,6 +79,11 @@ QString HarrixClass_EvaluateFunction::getBeginFunction ()
     if (Type==EvaluateFunctionSixVariables)
     {
         BeginFunction = "function fun(x1,x2,x3,x4,x5,x6)\n {\n var RESULT=0;\n";
+    }
+
+    if (Type==EvaluateFunctionSevenVariables)
+    {
+        BeginFunction = "function fun(x1,x2,x3,x4,x5,x6,x7)\n {\n var RESULT=0;\n";
     }
 
     return BeginFunction;
@@ -173,6 +178,11 @@ double HarrixClass_EvaluateFunction::getEvaluateFunction (double x)
         Result = scriptFun.call(QScriptValue(), QScriptValueList() << x << 0 << 0 << 0 << 0 << 0).toNumber();
     }
 
+    if (Type==EvaluateFunctionSevenVariables)
+    {
+        Result = scriptFun.call(QScriptValue(), QScriptValueList() << x << 0 << 0 << 0 << 0 << 0 << 0).toNumber();
+    }
+
     return Result;
 }
 //---------------------------------------------------------------------------
@@ -217,6 +227,11 @@ double HarrixClass_EvaluateFunction::getEvaluateFunction (double x, double y)
     if (Type==EvaluateFunctionSixVariables)
     {
         Result = scriptFun.call(QScriptValue(), QScriptValueList() << x << y << 0 << 0 << 0 << 0).toNumber();
+    }
+
+    if (Type==EvaluateFunctionSevenVariables)
+    {
+        Result = scriptFun.call(QScriptValue(), QScriptValueList() << x << y << 0 << 0 << 0 << 0 << 0).toNumber();
     }
 
     return Result;
@@ -266,6 +281,11 @@ double HarrixClass_EvaluateFunction::getEvaluateFunction (double x, double y, do
         Result = scriptFun.call(QScriptValue(), QScriptValueList() << x << y << z << 0 << 0 << 0).toNumber();
     }
 
+    if (Type==EvaluateFunctionSevenVariables)
+    {
+        Result = scriptFun.call(QScriptValue(), QScriptValueList() << x << y << z << 0 << 0 << 0 << 0).toNumber();
+    }
+
     return Result;
 }
 //---------------------------------------------------------------------------
@@ -312,6 +332,11 @@ double HarrixClass_EvaluateFunction::getEvaluateFunction (double x, double y, do
     if (Type==EvaluateFunctionSixVariables)
     {
         Result = scriptFun.call(QScriptValue(), QScriptValueList() << x << y << z << k << 0 << 0).toNumber();
+    }
+
+    if (Type==EvaluateFunctionSevenVariables)
+    {
+        Result = scriptFun.call(QScriptValue(), QScriptValueList() << x << y << z << k << 0 << 0 << 0).toNumber();
     }
 
     return Result;
@@ -363,6 +388,11 @@ double HarrixClass_EvaluateFunction::getEvaluateFunction (double x1, double x2, 
         Result = scriptFun.call(QScriptValue(), QScriptValueList() << x1 << x2 << x3 << x4 << x5 << 0).toNumber();
     }
 
+    if (Type==EvaluateFunctionSevenVariables)
+    {
+        Result = scriptFun.call(QScriptValue(), QScriptValueList() << x1 << x2 << x3 << x4 << x5 << 0 << 0).toNumber();
+    }
+
     return Result;
 }
 //---------------------------------------------------------------------------
@@ -411,6 +441,67 @@ double HarrixClass_EvaluateFunction::getEvaluateFunction (double x1, double x2, 
     if (Type==EvaluateFunctionSixVariables)
     {
         Result = scriptFun.call(QScriptValue(), QScriptValueList() << x1 << x2 << x3 << x4 << x5 << x6).toNumber();
+    }
+
+    if (Type==EvaluateFunctionSevenVariables)
+    {
+        Result = scriptFun.call(QScriptValue(), QScriptValueList() << x1 << x2 << x3 << x4 << x5 << x6 << 0).toNumber();
+    }
+
+    return Result;
+}
+//---------------------------------------------------------------------------
+
+double HarrixClass_EvaluateFunction::getEvaluateFunction (double x1, double x2, double x3, double x4, double x5, double x6, double x7)
+{
+    /*
+    Получить значение функции в точке (x1,x2,x3,x4,x5,x6,x7).
+    Входные параметры:
+     x1 - первый входной параметр в семимерной функции.
+     x2 - второй входной параметр в семимерной функции.
+     x3 - третий входной параметр в семимерной функции.
+     x4 - четвертый входной параметр в семимерной функции.
+     x5 - пятый входной параметр в семимерной функции.
+     x6 - шестой входной параметр в семимерной функции.
+     x7 - седьмой входной параметр в семимерной функции.
+    Возвращаемое значение:
+     Значение функции в точке.
+*/
+    Result = 0;
+
+    if (Type==EvaluateFunctionOneVariable)
+    {
+        Result = scriptFun.call(QScriptValue(), QScriptValueList() << x1).toNumber();
+    }
+
+    if (Type==EvaluateFunctionTwoVariables)
+    {
+        Result = scriptFun.call(QScriptValue(), QScriptValueList() << x1 << x2).toNumber();
+    }
+
+    if (Type==EvaluateFunctionThreeVariables)
+    {
+        Result = scriptFun.call(QScriptValue(), QScriptValueList() << x1 << x2 << x3).toNumber();
+    }
+
+    if (Type==EvaluateFunctionFourVariables)
+    {
+        Result = scriptFun.call(QScriptValue(), QScriptValueList() << x1 << x2 << x3 << x4).toNumber();
+    }
+
+    if (Type==EvaluateFunctionFiveVariables)
+    {
+        Result = scriptFun.call(QScriptValue(), QScriptValueList() << x1 << x2 << x3 << x4 << x5).toNumber();
+    }
+
+    if (Type==EvaluateFunctionSixVariables)
+    {
+        Result = scriptFun.call(QScriptValue(), QScriptValueList() << x1 << x2 << x3 << x4 << x5 << x6).toNumber();
+    }
+
+    if (Type==EvaluateFunctionSevenVariables)
+    {
+        Result = scriptFun.call(QScriptValue(), QScriptValueList() << x1 << x2 << x3 << x4 << x5 << x6 << x7).toNumber();
     }
 
     return Result;

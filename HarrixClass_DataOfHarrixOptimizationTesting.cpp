@@ -2155,65 +2155,166 @@ void HarrixClass_DataOfHarrixOptimizationTesting::makingLatexAnalysis()
 
         ////////////////////////////////////////////////////
         {
-        int NumberOfParametersTemp = Data.getNumberOfParameters();
-        int *CountOfParametersTemp = new int [NumberOfParametersTemp];
-        for (int i=0;i<NumberOfParametersTemp; i++)
-           CountOfParametersTemp[i]=Data.getListOfParameterOptions(i).count();
-        int *Order = new int [NumberOfParametersTemp];
+            QString Title = "1111";
 
-        int Limit=10;
-        int ForColsN = MHL_SeparateVectorLimitOnProductElements(CountOfParametersTemp, Order, Limit, NumberOfParametersTemp);
+            //Сколько у нас вообще параметров
+            int NumberOfParametersTemp = Data.getNumberOfParameters();
+            //массив для числа каждого параметры
+            int *CountOfParametersTemp = new int [NumberOfParametersTemp];
+            for (int i=0;i<NumberOfParametersTemp; i++)
+                CountOfParametersTemp[i]=Data.getListOfParameterOptions(i).count();
+            //в каком порядке будем располгать
+            int *Order = new int [NumberOfParametersTemp];
 
-        LatexAnalysis+=THQt_LatexShowNumber(Limit,"Limit");
-        LatexAnalysis+=THQt_LatexShowNumber(ForColsN,"ForColsN");
+            //Определим сколько параметров пойдет на столбцы, а сколько на строки
+            int Limit=10;//сколько максимум столбцов с данными
+            //сколько параметров будет в виде столбов
+            int ForColsN = MHL_SeparateVectorLimitOnProductElementsTwo(CountOfParametersTemp, Order, Limit, NumberOfParametersTemp);
+            if (ForColsN==-1)
+            {
+                //Если слишком много элементов в каждом варианте, то берем самый маленький и только один
+                //Пусть коряво будет, но хоть что-то будет
+                TMHL_ReverseVector(Order,NumberOfParametersTemp);
+                ForColsN = 1;
+            }
 
-        LatexAnalysis+=THQt_LatexShowVector(Order,NumberOfParametersTemp,"Order");
-        LatexAnalysis+=THQt_LatexShowVector(CountOfParametersTemp,NumberOfParametersTemp,"CountOfParametersTemp");
+            //Число столбов для контента
+            int ColsForContent=1;
+            for (int i=0;i<ForColsN;i++)
+                ColsForContent*=Data.getListOfParameterOptions(Order[i]).count();
 
-        int ColsForContent=1;
-        for (int i=0;i<ForColsN;i++)
-            ColsForContent*=Data.getListOfParameterOptions(Order[i]).count();
-        LatexAnalysis+="ColsForContent = "+QString::number(ColsForContent)+"\n\n";
+            //Число строк для контента
+            int RowsForContent=1;
+            for (int i=ForColsN;i<NumberOfParametersTemp;i++)
+                RowsForContent*=Data.getListOfParameterOptions(Order[i]).count();
 
-        int RowsForContent=1;
-        for (int i=ForColsN;i<NumberOfParametersTemp;i++)
-            RowsForContent*=Data.getListOfParameterOptions(Order[i]).count();
-        LatexAnalysis+="RowsForContent = "+QString::number(RowsForContent)+"\n\n";
+            LatexAnalysis+=THQt_LatexShowVectorT(CountOfParametersTemp,NumberOfParametersTemp,"CountOfParametersTemp");
+            LatexAnalysis+=THQt_LatexShowVectorT(Order,NumberOfParametersTemp,"Order");
+            LatexAnalysis+="ForColsN = "+QString::number(ForColsN)+"\n\n";
+            LatexAnalysis+=THQt_LatexShowVectorT(Order,NumberOfParametersTemp,"Order");
+            LatexAnalysis+="ColsForContent = "+QString::number(ColsForContent)+"\n\n";
+            LatexAnalysis+="RowsForContent = "+QString::number(RowsForContent)+"\n\n";
+
+            //Число столбов для заголовков (слева)
+            int ColsForHeader=NumberOfParametersTemp-ForColsN;
+            //Число строк для заголовков (наверху)
+            int RowsForHeader=ForColsN;
+
+            //Начинаем отрисовывать таблицу
+            QString Table;
+            Table+="\\begin{center}\n";
+            Table+="{\n";
+
+            double WidthCol=1./double(ColsForHeader+ColsForContent)*0.9;
+
+            Table+="\\footnotesize\\begin{longtable}[H]{";
+            for (int i=0;i<ColsForHeader;i++)
+                Table+="|p{\\dimexpr"+QString::number(WidthCol)+"\\linewidth-2\\tabcolsep}";
+            for (int i=0;i<ColsForContent;i++)
+                Table+="|p{\\dimexpr"+QString::number(WidthCol)+"\\linewidth-2\\tabcolsep}";
+            Table+="|}\n";
+
+            Table+="\\caption{"+Title+"}\n";
+
+            int TempC=Data.getListOfParameterOptions(Order[0]).count();
+            for (int j=0;j<RowsForHeader;j++)
+            {
+                Table+="\\tabularnewline\\hline\n";
+                Table+="\\multicolumn{"+QString::number(ColsForHeader)+"}{|c|} {\\centering \\tiny \\textbf{ }} & ";
+
+                for (int i=0;i<TempC;i++)
+                {
+                    QString Amper;
+                    if (i!=TempC-1)
+                        Amper=" & ";
+
+                    //Получим название настройки алгоритма оптимизации
+                    QString Text=HQt_ForcedWordWrap(Data.getOptionFromListOfParameterOptions(Order[j],i%(Data.getListOfParameterOptions(Order[j]).count())));
+
+                    if (j!=RowsForHeader-1)
+                        Table+="\\multicolumn{"+QString::number(ColsForContent/TempC)+"}{c|} {\\centering \\tiny \\textbf{"+Text+"}}"+Amper;
+                    else
+                        Table+="\\multicolumn{"+QString::number(ColsForContent/TempC)+"}{p{\\dimexpr"+QString::number(WidthCol)+"\\linewidth-2\\tabcolsep}|} {\\centering \\tiny \\textbf{"+Text+"}}"+Amper;
+                }
+                Table+="\n";
+                TempC*=Data.getListOfParameterOptions(Order[j+1]).count();
+            }
+
+            Table+="\\tabularnewline\\hline\n";
+            Table+="\\endhead\n";
+
+            //Оформляем «Продолжение следует», если не всё впорядке пойдет.
+            Table+="\\multicolumn{"+QString::number(ColsForHeader+ColsForContent)+"}{|r|}{{\\tiny Продолжение на следующей странице...}} \\\\ \\hline \\endfoot\n";
+            Table+="\\endlastfoot\n";
+
+            //TempC=Data.getListOfParameterOptions(Order[ForColsN]).count();
+            //Основное тело таблицы
+            for (int j=0;j<RowsForContent;j++)
+            {
+                QString Row;
+                //Заголовки слева
+
+                //получим число всех вариантов настроек, отображаемых слева
+                TempC=1;
+                for (int i=0;i<ColsForHeader;i++)
+                    TempC*=Data.getListOfParameterOptions(Order[ForColsN+i]).count();
+
+                int k=-1;//C какого номера на данной ячеейке начинать рисовать горизонтальную линию
+                bool kDo=false;//значит, что еще не решали будет линия или нет
+                for (int i=0;i<ColsForHeader;i++)
+                {
+                    TempC = TempC/Data.getListOfParameterOptions(Order[ForColsN+i]).count();
+                    int OO=j%TempC;
+                    if (OO==0)
+                    {
+                        Row+="\\multirow{2}{*}{}{\\centering \\tiny \\textbf{22}} & ";
+                    }
+                    else
+                    {
+                        Row+=" & ";
+                        if (OO==TempC-1)
+                        {
+                            if (kDo==false)
+                            {
+                                k=i+1;
+                                kDo=true;
+                            }
+                        }
+                    }
+                    //Row+="{\\centering \\tiny \\textbf{22}} & ";
+                }
+                if (k==-1) k=ColsForHeader;
+                //Row+="\\multicolumn{"+QString::number(ColsForHeader)+"}{|c|} {\\centering \\tiny \\textbf{ }} & ";
+
+                //Основное содержание
+                for (int i=0;i<ColsForContent;i++)
+                {
+                    QString Amper;
+                    if (i!=ColsForContent-1)
+                        Amper=" & ";
+                    Row+="\\tiny 11"+Amper;
+                }
 
 
-        QString Title = "1111";
-
-        QString Table;
-        Table+="\\begin{center}\n";
-        Table+="{\tiny\n \n\\renewcommand{\\arraystretch}{1.5}\n";
-
-//        double WidthCol1=10;
-
-//        double width1 = 0.93*(WidthCol1/100.);
-//        double width2 = 0.93*(1.-WidthCol1/100.);
-
-//        Table+="\\footnotesize\\begin{longtable}[H]{|m{"+QString::number(width1)+"\\linewidth}|m{"+QString::number(width2)+"\\linewidth}|}\n";
-//        Table+="\\caption{"+Title+"}\n";
-
-//        Table+="\\tabularnewline\\hline\n";
-//        Table+="\\centering \\textbf{8555} & \\centering \\textbf{8522} \\centering \\tabularnewline \\hline \\endhead\n";
-//        Table+="\\multicolumn{2}{|r|}{{Продолжение на следующей странице...}} \\\\ \\hline \\endfoot\n";
-//        Table+="\\endlastfoot\n";
-
-//        for (int i=0;i<Col1.count();i++)
-//        {
-//            Table+="\\footnotesize "+Col1.at(i)+" & \\footnotesize "+Col2.at(i)+" \\tabularnewline \\hline\n";
-//        }
-
-        //Table+="\\end{longtable}\n";
-        Table+="}\n";
-        Table+="\\end{center}\n\n";
+                Row+="\\tabularnewline \\cline{"+QString::number(k)+"-"+QString::number(ColsForContent+ColsForHeader)+"}\n";
+                Table+=Row;
+            }
 
 
-        delete [] CountOfParametersTemp;
-        delete [] Order;
+            //        for (int i=0;i<Col1.count();i++)
+            //        {
+            //            Table+="\\footnotesize "+Col1.at(i)+" & \\footnotesize "+Col2.at(i)+" \\tabularnewline \\hline\n";
+            //        }
 
-        LatexAnalysis+=Table;
+            Table+="\\end{longtable}\n";
+            Table+="}\n";
+            Table+="\\end{center}\n\n";
+
+
+            delete [] CountOfParametersTemp;
+            delete [] Order;
+
+            LatexAnalysis+=Table;
         }
         ////////////////////////////////////////////////////
 

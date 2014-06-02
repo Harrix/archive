@@ -54,6 +54,7 @@ void MainWindow::on_pushButton_clicked()
     QString ResultTex;//итоговый cpp документ
     QString ResultTexList;//временный список функций
     QString ResultTexFunctions;//временная перемнная для справки по функциям
+    QString ResultFunctionsMD;//итоговый список функций FUNCTIONS.md
     QString Temp;//переменная для временного содержания загружаемых файлов
     QString MessageError;//Текущая ошиьбка
     QString AllMessageError;//Все ошибки
@@ -75,6 +76,9 @@ void MainWindow::on_pushButton_clicked()
     ResultTpp += "//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n";
     ResultTpp += "// РЕАЛИЗАЦИЯ ШАБЛОНОВ\n";//добавляем название папки (раздела)
     ResultTpp += "//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n\n";
+
+    ResultFunctionsMD += "Список функций библиотеки \n";
+    ResultFunctionsMD += "===========================================\n\n";
 
     ResultH += "//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n";
     ResultH += "// ОБЪЯВЛЕНИЯ ФУНКЦИЙ\n";//добавляем название папки (раздела)
@@ -118,6 +122,8 @@ void MainWindow::on_pushButton_clicked()
 
         ResultH   += "//"+dirname+"\n";//добавляем название папки (раздела)
 
+        ResultFunctionsMD += dirname+"\n----------------\n\n";
+
         ResultTexList += "\\textbf{"+dirname+"}\n";
         ResultTexList += "\\begin{enumerate}\n\n";
 
@@ -145,6 +151,8 @@ void MainWindow::on_pushButton_clicked()
 
                 ResultTexFunctions+="\\subsubsection{" + nameof_func_ + "}\\label{"+nameof_func+"}\n\n" + Temp+"\n\n";
 
+                ResultFunctionsMD += "- "+Temp.replace("\\_","_").replace("$","")+"\n";
+
                 if (!(Temp.trimmed().isEmpty())) ui->textEdit->insertHtml("Загрузили файл <b>"+filename+"</b><br>");
                 else {MessageError="<font color=\"red\">Ошибка с файлом <b>"+filename+"</b><\font><br>";AllMessageError+=MessageError;ui->textEdit->insertHtml(MessageError);countoferrors++;}
 
@@ -166,7 +174,7 @@ void MainWindow::on_pushButton_clicked()
                 if (exp=="cpp")
                 {
                     ResultCpp += Temp;
-                    ResultCpp += "//---------------------------------------------------------------------------\n";
+                    ResultCpp += "//---------------------------------------------------------------------------\n\n";
                     if (!(Temp.trimmed().isEmpty())) ui->textEdit->insertHtml("Загрузили файл <b>"+filename+"</b><br>");
                     else {MessageError="<font color=\"red\">Ошибка с файлом <b>"+filename+"</b><\font><br>";AllMessageError+=MessageError;ui->textEdit->insertHtml(MessageError);countoferrors++;}
                 }
@@ -174,7 +182,7 @@ void MainWindow::on_pushButton_clicked()
                 if (exp=="tpp")
                 {
                     ResultTpp += Temp;
-                    ResultTpp += "//---------------------------------------------------------------------------\n";
+                    ResultTpp += "//---------------------------------------------------------------------------\n\n";
                     if (!(Temp.trimmed().isEmpty())) ui->textEdit->insertHtml("Загрузили файл <b>"+filename+"</b><br>");
                     else {MessageError="<font color=\"red\">Ошибка с файлом <b>"+filename+"</b><\font><br>";AllMessageError+=MessageError;ui->textEdit->insertHtml(MessageError);countoferrors++;}
                 }
@@ -206,6 +214,8 @@ void MainWindow::on_pushButton_clicked()
                 ResultTexFunctions+="\\begin{lstlisting}[label=code_syntax_"+nameof_func+",caption=Синтаксис]\n";
                 ResultTexFunctions+=Temp;
                 ResultTexFunctions+="\\end{lstlisting}\n\n";
+
+                ResultFunctionsMD += "```cpp\n"+Temp+"```\n\n";
 
                 //Проверим наличие сопутствующих файлов
                 QString F=HQt_GetNameFromFilename(filename);
@@ -354,6 +364,9 @@ void MainWindow::on_pushButton_clicked()
 
     HQt_SaveFile(ResultTex,temp_library_path+"Library_Help.tex");
     ui->textEdit->insertHtml("Сохранили файл <b>Library_Help.tex</b><br>");
+
+    HQt_SaveFile(ResultFunctionsMD,temp_library_path+"FUNCTIONS.md");
+    ui->textEdit->insertHtml("Сохранили файл <b>FUNCTIONS.md</b><br>");
 
     if (countoferrors==0) ui->textEdit->insertHtml("<br>Ошибки не были зафиксированы.<br>");
     else ui->textEdit->insertHtml("<br><font color=\"red\">Ошибок <b>"+QString::number(countoferrors)+"</b> штук<\font><br>");

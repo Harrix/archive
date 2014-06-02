@@ -2209,7 +2209,7 @@ QString HQt_StringForLaTeX (QString String)
     */
     QString VMHL_Result;
 
-    VMHL_Result=String.replace("_","\\_");
+    VMHL_Result=String.replace("_","\\_").replace("#","\\#");
 
     return VMHL_Result;
 }
@@ -2226,7 +2226,7 @@ QString HQt_StringToLabelForLaTeX (QString String)
     */
     QString VMHL_Result;
 
-    VMHL_Result=String.replace("_","");
+    VMHL_Result=String.replace("_","").replace("#","\\#");
 
     return VMHL_Result;
 }

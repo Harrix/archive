@@ -2207,7 +2207,7 @@ void HarrixClass_DataOfHarrixOptimizationTesting::makingLatexAnalysis()
 
             double WidthCol=1./double(ColsForHeader+ColsForContent)*0.9;
 
-            Table+="\\footnotesize\\begin{longtable}[H]{";
+            Table+="\\tiny\\begin{longtable}[H]{";
             for (int i=0;i<ColsForHeader;i++)
                 Table+="|p{\\dimexpr"+QString::number(WidthCol)+"\\linewidth-2\\tabcolsep}";
             for (int i=0;i<ColsForContent;i++)
@@ -2220,7 +2220,7 @@ void HarrixClass_DataOfHarrixOptimizationTesting::makingLatexAnalysis()
             for (int j=0;j<RowsForHeader;j++)
             {
                 Table+="\\tabularnewline\\hline\n";
-                Table+="\\multicolumn{"+QString::number(ColsForHeader)+"}{|c|} {\\centering \\tiny \\textbf{ }} & ";
+                Table+="\\multicolumn{"+QString::number(ColsForHeader)+"}{|c|} {\\centering \\textbf{ }} & ";
 
                 for (int i=0;i<TempC;i++)
                 {
@@ -2232,9 +2232,9 @@ void HarrixClass_DataOfHarrixOptimizationTesting::makingLatexAnalysis()
                     QString Text=HQt_ForcedWordWrap(Data.getOptionFromListOfParameterOptions(Order[j],i%(Data.getListOfParameterOptions(Order[j]).count())));
 
                     if (j!=RowsForHeader-1)
-                        Table+="\\multicolumn{"+QString::number(ColsForContent/TempC)+"}{c|} {\\centering \\tiny \\textbf{"+Text+"}}"+Amper;
+                        Table+="\\multicolumn{"+QString::number(ColsForContent/TempC)+"}{c|} {\\centering \\textbf{"+Text+"}}"+Amper;
                     else
-                        Table+="\\multicolumn{"+QString::number(ColsForContent/TempC)+"}{p{\\dimexpr"+QString::number(WidthCol)+"\\linewidth-2\\tabcolsep}|} {\\centering \\tiny \\textbf{"+Text+"}}"+Amper;
+                        Table+="\\multicolumn{"+QString::number(ColsForContent/TempC)+"}{p{\\dimexpr"+QString::number(WidthCol)+"\\linewidth-2\\tabcolsep}|} {\\centering \\textbf{"+Text+"}}"+Amper;
                 }
                 Table+="\n";
                 TempC*=Data.getListOfParameterOptions(Order[j+1]).count();
@@ -2244,7 +2244,7 @@ void HarrixClass_DataOfHarrixOptimizationTesting::makingLatexAnalysis()
             Table+="\\endhead\n";
 
             //Оформляем «Продолжение следует», если не всё впорядке пойдет.
-            Table+="\\multicolumn{"+QString::number(ColsForHeader+ColsForContent)+"}{|r|}{{\\tiny Продолжение на следующей странице...}} \\\\ \\hline \\endfoot\n";
+            Table+="\\multicolumn{"+QString::number(ColsForHeader+ColsForContent)+"}{|r|}{{Продолжение на следующей странице...}} \\\\ \\hline \\endfoot\n";
             Table+="\\endlastfoot\n";
 
             //TempC=Data.getListOfParameterOptions(Order[ForColsN]).count();
@@ -2263,11 +2263,18 @@ void HarrixClass_DataOfHarrixOptimizationTesting::makingLatexAnalysis()
                 bool kDo=false;//значит, что еще не решали будет линия или нет
                 for (int i=0;i<ColsForHeader;i++)
                 {
-                    TempC = TempC/Data.getListOfParameterOptions(Order[ForColsN+i]).count();
+                    int uc=Data.getListOfParameterOptions(Order[ForColsN+i]).count();
+                    TempC = TempC/uc;
                     int OO=j%TempC;
                     if (OO==0)
                     {
-                        Row+="\\multirow{2}{*}{}{\\centering \\tiny \\textbf{22}} & ";
+                        QString Text=HQt_ForcedWordWrap(Data.getOptionFromListOfParameterOptions(Order[ForColsN+i],0));
+                        //QString Text = "222";
+
+                        if (TempC!=1)
+                           Row+="\\multirow{"+QString::number(TempC)+"}{\\linewidth}{\\centering \\textbf{"+Text+"}} & ";
+                        else
+                           Row+="\\centering \\textbf{"+Text+"} & ";
                     }
                     else
                     {
@@ -2281,10 +2288,8 @@ void HarrixClass_DataOfHarrixOptimizationTesting::makingLatexAnalysis()
                             }
                         }
                     }
-                    //Row+="{\\centering \\tiny \\textbf{22}} & ";
                 }
                 if (k==-1) k=ColsForHeader;
-                //Row+="\\multicolumn{"+QString::number(ColsForHeader)+"}{|c|} {\\centering \\tiny \\textbf{ }} & ";
 
                 //Основное содержание
                 for (int i=0;i<ColsForContent;i++)
@@ -2292,19 +2297,13 @@ void HarrixClass_DataOfHarrixOptimizationTesting::makingLatexAnalysis()
                     QString Amper;
                     if (i!=ColsForContent-1)
                         Amper=" & ";
-                    Row+="\\tiny 11"+Amper;
+                    Row+="11"+Amper;
                 }
 
 
                 Row+="\\tabularnewline \\cline{"+QString::number(k)+"-"+QString::number(ColsForContent+ColsForHeader)+"}\n";
                 Table+=Row;
             }
-
-
-            //        for (int i=0;i<Col1.count();i++)
-            //        {
-            //            Table+="\\footnotesize "+Col1.at(i)+" & \\footnotesize "+Col2.at(i)+" \\tabularnewline \\hline\n";
-            //        }
 
             Table+="\\end{longtable}\n";
             Table+="}\n";

@@ -23,6 +23,8 @@ public:
 private slots:
     void on_pushButton_clicked();
 
+    void on_textEdit_textChanged();
+
 private:
     Ui::MainWindow *ui;
 };

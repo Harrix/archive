@@ -10,12 +10,17 @@
 
 #include "HarrixQtLibrary.h"
 
+int CountTextEditChanging;
+int linewmax;
+
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
     ui->textEdit->setReadOnly(true);
+
+    linewmax=100;
 }
 
 MainWindow::~MainWindow()
@@ -28,6 +33,8 @@ void MainWindow::on_pushButton_clicked()
     //Сборка проекта Harrix Library
     QTime myTimer;
     myTimer.start();//запуск таймера работы сборки библиотеки
+
+    CountTextEditChanging=0;
 
     ui->pushButton->setEnabled(false);
 
@@ -95,6 +102,7 @@ void MainWindow::on_pushButton_clicked()
     n=listdirs.count();//количество папок разделов
     ui->textEdit->insertHtml("<br>Было найдено  <b>"+QString::number(n)+"</b> папок - разделов библиотеки<br>");
     if (n==0) {MessageError="<font color=\"red\">Не найдены разделы библиотек. Это очень плохо.<\font><br>";AllMessageError+=MessageError;ui->textEdit->insertHtml(MessageError);countoferrors++;}
+    if (CountTextEditChanging>linewmax) {ui->textEdit->clear();CountTextEditChanging = 0;}
 
     ResultTexList="\\newpage\n\\section{Список функций}\\label{section_listfunctions}\n";
     ResultTexFunctions="\\newpage\n\\section{Функции}\n";
@@ -110,6 +118,7 @@ void MainWindow::on_pushButton_clicked()
         m=listfiles.count();//количество файлов в папке
         ui->textEdit->insertHtml("<br>Было найдено  <b>"+QString::number(m)+"</b> файлов в папке<br><br>");
         if (m==0) {MessageError="<font color=\"red\">Не найдены файлы в разделе. То есть в разделе нет функций?<\font><br>";AllMessageError+=MessageError;ui->textEdit->insertHtml(MessageError);countoferrors++;}
+        if (CountTextEditChanging>linewmax) {ui->textEdit->clear();CountTextEditChanging = 0;}
 
 
         ResultCpp += "//*****************************************************************\n";
@@ -155,6 +164,7 @@ void MainWindow::on_pushButton_clicked()
 
                 if (!(Temp.trimmed().isEmpty())) ui->textEdit->insertHtml("Загрузили файл <b>"+filename+"</b><br>");
                 else {MessageError="<font color=\"red\">Ошибка с файлом <b>"+filename+"</b><\font><br>";AllMessageError+=MessageError;ui->textEdit->insertHtml(MessageError);countoferrors++;}
+                if (CountTextEditChanging>linewmax) {ui->textEdit->clear();CountTextEditChanging = 0;}
 
                 //Проверим наличие сопутствующих файлов
                 QString F=HQt_GetNameFromFilename(filename);
@@ -162,6 +172,7 @@ void MainWindow::on_pushButton_clicked()
                 if ((HQt_FileExists(path2+F+".cpp")==false)&&(HQt_FileExists(path2+F+".tpp")==false)) {MessageError="<font color=\"red\">Не обнаружен <b>"+F+".cpp</b> файл<\font><br>";AllMessageError+=MessageError;ui->textEdit->insertHtml(MessageError);countoferrors++;}
                 if (HQt_FileExists(path2+F+".tex")==false) {MessageError="<font color=\"red\">Не обнаружен <b>"+F+".tex</b> файл<\font><br>";AllMessageError+=MessageError;ui->textEdit->insertHtml(MessageError);countoferrors++;}
                 if (HQt_FileExists(path2+F+".use")==false) {MessageError="<font color=\"red\">Не обнаружен <b>"+F+".use</b> файл<\font><br>";AllMessageError+=MessageError;ui->textEdit->insertHtml(MessageError);countoferrors++;}
+                if (CountTextEditChanging>linewmax) {ui->textEdit->clear();CountTextEditChanging = 0;}
 
             }
             if ((exp=="cpp")||(exp=="tpp"))
@@ -177,6 +188,7 @@ void MainWindow::on_pushButton_clicked()
                     ResultCpp += "//---------------------------------------------------------------------------\n\n";
                     if (!(Temp.trimmed().isEmpty())) ui->textEdit->insertHtml("Загрузили файл <b>"+filename+"</b><br>");
                     else {MessageError="<font color=\"red\">Ошибка с файлом <b>"+filename+"</b><\font><br>";AllMessageError+=MessageError;ui->textEdit->insertHtml(MessageError);countoferrors++;}
+                    if (CountTextEditChanging>linewmax) {ui->textEdit->clear();CountTextEditChanging = 0;}
                 }
 
                 if (exp=="tpp")
@@ -185,6 +197,7 @@ void MainWindow::on_pushButton_clicked()
                     ResultTpp += "//---------------------------------------------------------------------------\n\n";
                     if (!(Temp.trimmed().isEmpty())) ui->textEdit->insertHtml("Загрузили файл <b>"+filename+"</b><br>");
                     else {MessageError="<font color=\"red\">Ошибка с файлом <b>"+filename+"</b><\font><br>";AllMessageError+=MessageError;ui->textEdit->insertHtml(MessageError);countoferrors++;}
+                    if (CountTextEditChanging>linewmax) {ui->textEdit->clear();CountTextEditChanging = 0;}
                 }
 
                 //Проверим наличие сопутствующих файлов
@@ -193,6 +206,7 @@ void MainWindow::on_pushButton_clicked()
                 if (HQt_FileExists(path2+F+".desc")==false) {MessageError="<font color=\"red\">Не обнаружен <b>"+F+".desc</b> файл<\font><br>";AllMessageError+=MessageError;ui->textEdit->insertHtml(MessageError);countoferrors++;}
                 if (HQt_FileExists(path2+F+".tex")==false) {MessageError="<font color=\"red\">Не обнаружен <b>"+F+".tex</b> файл<\font><br>";AllMessageError+=MessageError;ui->textEdit->insertHtml(MessageError);countoferrors++;}
                 if (HQt_FileExists(path2+F+".use")==false) {MessageError="<font color=\"red\">Не обнаружен <b>"+F+".use</b> файл<\font><br>";AllMessageError+=MessageError;ui->textEdit->insertHtml(MessageError);countoferrors++;}
+                if (CountTextEditChanging>linewmax) {ui->textEdit->clear();CountTextEditChanging = 0;}
             }
             if (exp=="h")
             {
@@ -208,6 +222,7 @@ void MainWindow::on_pushButton_clicked()
                 ResultH += Temp;
                 if (!(Temp.trimmed().isEmpty())) ui->textEdit->insertHtml("Загрузили файл <b>"+filename+"</b><br>");
                 else {MessageError="<font color=\"red\">Ошибка с файлом <b>"+filename+"</b><\font><br>";AllMessageError+=MessageError;ui->textEdit->insertHtml(MessageError);countoferrors++;}
+                if (CountTextEditChanging>linewmax) {ui->textEdit->clear();CountTextEditChanging = 0;}
 
                 countfunction+=Temp.count(";");//количество функций считаем по количеству знаков ; в h файлах
 
@@ -223,6 +238,7 @@ void MainWindow::on_pushButton_clicked()
                 if (HQt_FileExists(path2+F+".desc")==false) {MessageError="<font color=\"red\">Не обнаружен <b>"+F+".desc</b> файл<\font><br>";AllMessageError+=MessageError;ui->textEdit->insertHtml(MessageError);countoferrors++;}
                 if (HQt_FileExists(path2+F+".tex")==false) {MessageError="<font color=\"red\">Не обнаружен <b>"+F+".tex</b> файл<\font><br>";AllMessageError+=MessageError;ui->textEdit->insertHtml(MessageError);countoferrors++;}
                 if (HQt_FileExists(path2+F+".use")==false) {MessageError="<font color=\"red\">Не обнаружен <b>"+F+".use</b> файл<\font><br>";AllMessageError+=MessageError;ui->textEdit->insertHtml(MessageError);countoferrors++;}
+                if (CountTextEditChanging>linewmax) {ui->textEdit->clear();CountTextEditChanging = 0;}
             }
             if (exp=="tex")
             {
@@ -242,6 +258,7 @@ void MainWindow::on_pushButton_clicked()
                 if (HQt_FileExists(path2+F+".desc")==false) {MessageError="<font color=\"red\">Не обнаружен <b>"+F+".desc</b> файл<\font><br>";AllMessageError+=MessageError;ui->textEdit->insertHtml(MessageError);countoferrors++;}
                 if ((HQt_FileExists(path2+F+".cpp")==false)&&(HQt_FileExists(path2+F+".tpp")==false)) {MessageError="<font color=\"red\">Не обнаружен <b>"+F+".cpp</b> файл<\font><br>";AllMessageError+=MessageError;ui->textEdit->insertHtml(MessageError);countoferrors++;}
                 if (HQt_FileExists(path2+F+".use")==false) {MessageError="<font color=\"red\">Не обнаружен <b>"+F+".use</b> файл<\font><br>";AllMessageError+=MessageError;ui->textEdit->insertHtml(MessageError);countoferrors++;}
+                if (CountTextEditChanging>linewmax) {ui->textEdit->clear();CountTextEditChanging = 0;}
             }
             if (exp=="png")
             {
@@ -251,6 +268,7 @@ void MainWindow::on_pushButton_clicked()
                 b=HQt_CopyFile(path2+filename, temp_library_path+DS+"images"+DS,true);
                 if (b) ui->textEdit->insertHtml("Скопировали файл <b>"+filename+"</b><br>");
                 else {MessageError="<font color=\"red\">Ошибка с файлом <b>"+filename+"</b><\font><br>";AllMessageError+=MessageError;ui->textEdit->insertHtml(MessageError);countoferrors++;}
+                if (CountTextEditChanging>linewmax) {ui->textEdit->clear();CountTextEditChanging = 0;}
             }
             if (exp=="pdf")
             {
@@ -260,6 +278,7 @@ void MainWindow::on_pushButton_clicked()
                 b=HQt_CopyFile(path2+filename, temp_library_path+DS+"images"+DS,true);
                 if (b) ui->textEdit->insertHtml("Скопировали файл <b>"+filename+"</b><br>");
                 else {MessageError="<font color=\"red\">Ошибка с файлом <b>"+filename+"</b><\font><br>";AllMessageError+=MessageError;ui->textEdit->insertHtml(MessageError);countoferrors++;}
+                if (CountTextEditChanging>linewmax) {ui->textEdit->clear();CountTextEditChanging = 0;}
             }
             if (exp=="use")
             {
@@ -320,6 +339,7 @@ void MainWindow::on_pushButton_clicked()
 
                 if (!(Temp.trimmed().isEmpty())) ui->textEdit->insertHtml("Загрузили файл <b>"+filename+"</b><br>");
                 else {MessageError="<font color=\"red\">Ошибка с файлом <b>"+filename+"</b><\font><br>";AllMessageError+=MessageError;ui->textEdit->insertHtml(MessageError);countoferrors++;}
+                if (CountTextEditChanging>linewmax) {ui->textEdit->clear();CountTextEditChanging = 0;}
 
                 //Проверим наличие сопутствующих файлов
                 QString F=HQt_GetNameFromFilename(filename);
@@ -327,6 +347,7 @@ void MainWindow::on_pushButton_clicked()
                 if ((HQt_FileExists(path2+F+".cpp")==false)&&(HQt_FileExists(path2+F+".tpp")==false)) {MessageError="<font color=\"red\">Не обнаружен <b>"+F+".cpp</b> файл<\font><br>";AllMessageError+=MessageError;ui->textEdit->insertHtml(MessageError);countoferrors++;}
                 if (HQt_FileExists(path2+F+".tex")==false) {MessageError="<font color=\"red\">Не обнаружен <b>"+F+".tex</b> файл<\font><br>";AllMessageError+=MessageError;ui->textEdit->insertHtml(MessageError);countoferrors++;}
                 if (HQt_FileExists(path2+F+".desc")==false) {MessageError="<font color=\"red\">Не обнаружен <b>"+F+".desc</b> файл<\font><br>";AllMessageError+=MessageError;ui->textEdit->insertHtml(MessageError);countoferrors++;}
+                if (CountTextEditChanging>linewmax) {ui->textEdit->clear();CountTextEditChanging = 0;}
 
             }
 
@@ -393,4 +414,9 @@ void MainWindow::on_pushButton_clicked()
     //открытие папки с собранными файлами
     QDesktopServices::openUrl(QUrl::fromLocalFile(temp_library_path));
 
+}
+
+void MainWindow::on_textEdit_textChanged()
+{
+    CountTextEditChanging++;
 }

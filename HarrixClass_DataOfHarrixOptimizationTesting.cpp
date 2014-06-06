@@ -2157,6 +2157,9 @@ void HarrixClass_DataOfHarrixOptimizationTesting::makingLatexAnalysis()
         {
             QString Title = "1111";
 
+            ////////////////////////////////////////////////////////
+            //// ОПРЕДЕЛИМ В КАКОМ ПОРЯДКЕ И ГДЕ БУДУТ ИДТИ СТОЛБЦЫ
+            ////////////////////////////////////////////////////////
             //Сколько у нас вообще параметров
             int NumberOfParametersTemp = Data.getNumberOfParameters();
             //массив для числа каждого параметры
@@ -2177,6 +2180,27 @@ void HarrixClass_DataOfHarrixOptimizationTesting::makingLatexAnalysis()
                 TMHL_ReverseVector(Order,NumberOfParametersTemp);
                 ForColsN = 1;
             }
+
+            //Во второй части массива Order элементы расположим по длине текста
+            int *CountForSubOrder = new int[NumberOfParametersTemp-ForColsN];
+            int *SubOrder = new int[NumberOfParametersTemp-ForColsN];
+            for (int i=0;i<NumberOfParametersTemp-ForColsN;i++)
+            {
+                SubOrder[i] = Order[i+ForColsN];
+                CountForSubOrder[i] = Data.getOptionFromListOfParameterOptionsForTable(Order[i+ForColsN],0).length();
+                for (int j=0;j<CountOfParametersTemp[Order[i+ForColsN]];j++)
+                {
+                    QString Temp = Data.getOptionFromListOfParameterOptionsForTable(Order[i+ForColsN],j);
+                    if (Temp.length()>CountForSubOrder[i]) CountForSubOrder[i] = Temp.length();
+                }
+            }
+            TMHL_BubbleSortWithConjugateVector(CountForSubOrder, SubOrder, NumberOfParametersTemp-ForColsN);
+            for (int i=0;i<NumberOfParametersTemp-ForColsN;i++)
+            {
+                Order[i+ForColsN]=SubOrder[i];
+            }
+            delete [] CountForSubOrder;
+            delete [] SubOrder;
 
             //Число столбов для контента
             int ColsForContent=1;
@@ -2200,6 +2224,9 @@ void HarrixClass_DataOfHarrixOptimizationTesting::makingLatexAnalysis()
             //Число строк для заголовков (наверху)
             int RowsForHeader=ForColsN;
 
+            ////////////////////////////////////////////////////////
+            //// РИСУЕМ ВЕРХНИЕ ЗАГОЛОВКИ
+            ////////////////////////////////////////////////////////
             //Начинаем отрисовывать таблицу
             QString Table;
             Table+="\\begin{center}\n";
@@ -2219,8 +2246,8 @@ void HarrixClass_DataOfHarrixOptimizationTesting::makingLatexAnalysis()
             int TempC=Data.getListOfParameterOptions(Order[0]).count();
             for (int j=0;j<RowsForHeader;j++)
             {
-                Table+="\\tabularnewline\\hline\n";
-                Table+="\\multicolumn{"+QString::number(ColsForHeader)+"}{|c|} {\\centering \\textbf{ }} & ";
+                Table+="\\tabularnewline\\cline{"+QString::number(ColsForHeader+1)+"-"+QString::number(ColsForContent+ColsForHeader)+"}\n";
+                Table+="\\multicolumn{"+QString::number(ColsForHeader)+"}{c|} {\\centering \\textbf{ }} & ";
 
                 for (int i=0;i<TempC;i++)
                 {
@@ -2229,7 +2256,7 @@ void HarrixClass_DataOfHarrixOptimizationTesting::makingLatexAnalysis()
                         Amper=" & ";
 
                     //Получим название настройки алгоритма оптимизации
-                    QString Text=HQt_ForcedWordWrap(Data.getOptionFromListOfParameterOptions(Order[j],i%(Data.getListOfParameterOptions(Order[j]).count())));
+                    QString Text=HQt_ForcedWordWrap(Data.getOptionFromListOfParameterOptionsForTable(Order[j],i%(Data.getListOfParameterOptions(Order[j]).count())));
 
                     if (j!=RowsForHeader-1)
                         Table+="\\multicolumn{"+QString::number(ColsForContent/TempC)+"}{c|} {\\centering \\textbf{"+Text+"}}"+Amper;
@@ -2243,16 +2270,33 @@ void HarrixClass_DataOfHarrixOptimizationTesting::makingLatexAnalysis()
             Table+="\\tabularnewline\\hline\n";
             Table+="\\endhead\n";
 
+            ////////////////////////////////////////////////////////
+            //// ПОБОЧНЫЕ ДЕЙСТВИЯ С ТАБЛИЦЕЙ
+            ////////////////////////////////////////////////////////
+
             //Оформляем «Продолжение следует», если не всё впорядке пойдет.
-            Table+="\\multicolumn{"+QString::number(ColsForHeader+ColsForContent)+"}{|r|}{{Продолжение на следующей странице...}} \\\\ \\hline \\endfoot\n";
+            Table+="\\hline\n\\multicolumn{"+QString::number(ColsForHeader+ColsForContent)+"}{|r|}{{Продолжение на следующей странице...}} \\\\ \\hline \\endfoot\n";
             Table+="\\endlastfoot\n";
 
-            //TempC=Data.getListOfParameterOptions(Order[ForColsN]).count();
+            ////////////////////////////////////////////////////////
+            //// ОСНОВОЕ ТЕЛО ТАБЛИЦЫ
+            ////////////////////////////////////////////////////////
+
+            int *WhatOptionInRow = new int [ColsForHeader];
+            TMHL_ZeroVector(WhatOptionInRow,ColsForHeader);
+
+            int *WhatOptionInCol = new int [RowsForHeader];
+            TMHL_ZeroVector(WhatOptionInCol,RowsForHeader);
+
             //Основное тело таблицы
             for (int j=0;j<RowsForContent;j++)
             {
                 QString Row;
                 //Заголовки слева
+
+                ////////////////////////////////////////////////////////
+                //// ЗАГОЛОВКИ СЛЕВА
+                ////////////////////////////////////////////////////////
 
                 //получим число всех вариантов настроек, отображаемых слева
                 TempC=1;
@@ -2268,13 +2312,19 @@ void HarrixClass_DataOfHarrixOptimizationTesting::makingLatexAnalysis()
                     int OO=j%TempC;
                     if (OO==0)
                     {
-                        QString Text=HQt_ForcedWordWrap(Data.getOptionFromListOfParameterOptions(Order[ForColsN+i],0));
+                        QString Text=HQt_ForcedWordWrap(Data.getOptionFromListOfParameterOptionsForTable(Order[ForColsN+i],WhatOptionInRow[i]));
                         //QString Text = "222";
 
                         if (TempC!=1)
-                           Row+="\\multirow{"+QString::number(TempC)+"}{\\linewidth}{\\centering \\textbf{"+Text+"}} & ";
+                            Row+="\\multirow{"+QString::number(TempC)+"}{\\linewidth}{\\centering \\textbf{"+Text+"}} & ";
                         else
-                           Row+="\\centering \\textbf{"+Text+"} & ";
+                            Row+="\\centering \\textbf{"+Text+"} & ";
+
+                        WhatOptionInRow[i]++;
+                        if (WhatOptionInRow[i]==Data.getListOfParameterOptions(Order[ForColsN+i]).count())
+                        {
+                            WhatOptionInRow[i]=0;
+                        }
                     }
                     else
                     {
@@ -2291,13 +2341,47 @@ void HarrixClass_DataOfHarrixOptimizationTesting::makingLatexAnalysis()
                 }
                 if (k==-1) k=ColsForHeader;
 
+
+                ////////////////////////////////////////////////////////
+                //// ОСНОВНЫЕ ЯЧЕЙКИ
+                ////////////////////////////////////////////////////////
+
                 //Основное содержание
+                TMHL_ZeroVector(WhatOptionInCol,RowsForHeader);
                 for (int i=0;i<ColsForContent;i++)
                 {
+                    ////////////////////////////////////////////////////////
+                    //// ОПРЕДЕЛЯЕМ КАКИЕ ПАРАМЕТРЫ ПО СТОЛБЦАМ ИДУТ
+                    ////////////////////////////////////////////////////////
+                    {//Определяем какие параметры по столбцам идут
+                        //int TempC=Data.getListOfParameterOptions(Order[0]).count();
+                        for (int j=0;j<RowsForHeader;j++)
+                        {
+                            WhatOptionInCol[j]=i%(Data.getListOfParameterOptions(Order[j]).count());
+                        }
+                        // TempC*=Data.getListOfParameterOptions(Order[j+1]).count();
+                    }//Определяем какие параметры по столбцам идут
+
+                    ////////////////////////////////////////////////////////
+                    //// ОПРЕДЕЛЕНИЕ НОМЕРА ЭКПЕРИМЕНТА
+                    ////////////////////////////////////////////////////////
+                    {//ОПРЕДЕЛЕНИЕ НОМЕРА ЭКПЕРИМЕНТА
+
+                    }//ОПРЕДЕЛЕНИЕ НОМЕРА ЭКПЕРИМЕНТА
+
+                    ////////////////////////////////////////////////////////
+                    //// ОПРЕДЕЛЕНИЕ СОДЕРЖИМОГО ЯЧЕЙКИ
+                    ////////////////////////////////////////////////////////
+
+                    QString Content="22";
+
+                    Content = QString::number(WhatOptionInCol[0]);
+
                     QString Amper;
                     if (i!=ColsForContent-1)
                         Amper=" & ";
-                    Row+="11"+Amper;
+                    Row+=Content+Amper;
+
                 }
 
 
@@ -2312,6 +2396,8 @@ void HarrixClass_DataOfHarrixOptimizationTesting::makingLatexAnalysis()
 
             delete [] CountOfParametersTemp;
             delete [] Order;
+            delete [] WhatOptionInRow;
+            delete [] WhatOptionInCol;
 
             LatexAnalysis+=Table;
         }

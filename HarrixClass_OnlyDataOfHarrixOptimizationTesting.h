@@ -74,6 +74,7 @@ public:
     QStringList getNamesOfParameters();//Получение списка параметров алгоритма (тип селекции, тип скрещивания).
     QStringList getListOfParameterOptions(int Number_Of_Parameter);//Получение списка вектора названий вариантов параметров алгоритма оптимизации.
     QString getOptionFromListOfParameterOptions(int Number_Of_Parameter, int Number_Of_Option);//Получение названия вариантов параметров алгоритма оптимизации.
+    QString getOptionFromListOfParameterOptionsForTable(int Number_Of_Parameter, int Number_Of_Option);//Получение названия вариантов параметров алгоритма оптимизации для таблиц
     void addListOfParameterOptions(QString Option, int Number_Of_Parameter);//Добавление списка вектора названий вариантов параметров алгоритма оптимизации.
     void setListOfParameterOptions(QStringList List, int Number_Of_Parameter);//Задание списка вектора названий вариантов параметров алгоритма оптимизации.
     double getNumberOfListOfVectorParameterOptions(int Number);//Получение значения элемента массива NumberOfListOfVectorParameterOptions

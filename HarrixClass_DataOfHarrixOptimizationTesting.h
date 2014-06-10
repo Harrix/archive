@@ -1,5 +1,5 @@
 //HarrixClass_DataOfHarrixOptimizationTesting
-//Версия 1.23
+//Версия 1.24
 //Класс для считывания информации формата данных Harrix Optimization Testing на C++ для Qt.
 //https://github.com/Harrix/HarrixClass_DataOfHarrixOptimizationTesting
 //Библиотека распространяется по лицензии Apache License, Version 2.0.
@@ -87,6 +87,7 @@ private:
     void makingHtmlReport();//Создает текст Html для отображения отчета о считывании XML файла.
     QString getLatexEnd();//Внутренняя функция. Возвращает концовку для полноценного Latex файла.
     QString getLatexBegin();//Внутренняя функция. Возвращает начало для полноценного Latex файла.
+    QString makingLatexTable2D(QString Title, QStringList InfoForEveryExperiment);//Создает текст LaTeX в виде таблицы 2D для всех экмпериментов для отображения какой-нибудь информации.
 
     void readXmlLeafTag();//Считывает и проверяет тэг, который должен являться "листом", то есть самым глубоким. Внутренняя функция.
     void checkXmlLeafTags();//Проверяет наличие тэгов и правильное их выполнение. Внутренняя функция.

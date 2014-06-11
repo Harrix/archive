@@ -1,0 +1,1 @@
+QString HQt_ShowText (QString TitleX);

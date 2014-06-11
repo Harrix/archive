@@ -1,0 +1,24 @@
+    QString DS=QDir::separator();
+    QString path=QGuiApplication::applicationDirPath()+DS;//путь к папке
+
+    QString Html;
+    Html=HQt_BeginHtml ();
+
+    int N=6;
+    double *dataX=new double [N];
+    double *dataY=new double [N];
+    dataX[0]=7;dataY[0]=6;
+    dataX[1]=8;dataY[1]=4;
+    dataX[2]=10;dataY[2]=7;
+    dataX[3]=5;dataY[3]=12;
+    dataX[4]=14;dataY[4]=4;
+    dataX[5]=13;dataY[5]=8;
+
+    Html += THQt_ShowChartOfLine (dataX,dataY,N,"Тестовый график","x","y","линия",true,true,true,true,false);
+
+    delete []dataX;
+    delete []dataY;
+
+    Html+=HQt_EndHtml();
+    HQt_SaveFile(Html, path+"temp.html");
+    ui->webView->setUrl(QUrl::fromLocalFile(path+"temp.html"));

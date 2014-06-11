@@ -1,0 +1,894 @@
+\documentclass[a4paper,12pt]{article}
+
+\input{packages}
+\input{styles}
+
+\title{HarrixQtLibraryForQWebView v.1.15}
+\author{А.\,Б. Сергиенко}
+\date{\today}
+
+
+\begin{document}
+
+\input{names}
+
+\maketitle
+
+\begin{abstract}
+Библиотека HarrixQtLibraryForQWebView --- библиотека для отображения различных данных в QWebView, включая графики.
+\end{abstract}
+
+\tableofcontents
+
+\newpage
+
+\section{Введение}
+
+Библиотека HarrixQtLibraryForQWebView --- это библиотека для отображения различных данных в QWebView, включая графики..
+
+Последнюю версию документа можно найти по адресу:
+
+\href{https://github.com/Harrix/HarrixQtLibraryForQWebView}{https://github.com/Harrix/HarrixQtLibraryForQWebView}
+
+Об установке библиотеки можно прочитать тут:
+
+\href{http://blog.harrix.org/?p=1196}{http://blog.harrix.org/?p=1196}
+
+С автором можно связаться по адресу \href{mailto:sergienkoanton@mail.ru}{sergienkoanton@mail.ru} или  \href{http://vk.com/harrix}{http://vk.com/harrix}.
+
+Сайт автора, где публикуются последние новости: \href{http://blog.harrix.org/}{http://blog.harrix.org/}, а проекты располагаются по адресу \href{http://harrix.org/}{http://harrix.org/}.
+
+\newpage
+\section{Список функций}\label{section_listfunctions}
+\textbf{Главные загрузочные функции}
+\begin{enumerate}
+
+\item \textbf{\hyperref[HQt_AddHtml]{HQt\_AddHtml}} --- Функция добавляет код html к существующему и сохраняет его в temp.html.
+
+\item \textbf{\hyperref[HQt_BeginHtml]{HQt\_BeginHtml}} --- Функция обнуляет переменную HTML. Требуется когда нужно перезапустить показ информации в QWebView.
+
+\end{enumerate}
+
+\textbf{Показ графиков}
+\begin{enumerate}
+
+\item \textbf{\hyperref[HQt_DrawLine]{HQt\_DrawLine}} --- Функция возвращает строку с HTML кодом отрисовки линии по функции Function. Для добавление в html файл.
+
+\item \textbf{\hyperref[THQt_ShowChartOfLine]{THQt\_ShowChartOfLine}} --- Функция возвращает строку с выводом некоторого графика по точкам с HTML кодами. Для добавление в html файл.
+
+\item \textbf{\hyperref[THQt_ShowChartsOfLineFromMatrix]{THQt\_ShowChartsOfLineFromMatrix}} --- Функция возвращает строку с выводом графиков из матрицы по точкам с HTML кодами. Для добавление в html файл.
+
+\item \textbf{\hyperref[THQt_ShowIndependentChartsOfLineFromMatrix]{THQt\_ShowIndependentChartsOfLineFromMatrix}} --- Функция возвращает строку с выводом графиков из матрицы по точкам с HTML кодами. Для добавление в html файл.
+
+\item \textbf{\hyperref[THQt_ShowTwoChartsOfLine]{THQt\_ShowTwoChartsOfLine}} --- Функция возвращает строку с выводом некоторого двух графиков по точкам с HTML кодами. Для добавление в html файл. У обоих графиков одинаковый массив значений X.
+
+\item \textbf{\hyperref[THQt_ShowTwoIndependentChartsOfLine]{THQt\_ShowTwoIndependentChartsOfLine}} --- Функция возвращает строку с выводом некоторого двух независимых графиков по точкам с HTML кодами. Для добавление в html файл.
+
+\item \textbf{\hyperref[THQt_ShowTwoIndependentChartsOfPointsAndLine]{THQt\_ShowTwoIndependentChartsOfPointsAndLine}} --- Функция возвращает строку с выводом некоторого двух независимых графиков по точкам с HTML кодами. Для добавление в html файл. Один график выводится в виде точек, а второй в виде линии. Удобно для отображения регрессий. У обоих графиков разные массивы значений X и Y.
+
+\end{enumerate}
+
+\textbf{Показ математических выражений}
+\begin{enumerate}
+
+\item \textbf{\hyperref[THQt_ShowMatrix]{THQt\_ShowMatrix}} --- Функция возвращает строку с выводом некоторой матрицы VMHL\_Matrix с HTML кодами. Для добавление в html файл.
+
+\item \textbf{\hyperref[THQt_ShowMatrix2]{THQt\_ShowMatrix2}} --- Функция возвращает строку с выводом некоторой матрицы VMHL\_Matrix с HTML кодами. Для добавление в html файл. В качестве матрицы выступает массив QStringList, где количество QStringList - это количество строк. Каждый QStringList --- это одна строка.
+
+\item \textbf{\hyperref[THQt_ShowNumber]{THQt\_ShowNumber}} --- Функция возвращает строку с выводом некоторого числа VMHL\_X с HTML кодами. Для добавление в html файл.
+
+\item \textbf{\hyperref[THQt_ShowVector]{THQt\_ShowVector}} --- Функция возвращает строку с выводом некоторого вектора VMHL\_Vector с HTML кодами. Для добавление в html файл.
+
+\item \textbf{\hyperref[THQt_ShowVector2]{THQt\_ShowVector2}} --- Функция возвращает строку с выводом некоторого списка строк VMHL\_Vector с HTML кодами. Для добавление в html файл.
+
+\item \textbf{\hyperref[THQt_ShowVectorT]{THQt\_ShowVectorT}} --- Функция возвращает строку с выводом некоторого вектора VMHL\_Vector в траснпонированном виде с HTML кодами. Для добавление в html файл.
+
+\end{enumerate}
+
+\textbf{Показ текста}
+\begin{enumerate}
+
+\item \textbf{\hyperref[HQt_ShowAlert]{HQt\_ShowAlert}} --- Функция возвращает строку с выводом некоторого предупреждения. Для добавление в html файл.
+
+\item \textbf{\hyperref[HQt_ShowH1]{HQt\_ShowH1}} --- Функция возвращает строку с выводом некоторой строки в виде заголовка. Для добавление в html файл.
+
+\item \textbf{\hyperref[HQt_ShowHr]{HQt\_ShowHr}} --- Функция возвращает строку с выводом горизонтальной линии. Для добавление в html файл.
+
+\item \textbf{\hyperref[HQt_ShowSimpleText]{HQt\_ShowSimpleText}} --- Функция возвращает строку с выводом некоторой строки с HTML кодами без всякого излишества. Для добавление в html файл.
+
+\item \textbf{\hyperref[HQt_ShowText]{HQt\_ShowText}} --- Функция возвращает строку с выводом некоторой строки с HTML кодами. Для добавление в html файл.
+
+\item \textbf{\hyperref[THQt_NumberToText]{THQt\_NumberToText}} --- Функция выводит число VMHL\_X в строку.
+
+\end{enumerate}
+
+
+\newpage
+\section{Функции}
+\subsection{Главные загрузочные функции}
+
+\subsubsection{HQt\_AddHtml}\label{HQt_AddHtml}
+
+Функция добавляет код html к существующему и сохраняет его в temp.html.
+
+
+\begin{lstlisting}[label=code_syntax_HQt_AddHtml,caption=Синтаксис]
+void HQt_AddHtml(QString Html);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+Html --- добавляемый текст.
+
+\textbf{Возвращаемое значение:}
+
+Отсутствует.
+
+
+\subsubsection{HQt\_BeginHtml}\label{HQt_BeginHtml}
+
+Функция обнуляет переменную HTML. Требуется когда нужно перезапустить показ информации в QWebView.
+
+
+\begin{lstlisting}[label=code_syntax_HQt_BeginHtml,caption=Синтаксис]
+void HQt_BeginHtml(QString Path);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+Path --- путь к папке, в которой надо будет сохранять html код. В этой папке должен содержаться файл index.html.
+
+\textbf{Возвращаемое значение:}
+
+Отсутствует.
+
+
+\subsection{Показ графиков}
+
+\subsubsection{HQt\_DrawLine}\label{HQt_DrawLine}
+
+Функция возвращает строку с HTML кодом отрисовки линии по функции Function. Для добавление в html файл.
+
+
+\begin{lstlisting}[label=code_syntax_HQt_DrawLine,caption=Синтаксис]
+QString HQt_DrawLine (double Left, double Right, double h, double (*Function)(double), QString TitleChart, QString NameVectorX, QString NameVectorY, QString NameLine, bool ShowLine, bool ShowPoints, bool ShowArea, bool ShowSpecPoints, bool RedLine);
+QString HQt_DrawLine (double Left, double Right, double h, double (*Function)(double), QString TitleChart, QString NameVectorX, QString NameVectorY, bool ShowLine, bool ShowPoints, bool ShowArea, bool ShowSpecPoints, bool RedLine);
+QString HQt_DrawLine (double Left, double Right, double h, double (*Function)(double), QString TitleChart, QString NameVectorX, QString NameVectorY, QString NameLine);
+QString HQt_DrawLine (double Left, double Right, double h, double (*Function)(double));
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+ 
+    Left --- левая граница области;
+ 
+    Right --- правая граница области;
+ 
+    h --- шаг, с которым надо рисовать график;
+ 
+    Function --- указатель на вычисляемую функцию;
+ 
+    TitleChart --- заголовок графика;
+ 
+    NameVectorX --- название оси Ox;
+ 
+    NameVectorY --- название оси Oy;
+ 
+    NameLine --- название первого графика (для легенды);
+ 
+    ShowLine --- показывать ли линию;
+ 
+    ShowPoints --- показывать ли точки;
+ 
+    ShowArea --- показывать ли закрашенную область под кривой;
+ 
+    ShowSpecPoints --- показывать ли специальные точки;
+ 
+    RedLine --- рисовать ли красную линию, или синюю.
+
+\textbf{Возвращаемое значение:}
+
+Строка с HTML кодом.
+
+
+\subsubsection{THQt\_ShowChartOfLine}\label{THQt_ShowChartOfLine}
+
+Функция возвращает строку с выводом некоторого графика по точкам с HTML кодами. Для добавление в html файл.
+
+
+\begin{lstlisting}[label=code_syntax_THQt_ShowChartOfLine,caption=Синтаксис]
+template <class T> QString THQt_ShowChartOfLine (T *VMHL_VectorX,T *VMHL_VectorY, int VMHL_N, QString TitleChart, QString NameVectorX, QString NameVectorY, QString NameLine, bool ShowLine, bool ShowPoints, bool ShowArea, bool ShowSpecPoints, bool RedLine);
+template <class T> QString THQt_ShowChartOfLine (T *VMHL_VectorX,T *VMHL_VectorY, int VMHL_N, QString TitleChart, QString NameVectorX, QString NameVectorY, bool ShowLine, bool ShowPoints, bool ShowArea, bool ShowSpecPoints, bool RedLine);
+template <class T> QString THQt_ShowChartOfLine (T *VMHL_VectorX,T *VMHL_VectorY, int VMHL_N, QString TitleChart, QString NameVectorX, QString NameVectorY, QString NameLine);
+template <class T> QString THQt_ShowChartOfLine (T *VMHL_VectorX,T *VMHL_VectorY, int VMHL_N);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+ 
+    VMHL\_VectorX --- указатель на вектор координат X точек;
+ 
+    VMHL\_VectorY --- указатель на вектор координат Y точек;
+ 
+    VMHL\_N --- количество точек;
+ 
+    TitleChart --- заголовок графика;
+ 
+    NameVectorX --- название оси Ox;
+ 
+    NameVectorY --- название оси Oy;
+ 
+    NameLine --- название первого графика (для легенды);
+ 
+    ShowLine --- показывать ли линию;
+ 
+    ShowPoints --- показывать ли точки;
+ 
+    ShowArea --- показывать ли закрашенную область под кривой;
+ 
+    ShowSpecPoints --- показывать ли специальные точки;
+ 
+    RedLine --- рисовать ли красную линию, или синюю.
+
+\textbf{Возвращаемое значение:}
+
+Строка с HTML кодами с выводимым графиком.
+
+\textbf{Примечание:}
+
+Используются случайные числа, так что рекомендуется вызвать в программе иницилизатор случайных чисел qsrand. Рекомендую так: qsrand(QDateTime::currentMSecsSinceEpoch () % 1000000);
+
+Требует наличия в папке с html файлом файлы jsxgraph.css и jsxgraphcore.js из библиотеки JSXGraph.
+
+
+\begin{lstlisting}[label=code_use_THQt_ShowChartOfLine,caption=Пример использования]
+QString DS=QDir::separator();
+QString path=QGuiApplication::applicationDirPath()+DS;//путь к папке
+
+QString Html;
+Html=HQt_BeginHtml ();
+
+int N=6;
+double *dataX=new double [N];
+double *dataY=new double [N];
+dataX[0]=7;dataY[0]=6;
+dataX[1]=8;dataY[1]=4;
+dataX[2]=10;dataY[2]=7;
+dataX[3]=5;dataY[3]=12;
+dataX[4]=14;dataY[4]=4;
+dataX[5]=13;dataY[5]=8;
+
+Html += THQt_ShowChartOfLine (dataX,dataY,N,"Тестовый график","x","y","линия",true,true,true,true,false);
+
+delete []dataX;
+delete []dataY;
+
+Html+=HQt_EndHtml();
+HQt_SaveFile(Html, path+"temp.html");
+ui->webView->setUrl(QUrl::fromLocalFile(path+"temp.html"));
+\end{lstlisting}
+
+\subsubsection{THQt\_ShowChartsOfLineFromMatrix}\label{THQt_ShowChartsOfLineFromMatrix}
+
+Функция возвращает строку с выводом графиков из матрицы по точкам с HTML кодами. Для добавление в html файл.
+
+
+\begin{lstlisting}[label=code_syntax_THQt_ShowChartsOfLineFromMatrix,caption=Синтаксис]
+template <class T> QString THQt_ShowChartsOfLineFromMatrix (T **VMHL_MatrixXY,int VMHL_N,int VMHL_M, QString TitleChart, QString NameVectorX, QString NameVectorY,QString *NameLine, bool ShowLine,bool ShowPoints,bool ShowArea,bool ShowSpecPoints);
+template <class T> QString THQt_ShowChartsOfLineFromMatrix (T **VMHL_MatrixXY,int VMHL_N,int VMHL_M, QString TitleChart, QString NameVectorX, QString NameVectorY,bool ShowLine,bool ShowPoints,bool ShowArea,bool ShowSpecPoints);
+template <class T> QString THQt_ShowChartsOfLineFromMatrix (T **VMHL_MatrixXY,int VMHL_N,int VMHL_M, QString TitleChart, QString NameVectorX, QString NameVectorY,QString *NameLine);
+template <class T> QString THQt_ShowChartsOfLineFromMatrix (T **VMHL_MatrixXY,int VMHL_N,int VMHL_M);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+ 
+    VMHL\_MatrixXY --- указатель на матрицу значений X и Y графиков;
+ 
+    VMHL\_N --- количество точек;
+ 
+    VMHL\_M --- количество столбцов матрицы (1+количество графиков);
+ 
+    TitleChart --- заголовок графика;
+ 
+    NameVectorX --- название оси Ox;
+ 
+    NameVectorY --- название оси Oy;
+ 
+    NameLine --- указатель на вектор названий графиков (для легенды) количество элементов VMHL\_M---1 (так как первый столбец --- это X значения);
+ 
+    ShowLine --- показывать ли линию;
+ 
+    ShowPoints --- показывать ли точки;
+ 
+    ShowArea --- показывать ли закрашенную область под кривой;
+ 
+    ShowSpecPoints --- показывать ли специальные точки.
+
+\textbf{Возвращаемое значение:}
+
+Строка с HTML кодами с выводимым графиком.
+
+\textbf{Примечание:}
+
+Используются случайные числа, так что рекомендуется вызвать в программе иницилизатор случайных чисел qsrand. Рекомендую так: qsrand(QDateTime::currentMSecsSinceEpoch () % 1000000);
+
+Требует наличия в папке с html файлом файлы jsxgraph.css и jsxgraphcore.js из библиотеки JSXGraph.
+
+
+\begin{lstlisting}[label=code_use_THQt_ShowChartsOfLineFromMatrix,caption=Пример использования]
+QString DS=QDir::separator();
+ QString path=QGuiApplication::applicationDirPath()+DS;//путь к папке
+
+ QString Html;
+ Html=HQt_BeginHtml ();
+
+ int N=6;
+ int M=2;
+ double **data;
+ data=new double*[N];
+ for (int i=0;i<N;i++) X[i]=new double[M];
+ data[0][0]=7;data[0][1]=6;
+ data[1][0]=8;data[1][1]=4;
+ data[2][0]=10;data[2][1]=7;
+ data[3][0]=5;data[3][1]=12;
+ data[4][0]=14;data[4][1]=4;
+ data[5][0]=13;data[5][1]=8;
+
+ QString *NameLine=new QString[M-1];
+ NameLine[0]="Первая линия";
+
+ Html += THQt_ShowChartsOfLineFromMatrix (data,N,M, "График", "x", "y",NameLine,true,true,true,true);
+
+ for (int i=0;i<N;i++) delete [] data[i];
+ delete [] data;
+ delete [] NameLine;
+
+ Html+=HQt_EndHtml();
+ HQt_SaveFile(Html, path+"temp.html");
+ ui->webView->setUrl(QUrl::fromLocalFile(path+"temp.html"));
+\end{lstlisting}
+
+\subsubsection{THQt\_ShowIndependentChartsOfLineFromMatrix}\label{THQt_ShowIndependentChartsOfLineFromMatrix}
+
+Функция возвращает строку с выводом графиков из матрицы по точкам с HTML кодами. Для добавление в html файл.
+
+
+\begin{lstlisting}[label=code_syntax_THQt_ShowIndependentChartsOfLineFromMatrix,caption=Синтаксис]
+template <class T> QString THQt_ShowIndependentChartsOfLineFromMatrix (T **VMHL_MatrixXY,int *VMHL_N_EveryCol,int VMHL_M, QString TitleChart, QString NameVectorX, QString NameVectorY,QString *NameLine, bool ShowLine,bool ShowPoints,bool ShowArea,bool ShowSpecPoints);
+template <class T> QString THQt_ShowIndependentChartsOfLineFromMatrix (T **VMHL_MatrixXY,int *VMHL_N_EveryCol,int VMHL_M, QString TitleChart, QString NameVectorX, QString NameVectorY,bool ShowLine,bool ShowPoints,bool ShowArea,bool ShowSpecPoints);
+template <class T> QString THQt_ShowIndependentChartsOfLineFromMatrix (T **VMHL_MatrixXY,int *VMHL_N_EveryCol,int VMHL_M, QString TitleChart, QString NameVectorX, QString NameVectorY,QString *NameLine);
+template <class T> QString THQt_ShowIndependentChartsOfLineFromMatrix (T **VMHL_MatrixXY,int *VMHL_N_EveryCol,int VMHL_M);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+ 
+VMHL\_MatrixXY --- указатель на матрицу значений X и Н графиков;
+ 
+VMHL\_N\_EveryCol --- количество элементов в каждом столбце (так как столбцы идут по парам, то число элементов в нечетном и
+ 
+следующем за ним четном столбце должны совпадать, например 10,10,5,5,7,7);
+ 
+VMHL\_M --- количество столбцов матрицы (должно быть четным числом конечно);
+ 
+TitleChart --- заголовок графика;
+ 
+NameVectorX --- название оси Ox;
+ 
+NameVectorY --- название оси Oy;
+ 
+NameLine --- указатель на вектор названий графиков (для легенды) количество элементов VMHL\_M/2;
+ 
+ShowLine --- показывать ли линию;
+ 
+ShowPoints --- показывать ли точки;
+ 
+ShowArea --- показывать ли закрашенную область под кривой;
+ 
+ShowSpecPoints --- показывать ли специальные точки.
+
+\textbf{Возвращаемое значение:}
+
+Строка с HTML кодами с выводимым графиком.
+
+\textbf{Примечание:}
+
+Используются случайные числа, так что рекомендуется вызвать в программе иницилизатор случайных чисел qsrand. Рекомендую так: qsrand(QDateTime::currentMSecsSinceEpoch () % 1000000);
+
+Требует наличия в папке с html файлом файлы jsxgraph.css и jsxgraphcore.js из библиотеки JSXGraph.
+
+Нечетные столбцы - это значения координат X графиков. Следующие за ними четные столбцы - соответствующие значения Y. То есть графики друг от друга независимы.
+
+
+\subsubsection{THQt\_ShowTwoChartsOfLine}\label{THQt_ShowTwoChartsOfLine}
+
+Функция возвращает строку с выводом некоторого двух графиков по точкам с HTML кодами. Для добавление в html файл. У обоих графиков одинаковый массив значений X.
+
+
+\begin{lstlisting}[label=code_syntax_THQt_ShowTwoChartsOfLine,caption=Синтаксис]
+template <class T> QString THQt_ShowTwoChartsOfLine (T *VMHL_VectorX,T *VMHL_VectorY1,T *VMHL_VectorY2, int VMHL_N, QString TitleChart, QString NameVectorX, QString NameVectorY,QString NameLine1, QString NameLine2,bool ShowLine,bool ShowPoints,bool ShowArea,bool ShowSpecPoints);
+template <class T> QString THQt_ShowTwoChartsOfLine (T *VMHL_VectorX,T *VMHL_VectorY1,T *VMHL_VectorY2, int VMHL_N, QString TitleChart, QString NameVectorX, QString NameVectorY,bool ShowLine,bool ShowPoints,bool ShowArea,bool ShowSpecPoints);
+template <class T> QString THQt_ShowTwoChartsOfLine (T *VMHL_VectorX,T *VMHL_VectorY1,T *VMHL_VectorY2, int VMHL_N, QString TitleChart, QString NameVectorX, QString NameVectorY,QString NameLine1, QString NameLine2);
+template <class T> QString THQt_ShowTwoChartsOfLine (T *VMHL_VectorX,T *VMHL_VectorY1,T *VMHL_VectorY2, int VMHL_N);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+ 
+    VMHL\_VectorX --- указатель на вектор координат X точек;
+ 
+    VMHL\_VectorY1 --- указатель на вектор координат Y точек первой линии;
+ 
+    VMHL\_VectorY2 --- указатель на вектор координат Y точек второй линии;
+ 
+    VMHL\_N --- количество точек;
+ 
+    TitleChart --- заголовок графика;
+ 
+    NameVectorX --- название оси Ox;
+ 
+    NameVectorY --- название оси Oy;
+ 
+    NameLine1 --- название первого графика (для легенды);
+ 
+    NameLine2 --- название второго графика (для легенды);
+ 
+    ShowLine --- показывать ли линию;
+ 
+    ShowPoints --- показывать ли точки;
+ 
+    ShowArea --- показывать ли закрашенную область под кривой;
+ 
+    ShowSpecPoints --- показывать ли специальные точки.
+
+\textbf{Возвращаемое значение:}
+
+Строка с HTML кодами с выводимым графиком.
+
+\textbf{Примечание:}
+
+Используются случайные числа, так что рекомендуется вызвать в программе иницилизатор случайных чисел qsrand. Рекомендую так: qsrand(QDateTime::currentMSecsSinceEpoch () % 1000000);
+
+Требует наличия в папке с html файлом файлы jsxgraph.css и jsxgraphcore.js из библиотеки JSXGraph.
+
+
+\begin{lstlisting}[label=code_use_THQt_ShowTwoChartsOfLine,caption=Пример использования]
+QString DS=QDir::separator();
+QString path=QGuiApplication::applicationDirPath()+DS;//путь к папке
+
+QString Html;
+Html=HQt_BeginHtml ();
+
+int N=6;
+double *dataX=new double [N];
+double *dataY1=new double [N];
+double *dataY2=new double [N];
+dataX[0]=7;dataY1[0]=6;dataY2[0]=1;
+dataX[1]=8;dataY1[1]=4;dataY2[0]=2;
+dataX[2]=10;dataY1[2]=7;dataY2[0]=3;
+dataX[3]=5;dataY1[3]=12;dataY2[0]=4;
+dataX[4]=14;dataY1[4]=4;dataY2[0]=4;
+dataX[5]=13;dataY1[5]=8;dataY2[0]=3;
+
+Html += THQt_ShowTwoChartsOfLine (dataX,dataY1,dataY2,N,"Тестовый график","x","y","количество деревьев","количество домов",true,true,true,true);
+
+delete []dataX;
+delete []dataY1;
+delete []dataY2;
+
+Html+=HQt_EndHtml();
+HQt_SaveFile(Html, path+"temp.html");
+ui->webView->setUrl(QUrl::fromLocalFile(path+"temp.html"));
+\end{lstlisting}
+
+\subsubsection{THQt\_ShowTwoIndependentChartsOfLine}\label{THQt_ShowTwoIndependentChartsOfLine}
+
+Функция возвращает строку с выводом некоторого двух независимых графиков по точкам с HTML кодами. Для добавление в html файл.
+
+
+\begin{lstlisting}[label=code_syntax_THQt_ShowTwoIndependentChartsOfLine,caption=Синтаксис]
+template <class T> QString THQt_ShowTwoIndependentChartsOfLine (T *VMHL_VectorX1,T *VMHL_VectorY1,int VMHL_N1,T *VMHL_VectorX2,T *VMHL_VectorY2, int VMHL_N2, QString TitleChart, QString NameVectorX, QString NameVectorY,QString NameLine1, QString NameLine2,bool ShowLine,bool ShowPoints,bool ShowArea,bool ShowSpecPoints);
+template <class T> QString THQt_ShowTwoIndependentChartsOfLine (T *VMHL_VectorX1,T *VMHL_VectorY1,int VMHL_N1,T *VMHL_VectorX2,T *VMHL_VectorY2, int VMHL_N2, QString TitleChart, QString NameVectorX, QString NameVectorY,bool ShowLine,bool ShowPoints,bool ShowArea,bool ShowSpecPoints);
+template <class T> QString THQt_ShowTwoIndependentChartsOfLine (T *VMHL_VectorX1,T *VMHL_VectorY1,int VMHL_N1,T *VMHL_VectorX2,T *VMHL_VectorY2, int VMHL_N2, QString TitleChart, QString NameVectorX, QString NameVectorY,QString NameLine1, QString NameLine2);
+template <class T> QString THQt_ShowTwoIndependentChartsOfLine (T *VMHL_VectorX1,T *VMHL_VectorY1,int VMHL_N1,T *VMHL_VectorX2,T *VMHL_VectorY2, int VMHL_N2);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+ 
+    VMHL\_VectorX1 --- указатель на вектор координат X точек первой линии;
+ 
+    VMHL\_VectorY1 --- указатель на вектор координат Y точек первой линии;
+ 
+    VMHL\_N1 --- количество точек первой линии;
+ 
+    VMHL\_VectorX2 --- указатель на вектор координат X точек второй линии;
+ 
+    VMHL\_VectorY2 --- указатель на вектор координат Y точек второй линии;
+ 
+    VMHL\_N2 --- количество точек второй линии;
+ 
+    TitleChart --- заголовок графика;
+ 
+    NameVectorX --- название оси Ox;
+ 
+    NameVectorY --- название оси Oy;
+ 
+    NameLine1 --- название первого графика (для легенды);
+ 
+    NameLine2 --- название второго графика (для легенды);
+ 
+    ShowLine --- показывать ли линию;
+ 
+    ShowPoints --- показывать ли точки;
+ 
+    ShowArea --- показывать ли закрашенную область под кривой;
+ 
+    ShowSpecPoints --- показывать ли специальные точки.
+
+\textbf{Возвращаемое значение:}
+
+Строка с HTML кодами с выводимым графиком.
+
+\textbf{Примечание:}
+
+Используются случайные числа, так что рекомендуется вызвать в программе иницилизатор случайных чисел qsrand. Рекомендую так: qsrand(QDateTime::currentMSecsSinceEpoch () % 1000000);
+
+Требует наличия в папке с html файлом файлы jsxgraph.css и jsxgraphcore.js из библиотеки JSXGraph.
+
+
+\begin{lstlisting}[label=code_use_THQt_ShowTwoIndependentChartsOfLine,caption=Пример использования]
+QString DS=QDir::separator();
+QString path=QGuiApplication::applicationDirPath()+DS;//путь к папке
+
+QString Html;
+Html=HQt_BeginHtml ();
+
+int N1=6;
+double *dataX1=new double [N1];
+double *dataY1=new double [N1];
+dataX1[0]=7;dataY1[0]=6;
+dataX1[1]=8;dataY1[1]=4;
+dataX1[2]=10;dataY1[2]=7;
+dataX1[3]=5;dataY1[3]=12;
+dataX1[4]=14;dataY1[4]=4;
+dataX1[5]=13;dataY1[5]=8;
+
+int N2=3;
+double *dataX2=new double [N1];
+double *dataY2=new double [N2];
+dataX2[0]=1;dataY2[0]=8;
+dataX2[1]=2;dataY2[1]=4;
+dataX2[2]=3;dataY2[2]=5;
+
+Html += THQt_ShowTwoIndependentChartsOfLine (dataX1,dataY1,N1,dataX2,dataY2,N2,"Тестовый график","x","y","количество деревьев","количество домов",true,true,true,true);
+
+delete []dataX1;
+delete []dataY1;
+delete []dataX2;
+delete []dataY2;
+
+Html+=HQt_EndHtml();
+HQt_SaveFile(Html, path+"temp.html");
+ui->webView->setUrl(QUrl::fromLocalFile(path+"temp.html"));
+\end{lstlisting}
+
+\subsubsection{THQt\_ShowTwoIndependentChartsOfPointsAndLine}\label{THQt_ShowTwoIndependentChartsOfPointsAndLine}
+
+Функция возвращает строку с выводом некоторого двух независимых графиков по точкам с HTML кодами. Для добавление в html файл. Один график выводится в виде точек, а второй в виде линии. Удобно для отображения регрессий. У обоих графиков разные массивы значений X и Y.
+
+
+\begin{lstlisting}[label=code_syntax_THQt_ShowTwoIndependentChartsOfPointsAndLine,caption=Синтаксис]
+template <class T> QString THQt_ShowTwoIndependentChartsOfPointsAndLine (T *VMHL_VectorX1,T *VMHL_VectorY1,int VMHL_N1,T *VMHL_VectorX2,T *VMHL_VectorY2, int VMHL_N2, QString TitleChart, QString NameVectorX, QString NameVectorY,QString NameLine1, QString NameLine2,bool ShowLine,bool ShowPoints,bool ShowArea,bool ShowSpecPoints);
+template <class T> QString THQt_ShowTwoIndependentChartsOfPointsAndLine (T *VMHL_VectorX1,T *VMHL_VectorY1,int VMHL_N1,T *VMHL_VectorX2,T *VMHL_VectorY2, int VMHL_N2, QString TitleChart, QString NameVectorX, QString NameVectorY,bool ShowLine,bool ShowPoints,bool ShowArea,bool ShowSpecPoints);
+template <class T> QString THQt_ShowTwoIndependentChartsOfPointsAndLine (T *VMHL_VectorX1,T *VMHL_VectorY1,int VMHL_N1,T *VMHL_VectorX2,T *VMHL_VectorY2, int VMHL_N2, QString TitleChart, QString NameVectorX, QString NameVectorY,QString NameLine1, QString NameLine2);
+template <class T> QString THQt_ShowTwoIndependentChartsOfPointsAndLine (T *VMHL_VectorX1,T *VMHL_VectorY1,int VMHL_N1,T *VMHL_VectorX2,T *VMHL_VectorY2, int VMHL_N2);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+ 
+    VMHL\_VectorX1 --- указатель на вектор координат X точек первой линии;
+ 
+    VMHL\_VectorY1 --- указатель на вектор координат Y точек первой линии;
+ 
+    VMHL\_N1 --- количество точек первой линии;
+ 
+    VMHL\_VectorX2 --- указатель на вектор координат X точек второй линии;
+ 
+    VMHL\_VectorY2 --- указатель на вектор координат Y точек второй линии;
+ 
+    VMHL\_N2 --- количество точек второй линии;
+ 
+    TitleChart --- заголовок графика;
+ 
+    NameVectorX --- название оси Ox;
+ 
+    NameVectorY --- название оси Oy;
+ 
+    NameLine1 --- название первого графика (для легенды);
+ 
+    NameLine2 --- название второго графика (для легенды);
+ 
+    ShowLine --- показывать ли линию;
+ 
+    ShowPoints --- показывать ли точки;
+ 
+    ShowArea --- показывать ли закрашенную область под кривой;
+ 
+    ShowSpecPoints --- показывать ли специальные точки.
+
+\textbf{Возвращаемое значение:}
+
+Строка с HTML кодами с выводимым графиком.
+
+\textbf{Примечание:}
+
+Используются случайные числа, так что рекомендуется вызвать в программе иницилизатор случайных чисел qsrand. Рекомендую так: qsrand(QDateTime::currentMSecsSinceEpoch () % 1000000);
+
+Требует наличия в папке с html файлом файлы jsxgraph.css и jsxgraphcore.js из библиотеки JSXGraph.
+
+
+\subsection{Показ математических выражений}
+
+\subsubsection{THQt\_ShowMatrix}\label{THQt_ShowMatrix}
+
+Функция возвращает строку с выводом некоторой матрицы VMHL\_Matrix с HTML кодами. Для добавление в html файл.
+
+
+\begin{lstlisting}[label=code_syntax_THQt_ShowMatrix,caption=Синтаксис]
+template <class T> QString THQt_ShowMatrix (T *VMHL_Matrix, int VMHL_N, int VMHL_M, QString TitleMatrix, QString NameMatrix);
+template <class T> QString THQt_ShowMatrix (T *VMHL_Matrix, int VMHL_N, int VMHL_M, QString NameMatrix);
+template <class T> QString THQt_ShowMatrix (T *VMHL_Matrix, int VMHL_N, int VMHL_M);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+ 
+    VMHL\_Matrix --- указатель на выводимую матрицу;
+ 
+    VMHL\_N --- количество строк в матрице;
+ 
+    VMHL\_M --- количество столбцов в матрице;
+ 
+    TitleMatrix --- заголовок выводимой матрицы;
+ 
+    NameMatrix --- обозначение матрицы.
+
+\textbf{Возвращаемое значение:}
+
+Строка с HTML кодами с выводимой матрицей.
+
+
+\subsubsection{THQt\_ShowMatrix2}\label{THQt_ShowMatrix2}
+
+Функция возвращает строку с выводом некоторой матрицы VMHL\_Matrix с HTML кодами. Для добавление в html файл. В качестве матрицы выступает массив QStringList, где количество QStringList - это количество строк. Каждый QStringList --- это одна строка.
+
+
+\begin{lstlisting}[label=code_syntax_THQt_ShowMatrix2,caption=Синтаксис]
+QString THQt_ShowMatrix (QStringList *VMHL_Matrix, int VMHL_N, QString TitleMatrix, QString NameMatrix);
+QString THQt_ShowMatrix (QStringList *VMHL_Matrix, int VMHL_N, QString NameMatrix);
+QString THQt_ShowMatrix (QStringList *VMHL_Matrix, int VMHL_N);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+    VMHL\_Matrix --- указатель на выводимую матрицу;
+ 
+    VMHL\_N --- количество строк в матрице;
+ 
+    TitleMatrix --- заголовок выводимой матрицы;
+ 
+    NameMatrix --- обозначение матрицы.
+
+\textbf{Возвращаемое значение:}
+
+Строка с HTML кодами с выводимой матрицей.
+
+
+\subsubsection{THQt\_ShowNumber}\label{THQt_ShowNumber}
+
+Функция возвращает строку с выводом некоторого числа VMHL\_X с HTML кодами. Для добавление в html файл.
+
+
+\begin{lstlisting}[label=code_syntax_THQt_ShowNumber,caption=Синтаксис]
+template <class T> QString THQt_ShowNumber (T VMHL_X, QString TitleX, QString NameX);
+template <class T> QString THQt_ShowNumber (T VMHL_X, QString NameX);
+template <class T> QString THQt_ShowNumber (T VMHL_X);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+VMHL\_X --- выводимое число;
+ 
+    TitleX --- заголовок выводимого числа;
+ 
+    NameX --- обозначение числа.
+
+\textbf{Возвращаемое значение:}
+
+Строка с HTML кодами с выводимым числом.
+
+
+\subsubsection{THQt\_ShowVector}\label{THQt_ShowVector}
+
+Функция возвращает строку с выводом некоторого вектора VMHL\_Vector с HTML кодами. Для добавление в html файл.
+
+
+\begin{lstlisting}[label=code_syntax_THQt_ShowVector,caption=Синтаксис]
+template <class T> QString THQt_ShowVector (T *VMHL_Vector, int VMHL_N, QString TitleVector, QString NameVector);
+template <class T> QString THQt_ShowVector (T *VMHL_Vector, int VMHL_N, QString NameVector);
+template <class T> QString THQt_ShowVector (T *VMHL_Vector, int VMHL_N);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+VMHL\_Vector --- указатель на выводимый вектор;
+ 
+    VMHL\_N --- количество элементов вектора;
+ 
+    TitleVector --- заголовок выводимого вектора;
+ 
+    NameVector --- обозначение вектора.
+
+\textbf{Возвращаемое значение:}
+
+Строка с HTML кодами с выводимым вектором.
+
+
+\subsubsection{THQt\_ShowVector2}\label{THQt_ShowVector2}
+
+Функция возвращает строку с выводом некоторого списка строк VMHL\_Vector с HTML кодами. Для добавление в html файл.
+
+
+\begin{lstlisting}[label=code_syntax_THQt_ShowVector2,caption=Синтаксис]
+QString THQt_ShowVector (QStringList VMHL_Vector, QString TitleVector, QString NameVector);
+QString THQt_ShowVector (QStringList VMHL_Vector, QString NameVector);
+QString THQt_ShowVector (QStringList VMHL_Vector);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+ 
+VMHL\_Vector --- указатель на список строк QStringList;
+ 
+    VMHL\_N --- количество элементов вектора;
+ 
+    TitleVector --- заголовок выводимого вектора;
+ 
+    NameVector --- обозначение вектора.
+
+\textbf{Возвращаемое значение:}
+
+Строка с HTML кодами с выводимым вектором.
+
+
+\subsubsection{THQt\_ShowVectorT}\label{THQt_ShowVectorT}
+
+Функция возвращает строку с выводом некоторого вектора VMHL\_Vector в траснпонированном виде с HTML кодами. Для добавление в html файл.
+
+
+\begin{lstlisting}[label=code_syntax_THQt_ShowVectorT,caption=Синтаксис]
+template <class T> QString THQt_ShowVectorT (T *VMHL_Vector, int VMHL_N, QString TitleVector, QString NameVector);
+template <class T> QString THQt_ShowVectorT (T *VMHL_Vector, int VMHL_N, QString NameVector);
+template <class T> QString THQt_ShowVectorT (T *VMHL_Vector, int VMHL_N);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+ 
+    VMHL\_Vector --- указатель на выводимый вектор;
+ 
+    VMHL\_N --- количество элементов вектора;
+ 
+    TitleVector --- заголовок выводимого вектора;
+ 
+    NameVector --- обозначение вектора.
+
+\textbf{Возвращаемое значение:}
+
+ 
+    Строка с HTML кодами с выводимым вектором.
+
+
+\subsection{Показ текста}
+
+\subsubsection{HQt\_ShowAlert}\label{HQt_ShowAlert}
+
+Функция возвращает строку с выводом некоторого предупреждения. Для добавление в html файл.
+
+
+\begin{lstlisting}[label=code_syntax_HQt_ShowAlert,caption=Синтаксис]
+QString HQt_ShowAlert (QString String);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+String --- непосредственно выводимая строка.
+
+\textbf{Возвращаемое значение:}
+
+Строка с HTML кодами с выводимым предупреждением.
+
+
+\subsubsection{HQt\_ShowH1}\label{HQt_ShowH1}
+
+Функция возвращает строку с выводом некоторой строки в виде заголовка. Для добавление в html файл.
+
+
+\begin{lstlisting}[label=code_syntax_HQt_ShowH1,caption=Синтаксис]
+QString HQt_ShowH1 (QString String);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+String --- непосредственно выводимая строка.
+
+\textbf{Возвращаемое значение:}
+
+Строка с HTML кодами с выводимой строкой.
+
+
+\subsubsection{HQt\_ShowHr}\label{HQt_ShowHr}
+
+Функция возвращает строку с выводом горизонтальной линии. Для добавление в html файл.
+
+
+\begin{lstlisting}[label=code_syntax_HQt_ShowHr,caption=Синтаксис]
+QString HQt_ShowHr ();
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+Отсутствуют.
+
+\textbf{Возвращаемое значение:}
+
+Строка с HTML кодами с выводимой строкой.
+
+
+\subsubsection{HQt\_ShowSimpleText}\label{HQt_ShowSimpleText}
+
+Функция возвращает строку с выводом некоторой строки с HTML кодами без всякого излишества. Для добавление в html файл.
+
+
+\begin{lstlisting}[label=code_syntax_HQt_ShowSimpleText,caption=Синтаксис]
+QString HQt_ShowSimpleText (QString String);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+String --- непосредственно выводимая строка.
+
+\textbf{Возвращаемое значение:}
+
+Строка с HTML кодами с выводимой строкой.
+
+
+\subsubsection{HQt\_ShowText}\label{HQt_ShowText}
+
+Функция возвращает строку с выводом некоторой строки с HTML кодами. Для добавление в html файл.
+
+
+\begin{lstlisting}[label=code_syntax_HQt_ShowText,caption=Синтаксис]
+QString HQt_ShowText (QString TitleX);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+TitleX --- непосредственно выводимая строка.
+
+\textbf{Возвращаемое значение:}
+
+Строка с HTML кодами с выводимой строкой.
+
+
+\subsubsection{THQt\_NumberToText}\label{THQt_NumberToText}
+
+Функция выводит число VMHL\_X в строку.
+
+
+\begin{lstlisting}[label=code_syntax_THQt_NumberToText,caption=Синтаксис]
+template <class T> QString THQt_NumberToText (T VMHL_X);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+VMHL\_X --- выводимое число.
+
+\textbf{Возвращаемое значение:}
+
+Строка, в которой записано число.
+
+\end{document}

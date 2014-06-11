@@ -1,0 +1,1 @@
+void HQt_AddHtml(QString Html);

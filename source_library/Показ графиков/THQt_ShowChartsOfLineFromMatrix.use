@@ -1,0 +1,30 @@
+   QString DS=QDir::separator();
+    QString path=QGuiApplication::applicationDirPath()+DS;//путь к папке
+
+    QString Html;
+    Html=HQt_BeginHtml ();
+
+    int N=6;
+    int M=2;
+    double **data;
+    data=new double*[N];
+    for (int i=0;i<N;i++) X[i]=new double[M];
+    data[0][0]=7;data[0][1]=6;
+    data[1][0]=8;data[1][1]=4;
+    data[2][0]=10;data[2][1]=7;
+    data[3][0]=5;data[3][1]=12;
+    data[4][0]=14;data[4][1]=4;
+    data[5][0]=13;data[5][1]=8;
+
+    QString *NameLine=new QString[M-1];
+    NameLine[0]="Первая линия";
+
+    Html += THQt_ShowChartsOfLineFromMatrix (data,N,M, "График", "x", "y",NameLine,true,true,true,true);
+
+    for (int i=0;i<N;i++) delete [] data[i];
+    delete [] data;
+    delete [] NameLine;
+
+    Html+=HQt_EndHtml();
+    HQt_SaveFile(Html, path+"temp.html");
+    ui->webView->setUrl(QUrl::fromLocalFile(path+"temp.html"));

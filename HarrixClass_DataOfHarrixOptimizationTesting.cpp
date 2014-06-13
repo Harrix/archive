@@ -2098,13 +2098,6 @@ QString HarrixClass_DataOfHarrixOptimizationTesting::makingLatexTable2D(QString 
     for (int i=ForColsN;i<NumberOfParametersTemp;i++)
         RowsForContent*=Data.getListOfParameterOptions(Order[i]).count();
 
-///*Удалить*/ LatexAnalysis+=THQt_LatexShowVectorT(CountOfParametersTemp,NumberOfParametersTemp,"CountOfParametersTemp");
-//            LatexAnalysis+=THQt_LatexShowVectorT(Order,NumberOfParametersTemp,"Order");
-//            LatexAnalysis+="ForColsN = "+QString::number(ForColsN)+"\n\n";
-//            LatexAnalysis+=THQt_LatexShowVectorT(Order,NumberOfParametersTemp,"Order");
-//            LatexAnalysis+="ColsForContent = "+QString::number(ColsForContent)+"\n\n";
-//            LatexAnalysis+="RowsForContent = "+QString::number(RowsForContent)+"\n\n";
-
     //Число столбов для заголовков (слева)
     int ColsForHeader=NumberOfParametersTemp-ForColsN;
     //Число строк для заголовков (наверху)
@@ -2118,7 +2111,7 @@ QString HarrixClass_DataOfHarrixOptimizationTesting::makingLatexTable2D(QString 
     Table+="{\n";
     Table+="\\renewcommand{\\arraystretch}{2}\n";
 
-    double WidthCol=1./double(ColsForHeader+ColsForContent)*0.9;
+    double WidthCol=1./double(ColsForHeader+ColsForContent);
 
     Table+="\\tiny\n\\begin{longtable}[H]{";
     for (int i=0;i<ColsForHeader;i++)

@@ -120,7 +120,8 @@ void MainWindow::on_pushButton_clicked()
 
     for (i=0;i<n;i++)//пробегаем по всем разделам
     {
-        dirname=listdirs.at(i);//получаем имя папки
+        dirname = listdirs.at(i);//получаем имя папки
+        dirnameForAdd = dirname;
 
         //Узнаем есть ли там слова private и public
         int pub=dirname.indexOf("public ");

@@ -195,7 +195,7 @@ void MainWindow::on_pushButton_clicked()
 
                 QString nameof_func=HQt_GetNameFromFilename(filename);//имя функции по названию файла
                 QString nameof_func_=nameof_func;//имя функции с преобразованными знаками _
-                nameof_func_=nameof_func_.replace("_","\\_");
+                nameof_func_=HQt_StringForLaTeX(nameof_func);
 
                 Temp = HQt_ReadFile(path2+filename)+"\n";//добавляем текст файла
 
@@ -203,7 +203,7 @@ void MainWindow::on_pushButton_clicked()
 
                 ResultTexFunctions+="\\subsubsection{" + nameof_func_ + "}\\label{"+nameof_func+"}\n\n" + Temp+"\n\n";
 
-                ResultFunctionsMD += "- "+Temp.replace("\\_","_").replace("$","")+"\n";
+                ResultFunctionsMD += "- "+Temp.replace("\\_","_").replace("$","").replace("\\~","~").replace("\\#","#")+"\n";
 
                 if (!(Temp.trimmed().isEmpty())) ui->textEdit->insertHtml("Загрузили файл <b>"+filename+"</b><br>");
                 else {MessageError="<font color=\"red\">Ошибка с файлом <b>"+filename+"</b><\font><br>";AllMessageError+=MessageError;ui->textEdit->insertHtml(MessageError);countoferrors++;}
@@ -241,9 +241,6 @@ void MainWindow::on_pushButton_clicked()
                 counth++;
 
                 QString nameof_func=HQt_GetNameFromFilename(filename);//имя функции по названию файла
-                //QString nameof_func_=nameof_func;//имя функции с преобразованными знаками _
-                //nameof_func_=nameof_func_.replace("_","\\_");
-
 
                 Temp = HQt_ReadFile(path2+filename)+"\n";//добавляем текст файла в h файл
                 ResultH += Temp;
@@ -298,7 +295,7 @@ void MainWindow::on_pushButton_clicked()
 
                 QString nameof_func=HQt_GetNameFromFilename(filename);//имя функции по названию файла
                 QString nameof_func_=nameof_func;//имя функции с преобразованными знаками _
-                nameof_func_=nameof_func_.replace("_","\\_");
+                nameof_func_=HQt_StringForLaTeX(nameof_func_);
 
                 Temp = HQt_ReadFile(path2+filename)+"\n";//добавляем текст файла
 

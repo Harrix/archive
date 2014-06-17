@@ -1,5 +1,9 @@
 //HarrixQtLibrary
+<<<<<<< HEAD
 //Версия 3.27
+=======
+//Версия 3.28
+>>>>>>> Обновление сборщика библиотек
 //Сборник функций для Qt.
 //https://github.com/Harrix/HarrixQtLibrary
 //Библиотека распространяется по лицензии Apache License, Version 2.0.
@@ -2319,7 +2323,11 @@ QString HQt_StringForLaTeX (QString String)
     */
     QString VMHL_Result;
 
+<<<<<<< HEAD
     VMHL_Result=String.replace("_","\\_").replace("#","\\#").replace("~", "\\~");
+=======
+    VMHL_Result=String.replace("_","\\_").replace("#","\\#").replace("~", "$\\sim$");
+>>>>>>> Обновление сборщика библиотек
 
     return VMHL_Result;
 }
@@ -2337,7 +2345,11 @@ QString HQt_StringFromLaTeX (QString String)
     */
     QString VMHL_Result;
 
+<<<<<<< HEAD
     VMHL_Result=String.replace("\\_","_").replace("$","").replace("\\~","~").replace("\\#","#");
+=======
+    VMHL_Result=String.replace("\\_","_").replace("$","").replace("$\\sim$","~").replace("\\#","#");
+>>>>>>> Обновление сборщика библиотек
 
     return VMHL_Result;
 }

@@ -92,9 +92,6 @@ void MainWindow::on_pushButton_clicked()
     ResultTpp += "// РЕАЛИЗАЦИЯ ШАБЛОНОВ\n";//добавляем название папки (раздела)
     ResultTpp += "//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n\n";
 
-    ResultFunctionsMD += "Список функций библиотеки \n";
-    ResultFunctionsMD += "===========================================\n\n";
-
     ResultH += "//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n";
     ResultH += "// ОБЪЯВЛЕНИЯ ФУНКЦИЙ\n";//добавляем название папки (раздела)
     ResultH += "//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n\n";
@@ -176,10 +173,10 @@ void MainWindow::on_pushButton_clicked()
 
         ResultFunctionsMD += dirnameForAdd+"\n----------------\n\n";
 
-        ResultTexList += "\\textbf{"+dirnameForAdd+"}\n";
+        ResultTexList += "\\textbf{"+HQt_StringForLaTeX(dirnameForAdd)+"}\n";
         ResultTexList += "\\begin{enumerate}\n\n";
 
-        ResultTexFunctions += "\\subsection{"+dirnameForAdd+"}\n\n";
+        ResultTexFunctions += "\\subsection{"+HQt_StringForLaTeX(dirnameForAdd)+"}\n\n";
 
         countneed=0;
 
@@ -199,11 +196,11 @@ void MainWindow::on_pushButton_clicked()
 
                 Temp = HQt_ReadFile(path2+filename)+"\n";//добавляем текст файла
 
-                ResultTexList += "\\item \\textbf{\\hyperref[" + nameof_func + "]{" + nameof_func_ + "}} --- " + Temp+"\n";
+                ResultTexList += "\\item \\textbf{\\hyperref[" + nameof_func.replace("~","tilda") + "]{" + nameof_func_ + "}} --- " + Temp+"\n";
 
                 ResultTexFunctions+="\\subsubsection{" + nameof_func_ + "}\\label{"+nameof_func+"}\n\n" + Temp+"\n\n";
 
-                ResultFunctionsMD += "- "+Temp.replace("\\_","_").replace("$","").replace("\\~","~").replace("\\#","#")+"\n";
+                ResultFunctionsMD += "- "+HQt_StringFromLaTeX(Temp)+"\n";
 
                 if (!(Temp.trimmed().isEmpty())) ui->textEdit->insertHtml("Загрузили файл <b>"+filename+"</b><br>");
                 else {MessageError="<font color=\"red\">Ошибка с файлом <b>"+filename+"</b><\font><br>";AllMessageError+=MessageError;ui->textEdit->insertHtml(MessageError);countoferrors++;}
@@ -250,7 +247,7 @@ void MainWindow::on_pushButton_clicked()
 
                 countfunction+=Temp.count(";");//количество функций считаем по количеству знаков ; в h файлах
 
-                ResultTexFunctions+="\\begin{lstlisting}[label=code_syntax_"+nameof_func+",caption=Синтаксис]\n";
+                ResultTexFunctions+="\\begin{lstlisting}[label=code_syntax_"+nameof_func.replace("~","tilda")+",caption=Синтаксис]\n";
                 ResultTexFunctions+=Temp;
                 ResultTexFunctions+="\\end{lstlisting}\n\n";
 
@@ -340,7 +337,7 @@ void MainWindow::on_pushButton_clicked()
                 Temp=HQt_QStringListToQString(TempWithoutSpace);
                 //закончили удалять пробелы
 
-                ResultTexFunctions+="\\begin{lstlisting}[label=code_use_"+nameof_func+",caption=Пример использования]\n";
+                ResultTexFunctions+="\\begin{lstlisting}[label=code_use_"+nameof_func.replace("~","tilda")+",caption=Пример использования]\n";
                 ResultTexFunctions+=Temp;
                 ResultTexFunctions+="\\end{lstlisting}\n\n";
 

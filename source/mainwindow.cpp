@@ -129,12 +129,16 @@ void MainWindow::on_pushButton_clicked()
             {
                 ResultH += "public:\n";
                 ResultCpp += "[public]";
+                ResultTexList += "[public]";
+                ResultTexFunctions += "[public]";
                 pubbool=true;
             }
             if ((pribool==false)&&(pri>=0))
             {
                 ResultH += "private:\n";
                 ResultCpp += "[private]";
+                ResultTexList += "[private]";
+                ResultTexFunctions += "[private]";
                 pribool=true;
             }
 
@@ -373,6 +377,14 @@ void MainWindow::on_pushButton_clicked()
         Re=ResultCpp.mid(ResultCpp.indexOf("[private]"),ResultCpp.indexOf("[public]")-ResultCpp.indexOf("[private]"));
         ResultCpp=ResultCpp.remove(ResultCpp.indexOf("[private]"),ResultCpp.indexOf("[public]")-ResultCpp.indexOf("[private]"));
         ResultCpp=ResultCpp+Re;
+
+        Re=ResultTexList.mid(ResultTexList.indexOf("[private]"),ResultTexList.indexOf("[public]")-ResultTexList.indexOf("[private]"));
+        ResultTexList=ResultTexList.remove(ResultTexList.indexOf("[private]"),ResultTexList.indexOf("[public]")-ResultTexList.indexOf("[private]"));
+        ResultTexList=ResultTexList+Re;
+
+        Re=ResultTexFunctions.mid(ResultTexFunctions.indexOf("[private]"),ResultTexFunctions.indexOf("[public]")-ResultTexFunctions.indexOf("[private]"));
+        ResultTexFunctions=ResultTexFunctions.remove(ResultTexFunctions.indexOf("[private]"),ResultTexFunctions.indexOf("[public]")-ResultTexFunctions.indexOf("[private]"));
+        ResultTexFunctions=ResultTexFunctions+Re;
     }
     else
     {
@@ -383,6 +395,12 @@ void MainWindow::on_pushButton_clicked()
     {
         ResultCpp.remove("[public]");
         ResultCpp.remove("[private]");
+
+        ResultTexList.remove("[public]");
+        ResultTexList.remove("[private]");
+
+        ResultTexFunctions.remove("[public]");
+        ResultTexFunctions.remove("[private]");
     }
 
     ResultTex+=ResultTexList+"\n";

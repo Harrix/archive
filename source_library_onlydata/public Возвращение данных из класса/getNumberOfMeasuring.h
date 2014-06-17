@@ -1,0 +1,1 @@
+qint64 getNumberOfMeasuring();

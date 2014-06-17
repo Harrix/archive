@@ -1,0 +1,1 @@
+int getNumberOfOption(QString NameOption);

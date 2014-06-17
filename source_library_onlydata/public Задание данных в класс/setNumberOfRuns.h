@@ -1,0 +1,1 @@
+void setNumberOfRuns(qint64 NumberOfRuns);

@@ -1,0 +1,1 @@
+void setNumberOfParameters(qint64 NumberOfParameters);

@@ -1,0 +1,1 @@
+void setCheckAllCombinations(bool AllCombinations);

@@ -1,0 +1,1 @@
+void setErrorEy(double ErrorEy,int Number_Of_Experiment, int Number_Of_Measuring);

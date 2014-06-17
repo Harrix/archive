@@ -1,0 +1,1 @@
+void setLink(QString Link);

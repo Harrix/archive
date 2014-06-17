@@ -1,0 +1,1 @@
+void setDimensionTestFunction(qint64 DimensionTestFunction);

@@ -1,0 +1,1 @@
+void setNumberOfMeasuring(qint64 NumberOfMeasuring);

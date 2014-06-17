@@ -1,0 +1,1 @@
+void setAuthor(QString Author);

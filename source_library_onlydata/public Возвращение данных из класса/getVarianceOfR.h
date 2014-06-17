@@ -1,0 +1,1 @@
+double getVarianceOfR(int Number_Of_Experiment);

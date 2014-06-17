@@ -1,0 +1,1 @@
+void operator = (HarrixClass_DataOfHarrixOptimizationTesting& B);

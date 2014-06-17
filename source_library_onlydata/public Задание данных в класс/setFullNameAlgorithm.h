@@ -1,0 +1,1 @@
+void setFullNameAlgorithm(QString FullNameAlgorithm);

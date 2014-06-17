@@ -1,0 +1,1 @@
+void setLinkTestFunction(QString LinkTestFunction);

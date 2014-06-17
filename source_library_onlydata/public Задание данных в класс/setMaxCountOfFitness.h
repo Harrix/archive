@@ -1,0 +1,1 @@
+void setMaxCountOfFitness(qint64 MaxCountOfFitness);

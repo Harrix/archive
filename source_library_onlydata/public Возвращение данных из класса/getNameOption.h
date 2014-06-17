@@ -1,0 +1,1 @@
+QString getNameOption(int Number_Of_Parameter);

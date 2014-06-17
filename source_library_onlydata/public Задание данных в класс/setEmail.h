@@ -1,0 +1,1 @@
+void setEmail(QString Email);

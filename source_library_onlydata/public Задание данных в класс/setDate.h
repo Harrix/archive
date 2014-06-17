@@ -1,0 +1,1 @@
+void setDate(QString Date);

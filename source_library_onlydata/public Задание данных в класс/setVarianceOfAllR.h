@@ -1,0 +1,1 @@
+void setVarianceOfAllR(double Variance);

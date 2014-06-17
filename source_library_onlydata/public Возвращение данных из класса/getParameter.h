@@ -1,0 +1,1 @@
+int getParameter(int Number_Of_Experiment, int Number_Of_Parameter);

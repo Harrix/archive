@@ -1,7 +1,7 @@
 HarrixClass_DataOfHarrixOptimizationTesting
 ===========================================
 
-Версия 1.24
+Версия 1.25
 
 Класс HarrixClass_DataOfHarrixOptimizationTesting для считывания информации формата данных Harrix Optimization Testing на C++ для Qt.
 

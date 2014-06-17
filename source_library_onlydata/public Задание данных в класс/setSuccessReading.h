@@ -1,0 +1,1 @@
+void setSuccessReading(bool Success);

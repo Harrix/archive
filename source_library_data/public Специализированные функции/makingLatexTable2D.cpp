@@ -33,6 +33,12 @@ QString HarrixClass_DataOfHarrixOptimizationTesting::makingLatexTable2D(QString 
         TMHL_ReverseVector(Order,NumberOfParametersTemp);
         ForColsN = 1;
     }
+    //А если все параметры решились по верхней части разместиться? Хотя бы один сместим на вертикальную часть
+    if (ForColsN==NumberOfParametersTemp)
+    {
+        ForColsN--;
+    }
+
 
     //Во второй части массива Order элементы расположим по длине текста
     int *CountForSubOrder = new int[NumberOfParametersTemp-ForColsN];

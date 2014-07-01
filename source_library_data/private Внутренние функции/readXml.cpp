@@ -64,7 +64,7 @@ void HarrixClass_DataOfHarrixOptimizationTesting::readXml()
         makingLatexTableEy();//заполняем LatexTableEy
         makingLatexTableR();//заполняем LatexTableR
         makingListOfVectorParameterOptions();
-        makingLatexListOfVectorParameterOptions();
+        makingLatexListOfVectorParameterOptions2();
         makingLatexAnalysis();//заполняем LatexTableR
         //Latex+=LatexInfo+LatexAboutParameters+LatexTableEx+LatexTableEy+LatexTableR;
         Latex+=LatexInfo+LatexAboutParameters+LatexTableEx+LatexTableEy+LatexTableR+LatexListOfVectorParameterOptions+LatexAnalysis;

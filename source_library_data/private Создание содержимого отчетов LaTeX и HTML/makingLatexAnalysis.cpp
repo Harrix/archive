@@ -119,11 +119,6 @@ void HarrixClass_DataOfHarrixOptimizationTesting::makingLatexAnalysis()
 
         LatexAnalysis+=HQt_LatexShowTable (Col1, Col2, "№ эксперимента", "Комбинация настроек",20, "Множество лучших комбинаций настроек алгоритма по $Ex$");
 
-        QStringList List;
-        for (int i=0;i<Data.getNumberOfExperiments();i++)
-            List <<QString::number(i+1);
-        LatexAnalysis+=makingLatexTable2D("Номера настроек",List);
-
 
         QStringList InfoForEveryExperiment;
         for (int i=0;i<Data.getNumberOfExperiments();i++)

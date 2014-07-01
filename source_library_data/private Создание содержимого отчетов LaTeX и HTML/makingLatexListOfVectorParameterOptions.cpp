@@ -7,7 +7,7 @@ void HarrixClass_DataOfHarrixOptimizationTesting::makingLatexListOfVectorParamet
     Возвращаемое значение:
      Отсутствует. Значение возвращается в переменную LatexListOfParameterOptions.
      */
-    LatexListOfVectorParameterOptions+="\\subsection {Список вектора названий вариантов параметров алгоритма оптимизации}\n\n";
+    LatexListOfVectorParameterOptions="\\subsection {Список вектора названий вариантов параметров алгоритма оптимизации}\n\n";
     LatexListOfVectorParameterOptions+="Ниже представлена таблица, в которой представлен нумерованный список вариантов  параметров алгоритма оптимизации. ";
     LatexListOfVectorParameterOptions+="\\begin{center}\n";
     LatexListOfVectorParameterOptions+="{\\renewcommand{\\arraystretch}{1.5}\n";

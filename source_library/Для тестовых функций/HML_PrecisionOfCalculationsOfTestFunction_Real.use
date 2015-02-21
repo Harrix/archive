@@ -1,0 +1,9 @@
+        HML_DefineTestFunction(TestFunction_Ackley);
+
+        //Вызов функции
+        double e=HML_PrecisionOfCalculationsOfTestFunction_Real();
+
+        //Использование результата
+        HML_ShowNumber(e,"Точность вычислений","e");
+        //Точность вычислений:
+        //e=0.025

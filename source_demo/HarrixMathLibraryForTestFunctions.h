@@ -10,64 +10,55 @@ enum TypeOfTestFunction { TestFunction_Ackley, TestFunction_ParaboloidOfRevoluti
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 //Для тестовых функций
-int MHL_ClassOfTestFunction(TypeOfTestFunction Type);
-int MHL_CountOfFitnessOfTestFunction_Binary(int Dimension);
-int MHL_CountOfFitnessOfTestFunction_Binary(int Dimension, TypeOfTestFunction Type);
-int MHL_CountOfFitnessOfTestFunction_Real(int Dimension);
-int MHL_CountOfFitnessOfTestFunction_Real(int Dimension, TypeOfTestFunction Type);
-void MHL_DefineTestFunction(TypeOfTestFunction Type);
-int MHL_DimensionTestFunction_Binary(int i);
-int MHL_DimensionTestFunction_Binary(int i, TypeOfTestFunction Type);
-int MHL_DimensionTestFunction_Real(int i);
-int MHL_DimensionTestFunction_Real(int i, TypeOfTestFunction Type);
-double MHL_ErrorExOfTestFunction_Binary(int *x, int VMHL_N);
-double MHL_ErrorExOfTestFunction_Binary(int *x, int VMHL_N, TypeOfTestFunction Type);
-double MHL_ErrorExOfTestFunction_Real(double *x, int VMHL_N);
-double MHL_ErrorExOfTestFunction_Real(double *x, int VMHL_N, TypeOfTestFunction Type);
-double MHL_ErrorEyOfTestFunction_Binary(double FitnessOfx, int VMHL_N);
-double MHL_ErrorEyOfTestFunction_Binary(double FitnessOfx, int VMHL_N, TypeOfTestFunction Type);
-double MHL_ErrorEyOfTestFunction_Real(double FitnessOfx, int VMHL_N);
-double MHL_ErrorEyOfTestFunction_Real(double FitnessOfx, int VMHL_N, TypeOfTestFunction Type);
-double MHL_ErrorROfTestFunction_Binary(int *x, int VMHL_N);
-double MHL_ErrorROfTestFunction_Binary(int *x, int VMHL_N, TypeOfTestFunction Type);
-double MHL_ErrorROfTestFunction_Real(double *x, int VMHL_N);
-double MHL_ErrorROfTestFunction_Real(double *x, int VMHL_N, TypeOfTestFunction Type);
-double MHL_FitnessOfOptimumOfTestFunction_Binary(int VMHL_N);
-double MHL_FitnessOfOptimumOfTestFunction_Binary(int VMHL_N, TypeOfTestFunction Type);
-double MHL_FitnessOfOptimumOfTestFunction_Real(double VMHL_N);
-double MHL_FitnessOfOptimumOfTestFunction_Real(double VMHL_N, TypeOfTestFunction Type);
-int MHL_GetCountOfFitness();
-int MHL_GetCountOfSubProblems_Binary();
-int MHL_GetCountOfSubProblems_Binary(TypeOfTestFunction Type);
-int MHL_GetCountOfSubProblems_Real();
-int MHL_GetCountOfSubProblems_Real(TypeOfTestFunction Type);
-void MHL_LeftAndRightBorderOfTestFunction_Real(double *Left, double *Right,int VMHL_N);
-void MHL_LeftAndRightBorderOfTestFunction_Real(double *Left, double *Right, int VMHL_N, TypeOfTestFunction Type);
-double MHL_MaximumOrMinimumOfTestFunction_Binary();
-double MHL_MaximumOrMinimumOfTestFunction_Binary(TypeOfTestFunction Type);
-double MHL_MaximumOrMinimumOfTestFunction_Real();
-double MHL_MaximumOrMinimumOfTestFunction_Real(TypeOfTestFunction Type);
-double MHL_NumberOfPartsOfTestFunction_Real(int *NumberOfParts, int VMHL_N);
-double MHL_NumberOfPartsOfTestFunction_Real(int *NumberOfParts, int VMHL_N, TypeOfTestFunction Type);
-double MHL_OptimumOfTestFunction_Binary(int *Optimum, int VMHL_N);
-double MHL_OptimumOfTestFunction_Binary(int *Optimum, int VMHL_N, TypeOfTestFunction Type);
-double MHL_OptimumOfTestFunction_Real(double *Optimum, int VMHL_N);
-double MHL_OptimumOfTestFunction_Real(double *Optimum, int VMHL_N, TypeOfTestFunction Type);
-double MHL_PrecisionOfCalculationsOfTestFunction_Real();
-double MHL_PrecisionOfCalculationsOfTestFunction_Real(TypeOfTestFunction Type);
-void MHL_SetToZeroCountOfFitness();
-double MHL_TestFunction_Binary(int *x, int VMHL_N);
-double MHL_TestFunction_Binary(int *x, int VMHL_N, TypeOfTestFunction Type);
-double MHL_TestFunction_Real(double *x, int VMHL_N);
-double MHL_TestFunction_Real(double *x, int VMHL_N, TypeOfTestFunction Type);
-
-//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-// РЕАЛИЗАЦИЯ ШАБЛОНОВ
-//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-//*****************************************************************
-//Для тестовых функций
-//*****************************************************************
-
+int HML_ClassOfTestFunction(TypeOfTestFunction Type);
+int HML_CountOfFitnessOfTestFunction_Binary(int Dimension);
+int HML_CountOfFitnessOfTestFunction_Binary(int Dimension, TypeOfTestFunction Type);
+int HML_CountOfFitnessOfTestFunction_Real(int Dimension);
+int HML_CountOfFitnessOfTestFunction_Real(int Dimension, TypeOfTestFunction Type);
+void HML_DefineTestFunction(TypeOfTestFunction Type);
+int HML_DimensionTestFunction_Binary(int i);
+int HML_DimensionTestFunction_Binary(int i, TypeOfTestFunction Type);
+int HML_DimensionTestFunction_Real(int i);
+int HML_DimensionTestFunction_Real(int i, TypeOfTestFunction Type);
+double HML_ErrorExOfTestFunction_Binary(int *x, int VHML_N);
+double HML_ErrorExOfTestFunction_Binary(int *x, int VHML_N, TypeOfTestFunction Type);
+double HML_ErrorExOfTestFunction_Real(double *x, int VHML_N);
+double HML_ErrorExOfTestFunction_Real(double *x, int VHML_N, TypeOfTestFunction Type);
+double HML_ErrorEyOfTestFunction_Binary(double FitnessOfx, int VHML_N);
+double HML_ErrorEyOfTestFunction_Binary(double FitnessOfx, int VHML_N, TypeOfTestFunction Type);
+double HML_ErrorEyOfTestFunction_Real(double FitnessOfx, int VHML_N);
+double HML_ErrorEyOfTestFunction_Real(double FitnessOfx, int VHML_N, TypeOfTestFunction Type);
+double HML_ErrorROfTestFunction_Binary(int *x, int VHML_N);
+double HML_ErrorROfTestFunction_Binary(int *x, int VHML_N, TypeOfTestFunction Type);
+double HML_ErrorROfTestFunction_Real(double *x, int VHML_N);
+double HML_ErrorROfTestFunction_Real(double *x, int VHML_N, TypeOfTestFunction Type);
+double HML_FitnessOfOptimumOfTestFunction_Binary(int VHML_N);
+double HML_FitnessOfOptimumOfTestFunction_Binary(int VHML_N, TypeOfTestFunction Type);
+double HML_FitnessOfOptimumOfTestFunction_Real(double VHML_N);
+double HML_FitnessOfOptimumOfTestFunction_Real(double VHML_N, TypeOfTestFunction Type);
+int HML_GetCountOfFitness();
+int HML_GetCountOfSubProblems_Binary();
+int HML_GetCountOfSubProblems_Binary(TypeOfTestFunction Type);
+int HML_GetCountOfSubProblems_Real();
+int HML_GetCountOfSubProblems_Real(TypeOfTestFunction Type);
+void HML_LeftAndRightBorderOfTestFunction_Real(double *Left, double *Right,int VHML_N);
+void HML_LeftAndRightBorderOfTestFunction_Real(double *Left, double *Right, int VHML_N, TypeOfTestFunction Type);
+double HML_MaximumOrMinimumOfTestFunction_Binary();
+double HML_MaximumOrMinimumOfTestFunction_Binary(TypeOfTestFunction Type);
+double HML_MaximumOrMinimumOfTestFunction_Real();
+double HML_MaximumOrMinimumOfTestFunction_Real(TypeOfTestFunction Type);
+double HML_NumberOfPartsOfTestFunction_Real(int *NumberOfParts, int VHML_N);
+double HML_NumberOfPartsOfTestFunction_Real(int *NumberOfParts, int VHML_N, TypeOfTestFunction Type);
+double HML_OptimumOfTestFunction_Binary(int *Optimum, int VHML_N);
+double HML_OptimumOfTestFunction_Binary(int *Optimum, int VHML_N, TypeOfTestFunction Type);
+double HML_OptimumOfTestFunction_Real(double *Optimum, int VHML_N);
+double HML_OptimumOfTestFunction_Real(double *Optimum, int VHML_N, TypeOfTestFunction Type);
+double HML_PrecisionOfCalculationsOfTestFunction_Real();
+double HML_PrecisionOfCalculationsOfTestFunction_Real(TypeOfTestFunction Type);
+void HML_SetToZeroCountOfFitness();
+double HML_TestFunction_Binary(int *x, int VHML_N);
+double HML_TestFunction_Binary(int *x, int VHML_N, TypeOfTestFunction Type);
+double HML_TestFunction_Real(double *x, int VHML_N);
+double HML_TestFunction_Real(double *x, int VHML_N, TypeOfTestFunction Type);
 
 #endif // HARRIXMATHLIBRARYFORTESTFUNCTIONS_H

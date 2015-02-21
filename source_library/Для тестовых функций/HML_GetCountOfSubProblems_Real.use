@@ -1,0 +1,9 @@
+        HML_DefineTestFunction(TestFunction_Ackley);
+
+        //Вызов функции
+        double N=HML_GetCountOfSubProblems_Real();
+
+        //Использование результата
+        HML_ShowNumber(N,"Число подзадач (включая основную задачу) для TestFunction_Ackley","N");
+        //Число подзадач (включая основную задачу) для TestFunction_Ackley:
+        //N=7

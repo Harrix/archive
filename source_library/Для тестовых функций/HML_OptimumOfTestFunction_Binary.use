@@ -1,0 +1,17 @@
+        HML_DefineTestFunction(TestFunction_SumVector);
+
+        int N=5;
+        int *x=new int[N];
+
+        //Вызов функции
+        double f=HML_OptimumOfTestFunction_Binary(x,N);
+
+        //Использование результата
+        HML_ShowVectorT(x,N,"Оптимальное решение тестовой функции TestFunction_SumVector","x");
+        //Оптимальное решение тестовой функции TestFunction_SumVector:
+        //x =	
+        //1	1	1	1	1
+
+        HML_ShowNumber(f,"Значение целевой функции оптимального решения","f");
+        //Значение целевой функции оптимального решения:
+        //f=5

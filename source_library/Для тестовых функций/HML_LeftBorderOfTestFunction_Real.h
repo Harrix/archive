@@ -1,0 +1,2 @@
+void HML_LeftAndRightBorderOfTestFunction_Real(double *Left, double *Right,int VHML_N);
+void HML_LeftAndRightBorderOfTestFunction_Real(double *Left, double *Right, int VHML_N, TypeOfTestFunction Type);

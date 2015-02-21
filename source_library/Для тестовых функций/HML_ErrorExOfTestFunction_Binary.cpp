@@ -1,0 +1,54 @@
+double HML_ErrorExOfTestFunction_Binary(int *x, int VHML_N)
+{
+    /*
+    Функция определяет значение ошибки по входным параметрам найденного решения
+    в задаче оптимизации для тестовой функции. 
+	Включает в себя все тестовые функции бинарной оптимизации.
+    Обязательно вызвать один раз перед ее использованием функцию HML_DefineTestFunction,
+    в которой определяется конкретный тип задачи оптимизации.
+    Входные параметры:
+     x - указатель на исходный массив (найденное решение алгоритмом);
+     VHML_N - размер массива x.
+    Возвращаемое значение:
+     Значение ошибки по входным параметрам Ex.
+    */
+    double VHML_Result_Ex = 0;
+    int i;
+
+    int *Optimum=new int[VHML_N];
+
+    HML_OptimumOfTestFunction_Binary(Optimum, VHML_N);
+
+
+    if (VHML_TypeOfTestFunction==TestFunction_SumVector)
+    {
+        for (i=0;i<VHML_N;i++)
+            VHML_Result_Ex+=abs(x[i]-Optimum[i]);
+    }
+
+    delete [] Optimum;
+
+    return VHML_Result_Ex/double(VHML_N);
+}
+//---------------------------------------------------------------------------
+double HML_ErrorExOfTestFunction_Binary(int *x, int VHML_N, TypeOfTestFunction Type)
+{
+    /*
+    Функция определяет значение ошибки по входным параметрам найденного решения
+    в задаче оптимизации для тестовой функции. 
+	Включает в себя все тестовые функции бинарной оптимизации.
+    Входные параметры:
+     x - указатель на исходный массив (найденное решение алгоритмом);
+     VHML_N - размер массива x;
+     Type - тип тестовой функции.
+    Возвращаемое значение:
+     Значение ошибки по входным параметрам Ex.
+    */
+    double VHML_Result = 0;
+
+    VHML_TypeOfTestFunction = Type;
+
+    VHML_Result = HML_ErrorExOfTestFunction_Binary(x, VHML_N);
+
+    return VHML_Result;
+}

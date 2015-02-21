@@ -1,0 +1,2 @@
+double HML_FitnessOfOptimumOfTestFunction_Binary(int VHML_N);
+double HML_FitnessOfOptimumOfTestFunction_Binary(int VHML_N, TypeOfTestFunction Type);

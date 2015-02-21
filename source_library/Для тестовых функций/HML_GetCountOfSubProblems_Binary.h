@@ -1,0 +1,2 @@
+int HML_GetCountOfSubProblems_Binary();
+int HML_GetCountOfSubProblems_Binary(TypeOfTestFunction Type);

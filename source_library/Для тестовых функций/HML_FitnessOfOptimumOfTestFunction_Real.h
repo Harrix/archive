@@ -1,0 +1,2 @@
+double HML_FitnessOfOptimumOfTestFunction_Real(double VHML_N);
+double HML_FitnessOfOptimumOfTestFunction_Real(double VHML_N, TypeOfTestFunction Type);

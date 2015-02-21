@@ -1,0 +1,9 @@
+        HML_DefineTestFunction(TestFunction_Ackley);
+
+        //Вызов функции
+        double MorM=HML_MaximumOrMinimumOfTestFunction_Real();
+
+        //Использование результата
+        HML_ShowNumber(MorM,"Максимум или минимум функции находим у TestFunction_Ackley","MorM");
+        //Максимум или минимум функции находим у TestFunction_Ackley:
+        //MorM=-1

@@ -1,0 +1,2 @@
+double HML_MaximumOrMinimumOfTestFunction_Binary();
+double HML_MaximumOrMinimumOfTestFunction_Binary(TypeOfTestFunction Type);

@@ -7,8 +7,8 @@ void HQt_BeginHtml(QString Path)
     Возвращаемое значение:
      Отсутствует.
     */
-    VMHL_HTML="";
-    VMHL_Path=QDir::toNativeSeparators(Path);
-    if (VMHL_Path.at(VMHL_Path.length()-1)!='\\') VMHL_Path+="\\";
-    HQt_SaveFile(VMHL_HTML, VMHL_Path+"temp.html");//сохраняем пустую пока переменную в temp.html
+    VHQt_HTML="";
+    VHQt_Path=QDir::toNativeSeparators(Path);
+    if (VHQt_Path.at(VHQt_Path.length()-1)!='\\') VHQt_Path+="\\";
+    HQt_SaveFile(VHQt_HTML, VHQt_Path+"temp.html");//сохраняем пустую пока переменную в temp.html
 }

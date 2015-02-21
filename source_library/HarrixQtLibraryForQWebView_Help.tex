@@ -3,7 +3,7 @@
 \input{packages}
 \input{styles}
 
-\title{HarrixQtLibraryForQWebView v.1.15}
+\title{HarrixQtLibraryForQWebView v.1.16}
 \author{А.\,Б. Сергиенко}
 \date{\today}
 
@@ -38,6 +38,7 @@
 
 Сайт автора, где публикуются последние новости: \href{http://blog.harrix.org/}{http://blog.harrix.org/}, а проекты располагаются по адресу \href{http://harrix.org/}{http://harrix.org/}.
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% ВСТАВЛЯТЬ НИЖЕ
 \newpage
 \section{Список функций}\label{section_listfunctions}
 \textbf{Главные загрузочные функции}
@@ -71,17 +72,17 @@
 \textbf{Показ математических выражений}
 \begin{enumerate}
 
-\item \textbf{\hyperref[THQt_ShowMatrix]{THQt\_ShowMatrix}} --- Функция возвращает строку с выводом некоторой матрицы VMHL\_Matrix с HTML кодами. Для добавление в html файл.
+\item \textbf{\hyperref[THQt_ShowMatrix]{THQt\_ShowMatrix}} --- Функция возвращает строку с выводом некоторой матрицы VHQt\_Matrix с HTML кодами. Для добавление в html файл.
 
-\item \textbf{\hyperref[THQt_ShowMatrix2]{THQt\_ShowMatrix2}} --- Функция возвращает строку с выводом некоторой матрицы VMHL\_Matrix с HTML кодами. Для добавление в html файл. В качестве матрицы выступает массив QStringList, где количество QStringList - это количество строк. Каждый QStringList --- это одна строка.
+\item \textbf{\hyperref[THQt_ShowMatrix2]{THQt\_ShowMatrix2}} --- Функция возвращает строку с выводом некоторой матрицы VHQt\_Matrix с HTML кодами. Для добавление в html файл. В качестве матрицы выступает массив QStringList, где количество QStringList - это количество строк. Каждый QStringList --- это одна строка.
 
-\item \textbf{\hyperref[THQt_ShowNumber]{THQt\_ShowNumber}} --- Функция возвращает строку с выводом некоторого числа VMHL\_X с HTML кодами. Для добавление в html файл.
+\item \textbf{\hyperref[THQt_ShowNumber]{THQt\_ShowNumber}} --- Функция возвращает строку с выводом некоторого числа VHQt\_X с HTML кодами. Для добавление в html файл.
 
-\item \textbf{\hyperref[THQt_ShowVector]{THQt\_ShowVector}} --- Функция возвращает строку с выводом некоторого вектора VMHL\_Vector с HTML кодами. Для добавление в html файл.
+\item \textbf{\hyperref[THQt_ShowVector]{THQt\_ShowVector}} --- Функция возвращает строку с выводом некоторого вектора VHQt\_Vector с HTML кодами. Для добавление в html файл.
 
-\item \textbf{\hyperref[THQt_ShowVector2]{THQt\_ShowVector2}} --- Функция возвращает строку с выводом некоторого списка строк VMHL\_Vector с HTML кодами. Для добавление в html файл.
+\item \textbf{\hyperref[THQt_ShowVector2]{THQt\_ShowVector2}} --- Функция возвращает строку с выводом некоторого списка строк VHQt\_Vector с HTML кодами. Для добавление в html файл.
 
-\item \textbf{\hyperref[THQt_ShowVectorT]{THQt\_ShowVectorT}} --- Функция возвращает строку с выводом некоторого вектора VMHL\_Vector в траснпонированном виде с HTML кодами. Для добавление в html файл.
+\item \textbf{\hyperref[THQt_ShowVectorT]{THQt\_ShowVectorT}} --- Функция возвращает строку с выводом некоторого вектора VHQt\_Vector в траснпонированном виде с HTML кодами. Для добавление в html файл.
 
 \end{enumerate}
 
@@ -98,7 +99,7 @@
 
 \item \textbf{\hyperref[HQt_ShowText]{HQt\_ShowText}} --- Функция возвращает строку с выводом некоторой строки с HTML кодами. Для добавление в html файл.
 
-\item \textbf{\hyperref[THQt_NumberToText]{THQt\_NumberToText}} --- Функция выводит число VMHL\_X в строку.
+\item \textbf{\hyperref[THQt_NumberToText]{THQt\_NumberToText}} --- Функция выводит число VHQt\_X в строку.
 
 \end{enumerate}
 
@@ -196,19 +197,19 @@ QString HQt_DrawLine (double Left, double Right, double h, double (*Function)(do
 
 
 \begin{lstlisting}[label=code_syntax_THQt_ShowChartOfLine,caption=Синтаксис]
-template <class T> QString THQt_ShowChartOfLine (T *VMHL_VectorX,T *VMHL_VectorY, int VMHL_N, QString TitleChart, QString NameVectorX, QString NameVectorY, QString NameLine, bool ShowLine, bool ShowPoints, bool ShowArea, bool ShowSpecPoints, bool RedLine);
-template <class T> QString THQt_ShowChartOfLine (T *VMHL_VectorX,T *VMHL_VectorY, int VMHL_N, QString TitleChart, QString NameVectorX, QString NameVectorY, bool ShowLine, bool ShowPoints, bool ShowArea, bool ShowSpecPoints, bool RedLine);
-template <class T> QString THQt_ShowChartOfLine (T *VMHL_VectorX,T *VMHL_VectorY, int VMHL_N, QString TitleChart, QString NameVectorX, QString NameVectorY, QString NameLine);
-template <class T> QString THQt_ShowChartOfLine (T *VMHL_VectorX,T *VMHL_VectorY, int VMHL_N);
+template <class T> QString THQt_ShowChartOfLine (T *VHQt_VectorX,T *VHQt_VectorY, int VHQt_N, QString TitleChart, QString NameVectorX, QString NameVectorY, QString NameLine, bool ShowLine, bool ShowPoints, bool ShowArea, bool ShowSpecPoints, bool RedLine);
+template <class T> QString THQt_ShowChartOfLine (T *VHQt_VectorX,T *VHQt_VectorY, int VHQt_N, QString TitleChart, QString NameVectorX, QString NameVectorY, bool ShowLine, bool ShowPoints, bool ShowArea, bool ShowSpecPoints, bool RedLine);
+template <class T> QString THQt_ShowChartOfLine (T *VHQt_VectorX,T *VHQt_VectorY, int VHQt_N, QString TitleChart, QString NameVectorX, QString NameVectorY, QString NameLine);
+template <class T> QString THQt_ShowChartOfLine (T *VHQt_VectorX,T *VHQt_VectorY, int VHQt_N);
 \end{lstlisting}
 
 \textbf{Входные параметры:}
  
-    VMHL\_VectorX --- указатель на вектор координат X точек;
+    VHQt\_VectorX --- указатель на вектор координат X точек;
  
-    VMHL\_VectorY --- указатель на вектор координат Y точек;
+    VHQt\_VectorY --- указатель на вектор координат Y точек;
  
-    VMHL\_N --- количество точек;
+    VHQt\_N --- количество точек;
  
     TitleChart --- заголовок графика;
  
@@ -272,19 +273,19 @@ ui->webView->setUrl(QUrl::fromLocalFile(path+"temp.html"));
 
 
 \begin{lstlisting}[label=code_syntax_THQt_ShowChartsOfLineFromMatrix,caption=Синтаксис]
-template <class T> QString THQt_ShowChartsOfLineFromMatrix (T **VMHL_MatrixXY,int VMHL_N,int VMHL_M, QString TitleChart, QString NameVectorX, QString NameVectorY,QString *NameLine, bool ShowLine,bool ShowPoints,bool ShowArea,bool ShowSpecPoints);
-template <class T> QString THQt_ShowChartsOfLineFromMatrix (T **VMHL_MatrixXY,int VMHL_N,int VMHL_M, QString TitleChart, QString NameVectorX, QString NameVectorY,bool ShowLine,bool ShowPoints,bool ShowArea,bool ShowSpecPoints);
-template <class T> QString THQt_ShowChartsOfLineFromMatrix (T **VMHL_MatrixXY,int VMHL_N,int VMHL_M, QString TitleChart, QString NameVectorX, QString NameVectorY,QString *NameLine);
-template <class T> QString THQt_ShowChartsOfLineFromMatrix (T **VMHL_MatrixXY,int VMHL_N,int VMHL_M);
+template <class T> QString THQt_ShowChartsOfLineFromMatrix (T **VHQt_MatrixXY,int VHQt_N,int VHQt_M, QString TitleChart, QString NameVectorX, QString NameVectorY,QString *NameLine, bool ShowLine,bool ShowPoints,bool ShowArea,bool ShowSpecPoints);
+template <class T> QString THQt_ShowChartsOfLineFromMatrix (T **VHQt_MatrixXY,int VHQt_N,int VHQt_M, QString TitleChart, QString NameVectorX, QString NameVectorY,bool ShowLine,bool ShowPoints,bool ShowArea,bool ShowSpecPoints);
+template <class T> QString THQt_ShowChartsOfLineFromMatrix (T **VHQt_MatrixXY,int VHQt_N,int VHQt_M, QString TitleChart, QString NameVectorX, QString NameVectorY,QString *NameLine);
+template <class T> QString THQt_ShowChartsOfLineFromMatrix (T **VHQt_MatrixXY,int VHQt_N,int VHQt_M);
 \end{lstlisting}
 
 \textbf{Входные параметры:}
  
-    VMHL\_MatrixXY --- указатель на матрицу значений X и Y графиков;
+    VHQt\_MatrixXY --- указатель на матрицу значений X и Y графиков;
  
-    VMHL\_N --- количество точек;
+    VHQt\_N --- количество точек;
  
-    VMHL\_M --- количество столбцов матрицы (1+количество графиков);
+    VHQt\_M --- количество столбцов матрицы (1+количество графиков);
  
     TitleChart --- заголовок графика;
  
@@ -292,7 +293,7 @@ template <class T> QString THQt_ShowChartsOfLineFromMatrix (T **VMHL_MatrixXY,in
  
     NameVectorY --- название оси Oy;
  
-    NameLine --- указатель на вектор названий графиков (для легенды) количество элементов VMHL\_M---1 (так как первый столбец --- это X значения);
+    NameLine --- указатель на вектор названий графиков (для легенды) количество элементов VHQt\_M---1 (так как первый столбец --- это X значения);
  
     ShowLine --- показывать ли линию;
  
@@ -352,21 +353,21 @@ QString DS=QDir::separator();
 
 
 \begin{lstlisting}[label=code_syntax_THQt_ShowIndependentChartsOfLineFromMatrix,caption=Синтаксис]
-template <class T> QString THQt_ShowIndependentChartsOfLineFromMatrix (T **VMHL_MatrixXY,int *VMHL_N_EveryCol,int VMHL_M, QString TitleChart, QString NameVectorX, QString NameVectorY,QString *NameLine, bool ShowLine,bool ShowPoints,bool ShowArea,bool ShowSpecPoints);
-template <class T> QString THQt_ShowIndependentChartsOfLineFromMatrix (T **VMHL_MatrixXY,int *VMHL_N_EveryCol,int VMHL_M, QString TitleChart, QString NameVectorX, QString NameVectorY,bool ShowLine,bool ShowPoints,bool ShowArea,bool ShowSpecPoints);
-template <class T> QString THQt_ShowIndependentChartsOfLineFromMatrix (T **VMHL_MatrixXY,int *VMHL_N_EveryCol,int VMHL_M, QString TitleChart, QString NameVectorX, QString NameVectorY,QString *NameLine);
-template <class T> QString THQt_ShowIndependentChartsOfLineFromMatrix (T **VMHL_MatrixXY,int *VMHL_N_EveryCol,int VMHL_M);
+template <class T> QString THQt_ShowIndependentChartsOfLineFromMatrix (T **VHQt_MatrixXY,int *VHQt_N_EveryCol,int VHQt_M, QString TitleChart, QString NameVectorX, QString NameVectorY,QString *NameLine, bool ShowLine,bool ShowPoints,bool ShowArea,bool ShowSpecPoints);
+template <class T> QString THQt_ShowIndependentChartsOfLineFromMatrix (T **VHQt_MatrixXY,int *VHQt_N_EveryCol,int VHQt_M, QString TitleChart, QString NameVectorX, QString NameVectorY,bool ShowLine,bool ShowPoints,bool ShowArea,bool ShowSpecPoints);
+template <class T> QString THQt_ShowIndependentChartsOfLineFromMatrix (T **VHQt_MatrixXY,int *VHQt_N_EveryCol,int VHQt_M, QString TitleChart, QString NameVectorX, QString NameVectorY,QString *NameLine);
+template <class T> QString THQt_ShowIndependentChartsOfLineFromMatrix (T **VHQt_MatrixXY,int *VHQt_N_EveryCol,int VHQt_M);
 \end{lstlisting}
 
 \textbf{Входные параметры:}
  
-VMHL\_MatrixXY --- указатель на матрицу значений X и Н графиков;
+VHQt\_MatrixXY --- указатель на матрицу значений X и Н графиков;
  
-VMHL\_N\_EveryCol --- количество элементов в каждом столбце (так как столбцы идут по парам, то число элементов в нечетном и
+VHQt\_N\_EveryCol --- количество элементов в каждом столбце (так как столбцы идут по парам, то число элементов в нечетном и
  
 следующем за ним четном столбце должны совпадать, например 10,10,5,5,7,7);
  
-VMHL\_M --- количество столбцов матрицы (должно быть четным числом конечно);
+VHQt\_M --- количество столбцов матрицы (должно быть четным числом конечно);
  
 TitleChart --- заголовок графика;
  
@@ -374,7 +375,7 @@ NameVectorX --- название оси Ox;
  
 NameVectorY --- название оси Oy;
  
-NameLine --- указатель на вектор названий графиков (для легенды) количество элементов VMHL\_M/2;
+NameLine --- указатель на вектор названий графиков (для легенды) количество элементов VHQt\_M/2;
  
 ShowLine --- показывать ли линию;
  
@@ -403,21 +404,21 @@ ShowSpecPoints --- показывать ли специальные точки.
 
 
 \begin{lstlisting}[label=code_syntax_THQt_ShowTwoChartsOfLine,caption=Синтаксис]
-template <class T> QString THQt_ShowTwoChartsOfLine (T *VMHL_VectorX,T *VMHL_VectorY1,T *VMHL_VectorY2, int VMHL_N, QString TitleChart, QString NameVectorX, QString NameVectorY,QString NameLine1, QString NameLine2,bool ShowLine,bool ShowPoints,bool ShowArea,bool ShowSpecPoints);
-template <class T> QString THQt_ShowTwoChartsOfLine (T *VMHL_VectorX,T *VMHL_VectorY1,T *VMHL_VectorY2, int VMHL_N, QString TitleChart, QString NameVectorX, QString NameVectorY,bool ShowLine,bool ShowPoints,bool ShowArea,bool ShowSpecPoints);
-template <class T> QString THQt_ShowTwoChartsOfLine (T *VMHL_VectorX,T *VMHL_VectorY1,T *VMHL_VectorY2, int VMHL_N, QString TitleChart, QString NameVectorX, QString NameVectorY,QString NameLine1, QString NameLine2);
-template <class T> QString THQt_ShowTwoChartsOfLine (T *VMHL_VectorX,T *VMHL_VectorY1,T *VMHL_VectorY2, int VMHL_N);
+template <class T> QString THQt_ShowTwoChartsOfLine (T *VHQt_VectorX,T *VHQt_VectorY1,T *VHQt_VectorY2, int VHQt_N, QString TitleChart, QString NameVectorX, QString NameVectorY,QString NameLine1, QString NameLine2,bool ShowLine,bool ShowPoints,bool ShowArea,bool ShowSpecPoints);
+template <class T> QString THQt_ShowTwoChartsOfLine (T *VHQt_VectorX,T *VHQt_VectorY1,T *VHQt_VectorY2, int VHQt_N, QString TitleChart, QString NameVectorX, QString NameVectorY,bool ShowLine,bool ShowPoints,bool ShowArea,bool ShowSpecPoints);
+template <class T> QString THQt_ShowTwoChartsOfLine (T *VHQt_VectorX,T *VHQt_VectorY1,T *VHQt_VectorY2, int VHQt_N, QString TitleChart, QString NameVectorX, QString NameVectorY,QString NameLine1, QString NameLine2);
+template <class T> QString THQt_ShowTwoChartsOfLine (T *VHQt_VectorX,T *VHQt_VectorY1,T *VHQt_VectorY2, int VHQt_N);
 \end{lstlisting}
 
 \textbf{Входные параметры:}
  
-    VMHL\_VectorX --- указатель на вектор координат X точек;
+    VHQt\_VectorX --- указатель на вектор координат X точек;
  
-    VMHL\_VectorY1 --- указатель на вектор координат Y точек первой линии;
+    VHQt\_VectorY1 --- указатель на вектор координат Y точек первой линии;
  
-    VMHL\_VectorY2 --- указатель на вектор координат Y точек второй линии;
+    VHQt\_VectorY2 --- указатель на вектор координат Y точек второй линии;
  
-    VMHL\_N --- количество точек;
+    VHQt\_N --- количество точек;
  
     TitleChart --- заголовок графика;
  
@@ -483,25 +484,25 @@ ui->webView->setUrl(QUrl::fromLocalFile(path+"temp.html"));
 
 
 \begin{lstlisting}[label=code_syntax_THQt_ShowTwoIndependentChartsOfLine,caption=Синтаксис]
-template <class T> QString THQt_ShowTwoIndependentChartsOfLine (T *VMHL_VectorX1,T *VMHL_VectorY1,int VMHL_N1,T *VMHL_VectorX2,T *VMHL_VectorY2, int VMHL_N2, QString TitleChart, QString NameVectorX, QString NameVectorY,QString NameLine1, QString NameLine2,bool ShowLine,bool ShowPoints,bool ShowArea,bool ShowSpecPoints);
-template <class T> QString THQt_ShowTwoIndependentChartsOfLine (T *VMHL_VectorX1,T *VMHL_VectorY1,int VMHL_N1,T *VMHL_VectorX2,T *VMHL_VectorY2, int VMHL_N2, QString TitleChart, QString NameVectorX, QString NameVectorY,bool ShowLine,bool ShowPoints,bool ShowArea,bool ShowSpecPoints);
-template <class T> QString THQt_ShowTwoIndependentChartsOfLine (T *VMHL_VectorX1,T *VMHL_VectorY1,int VMHL_N1,T *VMHL_VectorX2,T *VMHL_VectorY2, int VMHL_N2, QString TitleChart, QString NameVectorX, QString NameVectorY,QString NameLine1, QString NameLine2);
-template <class T> QString THQt_ShowTwoIndependentChartsOfLine (T *VMHL_VectorX1,T *VMHL_VectorY1,int VMHL_N1,T *VMHL_VectorX2,T *VMHL_VectorY2, int VMHL_N2);
+template <class T> QString THQt_ShowTwoIndependentChartsOfLine (T *VHQt_VectorX1,T *VHQt_VectorY1,int VHQt_N1,T *VHQt_VectorX2,T *VHQt_VectorY2, int VHQt_N2, QString TitleChart, QString NameVectorX, QString NameVectorY,QString NameLine1, QString NameLine2,bool ShowLine,bool ShowPoints,bool ShowArea,bool ShowSpecPoints);
+template <class T> QString THQt_ShowTwoIndependentChartsOfLine (T *VHQt_VectorX1,T *VHQt_VectorY1,int VHQt_N1,T *VHQt_VectorX2,T *VHQt_VectorY2, int VHQt_N2, QString TitleChart, QString NameVectorX, QString NameVectorY,bool ShowLine,bool ShowPoints,bool ShowArea,bool ShowSpecPoints);
+template <class T> QString THQt_ShowTwoIndependentChartsOfLine (T *VHQt_VectorX1,T *VHQt_VectorY1,int VHQt_N1,T *VHQt_VectorX2,T *VHQt_VectorY2, int VHQt_N2, QString TitleChart, QString NameVectorX, QString NameVectorY,QString NameLine1, QString NameLine2);
+template <class T> QString THQt_ShowTwoIndependentChartsOfLine (T *VHQt_VectorX1,T *VHQt_VectorY1,int VHQt_N1,T *VHQt_VectorX2,T *VHQt_VectorY2, int VHQt_N2);
 \end{lstlisting}
 
 \textbf{Входные параметры:}
  
-    VMHL\_VectorX1 --- указатель на вектор координат X точек первой линии;
+    VHQt\_VectorX1 --- указатель на вектор координат X точек первой линии;
  
-    VMHL\_VectorY1 --- указатель на вектор координат Y точек первой линии;
+    VHQt\_VectorY1 --- указатель на вектор координат Y точек первой линии;
  
-    VMHL\_N1 --- количество точек первой линии;
+    VHQt\_N1 --- количество точек первой линии;
  
-    VMHL\_VectorX2 --- указатель на вектор координат X точек второй линии;
+    VHQt\_VectorX2 --- указатель на вектор координат X точек второй линии;
  
-    VMHL\_VectorY2 --- указатель на вектор координат Y точек второй линии;
+    VHQt\_VectorY2 --- указатель на вектор координат Y точек второй линии;
  
-    VMHL\_N2 --- количество точек второй линии;
+    VHQt\_N2 --- количество точек второй линии;
  
     TitleChart --- заголовок графика;
  
@@ -574,25 +575,25 @@ ui->webView->setUrl(QUrl::fromLocalFile(path+"temp.html"));
 
 
 \begin{lstlisting}[label=code_syntax_THQt_ShowTwoIndependentChartsOfPointsAndLine,caption=Синтаксис]
-template <class T> QString THQt_ShowTwoIndependentChartsOfPointsAndLine (T *VMHL_VectorX1,T *VMHL_VectorY1,int VMHL_N1,T *VMHL_VectorX2,T *VMHL_VectorY2, int VMHL_N2, QString TitleChart, QString NameVectorX, QString NameVectorY,QString NameLine1, QString NameLine2,bool ShowLine,bool ShowPoints,bool ShowArea,bool ShowSpecPoints);
-template <class T> QString THQt_ShowTwoIndependentChartsOfPointsAndLine (T *VMHL_VectorX1,T *VMHL_VectorY1,int VMHL_N1,T *VMHL_VectorX2,T *VMHL_VectorY2, int VMHL_N2, QString TitleChart, QString NameVectorX, QString NameVectorY,bool ShowLine,bool ShowPoints,bool ShowArea,bool ShowSpecPoints);
-template <class T> QString THQt_ShowTwoIndependentChartsOfPointsAndLine (T *VMHL_VectorX1,T *VMHL_VectorY1,int VMHL_N1,T *VMHL_VectorX2,T *VMHL_VectorY2, int VMHL_N2, QString TitleChart, QString NameVectorX, QString NameVectorY,QString NameLine1, QString NameLine2);
-template <class T> QString THQt_ShowTwoIndependentChartsOfPointsAndLine (T *VMHL_VectorX1,T *VMHL_VectorY1,int VMHL_N1,T *VMHL_VectorX2,T *VMHL_VectorY2, int VMHL_N2);
+template <class T> QString THQt_ShowTwoIndependentChartsOfPointsAndLine (T *VHQt_VectorX1,T *VHQt_VectorY1,int VHQt_N1,T *VHQt_VectorX2,T *VHQt_VectorY2, int VHQt_N2, QString TitleChart, QString NameVectorX, QString NameVectorY,QString NameLine1, QString NameLine2,bool ShowLine,bool ShowPoints,bool ShowArea,bool ShowSpecPoints);
+template <class T> QString THQt_ShowTwoIndependentChartsOfPointsAndLine (T *VHQt_VectorX1,T *VHQt_VectorY1,int VHQt_N1,T *VHQt_VectorX2,T *VHQt_VectorY2, int VHQt_N2, QString TitleChart, QString NameVectorX, QString NameVectorY,bool ShowLine,bool ShowPoints,bool ShowArea,bool ShowSpecPoints);
+template <class T> QString THQt_ShowTwoIndependentChartsOfPointsAndLine (T *VHQt_VectorX1,T *VHQt_VectorY1,int VHQt_N1,T *VHQt_VectorX2,T *VHQt_VectorY2, int VHQt_N2, QString TitleChart, QString NameVectorX, QString NameVectorY,QString NameLine1, QString NameLine2);
+template <class T> QString THQt_ShowTwoIndependentChartsOfPointsAndLine (T *VHQt_VectorX1,T *VHQt_VectorY1,int VHQt_N1,T *VHQt_VectorX2,T *VHQt_VectorY2, int VHQt_N2);
 \end{lstlisting}
 
 \textbf{Входные параметры:}
  
-    VMHL\_VectorX1 --- указатель на вектор координат X точек первой линии;
+    VHQt\_VectorX1 --- указатель на вектор координат X точек первой линии;
  
-    VMHL\_VectorY1 --- указатель на вектор координат Y точек первой линии;
+    VHQt\_VectorY1 --- указатель на вектор координат Y точек первой линии;
  
-    VMHL\_N1 --- количество точек первой линии;
+    VHQt\_N1 --- количество точек первой линии;
  
-    VMHL\_VectorX2 --- указатель на вектор координат X точек второй линии;
+    VHQt\_VectorX2 --- указатель на вектор координат X точек второй линии;
  
-    VMHL\_VectorY2 --- указатель на вектор координат Y точек второй линии;
+    VHQt\_VectorY2 --- указатель на вектор координат Y точек второй линии;
  
-    VMHL\_N2 --- количество точек второй линии;
+    VHQt\_N2 --- количество точек второй линии;
  
     TitleChart --- заголовок графика;
  
@@ -627,22 +628,22 @@ template <class T> QString THQt_ShowTwoIndependentChartsOfPointsAndLine (T *VMHL
 
 \subsubsection{THQt\_ShowMatrix}\label{THQt_ShowMatrix}
 
-Функция возвращает строку с выводом некоторой матрицы VMHL\_Matrix с HTML кодами. Для добавление в html файл.
+Функция возвращает строку с выводом некоторой матрицы VHQt\_Matrix с HTML кодами. Для добавление в html файл.
 
 
 \begin{lstlisting}[label=code_syntax_THQt_ShowMatrix,caption=Синтаксис]
-template <class T> QString THQt_ShowMatrix (T *VMHL_Matrix, int VMHL_N, int VMHL_M, QString TitleMatrix, QString NameMatrix);
-template <class T> QString THQt_ShowMatrix (T *VMHL_Matrix, int VMHL_N, int VMHL_M, QString NameMatrix);
-template <class T> QString THQt_ShowMatrix (T *VMHL_Matrix, int VMHL_N, int VMHL_M);
+template <class T> QString THQt_ShowMatrix (T *VHQt_Matrix, int VHQt_N, int VHQt_M, QString TitleMatrix, QString NameMatrix);
+template <class T> QString THQt_ShowMatrix (T *VHQt_Matrix, int VHQt_N, int VHQt_M, QString NameMatrix);
+template <class T> QString THQt_ShowMatrix (T *VHQt_Matrix, int VHQt_N, int VHQt_M);
 \end{lstlisting}
 
 \textbf{Входные параметры:}
  
-    VMHL\_Matrix --- указатель на выводимую матрицу;
+    VHQt\_Matrix --- указатель на выводимую матрицу;
  
-    VMHL\_N --- количество строк в матрице;
+    VHQt\_N --- количество строк в матрице;
  
-    VMHL\_M --- количество столбцов в матрице;
+    VHQt\_M --- количество столбцов в матрице;
  
     TitleMatrix --- заголовок выводимой матрицы;
  
@@ -655,20 +656,20 @@ template <class T> QString THQt_ShowMatrix (T *VMHL_Matrix, int VMHL_N, int VMHL
 
 \subsubsection{THQt\_ShowMatrix2}\label{THQt_ShowMatrix2}
 
-Функция возвращает строку с выводом некоторой матрицы VMHL\_Matrix с HTML кодами. Для добавление в html файл. В качестве матрицы выступает массив QStringList, где количество QStringList - это количество строк. Каждый QStringList --- это одна строка.
+Функция возвращает строку с выводом некоторой матрицы VHQt\_Matrix с HTML кодами. Для добавление в html файл. В качестве матрицы выступает массив QStringList, где количество QStringList - это количество строк. Каждый QStringList --- это одна строка.
 
 
 \begin{lstlisting}[label=code_syntax_THQt_ShowMatrix2,caption=Синтаксис]
-QString THQt_ShowMatrix (QStringList *VMHL_Matrix, int VMHL_N, QString TitleMatrix, QString NameMatrix);
-QString THQt_ShowMatrix (QStringList *VMHL_Matrix, int VMHL_N, QString NameMatrix);
-QString THQt_ShowMatrix (QStringList *VMHL_Matrix, int VMHL_N);
+QString THQt_ShowMatrix (QStringList *VHQt_Matrix, int VHQt_N, QString TitleMatrix, QString NameMatrix);
+QString THQt_ShowMatrix (QStringList *VHQt_Matrix, int VHQt_N, QString NameMatrix);
+QString THQt_ShowMatrix (QStringList *VHQt_Matrix, int VHQt_N);
 \end{lstlisting}
 
 \textbf{Входные параметры:}
 
-    VMHL\_Matrix --- указатель на выводимую матрицу;
+    VHQt\_Matrix --- указатель на выводимую матрицу;
  
-    VMHL\_N --- количество строк в матрице;
+    VHQt\_N --- количество строк в матрице;
  
     TitleMatrix --- заголовок выводимой матрицы;
  
@@ -681,18 +682,18 @@ QString THQt_ShowMatrix (QStringList *VMHL_Matrix, int VMHL_N);
 
 \subsubsection{THQt\_ShowNumber}\label{THQt_ShowNumber}
 
-Функция возвращает строку с выводом некоторого числа VMHL\_X с HTML кодами. Для добавление в html файл.
+Функция возвращает строку с выводом некоторого числа VHQt\_X с HTML кодами. Для добавление в html файл.
 
 
 \begin{lstlisting}[label=code_syntax_THQt_ShowNumber,caption=Синтаксис]
-template <class T> QString THQt_ShowNumber (T VMHL_X, QString TitleX, QString NameX);
-template <class T> QString THQt_ShowNumber (T VMHL_X, QString NameX);
-template <class T> QString THQt_ShowNumber (T VMHL_X);
+template <class T> QString THQt_ShowNumber (T VHQt_X, QString TitleX, QString NameX);
+template <class T> QString THQt_ShowNumber (T VHQt_X, QString NameX);
+template <class T> QString THQt_ShowNumber (T VHQt_X);
 \end{lstlisting}
 
 \textbf{Входные параметры:}
 
-VMHL\_X --- выводимое число;
+VHQt\_X --- выводимое число;
  
     TitleX --- заголовок выводимого числа;
  
@@ -705,20 +706,20 @@ VMHL\_X --- выводимое число;
 
 \subsubsection{THQt\_ShowVector}\label{THQt_ShowVector}
 
-Функция возвращает строку с выводом некоторого вектора VMHL\_Vector с HTML кодами. Для добавление в html файл.
+Функция возвращает строку с выводом некоторого вектора VHQt\_Vector с HTML кодами. Для добавление в html файл.
 
 
 \begin{lstlisting}[label=code_syntax_THQt_ShowVector,caption=Синтаксис]
-template <class T> QString THQt_ShowVector (T *VMHL_Vector, int VMHL_N, QString TitleVector, QString NameVector);
-template <class T> QString THQt_ShowVector (T *VMHL_Vector, int VMHL_N, QString NameVector);
-template <class T> QString THQt_ShowVector (T *VMHL_Vector, int VMHL_N);
+template <class T> QString THQt_ShowVector (T *VHQt_Vector, int VHQt_N, QString TitleVector, QString NameVector);
+template <class T> QString THQt_ShowVector (T *VHQt_Vector, int VHQt_N, QString NameVector);
+template <class T> QString THQt_ShowVector (T *VHQt_Vector, int VHQt_N);
 \end{lstlisting}
 
 \textbf{Входные параметры:}
 
-VMHL\_Vector --- указатель на выводимый вектор;
+VHQt\_Vector --- указатель на выводимый вектор;
  
-    VMHL\_N --- количество элементов вектора;
+    VHQt\_N --- количество элементов вектора;
  
     TitleVector --- заголовок выводимого вектора;
  
@@ -731,20 +732,20 @@ VMHL\_Vector --- указатель на выводимый вектор;
 
 \subsubsection{THQt\_ShowVector2}\label{THQt_ShowVector2}
 
-Функция возвращает строку с выводом некоторого списка строк VMHL\_Vector с HTML кодами. Для добавление в html файл.
+Функция возвращает строку с выводом некоторого списка строк VHQt\_Vector с HTML кодами. Для добавление в html файл.
 
 
 \begin{lstlisting}[label=code_syntax_THQt_ShowVector2,caption=Синтаксис]
-QString THQt_ShowVector (QStringList VMHL_Vector, QString TitleVector, QString NameVector);
-QString THQt_ShowVector (QStringList VMHL_Vector, QString NameVector);
-QString THQt_ShowVector (QStringList VMHL_Vector);
+QString THQt_ShowVector (QStringList VHQt_Vector, QString TitleVector, QString NameVector);
+QString THQt_ShowVector (QStringList VHQt_Vector, QString NameVector);
+QString THQt_ShowVector (QStringList VHQt_Vector);
 \end{lstlisting}
 
 \textbf{Входные параметры:}
  
-VMHL\_Vector --- указатель на список строк QStringList;
+VHQt\_Vector --- указатель на список строк QStringList;
  
-    VMHL\_N --- количество элементов вектора;
+    VHQt\_N --- количество элементов вектора;
  
     TitleVector --- заголовок выводимого вектора;
  
@@ -757,20 +758,20 @@ VMHL\_Vector --- указатель на список строк QStringList;
 
 \subsubsection{THQt\_ShowVectorT}\label{THQt_ShowVectorT}
 
-Функция возвращает строку с выводом некоторого вектора VMHL\_Vector в траснпонированном виде с HTML кодами. Для добавление в html файл.
+Функция возвращает строку с выводом некоторого вектора VHQt\_Vector в траснпонированном виде с HTML кодами. Для добавление в html файл.
 
 
 \begin{lstlisting}[label=code_syntax_THQt_ShowVectorT,caption=Синтаксис]
-template <class T> QString THQt_ShowVectorT (T *VMHL_Vector, int VMHL_N, QString TitleVector, QString NameVector);
-template <class T> QString THQt_ShowVectorT (T *VMHL_Vector, int VMHL_N, QString NameVector);
-template <class T> QString THQt_ShowVectorT (T *VMHL_Vector, int VMHL_N);
+template <class T> QString THQt_ShowVectorT (T *VHQt_Vector, int VHQt_N, QString TitleVector, QString NameVector);
+template <class T> QString THQt_ShowVectorT (T *VHQt_Vector, int VHQt_N, QString NameVector);
+template <class T> QString THQt_ShowVectorT (T *VHQt_Vector, int VHQt_N);
 \end{lstlisting}
 
 \textbf{Входные параметры:}
  
-    VMHL\_Vector --- указатель на выводимый вектор;
+    VHQt\_Vector --- указатель на выводимый вектор;
  
-    VMHL\_N --- количество элементов вектора;
+    VHQt\_N --- количество элементов вектора;
  
     TitleVector --- заголовок выводимого вектора;
  
@@ -876,19 +877,22 @@ TitleX --- непосредственно выводимая строка.
 
 \subsubsection{THQt\_NumberToText}\label{THQt_NumberToText}
 
-Функция выводит число VMHL\_X в строку.
+Функция выводит число VHQt\_X в строку.
 
 
 \begin{lstlisting}[label=code_syntax_THQt_NumberToText,caption=Синтаксис]
-template <class T> QString THQt_NumberToText (T VMHL_X);
+template <class T> QString THQt_NumberToText (T VHQt_X);
 \end{lstlisting}
 
 \textbf{Входные параметры:}
 
-VMHL\_X --- выводимое число.
+VHQt\_X --- выводимое число.
 
 \textbf{Возвращаемое значение:}
 
 Строка, в которой записано число.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \end{document}

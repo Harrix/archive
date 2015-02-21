@@ -7,9 +7,9 @@ QString HQt_ShowH1 (QString String)
     Возвращаемое значение:
      Строка с HTML кодами с выводимой строкой.
     */
-    QString VMHL_Result;
+    QString VHQt_Result;
 
-    VMHL_Result="<h1>"+String+"</h1>\n";
+    VHQt_Result="<h1>"+String+"</h1>\n";
 
-    return VMHL_Result;
+    return VHQt_Result;
 }

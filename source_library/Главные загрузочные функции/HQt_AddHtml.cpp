@@ -7,6 +7,6 @@ void HQt_AddHtml(QString Html)
     Возвращаемое значение:
      Отсутствует.
     */
-    VMHL_HTML+=Html;
-    HQt_SaveFile(VMHL_HTML, VMHL_Path+"temp.html");
+    VHQt_HTML+=Html;
+    HQt_SaveFile(VHQt_HTML, VHQt_Path+"temp.html");
 }

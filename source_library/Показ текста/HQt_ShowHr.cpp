@@ -7,9 +7,9 @@ QString HQt_ShowHr ()
     Возвращаемое значение:
      Строка с HTML кодами с тэгом hr.
     */
-    QString VMHL_Result;
+    QString VHQt_Result;
 
-    VMHL_Result="<hr>\n";
+    VHQt_Result="<hr>\n";
 
-    return VMHL_Result;
+    return VHQt_Result;
 }

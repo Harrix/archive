@@ -7,9 +7,9 @@ QString HQt_ShowText (QString TitleX)
     Возвращаемое значение:
      Строка с HTML кодами с выводимой строкой.
     */
-    QString VMHL_Result;
+    QString VHQt_Result;
 
-    VMHL_Result="<p><b>"+TitleX+".</b></p>\n";
+    VHQt_Result="<p><b>"+TitleX+".</b></p>\n";
 
-    return VMHL_Result;
+    return VHQt_Result;
 }

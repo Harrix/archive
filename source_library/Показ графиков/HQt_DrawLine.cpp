@@ -19,7 +19,7 @@ QString HQt_DrawLine (double Left, double Right, double h, double (*Function)(do
     Возвращаемое значение:
      Строка с HTML кодом.
     */
-    QString VMHL_Result;
+    QString VHQt_Result;
 
     int N=(Right-Left)/h;
     double *dataX=new double [N];
@@ -34,12 +34,12 @@ QString HQt_DrawLine (double Left, double Right, double h, double (*Function)(do
         x+=h;
     }
 
-    VMHL_Result += THQt_ShowChartOfLine (dataX,dataY,N,TitleChart,NameVectorX,NameVectorY,NameLine,ShowLine,ShowPoints,ShowArea,ShowSpecPoints,RedLine);
+    VHQt_Result += THQt_ShowChartOfLine (dataX,dataY,N,TitleChart,NameVectorX,NameVectorY,NameLine,ShowLine,ShowPoints,ShowArea,ShowSpecPoints,RedLine);
 
     delete []dataX;
     delete []dataY;
 
-    return VMHL_Result;
+    return VHQt_Result;
 }
 //---------------------------------------------------------------------------
 QString HQt_DrawLine (double Left, double Right, double h, double (*Function)(double), QString TitleChart, QString NameVectorX, QString NameVectorY, bool ShowLine, bool ShowPoints, bool ShowArea, bool ShowSpecPoints, bool RedLine)
@@ -63,11 +63,11 @@ QString HQt_DrawLine (double Left, double Right, double h, double (*Function)(do
     Возвращаемое значение:
      Строка с HTML кодом.
     */
-    QString VMHL_Result;
+    QString VHQt_Result;
 
-    VMHL_Result += HQt_DrawLine (Left, Right, h, Function, TitleChart, NameVectorX, NameVectorY, "", ShowLine, ShowPoints, ShowArea, ShowSpecPoints, RedLine);
+    VHQt_Result += HQt_DrawLine (Left, Right, h, Function, TitleChart, NameVectorX, NameVectorY, "", ShowLine, ShowPoints, ShowArea, ShowSpecPoints, RedLine);
 
-    return VMHL_Result;
+    return VHQt_Result;
 }
 //---------------------------------------------------------------------------
 QString HQt_DrawLine (double Left, double Right, double h, double (*Function)(double), QString TitleChart, QString NameVectorX, QString NameVectorY, QString NameLine)
@@ -91,11 +91,11 @@ QString HQt_DrawLine (double Left, double Right, double h, double (*Function)(do
     Возвращаемое значение:
      Строка с HTML кодом.
     */
-    QString VMHL_Result;
+    QString VHQt_Result;
 
-    VMHL_Result += HQt_DrawLine (Left, Right, h, Function, TitleChart, NameVectorX, NameVectorY, NameLine, true, false, false, true, true);
+    VHQt_Result += HQt_DrawLine (Left, Right, h, Function, TitleChart, NameVectorX, NameVectorY, NameLine, true, false, false, true, true);
 
-    return VMHL_Result;
+    return VHQt_Result;
 }
 //---------------------------------------------------------------------------
 QString HQt_DrawLine (double Left, double Right, double h, double (*Function)(double))
@@ -119,9 +119,9 @@ QString HQt_DrawLine (double Left, double Right, double h, double (*Function)(do
     Возвращаемое значение:
      Строка с HTML кодом.
     */
-    QString VMHL_Result;
+    QString VHQt_Result;
 
-    VMHL_Result += HQt_DrawLine (Left, Right, h, Function, "", "x", "y", true, false, false, true, true);
+    VHQt_Result += HQt_DrawLine (Left, Right, h, Function, "", "x", "y", true, false, false, true, true);
 
-    return VMHL_Result;
+    return VHQt_Result;
 }

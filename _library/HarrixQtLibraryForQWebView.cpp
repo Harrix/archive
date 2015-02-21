@@ -6,8 +6,8 @@
 
 #include "HarrixQtLibraryForQWebView.h"
 
-QString VMHL_HTML;
-QString VMHL_Path;
+QString VHQt_HTML;
+QString VHQt_Path;
 
 //*****************************************************************
 //Главные загрузочные функции

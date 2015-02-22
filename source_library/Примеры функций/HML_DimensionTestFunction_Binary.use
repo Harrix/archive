@@ -1,0 +1,9 @@
+        HML_DefineTestFunction(TestFunction_SumVector);
+
+        //Вызов функции
+        double N=HML_DimensionTestFunction_Binary(0);
+
+        //Использование результата
+        HML_ShowNumber(N,"Размерность тестовой задачи для TestFunction_SumVector при i=0","N");
+        //Размерность тестовой задачи для TestFunction_SumVector при i=0:
+        //N=20

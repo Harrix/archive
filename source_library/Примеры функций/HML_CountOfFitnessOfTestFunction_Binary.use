@@ -1,0 +1,11 @@
+        HML_DefineTestFunction(TestFunction_SumVector);
+
+        int Dimension = 30;
+
+        //Вызов функции
+        int  N=HML_CountOfFitnessOfTestFunction_Binary(Dimension);
+
+        //Использование результата
+        HML_ShowNumber(N,"Количество вычислений целевой функции для TestFunction_SumVector при размерности 30","N");
+        //Количество вычислений целевой функции для TestFunction_SumVector при размерности 30:
+        //N=400

@@ -1,5 +1,5 @@
 //HarrixClass_HarrixData
-//Версия 1.2
+//Версия 1.3
 //Класс для считывания информации формата данных Harrix Data на C++ для Qt.
 //https://github.com/Harrix/HarrixClass_HarrixData
 //Библиотека распространяется по лицензии Apache License, Version 2.0.
@@ -427,53 +427,53 @@ QString HarrixClass_HarrixData::getChartLatexCode ()
      Код LaTeX графика
      */
 
-    QString VMHL_Result;
+    QString VHC_Result;
 
     if (ErrorLatex.isEmpty())
     {
         if (Type=="Line")
         {
-            VMHL_Result += THQt_LatexShowChartOfLine (dataX,dataY,N,Title,AxisX,AxisY,ListNamesOfCharts.at(0),"Chart"+HQt_RandomString(8),ShowLine,ShowPoints,ShowArea,ShowSpecPoints,RedLine,true);
+            VHC_Result += THQt_LatexShowChartOfLine (dataX,dataY,N,Title,AxisX,AxisY,ListNamesOfCharts.at(0),"Chart"+HQt_RandomString(8),ShowLine,ShowPoints,ShowArea,ShowSpecPoints,RedLine,true);
         }
         if (Type=="TwoLines")
         {
-            VMHL_Result += THQt_LatexShowTwoChartsOfLine (dataX,dataY1,dataY2,N,Title,AxisX,AxisY,ListNamesOfCharts.at(0),ListNamesOfCharts.at(1),"Chart"+HQt_RandomString(8),ShowLine,ShowPoints,ShowArea,ShowSpecPoints, true, true);
+            VHC_Result += THQt_LatexShowTwoChartsOfLine (dataX,dataY1,dataY2,N,Title,AxisX,AxisY,ListNamesOfCharts.at(0),ListNamesOfCharts.at(1),"Chart"+HQt_RandomString(8),ShowLine,ShowPoints,ShowArea,ShowSpecPoints, true, true);
         }
         if (Type=="TwoIndependentLines")
         {
-            VMHL_Result += THQt_LatexShowTwoIndependentChartsOfLine (dataX1,dataY1,NX1,dataX2,dataY2,NX2,Title,AxisX,AxisY,ListNamesOfCharts.at(0),ListNamesOfCharts.at(1),"Chart"+HQt_RandomString(8),ShowLine,ShowPoints,ShowArea,ShowSpecPoints, true, true);
+            VHC_Result += THQt_LatexShowTwoIndependentChartsOfLine (dataX1,dataY1,NX1,dataX2,dataY2,NX2,Title,AxisX,AxisY,ListNamesOfCharts.at(0),ListNamesOfCharts.at(1),"Chart"+HQt_RandomString(8),ShowLine,ShowPoints,ShowArea,ShowSpecPoints, true, true);
         }
         if (Type=="SeveralLines")
         {
-            VMHL_Result += THQt_LatexShowChartsOfLineFromMatrix (X,N,M,Title,AxisX,AxisY,NameLine,"Chart"+HQt_RandomString(8),ShowLine,ShowPoints,ShowArea,ShowSpecPoints, true, GrayStyle, false,false);
+            VHC_Result += THQt_LatexShowChartsOfLineFromMatrix (X,N,M,Title,AxisX,AxisY,NameLine,"Chart"+HQt_RandomString(8),ShowLine,ShowPoints,ShowArea,ShowSpecPoints, true, GrayStyle, false,false);
         }
         if (Type=="SeveralIndependentLines")
         {
-            VMHL_Result += THQt_LatexShowIndependentChartsOfLineFromMatrix (X,N_EveryCol,M, Title,AxisX,AxisY,NameLine,"Chart"+HQt_RandomString(8),ShowLine,ShowPoints,ShowArea,ShowSpecPoints, true, GrayStyle, false,false);
+            VHC_Result += THQt_LatexShowIndependentChartsOfLineFromMatrix (X,N_EveryCol,M, Title,AxisX,AxisY,NameLine,"Chart"+HQt_RandomString(8),ShowLine,ShowPoints,ShowArea,ShowSpecPoints, true, GrayStyle, false,false);
         }
         if (Type=="PointsAndLine")
         {
-            VMHL_Result += THQt_LatexShowTwoIndependentChartsOfPointsAndLine (dataX1,dataY1,NX1,dataX2,dataY2,NX2,Title,AxisX,AxisY,ListNamesOfCharts.at(0),ListNamesOfCharts.at(1),"Chart"+HQt_RandomString(8),ShowLine,ShowPoints,ShowArea,ShowSpecPoints, true, false);
+            VHC_Result += THQt_LatexShowTwoIndependentChartsOfPointsAndLine (dataX1,dataY1,NX1,dataX2,dataY2,NX2,Title,AxisX,AxisY,ListNamesOfCharts.at(0),ListNamesOfCharts.at(1),"Chart"+HQt_RandomString(8),ShowLine,ShowPoints,ShowArea,ShowSpecPoints, true, false);
         }
         if (Type=="Bar")
         {
-            VMHL_Result += THQt_LatexShowBar (data, N, Title, ListNamesOfCharts, AxisY, "Chart"+HQt_RandomString(8), true, MinZero);
+            VHC_Result += THQt_LatexShowBar (data, N, Title, ListNamesOfCharts, AxisY, "Chart"+HQt_RandomString(8), true, MinZero);
         }
         if (Type=="3DPoints")
         {
-            VMHL_Result +=THQt_LatexShow3DPlotPoints (dataX, dataY, dataZ, N, Title, AxisX, AxisY, AxisZ, "Chart"+HQt_RandomString(8), "mathcad",true);
+            VHC_Result +=THQt_LatexShow3DPlotPoints (dataX, dataY, dataZ, N, Title, AxisX, AxisY, AxisZ, "Chart"+HQt_RandomString(8), "mathcad",true);
         }
         if (Type=="NPoints")
         {
-            VMHL_Result += HQt_LatexShowAlert ("Формат данных NPoints не поддерживается для вывода в график, так как данные представляют собой многомерную точку. Файлы данного формата предназначены для считывания данных, а не для отображения графика.");
+            VHC_Result += HQt_LatexShowAlert ("Формат данных NPoints не поддерживается для вывода в график, так как данные представляют собой многомерную точку. Файлы данного формата предназначены для считывания данных, а не для отображения графика.");
         }
 
-        if (VMHL_Result.isEmpty()) VMHL_Result +=ErrorLatex;
+        if (VHC_Result.isEmpty()) VHC_Result +=ErrorLatex;
     }
     else
-        VMHL_Result +=ErrorLatex;
+        VHC_Result +=ErrorLatex;
 
-    return VMHL_Result;
+    return VHC_Result;
 }
 //---------------------------------------------------------------------------
 
@@ -487,53 +487,53 @@ QString HarrixClass_HarrixData::getChartHtmlCode ()
      Код Html графика
      */
 
-    QString VMHL_Result;
+    QString VHC_Result;
 
     if (ErrorLatex.isEmpty())
     {
         if (Type=="Line")
         {
-            VMHL_Result += THQt_ShowChartOfLine (dataX,dataY,N,Title,AxisX,AxisY,ListNamesOfCharts.at(0),ShowLine,ShowPoints,ShowArea,ShowSpecPoints,RedLine);
+            VHC_Result += THQt_ShowChartOfLine (dataX,dataY,N,Title,AxisX,AxisY,ListNamesOfCharts.at(0),ShowLine,ShowPoints,ShowArea,ShowSpecPoints,RedLine);
         }
         if (Type=="TwoLines")
         {
-            VMHL_Result += THQt_ShowTwoChartsOfLine (dataX,dataY1,dataY2,N,Title,AxisX,AxisY,ListNamesOfCharts.at(0),ListNamesOfCharts.at(1),ShowLine,ShowPoints,ShowArea,ShowSpecPoints);
+            VHC_Result += THQt_ShowTwoChartsOfLine (dataX,dataY1,dataY2,N,Title,AxisX,AxisY,ListNamesOfCharts.at(0),ListNamesOfCharts.at(1),ShowLine,ShowPoints,ShowArea,ShowSpecPoints);
         }
         if (Type=="TwoIndependentLines")
         {
-            VMHL_Result += THQt_ShowTwoIndependentChartsOfLine (dataX1,dataY1,NX1,dataX2,dataY2,NX2,Title,AxisX,AxisY,ListNamesOfCharts.at(0),ListNamesOfCharts.at(1),ShowLine,ShowPoints,ShowArea,ShowSpecPoints);
+            VHC_Result += THQt_ShowTwoIndependentChartsOfLine (dataX1,dataY1,NX1,dataX2,dataY2,NX2,Title,AxisX,AxisY,ListNamesOfCharts.at(0),ListNamesOfCharts.at(1),ShowLine,ShowPoints,ShowArea,ShowSpecPoints);
         }
         if (Type=="SeveralLines")
         {
-            VMHL_Result += THQt_ShowChartsOfLineFromMatrix (X,N,M,Title,AxisX,AxisY,NameLine,ShowLine,ShowPoints,ShowArea,ShowSpecPoints);
+            VHC_Result += THQt_ShowChartsOfLineFromMatrix (X,N,M,Title,AxisX,AxisY,NameLine,ShowLine,ShowPoints,ShowArea,ShowSpecPoints);
         }
         if (Type=="SeveralIndependentLines")
         {
-            VMHL_Result += THQt_ShowIndependentChartsOfLineFromMatrix (X,N_EveryCol,M, Title,AxisX,AxisY,NameLine,ShowLine,ShowPoints,ShowArea,ShowSpecPoints);
+            VHC_Result += THQt_ShowIndependentChartsOfLineFromMatrix (X,N_EveryCol,M, Title,AxisX,AxisY,NameLine,ShowLine,ShowPoints,ShowArea,ShowSpecPoints);
         }
         if (Type=="PointsAndLine")
         {
-            VMHL_Result += THQt_ShowTwoIndependentChartsOfPointsAndLine (dataX1,dataY1,NX1,dataX2,dataY2,NX2,Title,AxisX,AxisY,ListNamesOfCharts.at(0),ListNamesOfCharts.at(1),ShowLine,ShowPoints,ShowArea,ShowSpecPoints);
+            VHC_Result += THQt_ShowTwoIndependentChartsOfPointsAndLine (dataX1,dataY1,NX1,dataX2,dataY2,NX2,Title,AxisX,AxisY,ListNamesOfCharts.at(0),ListNamesOfCharts.at(1),ShowLine,ShowPoints,ShowArea,ShowSpecPoints);
         }
         if (Type=="Bar")
         {
-            VMHL_Result += HQt_ShowAlert ("Формат данных Bar в текущей версии для отображения в HTML не поддерживается. <br>Отображение в формат кода LaTeX поддерживается.");
+            VHC_Result += HQt_ShowAlert ("Формат данных Bar в текущей версии для отображения в HTML не поддерживается. <br>Отображение в формат кода LaTeX поддерживается.");
         }
         if (Type=="3DPoints")
         {
-            VMHL_Result += HQt_ShowAlert ("Формат данных 3DPoints в текущей версии для отображения в HTML не поддерживается. <br> Отображение в формат кода LaTeX поддерживается.");
+            VHC_Result += HQt_ShowAlert ("Формат данных 3DPoints в текущей версии для отображения в HTML не поддерживается. <br> Отображение в формат кода LaTeX поддерживается.");
         }
         if (Type=="NPoints")
         {
-            VMHL_Result += HQt_ShowAlert ("Формат данных NPoints не поддерживается для вывода в график, так как данные представляют собой многомерную точку.<br> Файлы данного формата предназначены для считывания данных, а не для отображения графика.");
+            VHC_Result += HQt_ShowAlert ("Формат данных NPoints не поддерживается для вывода в график, так как данные представляют собой многомерную точку.<br> Файлы данного формата предназначены для считывания данных, а не для отображения графика.");
         }
 
-        if (VMHL_Result.isEmpty()) VMHL_Result +=ErrorHtml;
+        if (VHC_Result.isEmpty()) VHC_Result +=ErrorHtml;
     }
     else
-        VMHL_Result +=ErrorHtml;
+        VHC_Result +=ErrorHtml;
 
-    return VMHL_Result;
+    return VHC_Result;
 }
 //---------------------------------------------------------------------------
 
@@ -547,11 +547,11 @@ QString HarrixClass_HarrixData::getErrorLatex ()
      Код LaTeX графика.
      */
 
-    QString VMHL_Result;
+    QString VHC_Result;
 
-    VMHL_Result +=ErrorLatex;
+    VHC_Result +=ErrorLatex;
 
-    return VMHL_Result;
+    return VHC_Result;
 }
 //---------------------------------------------------------------------------
 
@@ -565,11 +565,11 @@ QString HarrixClass_HarrixData::getErrorHtml()
      Код Html графика.
      */
 
-    QString VMHL_Result;
+    QString VHC_Result;
 
-    VMHL_Result +=ErrorHtml;
+    VHC_Result +=ErrorHtml;
 
-    return VMHL_Result;
+    return VHC_Result;
 }
 //---------------------------------------------------------------------------
 

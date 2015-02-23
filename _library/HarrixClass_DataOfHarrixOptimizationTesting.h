@@ -114,5 +114,47 @@ void makingLatexTableR();
 
 //Функции анализа данных
 void makingAnalysis();
+
+//ПЕРЕМЕННЫЕ
+//Главные переменные
+HarrixClass_OnlyDataOfHarrixOptimizationTesting Data;//сырые данные исследований, считываемые из FileXML
+QString FileXML;//сохраняем на всякий случай содержимое файла	
+QXmlStreamReader Rxml;//непосредственно анализируемый XML файл
+
+//Строка с возвращаемым HTML кодом
+QString Html;
+//далее идет набор переменных для кусков Html кодов
+QString HtmlMessageOfError;// сюда записывается код о сообщениях ошибок
+QString HtmlReport;//текст Html для отображения отчета о считывании XML файла.
+
+//Строка с возвращаемым кодом  Latex для добавления в https://github.com/Harrix/Harrix-Document-Template-LaTeX
+QString Latex;
+QString LatexTable;//Первичная информация плюс таблицы. Без анализа
+//далее идет набор переменных для кусков Latex кодов
+QString LatexTableEx;//для отображения таблицы данных о ошибке Ex
+QString LatexTableEy;//для отображения таблицы данных о ошибке Ey
+QString LatexTableR; //для отображения таблицы данных о надежности R
+QString LatexInfo;//Для отображения информации о исследовании
+QString LatexAboutParameters;//Для отображения данных о обнаруженных параметрах алгоритма и какие они бывают
+QString LatexAnalysis;//Для отображения первоначального анализа данных.
+QString LatexListOfVectorParameterOptions;//Для отображения списка вектора параметров алгоритма
+
+//Номера комбинаций вариантов настроек
+//Содержит номера от 1 до XML_Number_Of_Experiments
+//Дополнительный вектор, чтобы понимать, какой номер у
+//эксперимента с настройками из ListOfVectorParameterOptions
+double *NumberOfListOfVectorParameterOptions;
+
+//далее идут внутренние служебные переменные
+QString Un;//уникальная строка для использования ссылок в Latex
+QString NameForHead;//тот кусок, который будет вставляться в таблицы, заголовки: какой-то алгоритм оптимизации на такой-то тестовой функции такой-то размерности.
+QString Cell1,Cell2,Cell3,Cell4,Cell5;//для записи ячеек в полные таблицы
+QString Parbox;//нужно или не нужно делать в формулах фиксированную ячейку для длинного текста
+QString NameOfElement;//имя тэга
+QString TextOfElement;//содержимое тэга
+QString AttrOfElement;//содержимое атрибута тэга
+QString NameOfAttr;//название атрибута тэга
+bool Error;//есть ли ошибка при анализе XML файла
+bool Zero_Number_Of_Parameters;//Число параметров равно нулю или нет
 };
 #endif // HARRIXCLASS_DATAOFHARRIXOPTIMIZATIONTESTING_H

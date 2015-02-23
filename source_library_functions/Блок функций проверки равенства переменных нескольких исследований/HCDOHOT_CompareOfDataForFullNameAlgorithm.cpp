@@ -9,11 +9,11 @@ bool HCDOHOT_CompareOfDataForFullNameAlgorithm (HarrixClass_DataOfHarrixOptimiza
      true - если исследуемый параметр алгоритмов одинаков.
      false - если разные.
      */
-    bool VMHL_Result=true;
+    bool VHML_Result=true;
 
-    if ((*Data1).getFullNameAlgorithm()!=(*Data2).getFullNameAlgorithm()) VMHL_Result=false;
+    if ((*Data1).getFullNameAlgorithm()!=(*Data2).getFullNameAlgorithm()) VHML_Result=false;
 
-    return VMHL_Result;
+    return VHML_Result;
 }
 //--------------------------------------------------------------------------
 bool HCDOHOT_CompareOfDataForFullNameAlgorithm (HarrixClass_DataOfHarrixOptimizationTesting *SeveralData, int N)
@@ -27,16 +27,16 @@ bool HCDOHOT_CompareOfDataForFullNameAlgorithm (HarrixClass_DataOfHarrixOptimiza
      true - если исследуемый параметр алгоритмов одинаков.
      false - если разные.
      */
-    bool VMHL_Result=true;
+    bool VHML_Result=true;
 
     QString Info=SeveralData[0].getFullNameAlgorithm();
 
     for (int i=1;i<N;i++)
     {
-        if ( Info!=SeveralData[i].getFullNameAlgorithm() ) VMHL_Result=false;
+        if ( Info!=SeveralData[i].getFullNameAlgorithm() ) VHML_Result=false;
     }
 
-    return VMHL_Result;
+    return VHML_Result;
 }
 //--------------------------------------------------------------------------
 bool HCDOHOT_CompareOfDataForFullNameAlgorithm (HarrixClass_OnlyDataOfHarrixOptimizationTesting *SeveralData, int N)
@@ -50,14 +50,14 @@ bool HCDOHOT_CompareOfDataForFullNameAlgorithm (HarrixClass_OnlyDataOfHarrixOpti
      true - если исследуемый параметр алгоритмов одинаков.
      false - если разные.
      */
-    bool VMHL_Result=true;
+    bool VHML_Result=true;
 
     QString Info=SeveralData[0].getFullNameAlgorithm();
 
     for (int i=1;i<N;i++)
     {
-        if ( Info!=SeveralData[i].getFullNameAlgorithm() ) VMHL_Result=false;
+        if ( Info!=SeveralData[i].getFullNameAlgorithm() ) VHML_Result=false;
     }
 
-    return VMHL_Result;
+    return VHML_Result;
 }

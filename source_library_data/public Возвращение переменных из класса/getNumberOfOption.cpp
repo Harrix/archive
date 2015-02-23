@@ -7,9 +7,9 @@ int HarrixClass_DataOfHarrixOptimizationTesting::getNumberOfOption(QString NameO
     Возвращаемое значение:
      Значения параметра в виде номера (если не найдено, то возвращается -1.
      */
-    int VMHL_Result=-1;
+    int VHML_Result=-1;
 
-    VMHL_Result = HQt_SearchQStringInQStringList (Data.getNamesOfParameters(), NameOption);
+    VHML_Result = HQt_SearchQStringInQStringList (Data.getNamesOfParameters(), NameOption);
 
-    return VMHL_Result;
+    return VHML_Result;
 }

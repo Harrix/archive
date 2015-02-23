@@ -1,5 +1,5 @@
 //HarrixClass_DataOfHarrixOptimizationTesting
-//Версия 1.25
+//Версия 1.26
 //Класс для считывания информации формата данных Harrix Optimization Testing на C++ для Qt.
 //https://github.com/Harrix/HarrixClass_DataOfHarrixOptimizationTesting
 //Библиотека распространяется по лицензии Apache License, Version 2.0.
@@ -1245,28 +1245,28 @@ void HarrixClass_OnlyDataOfHarrixOptimizationTesting::memoryAllocation()
     //Число столбцов равно числу измерений для каждого варианта настроек алгоритма.
     MatrixOfEx=new double*[XML_Number_Of_Experiments];
     for (int i=0;i<XML_Number_Of_Experiments;i++) MatrixOfEx[i]=new double[XML_Number_Of_Measuring];
-    TMHL_FillMatrix(MatrixOfEx, XML_Number_Of_Experiments, XML_Number_Of_Measuring, -1.);
+    HML_FillMatrix(MatrixOfEx, XML_Number_Of_Experiments, XML_Number_Of_Measuring, -1.);
 
     //Матрица значений ошибок Ey алгоритма оптимизации.
     //Число строк равно числу комбинаций вариантов настроек.
     //Число столбцов равно числу измерений для каждого варианта настроек алгоритма.
     MatrixOfEy=new double*[XML_Number_Of_Experiments];
     for (int i=0;i<XML_Number_Of_Experiments;i++) MatrixOfEy[i]=new double[XML_Number_Of_Measuring];
-    TMHL_FillMatrix(MatrixOfEy, XML_Number_Of_Experiments, XML_Number_Of_Measuring, -1.);
+    HML_FillMatrix(MatrixOfEy, XML_Number_Of_Experiments, XML_Number_Of_Measuring, -1.);
 
     //Матрица значений надежностей R алгоритма оптимизации.
     //Число строк равно числу комбинаций вариантов настроек.
     //Число столбцов равно числу измерений для каждого варианта настроек алгоритма.
     MatrixOfR=new double*[XML_Number_Of_Experiments];
     for (int i=0;i<XML_Number_Of_Experiments;i++) MatrixOfR[i]=new double[XML_Number_Of_Measuring];
-    TMHL_FillMatrix(MatrixOfR, XML_Number_Of_Experiments, XML_Number_Of_Measuring, -1.);
+    HML_FillMatrix(MatrixOfR, XML_Number_Of_Experiments, XML_Number_Of_Measuring, -1.);
 
     //Матрица значений параметров для каждой комбинации вариантов настроек.
     //Число строк равно числу комбинаций вариантов настроек.
     //Число столбцов равно числу проверяемых параметров алгоритма оптимизации.
     MatrixOfParameters=new int*[XML_Number_Of_Experiments];
     for (int i=0;i<XML_Number_Of_Experiments;i++) MatrixOfParameters[i]=new int[XML_Number_Of_Parameters];
-    TMHL_FillMatrix(MatrixOfParameters, XML_Number_Of_Experiments, XML_Number_Of_Parameters, -1);
+    HML_FillMatrix(MatrixOfParameters, XML_Number_Of_Experiments, XML_Number_Of_Parameters, -1);
 
     //Вектор названий вариантов параметров алгоритма оптимизации.
     //Число элементов равно числу проверяемых параметров алгоритма оптимизации.

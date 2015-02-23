@@ -25,12 +25,12 @@ QString HarrixClass_DataOfHarrixOptimizationTesting::makingLatexTable2D(QString 
     //Определим сколько параметров пойдет на столбцы, а сколько на строки
     int Limit=10;//сколько максимум столбцов с данными
     //сколько параметров будет в виде столбов
-    int ForColsN = MHL_SeparateVectorLimitOnProductElementsTwo(CountOfParametersTemp, Order, Limit, NumberOfParametersTemp);
+    int ForColsN = HML_SeparateVectorLimitOnProductElementsTwo(CountOfParametersTemp, Order, Limit, NumberOfParametersTemp);
     if (ForColsN==-1)
     {
         //Если слишком много элементов в каждом варианте, то берем самый маленький и только один
         //Пусть коряво будет, но хоть что-то будет
-        TMHL_ReverseVector(Order,NumberOfParametersTemp);
+        HML_ReverseVector(Order,NumberOfParametersTemp);
         ForColsN = 1;
     }
     //А если все параметры решились по верхней части разместиться? Хотя бы один сместим на вертикальную часть
@@ -53,7 +53,7 @@ QString HarrixClass_DataOfHarrixOptimizationTesting::makingLatexTable2D(QString 
             if (Temp.length()>CountForSubOrder[i]) CountForSubOrder[i] = Temp.length();
         }
     }
-    TMHL_BubbleSortWithConjugateVector(CountForSubOrder, SubOrder, NumberOfParametersTemp-ForColsN);
+    HML_BubbleSortWithConjugateVector(CountForSubOrder, SubOrder, NumberOfParametersTemp-ForColsN);
     for (int i=0;i<NumberOfParametersTemp-ForColsN;i++)
     {
         Order[i+ForColsN]=SubOrder[i];
@@ -139,7 +139,7 @@ QString HarrixClass_DataOfHarrixOptimizationTesting::makingLatexTable2D(QString 
     ////////////////////////////////////////////////////////
 
     int *WhatOptionInRow = new int [ColsForHeader];
-    TMHL_FillVector(WhatOptionInRow,ColsForHeader,-1);
+    HML_FillVector(WhatOptionInRow,ColsForHeader,-1);
 
     int *WhatOptionInCol = new int [RowsForHeader];
 
@@ -208,7 +208,7 @@ QString HarrixClass_DataOfHarrixOptimizationTesting::makingLatexTable2D(QString 
         ////////////////////////////////////////////////////////
 
         //Основное содержание
-        TMHL_FillVector(WhatOptionInCol,RowsForHeader,-1);
+        HML_FillVector(WhatOptionInCol,RowsForHeader,-1);
         for (int i=0;i<ColsForContent;i++)
         {
             // i - номер столбца

@@ -196,6 +196,7 @@ int HCDOHOT_ReadFilesOnlyDataInDir(HarrixClass_OnlyDataOfHarrixOptimizationTesti
 int HCDOHOT_ReadFilesOnlyDataInDir(HarrixClass_OnlyDataOfHarrixOptimizationTesting *SeveralData, QString path);
 ```
 
+
 Файл HarrixClass_OnlyDataOfHarrixOptimizationTesting.cpp
 ========================================================
 
@@ -761,6 +762,7 @@ void memoryAllocation();
 void memoryDeallocation();
 ```
 
+
 Файл HarrixClass_DataOfHarrixOptimizationTesting.cpp
 ====================================================
 
@@ -870,6 +872,12 @@ void makingLatexInfo();
 
 ```cpp
 void makingLatexListOfVectorParameterOptions();
+```
+
+- Создает текст LaTeX для отображения списка вектора названий вариантов параметров алгоритма оптимизации.
+
+```cpp
+void makingLatexListOfVectorParameterOptions2();
 ```
 
 - Создает текст LaTeX для отображения сырых данных ошибки по входным параметрам в виде полной таблицы.

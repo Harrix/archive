@@ -9,11 +9,11 @@ bool HCDOHOT_CompareOfDataForMaxCountOfFitness (HarrixClass_DataOfHarrixOptimiza
      true - если исследуемый параметр алгоритмов одинаков.
      false - если разные.
      */
-    bool VMHL_Result=true;
+    bool VHML_Result=true;
 
-    if ((*Data1).getMaxCountOfFitness()!=(*Data2).getMaxCountOfFitness()) VMHL_Result=false;
+    if ((*Data1).getMaxCountOfFitness()!=(*Data2).getMaxCountOfFitness()) VHML_Result=false;
 
-    return VMHL_Result;
+    return VHML_Result;
 }
 //--------------------------------------------------------------------------
 bool HCDOHOT_CompareOfDataForMaxCountOfFitness (HarrixClass_DataOfHarrixOptimizationTesting *SeveralData, int N)
@@ -27,16 +27,16 @@ bool HCDOHOT_CompareOfDataForMaxCountOfFitness (HarrixClass_DataOfHarrixOptimiza
      true - если исследуемый параметр алгоритмов одинаков.
      false - если разные.
      */
-    bool VMHL_Result=true;
+    bool VHML_Result=true;
 
     qint64 Info=SeveralData[0].getMaxCountOfFitness();
 
     for (int i=1;i<N;i++)
     {
-        if ( Info!=SeveralData[i].getMaxCountOfFitness() ) VMHL_Result=false;
+        if ( Info!=SeveralData[i].getMaxCountOfFitness() ) VHML_Result=false;
     }
 
-    return VMHL_Result;
+    return VHML_Result;
 }
 //--------------------------------------------------------------------------
 bool HCDOHOT_CompareOfDataForMaxCountOfFitness (HarrixClass_OnlyDataOfHarrixOptimizationTesting *SeveralData, int N)
@@ -50,14 +50,14 @@ bool HCDOHOT_CompareOfDataForMaxCountOfFitness (HarrixClass_OnlyDataOfHarrixOpti
      true - если исследуемый параметр алгоритмов одинаков.
      false - если разные.
      */
-    bool VMHL_Result=true;
+    bool VHML_Result=true;
 
     qint64 Info=SeveralData[0].getMaxCountOfFitness();
 
     for (int i=1;i<N;i++)
     {
-        if ( Info!=SeveralData[i].getMaxCountOfFitness() ) VMHL_Result=false;
+        if ( Info!=SeveralData[i].getMaxCountOfFitness() ) VHML_Result=false;
     }
 
-    return VMHL_Result;
+    return VHML_Result;
 }

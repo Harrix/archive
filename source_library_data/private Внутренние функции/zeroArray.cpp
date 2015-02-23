@@ -8,5 +8,5 @@ void HarrixClass_DataOfHarrixOptimizationTesting::zeroArray()
      Отсутствует.
      */
     //"Обнулим" матрицы
-    TMHL_ZeroVector(NumberOfListOfVectorParameterOptions,Data.getNumberOfExperiments());
+    HML_ZeroVector(NumberOfListOfVectorParameterOptions,Data.getNumberOfExperiments());
 }

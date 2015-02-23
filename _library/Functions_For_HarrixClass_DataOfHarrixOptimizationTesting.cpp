@@ -1,5 +1,5 @@
 //HarrixClass_DataOfHarrixOptimizationTesting
-//Версия 1.25
+//Версия 1.26
 //Класс для считывания информации формата данных Harrix Optimization Testing на C++ для Qt.
 //https://github.com/Harrix/HarrixClass_DataOfHarrixOptimizationTesting
 //Библиотека распространяется по лицензии Apache License, Version 2.0.
@@ -35,7 +35,7 @@ int HCDOHOT_CompareOfDataByWilcoxonW (HarrixClass_OnlyDataOfHarrixOptimizationTe
      0 - выборки не однородны  при данном уровне значимости;
      1 - выборки однородны  при данном уровне значимости;
      */
-    int VMHL_Result=1;
+    int VHML_Result=1;
 
     int i,j;
 
@@ -60,12 +60,12 @@ int HCDOHOT_CompareOfDataByWilcoxonW (HarrixClass_OnlyDataOfHarrixOptimizationTe
             Vector2[i*(*Data2).getNumberOfMeasuring()+j]=(*Data2).getErrorEx(i,j);
         }
 
-    VMHL_Result = MHL_WilcoxonW(Vector1, Vector2, N1, N2, Q);
+    VHML_Result = HML_WilcoxonW(Vector1, Vector2, N1, N2, Q);
 
     delete [] Vector1;
     delete [] Vector2;
 
-    return VMHL_Result;
+    return VHML_Result;
 }
 //---------------------------------------------------------------------------
 
@@ -80,11 +80,11 @@ bool HCDOHOT_CompareOfDataForAuthor (HarrixClass_DataOfHarrixOptimizationTesting
      true - если исследуемый параметр алгоритмов одинаков.
      false - если разные.
      */
-    bool VMHL_Result=true;
+    bool VHML_Result=true;
 
-    if ((*Data1).getAuthor()!=(*Data2).getAuthor()) VMHL_Result=false;
+    if ((*Data1).getAuthor()!=(*Data2).getAuthor()) VHML_Result=false;
 
-    return VMHL_Result;
+    return VHML_Result;
 }
 //--------------------------------------------------------------------------
 bool HCDOHOT_CompareOfDataForAuthor (HarrixClass_DataOfHarrixOptimizationTesting *SeveralData, int N)
@@ -98,16 +98,16 @@ bool HCDOHOT_CompareOfDataForAuthor (HarrixClass_DataOfHarrixOptimizationTesting
      true - если исследуемый параметр алгоритмов одинаков.
      false - если разные.
      */
-    bool VMHL_Result=true;
+    bool VHML_Result=true;
 
     QString Info=SeveralData[0].getAuthor();
 
     for (int i=1;i<N;i++)
     {
-        if ( Info!=SeveralData[i].getAuthor() ) VMHL_Result=false;
+        if ( Info!=SeveralData[i].getAuthor() ) VHML_Result=false;
     }
 
-    return VMHL_Result;
+    return VHML_Result;
 }
 //--------------------------------------------------------------------------
 bool HCDOHOT_CompareOfDataForAuthor (HarrixClass_OnlyDataOfHarrixOptimizationTesting *SeveralData, int N)
@@ -121,16 +121,16 @@ bool HCDOHOT_CompareOfDataForAuthor (HarrixClass_OnlyDataOfHarrixOptimizationTes
      true - если исследуемый параметр алгоритмов одинаков.
      false - если разные.
      */
-    bool VMHL_Result=true;
+    bool VHML_Result=true;
 
     QString Info=SeveralData[0].getAuthor();
 
     for (int i=1;i<N;i++)
     {
-        if ( Info!=SeveralData[i].getAuthor() ) VMHL_Result=false;
+        if ( Info!=SeveralData[i].getAuthor() ) VHML_Result=false;
     }
 
-    return VMHL_Result;
+    return VHML_Result;
 }
 //---------------------------------------------------------------------------
 
@@ -145,11 +145,11 @@ bool HCDOHOT_CompareOfDataForCheckAllCombinations (HarrixClass_DataOfHarrixOptim
      true - если исследуемый параметр алгоритмов одинаков.
      false - если разные.
      */
-    bool VMHL_Result=true;
+    bool VHML_Result=true;
 
-    if ((*Data1).getCheckAllCombinations()!=(*Data2).getCheckAllCombinations()) VMHL_Result=false;
+    if ((*Data1).getCheckAllCombinations()!=(*Data2).getCheckAllCombinations()) VHML_Result=false;
 
-    return VMHL_Result;
+    return VHML_Result;
 }
 //--------------------------------------------------------------------------
 bool HCDOHOT_CompareOfDataForCheckAllCombinations (HarrixClass_DataOfHarrixOptimizationTesting *SeveralData, int N)
@@ -163,16 +163,16 @@ bool HCDOHOT_CompareOfDataForCheckAllCombinations (HarrixClass_DataOfHarrixOptim
      true - если исследуемый параметр алгоритмов одинаков.
      false - если разные.
      */
-    bool VMHL_Result=true;
+    bool VHML_Result=true;
 
     int Info=SeveralData[0].getCheckAllCombinations();
 
     for (int i=1;i<N;i++)
     {
-        if ( Info!=SeveralData[i].getCheckAllCombinations() ) VMHL_Result=false;
+        if ( Info!=SeveralData[i].getCheckAllCombinations() ) VHML_Result=false;
     }
 
-    return VMHL_Result;
+    return VHML_Result;
 }
 //--------------------------------------------------------------------------
 bool HCDOHOT_CompareOfDataForCheckAllCombinations (HarrixClass_OnlyDataOfHarrixOptimizationTesting *SeveralData, int N)
@@ -186,16 +186,16 @@ bool HCDOHOT_CompareOfDataForCheckAllCombinations (HarrixClass_OnlyDataOfHarrixO
      true - если исследуемый параметр алгоритмов одинаков.
      false - если разные.
      */
-    bool VMHL_Result=true;
+    bool VHML_Result=true;
 
     int Info=SeveralData[0].getCheckAllCombinations();
 
     for (int i=1;i<N;i++)
     {
-        if ( Info!=SeveralData[i].getCheckAllCombinations() ) VMHL_Result=false;
+        if ( Info!=SeveralData[i].getCheckAllCombinations() ) VHML_Result=false;
     }
 
-    return VMHL_Result;
+    return VHML_Result;
 }
 //---------------------------------------------------------------------------
 
@@ -210,11 +210,11 @@ bool HCDOHOT_CompareOfDataForDate (HarrixClass_DataOfHarrixOptimizationTesting *
      true - если исследуемый параметр алгоритмов одинаков.
      false - если разные.
      */
-    bool VMHL_Result=true;
+    bool VHML_Result=true;
 
-    if ((*Data1).getDate()!=(*Data2).getDate()) VMHL_Result=false;
+    if ((*Data1).getDate()!=(*Data2).getDate()) VHML_Result=false;
 
-    return VMHL_Result;
+    return VHML_Result;
 }
 //--------------------------------------------------------------------------
 bool HCDOHOT_CompareOfDataForDate (HarrixClass_DataOfHarrixOptimizationTesting *SeveralData, int N)
@@ -228,16 +228,16 @@ bool HCDOHOT_CompareOfDataForDate (HarrixClass_DataOfHarrixOptimizationTesting *
      true - если исследуемый параметр алгоритмов одинаков.
      false - если разные.
      */
-    bool VMHL_Result=true;
+    bool VHML_Result=true;
 
     QString Info=SeveralData[0].getDate();
 
     for (int i=1;i<N;i++)
     {
-        if ( Info!=SeveralData[i].getDate() ) VMHL_Result=false;
+        if ( Info!=SeveralData[i].getDate() ) VHML_Result=false;
     }
 
-    return VMHL_Result;
+    return VHML_Result;
 }
 //--------------------------------------------------------------------------
 bool HCDOHOT_CompareOfDataForDate (HarrixClass_OnlyDataOfHarrixOptimizationTesting *SeveralData, int N)
@@ -251,16 +251,16 @@ bool HCDOHOT_CompareOfDataForDate (HarrixClass_OnlyDataOfHarrixOptimizationTesti
      true - если исследуемый параметр алгоритмов одинаков.
      false - если разные.
      */
-    bool VMHL_Result=true;
+    bool VHML_Result=true;
 
     QString Info=SeveralData[0].getDate();
 
     for (int i=1;i<N;i++)
     {
-        if ( Info!=SeveralData[i].getDate() ) VMHL_Result=false;
+        if ( Info!=SeveralData[i].getDate() ) VHML_Result=false;
     }
 
-    return VMHL_Result;
+    return VHML_Result;
 }
 //---------------------------------------------------------------------------
 
@@ -275,11 +275,11 @@ bool HCDOHOT_CompareOfDataForDimensionTestFunction (HarrixClass_DataOfHarrixOpti
      true - если исследуемый параметр алгоритмов одинаков.
      false - если разные.
      */
-    bool VMHL_Result=true;
+    bool VHML_Result=true;
 
-    if ((*Data1).getDimensionTestFunction()!=(*Data2).getDimensionTestFunction()) VMHL_Result=false;
+    if ((*Data1).getDimensionTestFunction()!=(*Data2).getDimensionTestFunction()) VHML_Result=false;
 
-    return VMHL_Result;
+    return VHML_Result;
 }
 //--------------------------------------------------------------------------
 bool HCDOHOT_CompareOfDataForForDimensionTestFunction (HarrixClass_DataOfHarrixOptimizationTesting *SeveralData, int N)
@@ -293,16 +293,16 @@ bool HCDOHOT_CompareOfDataForForDimensionTestFunction (HarrixClass_DataOfHarrixO
      true - если исследуемый параметр алгоритмов одинаков.
      false - если разные.
      */
-    bool VMHL_Result=true;
+    bool VHML_Result=true;
 
     qint64 Info=SeveralData[0].getDimensionTestFunction();
 
     for (int i=1;i<N;i++)
     {
-        if ( Info!=SeveralData[i].getDimensionTestFunction() ) VMHL_Result=false;
+        if ( Info!=SeveralData[i].getDimensionTestFunction() ) VHML_Result=false;
     }
 
-    return VMHL_Result;
+    return VHML_Result;
 }
 //--------------------------------------------------------------------------
 bool HCDOHOT_CompareOfDataForForDimensionTestFunction (HarrixClass_OnlyDataOfHarrixOptimizationTesting *SeveralData, int N)
@@ -316,16 +316,16 @@ bool HCDOHOT_CompareOfDataForForDimensionTestFunction (HarrixClass_OnlyDataOfHar
      true - если исследуемый параметр алгоритмов одинаков.
      false - если разные.
      */
-    bool VMHL_Result=true;
+    bool VHML_Result=true;
 
     qint64 Info=SeveralData[0].getDimensionTestFunction();
 
     for (int i=1;i<N;i++)
     {
-        if ( Info!=SeveralData[i].getDimensionTestFunction() ) VMHL_Result=false;
+        if ( Info!=SeveralData[i].getDimensionTestFunction() ) VHML_Result=false;
     }
 
-    return VMHL_Result;
+    return VHML_Result;
 }
 //---------------------------------------------------------------------------
 
@@ -340,11 +340,11 @@ bool HCDOHOT_CompareOfDataForEmail (HarrixClass_DataOfHarrixOptimizationTesting 
      true - если исследуемый параметр алгоритмов одинаков.
      false - если разные.
      */
-    bool VMHL_Result=true;
+    bool VHML_Result=true;
 
-    if ((*Data1).getEmail()!=(*Data2).getEmail()) VMHL_Result=false;
+    if ((*Data1).getEmail()!=(*Data2).getEmail()) VHML_Result=false;
 
-    return VMHL_Result;
+    return VHML_Result;
 }
 //--------------------------------------------------------------------------
 bool HCDOHOT_CompareOfDataForEmail (HarrixClass_DataOfHarrixOptimizationTesting *SeveralData, int N)
@@ -358,16 +358,16 @@ bool HCDOHOT_CompareOfDataForEmail (HarrixClass_DataOfHarrixOptimizationTesting 
      true - если исследуемый параметр алгоритмов одинаков.
      false - если разные.
      */
-    bool VMHL_Result=true;
+    bool VHML_Result=true;
 
     QString Info=SeveralData[0].getEmail();
 
     for (int i=1;i<N;i++)
     {
-        if ( Info!=SeveralData[i].getEmail() ) VMHL_Result=false;
+        if ( Info!=SeveralData[i].getEmail() ) VHML_Result=false;
     }
 
-    return VMHL_Result;
+    return VHML_Result;
 }
 //--------------------------------------------------------------------------
 bool HCDOHOT_CompareOfDataForEmail (HarrixClass_OnlyDataOfHarrixOptimizationTesting *SeveralData, int N)
@@ -381,16 +381,16 @@ bool HCDOHOT_CompareOfDataForEmail (HarrixClass_OnlyDataOfHarrixOptimizationTest
      true - если исследуемый параметр алгоритмов одинаков.
      false - если разные.
      */
-    bool VMHL_Result=true;
+    bool VHML_Result=true;
 
     QString Info=SeveralData[0].getEmail();
 
     for (int i=1;i<N;i++)
     {
-        if ( Info!=SeveralData[i].getEmail() ) VMHL_Result=false;
+        if ( Info!=SeveralData[i].getEmail() ) VHML_Result=false;
     }
 
-    return VMHL_Result;
+    return VHML_Result;
 }
 //---------------------------------------------------------------------------
 
@@ -405,11 +405,11 @@ bool HCDOHOT_CompareOfDataForFormat (HarrixClass_DataOfHarrixOptimizationTesting
      true - если исследуемый параметр алгоритмов одинаков.
      false - если разные.
      */
-    bool VMHL_Result=true;
+    bool VHML_Result=true;
 
-    if ((*Data1).getFormat()!=(*Data2).getFormat()) VMHL_Result=false;
+    if ((*Data1).getFormat()!=(*Data2).getFormat()) VHML_Result=false;
 
-    return VMHL_Result;
+    return VHML_Result;
 }
 //--------------------------------------------------------------------------
 bool HCDOHOT_CompareOfDataForFormat (HarrixClass_DataOfHarrixOptimizationTesting *SeveralData, int N)
@@ -423,16 +423,16 @@ bool HCDOHOT_CompareOfDataForFormat (HarrixClass_DataOfHarrixOptimizationTesting
      true - если исследуемый параметр алгоритмов одинаков.
      false - если разные.
      */
-    bool VMHL_Result=true;
+    bool VHML_Result=true;
 
     QString Info=SeveralData[0].getFormat();
 
     for (int i=1;i<N;i++)
     {
-        if ( Info!=SeveralData[i].getFormat() ) VMHL_Result=false;
+        if ( Info!=SeveralData[i].getFormat() ) VHML_Result=false;
     }
 
-    return VMHL_Result;
+    return VHML_Result;
 }
 //--------------------------------------------------------------------------
 bool HCDOHOT_CompareOfDataForFormat (HarrixClass_OnlyDataOfHarrixOptimizationTesting *SeveralData, int N)
@@ -446,16 +446,16 @@ bool HCDOHOT_CompareOfDataForFormat (HarrixClass_OnlyDataOfHarrixOptimizationTes
      true - если исследуемый параметр алгоритмов одинаков.
      false - если разные.
      */
-    bool VMHL_Result=true;
+    bool VHML_Result=true;
 
     QString Info=SeveralData[0].getFormat();
 
     for (int i=1;i<N;i++)
     {
-        if ( Info!=SeveralData[i].getFormat() ) VMHL_Result=false;
+        if ( Info!=SeveralData[i].getFormat() ) VHML_Result=false;
     }
 
-    return VMHL_Result;
+    return VHML_Result;
 }
 //---------------------------------------------------------------------------
 
@@ -470,11 +470,11 @@ bool HCDOHOT_CompareOfDataForFullNameAlgorithm (HarrixClass_DataOfHarrixOptimiza
      true - если исследуемый параметр алгоритмов одинаков.
      false - если разные.
      */
-    bool VMHL_Result=true;
+    bool VHML_Result=true;
 
-    if ((*Data1).getFullNameAlgorithm()!=(*Data2).getFullNameAlgorithm()) VMHL_Result=false;
+    if ((*Data1).getFullNameAlgorithm()!=(*Data2).getFullNameAlgorithm()) VHML_Result=false;
 
-    return VMHL_Result;
+    return VHML_Result;
 }
 //--------------------------------------------------------------------------
 bool HCDOHOT_CompareOfDataForFullNameAlgorithm (HarrixClass_DataOfHarrixOptimizationTesting *SeveralData, int N)
@@ -488,16 +488,16 @@ bool HCDOHOT_CompareOfDataForFullNameAlgorithm (HarrixClass_DataOfHarrixOptimiza
      true - если исследуемый параметр алгоритмов одинаков.
      false - если разные.
      */
-    bool VMHL_Result=true;
+    bool VHML_Result=true;
 
     QString Info=SeveralData[0].getFullNameAlgorithm();
 
     for (int i=1;i<N;i++)
     {
-        if ( Info!=SeveralData[i].getFullNameAlgorithm() ) VMHL_Result=false;
+        if ( Info!=SeveralData[i].getFullNameAlgorithm() ) VHML_Result=false;
     }
 
-    return VMHL_Result;
+    return VHML_Result;
 }
 //--------------------------------------------------------------------------
 bool HCDOHOT_CompareOfDataForFullNameAlgorithm (HarrixClass_OnlyDataOfHarrixOptimizationTesting *SeveralData, int N)
@@ -511,16 +511,16 @@ bool HCDOHOT_CompareOfDataForFullNameAlgorithm (HarrixClass_OnlyDataOfHarrixOpti
      true - если исследуемый параметр алгоритмов одинаков.
      false - если разные.
      */
-    bool VMHL_Result=true;
+    bool VHML_Result=true;
 
     QString Info=SeveralData[0].getFullNameAlgorithm();
 
     for (int i=1;i<N;i++)
     {
-        if ( Info!=SeveralData[i].getFullNameAlgorithm() ) VMHL_Result=false;
+        if ( Info!=SeveralData[i].getFullNameAlgorithm() ) VHML_Result=false;
     }
 
-    return VMHL_Result;
+    return VHML_Result;
 }
 //---------------------------------------------------------------------------
 
@@ -535,11 +535,11 @@ bool HCDOHOT_CompareOfDataForFullNameTestFunction (HarrixClass_DataOfHarrixOptim
      true - если исследуемый параметр алгоритмов одинаков.
      false - если разные.
      */
-    bool VMHL_Result=true;
+    bool VHML_Result=true;
 
-    if ((*Data1).getFullNameTestFunction()!=(*Data2).getFullNameTestFunction()) VMHL_Result=false;
+    if ((*Data1).getFullNameTestFunction()!=(*Data2).getFullNameTestFunction()) VHML_Result=false;
 
-    return VMHL_Result;
+    return VHML_Result;
 }
 //--------------------------------------------------------------------------
 bool HCDOHOT_CompareOfDataForForFullNameTestFunction (HarrixClass_DataOfHarrixOptimizationTesting *SeveralData, int N)
@@ -553,16 +553,16 @@ bool HCDOHOT_CompareOfDataForForFullNameTestFunction (HarrixClass_DataOfHarrixOp
      true - если исследуемый параметр алгоритмов одинаков.
      false - если разные.
      */
-    bool VMHL_Result=true;
+    bool VHML_Result=true;
 
     QString Info=SeveralData[0].getFullNameTestFunction();
 
     for (int i=1;i<N;i++)
     {
-        if ( Info!=SeveralData[i].getFullNameTestFunction() ) VMHL_Result=false;
+        if ( Info!=SeveralData[i].getFullNameTestFunction() ) VHML_Result=false;
     }
 
-    return VMHL_Result;
+    return VHML_Result;
 }
 //--------------------------------------------------------------------------
 bool HCDOHOT_CompareOfDataForForFullNameTestFunction (HarrixClass_OnlyDataOfHarrixOptimizationTesting *SeveralData, int N)
@@ -576,16 +576,16 @@ bool HCDOHOT_CompareOfDataForForFullNameTestFunction (HarrixClass_OnlyDataOfHarr
      true - если исследуемый параметр алгоритмов одинаков.
      false - если разные.
      */
-    bool VMHL_Result=true;
+    bool VHML_Result=true;
 
     QString Info=SeveralData[0].getFullNameTestFunction();
 
     for (int i=1;i<N;i++)
     {
-        if ( Info!=SeveralData[i].getFullNameTestFunction() ) VMHL_Result=false;
+        if ( Info!=SeveralData[i].getFullNameTestFunction() ) VHML_Result=false;
     }
 
-    return VMHL_Result;
+    return VHML_Result;
 }
 //---------------------------------------------------------------------------
 
@@ -600,11 +600,11 @@ bool HCDOHOT_CompareOfDataForLink (HarrixClass_DataOfHarrixOptimizationTesting *
      true - если исследуемый параметр алгоритмов одинаков.
      false - если разные.
      */
-    bool VMHL_Result=true;
+    bool VHML_Result=true;
 
-    if ((*Data1).getLink()!=(*Data2).getLink()) VMHL_Result=false;
+    if ((*Data1).getLink()!=(*Data2).getLink()) VHML_Result=false;
 
-    return VMHL_Result;
+    return VHML_Result;
 }
 //--------------------------------------------------------------------------
 bool HCDOHOT_CompareOfDataForLink (HarrixClass_DataOfHarrixOptimizationTesting *SeveralData, int N)
@@ -618,16 +618,16 @@ bool HCDOHOT_CompareOfDataForLink (HarrixClass_DataOfHarrixOptimizationTesting *
      true - если исследуемый параметр алгоритмов одинаков.
      false - если разные.
      */
-    bool VMHL_Result=true;
+    bool VHML_Result=true;
 
     QString Info=SeveralData[0].getLink();
 
     for (int i=1;i<N;i++)
     {
-        if ( Info!=SeveralData[i].getLink() ) VMHL_Result=false;
+        if ( Info!=SeveralData[i].getLink() ) VHML_Result=false;
     }
 
-    return VMHL_Result;
+    return VHML_Result;
 }
 //--------------------------------------------------------------------------
 bool HCDOHOT_CompareOfDataForLink (HarrixClass_OnlyDataOfHarrixOptimizationTesting *SeveralData, int N)
@@ -641,16 +641,16 @@ bool HCDOHOT_CompareOfDataForLink (HarrixClass_OnlyDataOfHarrixOptimizationTesti
      true - если исследуемый параметр алгоритмов одинаков.
      false - если разные.
      */
-    bool VMHL_Result=true;
+    bool VHML_Result=true;
 
     QString Info=SeveralData[0].getLink();
 
     for (int i=1;i<N;i++)
     {
-        if ( Info!=SeveralData[i].getLink() ) VMHL_Result=false;
+        if ( Info!=SeveralData[i].getLink() ) VHML_Result=false;
     }
 
-    return VMHL_Result;
+    return VHML_Result;
 }
 //---------------------------------------------------------------------------
 
@@ -665,11 +665,11 @@ bool HCDOHOT_CompareOfDataForMaxCountOfFitness (HarrixClass_DataOfHarrixOptimiza
      true - если исследуемый параметр алгоритмов одинаков.
      false - если разные.
      */
-    bool VMHL_Result=true;
+    bool VHML_Result=true;
 
-    if ((*Data1).getMaxCountOfFitness()!=(*Data2).getMaxCountOfFitness()) VMHL_Result=false;
+    if ((*Data1).getMaxCountOfFitness()!=(*Data2).getMaxCountOfFitness()) VHML_Result=false;
 
-    return VMHL_Result;
+    return VHML_Result;
 }
 //--------------------------------------------------------------------------
 bool HCDOHOT_CompareOfDataForMaxCountOfFitness (HarrixClass_DataOfHarrixOptimizationTesting *SeveralData, int N)
@@ -683,16 +683,16 @@ bool HCDOHOT_CompareOfDataForMaxCountOfFitness (HarrixClass_DataOfHarrixOptimiza
      true - если исследуемый параметр алгоритмов одинаков.
      false - если разные.
      */
-    bool VMHL_Result=true;
+    bool VHML_Result=true;
 
     qint64 Info=SeveralData[0].getMaxCountOfFitness();
 
     for (int i=1;i<N;i++)
     {
-        if ( Info!=SeveralData[i].getMaxCountOfFitness() ) VMHL_Result=false;
+        if ( Info!=SeveralData[i].getMaxCountOfFitness() ) VHML_Result=false;
     }
 
-    return VMHL_Result;
+    return VHML_Result;
 }
 //--------------------------------------------------------------------------
 bool HCDOHOT_CompareOfDataForMaxCountOfFitness (HarrixClass_OnlyDataOfHarrixOptimizationTesting *SeveralData, int N)
@@ -706,16 +706,16 @@ bool HCDOHOT_CompareOfDataForMaxCountOfFitness (HarrixClass_OnlyDataOfHarrixOpti
      true - если исследуемый параметр алгоритмов одинаков.
      false - если разные.
      */
-    bool VMHL_Result=true;
+    bool VHML_Result=true;
 
     qint64 Info=SeveralData[0].getMaxCountOfFitness();
 
     for (int i=1;i<N;i++)
     {
-        if ( Info!=SeveralData[i].getMaxCountOfFitness() ) VMHL_Result=false;
+        if ( Info!=SeveralData[i].getMaxCountOfFitness() ) VHML_Result=false;
     }
 
-    return VMHL_Result;
+    return VHML_Result;
 }
 //---------------------------------------------------------------------------
 
@@ -730,11 +730,11 @@ bool HCDOHOT_CompareOfDataForNameAlgorithm (HarrixClass_DataOfHarrixOptimization
      true - если имена алгоритмов одинаковы.
      false - если разные.
      */
-    bool VMHL_Result=true;
+    bool VHML_Result=true;
 
-    if ((*Data1).getNameAlgorithm()!=(*Data2).getNameAlgorithm()) VMHL_Result=false;
+    if ((*Data1).getNameAlgorithm()!=(*Data2).getNameAlgorithm()) VHML_Result=false;
 
-    return VMHL_Result;
+    return VHML_Result;
 }
 //--------------------------------------------------------------------------
 bool HCDOHOT_CompareOfDataForNameAlgorithm (HarrixClass_DataOfHarrixOptimizationTesting *SeveralData, int N)
@@ -748,16 +748,16 @@ bool HCDOHOT_CompareOfDataForNameAlgorithm (HarrixClass_DataOfHarrixOptimization
      true - если имена алгоритмов одинаковы.
      false - если разные.
      */
-    bool VMHL_Result=true;
+    bool VHML_Result=true;
 
     QString Info=SeveralData[0].getNameAlgorithm();
 
     for (int i=1;i<N;i++)
     {
-        if ( Info!=SeveralData[i].getNameAlgorithm() ) VMHL_Result=false;
+        if ( Info!=SeveralData[i].getNameAlgorithm() ) VHML_Result=false;
     }
 
-    return VMHL_Result;
+    return VHML_Result;
 }
 //--------------------------------------------------------------------------
 bool HCDOHOT_CompareOfDataForNameAlgorithm (HarrixClass_OnlyDataOfHarrixOptimizationTesting *SeveralData, int N)
@@ -771,16 +771,16 @@ bool HCDOHOT_CompareOfDataForNameAlgorithm (HarrixClass_OnlyDataOfHarrixOptimiza
      true - если имена алгоритмов одинаковы.
      false - если разные.
      */
-    bool VMHL_Result=true;
+    bool VHML_Result=true;
 
     QString Info=SeveralData[0].getNameAlgorithm();
 
     for (int i=1;i<N;i++)
     {
-        if ( Info!=SeveralData[i].getNameAlgorithm() ) VMHL_Result=false;
+        if ( Info!=SeveralData[i].getNameAlgorithm() ) VHML_Result=false;
     }
 
-    return VMHL_Result;
+    return VHML_Result;
 }
 //---------------------------------------------------------------------------
 
@@ -795,11 +795,11 @@ bool HCDOHOT_CompareOfDataForNameTestFunction (HarrixClass_DataOfHarrixOptimizat
      true - если исследуемый параметр алгоритмов одинаков.
      false - если разные.
      */
-    bool VMHL_Result=true;
+    bool VHML_Result=true;
 
-    if ((*Data1).getNameTestFunction()!=(*Data2).getNameTestFunction()) VMHL_Result=false;
+    if ((*Data1).getNameTestFunction()!=(*Data2).getNameTestFunction()) VHML_Result=false;
 
-    return VMHL_Result;
+    return VHML_Result;
 }
 //--------------------------------------------------------------------------
 bool HCDOHOT_CompareOfDataForForNameTestFunction (HarrixClass_DataOfHarrixOptimizationTesting *SeveralData, int N)
@@ -813,16 +813,16 @@ bool HCDOHOT_CompareOfDataForForNameTestFunction (HarrixClass_DataOfHarrixOptimi
      true - если исследуемый параметр алгоритмов одинаков.
      false - если разные.
      */
-    bool VMHL_Result=true;
+    bool VHML_Result=true;
 
     QString Info=SeveralData[0].getNameTestFunction();
 
     for (int i=1;i<N;i++)
     {
-        if ( Info!=SeveralData[i].getNameTestFunction() ) VMHL_Result=false;
+        if ( Info!=SeveralData[i].getNameTestFunction() ) VHML_Result=false;
     }
 
-    return VMHL_Result;
+    return VHML_Result;
 }
 //--------------------------------------------------------------------------
 bool HCDOHOT_CompareOfDataForForNameTestFunction (HarrixClass_OnlyDataOfHarrixOptimizationTesting *SeveralData, int N)
@@ -836,16 +836,16 @@ bool HCDOHOT_CompareOfDataForForNameTestFunction (HarrixClass_OnlyDataOfHarrixOp
      true - если исследуемый параметр алгоритмов одинаков.
      false - если разные.
      */
-    bool VMHL_Result=true;
+    bool VHML_Result=true;
 
     QString Info=SeveralData[0].getNameTestFunction();
 
     for (int i=1;i<N;i++)
     {
-        if ( Info!=SeveralData[i].getNameTestFunction() ) VMHL_Result=false;
+        if ( Info!=SeveralData[i].getNameTestFunction() ) VHML_Result=false;
     }
 
-    return VMHL_Result;
+    return VHML_Result;
 }
 //---------------------------------------------------------------------------
 
@@ -860,11 +860,11 @@ bool HCDOHOT_CompareOfDataForNumberOfExperiments (HarrixClass_DataOfHarrixOptimi
      true - если исследуемый параметр алгоритмов одинаков.
      false - если разные.
      */
-    bool VMHL_Result=true;
+    bool VHML_Result=true;
 
-    if ((*Data1).getNumberOfExperiments()!=(*Data2).getNumberOfExperiments()) VMHL_Result=false;
+    if ((*Data1).getNumberOfExperiments()!=(*Data2).getNumberOfExperiments()) VHML_Result=false;
 
-    return VMHL_Result;
+    return VHML_Result;
 }
 //--------------------------------------------------------------------------
 bool HCDOHOT_CompareOfDataForNumberOfExperiments (HarrixClass_DataOfHarrixOptimizationTesting *SeveralData, int N)
@@ -878,16 +878,16 @@ bool HCDOHOT_CompareOfDataForNumberOfExperiments (HarrixClass_DataOfHarrixOptimi
      true - если исследуемый параметр алгоритмов одинаков.
      false - если разные.
      */
-    bool VMHL_Result=true;
+    bool VHML_Result=true;
 
     qint64 Info=SeveralData[0].getNumberOfExperiments();
 
     for (int i=1;i<N;i++)
     {
-        if ( Info!=SeveralData[i].getNumberOfExperiments() ) VMHL_Result=false;
+        if ( Info!=SeveralData[i].getNumberOfExperiments() ) VHML_Result=false;
     }
 
-    return VMHL_Result;
+    return VHML_Result;
 }
 //--------------------------------------------------------------------------
 bool HCDOHOT_CompareOfDataForNumberOfExperiments (HarrixClass_OnlyDataOfHarrixOptimizationTesting *SeveralData, int N)
@@ -901,16 +901,16 @@ bool HCDOHOT_CompareOfDataForNumberOfExperiments (HarrixClass_OnlyDataOfHarrixOp
      true - если исследуемый параметр алгоритмов одинаков.
      false - если разные.
      */
-    bool VMHL_Result=true;
+    bool VHML_Result=true;
 
     qint64 Info=SeveralData[0].getNumberOfExperiments();
 
     for (int i=1;i<N;i++)
     {
-        if ( Info!=SeveralData[i].getNumberOfExperiments() ) VMHL_Result=false;
+        if ( Info!=SeveralData[i].getNumberOfExperiments() ) VHML_Result=false;
     }
 
-    return VMHL_Result;
+    return VHML_Result;
 }
 //---------------------------------------------------------------------------
 
@@ -925,11 +925,11 @@ bool HCDOHOT_CompareOfDataForNumberOfMeasuring (HarrixClass_DataOfHarrixOptimiza
      true - если исследуемый параметр алгоритмов одинаков.
      false - если разные.
      */
-    bool VMHL_Result=true;
+    bool VHML_Result=true;
 
-    if ((*Data1).getNumberOfMeasuring()!=(*Data2).getNumberOfMeasuring()) VMHL_Result=false;
+    if ((*Data1).getNumberOfMeasuring()!=(*Data2).getNumberOfMeasuring()) VHML_Result=false;
 
-    return VMHL_Result;
+    return VHML_Result;
 }
 //--------------------------------------------------------------------------
 bool HCDOHOT_CompareOfDataForNumberOfMeasuring (HarrixClass_DataOfHarrixOptimizationTesting *SeveralData, int N)
@@ -943,16 +943,16 @@ bool HCDOHOT_CompareOfDataForNumberOfMeasuring (HarrixClass_DataOfHarrixOptimiza
      true - если исследуемый параметр алгоритмов одинаков.
      false - если разные.
      */
-    bool VMHL_Result=true;
+    bool VHML_Result=true;
 
     qint64 Info=SeveralData[0].getNumberOfMeasuring();
 
     for (int i=1;i<N;i++)
     {
-        if ( Info!=SeveralData[i].getNumberOfMeasuring() ) VMHL_Result=false;
+        if ( Info!=SeveralData[i].getNumberOfMeasuring() ) VHML_Result=false;
     }
 
-    return VMHL_Result;
+    return VHML_Result;
 }
 //--------------------------------------------------------------------------
 bool HCDOHOT_CompareOfDataForNumberOfMeasuring (HarrixClass_OnlyDataOfHarrixOptimizationTesting *SeveralData, int N)
@@ -966,16 +966,16 @@ bool HCDOHOT_CompareOfDataForNumberOfMeasuring (HarrixClass_OnlyDataOfHarrixOpti
      true - если исследуемый параметр алгоритмов одинаков.
      false - если разные.
      */
-    bool VMHL_Result=true;
+    bool VHML_Result=true;
 
     qint64 Info=SeveralData[0].getNumberOfMeasuring();
 
     for (int i=1;i<N;i++)
     {
-        if ( Info!=SeveralData[i].getNumberOfMeasuring() ) VMHL_Result=false;
+        if ( Info!=SeveralData[i].getNumberOfMeasuring() ) VHML_Result=false;
     }
 
-    return VMHL_Result;
+    return VHML_Result;
 }
 //---------------------------------------------------------------------------
 
@@ -990,11 +990,11 @@ bool HCDOHOT_CompareOfDataForNumberOfParameters (HarrixClass_DataOfHarrixOptimiz
      true - если исследуемый параметр алгоритмов одинаков.
      false - если разные.
      */
-    bool VMHL_Result=true;
+    bool VHML_Result=true;
 
-    if ((*Data1).getNumberOfParameters()!=(*Data2).getNumberOfParameters()) VMHL_Result=false;
+    if ((*Data1).getNumberOfParameters()!=(*Data2).getNumberOfParameters()) VHML_Result=false;
 
-    return VMHL_Result;
+    return VHML_Result;
 }
 //--------------------------------------------------------------------------
 bool HCDOHOT_CompareOfDataForNumberOfParameters (HarrixClass_DataOfHarrixOptimizationTesting *SeveralData, int N)
@@ -1008,16 +1008,16 @@ bool HCDOHOT_CompareOfDataForNumberOfParameters (HarrixClass_DataOfHarrixOptimiz
      true - если исследуемый параметр алгоритмов одинаков.
      false - если разные.
      */
-    bool VMHL_Result=true;
+    bool VHML_Result=true;
 
     qint64 Info=SeveralData[0].getNumberOfParameters();
 
     for (int i=1;i<N;i++)
     {
-        if ( Info!=SeveralData[i].getNumberOfParameters() ) VMHL_Result=false;
+        if ( Info!=SeveralData[i].getNumberOfParameters() ) VHML_Result=false;
     }
 
-    return VMHL_Result;
+    return VHML_Result;
 }
 //--------------------------------------------------------------------------
 bool HCDOHOT_CompareOfDataForNumberOfParameters (HarrixClass_OnlyDataOfHarrixOptimizationTesting *SeveralData, int N)
@@ -1031,16 +1031,16 @@ bool HCDOHOT_CompareOfDataForNumberOfParameters (HarrixClass_OnlyDataOfHarrixOpt
      true - если исследуемый параметр алгоритмов одинаков.
      false - если разные.
      */
-    bool VMHL_Result=true;
+    bool VHML_Result=true;
 
     qint64 Info=SeveralData[0].getNumberOfParameters();
 
     for (int i=1;i<N;i++)
     {
-        if ( Info!=SeveralData[i].getNumberOfParameters() ) VMHL_Result=false;
+        if ( Info!=SeveralData[i].getNumberOfParameters() ) VHML_Result=false;
     }
 
-    return VMHL_Result;
+    return VHML_Result;
 }
 //---------------------------------------------------------------------------
 
@@ -1055,11 +1055,11 @@ bool HCDOHOT_CompareOfDataForNumberOfRuns (HarrixClass_DataOfHarrixOptimizationT
      true - если исследуемый параметр алгоритмов одинаков.
      false - если разные.
      */
-    bool VMHL_Result=true;
+    bool VHML_Result=true;
 
-    if ((*Data1).getNumberOfRuns()!=(*Data2).getNumberOfRuns()) VMHL_Result=false;
+    if ((*Data1).getNumberOfRuns()!=(*Data2).getNumberOfRuns()) VHML_Result=false;
 
-    return VMHL_Result;
+    return VHML_Result;
 }
 //--------------------------------------------------------------------------
 bool HCDOHOT_CompareOfDataForNumberOfRuns (HarrixClass_DataOfHarrixOptimizationTesting *SeveralData, int N)
@@ -1073,16 +1073,16 @@ bool HCDOHOT_CompareOfDataForNumberOfRuns (HarrixClass_DataOfHarrixOptimizationT
      true - если исследуемый параметр алгоритмов одинаков.
      false - если разные.
      */
-    bool VMHL_Result=true;
+    bool VHML_Result=true;
 
     qint64 Info=SeveralData[0].getNumberOfRuns();
 
     for (int i=1;i<N;i++)
     {
-        if ( Info!=SeveralData[i].getNumberOfRuns() ) VMHL_Result=false;
+        if ( Info!=SeveralData[i].getNumberOfRuns() ) VHML_Result=false;
     }
 
-    return VMHL_Result;
+    return VHML_Result;
 }
 //--------------------------------------------------------------------------
 bool HCDOHOT_CompareOfDataForNumberOfRuns (HarrixClass_OnlyDataOfHarrixOptimizationTesting *SeveralData, int N)
@@ -1096,16 +1096,16 @@ bool HCDOHOT_CompareOfDataForNumberOfRuns (HarrixClass_OnlyDataOfHarrixOptimizat
      true - если исследуемый параметр алгоритмов одинаков.
      false - если разные.
      */
-    bool VMHL_Result=true;
+    bool VHML_Result=true;
 
     qint64 Info=SeveralData[0].getNumberOfRuns();
 
     for (int i=1;i<N;i++)
     {
-        if ( Info!=SeveralData[i].getNumberOfRuns() ) VMHL_Result=false;
+        if ( Info!=SeveralData[i].getNumberOfRuns() ) VHML_Result=false;
     }
 
-    return VMHL_Result;
+    return VHML_Result;
 }
 //---------------------------------------------------------------------------
 
@@ -1120,11 +1120,11 @@ bool HCDOHOT_CompareOfDataForVersion (HarrixClass_DataOfHarrixOptimizationTestin
      true - если исследуемый параметр алгоритмов одинаков.
      false - если разные.
      */
-    bool VMHL_Result=true;
+    bool VHML_Result=true;
 
-    if ((*Data1).getVersion()!=(*Data2).getVersion()) VMHL_Result=false;
+    if ((*Data1).getVersion()!=(*Data2).getVersion()) VHML_Result=false;
 
-    return VMHL_Result;
+    return VHML_Result;
 }
 //--------------------------------------------------------------------------
 bool HCDOHOT_CompareOfDataForVersion (HarrixClass_DataOfHarrixOptimizationTesting *SeveralData, int N)
@@ -1138,16 +1138,16 @@ bool HCDOHOT_CompareOfDataForVersion (HarrixClass_DataOfHarrixOptimizationTestin
      true - если исследуемый параметр алгоритмов одинаков.
      false - если разные.
      */
-    bool VMHL_Result=true;
+    bool VHML_Result=true;
 
     QString Info=SeveralData[0].getVersion();
 
     for (int i=1;i<N;i++)
     {
-        if ( Info!=SeveralData[i].getVersion() ) VMHL_Result=false;
+        if ( Info!=SeveralData[i].getVersion() ) VHML_Result=false;
     }
 
-    return VMHL_Result;
+    return VHML_Result;
 }
 //--------------------------------------------------------------------------
 bool HCDOHOT_CompareOfDataForVersion (HarrixClass_OnlyDataOfHarrixOptimizationTesting *SeveralData, int N)
@@ -1161,16 +1161,16 @@ bool HCDOHOT_CompareOfDataForVersion (HarrixClass_OnlyDataOfHarrixOptimizationTe
      true - если исследуемый параметр алгоритмов одинаков.
      false - если разные.
      */
-    bool VMHL_Result=true;
+    bool VHML_Result=true;
 
     QString Info=SeveralData[0].getVersion();
 
     for (int i=1;i<N;i++)
     {
-        if ( Info!=SeveralData[i].getVersion() ) VMHL_Result=false;
+        if ( Info!=SeveralData[i].getVersion() ) VHML_Result=false;
     }
 
-    return VMHL_Result;
+    return VHML_Result;
 }
 //---------------------------------------------------------------------------
 

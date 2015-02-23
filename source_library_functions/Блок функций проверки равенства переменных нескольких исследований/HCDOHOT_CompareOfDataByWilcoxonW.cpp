@@ -18,7 +18,7 @@ int HCDOHOT_CompareOfDataByWilcoxonW (HarrixClass_OnlyDataOfHarrixOptimizationTe
      0 - выборки не однородны  при данном уровне значимости;
      1 - выборки однородны  при данном уровне значимости;
      */
-    int VMHL_Result=1;
+    int VHML_Result=1;
 
     int i,j;
 
@@ -43,10 +43,10 @@ int HCDOHOT_CompareOfDataByWilcoxonW (HarrixClass_OnlyDataOfHarrixOptimizationTe
             Vector2[i*(*Data2).getNumberOfMeasuring()+j]=(*Data2).getErrorEx(i,j);
         }
 
-    VMHL_Result = MHL_WilcoxonW(Vector1, Vector2, N1, N2, Q);
+    VHML_Result = HML_WilcoxonW(Vector1, Vector2, N1, N2, Q);
 
     delete [] Vector1;
     delete [] Vector2;
 
-    return VMHL_Result;
+    return VHML_Result;
 }

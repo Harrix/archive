@@ -9,11 +9,11 @@ bool HCDOHOT_CompareOfDataForEmail (HarrixClass_DataOfHarrixOptimizationTesting 
      true - если исследуемый параметр алгоритмов одинаков.
      false - если разные.
      */
-    bool VMHL_Result=true;
+    bool VHML_Result=true;
 
-    if ((*Data1).getEmail()!=(*Data2).getEmail()) VMHL_Result=false;
+    if ((*Data1).getEmail()!=(*Data2).getEmail()) VHML_Result=false;
 
-    return VMHL_Result;
+    return VHML_Result;
 }
 //--------------------------------------------------------------------------
 bool HCDOHOT_CompareOfDataForEmail (HarrixClass_DataOfHarrixOptimizationTesting *SeveralData, int N)
@@ -27,16 +27,16 @@ bool HCDOHOT_CompareOfDataForEmail (HarrixClass_DataOfHarrixOptimizationTesting 
      true - если исследуемый параметр алгоритмов одинаков.
      false - если разные.
      */
-    bool VMHL_Result=true;
+    bool VHML_Result=true;
 
     QString Info=SeveralData[0].getEmail();
 
     for (int i=1;i<N;i++)
     {
-        if ( Info!=SeveralData[i].getEmail() ) VMHL_Result=false;
+        if ( Info!=SeveralData[i].getEmail() ) VHML_Result=false;
     }
 
-    return VMHL_Result;
+    return VHML_Result;
 }
 //--------------------------------------------------------------------------
 bool HCDOHOT_CompareOfDataForEmail (HarrixClass_OnlyDataOfHarrixOptimizationTesting *SeveralData, int N)
@@ -50,14 +50,14 @@ bool HCDOHOT_CompareOfDataForEmail (HarrixClass_OnlyDataOfHarrixOptimizationTest
      true - если исследуемый параметр алгоритмов одинаков.
      false - если разные.
      */
-    bool VMHL_Result=true;
+    bool VHML_Result=true;
 
     QString Info=SeveralData[0].getEmail();
 
     for (int i=1;i<N;i++)
     {
-        if ( Info!=SeveralData[i].getEmail() ) VMHL_Result=false;
+        if ( Info!=SeveralData[i].getEmail() ) VHML_Result=false;
     }
 
-    return VMHL_Result;
+    return VHML_Result;
 }

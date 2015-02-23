@@ -11,11 +11,11 @@
 </about>
 <about_data>
 	<!-- Обозначение алгоритма (по названию функции, которая его реализует) -->
-	<name_algorithm>MHL_StandartRealGeneticAlgorithm</name_algorithm>
+	<name_algorithm>HML_StandartRealGeneticAlgorithm</name_algorithm>
 	<!-- Полное название алгоритма -->
 	<full_name_algorithm>Стандартный генетический алгоритм на вещественных строках</full_name_algorithm>
 	<!-- Название тестовой функции (по названию функции, которая его реализует) -->
-	<name_test_function>MHL_TestFunction_Ackley</name_test_function>
+	<name_test_function>HML_TestFunction_Ackley</name_test_function>
 	<!-- Полное название тестовой функции -->
 	<full_name_test_function>Функция Ackley</full_name_test_function>
 	<!-- Размерность задачи оптимизации -->

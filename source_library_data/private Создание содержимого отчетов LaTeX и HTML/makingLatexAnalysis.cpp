@@ -68,7 +68,7 @@ void HarrixClass_DataOfHarrixOptimizationTesting::makingLatexAnalysis()
         double Q;
         Q=0.2;
 
-        int iBestEx = TMHL_NumberOfMinimumOfVector(MOEx,Data.getNumberOfExperiments());
+        int iBestEx = HML_NumberOfMinimumOfVector(MOEx,Data.getNumberOfExperiments());
         LatexAnalysis += "На основании этих графиков можно выделить оптимальные комбинации настроек алгоритмов.\n\n";
         LatexAnalysis += "В нашем случае относительно ошибки по входным параметра наименьшее значение наблюдается у комбинации настройки под номером "+QString::number(iBestEx+1)+", а именно: <<\\textbf{"+Data.getListOfVectorParameterOptions(iBestEx).trimmed()+"}>>. ";
         //Найдем те экмперименты, которые по критерию Вилкоксона не хуже, чем лучшее.
@@ -88,7 +88,7 @@ void HarrixClass_DataOfHarrixOptimizationTesting::makingLatexAnalysis()
             {
                 for (int j=0;j<Data.getNumberOfMeasuring();j++)
                     TempExperimentEx[j] = Data.getErrorEx(i,j);
-                Temp = MHL_WilcoxonW(BestExperimentEx, TempExperimentEx, Data.getNumberOfMeasuring(), Data.getNumberOfMeasuring(), Q);
+                Temp = HML_WilcoxonW(BestExperimentEx, TempExperimentEx, Data.getNumberOfMeasuring(), Data.getNumberOfMeasuring(), Q);
                 if (Temp==1)
                 {
                     NumbersBestEx[NumberOfBest] = i;
@@ -123,7 +123,7 @@ void HarrixClass_DataOfHarrixOptimizationTesting::makingLatexAnalysis()
         QStringList InfoForEveryExperiment;
         for (int i=0;i<Data.getNumberOfExperiments();i++)
         {
-//            if (TMHL_SearchElementInVector (NumbersBestEx, i, NumberOfBest)!=-1)
+//            if (HML_SearchElementInVector (NumbersBestEx, i, NumberOfBest)!=-1)
 //                InfoForEveryExperiment <<HQt_LatexGreenText("\\checkmark");
 //            else
 //                InfoForEveryExperiment <<"-";

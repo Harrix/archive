@@ -9,11 +9,11 @@ bool HCDOHOT_CompareOfDataForNameAlgorithm (HarrixClass_DataOfHarrixOptimization
      true - если имена алгоритмов одинаковы.
      false - если разные.
      */
-    bool VMHL_Result=true;
+    bool VHML_Result=true;
 
-    if ((*Data1).getNameAlgorithm()!=(*Data2).getNameAlgorithm()) VMHL_Result=false;
+    if ((*Data1).getNameAlgorithm()!=(*Data2).getNameAlgorithm()) VHML_Result=false;
 
-    return VMHL_Result;
+    return VHML_Result;
 }
 //--------------------------------------------------------------------------
 bool HCDOHOT_CompareOfDataForNameAlgorithm (HarrixClass_DataOfHarrixOptimizationTesting *SeveralData, int N)
@@ -27,16 +27,16 @@ bool HCDOHOT_CompareOfDataForNameAlgorithm (HarrixClass_DataOfHarrixOptimization
      true - если имена алгоритмов одинаковы.
      false - если разные.
      */
-    bool VMHL_Result=true;
+    bool VHML_Result=true;
 
     QString Info=SeveralData[0].getNameAlgorithm();
 
     for (int i=1;i<N;i++)
     {
-        if ( Info!=SeveralData[i].getNameAlgorithm() ) VMHL_Result=false;
+        if ( Info!=SeveralData[i].getNameAlgorithm() ) VHML_Result=false;
     }
 
-    return VMHL_Result;
+    return VHML_Result;
 }
 //--------------------------------------------------------------------------
 bool HCDOHOT_CompareOfDataForNameAlgorithm (HarrixClass_OnlyDataOfHarrixOptimizationTesting *SeveralData, int N)
@@ -50,14 +50,14 @@ bool HCDOHOT_CompareOfDataForNameAlgorithm (HarrixClass_OnlyDataOfHarrixOptimiza
      true - если имена алгоритмов одинаковы.
      false - если разные.
      */
-    bool VMHL_Result=true;
+    bool VHML_Result=true;
 
     QString Info=SeveralData[0].getNameAlgorithm();
 
     for (int i=1;i<N;i++)
     {
-        if ( Info!=SeveralData[i].getNameAlgorithm() ) VMHL_Result=false;
+        if ( Info!=SeveralData[i].getNameAlgorithm() ) VHML_Result=false;
     }
 
-    return VMHL_Result;
+    return VHML_Result;
 }

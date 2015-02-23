@@ -9,11 +9,11 @@ bool HCDOHOT_CompareOfDataForFullNameTestFunction (HarrixClass_DataOfHarrixOptim
      true - если исследуемый параметр алгоритмов одинаков.
      false - если разные.
      */
-    bool VMHL_Result=true;
+    bool VHML_Result=true;
 
-    if ((*Data1).getFullNameTestFunction()!=(*Data2).getFullNameTestFunction()) VMHL_Result=false;
+    if ((*Data1).getFullNameTestFunction()!=(*Data2).getFullNameTestFunction()) VHML_Result=false;
 
-    return VMHL_Result;
+    return VHML_Result;
 }
 //--------------------------------------------------------------------------
 bool HCDOHOT_CompareOfDataForForFullNameTestFunction (HarrixClass_DataOfHarrixOptimizationTesting *SeveralData, int N)
@@ -27,16 +27,16 @@ bool HCDOHOT_CompareOfDataForForFullNameTestFunction (HarrixClass_DataOfHarrixOp
      true - если исследуемый параметр алгоритмов одинаков.
      false - если разные.
      */
-    bool VMHL_Result=true;
+    bool VHML_Result=true;
 
     QString Info=SeveralData[0].getFullNameTestFunction();
 
     for (int i=1;i<N;i++)
     {
-        if ( Info!=SeveralData[i].getFullNameTestFunction() ) VMHL_Result=false;
+        if ( Info!=SeveralData[i].getFullNameTestFunction() ) VHML_Result=false;
     }
 
-    return VMHL_Result;
+    return VHML_Result;
 }
 //--------------------------------------------------------------------------
 bool HCDOHOT_CompareOfDataForForFullNameTestFunction (HarrixClass_OnlyDataOfHarrixOptimizationTesting *SeveralData, int N)
@@ -50,14 +50,14 @@ bool HCDOHOT_CompareOfDataForForFullNameTestFunction (HarrixClass_OnlyDataOfHarr
      true - если исследуемый параметр алгоритмов одинаков.
      false - если разные.
      */
-    bool VMHL_Result=true;
+    bool VHML_Result=true;
 
     QString Info=SeveralData[0].getFullNameTestFunction();
 
     for (int i=1;i<N;i++)
     {
-        if ( Info!=SeveralData[i].getFullNameTestFunction() ) VMHL_Result=false;
+        if ( Info!=SeveralData[i].getFullNameTestFunction() ) VHML_Result=false;
     }
 
-    return VMHL_Result;
+    return VHML_Result;
 }

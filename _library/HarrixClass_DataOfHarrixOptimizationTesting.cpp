@@ -1,5 +1,5 @@
 //HarrixClass_DataOfHarrixOptimizationTesting
-//Версия 1.25
+//Версия 1.26
 //Класс для считывания информации формата данных Harrix Optimization Testing на C++ для Qt.
 //https://github.com/Harrix/HarrixClass_DataOfHarrixOptimizationTesting
 //Библиотека распространяется по лицензии Apache License, Version 2.0.
@@ -592,11 +592,11 @@ int HarrixClass_DataOfHarrixOptimizationTesting::getNumberOfOption(QString NameO
     Возвращаемое значение:
      Значения параметра в виде номера (если не найдено, то возвращается -1.
      */
-    int VMHL_Result=-1;
+    int VHML_Result=-1;
 
-    VMHL_Result = HQt_SearchQStringInQStringList (Data.getNamesOfParameters(), NameOption);
+    VHML_Result = HQt_SearchQStringInQStringList (Data.getNamesOfParameters(), NameOption);
 
-    return VMHL_Result;
+    return VHML_Result;
 }
 //---------------------------------------------------------------------------
 
@@ -770,14 +770,20 @@ QString HarrixClass_DataOfHarrixOptimizationTesting::makingLatexTable2D(QString 
     //Определим сколько параметров пойдет на столбцы, а сколько на строки
     int Limit=10;//сколько максимум столбцов с данными
     //сколько параметров будет в виде столбов
-    int ForColsN = MHL_SeparateVectorLimitOnProductElementsTwo(CountOfParametersTemp, Order, Limit, NumberOfParametersTemp);
+    int ForColsN = HML_SeparateVectorLimitOnProductElementsTwo(CountOfParametersTemp, Order, Limit, NumberOfParametersTemp);
     if (ForColsN==-1)
     {
         //Если слишком много элементов в каждом варианте, то берем самый маленький и только один
         //Пусть коряво будет, но хоть что-то будет
-        TMHL_ReverseVector(Order,NumberOfParametersTemp);
+        HML_ReverseVector(Order,NumberOfParametersTemp);
         ForColsN = 1;
     }
+    //А если все параметры решились по верхней части разместиться? Хотя бы один сместим на вертикальную часть
+    if (ForColsN==NumberOfParametersTemp)
+    {
+        ForColsN--;
+    }
+
 
     //Во второй части массива Order элементы расположим по длине текста
     int *CountForSubOrder = new int[NumberOfParametersTemp-ForColsN];
@@ -792,7 +798,7 @@ QString HarrixClass_DataOfHarrixOptimizationTesting::makingLatexTable2D(QString 
             if (Temp.length()>CountForSubOrder[i]) CountForSubOrder[i] = Temp.length();
         }
     }
-    TMHL_BubbleSortWithConjugateVector(CountForSubOrder, SubOrder, NumberOfParametersTemp-ForColsN);
+    HML_BubbleSortWithConjugateVector(CountForSubOrder, SubOrder, NumberOfParametersTemp-ForColsN);
     for (int i=0;i<NumberOfParametersTemp-ForColsN;i++)
     {
         Order[i+ForColsN]=SubOrder[i];
@@ -878,7 +884,7 @@ QString HarrixClass_DataOfHarrixOptimizationTesting::makingLatexTable2D(QString 
     ////////////////////////////////////////////////////////
 
     int *WhatOptionInRow = new int [ColsForHeader];
-    TMHL_FillVector(WhatOptionInRow,ColsForHeader,-1);
+    HML_FillVector(WhatOptionInRow,ColsForHeader,-1);
 
     int *WhatOptionInCol = new int [RowsForHeader];
 
@@ -947,7 +953,7 @@ QString HarrixClass_DataOfHarrixOptimizationTesting::makingLatexTable2D(QString 
         ////////////////////////////////////////////////////////
 
         //Основное содержание
-        TMHL_FillVector(WhatOptionInCol,RowsForHeader,-1);
+        HML_FillVector(WhatOptionInCol,RowsForHeader,-1);
         for (int i=0;i<ColsForContent;i++)
         {
             // i - номер столбца
@@ -1232,16 +1238,16 @@ QString HarrixClass_DataOfHarrixOptimizationTesting::getLatexBegin()
     /*
      Внутренняя функция. Возвращает начало для полноценного Latex файла.
      */
-    QString VMHL_Result;
-    VMHL_Result+="\\documentclass[a4paper,12pt]{report}\n\n";
-    VMHL_Result+="\\input{packages} %Подключаем модуль пакетов\n";
-    VMHL_Result+="\\input{styles} %Подключаем модуль стилей\n\n";
-    VMHL_Result+="\\usepgfplotslibrary{external}\n";
-    VMHL_Result+="\\tikzexternalize[prefix=TikzPictures/]\n\n";
-    VMHL_Result+="\\begin{document}\n\n";
-    VMHL_Result+="\\input{names} %Подключаем модуль переименования некоторых команд\n\n";
+    QString VHML_Result;
+    VHML_Result+="\\documentclass[a4paper,12pt]{report}\n\n";
+    VHML_Result+="\\input{packages} %Подключаем модуль пакетов\n";
+    VHML_Result+="\\input{styles} %Подключаем модуль стилей\n\n";
+    VHML_Result+="\\usepgfplotslibrary{external}\n";
+    VHML_Result+="\\tikzexternalize[prefix=TikzPictures/]\n\n";
+    VHML_Result+="\\begin{document}\n\n";
+    VHML_Result+="\\input{names} %Подключаем модуль переименования некоторых команд\n\n";
 
-    return VMHL_Result;
+    return VHML_Result;
 }
 //---------------------------------------------------------------------------
 
@@ -1413,7 +1419,7 @@ void HarrixClass_DataOfHarrixOptimizationTesting::readXml()
         makingLatexTableEy();//заполняем LatexTableEy
         makingLatexTableR();//заполняем LatexTableR
         makingListOfVectorParameterOptions();
-        makingLatexListOfVectorParameterOptions();
+        makingLatexListOfVectorParameterOptions2();
         makingLatexAnalysis();//заполняем LatexTableR
         //Latex+=LatexInfo+LatexAboutParameters+LatexTableEx+LatexTableEy+LatexTableR;
         Latex+=LatexInfo+LatexAboutParameters+LatexTableEx+LatexTableEy+LatexTableR+LatexListOfVectorParameterOptions+LatexAnalysis;
@@ -1804,7 +1810,7 @@ void HarrixClass_DataOfHarrixOptimizationTesting::zeroArray()
      Отсутствует.
      */
     //"Обнулим" матрицы
-    TMHL_ZeroVector(NumberOfListOfVectorParameterOptions,Data.getNumberOfExperiments());
+    HML_ZeroVector(NumberOfListOfVectorParameterOptions,Data.getNumberOfExperiments());
 }
 //---------------------------------------------------------------------------
 
@@ -2015,7 +2021,7 @@ void HarrixClass_DataOfHarrixOptimizationTesting::makingLatexAnalysis()
         double Q;
         Q=0.2;
 
-        int iBestEx = TMHL_NumberOfMinimumOfVector(MOEx,Data.getNumberOfExperiments());
+        int iBestEx = HML_NumberOfMinimumOfVector(MOEx,Data.getNumberOfExperiments());
         LatexAnalysis += "На основании этих графиков можно выделить оптимальные комбинации настроек алгоритмов.\n\n";
         LatexAnalysis += "В нашем случае относительно ошибки по входным параметра наименьшее значение наблюдается у комбинации настройки под номером "+QString::number(iBestEx+1)+", а именно: <<\\textbf{"+Data.getListOfVectorParameterOptions(iBestEx).trimmed()+"}>>. ";
         //Найдем те экмперименты, которые по критерию Вилкоксона не хуже, чем лучшее.
@@ -2035,7 +2041,7 @@ void HarrixClass_DataOfHarrixOptimizationTesting::makingLatexAnalysis()
             {
                 for (int j=0;j<Data.getNumberOfMeasuring();j++)
                     TempExperimentEx[j] = Data.getErrorEx(i,j);
-                Temp = MHL_WilcoxonW(BestExperimentEx, TempExperimentEx, Data.getNumberOfMeasuring(), Data.getNumberOfMeasuring(), Q);
+                Temp = HML_WilcoxonW(BestExperimentEx, TempExperimentEx, Data.getNumberOfMeasuring(), Data.getNumberOfMeasuring(), Q);
                 if (Temp==1)
                 {
                     NumbersBestEx[NumberOfBest] = i;
@@ -2066,16 +2072,11 @@ void HarrixClass_DataOfHarrixOptimizationTesting::makingLatexAnalysis()
 
         LatexAnalysis+=HQt_LatexShowTable (Col1, Col2, "№ эксперимента", "Комбинация настроек",20, "Множество лучших комбинаций настроек алгоритма по $Ex$");
 
-        QStringList List;
-        for (int i=0;i<Data.getNumberOfExperiments();i++)
-            List <<QString::number(i+1);
-        LatexAnalysis+=makingLatexTable2D("Номера настроек",List);
-
 
         QStringList InfoForEveryExperiment;
         for (int i=0;i<Data.getNumberOfExperiments();i++)
         {
-//            if (TMHL_SearchElementInVector (NumbersBestEx, i, NumberOfBest)!=-1)
+//            if (HML_SearchElementInVector (NumbersBestEx, i, NumberOfBest)!=-1)
 //                InfoForEveryExperiment <<HQt_LatexGreenText("\\checkmark");
 //            else
 //                InfoForEveryExperiment <<"-";
@@ -2155,7 +2156,7 @@ void HarrixClass_DataOfHarrixOptimizationTesting::makingLatexListOfVectorParamet
     Возвращаемое значение:
      Отсутствует. Значение возвращается в переменную LatexListOfParameterOptions.
      */
-    LatexListOfVectorParameterOptions+="\\subsection {Список вектора названий вариантов параметров алгоритма оптимизации}\n\n";
+    LatexListOfVectorParameterOptions="\\subsection {Список вектора названий вариантов параметров алгоритма оптимизации}\n\n";
     LatexListOfVectorParameterOptions+="Ниже представлена таблица, в которой представлен нумерованный список вариантов  параметров алгоритма оптимизации. ";
     LatexListOfVectorParameterOptions+="\\begin{center}\n";
     LatexListOfVectorParameterOptions+="{\\renewcommand{\\arraystretch}{1.5}\n";
@@ -2184,6 +2185,25 @@ void HarrixClass_DataOfHarrixOptimizationTesting::makingLatexListOfVectorParamet
     LatexListOfVectorParameterOptions+="\n\\end{longtable}\n";
     LatexListOfVectorParameterOptions+="}\n";
     LatexListOfVectorParameterOptions+="\\end{center}\n\n";
+}
+//---------------------------------------------------------------------------
+
+void HarrixClass_DataOfHarrixOptimizationTesting::makingLatexListOfVectorParameterOptions2()
+{
+    /*
+    Создает текст LaTeX для отображения списка номеров вариантов настроек параметров алгоритма оптимизации в виде 2D таблицы.
+    Входные параметры:
+     Отсутствуют.
+    Возвращаемое значение:
+     Отсутствует. Значение возвращается в переменную LatexListOfParameterOptions.
+     */
+    LatexListOfVectorParameterOptions="\\subsection {Список номеров вариантов настроек параметров алгоритма оптимизации}\n\n";
+    LatexListOfVectorParameterOptions+="Ниже представлена таблица, в которой представлены номера вариантов  параметров алгоритма оптимизации. Данные номера будут использованы в дальнейшем анализе.";
+
+    QStringList List;
+    for (int i=0;i<Data.getNumberOfExperiments();i++)
+        List <<QString::number(i+1);
+    LatexListOfVectorParameterOptions+=makingLatexTable2D("Номера вариантов параметров "+NameForHead+"",List);
 }
 //---------------------------------------------------------------------------
 

@@ -40,10 +40,35 @@ HarrixClass_DataOfHarrixOptimizationTesting::HarrixClass_DataOfHarrixOptimizatio
         Html+=HQt_ShowText("Файл <font color=\"#00b400\">"+HQt_GetFilenameFromFullFilename(filename)+"</font> загружен");
 
         //Первоначальные действия
-        FileXML=HQt_ReadFile(filename);
-        Rxml.addData(FileXML);
+        try
+        {
+            FileXML=HQt_ReadFile(filename);
+        }
+        catch (...)
+        {
+            HtmlMessageOfError+=HQt_ShowAlert("Файл не был прочитан.");
+            Error=true;
+        }
 
-        readXml();//считывание XML файла и все остальные анализы запускаются в этой функции
+        try
+        {
+            Rxml.addData(FileXML);
+        }
+        catch (...)
+        {
+            HtmlMessageOfError+=HQt_ShowAlert("Не смогли добавить содержимое в экземпляр QXmlStreamReader.");
+            Error=true;
+        }
+
+        try
+        {
+            readXml();//считывание XML файла и все остальные анализы запускаются в этой функцииcatch (...)
+        }
+        catch (...)
+        {
+            HtmlMessageOfError+=HQt_ShowAlert("Считывание XML файла прошло с ошибками.");
+            Error=true;
+        }
     }
 }
 //--------------------------------------------------------------------------
@@ -759,292 +784,300 @@ QString HarrixClass_DataOfHarrixOptimizationTesting::makingLatexTable2D(QString 
     //// ОПРЕДЕЛИМ В КАКОМ ПОРЯДКЕ И ГДЕ БУДУТ ИДТИ СТОЛБЦЫ
     ////////////////////////////////////////////////////////
     //Сколько у нас вообще параметров
-    int NumberOfParametersTemp = Data.getNumberOfParameters();
-    //массив для числа каждого параметры
-    int *CountOfParametersTemp = new int [NumberOfParametersTemp];
-    for (int i=0;i<NumberOfParametersTemp; i++)
-        CountOfParametersTemp[i]=Data.getListOfParameterOptions(i).count();
-    //в каком порядке будем располгать
-    int *Order = new int [NumberOfParametersTemp];
+    int NumberOfParametersTemp = getNumberOfParameters();
 
-    //Определим сколько параметров пойдет на столбцы, а сколько на строки
-    int Limit=10;//сколько максимум столбцов с данными
-    //сколько параметров будет в виде столбов
-    int ForColsN = HML_SeparateVectorLimitOnProductElementsTwo(CountOfParametersTemp, Order, Limit, NumberOfParametersTemp);
-    if (ForColsN==-1)
+    if (NumberOfParametersTemp>0)
     {
-        //Если слишком много элементов в каждом варианте, то берем самый маленький и только один
-        //Пусть коряво будет, но хоть что-то будет
-        HML_ReverseVector(Order,NumberOfParametersTemp);
-        ForColsN = 1;
-    }
-    //А если все параметры решились по верхней части разместиться? Хотя бы один сместим на вертикальную часть
-    if (ForColsN==NumberOfParametersTemp)
-    {
-        ForColsN--;
-    }
+        //массив для числа каждого параметры
+        int *CountOfParametersTemp = new int [NumberOfParametersTemp];
+        for (int i=0;i<NumberOfParametersTemp; i++)
+            CountOfParametersTemp[i]=Data.getListOfParameterOptions(i).count();
+        //в каком порядке будем располагать
+        int *Order = new int [NumberOfParametersTemp];
 
-
-    //Во второй части массива Order элементы расположим по длине текста
-    int *CountForSubOrder = new int[NumberOfParametersTemp-ForColsN];
-    int *SubOrder = new int[NumberOfParametersTemp-ForColsN];
-    for (int i=0;i<NumberOfParametersTemp-ForColsN;i++)
-    {
-        SubOrder[i] = Order[i+ForColsN];
-        CountForSubOrder[i] = Data.getOptionFromListOfParameterOptionsForTable(Order[i+ForColsN],0).length();
-        for (int j=0;j<CountOfParametersTemp[Order[i+ForColsN]];j++)
+        //Определим сколько параметров пойдет на столбцы, а сколько на строки
+        int Limit=10;//сколько максимум столбцов с данными
+        //сколько параметров будет в виде столбов
+        int ForColsN = HML_SeparateVectorLimitOnProductElementsTwo(CountOfParametersTemp, Order, Limit, NumberOfParametersTemp);
+        if (ForColsN==-1)
         {
-            QString Temp = Data.getOptionFromListOfParameterOptionsForTable(Order[i+ForColsN],j);
-            if (Temp.length()>CountForSubOrder[i]) CountForSubOrder[i] = Temp.length();
+            //Если слишком много элементов в каждом варианте, то берем самый маленький и только один
+            //Пусть коряво будет, но хоть что-то будет
+            HML_ReverseVector(Order,NumberOfParametersTemp);
+            ForColsN = 1;
         }
-    }
-    HML_BubbleSortWithConjugateVector(CountForSubOrder, SubOrder, NumberOfParametersTemp-ForColsN);
-    for (int i=0;i<NumberOfParametersTemp-ForColsN;i++)
-    {
-        Order[i+ForColsN]=SubOrder[i];
-    }
-    delete [] CountForSubOrder;
-    delete [] SubOrder;
-
-    //Число столбов для контента
-    int ColsForContent=1;
-    for (int i=0;i<ForColsN;i++)
-        ColsForContent*=Data.getListOfParameterOptions(Order[i]).count();
-
-    //Число строк для контента
-    int RowsForContent=1;
-    for (int i=ForColsN;i<NumberOfParametersTemp;i++)
-        RowsForContent*=Data.getListOfParameterOptions(Order[i]).count();
-
-    //Число столбов для заголовков (слева)
-    int ColsForHeader=NumberOfParametersTemp-ForColsN;
-    //Число строк для заголовков (наверху)
-    int RowsForHeader=ForColsN;
-
-    ////////////////////////////////////////////////////////
-    //// РИСУЕМ ВЕРХНИЕ ЗАГОЛОВКИ
-    ////////////////////////////////////////////////////////
-    //Начинаем отрисовывать таблицу
-    Table+="\\begin{center}\n";
-    Table+="{\n";
-    Table+="\\renewcommand{\\arraystretch}{2}\n";
-
-    double WidthCol=1./double(ColsForHeader+ColsForContent);
-
-    Table+="\\tiny\n\\begin{longtable}[H]{";
-    for (int i=0;i<ColsForHeader;i++)
-    {
-        QString Type="p";
-        //if (i==ColsForHeader-1) Type="m";
-        Table+="|"+Type+"{\\dimexpr"+QString::number(WidthCol)+"\\linewidth-2\\tabcolsep}";
-    }
-    for (int i=0;i<ColsForContent;i++)
-        Table+="|p{\\dimexpr"+QString::number(WidthCol)+"\\linewidth-2\\tabcolsep}";
-    Table+="|}\n";
-
-    Table+="\\caption{"+Title+"}\n";
-
-    int TempC=Data.getListOfParameterOptions(Order[0]).count();
-    for (int j=0;j<RowsForHeader;j++)
-    {
-        Table+="\\tabularnewline\\cline{"+QString::number(ColsForHeader+1)+"-"+QString::number(ColsForContent+ColsForHeader)+"}\n";
-        Table+="\\multicolumn{"+QString::number(ColsForHeader)+"}{c|} {\\centering \\textbf{ }} & ";
-
-        for (int i=0;i<TempC;i++)
+        //А если все параметры решились по верхней части разместиться? Хотя бы один сместим на вертикальную часть
+        if (ForColsN==NumberOfParametersTemp)
         {
-            QString Amper;
-            if (i!=TempC-1)
-                Amper=" & ";
-
-            //Получим название настройки алгоритма оптимизации
-            QString Text=HQt_ForcedWordWrap(Data.getOptionFromListOfParameterOptionsForTable(Order[j],i%(Data.getListOfParameterOptions(Order[j]).count())));
-
-            if (j!=RowsForHeader-1)
-                Table+="\\multicolumn{"+QString::number(ColsForContent/TempC)+"}{c|} {\\centering \\textbf{"+Text+"}}"+Amper;
-            else
-                Table+="\\multicolumn{"+QString::number(ColsForContent/TempC)+"}{p{\\dimexpr"+QString::number(WidthCol)+"\\linewidth-2\\tabcolsep}|} {\\centering \\textbf{"+Text+"}}"+Amper;
+            ForColsN--;
         }
-        Table+="\n";
-        TempC*=Data.getListOfParameterOptions(Order[j+1]).count();
-    }
 
-    Table+="\\tabularnewline\\hline\n";
-    Table+="\\endhead\n";
 
-    ////////////////////////////////////////////////////////
-    //// ПОБОЧНЫЕ ДЕЙСТВИЯ С ТАБЛИЦЕЙ
-    ////////////////////////////////////////////////////////
-
-    //Оформляем «Продолжение следует», если не всё впорядке пойдет.
-    Table+="\\hline\n\\multicolumn{"+QString::number(ColsForHeader+ColsForContent)+"}{|r|}{{Продолжение на следующей странице...}} \\\\ \\hline \\endfoot\n";
-    Table+="\\endlastfoot\n";
-
-    ////////////////////////////////////////////////////////
-    //// ОСНОВОЕ ТЕЛО ТАБЛИЦЫ
-    ////////////////////////////////////////////////////////
-
-    int *WhatOptionInRow = new int [ColsForHeader];
-    HML_FillVector(WhatOptionInRow,ColsForHeader,-1);
-
-    int *WhatOptionInCol = new int [RowsForHeader];
-
-    //Основное тело таблицы
-    for (int j=0;j<RowsForContent;j++)
-    {
-        QString Row;
-        //Заголовки слева
-
-        ////////////////////////////////////////////////////////
-        //// ЗАГОЛОВКИ СЛЕВА
-        ////////////////////////////////////////////////////////
-
-        //получим число всех вариантов настроек, отображаемых слева
-        TempC=1;
-        for (int i=0;i<ColsForHeader;i++)
-            TempC*=Data.getListOfParameterOptions(Order[ForColsN+i]).count();
-
-        int k=-1;//C какого номера на данной ячеейке начинать рисовать горизонтальную линию
-        bool kDo=false;//значит, что еще не решали будет линия или нет
-        for (int i=0;i<ColsForHeader;i++)
+        //Во второй части массива Order элементы расположим по длине текста
+        int *CountForSubOrder = new int[NumberOfParametersTemp-ForColsN];
+        int *SubOrder = new int[NumberOfParametersTemp-ForColsN];
+        for (int i=0;i<NumberOfParametersTemp-ForColsN;i++)
         {
-            int uc=Data.getListOfParameterOptions(Order[ForColsN+i]).count();
-            TempC = TempC/uc;
-            int OO=j%TempC;
-            if (OO==0)
+            SubOrder[i] = Order[i+ForColsN];
+            CountForSubOrder[i] = Data.getOptionFromListOfParameterOptionsForTable(Order[i+ForColsN],0).length();
+            for (int j=0;j<CountOfParametersTemp[Order[i+ForColsN]];j++)
             {
-                WhatOptionInRow[i]++;
-                if (WhatOptionInRow[i]==Data.getListOfParameterOptions(Order[ForColsN+i]).count())
-                {
-                    WhatOptionInRow[i]=0;
-                }
-
-                QString Text=HQt_ForcedWordWrap(Data.getOptionFromListOfParameterOptionsForTable(Order[ForColsN+i],WhatOptionInRow[i]));
-
-                int dt;
-                dt=7.75*TempC;
-                if (i==ColsForHeader-1) dt=12.5*TempC;
-                //["+QString::number(dt)+"pt]
-
-                Row+="\\centering \\textbf{"+Text+"} & ";
-
-//                if (TempC!=1)
-//                    Row+="\\multirow{"+QString::number(TempC)+"}{\\linewidth}{\\centering \\textbf{"+Text+"}} & ";
-//                else
-//                    Row+="\\centering \\textbf{"+Text+"} & ";
-            }
-            else
-            {
-                Row+=" & ";
-                if (OO==TempC-1)
-                {
-                    if (kDo==false)
-                    {
-                        k=i+1;
-                        kDo=true;
-                    }
-                }
+                QString Temp = Data.getOptionFromListOfParameterOptionsForTable(Order[i+ForColsN],j);
+                if (Temp.length()>CountForSubOrder[i]) CountForSubOrder[i] = Temp.length();
             }
         }
-        if (k==-1) k=ColsForHeader;
+        HML_BubbleSortWithConjugateVector(CountForSubOrder, SubOrder, NumberOfParametersTemp-ForColsN);
+        for (int i=0;i<NumberOfParametersTemp-ForColsN;i++)
+        {
+            Order[i+ForColsN]=SubOrder[i];
+        }
+        delete [] CountForSubOrder;
+        delete [] SubOrder;
 
+        //Число столбов для контента
+        int ColsForContent=1;
+        for (int i=0;i<ForColsN;i++)
+            ColsForContent*=Data.getListOfParameterOptions(Order[i]).count();
+
+        //Число строк для контента
+        int RowsForContent=1;
+        for (int i=ForColsN;i<NumberOfParametersTemp;i++)
+            RowsForContent*=Data.getListOfParameterOptions(Order[i]).count();
+
+        //Число столбов для заголовков (слева)
+        int ColsForHeader=NumberOfParametersTemp-ForColsN;
+        //Число строк для заголовков (наверху)
+        int RowsForHeader=ForColsN;
 
         ////////////////////////////////////////////////////////
-        //// ОСНОВНЫЕ ЯЧЕЙКИ
+        //// РИСУЕМ ВЕРХНИЕ ЗАГОЛОВКИ
         ////////////////////////////////////////////////////////
+        //Начинаем отрисовывать таблицу
+        Table+="\\begin{center}\n";
+        Table+="{\n";
+        Table+="\\renewcommand{\\arraystretch}{2}\n";
 
-        //Основное содержание
-        HML_FillVector(WhatOptionInCol,RowsForHeader,-1);
+        double WidthCol=1./double(ColsForHeader+ColsForContent);
+
+        Table+="\\tiny\n\\begin{longtable}[H]{";
+        for (int i=0;i<ColsForHeader;i++)
+        {
+            QString Type="p";
+            //if (i==ColsForHeader-1) Type="m";
+            Table+="|"+Type+"{\\dimexpr"+QString::number(WidthCol)+"\\linewidth-2\\tabcolsep}";
+        }
         for (int i=0;i<ColsForContent;i++)
+            Table+="|p{\\dimexpr"+QString::number(WidthCol)+"\\linewidth-2\\tabcolsep}";
+        Table+="|}\n";
+
+        Table+="\\caption{"+Title+"}\n";
+
+        int TempC=Data.getListOfParameterOptions(Order[0]).count();
+        for (int j=0;j<RowsForHeader;j++)
         {
-            // i - номер столбца
-            // j - номер строки
-            //WhatOptionInRow[i] - номер i параметра по столбцам слева
+            Table+="\\tabularnewline\\cline{"+QString::number(ColsForHeader+1)+"-"+QString::number(ColsForContent+ColsForHeader)+"}\n";
+            Table+="\\multicolumn{"+QString::number(ColsForHeader)+"}{c|} {\\centering \\textbf{ }} & ";
+
+            for (int i=0;i<TempC;i++)
+            {
+                QString Amper;
+                if (i!=TempC-1)
+                    Amper=" & ";
+
+                //Получим название настройки алгоритма оптимизации
+                QString Text=HQt_ForcedWordWrap(Data.getOptionFromListOfParameterOptionsForTable(Order[j],i%(Data.getListOfParameterOptions(Order[j]).count())));
+
+                if (j!=RowsForHeader-1)
+                    Table+="\\multicolumn{"+QString::number(ColsForContent/TempC)+"}{c|} {\\centering \\textbf{"+Text+"}}"+Amper;
+                else
+                    Table+="\\multicolumn{"+QString::number(ColsForContent/TempC)+"}{p{\\dimexpr"+QString::number(WidthCol)+"\\linewidth-2\\tabcolsep}|} {\\centering \\textbf{"+Text+"}}"+Amper;
+            }
+            Table+="\n";
+            TempC*=Data.getListOfParameterOptions(Order[j+1]).count();
+        }
+
+        Table+="\\tabularnewline\\hline\n";
+        Table+="\\endhead\n";
+
+        ////////////////////////////////////////////////////////
+        //// ПОБОЧНЫЕ ДЕЙСТВИЯ С ТАБЛИЦЕЙ
+        ////////////////////////////////////////////////////////
+
+        //Оформляем «Продолжение следует», если не всё впорядке пойдет.
+        Table+="\\hline\n\\multicolumn{"+QString::number(ColsForHeader+ColsForContent)+"}{|r|}{{Продолжение на следующей странице...}} \\\\ \\hline \\endfoot\n";
+        Table+="\\endlastfoot\n";
+
+        ////////////////////////////////////////////////////////
+        //// ОСНОВОЕ ТЕЛО ТАБЛИЦЫ
+        ////////////////////////////////////////////////////////
+
+        int *WhatOptionInRow = new int [ColsForHeader];
+        HML_FillVector(WhatOptionInRow,ColsForHeader,-1);
+
+        int *WhatOptionInCol = new int [RowsForHeader];
+
+        //Основное тело таблицы
+        for (int j=0;j<RowsForContent;j++)
+        {
+            QString Row;
+            //Заголовки слева
 
             ////////////////////////////////////////////////////////
-            //// ОПРЕДЕЛЯЕМ КАКИЕ ПАРАМЕТРЫ ПО СТОЛБЦАМ ИДУТ
+            //// ЗАГОЛОВКИ СЛЕВА
             ////////////////////////////////////////////////////////
-            {//Определяем какие параметры по столбцам идут
-                int TempC=Data.getListOfParameterOptions(Order[0]).count();
-                for (int k=0;k<RowsForHeader;k++)
+
+            //получим число всех вариантов настроек, отображаемых слева
+            TempC=1;
+            for (int i=0;i<ColsForHeader;i++)
+                TempC*=Data.getListOfParameterOptions(Order[ForColsN+i]).count();
+
+            int k=-1;//C какого номера на данной ячеейке начинать рисовать горизонтальную линию
+            bool kDo=false;//значит, что еще не решали будет линия или нет
+            for (int i=0;i<ColsForHeader;i++)
+            {
+                int uc=Data.getListOfParameterOptions(Order[ForColsN+i]).count();
+                TempC = TempC/uc;
+                int OO=j%TempC;
+                if (OO==0)
                 {
-                    int ii=0;
-                    int wo;
-                    for (int p=0;p<TempC;p++)
+                    WhatOptionInRow[i]++;
+                    if (WhatOptionInRow[i]==Data.getListOfParameterOptions(Order[ForColsN+i]).count())
                     {
-                        wo=p%(Data.getListOfParameterOptions(Order[k]).count());
+                        WhatOptionInRow[i]=0;
+                    }
 
-                        for (int h=0;h<ColsForContent/TempC;h++)
+                    QString Text=HQt_ForcedWordWrap(Data.getOptionFromListOfParameterOptionsForTable(Order[ForColsN+i],WhatOptionInRow[i]));
+
+                    int dt;
+                    dt=7.75*TempC;
+                    if (i==ColsForHeader-1) dt=12.5*TempC;
+                    //["+QString::number(dt)+"pt]
+
+                    Row+="\\centering \\textbf{"+Text+"} & ";
+
+                    //                if (TempC!=1)
+                    //                    Row+="\\multirow{"+QString::number(TempC)+"}{\\linewidth}{\\centering \\textbf{"+Text+"}} & ";
+                    //                else
+                    //                    Row+="\\centering \\textbf{"+Text+"} & ";
+                }
+                else
+                {
+                    Row+=" & ";
+                    if (OO==TempC-1)
+                    {
+                        if (kDo==false)
                         {
-                            if (ii==i)
-                            {
-                            WhatOptionInCol[k]=wo;
-                            }
-                            ii++;
+                            k=i+1;
+                            kDo=true;
                         }
                     }
-                    TempC*=Data.getListOfParameterOptions(Order[k+1]).count();
                 }
-            }//Определяем какие параметры по столбцам идут
+            }
+            if (k==-1) k=ColsForHeader;
+
 
             ////////////////////////////////////////////////////////
-            //// ОПРЕДЕЛЕНИЕ НОМЕРА ЭКПЕРИМЕНТА
+            //// ОСНОВНЫЕ ЯЧЕЙКИ
             ////////////////////////////////////////////////////////
-            int NumberExperimentInCell=-1;
-            {//ОПРЕДЕЛЕНИЕ НОМЕРА ЭКПЕРИМЕНТА
+
+            //Основное содержание
+            HML_FillVector(WhatOptionInCol,RowsForHeader,-1);
+            for (int i=0;i<ColsForContent;i++)
+            {
                 // i - номер столбца
                 // j - номер строки
+                //WhatOptionInRow[i] - номер i параметра по столбцам слева
 
-                for (int p=0;p<Data.getNumberOfExperiments();p++)
-                {
-                    bool find=true;
-                    for (int k=0;k<ForColsN;k++)
+                ////////////////////////////////////////////////////////
+                //// ОПРЕДЕЛЯЕМ КАКИЕ ПАРАМЕТРЫ ПО СТОЛБЦАМ ИДУТ
+                ////////////////////////////////////////////////////////
+                {//Определяем какие параметры по столбцам идут
+                    int TempC=Data.getListOfParameterOptions(Order[0]).count();
+                    for (int k=0;k<RowsForHeader;k++)
                     {
-                        if (WhatOptionInCol[k]!=Data.getParameter(p,Order[k]))
-                            find=false;
+                        int ii=0;
+                        int wo;
+                        for (int p=0;p<TempC;p++)
+                        {
+                            wo=p%(Data.getListOfParameterOptions(Order[k]).count());
+
+                            for (int h=0;h<ColsForContent/TempC;h++)
+                            {
+                                if (ii==i)
+                                {
+                                    WhatOptionInCol[k]=wo;
+                                }
+                                ii++;
+                            }
+                        }
+                        TempC*=Data.getListOfParameterOptions(Order[k+1]).count();
                     }
-                    for (int k=ForColsN;k<Data.getNumberOfParameters();k++)
+                }//Определяем какие параметры по столбцам идут
+
+                ////////////////////////////////////////////////////////
+                //// ОПРЕДЕЛЕНИЕ НОМЕРА ЭКПЕРИМЕНТА
+                ////////////////////////////////////////////////////////
+                int NumberExperimentInCell=-1;
+                {//ОПРЕДЕЛЕНИЕ НОМЕРА ЭКПЕРИМЕНТА
+                    // i - номер столбца
+                    // j - номер строки
+
+                    for (int p=0;p<Data.getNumberOfExperiments();p++)
                     {
-                        if (WhatOptionInRow[k-ForColsN]!=Data.getParameter(p,Order[k]))
-                            find=false;
+                        bool find=true;
+                        for (int k=0;k<ForColsN;k++)
+                        {
+                            if (WhatOptionInCol[k]!=Data.getParameter(p,Order[k]))
+                                find=false;
+                        }
+                        for (int k=ForColsN;k<Data.getNumberOfParameters();k++)
+                        {
+                            if (WhatOptionInRow[k-ForColsN]!=Data.getParameter(p,Order[k]))
+                                find=false;
+                        }
+                        if (find)
+                        {
+                            NumberExperimentInCell=p;
+                        }
                     }
-                    if (find)
-                    {
-                        NumberExperimentInCell=p;
-                    }
-                }
 
-            // NumberExperimentInCell -  теперь тут номер хранится
-            }//ОПРЕДЕЛЕНИЕ НОМЕРА ЭКПЕРИМЕНТА
+                    // NumberExperimentInCell -  теперь тут номер хранится
+                }//ОПРЕДЕЛЕНИЕ НОМЕРА ЭКПЕРИМЕНТА
 
-            ////////////////////////////////////////////////////////
-            //// ОПРЕДЕЛЕНИЕ СОДЕРЖИМОГО ЯЧЕЙКИ
-            ////////////////////////////////////////////////////////
+                ////////////////////////////////////////////////////////
+                //// ОПРЕДЕЛЕНИЕ СОДЕРЖИМОГО ЯЧЕЙКИ
+                ////////////////////////////////////////////////////////
 
-            QString Content;
+                QString Content;
 
-            Content = "\\centering " + InfoForEveryExperiment.at(NumberExperimentInCell);
+                Content = "\\centering " + InfoForEveryExperiment.at(NumberExperimentInCell);
 
-            //Добавляем разделитель между ячейками
-            QString Amper;
-            if (i!=ColsForContent-1)
-                Amper=" & ";
-            Row+=Content+Amper;
+                //Добавляем разделитель между ячейками
+                QString Amper;
+                if (i!=ColsForContent-1)
+                    Amper=" & ";
+                Row+=Content+Amper;
 
+            }
+
+            Row+="\\tabularnewline \\cline{"+QString::number(k)+"-"+QString::number(ColsForContent+ColsForHeader)+"}\n";
+            Table+=Row;
         }
 
-        Row+="\\tabularnewline \\cline{"+QString::number(k)+"-"+QString::number(ColsForContent+ColsForHeader)+"}\n";
-        Table+=Row;
+        Table+="\\end{longtable}\n";
+        Table+="}\n";
+        Table+="\\end{center}\n\n";
+
+
+        delete [] CountOfParametersTemp;
+        delete [] Order;
+        delete [] WhatOptionInRow;
+        delete [] WhatOptionInCol;
     }
-
-    Table+="\\end{longtable}\n";
-    Table+="}\n";
-    Table+="\\end{center}\n\n";
-
-
-    delete [] CountOfParametersTemp;
-    delete [] Order;
-    delete [] WhatOptionInRow;
-    delete [] WhatOptionInCol;
+    else
+    {
+    //Настраиваемых парметров у алгоритма нет, так что и ничего добавлять в таблицу
+    }
 
     return Table;
 }
@@ -1358,34 +1391,55 @@ void HarrixClass_DataOfHarrixOptimizationTesting::readXml()
     /*
      Считывание XML файла и осуществление всех остальных анализов и др.
      */
-
-    Rxml.readNext();while((!Rxml.isStartElement())&&(!Rxml.atEnd())){Rxml.readNext();}//первый нормальный элемент
-
-    //Начнем анализ документа
-    if (readXmlTreeTag("document"))
+    if (!Error)
     {
-        if (readXmlTreeTag("harrix_file_format"))
+        try
         {
-            //далее должны идти тэги format, version, site
-            for (int k=0;k<3;k++)
-                readXmlLeafTag();//считает тэг
+            Rxml.readNext();while((!Rxml.isStartElement())&&(!Rxml.atEnd())){Rxml.readNext();}//первый нормальный элемент
+        }
+        catch (...)
+        {
+            HtmlMessageOfError+=HQt_ShowAlert("Первый нормальный элемент не найден.");
+            Error=true;
+        }
+    }
 
-            if (readXmlTreeTag("about"))
+    if (!Error)
+    {
+        try
+        {
+            //Начнем анализ документа
+            if (readXmlTreeTag("document"))
             {
-                //далее должны идти тэги author, date, email
-                for (int k=0;k<3;k++)
-                    readXmlLeafTag();//считает тэг
-
-                if (readXmlTreeTag("about_data"))
+                if (readXmlTreeTag("harrix_file_format"))
                 {
-                    //далее должны идти 13 тэгов по информации о данных
-                    for (int k=0;k<13;k++)
+                    //далее должны идти тэги format, version, site
+                    for (int k=0;k<3;k++)
                         readXmlLeafTag();//считает тэг
 
-                    readXmlTreeTag("data");
+                    if (readXmlTreeTag("about"))
+                    {
+                        //далее должны идти тэги author, date, email
+                        for (int k=0;k<3;k++)
+                            readXmlLeafTag();//считает тэг
+
+                        if (readXmlTreeTag("about_data"))
+                        {
+                            //далее должны идти 13 тэгов по информации о данных
+                            for (int k=0;k<13;k++)
+                                readXmlLeafTag();//считает тэг
+
+                            readXmlTreeTag("data");
+                        }
+                    }
+                    checkXmlLeafTags();//проверим наличие всех тэгов
                 }
             }
-            checkXmlLeafTags();//проверим наличие всех тэгов
+        }
+        catch (...)
+        {
+            HtmlMessageOfError+=HQt_ShowAlert("Не смогли прочитать нужные тэги.");
+            Error=true;
         }
     }
 
@@ -1420,7 +1474,7 @@ void HarrixClass_DataOfHarrixOptimizationTesting::readXml()
         makingLatexTableR();//заполняем LatexTableR
         makingListOfVectorParameterOptions();
         makingLatexListOfVectorParameterOptions2();
-        makingLatexAnalysis();//заполняем LatexTableR
+        makingLatexAnalysis();
         //Latex+=LatexInfo+LatexAboutParameters+LatexTableEx+LatexTableEy+LatexTableR;
         Latex+=LatexInfo+LatexAboutParameters+LatexTableEx+LatexTableEy+LatexTableR+LatexListOfVectorParameterOptions+LatexAnalysis;
         LatexTable+=LatexInfo+LatexAboutParameters+LatexTableEx+LatexTableEy+LatexTableR;
@@ -1428,7 +1482,7 @@ void HarrixClass_DataOfHarrixOptimizationTesting::readXml()
         Html+=HQt_ShowHr();
         Html+=HQt_ShowText("Обработка файла завершена. Ошибки не обнаружены");
     }
-	
+
     Rxml.clear();//больше не будем использовать, так что удаляем
 }
 //---------------------------------------------------------------------------

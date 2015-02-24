@@ -3,34 +3,55 @@ void HarrixClass_DataOfHarrixOptimizationTesting::readXml()
     /*
      Считывание XML файла и осуществление всех остальных анализов и др.
      */
-
-    Rxml.readNext();while((!Rxml.isStartElement())&&(!Rxml.atEnd())){Rxml.readNext();}//первый нормальный элемент
-
-    //Начнем анализ документа
-    if (readXmlTreeTag("document"))
+    if (!Error)
     {
-        if (readXmlTreeTag("harrix_file_format"))
+        try
         {
-            //далее должны идти тэги format, version, site
-            for (int k=0;k<3;k++)
-                readXmlLeafTag();//считает тэг
+            Rxml.readNext();while((!Rxml.isStartElement())&&(!Rxml.atEnd())){Rxml.readNext();}//первый нормальный элемент
+        }
+        catch (...)
+        {
+            HtmlMessageOfError+=HQt_ShowAlert("Первый нормальный элемент не найден.");
+            Error=true;
+        }
+    }
 
-            if (readXmlTreeTag("about"))
+    if (!Error)
+    {
+        try
+        {
+            //Начнем анализ документа
+            if (readXmlTreeTag("document"))
             {
-                //далее должны идти тэги author, date, email
-                for (int k=0;k<3;k++)
-                    readXmlLeafTag();//считает тэг
-
-                if (readXmlTreeTag("about_data"))
+                if (readXmlTreeTag("harrix_file_format"))
                 {
-                    //далее должны идти 13 тэгов по информации о данных
-                    for (int k=0;k<13;k++)
+                    //далее должны идти тэги format, version, site
+                    for (int k=0;k<3;k++)
                         readXmlLeafTag();//считает тэг
 
-                    readXmlTreeTag("data");
+                    if (readXmlTreeTag("about"))
+                    {
+                        //далее должны идти тэги author, date, email
+                        for (int k=0;k<3;k++)
+                            readXmlLeafTag();//считает тэг
+
+                        if (readXmlTreeTag("about_data"))
+                        {
+                            //далее должны идти 13 тэгов по информации о данных
+                            for (int k=0;k<13;k++)
+                                readXmlLeafTag();//считает тэг
+
+                            readXmlTreeTag("data");
+                        }
+                    }
+                    checkXmlLeafTags();//проверим наличие всех тэгов
                 }
             }
-            checkXmlLeafTags();//проверим наличие всех тэгов
+        }
+        catch (...)
+        {
+            HtmlMessageOfError+=HQt_ShowAlert("Не смогли прочитать нужные тэги.");
+            Error=true;
         }
     }
 
@@ -65,7 +86,7 @@ void HarrixClass_DataOfHarrixOptimizationTesting::readXml()
         makingLatexTableR();//заполняем LatexTableR
         makingListOfVectorParameterOptions();
         makingLatexListOfVectorParameterOptions2();
-        makingLatexAnalysis();//заполняем LatexTableR
+        makingLatexAnalysis();
         //Latex+=LatexInfo+LatexAboutParameters+LatexTableEx+LatexTableEy+LatexTableR;
         Latex+=LatexInfo+LatexAboutParameters+LatexTableEx+LatexTableEy+LatexTableR+LatexListOfVectorParameterOptions+LatexAnalysis;
         LatexTable+=LatexInfo+LatexAboutParameters+LatexTableEx+LatexTableEy+LatexTableR;
@@ -73,6 +94,6 @@ void HarrixClass_DataOfHarrixOptimizationTesting::readXml()
         Html+=HQt_ShowHr();
         Html+=HQt_ShowText("Обработка файла завершена. Ошибки не обнаружены");
     }
-	
+
     Rxml.clear();//больше не будем использовать, так что удаляем
 }

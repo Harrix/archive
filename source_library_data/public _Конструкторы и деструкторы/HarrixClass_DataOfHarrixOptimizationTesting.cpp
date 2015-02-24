@@ -21,10 +21,35 @@ HarrixClass_DataOfHarrixOptimizationTesting::HarrixClass_DataOfHarrixOptimizatio
         Html+=HQt_ShowText("Файл <font color=\"#00b400\">"+HQt_GetFilenameFromFullFilename(filename)+"</font> загружен");
 
         //Первоначальные действия
-        FileXML=HQt_ReadFile(filename);
-        Rxml.addData(FileXML);
+        try
+        {
+            FileXML=HQt_ReadFile(filename);
+        }
+        catch (...)
+        {
+            HtmlMessageOfError+=HQt_ShowAlert("Файл не был прочитан.");
+            Error=true;
+        }
 
-        readXml();//считывание XML файла и все остальные анализы запускаются в этой функции
+        try
+        {
+            Rxml.addData(FileXML);
+        }
+        catch (...)
+        {
+            HtmlMessageOfError+=HQt_ShowAlert("Не смогли добавить содержимое в экземпляр QXmlStreamReader.");
+            Error=true;
+        }
+
+        try
+        {
+            readXml();//считывание XML файла и все остальные анализы запускаются в этой функцииcatch (...)
+        }
+        catch (...)
+        {
+            HtmlMessageOfError+=HQt_ShowAlert("Считывание XML файла прошло с ошибками.");
+            Error=true;
+        }
     }
 }
 //--------------------------------------------------------------------------

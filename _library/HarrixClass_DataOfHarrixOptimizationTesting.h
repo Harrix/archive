@@ -1,5 +1,5 @@
 //HarrixClass_DataOfHarrixOptimizationTesting
-//Версия 1.26
+//Версия 1.27
 //Класс для считывания информации формата данных Harrix Optimization Testing на C++ для Qt.
 //https://github.com/Harrix/HarrixClass_DataOfHarrixOptimizationTesting
 //Библиотека распространяется по лицензии Apache License, Version 2.0.

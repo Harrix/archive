@@ -15,11 +15,11 @@ font.family: "Consolas"
 */
 
 Item {
-    property alias fontArimoRegular: fontArimoRegular // name = Consolas
+    property alias fontArimoRegular: fontArimo // name = Arimo
     property alias fontConsolas: fontConsolas // name = Consolas
     property alias fontRaleway: fontRaleway // name = Raleway
 
-    FontLoader { id: fontArimoRegular; source: "qrc:/fonts/HarrixQML/fonts/ArimoRegular.ttf";}
+    FontLoader { id: fontArimo; source: "qrc:/fonts/HarrixQML/fonts/Arimo.ttf";}
     FontLoader { id: fontConsolas; source: "qrc:/fonts/HarrixQML/fonts/Consolas.ttf";}
     FontLoader { id: fontRaleway; source: "qrc:/fonts/HarrixQML/fonts/Raleway.ttf" }
 }

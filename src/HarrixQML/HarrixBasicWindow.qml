@@ -56,7 +56,7 @@ ApplicationWindow {
         height: HarrixSettings.heightToolBar
 
         //toolBar стирает границы, заданные в ApplicationWindowStyle
-        //Поэтому для данного компонента рисует три границы (кромне нижней)
+        //Поэтому для данного компонента рисуем три границы (кроме нижней)
         HarrixLine { orientation: Qt.Horizontal; length: titleBar.width; color:HarrixSettings.colorBorder; }
         HarrixLine { orientation: Qt.Vertical; length: titleBar.height; color:HarrixSettings.colorBorder; anchors.right: titleBar.right; }
         HarrixLine { orientation: Qt.Vertical; length: titleBar.height; color:HarrixSettings.colorBorder; anchors.left: titleBar.left; }

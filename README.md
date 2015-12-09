@@ -12,7 +12,7 @@ License: [MIT](https://raw.github.com/Harrix/Harrix-MardownFileInWordpress/READM
 Usage
 -----
 
-*markdown*
+*[markdown][/markdown]*
 
 This shortcode embeds markdown file by url. 
 
@@ -25,7 +25,7 @@ Libraries
 
 The plugin uses the libraries:
  - php-markdown: [https://github.com/michelf/php-markdown](https://github.com/michelf/php-markdown)
- - highlightjs.org: [https://highlightjs.org/](https://highlightjs.org)
+ - highlight.js: [https://highlightjs.org/](https://highlightjs.org)
 
 History
 -------

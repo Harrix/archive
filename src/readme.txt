@@ -15,8 +15,8 @@ Display Markdown files with syntax highlighting in Wordpress.
 Harrix MardownFileInWordpress is a plugin to display Markdown files with syntax highlighting in Wordpress.
 
 The plugin uses the libraries:
-* php-markdown: https://github.com/michelf/php-markdown
-* highlightjs.org: https://highlightjs.org/
+* php-markdown: [https://github.com/michelf/php-markdown](https://github.com/michelf/php-markdown)
+* highlightjs.org: [https://highlightjs.org/](https://highlightjs.org)
 
 Usage:
 
@@ -28,5 +28,5 @@ This shortcode embeds markdown file by url.
 
 == Changelog ==
 
-= 1.0.0 =
+= 1.0 =
 * First Version.

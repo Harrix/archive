@@ -17,7 +17,7 @@ add_shortcode('markdown','harrix_markdown_make');
 add_action('wp_head','harrix_add_highlight_js');
 
 function harrix_add_highlight_js() {
-    echo "\n\n<link rel=\"stylesheet\" href=\"//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.0.0/styles/default.min.css\">\n";
+    echo "\n\n<link rel=\"stylesheet\" href=\"//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.0.0/styles/github.min.css\">\n";
     echo "<script src=\"//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.0.0/highlight.min.js\"></script>\n";
     echo "<script>hljs.initHighlightingOnLoad();</script>\n\n";
 }
@@ -26,7 +26,6 @@ function harrix_markdown_make( $atts, $content ) {
 
     $yourfile = esc_url( $content );
     $contents = file_get_contents( $yourfile );
-    //$contents = do_shortcode( $contents );
 	
     if ($contents === false)
           {
@@ -36,7 +35,7 @@ function harrix_markdown_make( $atts, $content ) {
           {
               $contents = Markdown::defaultTransform($contents);
 		  
-			  //$tr=array('<p><code>'=>'<pre><code style="cpp">','</code></p>'=>'</code></pre>');
+			  $tr=array('<p><code>cpp'=>'<pre><code style="cpp">','</code></p>'=>'</code></pre>');
               $contents=strtr($contents,$tr);
           }
 

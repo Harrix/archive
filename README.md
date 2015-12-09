@@ -9,6 +9,8 @@ Display Markdown files with syntax highlighting in Wordpress.
 
 License: [MIT](https://raw.github.com/Harrix/Harrix-MardownFileInWordpress/README.md).
 
+Demo: [http://blog.harrix.org/?p=1336](http://blog.harrix.org/?p=1336)
+
 Usage
 -----
 

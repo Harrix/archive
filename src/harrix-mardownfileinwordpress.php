@@ -3,7 +3,7 @@
  * Plugin Name: Harrix MardownFileInWordpress
  * Plugin URI: https://github.com/Harrix/Harrix-MardownFileInWordpress
  * Description: Harrix MardownFileInWordpress is a plugin to display Mardown files with syntax highlighting in Wordpress.
- * Version: 1.0.0
+ * Version: 1.0
  * Author: Sergienko Anton
  * Author URI: http://harrix.org
  * License: MIT
@@ -26,7 +26,7 @@ function harrix_markdown_make( $atts, $content ) {
 
     $yourfile = esc_url( $content );
     $contents = file_get_contents( $yourfile );
-	
+
     if ($contents === false)
           {
               $contents = "Do not downloaded $yourfile";
@@ -34,8 +34,11 @@ function harrix_markdown_make( $atts, $content ) {
           else
           {
               $contents = Markdown::defaultTransform($contents);
-		  
-			  $tr=array('<p><code>cpp'=>'<pre><code style="cpp">','</code></p>'=>'</code></pre>');
+
+              $tr=array('<p><code>cpp\n'=>'<pre><code style="cpp">',
+                       '<p><code>html\n'=>'<pre><code style="html">',
+					   '<p><code>css\n'=>'<pre><code style="css">',
+                       ,'</code></p>'=>'</code></pre>');
               $contents=strtr($contents,$tr);
           }
 

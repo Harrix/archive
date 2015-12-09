@@ -36,7 +36,7 @@ function harrix_markdown_make( $atts, $content ) {
           {
               $contents = Markdown::defaultTransform($contents);
 		  
-			  $tr=array('<p><code>'=>'<pre><code style="cpp">','</code></p>'=>'</code></pre>');
+			  //$tr=array('<p><code>'=>'<pre><code style="cpp">','</code></p>'=>'</code></pre>');
               $contents=strtr($contents,$tr);
           }
 

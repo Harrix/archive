@@ -1,5 +1,5 @@
-Harrix MardownFileInWordpress
-=============================
+Harrix MardownFile
+==================
 
 1.0
 ---

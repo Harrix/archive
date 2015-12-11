@@ -1,8 +1,8 @@
 <?php
 /**
- * Plugin Name: Harrix MardownFileInWordpress
- * Plugin URI: https://github.com/Harrix/Harrix-MardownFileInWordpress
- * Description: Harrix MardownFileInWordpress is a plugin to display Mardown files with syntax highlighting in Wordpress.
+ * Plugin Name: Harrix MardownFile
+ * Plugin URI: https://github.com/Harrix/Harrix-MardownFile
+ * Description: Harrix MardownFile is a plugin to display Mardown files with syntax highlighting in Wordpress.
  * Version: 1.0
  * Author: Sergienko Anton
  * Author URI: http://harrix.org

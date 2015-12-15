@@ -1,4 +1,4 @@
-![Harrix MardownFile](/images_github/logo-harrix-mardownfile.png)
+![Harrix MardownFile](https://raw.github.com/Harrix/Harrix-MardownFile/master/images_github/logo-harrix-mardownfile.png)
 
 Harrix MardownFile
 ==================

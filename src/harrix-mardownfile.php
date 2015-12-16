@@ -18,18 +18,19 @@ add_action('wp_head','harrix_add_highlight_js');
 
 function harrix_add_highlight_js() {
     //echo "\n\n<link rel=\"stylesheet\" href=\"//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.0.0/styles/github.min.css\">\n";
-    echo "<script src=\"//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.0.0/highlight.min.js\"></script>\n";
+    //echo "<script src=\"//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.0.0/highlight.min.js\"></script>\n";
     echo "<script>hljs.initHighlightingOnLoad();</script>\n\n";
 }
 
 function wptuts_scripts_highlight()
 {
     // Register the script like this for a plugin:
-    //wp_register_script( 'highlight.js', plugin_dir_url( __FILE__ ) . 'highlight.js' );
+    wp_register_script( 'highlight.js', plugin_dir_url( __FILE__ ) . 'highlight.min.js' );
+    //wp_register_script( 'highlight.js', plugin_dir_url( __FILE__ ) . 'languages/cpp.js' );
     wp_enqueue_style( 'github.css', plugin_dir_url( __FILE__ ) . 'styles/github.css' );
  
     // For either a plugin or a theme, you can then enqueue the script:
-    //wp_enqueue_script( 'highlight.js' );
+    wp_enqueue_script( 'highlight.js' );
 }
 add_action( 'wp_enqueue_scripts', 'wptuts_scripts_highlight' );
 

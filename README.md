@@ -13,7 +13,7 @@ The latest version of the plugin can be found here:
  - [https://github.com/Harrix/Harrix-MardownFile/tree/master/_plugin](https://github.com/Harrix/Harrix-MardownFile/tree/master/_plugin)
  - [https://wordpress.org/plugins/harrix-mardownfile/](https://wordpress.org/plugins/harrix-mardownfile/)
 
-License: [MIT](https://raw.github.com/Harrix/Harrix-MardownFile/LICENSE).
+License: [MIT](https://github.com/Harrix/Harrix-MardownFile/blob/master/LICENSE).
 
 Demo: [http://blog.harrix.org/?p=1336](http://blog.harrix.org/?p=1336)
 
@@ -38,7 +38,7 @@ The plugin uses the libraries:
 History
 -------
 
-A detailed list of changes in the file [CHANGELOG.md](https://raw.github.com/Harrix/Harrix-MardownFile/blob/master/CHANGELOG.md).
+A detailed list of changes in the file [CHANGELOG.md](https://github.com/Harrix/Harrix-MardownFile/blob/master/CHANGELOG.md).
 
 Contacts
 --------

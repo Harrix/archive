@@ -1,6 +1,6 @@
-![Harrix MardownFile](https://rawgithub.com/Harrix/Harrix-MardownFile/master/images_github/logo-harrix-mardownfile.svg)
+![Harrix MarkdownFile](https://rawgithub.com/Harrix/Harrix-MarkdownFile/master/images_github/logo-harrix-markdownfile.svg)
 
-Harrix MardownFile
+Harrix Markdown
 ==================
 
 Версия 1.0
@@ -9,11 +9,11 @@ Worpress плагин. Отображает содержимое Markdown фай
 
 Последнюю версию плагина вы можете найти в любом из трех вариантов:
 
- - [https://github.com/Harrix/Harrix-MardownFile/releases/](https://github.com/Harrix/Harrix-MardownFile/releases/)
- - [https://github.com/Harrix/Harrix-MardownFile/tree/master/_plugin](https://github.com/Harrix/Harrix-MardownFile/tree/master/_plugin)
- - [https://wordpress.org/plugins/harrix-mardownfile/](https://wordpress.org/plugins/harrix-mardownfile/)
+ - [https://github.com/Harrix/Harrix-MarkdownFile/releases/](https://github.com/Harrix/Harrix-MarkdownFile/releases/)
+ - [https://github.com/Harrix/Harrix-MarkdownFile/tree/master/_plugin](https://github.com/Harrix/Harrix-MarkdownFile/tree/master/_plugin)
+ - [https://wordpress.org/plugins/harrix-markdownfile/](https://wordpress.org/plugins/harrix-markdownfile/)
 
-Лицензия: [MIT](https://github.com/Harrix/Harrix-MardownFile/blob/master/LICENSE).
+Лицензия: [MIT](https://github.com/Harrix/Harrix-MarkdownFile/blob/master/LICENSE).
 
 Демо: [http://blog.harrix.org/?p=1336](http://blog.harrix.org/?p=1336)
 
@@ -40,7 +40,7 @@ Worpress плагин. Отображает содержимое Markdown фай
 История проекта
 ---------------
 
-Подробный список изменений в файле [CHANGELOG.md](https://github.com/Harrix/Harrix-MardownFile/blob/master/CHANGELOG.md).
+Подробный список изменений в файле [CHANGELOG.md](https://github.com/Harrix/Harrix-MarkdownFile/blob/master/CHANGELOG.md).
 
 Контакты
 --------

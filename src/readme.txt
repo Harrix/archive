@@ -1,4 +1,4 @@
-=== Harrix MardownFile ===
+=== Harrix MarkdownFile ===
 Contributors: Harrix
 Donate link: http://jason.stallin.gs
 Tags: markdown, github,  shortcode, markdown, embed
@@ -6,13 +6,13 @@ Requires at least: 3.0.1
 Tested up to: 4.4
 Stable tag: 4.4
 License: MIT
-License URI: https://raw.github.com/Harrix/Harrix-MardownFile/README.md
+License URI: https://raw.github.com/Harrix/Harrix-MarkdownFile/README.md
 
 Display Markdown files with syntax highlighting in Wordpress.
 
 == Description ==
 
-Harrix MardownFile is a plugin to display Markdown files with syntax highlighting in Wordpress.
+Harrix MarkdownFile is a plugin to display Markdown files with syntax highlighting in Wordpress.
 
 Demo: [http://blog.harrix.org/?p=1336](http://blog.harrix.org/?p=1336)
 

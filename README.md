@@ -1,7 +1,7 @@
 ![Harrix MarkdownFile](https://rawgithub.com/Harrix/Harrix-MarkdownFile/master/images_github/logo-harrix-markdownfile.svg)
 
 Harrix MarkdownFile
-==================
+===================
 
 Version 1.0
 

@@ -38,7 +38,7 @@ The plugin uses the libraries:
 History
 -------
 
-A detailed list of changes in the file [CHANGELOG.md](https://raw.github.com/Harrix/Harrix-MardownFile/CHANGELOG.md).
+A detailed list of changes in the file [CHANGELOG.md](https://raw.github.com/Harrix/Harrix-MardownFile/blob/master/CHANGELOG.md).
 
 Contacts
 --------

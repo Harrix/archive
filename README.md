@@ -7,7 +7,11 @@ Version 1.0
 
 Worpress plugin. Display Markdown files with syntax highlighting in Wordpress.
 
-[https://github.com/Harrix/Harrix-MardownFile](https://github.com/Harrix/Harrix-MardownFile)
+The latest version of the plugin can be found here:
+
+ - [https://github.com/Harrix/Harrix-MardownFile/releases/](https://github.com/Harrix/Harrix-MardownFile/releases/)
+ - [https://github.com/Harrix/Harrix-MardownFile/tree/master/_plugin](https://github.com/Harrix/Harrix-MardownFile/tree/master/_plugin)
+ - [https://wordpress.org/plugins/harrix-mardownfile/](https://wordpress.org/plugins/harrix-mardownfile/)
 
 License: [MIT](https://raw.github.com/Harrix/Harrix-MardownFile/README.md).
 

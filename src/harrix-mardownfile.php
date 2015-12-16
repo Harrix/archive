@@ -41,9 +41,12 @@ function harrix_markdown_make( $atts, $content )
           {
               $contents = Markdown::defaultTransform($contents);
 
-              $tr=array('<p><code>cpp'=>'<pre><code style="cpp">',
-                        '<p><code>html'=>'<pre><code style="html">',
-                        '<p><code>css'=>'<pre><code style="css">',
+              $tr=array("<p><code>cpp\r\n"=>"<pre><code style=\"cpp\">",
+                        "<p><code>cpp\n"=>"<pre><code style=\"cpp\">",
+                        "<p><code>html\r\n"=>"<pre><code style=\"html\">",
+                        "<p><code>html\n"=>"<pre><code style=\"html\">",
+                        "<p><code>css\n"=>"<pre><code style=\"css\">",
+                        "<p><code>css\r\n"=>"<pre><code style=\"css\">",
                        );
               $contents=strtr($contents,$tr);
 

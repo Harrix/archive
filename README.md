@@ -20,7 +20,9 @@ Demo: [http://blog.harrix.org/?p=1336](http://blog.harrix.org/?p=1336)
 Usage
 -----
 
-*[markdown][/markdown]*
+```
+[markdown][/markdown]
+```
 
 This shortcode embeds markdown file by url. 
 

@@ -1,3 +1,5 @@
+[english](https://github.com/Harrix/Harrix-MarkdownFile/blob/master/README.md) | русский
+
 ![Harrix MarkdownFile](https://rawgithub.com/Harrix/Harrix-MarkdownFile/master/images_github/logo-harrix-markdownfile.svg)
 
 Harrix MarkdownFile

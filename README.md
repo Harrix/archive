@@ -3,7 +3,7 @@
 Harrix MarkdownFile
 ===================
 
-Version 1.0
+Version 1.1
 
 Worpress plugin. Display Markdown files with syntax highlighting in Wordpress.
 

@@ -22,13 +22,13 @@ Worpress плагин. Отображает содержимое Markdown фай
 Использование
 -------------
 
-```cpp
+```html
 [markdown-file][/markdown-file]
 ```
 
 Пропишите данный шорткод в статье вашего сайта, где между тэгами разместите адрес на Markdown файл.
 
-```cpp
+```html
 [markdown-file]https://raw.github.com/Harrix/HarrixQtLibrary/master/README.md[/markdown-file]
 ```
 

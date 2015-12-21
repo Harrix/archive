@@ -32,17 +32,16 @@ function harrix_markdown_make( $atts, $content )
     $yourfile = esc_url( $content );
     $contents = file_get_contents( $yourfile );
 
-    if ($contents === false)
-          {
+    if ($contents === false) {
               $contents = "Do not downloaded $yourfile";
           }
-          else
-          {
-              //$contents = Markdown::defaultTransform($contents);
-              
+          else {
+              $contents = html_entity_decode($contents);
+              $contents = trim($contents);
+    
               $Parsedown = new Parsedown();
-
-$contents = $Parsedown->text($contents);
+              
+              $contents = $Parsedown->text($contents);
           }
 
     return $contents;

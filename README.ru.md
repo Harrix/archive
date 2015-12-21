@@ -5,7 +5,7 @@
 Harrix MarkdownFile
 ===================
 
-Версия 1.1
+Версия 1.2
 
 Worpress плагин. Отображает содержимое Markdown файлов с подсветкой синтаксиса в вашем сайте под управлением Wordpress.
 
@@ -23,20 +23,20 @@ Worpress плагин. Отображает содержимое Markdown фай
 -------------
 
 ```html
-[markdown][/markdown]
+[markdown-file][/markdown-file]
 ```
 
 Пропишите данный шорткод в статье вашего сайта, где между тэгами разместите адрес на Markdown файл.
 
 ```html
-[markdown]https://raw.github.com/Harrix/HarrixQtLibrary/master/README.md[/markdown]
+[markdown-file]https://raw.github.com/Harrix/HarrixQtLibrary/master/README.md[/markdown-file]
 ```
 
 Библиотеки
 ----------
 
 Данный плагин использует следующие сторонние библиотеки:
- - php-markdown: [https://github.com/michelf/php-markdown](https://github.com/michelf/php-markdown)
+ - parsedown: [http://parsedown.org/](http://parsedown.org/)
  - highlight.js: [https://highlightjs.org/](https://highlightjs.org)
 
 История проекта

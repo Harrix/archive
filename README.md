@@ -5,7 +5,7 @@ english | [русский](https://github.com/Harrix/Harrix-MarkdownFile/blob/ma
 Harrix MarkdownFile
 ===================
 
-Version 1.1
+Version 1.2
 
 Worpress plugin. Display Markdown files with syntax highlighting in Wordpress.
 
@@ -23,20 +23,20 @@ Usage
 -----
 
 ```html
-[markdown][/markdown]
+[markdown-file][/markdown-file]
 ```
 
 This shortcode embeds markdown file by url.
 
 ```html
-[markdown]https://raw.github.com/Harrix/HarrixQtLibrary/master/README.md[/markdown]
+[markdown-file]https://raw.github.com/Harrix/HarrixQtLibrary/master/README.md[/markdown-file]
 ```
 
 Libraries
 ---------
 
 The plugin uses the libraries:
- - php-markdown: [https://github.com/michelf/php-markdown](https://github.com/michelf/php-markdown)
+ - parsedown: [http://parsedown.org/](http://parsedown.org/)
  - highlight.js: [https://highlightjs.org/](https://highlightjs.org)
 
 History

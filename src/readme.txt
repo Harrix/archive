@@ -4,7 +4,7 @@ Donate link:
 Tags: markdown, github,  shortcode, markdown, embed
 Requires at least: 3.0
 Tested up to: 4.4
-Stable tag: 1.1
+Stable tag: 1.2
 License: MIT
 License URI: https://raw.github.com/Harrix/Harrix-MarkdownFile/README.md
 
@@ -20,16 +20,16 @@ Harrix MarkdownFile is a plugin to display Markdown files with syntax highlighti
 
 The plugin uses the libraries:
 
-* php-markdown: [https://github.com/michelf/php-markdown](https://github.com/michelf/php-markdown)
+* parsedown: [http://parsedown.org/](http://parsedown.org/)
 * highlightjs.org: [https://highlightjs.org/](https://highlightjs.org)
 
 = Usage =
 
-`[markdown][/markdown]`
+`[markdown-file][/markdown-file]`
 
 This shortcode embeds markdown file by url. 
 
-`[markdown]https://raw.github.com/Harrix/HarrixQtLibrary/master/README.md[/markdown]`
+`[markdown-file]https://raw.github.com/Harrix/HarrixQtLibrary/master/README.md[/markdown-file]`
 
 == Installation ==
 
@@ -50,14 +50,20 @@ The plug only highlights code in the added file. Appearance code (text size, fon
 
 == Upgrade Notice ==
 
+= 1.2 =
+Changing the default shortcode to [markdown-file] and using the new Markdown parser.
+
 = 1.1 =
 Corrections on the remarks the team Wordpress.
 
 = 1.0 =
 First Version.
 
-
 == Changelog ==
+
+= 1.2 =
+* Using the new Markdown parser.
+* Changing the default shortcode to [markdown-file].
 
 = 1.1 =
 * Corrections on the remarks the team Wordpress.

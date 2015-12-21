@@ -22,13 +22,13 @@ Demo: [http://blog.harrix.org/?p=1336](http://blog.harrix.org/?p=1336)
 Usage
 -----
 
-```
+```html
 [markdown][/markdown]
 ```
 
 This shortcode embeds markdown file by url.
 
-```
+```html
 [markdown]https://raw.github.com/Harrix/HarrixQtLibrary/master/README.md[/markdown]
 ```
 

@@ -15,7 +15,7 @@ use \Michelf\Markdown;
 
 add_action( 'wp_enqueue_scripts', 'harrix_add_scripts_styles' );
 add_action('wp_head','harrix_load_highlight_js');
-add_shortcode('markdown','harrix_markdown_make');
+add_shortcode('markdown-file','harrix_markdown_make');
 
 function harrix_add_scripts_styles()
 {

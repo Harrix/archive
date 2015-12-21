@@ -1,1 +1,51 @@
-﻿
+<!--Вывод графика-->
+<h2>Сравнение идеального сигнала и сигнала с помехой</h2><div id="BoxHBPYBU" class="jxgbox" style="width:600px; height:300px;"></div>
+<script type="text/javascript">
+var BoardHBPYBU = JXG.JSXGraph.initBoard('BoxHBPYBU', {boundingbox: [-3.95, 1.7086, 6.58, -1.72689], axis:false,keepaspectratio: false,showcopyright: false,showNavigation: false, zoom: {wheel: true}});
+var AxisXHBPYBU = BoardHBPYBU.create('axis', [[-3.14, -1.23611], [-2.14, -1.23611]],{withLabel: true, name: '&mu;',label: {position:'lft',offset:[10,-21]}});
+var AxisYHBPYBU = BoardHBPYBU.create('axis', [[-3.14, -1.23611], [-3.14, -0.236107]],{withLabel: true, name: '&Theta;',label: { position:'lrt',offset: [20,0]}});
+var DataX1HBPYBU = [-2.92659, -2.68649, -2.48944, -2.39941, -2.18048, -2.14084, -2.0718, -1.95272, -1.94891, -1.80011, -1.72787, -1.71078, -1.69304, -1.55441, -1.34096, -1.32643, -1.31879, -0.979391, -0.903338, -0.831541, -0.807561, -0.570247, -0.519539, -0.271537, -0.238171, 0.00127521, 0.0272059, 0.199699, 0.246139, 0.427218, 0.445603, 0.460167, 0.746497, 0.852412, 1.10924, 1.48542, 1.54988, 1.56525, 1.58689, 1.60607, 1.66183, 1.74866, 1.89464, 2.06872, 2.16588, 2.23812, 2.42034, 2.49392, 2.56818, 2.91437];
+var DataX2HBPYBU = [-3.14, -3.04, -2.94, -2.84, -2.74, -2.64, -2.54, -2.44, -2.34, -2.24, -2.14, -2.04, -1.94, -1.84, -1.74, -1.64, -1.54, -1.44, -1.34, -1.24, -1.14, -1.04, -0.94, -0.84, -0.74, -0.64, -0.54, -0.44, -0.34, -0.24, -0.14, -0.04, 0.06, 0.16, 0.26, 0.36, 0.46, 0.56, 0.66, 0.76, 0.86, 0.96, 1.06, 1.16, 1.26, 1.36, 1.46, 1.56, 1.66, 1.76, 1.86, 1.96, 2.06, 2.16, 2.26, 2.36, 2.46, 2.56, 2.66, 2.76, 2.86, 2.96, 3.06, 3.16, 3.26, 3.36, 3.46, 3.56, 3.66, 3.76, 3.86, 3.96, 4.06, 4.16, 4.26, 4.36, 4.46, 4.56, 4.66, 4.76, 4.86, 4.96, 4.96];
+var DataY1HBPYBU = [0.00172621, -0.461894, -0.611952, -0.912536, -1.01001, -1.07441, -0.818515, -1.09952, -0.967994, -0.848527, -0.739733, -0.823068, -1.10829, -1.23611, -1.04185, -1.16417, -1.04194, -0.78724, -0.710262, -0.815328, -0.943668, -0.3826, -0.669459, -0.0853555, -0.434155, -0.128121, 0.24437, 0.414596, 0.109672, 0.194841, 0.599178, 0.63471, 0.566556, 0.538224, 0.964394, 1.17921, 0.977238, 0.787662, 1.08545, 0.977966, 1.21781, 0.924612, 0.763876, 1.09842, 1.03773, 1.00902, 0.483508, 0.78602, 0.617068, 0.0974787];
+var DataY2HBPYBU = [-0.00159265, -0.101418, -0.20023, -0.297041, -0.390885, -0.480823, -0.565956, -0.645435, -0.718465, -0.784316, -0.84233, -0.891929, -0.932615, -0.963983, -0.985719, -0.997606, -0.999526, -0.991458, -0.973485, -0.945784, -0.908633, -0.862404, -0.807558, -0.744643, -0.674288, -0.597195, -0.514136, -0.425939, -0.333487, -0.237703, -0.139543, -0.0399893, 0.059964, 0.159318, 0.257081, 0.352274, 0.443948, 0.531186, 0.613117, 0.688921, 0.757843, 0.819192, 0.872355, 0.916803, 0.95209, 0.977865, 0.993868, 0.999942, 0.996024, 0.982154, 0.958471, 0.925212, 0.882707, 0.831383, 0.771753, 0.704411, 0.630031, 0.549355, 0.463191, 0.372399, 0.277886, 0.180596, 0.0815022, -0.0184063, -0.118131, -0.216675, -0.313054, -0.406306, -0.495497, -0.579738, -0.658186, -0.730058, -0.794636, -0.851273, -0.899405, -0.938551, -0.968319, -0.988411, -0.998628, -0.998867, -0.989125, -0.969501, -0.969501];
+var DataX2AreaHBPYBU = [-3.14, -3.14, -3.04, -2.94, -2.84, -2.74, -2.64, -2.54, -2.44, -2.34, -2.24, -2.14, -2.04, -1.94, -1.84, -1.74, -1.64, -1.54, -1.44, -1.34, -1.24, -1.14, -1.04, -0.94, -0.84, -0.74, -0.64, -0.54, -0.44, -0.34, -0.24, -0.14, -0.04, 0.06, 0.16, 0.26, 0.36, 0.46, 0.56, 0.66, 0.76, 0.86, 0.96, 1.06, 1.16, 1.26, 1.36, 1.46, 1.56, 1.66, 1.76, 1.86, 1.96, 2.06, 2.16, 2.26, 2.36, 2.46, 2.56, 2.66, 2.76, 2.86, 2.96, 3.06, 3.16, 3.26, 3.36, 3.46, 3.56, 3.66, 3.76, 3.86, 3.96, 4.06, 4.16, 4.26, 4.36, 4.46, 4.56, 4.66, 4.76, 4.86, 4.96, 4.96, 4.96, -3.14];
+var DataY2AreaHBPYBU = [-1.23611, -0.00159265, -0.101418, -0.20023, -0.297041, -0.390885, -0.480823, -0.565956, -0.645435, -0.718465, -0.784316, -0.84233, -0.891929, -0.932615, -0.963983, -0.985719, -0.997606, -0.999526, -0.991458, -0.973485, -0.945784, -0.908633, -0.862404, -0.807558, -0.744643, -0.674288, -0.597195, -0.514136, -0.425939, -0.333487, -0.237703, -0.139543, -0.0399893, 0.059964, 0.159318, 0.257081, 0.352274, 0.443948, 0.531186, 0.613117, 0.688921, 0.757843, 0.819192, 0.872355, 0.916803, 0.95209, 0.977865, 0.993868, 0.999942, 0.996024, 0.982154, 0.958471, 0.925212, 0.882707, 0.831383, 0.771753, 0.704411, 0.630031, 0.549355, 0.463191, 0.372399, 0.277886, 0.180596, 0.0815022, -0.0184063, -0.118131, -0.216675, -0.313054, -0.406306, -0.495497, -0.579738, -0.658186, -0.730058, -0.794636, -0.851273, -0.899405, -0.938551, -0.968319, -0.988411, -0.998628, -0.998867, -0.989125, -0.969501, -0.969501, -1.23611, -1.23611];
+BoardHBPYBU.create('curve', [DataX2AreaHBPYBU,DataY2AreaHBPYBU],{strokeColor:'#97bbcd',highlightStrokeColor:'#97bbcd',strokeWidth:0,highlightStrokeWidth:0,dash:0, fillColor:'#97bbcd',highlightFillColor:'#97bbcd',fillOpacity:0.5,highlightFillOpacity:0.5});
+var Chart2HBPYBU= BoardHBPYBU.createElement('chart', [DataX2HBPYBU,DataY2HBPYBU], {chartStyle:'line,point'});
+Chart2HBPYBU[0].setProperty('strokeColor:#97bbcd','highlightStrokeColor:#3c7693','strokeWidth:2');
+for(var i=0; i<83;i++) 
+    {
+    Chart2HBPYBU[1][i].setProperty({strokeColor:'#97bbcd',highlightStrokeColor:'#3c7693',fillColor:'white',highlightFillColor:'white',face:'o', size:2, strokeWidth:'2pt'});
+    }
+var Chart1HBPYBU= BoardHBPYBU.createElement('chart', [DataX1HBPYBU,DataY1HBPYBU], {chartStyle:'line,point'});
+Chart1HBPYBU[0].setProperty('strokeColor:#e94939','highlightStrokeColor:#9d3e38','strokeWidth:0');
+for(var i=0; i<50;i++) 
+    {
+    Chart1HBPYBU[1][i].setProperty({strokeColor:'#e94939',highlightStrokeColor:'#9d3e38',fillColor:'white',highlightFillColor:'white',face:'o', size:1, strokeWidth:'2pt'});
+    }
+BoardHBPYBU.create('point',[-3.14,-1.23611], {strokeColor:'#88969c',highlightStrokeColor:'#9d3e38',fillColor:'white',highlightFillColor:'white',strokeWidth:'2pt',face:'o', size:1, name:'Min<sub>x</sub> = -3.14, Min<sub>y</sub> = -1.23611',label:{fontsize:10}});
+BoardHBPYBU.create('point',[-3.14,1.21781], {strokeColor:'#88969c',highlightStrokeColor:'#9d3e38',fillColor:'white',highlightFillColor:'white',strokeWidth:'2pt',face:'o', size:1, name:'Max<sub>y</sub> = 1.21781',label:{fontsize:10}});
+BoardHBPYBU.create('point',[4.96,-1.23611], {strokeColor:'#88969c',highlightStrokeColor:'#9d3e38',fillColor:'white',highlightFillColor:'white',strokeWidth:'2pt',face:'o', size:1, name:'Max<sub>x</sub> = 4.96',label:{fontsize:10}});
+</script>
+<div id="BoxLegendehUcoB" class="jxgbox" style="width:600px; height:100px;"></div>
+<script type="text/javascript">
+var BoardLegendehUcoB = JXG.JSXGraph.initBoard('BoxLegendehUcoB', {boundingbox: [0, 3, 11.5, 0], axis:false,keepaspectratio: false,showcopyright: false,showNavigation: false, zoom: {wheel: false}});
+var DataXLegendehUcoB = [1, 2];
+var DataXLegendehUcoB1 = [1, 1.5, 2];
+var DataY1LegendehUcoB = [2, 2, 2];
+var DataY2LegendehUcoB = [1, 1];
+var Chart2LegendehUcoB= BoardLegendehUcoB.createElement('chart', [DataXLegendehUcoB,DataY2LegendehUcoB], {chartStyle:'line,point'});
+Chart2LegendehUcoB[0].setProperty('strokeColor:#97bbcd','highlightStrokeColor:#3c7693','strokeWidth:2');
+for(var i=0; i<2;i++) 
+    {
+    Chart2LegendehUcoB[1][i].setProperty({strokeColor:'#97bbcd',highlightStrokeColor:'#3c7693',fillColor:'white',highlightFillColor:'white',face:'o', size:2, strokeWidth:'2pt'});
+    }
+var Chart1LegendehUcoB= BoardLegendehUcoB.createElement('chart', [DataXLegendehUcoB1,DataY1LegendehUcoB], {chartStyle:'line,point'});
+Chart1LegendehUcoB[0].setProperty('strokeColor:#e94939','highlightStrokeColor:#9d3e38','strokeWidth:0');
+for(var i=0; i<3;i++) 
+    {
+    Chart1LegendehUcoB[1][i].setProperty({strokeColor:'#e94939',highlightStrokeColor:'#9d3e38',fillColor:'white',highlightFillColor:'white',face:'o', size:1, strokeWidth:'2pt'});
+    }
+Text1LegendHBPYBU = BoardLegendehUcoB.create('text',[2.2,2, "- сигнал с помехой;"], {display:'internal', anchorX:'left',frozen: true, strokeColor:'#000000',highlightStrokeColor:'#000000'});
+Text2LegendHBPYBU = BoardLegendehUcoB.create('text',[2.2,1, "- идеальный сигнал."], {display:'internal', anchorX:'left',frozen: true, strokeColor:'#000000',highlightStrokeColor:'#000000'});
+</script>

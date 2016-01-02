@@ -7,7 +7,7 @@ HarrixMathLibraryForTestFunctions
 
 [https://github.com/Harrix/HarrixMathLibraryForTestFunctions](https://github.com/Harrix/HarrixMathLibraryForTestFunctions)
 
-Библиотека распространяется по лицензии [Apache License, Version 2.0](https://github.com/Harrix/HarrixMathLibraryForTestFunctions/blob/master/LICENSE.txt).
+Библиотека распространяется по лицензии [MIT](https://github.com/Harrix/HarrixMathLibraryForTestFunctions/blob/master/LICENSE).
 
 Для справки по всем функциям перейдите в папку [**_library**](https://github.com/Harrix/HarrixMathLibraryForTestFunctions/blob/master/_library) и откройте файл [**HarrixMathLibraryForTestFunctions_Help.pdf**](https://github.com/Harrix/HarrixMathLibraryForTestFunctions/blob/master/_library/HarrixMathLibraryForTestFunctions_Help.pdf). Там же находятся файлы последней версии библиотеки.
 

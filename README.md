@@ -7,7 +7,7 @@ HarrixClass_EvaluateFunction
 
 [https://github.com/Harrix/HarrixClass_EvaluateFunction](https://github.com/Harrix/HarrixClass_EvaluateFunction)
 
-Библиотека распространяется по лицензии [Apache License, Version 2.0](https://github.com/Harrix/HarrixClass_EvaluateFunction/blob/master/LICENSE.txt).
+Библиотека распространяется по лицензии [MIT](https://github.com/Harrix/HarrixClass_EvaluateFunction/blob/master/LICENSE).
 
 Установка
 ---------

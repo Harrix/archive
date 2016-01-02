@@ -1,5 +1,4 @@
-# C++ objects and libs
-
+#Common for Qt
 *.slo
 *.lo
 *.o
@@ -7,11 +6,7 @@
 *.la
 *.lai
 *.so
-*.dll
 *.dylib
-
-# Qt-es
-
 /.qmake.cache
 /.qmake.stash
 *.pro.user
@@ -24,11 +19,7 @@ qrc_*.cpp
 ui_*.h
 Makefile*
 *-build-*
-
-# QtCreator
-
 *.autosave
-
-#QtCtreator Qml
 *.qmlproject.user
 *.qmlproject.user.*
+*_build*

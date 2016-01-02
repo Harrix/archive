@@ -7,7 +7,7 @@ HarrixLaTeXSymbols
 
 [https://github.com/Harrix/HarrixLaTeXSymbols](https://github.com/Harrix/HarrixLaTeXSymbols)
 
-Шаблон распространяется по лицензии [Apache License, Version 2.0](https://github.com/Harrix/HarrixLaTeXSymbols/blob/master/LICENSE.txt).
+Шаблон распространяется по лицензии [MIT](https://github.com/Harrix/HarrixLaTeXSymbols/blob/master/LICENSE).
 
 Установка
 ---------

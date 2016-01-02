@@ -7,7 +7,7 @@ HarrixQtLibraryForQWebView
 
 [https://github.com/Harrix/HarrixQtLibraryForQWebView](https://github.com/Harrix/HarrixQtLibraryForQWebView)
 
-Библиотека распространяется по лицензии [Apache License, Version 2.0](https://github.com/Harrix/HarrixQtLibraryForQWebView/blob/master/LICENSE.txt).
+Библиотека распространяется по лицензии [MIT](https://github.com/Harrix/HarrixQtLibraryForQWebView/blob/master/LICENSE).
 
 Установка
 ---------

@@ -7,7 +7,7 @@ HarrixMakeLibrary
 
 [https://github.com/Harrix/HarrixMakeLibrary](https://github.com/Harrix/HarrixMakeLibrary)
 
-Библиотека распространяется по лицензии [Apache License, Version 2.0](https://github.com/Harrix/HarrixMakeLibrary/blob/master/LICENSE.txt).
+Библиотека распространяется по лицензии [MIT](https://github.com/Harrix/HarrixMakeLibrary/blob/master/LICENSE).
 
 Для справки по установке, использованию и всем функциям перейдите в папку [**_HarrixMakeLibrary**](https://github.com/Harrix/HarrixMakeLibrary/blob/master/_HarrixMakeLibrary) и откройте файл [**HarrixMakeLibrary_Help.pdf**](https://github.com/Harrix/HarrixMakeLibrary/blob/master/_library/HarrixMakeLibrary_Help.pdf). Там же находятся файлы последней версии библиотеки.
 

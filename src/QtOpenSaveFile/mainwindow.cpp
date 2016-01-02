@@ -19,7 +19,7 @@ QString ReadFile(QString filename)
     filename = QDir::toNativeSeparators(filename);
     QFile file(filename);
     QString line;
-    if(!file.exists()){
+    if(!file.exists()) {
         qDebug() << "Не существует "<<filename;
         return line;
     }else{
@@ -43,8 +43,16 @@ void MainWindow::on_pushButton_clicked()
 
      QStringList lines = S.split( " ", QString::SkipEmptyParts );
 
+     s=0;
+
      for (int i=0;i<lines.count();i++)
      {
          ui->textEdit->insertPlainText(lines.at(i)+"\n");
+         s = s + lines.at(i).toInt();
      }
+
+     int a = lines.at(0).toInt();
+     int b = lines.at(1).toInt();
+
+     int c = a+b;
 }

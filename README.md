@@ -5,7 +5,7 @@ HarrixFileFormats
 
 [https://github.com/Harrix/HarrixFileFormats](https://github.com/Harrix/HarrixFileFormats)
 
-Данные распространяются по лицензии [Apache License, Version 2.0](https://github.com/Harrix/HarrixFileFormats/blob/master/LICENSE.txt).
+Данные распространяются по лицензии [MIT](https://github.com/Harrix/HarrixFileFormats/blob/master/LICENSE).
 
 Форматы файлов
 --------------

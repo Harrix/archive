@@ -19,6 +19,8 @@ Item {
             TextExample { fontName: "Arimo" }
             TextExample { fontName: "Consolas" }
             TextExample { fontName: "Raleway" }
+            TextExample { fontName: fonts.fontOpenSanf.name }
+            TextExample { fontName: "MS Shell Dlg 2" }
         }
     }
 }

@@ -53,5 +53,6 @@
         <file>HarrixQML/fonts/Consolas.ttf</file>
         <file>HarrixQML/fonts/Raleway.ttf</file>
         <file>HarrixQML/fonts/Arimo.ttf</file>
+        <file>HarrixQML/fonts/OpenSanf.ttf</file>
     </qresource>
 </RCC>

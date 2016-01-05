@@ -55,5 +55,6 @@
         <file>HarrixQML/fonts/Arimo.ttf</file>
         <file>HarrixQML/fonts/OpenSans.ttf</file>
         <file>HarrixQML/fonts/RobotoMono.ttf</file>
+        <file>HarrixQML/fonts/PTMono.ttf</file>
     </qresource>
 </RCC>

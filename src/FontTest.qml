@@ -22,6 +22,7 @@ Item {
             TextExample { fontName: "Open Sans" }
             TextExample { fontName: "MS Shell Dlg 2" }
             TextExample { fontName: "Roboto Mono" }
+            TextExample { fontName: "PT Mono" }
         }
     }
 }

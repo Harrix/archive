@@ -86,7 +86,7 @@ ApplicationWindow {
             text:window.title
             font.pixelSize: HarrixSettings.fontSize
             color: HarrixSettings.fontColor
-            font.family: fonts.fontRaleway.name
+            font.family: "Open Sans"
             font.weight:Font.DemiBold
             renderType: HarrixSettings.renderType
         }

@@ -16,12 +16,7 @@ Item {
 
             TextExample { fontName: "MS Shell Dlg 2" }
 
-            TextExample { fontName: "Arimo" }
-            TextExample { fontName: "Consolas" }
-            TextExample { fontName: "Raleway" }
             TextExample { fontName: "Open Sans" }
-            TextExample { fontName: "MS Shell Dlg 2" }
-            TextExample { fontName: "Roboto Mono" }
             TextExample { fontName: "PT Mono" }
         }
     }

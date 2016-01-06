@@ -44,8 +44,8 @@ QtObject {
     readonly property color fontColor: "#000"
     readonly property var renderType: Text.NativeRendering//Text.QtRendering Text.NativeRendering
     readonly property string fontName: "Raleway"
-    readonly property string fontNameHeader: "Raleway"
-    readonly property string fontNameCode: "Consalas"
+    readonly property string fontNameHeader: "Open Sans"
+    readonly property string fontNameCode: "PT Mono"
 
     //Размеры
     readonly property int sizeExtraHuge: 32*dp

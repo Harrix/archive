@@ -50,11 +50,7 @@
         <file>HarrixQML/images/StopHover.png</file>
     </qresource>
     <qresource prefix="/fonts">
-        <file>HarrixQML/fonts/Consolas.ttf</file>
-        <file>HarrixQML/fonts/Raleway.ttf</file>
-        <file>HarrixQML/fonts/Arimo.ttf</file>
         <file>HarrixQML/fonts/OpenSans.ttf</file>
-        <file>HarrixQML/fonts/RobotoMono.ttf</file>
         <file>HarrixQML/fonts/PTMono.ttf</file>
     </qresource>
 </RCC>

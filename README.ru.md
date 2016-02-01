@@ -12,7 +12,6 @@ Worpress плагин. Отображает содержимое Markdown фай
 Последнюю версию плагина вы можете найти в любом из трех вариантов:
 
  - [https://github.com/Harrix/Harrix-MarkdownFile/releases/](https://github.com/Harrix/Harrix-MarkdownFile/releases/)
- - [https://github.com/Harrix/Harrix-MarkdownFile/tree/master/_plugin](https://github.com/Harrix/Harrix-MarkdownFile/tree/master/_plugin)
  - [https://wordpress.org/plugins/harrix-markdownfile/](https://wordpress.org/plugins/harrix-markdownfile/)
 
 Лицензия: [MIT](https://github.com/Harrix/Harrix-MarkdownFile/blob/master/LICENSE).

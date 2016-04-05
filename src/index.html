@@ -1,0 +1,302 @@
+<!DOCTYPE HTML>
+<html lang="ru-ru">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Заголовок</title>
+        <link rel="stylesheet" href="css/normalize.css">
+        <link rel="stylesheet" href="css/font.css">
+        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="css/table.css">
+        <link rel="stylesheet" href="css/katex.min.css">
+        <link rel="stylesheet" href="css/highlight.css">
+        <link rel="stylesheet" href="css/vis.min.css">
+        <script src="js/jquery.min.js"></script>
+        <script src="js/katex.min.js"></script>
+        <script src="js/highlight.pack.js"></script>        
+        <script src='js/Chart.min.js'></script>
+        <script src='js/vis.min.js'></script>
+        <script>
+        window.onload = function() {
+            var tex = document.getElementsByClassName("tex");
+            Array.prototype.forEach.call(tex, function(el) {
+                katex.render(el.getAttribute("data-expr"), el);
+            });
+       };
+       </script>
+         <script type="text/javascript">
+    var data = null;
+    var graph = null;
+
+    function custom(x, y) {
+      return (Math.sin(x/50) * Math.cos(y/50) * 50 + 50);
+    }
+
+    // Called when the Visualization API is loaded.
+    function drawVisualization() {
+      // Create and populate a data table.
+      data = new vis.DataSet();
+      // create some nice looking data with sin/cos
+      var counter = 0;
+      var steps = 50;  // number of datapoints will be steps*steps
+      var axisMax = 314;
+      var axisStep = axisMax / steps;
+      for (var x = 0; x < axisMax; x+=axisStep) {
+        for (var y = 0; y < axisMax; y+=axisStep) {
+          var value = custom(x,y);
+          data.add({id:counter++,x:x,y:y,z:value,style:value});
+        }
+      }
+
+      // specify options
+      var options = {
+        width:  '600px',
+        height: '600px',
+        style: 'surface',
+        showPerspective: true,
+        showGrid: true,
+        showShadow: false,
+        keepAspectRatio: true,
+        verticalRatio: 0.5
+      };
+
+      // Instantiate our graph object.
+      var container = document.getElementById('mygraph');
+      graph = new vis.Graph3d(container, data, options);
+    }
+  </script>
+    </head>
+    <body onload="drawVisualization();">
+        <script>hljs.initHighlightingOnLoad();</script>
+        <header></header>
+        <section>
+        <p>Пример текста.</p>
+        <p>I have2 a doubt, the font open-sans is a safe font for use without google fonts? I have a doubt, the font open-sans is a safe font for use without google fonts? I have a doubt, the font open-sans is a safe font for use without google fonts? I have a doubt, the font open-sans is a safe font for use without google fonts? I have a doubt, the font open-sans is a safe font for use without google fonts?</p>
+        <p>I have a doubt, the font open-sans is a safe font for use without google fonts? I have a doubt, the font open-sans is a safe font for use without google fonts? I have a doubt, the font open-sans is a safe font for use without google fonts? I have a doubt, the font open-sans is a safe font for use without google fonts? I have a doubt, the font open-sans is a safe font for use without google fonts?</p>
+        
+        <div id="mygraph"></div>
+
+<div id="info"></div>
+        
+    <div style="width:100%">
+        <div>
+            <canvas id="canvas"></canvas>
+        </div>
+    </div>
+    <script>
+    var randomScalingFactor = function() {
+        return Math.round(Math.random() * 10.0) * Math.pow(10, Math.ceil(Math.random() * 5));
+    };
+    var randomColor = function(opacity) {
+        return 'rgba(' + Math.round(Math.random() * 255) + ',' + Math.round(Math.random() * 255) + ',' + Math.round(Math.random() * 255) + ',' + (opacity || '.3') + ')';
+    };
+
+    var scatterChartData = {
+        datasets: [{
+            label: "V(node2)",
+			data: [{
+				x: 1,
+				y: -1.711e-2,
+			}, {
+				x: 1.26,
+				y: -2.708e-2,
+			}, {
+				x: 1.58,
+				y: -4.285e-2,
+			}, {
+				x: 2.0,
+				y: -6.772e-2,
+			}, {
+				x: 2.51,
+				y: -1.068e-1,
+			}, {
+				x: 3.16,
+				y: -1.681e-1,
+			}, {
+				x: 3.98,
+				y: -2.635e-1,
+			}, {
+				x: 5.01,
+				y: -4.106e-1,
+			}, {
+				x: 6.31,
+				y: -6.339e-1,
+			}, {
+				x: 7.94,
+				y: -9.659e-1,
+			}, {
+				x: 10.00,
+				y: -1.445,
+			}, {
+				x: 12.6,
+				y: -2.110,
+			}, {
+				x: 15.8,
+				y: -2.992,
+			}, {
+				x: 20.0,
+				y: -4.102,
+			}, {
+				x: 25.1,
+				y: -5.429,
+			}, {
+				x: 31.6,
+				y: -6.944,
+			}, {
+				x: 39.8,
+				y: -8.607,
+			}, {
+				x: 50.1,
+				y: -1.038e1,
+			}, {
+				x: 63.1,
+				y: -1.223e1,
+			}, {
+				x: 79.4,
+				y: -1.413e1,
+			}, {
+				x: 100.00,
+				y: -1.607e1,
+			}, {
+				x: 126,
+				y: -1.803e1,
+			}, {
+				x: 158,
+				y: -2e1,
+			}, {
+				x: 200,
+				y: -2.199e1,
+			}, {
+				x: 251,
+				y: -2.398e1,
+			}, {
+				x: 316,
+				y: -2.597e1,
+			}, {
+				x: 398,
+				y: -2.797e1,
+			}, {
+				x: 501,
+				y: -2.996e1,
+			}, {
+				x: 631,
+				y: -3.196e1,
+			}, {
+				x: 794,
+				y: -3.396e1,
+			}, {
+				x: 1000,
+				y: -3.596e1,
+			},]
+        }]
+    };
+
+    $.each(scatterChartData.datasets, function(i, dataset) {
+        dataset.borderColor = randomColor(0.4);
+        dataset.backgroundColor = randomColor(0.1);
+        dataset.pointBorderColor = randomColor(0.7);
+        dataset.pointBackgroundColor = randomColor(0.5);
+        dataset.pointBorderWidth = 1;
+    });
+
+    function ff()  {
+        var ctx = document.getElementById("canvas").getContext("2d");
+        window.myScatter = Chart.Scatter(ctx, {
+        	data: scatterChartData,
+        	options: {
+        		title: {
+	                display: true,
+	                text: 'Chart.js Scatter Chart - Logarithmic X-Axis'
+	            },
+	            scales: {
+	            	xAxes: [{
+	            		type: 'linear',
+	            		position: 'bottom',
+	            		ticks: {
+	            			userCallback: function(tick) {
+	            				var remain = tick / (Math.pow(10, Math.floor(Chart.helpers.log10(tick))));
+	            				if (remain === 1 || remain === 2 || remain === 5) {
+	            					return tick.toString() + "Hz";
+	            				}
+	            				return '';
+	            			},
+	            		},
+	            		scaleLabel: {
+	            			labelString: 'Frequency',
+	            			display: true,
+	            		}
+	            	}],
+	            	yAxes: [{
+	            		type: 'linear',
+	            		ticks: {
+	            			userCallback: function(tick) {
+	            				return tick.toString() + "dB";
+	            			}
+	            		},
+	            		scaleLabel: {
+	            			labelString: 'Voltage',
+	            			display: true
+	            		}
+	            	}]
+	            }
+            }
+        });
+    };
+    ff();
+    </script>
+      
+        <pre><code class="cpp">//Зарегистрируем наше окно
+if (!RegisterClassEx(&wcex))
+{
+    MessageBox(NULL,
+        _T("Call to RegisterClassEx failed!"),
+        _T("Win32 Guided Tour"),
+        NULL);
+    return 1;
+}</code></pre>
+        
+  <div class="tex" data-expr="c = \pm\sqrt{a^2 + b^2}"></div>
+  <div class="tex" data-expr="\Gamma\ \Delta\ \Theta\ \Lambda\ \Xi\ \Pi\ \Sigma\ \Upsilon\ \Phi\ \Psi\ \Omega"></div>
+  <div class="tex" data-expr="f(x) = \int_{-\infty}^\infty \hat f(\xi)\,e^{2 \pi i \xi x} \,d\xi"></div>
+  <div class="tex" data-expr="\left( \sum_{k=1}^n a_k b_k \right)^2 \leq \left( \sum_{k=1}^n a_k^2 \right) \left( \sum_{k=1}^n b_k^2 \right)"></div>
+  <div class="tex" data-expr="\left( \begin{array}{c} \bar{x}_{submax} \\ f\left( \bar{x}_{submax}\right)\end{array}\right)=GeneticAlgorithm\left( \begin{array}{c} X \\ f\left( \bar{x}\right) \\ g_i\left( \bar{x}\right) \\ h_j\left( \bar{x}\right) \\ Parameters \end{array}\right),"></div>
+  
+  <h3>Greek Letters</h3>
+
+
+
+
+        
+<table class="table_adaptive_classic">
+<thead>
+<tr>
+<th width="30%">RSS канал</th>
+<th width="20%">Ссылка на сайт</th>
+<th width="50%">Описание</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td data-label="RSS канал"><a href="https://feeds.feedburner.com/harrix">feeds.feedburner.com/harrix</a></td>
+<td data-label="Ссылка на сайт"><a href="http://blog.harrix.org">Harrix Блог</a></td>
+<td data-label="Описание">Ос­нов­ной блог со ста­тья­ми на раз­ные те­мы: IT, AI, на­ука и др.</td>
+</tr>
+<tr>
+<td data-label="RSS канал"><a href="https://feeds.feedburner.com/harrixgames">feeds.feedburner.com/harrixgames</a></td>
+<td data-label="Ссылка на сайт"><a href="http://games.harrix.org">Harrix Games</a></td>
+<td data-label="Описание">Иг­ры и го­ло­во­лом­ки с интел­лек­ту­аль­ным укл­он­ом и не то­лько.</td>
+</tr>
+<tr>
+<td data-label="RSS канал"><a href="https://feeds.feedburner.com/HarrixShorts">feeds.feedburner.com/HarrixShorts</a></td>
+<td data-label="Ссылка на сайт"><a href="http://shorts.harrix.org">Harrix Shorts</a></td>
+<td data-label="Описание">Ко­рот­ко­метр­аж­ки, ко­то­рые мне по­нра­ви­лись и чем-­то за­це­пи­ли.</td>
+</tr>
+</tbody>
+</table>
+
+
+
+        </section>
+        <footer></footer>
+    </body>
+</html>

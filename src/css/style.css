@@ -1,24 +1,87 @@
+/* --------------------------- Общие настройки --------------------------- */
 body {
     font: 400 16px/1.75 "Open Sans", sans-serif;
     color: #5f5f5f;
 }
 
-.bd-content .tex {
-    font-size: 16px;
-    text-align: center;
-    margin: 30px 0;
-  }
-  
+/* --------------------------- Заголовок --------------------------- */
+#logo {
+    width:268px;
+    height:60px;
+}
+
+#bd-main-nav {
+    margin-top: 15px; 
+}
+@media (max-width: 768px)
+{
+#bd-main-nav {
+    margin-top: 0px; 
+}
+}
+.navbar-toggler {
+    margin-top: 14px;    
+}
+
+@media (max-width: 544px)
+{
+.clearfix-sm{content:"";display:table;clear:both}
+}
+@media (max-width: 768px)
+{
+.clearfix-md{content:"";display:table;clear:both}
+}
+@media (max-width: 992px)
+{
+.clearfix-lg{content:"";display:table;clear:both}
+}
+@media (max-width: 1200px)
+{
+.clearfix-xl{content:"";display:table;clear:both}
+}
+
+/* --------------------------- Для лэддинг страниц --------------------------- */
+.bd-pageheader {
+    background-color: #19a5a5;
+}
+
+.bd-pageheader p {
+    color: #fff;
+}
+
+/* --------------------------- Контент --------------------------- */
 .bd-content p {
 	margin-top: 12px;
 	margin-bottom: 12px;
 }
 
+/* Ссылки */
 .bd-content a {
     text-decoration: none;
     border-bottom: 1px dashed #19a5a5;
-   }
-   
+    color: #19a5a5; 
+}
+/* Но некоторые ссылки не подчеркиваем */
+.bd-content h1 a, h2 a, h3 a, h4 a, h5 a, h6 a, .h1 a, .h2 a, .h3 a, .h4 a, .h5 a, .h6 a {
+    border: none !important;
+}
+.bd-content .notDot, .bd-content .a_image {
+    border: none !important;
+}
+
+/* Переносы */
+.bd-content {
+    -webkit-hyphens: auto;
+    -moz-hyphens: auto;
+    -ms-hyphens: auto;
+    hyphens: auto;
+}
+
+/* В обычном режиме текст будет идти по ширине */
+.bd-content {
+    text-align: justify;
+}
+
 /* Отображение клавиш */
 .bd-content kbd {
     padding: 2px 4px;
@@ -40,7 +103,16 @@ body {
     color: #de2b26;
 }
 
-/* Настройки отображения кода (не через Crayon Syntax Highlighter). Обычно для моего плагина в Markdown файлах */
+/* --------------------------- Настройка плагинов --------------------------- */
+
+/* Блоки LaTeX кода */
+.bd-content .tex {
+    font-size: 16px;
+    text-align: center;
+    margin: 30px 0;
+}
+
+/* Подсветка синтаксиса */
 .bd-content pre, code {
     font-family: 'PT Mono', monospace;
     font-size: 12px;
@@ -59,8 +131,9 @@ body {
     background: none !important;
 }
 
+/* Для Chart.js - двумерный график */
 .bd-content canvas{
-        -moz-user-select: none;
-        -webkit-user-select: none;
-        -ms-user-select: none;
-    }
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}

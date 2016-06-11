@@ -11,6 +11,8 @@
     <link rel="stylesheet" href="css/font-awesome.min.css"><!-- Символьный шрифт Font Awesome -->
     <link rel="stylesheet" href="css/katex.min.css"><!-- KaTeX для отображения LaTeX -->
     <link rel="stylesheet" href="css/highlight.css"><!-- Подсветка синтаксиса highlight.js -->
+    <link rel="stylesheet" href="css/vis.min.css"><!-- Трехмерные графики Vis.js -->
+    <link rel="stylesheet" href="css/table.css"><!-- Адаптивные таблицы -->
     
     <link rel="stylesheet" href="css/style.css"><!-- Стили Harrix -->
     
@@ -18,7 +20,9 @@
     <script src="js/tether.min.js"></script><!-- Для Bootstrap 4 -->
     <script src="js/bootstrap.min.js"></script><!-- Bootstrap 4 -->
     <script src="js/katex.min.js"></script><!-- KaTeX для отображения LaTeX -->
-    <script src="js/highlight.pack.js"></script> <!-- Подсветка синтаксиса highlight.js -->
+    <script src="js/highlight.pack.js"></script><!-- Подсветка синтаксиса highlight.js -->
+    <script src='js/Chart.min.js'></script><!-- Двумерные графики Chart.js -->
+    <script src='js/vis.min.js'></script><!-- Трехмерные графики Vis.js -->
     
     <!-- Для Internet Explorer -->
     <!--[if lt IE 9]>
@@ -33,10 +37,10 @@
         });
       };
     </script>
+  <script>hljs.initHighlightingOnLoad();</script>
   </head>
 
-  <body>
-  <script>hljs.initHighlightingOnLoad();</script>
+  <body onload="drawVisualization();">  
     <header class="navbar navbar-light navbar-static-top bd-navbar" role="banner">
       <div class="clearfix">
         <button class="navbar-toggler pull-xs-right hidden-sm-up" type="button" data-toggle="collapse" data-target="#bd-main-nav">
@@ -56,7 +60,16 @@
           <a class="nav-item nav-link" href="http://blog.getbootstrap.com" >Blog</a>
         </nav>
       </div>
-    </header>    
+    </header>
+
+    <div class="bd-pageheader">
+      <div class="container">
+        <h1>Getting started</h1>
+        <p class="lead">
+          An overview of Bootstrap, including how to download and use it, some basic templates and examples, and more.
+        </p>
+      </div>
+    </div>    
   
     <div class="container">
       <div class="row">
@@ -124,6 +137,249 @@ if (!RegisterClassEx(&wcex))
           
           
           
+          <h2>Chart.js - двумерный график</h2>
+          
+    <div style="width:100%">
+        <div>
+            <canvas id="canvas"></canvas>
+        </div>
+    </div>
+    <script>
+    var randomScalingFactor = function() {
+        return Math.round(Math.random() * 10.0) * Math.pow(10, Math.ceil(Math.random() * 5));
+    };
+    var randomColor = function(opacity) {
+        return 'rgba(' + Math.round(Math.random() * 255) + ',' + Math.round(Math.random() * 255) + ',' + Math.round(Math.random() * 255) + ',' + (opacity || '.3') + ')';
+    };
+
+    var scatterChartData = {
+        datasets: [{
+            label: "V(node2)",
+			data: [{
+				x: 1,
+				y: -1.711e-2,
+			}, {
+				x: 1.26,
+				y: -2.708e-2,
+			}, {
+				x: 1.58,
+				y: -4.285e-2,
+			}, {
+				x: 2.0,
+				y: -6.772e-2,
+			}, {
+				x: 2.51,
+				y: -1.068e-1,
+			}, {
+				x: 3.16,
+				y: -1.681e-1,
+			}, {
+				x: 3.98,
+				y: -2.635e-1,
+			}, {
+				x: 5.01,
+				y: -4.106e-1,
+			}, {
+				x: 6.31,
+				y: -6.339e-1,
+			}, {
+				x: 7.94,
+				y: -9.659e-1,
+			}, {
+				x: 10.00,
+				y: -1.445,
+			}, {
+				x: 12.6,
+				y: -2.110,
+			}, {
+				x: 15.8,
+				y: -2.992,
+			}, {
+				x: 20.0,
+				y: -4.102,
+			}, {
+				x: 25.1,
+				y: -5.429,
+			}, {
+				x: 31.6,
+				y: -6.944,
+			}, {
+				x: 39.8,
+				y: -8.607,
+			}, {
+				x: 50.1,
+				y: -1.038e1,
+			}, {
+				x: 63.1,
+				y: -1.223e1,
+			}, {
+				x: 79.4,
+				y: -1.413e1,
+			}, {
+				x: 100.00,
+				y: -1.607e1,
+			}, {
+				x: 126,
+				y: -1.803e1,
+			}, {
+				x: 158,
+				y: -2e1,
+			}, {
+				x: 200,
+				y: -2.199e1,
+			}, {
+				x: 251,
+				y: -2.398e1,
+			}, {
+				x: 316,
+				y: -2.597e1,
+			}, {
+				x: 398,
+				y: -2.797e1,
+			}, {
+				x: 501,
+				y: -2.996e1,
+			}, {
+				x: 631,
+				y: -3.196e1,
+			}, {
+				x: 794,
+				y: -3.396e1,
+			}, {
+				x: 1000,
+				y: -3.596e1,
+			},]
+        }]
+    };
+
+    $.each(scatterChartData.datasets, function(i, dataset) {
+        dataset.borderColor = randomColor(0.4);
+        dataset.backgroundColor = randomColor(0.1);
+        dataset.pointBorderColor = randomColor(0.7);
+        dataset.pointBackgroundColor = randomColor(0.5);
+        dataset.pointBorderWidth = 1;
+    });
+
+    function ff()  {
+        var ctx = document.getElementById("canvas").getContext("2d");
+        window.myScatter = Chart.Scatter(ctx, {
+        	data: scatterChartData,
+        	options: {
+        		title: {
+	                display: true,
+	                text: 'Chart.js Scatter Chart - Logarithmic X-Axis'
+	            },
+	            scales: {
+	            	xAxes: [{
+	            		type: 'linear',
+	            		position: 'bottom',
+	            		ticks: {
+	            			userCallback: function(tick) {
+	            				var remain = tick / (Math.pow(10, Math.floor(Chart.helpers.log10(tick))));
+	            				if (remain === 1 || remain === 2 || remain === 5) {
+	            					return tick.toString() + "Hz";
+	            				}
+	            				return '';
+	            			},
+	            		},
+	            		scaleLabel: {
+	            			labelString: 'Frequency',
+	            			display: true,
+	            		}
+	            	}],
+	            	yAxes: [{
+	            		type: 'linear',
+	            		ticks: {
+	            			userCallback: function(tick) {
+	            				return tick.toString() + "dB";
+	            			}
+	            		},
+	            		scaleLabel: {
+	            			labelString: 'Voltage',
+	            			display: true
+	            		}
+	            	}]
+	            }
+            }
+        });
+    };
+    ff();
+    </script>
+          
+          
+          <h2>3D график</h2>
+          <script type="text/javascript">
+    var data = null;
+    var graph = null;
+
+    function custom(x, y) {
+      return (Math.sin(x/50) * Math.cos(y/50) * 50 + 50);
+    }
+
+    // Called when the Visualization API is loaded.
+    function drawVisualization() {
+      // Create and populate a data table.
+      data = new vis.DataSet();
+      // create some nice looking data with sin/cos
+      var counter = 0;
+      var steps = 50;  // number of datapoints will be steps*steps
+      var axisMax = 314;
+      var axisStep = axisMax / steps;
+      for (var x = 0; x < axisMax; x+=axisStep) {
+        for (var y = 0; y < axisMax; y+=axisStep) {
+          var value = custom(x,y);
+          data.add({id:counter++,x:x,y:y,z:value,style:value});
+        }
+      }
+
+      // specify options
+      var options = {
+        width:  '600px',
+        height: '600px',
+        style: 'surface',
+        showPerspective: true,
+        showGrid: true,
+        showShadow: false,
+        keepAspectRatio: true,
+        verticalRatio: 0.5
+      };
+
+      // Instantiate our graph object.
+      var container = document.getElementById('mygraph');
+      graph = new vis.Graph3d(container, data, options);
+    }
+  </script>
+          <div id="mygraph"></div>
+          
+          
+          <h2>Адаптивная таблица</h2>
+          <table class="table_adaptive_classic">
+          <thead>
+          <tr>
+          <th width="30%">RSS канал</th>
+          <th width="20%">Ссылка на сайт</th>
+          <th width="50%">Описание</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+          <td data-label="RSS канал"><a href="https://feeds.feedburner.com/harrix">feeds.feedburner.com/harrix</a></td>
+          <td data-label="Ссылка на сайт"><a href="http://blog.harrix.org">Harrix Блог</a></td>
+          <td data-label="Описание">Ос­нов­ной блог со ста­тья­ми на раз­ные те­мы: IT, AI, на­ука и др.</td>
+          </tr>
+          <tr>
+          <td data-label="RSS канал"><a href="https://feeds.feedburner.com/harrixgames">feeds.feedburner.com/harrixgames</a></td>
+          <td data-label="Ссылка на сайт"><a href="http://games.harrix.org">Harrix Games</a></td>
+          <td data-label="Описание">Иг­ры и го­ло­во­лом­ки с интел­лек­ту­аль­ным укл­он­ом и не то­лько.</td>
+          </tr>
+          <tr>
+          <td data-label="RSS канал"><a href="https://feeds.feedburner.com/HarrixShorts">feeds.feedburner.com/HarrixShorts</a></td>
+          <td data-label="Ссылка на сайт"><a href="http://shorts.harrix.org">Harrix Shorts</a></td>
+          <td data-label="Описание">Ко­рот­ко­метр­аж­ки, ко­то­рые мне по­нра­ви­лись и чем-­то за­це­пи­ли.</td>
+          </tr>
+          </tbody>
+          </table>
+
           <h1>Introduction Bootstrap is the world’s most popular framework for</h1>
           <p>Bootstrap is the world’s most popular framework for building responsive, mobile-first sites and applications. Inside you’ll find high quality HTML, CSS, and JavaScript to make starting any project easier than ever.</p>
     

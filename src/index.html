@@ -5,18 +5,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     
-    <link rel="stylesheet" href="css/bootstrap.min.css"><!-- CSS фреймфорк -->
-    <link rel="stylesheet" href="css/docs.min.css"><!-- Оформление документации от bootstrap -->
+    <link rel="stylesheet" href="css/bootstrap.min.css"><!-- CSS фреймфорк Bootstrap 4 -->
+    <link rel="stylesheet" href="css/docs.min.css"><!-- Оформление документации от Bootstrap -->
     <link rel="stylesheet" href="css/font.css"><!-- Подключение шрифтов Open Sans и PTMono -->
+    <link rel="stylesheet" href="css/font-awesome.min.css"><!-- Символьный шрифт Font Awesome -->
+    <link rel="stylesheet" href="css/katex.min.css"><!-- KaTeX для отображения LaTeX -->
+    <link rel="stylesheet" href="css/highlight.css"><!-- Подсветка синтаксиса highlight.js -->
     
-    <link rel="stylesheet" href="css/style.css"><!-- Стили уже от меня -->
+    <link rel="stylesheet" href="css/style.css"><!-- Стили Harrix -->
     
     <script src="js/jquery.min.js"></script><!-- jquery -->
-        <script src="js/tether.min.js"></script><!-- jquery -->
-    <script src="js/bootstrap.min.js"></script><!-- bootstrap -->
+    <script src="js/tether.min.js"></script><!-- Для Bootstrap 4 -->
+    <script src="js/bootstrap.min.js"></script><!-- Bootstrap 4 -->
+    <script src="js/katex.min.js"></script><!-- KaTeX для отображения LaTeX -->
+    <script src="js/highlight.pack.js"></script> <!-- Подсветка синтаксиса highlight.js -->
+    
+    <!-- Для Internet Explorer -->
+    <!--[if lt IE 9]>
+      <script src="js/html5shiv.js"></script>
+      <script src="js/respond.min.js"></script>
+    <![endif]-->
+    <script><!-- Находим все вставки LaTeX в виде div класса tex и рендерим их -->
+      window.onload = function() {
+        var tex = document.getElementsByClassName("tex");
+        Array.prototype.forEach.call(tex, function(el) {
+          katex.render(el.getAttribute("data-expr"), el);
+        });
+      };
+    </script>
   </head>
 
   <body>
+  <script>hljs.initHighlightingOnLoad();</script>
     <header class="navbar navbar-light navbar-static-top bd-navbar" role="banner">
       <div class="clearfix">
         <button class="navbar-toggler pull-xs-right hidden-sm-up" type="button" data-toggle="collapse" data-target="#bd-main-nav">
@@ -41,7 +61,70 @@
     <div class="container">
       <div class="row">
         <div class="col-md-12 bd-content">
-          <h1 class="bd-title" id="content">Introduction Bootstrap is the world’s most popular framework for</h1>
+          <h1 class="bd-title" id="content">Заголовок статьи</h1>
+
+          <p>I have2 a doubt, the font open-sans is a safe font for use without google fonts? I have a doubt, the font open-sans is a safe font for use without google fonts? I have a doubt, the font open-sans is a safe font for use without google fonts? I have a doubt, the font open-sans is a safe font for use without google fonts? I have a doubt, the font open-sans is a safe font for use without google fonts?</p>
+          
+          <h2>Пример текста</h2>
+
+          <p>I have2 a doubt, the font open-sans is a safe font for use without google fonts? I have a doubt, the font open-sans is a safe font for use without google fonts? I have a doubt, the font open-sans is a safe font for use without google fonts? I have a doubt, the font open-sans is a safe font for use without google fonts? I have a doubt, the font open-sans is a safe font for use without google fonts?</p>
+          
+          <p>I have a doubt, the font open-sans is a safe font for use without google fonts? I have a doubt, the font open-sans is a safe font for use without google fonts? I have a doubt, the font open-sans is a safe font for use without google fonts? I have a doubt, the font open-sans is a safe font for use without google fonts? I have a doubt, the font open-sans is a safe font for use without google fonts?</p>          
+          
+          <h2>Font Awesome</h2>         
+          
+          <ul class="fa-ul">
+            <li><i class="fa-li fa fa-check-square" aria-hidden="true"></i>List icons</li>
+            <li><i class="fa-li fa fa-check-square" aria-hidden="true"></i>can be used</li>
+            <li><i class="fa-li fa fa-spinner fa-spin" aria-hidden="true"></i>as bullets</li>
+            <li><i class="fa-li fa fa-square" aria-hidden="true"></i>in lists</li>
+          </ul>
+          
+          <i class="fa fa-spinner fa-spin fa-3x fa-fw margin-bottom"></i>
+          <span class="sr-only">Loading...</span>
+          
+          <i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw margin-bottom"></i>
+          <span class="sr-only">Loading...</span>
+          
+          <i class="fa fa-refresh fa-spin fa-3x fa-fw margin-bottom"></i>
+          <span class="sr-only">Loading...</span>
+          
+          <i class="fa fa-cog fa-spin fa-3x fa-fw margin-bottom"></i>
+          <span class="sr-only">Loading...</span>
+          
+          <i class="fa fa-spinner fa-pulse fa-3x fa-fw margin-bottom"></i>
+          <span class="sr-only">Loading...</span>
+          
+          <i class="fa fa-shield"></i> normal<br>
+          <i class="fa fa-shield fa-rotate-90"></i> fa-rotate-90<br>
+          <i class="fa fa-shield fa-rotate-180"></i> fa-rotate-180<br>
+          <i class="fa fa-shield fa-rotate-270"></i> fa-rotate-270<br>
+          <i class="fa fa-shield fa-flip-horizontal"></i> fa-flip-horizontal<br>
+          <i class="fa fa-shield fa-flip-vertical"></i> fa-flip-vertical
+          
+          <h2>KaTeX</h2>
+          
+          <div class="tex" data-expr="c = \pm\sqrt{a^2 + b^2}"></div>
+          <div class="tex" data-expr="\Gamma\ \Delta\ \Theta\ \Lambda\ \Xi\ \Pi\ \Sigma\ \Upsilon\ \Phi\ \Psi\ \Omega"></div>
+          <div class="tex" data-expr="f(x) = \int_{-\infty}^\infty \hat f(\xi)\,e^{2 \pi i \xi x} \,d\xi"></div>
+          <div class="tex" data-expr="\left( \sum_{k=1}^n a_k b_k \right)^2 \leq \left( \sum_{k=1}^n a_k^2 \right) \left( \sum_{k=1}^n b_k^2 \right)"></div>
+          <div class="tex" data-expr="\left( \begin{array}{c} \bar{x}_{submax} \\ f\left( \bar{x}_{submax}\right)\end{array}\right)=GeneticAlgorithm\left( \begin{array}{c} X \\ f\left( \bar{x}\right) \\ g_i\left( \bar{x}\right) \\ h_j\left( \bar{x}\right) \\ Parameters \end{array}\right),"></div>
+
+          <h2>highlight.js</h2>
+          
+          <pre><code class="cpp">//Зарегистрируем наше окно
+if (!RegisterClassEx(&wcex))
+{
+    MessageBox(NULL,
+        _T("Call to RegisterClassEx failed!"),
+        _T("Win32 Guided Tour"),
+        NULL);
+    return 1;
+}</code></pre>
+          
+          
+          
+          <h1>Introduction Bootstrap is the world’s most popular framework for</h1>
           <p>Bootstrap is the world’s most popular framework for building responsive, mobile-first sites and applications. Inside you’ll find high quality HTML, CSS, and JavaScript to make starting any project easier than ever.</p>
     
           <p>Here’s how to quickly get started with the Bootstrap CDN and a template starter page.</p>

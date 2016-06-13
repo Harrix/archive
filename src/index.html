@@ -23,90 +23,54 @@
     <script src="js/highlight.pack.js"></script><!-- Подсветка синтаксиса highlight.js -->
     <script src='js/Chart.min.js'></script><!-- Двумерные графики Chart.js -->
     <script src='js/vis.min.js'></script><!-- Трехмерные графики Vis.js -->
+    <script src='js/script.js'></script><!-- Скрипты Harrix -->
     
     <!-- Для Internet Explorer -->
     <!--[if lt IE 9]>
       <script src="js/html5shiv.js"></script>
       <script src="js/respond.min.js"></script>
     <![endif]-->
-    <script><!-- Находим все вставки LaTeX в виде div класса tex и рендерим их -->
-      window.onload = function() {
-        var tex = document.getElementsByClassName("tex");
-        Array.prototype.forEach.call(tex, function(el) {
-          katex.render(el.getAttribute("data-expr"), el);
-        });
-      };
-    </script>
-  <script>hljs.initHighlightingOnLoad();</script>
   </head>
 
-  <body onload="drawVisualization();">
-  
-<!--<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="#">
-                    <img src="http://placehold.it/150x50&text=Logo" alt="">
-                </a>
-            </div>
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav">
-                    <li>
-                        <a href="#">About</a>
-                    </li>
-                    <li>
-                        <a href="#">Services</a>
-                    </li>
-                    <li>
-                        <a href="#">Contact</a>
-                    </li>
-                </ul>
-            </div>
-
+  <body>
+  <header>
+    <div id="header-full-width">
+      <div class="navbar navbar-fixed-top bd-navbar container" id="header" role="banner">
+        <div>
+            <button class="navbar-toggler pull-xs-right hidden-md-up" type="button" data-toggle="collapse" data-target="#bd-main-nav" id="navbar-toggler">
+              <img src="images/hamburger.svg" width="22px" height="22px">
+            </button>
+            <a class="navbar-brand " href="/">
+              <img src="images/logo-harrix-blog.svg" id="logo">
+            </a>
         </div>
-    </nav>-->
- 
-   
- <header class="navbar navbar-light navbar-static-top bd-navbar" role="banner">
-    <div>
-        <button class="navbar-toggler pull-xs-right hidden-md-up" type="button" data-toggle="collapse" data-target="#bd-main-nav">
-          <img src="images/hamburger.svg" width="22px" height="22px">
-        </button>
-        <a class="navbar-brand " href="/">
-          <img src="images/logo-harrix-blog.svg" id="logo" width="268px" height="60px">
-        </a>
-    </div>
-    <div class="clearfix-md"></div>
-    <div class="collapse navbar-toggleable-sm pull-md-right " id="bd-main-nav">
-      <nav class="nav navbar-nav">
-        <a class="nav-item nav-link " href="/" >Bootstrap</a>
-        <a class="nav-item nav-link active" href="/getting-started/introduction/">Documentation</a>
-        <a class="nav-item nav-link " href="/examples/">Examples</a>
-        <a class="nav-item nav-link" href="http://themes.getbootstrap.com" >Themes</a>
-        <a class="nav-item nav-link" href="http://expo.getbootstrap.com" >Expo</a>
-        <a class="nav-item nav-link" href="http://blog.getbootstrap.com" >Blog</a>
-      </nav>
-    </div>
+        <div class="clearfix-md"></div>
+        <div class="collapse navbar-toggleable-sm pull-md-right " id="bd-main-nav">
+          <nav class="nav navbar-nav">
+            <a class="nav-item nav-link active " href="/" >Главная</a>
+            <a class="nav-item nav-link " href="http://harrix.org/projects/" >Проекты</a>
+            <a class="nav-item nav-link" href="http://harrix.org/">Harrix.org</a>
+            <a class="nav-item nav-link " href="http://harrix.org/rss-channels/">RSS</a>
+            <a class="nav-item nav-link" href="http://harrix.org/contacts" >Контакты</a>
+          </nav>
+        </div>
+        </div>
+      </div>
     </header>
 
     <div class="bd-pageheader">
-      <div class="container">
+      <div class="container ">
         <h1>Getting started</h1>
         <p class="lead">
           An overview of Bootstrap, including how to download and use it, some basic templates and examples, and more.
         </p>
+        <div id="hid"></div>
       </div>
     </div>    
   
     <div class="container">
       <div class="row">
-        <div class="col-md-12 bd-content">
+        <div class="bd-content">
           <h1 class="bd-title" id="content">Заголовок статьи</h1>
 
           <p>I have2 a doubt, the font open-sans is a safe font for use without google fonts? I have a doubt, the font open-sans is a safe font for use without google fonts? I have a doubt, the font open-sans is a safe font for use without google fonts? I have a doubt, the font open-sans is a safe font for use without google fonts? I have a doubt, the font open-sans is a safe font for use without google fonts?</p>
@@ -152,11 +116,12 @@
           
           <h2>KaTeX</h2>
           
+          <div style="width:100%;max-width:100%;overflow-x:hidden;">
           <div class="tex" data-expr="c = \pm\sqrt{a^2 + b^2}"></div>
           <div class="tex" data-expr="\Gamma\ \Delta\ \Theta\ \Lambda\ \Xi\ \Pi\ \Sigma\ \Upsilon\ \Phi\ \Psi\ \Omega"></div>
           <div class="tex" data-expr="f(x) = \int_{-\infty}^\infty \hat f(\xi)\,e^{2 \pi i \xi x} \,d\xi"></div>
-          <div class="tex" data-expr="\left( \sum_{k=1}^n a_k b_k \right)^2 \leq \left( \sum_{k=1}^n a_k^2 \right) \left( \sum_{k=1}^n b_k^2 \right)"></div>
-          <div class="tex" data-expr="\left( \begin{array}{c} \bar{x}_{submax} \\ f\left( \bar{x}_{submax}\right)\end{array}\right)=GeneticAlgorithm\left( \begin{array}{c} X \\ f\left( \bar{x}\right) \\ g_i\left( \bar{x}\right) \\ h_j\left( \bar{x}\right) \\ Parameters \end{array}\right),"></div>
+          <div class="tex" data-expr="\left( \sum_{k=1}^n a_k b_k \right)^3 \leq \left( \sum_{k=1}^n a_k^2 \right) \left( \sum_{k=1}^n b_k^2 \right)\leq \left( \sum_{k=1}^n a_k^2 \right) \left( \sum_{k=1}^n b_k^2 \right)"></div>
+          </div>
 
           <h2>highlight.js</h2>
           
@@ -343,6 +308,11 @@ if (!RegisterClassEx(&wcex))
           
           
           <h2>3D график</h2>
+           <script>
+ $(document).ready(function(){
+     drawVisualization();   
+    })
+  </script>  
           <script type="text/javascript">
     var data = null;
     var graph = null;
@@ -369,7 +339,7 @@ if (!RegisterClassEx(&wcex))
 
       // specify options
       var options = {
-        width:  '600px',
+        width:  '100%',
         height: '600px',
         style: 'surface',
         showPerspective: true,
@@ -442,13 +412,10 @@ if (!RegisterClassEx(&wcex))
           
           <p>Copy-paste the stylesheet <code class="highlighter-rouge">&lt;link&gt;</code> into your <code class="highlighter-rouge">&lt;head&gt;</code> before all other stylesheets to load our CSS.</p>
           
-          <figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"stylesheet"</span> <span class="na">href=</span><span class="s">"https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css"</span> <span class="na">integrity=</span><span class="s">"sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd"</span> <span class="na">crossorigin=</span><span class="s">"anonymous"</span><span class="nt">&gt;</span></code></pre></figure>
           
           <p>Add our JavaScript plugins and jQuery near the end of your pages, right before the closing <code class="highlighter-rouge">&lt;/body&gt;</code> tag. Be sure to place jQuery first as our code depends on it.</p>
           
-          <figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
-          <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/js/bootstrap.min.js"</span> <span class="na">integrity=</span><span class="s">"sha384-vZ2WRJMwsjRMW/8U7i6PWi6AlO1L79snBrmgiDpgIWJ82z8eA5lenwvxbMV1PAh7"</span> <span class="na">crossorigin=</span><span class="s">"anonymous"</span><span class="nt">&gt;&lt;/script&gt;</span></code></pre></figure>
-          
+         
           <p>And that’s it—you’re on your way to a fully Bootstrapped site. If you’re at all unsure about the general page structure, keep reading for an example page template.</p>
           
           <h2 id="starter-template">Starter template</h2>
@@ -463,25 +430,6 @@ if (!RegisterClassEx(&wcex))
           
           <p>Put it all together and your pages should look like this:</p>
           
-          <figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="cp">&lt;!DOCTYPE html&gt;</span>
-          <span class="nt">&lt;html</span> <span class="na">lang=</span><span class="s">"en"</span><span class="nt">&gt;</span>
-            <span class="nt">&lt;head&gt;</span>
-              <span class="c">&lt;!-- Required meta tags always come first --&gt;</span>
-              <span class="nt">&lt;meta</span> <span class="na">charset=</span><span class="s">"utf-8"</span><span class="nt">&gt;</span>
-              <span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">"viewport"</span> <span class="na">content=</span><span class="s">"width=device-width, initial-scale=1, shrink-to-fit=no"</span><span class="nt">&gt;</span>
-              <span class="nt">&lt;meta</span> <span class="na">http-equiv=</span><span class="s">"x-ua-compatible"</span> <span class="na">content=</span><span class="s">"ie=edge"</span><span class="nt">&gt;</span>
-          
-              <span class="c">&lt;!-- Bootstrap CSS --&gt;</span>
-              <span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"stylesheet"</span> <span class="na">href=</span><span class="s">"https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css"</span> <span class="na">integrity=</span><span class="s">"sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd"</span> <span class="na">crossorigin=</span><span class="s">"anonymous"</span><span class="nt">&gt;</span>
-            <span class="nt">&lt;/head&gt;</span>
-            <span class="nt">&lt;body&gt;</span>
-              <span class="nt">&lt;h1&gt;</span>Hello, world!<span class="nt">&lt;/h1&gt;</span>
-          
-              <span class="c">&lt;!-- jQuery first, then Bootstrap JS. --&gt;</span>
-              <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
-              <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/js/bootstrap.min.js"</span> <span class="na">integrity=</span><span class="s">"sha384-vZ2WRJMwsjRMW/8U7i6PWi6AlO1L79snBrmgiDpgIWJ82z8eA5lenwvxbMV1PAh7"</span> <span class="na">crossorigin=</span><span class="s">"anonymous"</span><span class="nt">&gt;&lt;/script&gt;</span>
-            <span class="nt">&lt;/body&gt;</span>
-          <span class="nt">&lt;/html&gt;</span></code></pre></figure>
           
           <p>That’s all you need for overall page requirements. Visit the <a href="/layout/overview">Layout docs</a> or <a href="/examples/">our official examples</a> to start laying out your site’s content and components.</p>
           
@@ -493,16 +441,13 @@ if (!RegisterClassEx(&wcex))
           
           <p>Bootstrap requires the use of the HTML5 doctype. Without it, you’ll see some funky incomplete styling, but including it shouldn’t cause any considerable hiccups.</p>
           
-          <figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="cp">&lt;!DOCTYPE html&gt;</span>
-          <span class="nt">&lt;html</span> <span class="na">lang=</span><span class="s">"en"</span><span class="nt">&gt;</span>
-            ...
-          <span class="nt">&lt;/html&gt;</span></code></pre></figure>
+
           
           <h3 id="responsive-meta-tag">Responsive meta tag</h3>
           
           <p>Bootstrap is developed <em>mobile first</em>, a strategy in which we optimize code for mobile devices first and then scale up components as necessary using CSS media queries. To ensure proper rendering and touch zooming for all devices, <strong>add the responsive viewport meta tag</strong> to your <code class="highlighter-rouge">&lt;head&gt;</code>.</p>
           
-          <figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">"viewport"</span> <span class="na">content=</span><span class="s">"width=device-width, initial-scale=1, shrink-to-fit=no"</span><span class="nt">&gt;</span></code></pre></figure>
+
           
           <p>You can see an example of this in action in the <a href="#starter-template">starter template</a>.</p>
           
@@ -512,11 +457,7 @@ if (!RegisterClassEx(&wcex))
           
           <p>On the rare occasion you need to override it, use something like the following:</p>
           
-          <figure class="highlight"><pre><code class="language-scss" data-lang="scss"><span class="nc">.selector-for-some-widget</span> <span class="p">{</span>
-            <span class="na">-webkit-box-sizing</span><span class="p">:</span> <span class="n">content-box</span><span class="p">;</span>
-               <span class="na">-moz-box-sizing</span><span class="p">:</span> <span class="n">content-box</span><span class="p">;</span>
-                    <span class="nl">box-sizing</span><span class="p">:</span> <span class="n">content-box</span><span class="p">;</span>
-          <span class="p">}</span></code></pre></figure>
+
           
           <p>With the above snippet, nested elements—including generated content via <code class="highlighter-rouge">:before</code> and <code class="highlighter-rouge">:after</code>—will all inherit the specified <code class="highlighter-rouge">box-sizing</code> for that <code class="highlighter-rouge">.selector-for-some-widget</code>.</p>
           

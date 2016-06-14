@@ -113,13 +113,62 @@ header {
 }
 
 /* --------------------------- Для лэддинг страниц --------------------------- */
-.bd-pageheader {
-    background-color: #19a5a5;
+/*Первая секция должна отступать, чтобы не быть за заголовком с меню*/
+.first-section {
     margin-top:86px;
 }
 
+/*Настройки цветной секции*/
+.bd-pageheader {
+    background-color: #19a5a5;
+}
 .bd-pageheader p {
     color: #fff;
+}
+
+/*Настройки секции-заголовка*/
+.harrix-pageheader {
+    color:#25292c;
+    text-align:center;
+    background-color:#fff;
+    padding-top: 80px;
+    padding-bottom: 70px;
+}
+.harrix-pageheader .container{
+    position:relative
+}
+.harrix-pageheader h1{
+    text-transform: none;
+    font-weight: 300;
+    line-height: 1.1;
+    font-size: 30px;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+}
+.harrix-pageheader h1:after {
+    background: #62C3B2;
+    bottom: 0;
+    content: "";
+    display: block;
+    height: 1px;
+    left: 0;
+    right: 0;
+    margin: 20px auto;
+    position: relative;
+    width: 40px;
+}
+.harrix-pageheader .lead {
+    font-size: 18px;
+    font-weight: 200;
+    line-height: 24px;
+    color: #5f5f5f;
+}
+@media (max-width: 768px)
+{
+.harrix-pageheader {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
 }
 
 /* --------------------------- Контент --------------------------- */

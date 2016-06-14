@@ -8,11 +8,11 @@ body {
 body ::selection { 
     background: #de2b26;
     color: #fff;
-    } 
+} 
 body ::-moz-selection { 
     background: #de2b26;
     color: #fff;
-    }
+}
 
 /* --------------------------- Заголовок --------------------------- */
 /*Свойства заголовка*/
@@ -224,6 +224,27 @@ header {
 /* В обычном режиме текст будет идти по ширине */
 .bd-content {
     text-align: justify;
+}
+
+/* Отображение клавиш */
+.bd-content kbd {
+    padding: 2px 4px;
+    font-size: 90%;
+    color: #fff;
+    background-color: #de2b26;
+    border-radius: 3px;
+    box-shadow: none ;
+    font-family:'PT Mono', monospace;
+}
+
+/* Цитаты */
+.bd-content blockquote {
+    font-style: italic;
+    padding: 10px 20px;
+    margin: 0 0 20px;
+    font-size: 17.5px;
+    border-left: 5px solid #de2b26;
+    color: #de2b26;
 }
 
 /* Отображение клавиш */

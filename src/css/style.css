@@ -303,6 +303,59 @@ header {
     -ms-user-select: none;
 }
 
-.demo-gallery figure {
-    display: none;
-}
+/* photoswipe image gallery 
+     * common container class
+     * for easy js invoking*/
+     .imgDisplay {}
+     .imgDisplay figure {}
+     .imgDisplay img {}
+     .imgDisplay figcaption {}
+
+    /* Classes for single image display,
+     * fixed-width slide and
+     * fixed-height slide galleries
+     */
+    .monoh, .monow {
+      width: 100%;
+      float: left;
+      clear: both;
+      margin-bottom: 0.7rem;
+    }
+    .monod {
+      position: relative;
+      margin: 0 auto;
+    }
+    .monod-left {
+      position: relative;
+    }
+    .monoh figure {
+      display: block;
+      float: left;
+      margin: 0 5px 5px 0;
+      height: 120px;
+      width: auto;
+    }
+    .monow figure {
+      display: block;
+      float: left;
+      margin: 0 5px 5px 0;
+      width: 150px;
+      height: auto;
+    }
+    .monod figure, .monod-left figure {
+      display: block;
+      margin: 0 auto;
+      width: 100%;
+      height: auto;
+    }
+    .monoh img {
+      width: auto;
+      height: 100%;
+    }
+    .monow img, .monod img, .monod-left img {
+      width: 100%;
+      height: auto;
+    }
+    .monoh figcaption, .monow figcaption, .monod figcaption, .monod-left figcaption  {
+      display: none;
+    }

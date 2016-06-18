@@ -302,3 +302,7 @@ header {
     -webkit-user-select: none;
     -ms-user-select: none;
 }
+
+.demo-gallery figure {
+    display: none;
+}

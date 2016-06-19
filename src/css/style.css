@@ -213,6 +213,11 @@ header {
     border: none !important;
 }
 
+/* Заголовки */
+.bd-content h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+    border: none !important;
+}
+
 /* Переносы */
 .bd-content {
     -webkit-hyphens: auto;
@@ -359,3 +364,8 @@ header {
     .monoh figcaption, .monow figcaption, .monod figcaption, .monod-left figcaption  {
       display: none;
     }
+    
+    a.pswp__share--vk:hover {
+    background: #507299;
+    color: #ffffff !important;
+}

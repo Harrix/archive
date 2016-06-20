@@ -206,7 +206,7 @@ header {
     color: #19a5a5; 
 }
 /* Но некоторые ссылки не подчеркиваем */
-.bd-content h1 a, h2 a, h3 a, h4 a, h5 a, h6 a, .h1 a, .h2 a, .h3 a, .h4 a, .h5 a, .h6 a {
+.bd-content h1 a, .bd-content h2 a, .bd-content h3 a, .bd-content h4 a, .bd-content h5 a, .bd-content h6 a, .bd-content .h1 a, .bd-content .h2 a, .bd-content .h3 a, .bd-content .h4 a, .bd-content .h5 a, .bd-content .h6 a {
     border: none !important;
 }
 .bd-content .notDot, .bd-content .a_image {
@@ -214,8 +214,22 @@ header {
 }
 
 /* Заголовки */
-.bd-content h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+.bd-content h1, .bd-content h2, .bd-content h3, .bd-content h4, .bd-content h5, .bd-content h6, .bd-content .h1, .bd-content .h2, .bd-content .h3, .bd-content .h4, .bd-content .h5, .bd-content .h6 {
+    font-weight: 300;
+    line-height: 1.1;
     border: none !important;
+}
+.bd-content h1 {
+    font-size: 32px;
+}
+.bd-content h2 {
+    font-size: 30px;
+}
+.bd-content h3 {
+    font-size: 24px;
+}
+.bd-content h4, .bd-content h5, .bd-content h6  {
+    font-size: 18px;
 }
 
 /* Переносы */

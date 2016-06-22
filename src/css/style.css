@@ -202,6 +202,19 @@ header {
 }
 }
 
+/*Настройки цветной секции*/
+.bd-pageheader {
+    background-color: #19a5a5;
+}
+.bd-pageheader p {
+    color: #fff;
+}
+
+/*Настройки цветной секции*/
+.bd-red {
+    background-color: #de2b26 !important;
+}
+
 /* --------------------------- Контент --------------------------- */
 /* Основной контент немного сужается */
 .harrix-site {

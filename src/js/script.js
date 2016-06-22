@@ -1,9 +1,12 @@
-//Находим все вставки LaTeX в виде div класса tex и рендерим их
 window.onload = function() {
+  //Находим все вставки LaTeX в виде div класса tex и рендерим их
   var tex = document.getElementsByClassName("tex");
   Array.prototype.forEach.call(tex, function(el) {
     katex.render(el.getAttribute("data-expr"), el,{ displayMode: true });
   });
+  
+  /*Запускаем PhotoSwipe*/
+  initPhotoSwipeFromDOM('.imgDisplay');
 };
 
 //Запускаем подсветку синтаксиса

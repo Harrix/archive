@@ -331,6 +331,11 @@ table.table_adaptive_classic caption:before { content: "Таблица: " }
 table.table_adaptive_gray caption:before { content: "Таблица: " }
 table.table_adaptive caption:before { content: "Таблица: " }
 
+/* --------------------------- Футер --------------------------- */
+.bd-footer {
+    padding-top:0px;
+}
+
 /* --------------------------- Настройка плагинов --------------------------- */
 
 /* Блоки LaTeX кода */

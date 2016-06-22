@@ -14,6 +14,32 @@ body ::-moz-selection {
     color: #fff;
 }
 
+/* --------------------------- Расширение Bootsrap --------------------------- */
+
+/* clearfix для разных размеров экрана */
+@media (max-width: 544px)
+{
+.clearfix-sm{content:"";display:table;clear:both}
+}
+@media (max-width: 768px)
+{
+.clearfix-md{content:"";display:table;clear:both}
+}
+@media (max-width: 992px)
+{
+.clearfix-lg{content:"";display:table;clear:both}
+}
+@media (max-width: 1200px)
+{
+.clearfix-xl{content:"";display:table;clear:both}
+}
+
+/*Слой по центру*/
+.col-centered{
+    float: none;
+    margin: 0 auto;
+}
+
 /* --------------------------- Заголовок --------------------------- */
 /*Свойства заголовка*/
 header {
@@ -121,24 +147,6 @@ header {
     padding-bottom:15px !important;
     padding-top:15px !important;
 } 
-}
-
-/* clearfix для разных размеров экрана */
-@media (max-width: 544px)
-{
-.clearfix-sm{content:"";display:table;clear:both}
-}
-@media (max-width: 768px)
-{
-.clearfix-md{content:"";display:table;clear:both}
-}
-@media (max-width: 992px)
-{
-.clearfix-lg{content:"";display:table;clear:both}
-}
-@media (max-width: 1200px)
-{
-.clearfix-xl{content:"";display:table;clear:both}
 }
 
 /* --------------------------- Для лэддинг страниц --------------------------- */

@@ -216,6 +216,10 @@ header {
     margin-left: auto;
 }
 
+.bd-content table {
+    display: table;
+}
+
 .bd-content p {
 	margin-top: 12px;
 	margin-bottom: 12px;
@@ -308,6 +312,11 @@ header {
     border-left: 5px solid #de2b26;
     color: #de2b26;
 }
+
+/* Перед заголовками таблиц появится слово «Таблица» */
+table.table_adaptive_classic caption:before { content: "Таблица: " }
+table.table_adaptive_gray caption:before { content: "Таблица: " }
+table.table_adaptive caption:before { content: "Таблица: " }
 
 /* --------------------------- Настройка плагинов --------------------------- */
 

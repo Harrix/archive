@@ -1,5 +1,6 @@
-/* --------------------------- Адаптивная таблица --------------------------- */
+п»ї/* --------------------------- Adaptive table --------------------------- */
 table.table_adaptive {
+    display: table;
     width: 100% !important;
     table-layout: fixed !important; 
     margin:0;
@@ -8,6 +9,13 @@ table.table_adaptive {
     border-spacing: 0 !important;
     margin-bottom: 30px;
     line-height: 24px;
+}
+
+table.table_adaptive caption {
+    caption-side: top;
+    color: #5f5f5f;
+    text-align:center;
+    font-weight: bold;
 }
 
 table.table_adaptive tr {
@@ -56,6 +64,10 @@ table.table_adaptive td:first-child {
     text-align: left;
 }
 
+table.table_adaptive td.justify_text {
+    text-align: justify;
+}
+
 table.table_adaptive td.left_text {
     text-align: left;
 }
@@ -71,10 +83,6 @@ table.table_adaptive tr.subhead {
 table.table_adaptive tr.subhead:hover {
     background: #24c5c5;
     color: #fff;
-}
-
-table.table_adaptive .circle_in_table span {
-    color: #19a5a5;
 }
 
 @media screen and (max-width: 800px) {
@@ -97,6 +105,10 @@ table.table_adaptive  td {
     text-align: right;
     font-size: 13px;
     border-bottom: 1px dotted #ededed !important;
+}
+
+table.table_adaptive td.justify_text {
+    text-align: right;
 }
 
 table.table_adaptive td.left_text {
@@ -122,10 +134,11 @@ table.table_adaptive  td:before {
 }
 }
 
-/* --------------------------- Адаптивная таблица - Конец --------------------------- */
+/* --------------------------- Adaptive table - End --------------------------- */
 
-/* --------------------------- Адаптивная таблица 2 --------------------------- */
+/* --------------------------- Adaptive table - Gray --------------------------- */
 table.table_adaptive_gray {
+    display: table;
     width: 100%;
     margin:0;
     padding:0;
@@ -133,6 +146,13 @@ table.table_adaptive_gray {
     border-spacing: 0 !important;
     margin-bottom: 30px;
     line-height: 24px;
+}
+
+table.table_adaptive_gray caption {
+    caption-side: top;
+    color: #5f5f5f;
+    text-align:center;
+    font-weight: bold;
 }
 
 table.table_adaptive_gray tr {
@@ -176,6 +196,10 @@ table.table_adaptive_gray td:first-child {
     text-align: left;
 }
 
+table.table_adaptive_gray td.justify_text {
+    text-align: justify;
+}
+
 table.table_adaptive_gray td.left_text {
     text-align: left;
 }
@@ -189,10 +213,6 @@ table.table_adaptive_gray tr.subhead {
 }
 table.table_adaptive_gray tr.subhead:hover {
     background: #f1f1f1;
-}
-
-table.table_adaptive_gray .circle_in_table span {
-    color: #8e8e8e;
 }
 
 @media screen and (max-width: 800px) {
@@ -221,6 +241,10 @@ table.table_adaptive_gray td.left_text {
     text-align: right;
 }
 
+table.table_adaptive_gray td.justify_text {
+    text-align: right;
+}
+
 table.table_adaptive_gray td:first-child {
     text-align: right;
 }
@@ -239,9 +263,132 @@ table.table_adaptive_gray  td:before {
 }
 }
 
-/* --------------------------- Адаптивная таблица 2 - Конец --------------------------- */
+/* --------------------------- Adaptive table - Gray - End --------------------------- */
 
-/* --------------------------- Адаптивная таблица 3 --------------------------- */
+/* --------------------------- Adaptive table - Classic --------------------------- */
+table.table_adaptive_classic {
+    display: table;
+    width: 100%;
+    margin:0;
+    padding:0;
+    border-collapse: collapse;
+    border-spacing: 0 !important;
+    margin-bottom: 30px;
+    line-height: 24px;
+}
 
+table.table_adaptive_classic caption {
+    caption-side: top;
+    color: #5f5f5f;
+    text-align:center;
+    font-weight: bold;
+}
 
-/* --------------------------- Адаптивная таблица 3 - Конец --------------------------- */
+table.table_adaptive_classic tr {
+    padding: 8px;
+}
+
+table.table_adaptive_classic tr:hover {
+    background: #f5f5f5;
+    color: #5f5f5f;
+}
+
+table.table_adaptive_classic th, table.table_adaptive_classic  td {
+    padding: 8px;
+    text-align: center;
+}
+
+table.table_adaptive_classic  th {
+    font-size: 14px;
+    letter-spacing: 1px;
+    color: #5f5f5f;
+    background-color: #f1f1f1;
+    border: 0px !important;
+}
+
+table.table_adaptive_classic td {
+    border: 1px solid #eee !important;
+    font-size: 14px;
+    
+    -ms-word-break: break-all;
+    word-break: break-all;
+    word-break: break-word;
+    -webkit-hyphens: auto;
+    -moz-hyphens: auto;
+    hyphens: auto;
+}
+
+table.table_adaptive_classic td:first-child {
+    text-align: left;
+}
+
+table.table_adaptive_classic td.left_text {
+    text-align: justify;
+}
+
+table.table_adaptive_classic td.right_text {
+    text-align: right;
+}
+
+table.table_adaptive_gray td.justify_text {
+    text-align: justify;
+}
+
+table.table_adaptive_classic tr.subhead {
+    background: #f1f1f1;
+}
+table.table_adaptive_classic tr.subhead:hover {
+    background: #f1f1f1;
+}
+
+@media screen and (max-width: 800px) {
+table.table_adaptive_classic  {
+    border: 0 !important;
+}
+
+table.table_adaptive_classic  thead {
+    display: none;
+}
+
+table.table_adaptive_classic  tr {
+    margin-bottom: 10px;
+    display: block;
+    border: 1px solid #ededed !important;
+}
+
+table.table_adaptive_classic  td {
+    display: block;
+    text-align: right;
+    font-size: 13px;
+    border-bottom: 1px dotted #ededed !important;
+    border-top: 0px !important;
+    border-left: 0px !important;
+    border-right: 0px !important;
+}
+
+table.table_adaptive_classic td.left_text {
+    text-align: right;
+}
+
+table.table_adaptive_gray td.justify_text {
+    text-align: right;
+}
+
+table.table_adaptive_classic td:first-child {
+    text-align: right;
+}
+
+table.table_adaptive_classic td.right_text {
+    text-align: right;
+}
+
+table.table_adaptive_classic  td:last-child {
+    border-bottom: 0 !important;
+}
+
+table.table_adaptive_classic  td:before {
+    content: attr(data-label);
+    float: left;
+}
+}
+/* --------------------------- Adaptive table - Classic - End --------------------------- */

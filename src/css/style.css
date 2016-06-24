@@ -334,6 +334,20 @@ table.table_adaptive caption:before { content: "Таблица: " }
 /* --------------------------- Футер --------------------------- */
 .bd-footer {
     padding-top:0px;
+    color: #25292c !important;
+}
+
+.bd-footer a {
+    color: #25292c !important; 
+}
+.bd-footer a:visited {
+    color: #25292c !important; 
+}
+.bd-footer a:hover {
+    color: #19a5a5 !important; 
+}
+.bd-footer a:active {
+    color: #19a5a5 !important; 
 }
 
 /* --------------------------- Настройка плагинов --------------------------- */

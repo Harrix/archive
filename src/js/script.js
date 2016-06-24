@@ -16,19 +16,18 @@ hljs.initHighlightingOnLoad();
 $(document).ready(function(){
   $(window).scroll(function(){
     var bo = $(this).scrollTop();
-    //$("#hid").html(bo);
     if ( bo >= 50) {
       $("#logo").addClass("logo-small");
       $("#header").addClass("header-small");
       $("#header-full-width").addClass("header-full-width-small");
-      $("#bd-main-nav").addClass("bd-main-nav-small");
+      $("#main-nav").addClass("main-nav-small");
       $("#navbar-toggler").addClass("navbar-toggler-small");
     }
     else {
       $("#logo").removeClass("logo-small");
       $("#header").removeClass("header-small");
       $("#header-full-width").removeClass("header-full-width-small");
-      $("#bd-main-nav").removeClass("bd-main-nav-small");
+      $("#main-nav").removeClass("main-nav-small");
       $("#navbar-toggler").removeClass("navbar-toggler-small");
     }
   })

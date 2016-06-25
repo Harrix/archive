@@ -1,9 +1,9 @@
-/* Размеры логотипа */
+/* Logo sizes */
 #logo {
-    width:258px;
+    width:180px;
     height:60px;
 }
 .logo-small {
-    width:174px !important;
+    width:120px !important;
     height:40px !important;
 }

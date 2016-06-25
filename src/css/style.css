@@ -1,18 +1,5 @@
 /* --------------------------- Bd --------------------------- */
 
-
-.bd-navbar .dropdown-menu{
-font-size:inherit}
-
-@media (max-width:767px){
-.bd-navbar .nav-link{
-float:none}
-
-.bd-navbar .nav-link+.nav-link{
-margin-left:0}
-
-}
-
 .bd-content>table{
 display:block;
 width:100%;
@@ -102,29 +89,6 @@ position:absolute;
 top:0;
 right:.75rem;
 margin:0!important}
-
-}
-
-.bd-footer{
-padding:4rem 0;
-margin-top:4rem;
-font-size:85%;
-background-color:#f7f7f7;
-text-align:center}
-
-.bd-footer a{
-font-weight:500;
-color:#55595c}
-
-.bd-footer a:hover{
-color:#0275d8}
-
-.bd-footer p{
-margin-bottom:0}
-
-@media (min-width:544px){
-.bd-footer{
-text-align:left}
 
 }
 
@@ -252,10 +216,6 @@ header {
     font-size: 14px;
 }
 
-.navbar-toggler-small {
-    margin-top: 5px !important;
-}
-
 .navbar a {
     color: #25292c !important; 
 }
@@ -270,6 +230,16 @@ header {
 
 .navbar a:active {
     color: #19a5a5 !important; 
+}
+
+@media (max-width:767px){
+.navbar .nav-link {
+    float:none;
+}
+
+.navbar .nav-link+.nav-link {
+    margin-left:0;
+}
 }
 
 #main-nav {
@@ -297,6 +267,10 @@ header {
     -webkit-transition: all 0.2s ease-in-out;
     -moz-transition: all 0.2s ease-in-out;
     -o-transition: all 0.2s ease-in-out;
+}
+
+.navbar-toggler-small {
+    margin-top: 5px !important;
 }
 
 @media (max-width: 768px)
@@ -482,25 +456,48 @@ header {
 
 /* Footer */
 /* ------------------------------------------------------------------ */
-.bd-footer {
-    padding-top:0px;
+footer {
+    padding-top: 0px;
     color: #25292c !important;
+    font-size: 14px;
+    background-color: #f7f7f7;
+    text-align: center;
+    margin-bottom: 40px;
 }
 
-.bd-footer a {
+footer a {
     color: #25292c !important; 
 }
 
-.bd-footer a:visited {
+footer a:visited {
     color: #25292c !important; 
 }
 
-.bd-footer a:hover {
+footer a:hover {
     color: #19a5a5 !important; 
 }
 
-.bd-footer a:active {
+footer a:active {
     color: #19a5a5 !important; 
+}
+
+footer a{
+    font-weight: 500;
+    color: #55595c;
+    }
+
+footer a:hover {
+    color: #0275d8;
+    }
+
+footer p {
+    margin-bottom: 0;
+    }
+
+@media (min-width:544px){
+footer {
+    text-align: left;
+    }
 }
 
 /* Configuring plugins */

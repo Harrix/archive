@@ -1,31 +1,31 @@
 /* --------------------------- Bd --------------------------- */
 
-.bd-content>table{
+.content>table{
 display:block;
 width:100%;
 max-width:100%;
 overflow-y:auto;
 margin-bottom:1rem}
 
-.bd-content>table>tbody>tr>td,.bd-content>table>tbody>tr>th,.bd-content>table>tfoot>tr>td,.bd-content>table>tfoot>tr>th,.bd-content>table>thead>tr>td,.bd-content>table>thead>tr>th{
+.content>table>tbody>tr>td,.content>table>tbody>tr>th,.content>table>tfoot>tr>td,.content>table>tfoot>tr>th,.content>table>thead>tr>td,.content>table>thead>tr>th{
 padding:.75rem;
 line-height:1.5;
 vertical-align:top;
 border:1px solid #eceeef}
 
-.bd-content>table>tbody>tr>td>p:last-child,.bd-content>table>tbody>tr>th>p:last-child,.bd-content>table>tfoot>tr>td>p:last-child,.bd-content>table>tfoot>tr>th>p:last-child,.bd-content>table>thead>tr>td>p:last-child,.bd-content>table>thead>tr>th>p:last-child{
+.content>table>tbody>tr>td>p:last-child,.content>table>tbody>tr>th>p:last-child,.content>table>tfoot>tr>td>p:last-child,.content>table>tfoot>tr>th>p:last-child,.content>table>thead>tr>td>p:last-child,.content>table>thead>tr>th>p:last-child{
 margin-bottom:0}
 
-.bd-content>table td:first-child>code{
+.content>table td:first-child>code{
 white-space:nowrap}
 
-.bd-content>h2:not(:first-child){
+.content>h2:not(:first-child){
 margin-top:3rem}
 
-.bd-content>h3{
+.content>h3{
 margin-top:1.5rem}
 
-.bd-content>ol li,.bd-content>ul li{
+.content>ol li,.content>ul li{
 margin-bottom:.25rem}
 
 
@@ -363,7 +363,7 @@ header {
 
 /* Content */
 /* ------------------------------------------------------------------ */
-.bd-content {
+.content {
     padding-right: 15px;
     padding-left: 15px;
     margin-right: auto;
@@ -375,55 +375,55 @@ header {
     text-align: justify;
 }
 
-.bd-content table {
+.content table {
     display: table;
 }
 
-.bd-content p {
+.content p {
 	margin-top: 12px;
 	margin-bottom: 12px;
 }
 
 /* Links */
-.bd-content a {
+.content a {
     text-decoration: none;
     border-bottom: 1px dashed #19a5a5;
     color: #19a5a5; 
 }
 
 /* Some links do not underline */
-.bd-content h1 a, .bd-content h2 a, .bd-content h3 a, .bd-content h4 a, .bd-content h5 a, .bd-content h6 a, .bd-content .h1 a, .bd-content .h2 a, .bd-content .h3 a, .bd-content .h4 a, .bd-content .h5 a, .bd-content .h6 a {
+.content h1 a, .content h2 a, .content h3 a, .content h4 a, .content h5 a, .content h6 a, .content .h1 a, .content .h2 a, .content .h3 a, .content .h4 a, .content .h5 a, .content .h6 a {
     border: none !important;
 }
 
-.bd-content .notDot, .bd-content .a_image {
+.content .notDot, .content .a_image {
     border: none !important;
 }
 
 /* Headers */
-.bd-content h1, .bd-content h2, .bd-content h3, .bd-content h4, .bd-content h5, .bd-content h6, .bd-content .h1, .bd-content .h2, .bd-content .h3, .bd-content .h4, .bd-content .h5, .bd-content .h6 {
+.content h1, .content h2, .content h3, .content h4, .content h5, .content h6, .content .h1, .content .h2, .content .h3, .content .h4, .content .h5, .content .h6 {
     font-weight: 300;
     line-height: 1.1;
     border: none !important;
 }
 
-.bd-content h1 {
+.content h1 {
     font-size: 32px;
 }
 
-.bd-content h2 {
+.content h2 {
     font-size: 30px;
 }
 
-.bd-content h3 {
+.content h3 {
     font-size: 24px;
 }
 
-.bd-content h4, .bd-content h5, .bd-content h6  {
+.content h4, .content h5, .content h6  {
     font-size: 18px;
 }
 
-.bd-content kbd {
+.content kbd {
     padding: 2px 4px;
     font-size: 90%;
     color: #fff;
@@ -433,7 +433,7 @@ header {
     font-family:'PT Mono', monospace;
 }
 
-.bd-content blockquote {
+.content blockquote {
     font-style: italic;
     padding: 10px 20px;
     margin: 0 0 20px;
@@ -442,15 +442,15 @@ header {
     color: #de2b26;
 }
 
-.bd-content table.table_adaptive_classic caption:before {
+.content table.table_adaptive_classic caption:before {
    content: "Таблица: ";
 }
 
-.bd-content table.table_adaptive_gray caption:before {
+.content table.table_adaptive_gray caption:before {
    content: "Таблица: ";
 }
 
-.bd-content table.table_adaptive caption:before {
+.content table.table_adaptive caption:before {
    content: "Таблица: ";
 }
 
@@ -503,36 +503,36 @@ footer {
 /* Configuring plugins */
 /* ------------------------------------------------------------------ */
 /* KaTeX */
-.bd-content .tex {
+.content .tex {
     font-size: 16px;
     text-align: center;
     margin: 30px 0;
 }
 
 /* highlight.js */
-.bd-content pre, code {
+.content pre, code {
     font-family: 'PT Mono', monospace;
     font-size: 12px;
     margin: 0px;
 }
 
-.bd-content pre {
+.content pre {
     padding-top: 5px !important;
     padding-bottom: 15px !important;
 }
 
-.bd-content code {
+.content code {
     border-width:1px;
     border-color: #dedede;
     border-style: solid;
 }
 
-.bd-content pre {
+.content pre {
     background: none !important;
 }
 
 /* Chart.js */
-.bd-content canvas{
+.content canvas{
     -moz-user-select: none;
     -webkit-user-select: none;
     -ms-user-select: none;

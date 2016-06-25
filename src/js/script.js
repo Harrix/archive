@@ -18,15 +18,15 @@ $(document).ready(function(){
     var bo = $(this).scrollTop();
     if ( bo >= 50) {
       $("#logo").addClass("logo-small");
+      $("#header-nav").addClass("header-nav-small");
       $("#header").addClass("header-small");
-      $("#header-full-width").addClass("header-full-width-small");
       $("#main-nav").addClass("main-nav-small");
       $("#navbar-toggler").addClass("navbar-toggler-small");
     }
     else {
       $("#logo").removeClass("logo-small");
+      $("#header-nav").removeClass("header-nav-small");
       $("#header").removeClass("header-small");
-      $("#header-full-width").removeClass("header-full-width-small");
       $("#main-nav").removeClass("main-nav-small");
       $("#navbar-toggler").removeClass("navbar-toggler-small");
     }

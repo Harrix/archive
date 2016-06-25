@@ -123,42 +123,34 @@ header {
     -webkit-transition: all 0.2s ease-in-out;
     -moz-transition: all 0.2s ease-in-out;
     -o-transition: all 0.2s ease-in-out;
-}
-
-#header-full-width
-{
     position: fixed;
     background-color: #fff;
     z-index: 1000;
     width: 100%;
     height: 86px;
-    transition: all 0.2s ease-in-out;
-    -webkit-transition: all 0.2s ease-in-out;
-    -moz-transition: all 0.2s ease-in-out;
-    -o-transition: all 0.2s ease-in-out;
     top: 0px;
 }
 
-#header {
+#header-nav {
     transition: all 0.2s ease-in-out;
     -webkit-transition: all 0.2s ease-in-out;
     -moz-transition: all 0.2s ease-in-out;
     -o-transition: all 0.2s ease-in-out;
 }
 
-.header-full-width-small
+.header-small
 {
     height:50px !important;
 }
 
-.header-small {
+.header-nav-small {
     padding-top: 0px;
     padding-bottom: 0px;
 }
 
 @media (max-width: 768px)
 {
-#header {
+#header-nav {
     background-color: #fff;
 }
 }

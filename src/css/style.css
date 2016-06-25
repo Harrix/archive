@@ -240,7 +240,6 @@ header {
 }
 }
 
-/* Настройки логотипа */
 #logo {
     transition: all 0.2s ease-in-out;
     -webkit-transition: all 0.2s ease-in-out;
@@ -248,9 +247,29 @@ header {
     -o-transition: all 0.2s ease-in-out;
 }
 
-/* Настройки меню */
+/* Navigation */
 .navbar {
     font-size: 14px;
+}
+
+.navbar-toggler-small {
+    margin-top: 5px !important;
+}
+
+.navbar a {
+    color: #25292c !important; 
+}
+
+.navbar a:visited {
+    color: #25292c !important; 
+}
+
+.navbar a:hover {
+    color: #19a5a5 !important; 
+}
+
+.navbar a:active {
+    color: #19a5a5 !important; 
 }
 
 #main-nav {
@@ -272,7 +291,6 @@ header {
 }
 }
 
-/* Гамбургер посередине логотипа по вертикали */
 .navbar-toggler {
     margin-top: 16px;
     transition: all 0.2s ease-in-out;
@@ -281,56 +299,27 @@ header {
     -o-transition: all 0.2s ease-in-out;
 }
 
-.navbar-toggler-small {
-    margin-top: 5px !important;
-}
-
-.bd-navbar a {
-    color: #25292c !important; 
-}
-
-.bd-navbar a:visited {
-    color: #25292c !important; 
-}
-
-.bd-navbar a:hover {
-    color: #19a5a5 !important; 
-}
-
-.bd-navbar a:active {
-    color: #19a5a5 !important; 
-}
-
 @media (max-width: 768px)
 {
 .nav-item {
     border-bottom: 1px solid #E9E9E9 !important;
-    padding-bottom:15px !important;
-    padding-top:15px !important;
+    padding-bottom: 15px !important;
+    padding-top: 15px !important;
 } 
 }
 
-/* Для лэддинг страниц */
+/* Sections */
 /* ------------------------------------------------------------------ */
-/*Первая секция должна отступать, чтобы не быть за заголовком с меню*/
+/* First section */
 .first-section {
     margin-top:86px;
 }
 
-/*Настройки цветной секции*/
-.bd-pageheader {
-    background-color: #19a5a5;
-}
-
-.bd-pageheader p {
-    color: #fff;
-}
-
-/*Настройки секции-заголовка*/
+/* Header section */
 .harrix-pageheader {
-    color:#25292c;
-    text-align:center;
-    background-color:#fff;
+    color: #25292c;
+    text-align: center;
+    background-color: #fff;
     padding-top: 80px;
     padding-bottom: 70px;
 }
@@ -376,7 +365,7 @@ header {
 }
 }
 
-/*Настройки цветной секции*/
+/* Color section */
 .bd-pageheader {
     background-color: #19a5a5;
 }
@@ -385,24 +374,31 @@ header {
     color: #fff;
 }
 
-/*Настройки цветной секции*/
+.bd-pageheader {
+    background-color: #19a5a5;
+}
+
+.bd-pageheader p {
+    color: #fff;
+}
+
+/* Color red section */
 .bd-red {
     background-color: #de2b26 !important;
 }
 
-/* Контент */
+/* Content */
 /* ------------------------------------------------------------------ */
-/* Основной контент немного сужается */
-.harrix-site {
-    margin-left:8.3333333%;
-    margin-right:8.3333333%;
-}
-
 .bd-content {
     padding-right: 15px;
     padding-left: 15px;
     margin-right: auto;
     margin-left: auto;
+    -webkit-hyphens: auto;
+    -moz-hyphens: auto;
+    -ms-hyphens: auto;
+    hyphens: auto;
+    text-align: justify;
 }
 
 .bd-content table {
@@ -414,14 +410,14 @@ header {
 	margin-bottom: 12px;
 }
 
-/* Ссылки */
+/* Links */
 .bd-content a {
     text-decoration: none;
     border-bottom: 1px dashed #19a5a5;
     color: #19a5a5; 
 }
 
-/* Но некоторые ссылки не подчеркиваем */
+/* Some links do not underline */
 .bd-content h1 a, .bd-content h2 a, .bd-content h3 a, .bd-content h4 a, .bd-content h5 a, .bd-content h6 a, .bd-content .h1 a, .bd-content .h2 a, .bd-content .h3 a, .bd-content .h4 a, .bd-content .h5 a, .bd-content .h6 a {
     border: none !important;
 }
@@ -430,7 +426,7 @@ header {
     border: none !important;
 }
 
-/* Заголовки */
+/* Headers */
 .bd-content h1, .bd-content h2, .bd-content h3, .bd-content h4, .bd-content h5, .bd-content h6, .bd-content .h1, .bd-content .h2, .bd-content .h3, .bd-content .h4, .bd-content .h5, .bd-content .h6 {
     font-weight: 300;
     line-height: 1.1;
@@ -453,31 +449,16 @@ header {
     font-size: 18px;
 }
 
-/* Переносы */
-.bd-content {
-    -webkit-hyphens: auto;
-    -moz-hyphens: auto;
-    -ms-hyphens: auto;
-    hyphens: auto;
-}
-
-/* В обычном режиме текст будет идти по ширине */
-.bd-content {
-    text-align: justify;
-}
-
-/* Отображение клавиш */
 .bd-content kbd {
     padding: 2px 4px;
     font-size: 90%;
     color: #fff;
     background-color: #de2b26;
     border-radius: 3px;
-    box-shadow: none ;
+    box-shadow: none;
     font-family:'PT Mono', monospace;
 }
 
-/* Цитаты */
 .bd-content blockquote {
     font-style: italic;
     padding: 10px 20px;
@@ -487,41 +468,19 @@ header {
     color: #de2b26;
 }
 
-/* Отображение клавиш */
-.bd-content kbd {
-    padding: 2px 4px;
-    font-size: 90%;
-    color: #fff;
-    background-color: #de2b26;
-    border-radius: 3px;
-    box-shadow: none ;
-    font-family:'PT Mono', monospace;
-}
-
-/* Цитаты */
-.bd-content blockquote {
-    font-style: italic;
-    padding: 10px 20px;
-    margin: 0 0 20px;
-    font-size: 17.5px;
-    border-left: 5px solid #de2b26;
-    color: #de2b26;
-}
-
-/* Перед заголовками таблиц появится слово «Таблица» */
-table.table_adaptive_classic caption:before {
+.bd-content table.table_adaptive_classic caption:before {
    content: "Таблица: ";
 }
 
-table.table_adaptive_gray caption:before {
+.bd-content table.table_adaptive_gray caption:before {
    content: "Таблица: ";
 }
 
-table.table_adaptive caption:before {
+.bd-content table.table_adaptive caption:before {
    content: "Таблица: ";
 }
 
-/* Футер */
+/* Footer */
 /* ------------------------------------------------------------------ */
 .bd-footer {
     padding-top:0px;
@@ -544,16 +503,16 @@ table.table_adaptive caption:before {
     color: #19a5a5 !important; 
 }
 
-/* Настройка плагинов */
+/* Configuring plugins */
 /* ------------------------------------------------------------------ */
-/* Блоки LaTeX кода */
+/* KaTeX */
 .bd-content .tex {
     font-size: 16px;
     text-align: center;
     margin: 30px 0;
 }
 
-/* Подсветка синтаксиса */
+/* highlight.js */
 .bd-content pre, code {
     font-family: 'PT Mono', monospace;
     font-size: 12px;
@@ -575,71 +534,68 @@ table.table_adaptive caption:before {
     background: none !important;
 }
 
-/* Для Chart.js - двумерный график */
+/* Chart.js */
 .bd-content canvas{
     -moz-user-select: none;
     -webkit-user-select: none;
     -ms-user-select: none;
 }
 
-/* photoswipe image gallery 
-     * common container class
-     * for easy js invoking*/
-     .imgDisplay {}
-     .imgDisplay figure {}
-     .imgDisplay img {}
-     .imgDisplay figcaption {}
+/* PhotoSwipe */
+.monoh, .monow {
+    width: 100%;
+    float: left;
+    clear: both;
+    margin-bottom: 0.7rem;
+}
 
-    /* Classes for single image display,
-     * fixed-width slide and
-     * fixed-height slide galleries
-     */
-    .monoh, .monow {
-      width: 100%;
-      float: left;
-      clear: both;
-      margin-bottom: 0.7rem;
-    }
-    .monod {
-      position: relative;
-      margin: 0 auto;
-    }
-    .monod-left {
-      position: relative;
-    }
-    .monoh figure {
-      display: block;
-      float: left;
-      margin: 0 5px 5px 0;
-      height: 120px;
-      width: auto;
-    }
-    .monow figure {
-      display: block;
-      float: left;
-      margin: 0 5px 5px 0;
-      width: 150px;
-      height: auto;
-    }
-    .monod figure, .monod-left figure {
-      display: block;
-      margin: 0 auto;
-      width: 100%;
-      height: auto;
-    }
-    .monoh img {
-      width: auto;
-      height: 100%;
-    }
-    .monow img, .monod img, .monod-left img {
-      width: 100%;
-      height: auto;
-    }
-    .monoh figcaption, .monow figcaption, .monod figcaption, .monod-left figcaption  {
-      display: none;
-    }
-    
-    a.pswp__share--vk:hover {
+.monod {
+    position: relative;
+    margin: 0 auto;
+}
+
+.monod-left {
+    position: relative;
+}
+
+.monoh figure {
+    display: block;
+    float: left;
+    margin: 0 5px 5px 0;
+    height: 120px;
+    width: auto;
+}
+
+.monow figure {
+    display: block;
+    float: left;
+    margin: 0 5px 5px 0;
+    width: 150px;
+    height: auto;
+}
+
+.monod figure, .monod-left figure {
+    display: block;
+    margin: 0 auto;
+    width: 100%;
+    height: auto;
+}
+
+.monoh img {
+    width: auto;
+    height: 100%;
+}
+
+.monow img, .monod img, .monod-left img {
+    width: 100%;
+    height: auto;
+}
+
+.monoh figcaption, .monow figcaption, .monod figcaption, .monod-left figcaption  {
+    display: none;
+}
+
+a.pswp__share--vk:hover {
     background: #507299;
     color: #ffffff !important;
 }

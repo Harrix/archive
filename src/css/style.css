@@ -361,6 +361,8 @@ header {
     font-weight: 300;
     line-height: 1.1;
     border: none !important;
+    margin-top: 30px;
+    margin-bottom: 15px;
 }
 
 .content h1 {

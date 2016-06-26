@@ -400,6 +400,12 @@ header {
     color: #de2b26;
 }
 
+.content .important {
+    color: #de2b26;
+    font-weight: bold;
+    font-family: 'PT Mono', monospace;
+}
+
 .content table.table_adaptive_classic caption:before {
    content: "Таблица: ";
 }

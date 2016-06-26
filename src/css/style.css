@@ -484,8 +484,22 @@ footer {
 .content .tex {
     font-size: 16px;
     text-align: center;
-    margin: 30px 0;
+    overflow:auto;
 }
+
+.content .tex::-webkit-scrollbar {
+    -webkit-appearance: none;
+}
+.content .tex::-webkit-scrollbar:vertical {
+    width: 10px;
+}
+.content .tex::-webkit-scrollbar:horizontal {
+    height: 10px;
+}
+.content .tex::-webkit-scrollbar-thumb {
+    background-color: #eee;
+}
+
 
 /* highlight.js */
 .content pre, code {
@@ -517,7 +531,7 @@ footer {
 }
 
 /* PhotoSwipe */
-.monoh, .monow {
+.monoh, .monow,.monoh-big {
     width: 100%;
     float: left;
     clear: both;
@@ -537,8 +551,22 @@ footer {
     display: block;
     float: left;
     margin: 0 5px 5px 0;
-    height: 120px;
+    height: 100px;
     width: auto;
+}
+
+.monoh-big figure {
+    display: block;
+    float: left;
+    margin: 0 5px 5px 0;
+    height: 150px;
+    width: auto;
+}
+
+@media (max-width:544px){
+.monoh-big figure {
+    height: 100px;
+}
 }
 
 .monow figure {
@@ -556,7 +584,7 @@ footer {
     height: auto;
 }
 
-.monoh img {
+.monoh img, .monoh-big img {
     width: auto;
     height: 100%;
 }
@@ -566,7 +594,7 @@ footer {
     height: auto;
 }
 
-.monoh figcaption, .monow figcaption, .monod figcaption, .monod-left figcaption  {
+.monoh figcaption,.monoh-big figcaption, .monow figcaption, .monod figcaption, .monod-left figcaption  {
     display: none;
 }
 

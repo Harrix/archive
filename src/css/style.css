@@ -199,8 +199,8 @@ header {
     color: #25292c;
     text-align: center;
     background-color: #fff;
-    padding-top: 80px;
-    padding-bottom: 70px;
+    padding-top: 50px;
+    padding-bottom: 30px;
 }
 
 .harrix-section .container{
@@ -234,6 +234,10 @@ header {
     font-weight: 200;
     line-height: 24px;
     color: #5f5f5f;
+}
+
+.harrix-section .button-line {
+    margin-top: 40px;
 }
 
 @media (max-width: 768px)
@@ -335,13 +339,13 @@ header {
 }
 
 /* Links */
-.content a {
+.content a, .content .dot  {
     text-decoration: none;
     border-bottom: 1px dashed #19a5a5;
     color: #19a5a5; 
 }
 
-.content a:hover {
+.content a:hover, .content .dot:hover {
     text-decoration: none;
     border-bottom: 1px dashed #71c2c2;
     color: #71c2c2; 
@@ -357,6 +361,99 @@ header {
 }
 
 /* Buttons */
+.btn {
+    background-color: #de2b26;
+    color: #fff !important;
+    border: 2px solid #de2b26 !important;
+    border-radius: 0px;
+    text-transform: uppercase;
+    font-size:12px;
+    font-weight:bold;
+    letter-spacing:1px;
+    margin-bottom: 10px;
+    margin-right: 10px;
+}
+.btn:hover, .btn:focus, .btn:active {
+    background-color: #f54d4c;
+    border: 2px solid #f54d4c !important;
+    color: #fff !important;
+}
+.btn-title {
+    min-width: 130px;
+}
+.btn-title-180 {
+    min-width: 180px;
+}
+.btn-title-200 {
+    min-width: 200px;
+}
+.btn-title-220 {
+    min-width: 220px;
+}
+
+.btn-blue {
+    background-color: #19a5a5 !important;
+    border: 2px solid #19a5a5 !important;
+}
+.btn-blue:hover, .btn-blue:focus, .btn-blue:active {
+    background-color: #71c2c2 !important;
+    border: 2px solid #71c2c2 !important;
+}
+
+/* Alerts */
+.alert {
+    border: 0px;
+    border-radius: 0px;
+    position: relative;
+}
+
+.alert>i.fa {
+    position: absolute;
+    top: 50%;
+    transform: translate(0, -50%);
+}
+
+.alert .after-icon {
+    margin-left: 50px;
+}
+
+.alert-danger {
+    background-color: #f54d4c;
+    color: #fff;
+}
+
+.alert-info {
+    background-color: #71c2c2;
+    color: #fff;
+}
+
+.alert-warning {
+    background-color: #f5944c;
+    color: #fff;
+}
+
+.alert-success {
+    background-color: #4abf60;
+    color: #fff;
+}
+
+.color-danger {
+    color: #f54d4c;
+}
+
+.color-info {
+    color: #71c2c2;
+}
+
+.color-warning {
+    color: #f5944c;
+}
+
+.color-success {
+    color: #4abf60;
+}
+
+
 
 /* Headers */
 .content h1, .content h2, .content h3, .content h4, .content h5, .content h6, .content .h1, .content .h2, .content .h3, .content .h4, .content .h5, .content .h6 {

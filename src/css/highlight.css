@@ -1,15 +1,26 @@
 /*
 
-github.com style (c) Vasily Polovnyov <vast@whiteants.net>
+Coy theme (via Prism.js) Sergienko Anton <harrix.org>
 
 */
 
 .hljs {
   display: block;
   overflow-x: auto;
-  padding: 0.5em;
-  color: #333;
-  background: #f8f8f8;
+  padding-left: 5px;
+  padding-right: 5px;
+  padding-top: 5px;
+  padding-bottom: 15px;
+  color: #002D7A;
+  background: #f8f8ff;
+  font-family: 'PT Mono', monospace;
+  font-size: 12px;
+  margin: 0px;
+  line-height: 15px;
+  white-space: pre-wrap;
+  border-width: 1px;
+  border-color: #eee;
+  border-style: solid;
 }
 
 .hljs-comment,
@@ -21,8 +32,8 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 .hljs-keyword,
 .hljs-selector-tag,
 .hljs-subst {
-  color: #333;
-  font-weight: bold;
+  color: #ec4444;
+  font-weight: normal;
 }
 
 .hljs-number,
@@ -30,19 +41,19 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 .hljs-variable,
 .hljs-template-variable,
 .hljs-tag .hljs-attr {
-  color: #008080;
+  color: #4ABF60;
 }
 
 .hljs-string,
 .hljs-doctag {
-  color: #d14;
+  color: #55A1FB;
 }
 
 .hljs-title,
 .hljs-section,
 .hljs-selector-id {
-  color: #900;
-  font-weight: bold;
+  color: #4ABF60;
+  font-weight: normal;
 }
 
 .hljs-subst {
@@ -52,7 +63,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 .hljs-type,
 .hljs-class .hljs-title {
   color: #458;
-  font-weight: bold;
+  font-weight: normal;
 }
 
 .hljs-tag,
@@ -74,12 +85,12 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 
 .hljs-built_in,
 .hljs-builtin-name {
-  color: #0086b3;
+  color: #ec4444;
 }
 
 .hljs-meta {
-  color: #999;
-  font-weight: bold;
+  color: #1990b8;
+  font-weight: normal;
 }
 
 .hljs-deletion {
@@ -95,5 +106,5 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 }
 
 .hljs-strong {
-  font-weight: bold;
+  font-weight: normal;
 }

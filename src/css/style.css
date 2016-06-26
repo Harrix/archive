@@ -500,29 +500,6 @@ footer {
     background-color: #eee;
 }
 
-
-/* highlight.js */
-.content pre, code {
-    font-family: 'PT Mono', monospace;
-    font-size: 12px;
-    margin: 0px;
-}
-
-.content pre {
-    padding-top: 5px !important;
-    padding-bottom: 15px !important;
-}
-
-.content code {
-    border-width:1px;
-    border-color: #dedede;
-    border-style: solid;
-}
-
-.content pre {
-    background: none !important;
-}
-
 /* Chart.js */
 .content canvas{
     -moz-user-select: none;

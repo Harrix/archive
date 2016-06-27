@@ -208,3 +208,18 @@ var initPhotoSwipeFromDOM = function(gallerySelector) {
         openPhotoSwipe( hashData.pid ,  galleryElements[ hashData.gid - 1 ], true, true );
     }
 };
+
+
+function startPhotoSwipe () {
+    /*Запускаем PhotoSwipe*/
+    initPhotoSwipeFromDOM('.imgDisplay');
+}
+
+if (window.addEventListener) // W3C standard
+{
+    window.addEventListener('load', startPhotoSwipe, false); // NB **not** 'onload'
+} 
+else if (window.attachEvent) // Microsoft
+{
+    window.attachEvent('onload', startPhotoSwipe);
+}

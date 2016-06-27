@@ -5,16 +5,12 @@ window.onload = function() {
     katex.render(el.getAttribute("data-expr"), el,{ displayMode: true });
   });
   
-  /*Запускаем PhotoSwipe*/
-  initPhotoSwipeFromDOM('.imgDisplay');
-  
-  
   $('.photoswipe_gallery').masonry({
   // options
   itemSelector: '.msnry_item',
   columnWidth: 303,
-  fitWidth: true
-});
+  fitWidth: true,  
+  });
 };
 
 //Запускаем подсветку синтаксиса

@@ -16,22 +16,22 @@ window.onload = function() {
 //Запускаем подсветку синтаксиса
 hljs.initHighlightingOnLoad();
 
-function doSomethingUseful()
+function changeSizeFiguraInPhotoswipeGallery()
 {
     var width_content = $(".content").width();
     var w_figura = (width_content - 40)/3;
     $(".msnry_item").width(w_figura);
 }
 
-$(window).resize(doSomethingUseful);
+$(window).resize(changeSizeFiguraInPhotoswipeGallery);
 
 if (window.addEventListener) // W3C standard
 {
-    window.addEventListener('load', doSomethingUseful, false); // NB **not** 'onload'
+    window.addEventListener('load', changeSizeFiguraInPhotoswipeGallery, false); // NB **not** 'onload'
 } 
 else if (window.attachEvent) // Microsoft
 {
-    window.attachEvent('onload', doSomethingUseful);
+    window.attachEvent('onload', changeSizeFiguraInPhotoswipeGallery);
 }
 
 

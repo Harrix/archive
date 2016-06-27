@@ -5,6 +5,7 @@ window.onload = function() {
     katex.render(el.getAttribute("data-expr"), el,{ displayMode: true });
   });
   
+  //Запускаем поиск галерей, чтобы привести сетку изображений к нужному виду
   $('.photoswipe_gallery').masonry({
   // options
   itemSelector: '.msnry_item',

@@ -622,14 +622,6 @@ a.pswp__share--vk:hover {
     color: #ffffff !important;
 }
 
-
-.monoh, .monow,.monoh-big {
-    width: 100%;
-    float: left;
-    clear: both;
-    margin-bottom: 0.7rem;
-}
-
 .monod {
     position: relative;
     margin: 0 auto;
@@ -639,36 +631,6 @@ a.pswp__share--vk:hover {
     position: relative;
 }
 
-.monoh figure {
-    display: block;
-    float: left;
-    margin: 0 5px 5px 0;
-    height: 100px;
-    width: auto;
-}
-
-.monoh-big figure {
-    display: block;
-    float: left;
-    margin: 0 5px 5px 0;
-    height: 150px;
-    width: auto;
-}
-
-@media (max-width:544px){
-.monoh-big figure {
-    height: 100px;
-}
-}
-
-.monow figure {
-    display: block;
-    float: left;
-    margin: 0 5px 5px 0;
-    width: 150px;
-    height: auto;
-}
-
 .monod figure, .monod-left figure {
     display: block;
     margin: 0 auto;
@@ -676,17 +638,12 @@ a.pswp__share--vk:hover {
     height: auto;
 }
 
-.monoh img, .monoh-big img {
-    width: auto;
-    height: 100%;
-}
-
-.monow img, .monod img, .monod-left img {
+.monod img, .monod-left img {
     width: 100%;
     height: auto;
 }
 
-.monoh figcaption,.monoh-big figcaption, .monow figcaption, .monod figcaption, .monod-left figcaption  {
+.monod figcaption, .monod-left figcaption  {
     display: none;
 }
 

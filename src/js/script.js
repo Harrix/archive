@@ -5,12 +5,17 @@ window.onload = function() {
     katex.render(el.getAttribute("data-expr"), el,{ displayMode: true });
   });
   
+  changeSizeFiguraInPhotoswipeGallery();
+  
   //Запускаем поиск галерей, чтобы привести сетку изображений к нужному виду
   $('.photoswipe_gallery').masonry({
   // options
   itemSelector: '.msnry_item',
   fitWidth: true,  
   });
+  
+  $(window).resize(changeSizeFiguraInPhotoswipeGallery); 
+  
 };
 
 //Запускаем подсветку синтаксиса
@@ -22,18 +27,6 @@ function changeSizeFiguraInPhotoswipeGallery()
     var w_figura = (width_content - 40)/3;
     $(".msnry_item").width(w_figura);
 }
-
-$(window).resize(changeSizeFiguraInPhotoswipeGallery);
-
-if (window.addEventListener) // W3C standard
-{
-    window.addEventListener('load', changeSizeFiguraInPhotoswipeGallery, false); // NB **not** 'onload'
-} 
-else if (window.attachEvent) // Microsoft
-{
-    window.attachEvent('onload', changeSizeFiguraInPhotoswipeGallery);
-}
-
 
 //Работаем с заголовком при скролле страницы
 $(document).ready(function(){

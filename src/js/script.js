@@ -1,26 +1,3 @@
-window.onload = function() {
-  //Находим все вставки LaTeX в виде div класса tex и рендерим их
-  var tex = document.getElementsByClassName("tex");
-  Array.prototype.forEach.call(tex, function(el) {
-    katex.render(el.getAttribute("data-expr"), el,{ displayMode: true });
-  });
-  
-  changeSizeFiguraInPhotoswipeGallery();
-  
-  //Запускаем поиск галерей, чтобы привести сетку изображений к нужному виду
-  $('.photoswipe_gallery').masonry({
-  // options
-  itemSelector: '.msnry_item',
-  fitWidth: true,  
-  });
-  
-  $(window).resize(changeSizeFiguraInPhotoswipeGallery); 
-  
-};
-
-//Запускаем подсветку синтаксиса
-hljs.initHighlightingOnLoad();
-
 function changeSizeFiguraInPhotoswipeGallery()
 {
     var width_content = $(".content").width();
@@ -28,8 +5,31 @@ function changeSizeFiguraInPhotoswipeGallery()
     $(".msnry_item").width(w_figura);
 }
 
-//Работаем с заголовком при скролле страницы
 $(document).ready(function(){
+    
+  //Запускаем подсветку синтаксиса
+  hljs.initHighlightingOnLoad();
+  
+  //Меняем размеры элементов у галерей
+  changeSizeFiguraInPhotoswipeGallery();
+    
+  //Находим все вставки LaTeX в виде div класса tex и рендерим их
+  var tex = document.getElementsByClassName("tex");
+  Array.prototype.forEach.call(tex, function(el) {
+    katex.render(el.getAttribute("data-expr"), el,{ displayMode: true });
+  });
+  
+  //Запускаем поиск галерей, чтобы привести сетку изображений к нужному виду
+  $('.photoswipe_gallery').masonry({
+    // options
+    itemSelector: '.msnry_item',
+    fitWidth: true,  
+  });
+  
+  //При изменении размеров окна тоже нужно помнять размеры изображений в галереях 
+  $(window).resize(changeSizeFiguraInPhotoswipeGallery);
+  
+  //Работаем с заголовком при скролле страницы
   $(window).scroll(function(){
     var bo = $(this).scrollTop();
     if ( bo >= 50) {
@@ -46,6 +46,22 @@ $(document).ready(function(){
       $("#main-nav").removeClass("main-nav-small");
       $("#navbar-toggler").removeClass("navbar-toggler-small");
     }
-  })
-})
+  });
+  
+  //Скрываем или показываем кнопку "Наверх"
+  $(window).scroll(function(){
+    if ($(this).scrollTop() > 200) {
 
+      $('#top-link').fadeIn();
+    } else {
+      $('#top-link').fadeOut();
+    }
+  });
+  
+  //При нажатии на кнопку "Наверх" анимируем переход
+  $('#top-link').click(function(){
+    $('html, body').animate({scrollTop : 0},800);
+    return false;
+  });
+
+})

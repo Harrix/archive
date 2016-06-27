@@ -357,9 +357,24 @@ header {
     color: #71c2c2; 
 }
 
-/* Some links do not underline */
 .content h1 a, .content h2 a, .content h3 a, .content h4 a, .content h5 a, .content h6 a, .content .h1 a, .content .h2 a, .content .h3 a, .content .h4 a, .content .h5 a, .content .h6 a {
     border: none !important;
+    color: #5f5f5f;
+}
+
+.content h1 a:hover, .content h2 a:hover, .content h3 a:hover, .content h4 a:hover, .content h5 a:hover, .content h6 a:hover, .content .h1 a:hover, .content .h2 a:hover, .content .h3 a:hover, .content .h4 a:hover, .content .h5 a:hover, .content .h6 a:hover {
+    border: none !important;
+    color: #19a5a5;
+}
+
+.content h1 a:active, .content h2 a:active, .content h3 a:active, .content h4 a:active, .content h5 a:active, .content h6 a:active, .content .h1 a:active, .content .h2 a:active, .content .h3 a:active, .content .h4 a:active, .content .h5 a:active, .content .h6 a:active {
+    border: none !important;
+    color: #19a5a5;
+}
+
+.content h1 a:focus, .content h2 a:focus, .content h3 a:focus, .content h4 a:focus, .content h5 a:focus, .content h6 a:focus, .content .h1 a:focus, .content .h2 a:focus, .content .h3 a:focus, .content .h4 a:focus, .content .h5 a:focus, .content .h6 a:focus {
+    border: none !important;
+    color: #19a5a5;
 }
 
 .content .notDot, .content .a_image {

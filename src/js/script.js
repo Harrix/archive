@@ -16,6 +16,25 @@ window.onload = function() {
 //Запускаем подсветку синтаксиса
 hljs.initHighlightingOnLoad();
 
+function doSomethingUseful()
+{
+    var width_content = $(".content").width();
+    var w_figura = (width_content - 40)/3;
+    $(".msnry_item").width(w_figura);
+}
+
+$(window).resize(doSomethingUseful);
+
+if (window.addEventListener) // W3C standard
+{
+    window.addEventListener('load', doSomethingUseful, false); // NB **not** 'onload'
+} 
+else if (window.attachEvent) // Microsoft
+{
+    window.attachEvent('onload', doSomethingUseful);
+}
+
+
 //Работаем с заголовком при скролле страницы
 $(document).ready(function(){
   $(window).scroll(function(){

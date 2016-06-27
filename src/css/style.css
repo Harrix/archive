@@ -453,8 +453,6 @@ header {
     color: #4abf60;
 }
 
-
-
 /* Headers */
 .content h1, .content h2, .content h3, .content h4, .content h5, .content h6, .content .h1, .content .h2, .content .h3, .content .h4, .content .h5, .content .h6 {
     font-weight: 300;
@@ -607,6 +605,12 @@ footer {
 }
 
 /* PhotoSwipe */
+a.pswp__share--vk:hover {
+    background: #507299;
+    color: #ffffff !important;
+}
+
+
 .monoh, .monow,.monoh-big {
     width: 100%;
     float: left;
@@ -674,7 +678,64 @@ footer {
     display: none;
 }
 
-a.pswp__share--vk:hover {
-    background: #507299;
-    color: #ffffff !important;
+
+.content figure a {
+    border-bottom: 0px !important;
+}
+
+.content figure a:hover {
+    border-bottom: 0px !important;
+}
+
+.photoswipe_gallery {
+    margin: 0 auto;
+    padding-bottom: 10px;
+    -webkit-transition: all 0.4s ease;
+    -moz-transition: all 0.4s ease;
+    -o-transition: all 0.4s ease;
+    transition: all 0.4s ease;
+}
+
+.photoswipe_gallery figure {
+    float: left;
+    text-align: center;
+    width: 303px;
+    padding: 5px;
+    margin: 0px;
+    box-sizing: border-box;
+}
+
+.photoswipe_gallery a{
+    display: block
+}
+
+.photoswipe_gallery img{
+    margin: auto;
+    max-width: 100%;
+    width: auto;
+    height: auto;
+    border: 0;
+}
+
+.photoswipe_gallery figure figcaption{
+    display: none;
+}
+
+.msnry{
+    margin: auto;
+}
+
+.grid {
+  margin: 0 auto;
+}
+
+.pswp__caption__center{
+    text-align: center;
+}
+
+@media (max-width:990px){
+.photoswipe_gallery figure 
+{
+
+}
 }

@@ -7,6 +7,14 @@ window.onload = function() {
   
   /*Запускаем PhotoSwipe*/
   initPhotoSwipeFromDOM('.imgDisplay');
+  
+  
+  $('.photoswipe_gallery').masonry({
+  // options
+  itemSelector: '.msnry_item',
+  columnWidth: 303,
+  fitWidth: true
+});
 };
 
 //Запускаем подсветку синтаксиса

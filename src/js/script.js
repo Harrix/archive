@@ -9,7 +9,6 @@ window.onload = function() {
   $('.photoswipe_gallery').masonry({
   // options
   itemSelector: '.msnry_item',
-  columnWidth: 303,
   fitWidth: true,  
   });
 };

@@ -702,13 +702,30 @@ a.pswp__share--vk:hover {
     text-align: center;
 }
 
-@media (max-width:990px){
-.photoswipe_gallery 
-{
-    width:100% !important;
-}
+@media (max-width:1200px){
 .photoswipe_gallery figure 
 {
-    width:100% !important;
+    width: 250px;
+}
+}
+
+@media (max-width:990px){
+.photoswipe_gallery figure 
+{
+    width: 180px;
+}
+}
+
+@media (max-width:590px){
+.photoswipe_gallery figure 
+{
+    width: 150px;
+}
+}
+
+@media (max-width:500px){
+.photoswipe_gallery figure 
+{
+    width: 130px;
 }
 }

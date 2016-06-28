@@ -32,6 +32,12 @@ body ::-moz-selection {
 
 /* Expansion of Bootstrap */
 /* ------------------------------------------------------------------ */
+/* Center div */
+.col-centered{
+    float: none;
+    margin: 0 auto;
+}
+
 /* Clearfix for grid */
 @media (max-width: 544px)
 {
@@ -69,10 +75,37 @@ body ::-moz-selection {
 }
 }
 
-/* Center div */
-.col-centered{
-    float: none;
-    margin: 0 auto;
+/* Margin bottom */
+.margin-bottom {
+   margin-bottom: 30px; 
+}
+
+@media (max-width: 544px)
+{
+.margin-bottom-sm {
+   margin-bottom: 30px; 
+}
+}
+
+@media (max-width: 768px)
+{
+.margin-bottom-md {
+   margin-bottom: 30px; 
+}
+}
+
+@media (max-width: 992px)
+{
+.margin-bottom-lg {
+   margin-bottom: 30px; 
+}
+}
+
+@media (max-width: 1200px)
+{
+.margin-bottom-xl {
+   margin-bottom: 30px; 
+}
 }
 
 /* Header */

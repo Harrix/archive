@@ -108,6 +108,43 @@ body ::-moz-selection {
 }
 }
 
+/* Common classes */
+
+.color-blue
+{
+    color: #19a5a5;
+}
+
+.color-blue-hover
+{
+    color: #19a5a5;
+}
+
+.color-blue-hover:hover
+{
+    color: #71c2c2;
+}
+
+.color-red
+{
+    color: #de2b26;
+}
+
+.color-red-hover
+{
+    color: #de2b26;
+}
+
+.color-red-hover:hover
+{
+    color: #f54d4c;
+}
+
+.font-size-70
+{
+    font-size: 70%;
+}
+
 /* Header */
 /* ------------------------------------------------------------------ */
 header {
@@ -375,6 +412,10 @@ header {
 .content p {
 	margin-top: 12px;
 	margin-bottom: 12px;
+}
+
+.content ol, .content ul, .content dl {
+    -webkit-padding-start: 20px;
 }
 
 /* Links */
@@ -700,6 +741,16 @@ footer {
     -moz-user-select: none;
     -webkit-user-select: none;
     -ms-user-select: none;
+}
+
+/* Font Awesome */
+
+.fa-li {
+    padding-top: 4px;
+}
+
+.fa-ul {
+   -webkit-padding-start: 0px !important;
 }
 
 /* PhotoSwipe */

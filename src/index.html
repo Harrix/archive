@@ -165,7 +165,6 @@
   </div>
 </div>
 
-
 <div class="container">
   <div class="row">
     <div class="content col-md-10 col-centered">
@@ -291,34 +290,41 @@
       <a class="anchor" name="fontawesome"></a>
       <h2><a href='#contents' title='Вернуться к содержанию'>Font Awesome</a></h2>
       
-      <ul class="fa-ul">
-        <li><i class="fa-li fa fa-check-square" aria-hidden="true"></i>Маркеры списка</li>
-        <li><i class="fa-li fa fa-check-square" aria-hidden="true"></i>в виде</li>
-        <li><i class="fa-li fa fa-spinner fa-spin" aria-hidden="true"></i>иконок шрифта</li>
-        <li><i class="fa-li fa fa-square" aria-hidden="true"></i>в списках</li>
-      </ul>
+      <p>
+        <ul class="fa-ul">
+          <li><i class="fa-li fa fa-check-circle color-blue-hover fa-lg" aria-hidden="true"></i>Математические функции</li>
+          <li><i class="fa-li fa fa-check-circle color-blue-hover fa-lg" aria-hidden="true"></i>Возможность задать свою функцию в виде кода</li>
+          <li><i class="fa-li fa fa-check-circle color-blue-hover fa-lg" aria-hidden="true"></i>Поддержка C++11</li>
+          <li><i class="fa-li fa fa-check-circle color-blue-hover fa-lg" aria-hidden="true"></i>Использование шаблонов</li>
+        </ul>
+      </p>
       
-      <i class="fa fa-spinner fa-spin fa-3x fa-fw margin-bottom"></i>
+      <p>
+      <i class="fa fa-spinner fa-spin fa-3x fa-fw margin-bottom color-blue"></i>
       <span class="sr-only">Загрузка...</span>
       
-      <i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw margin-bottom"></i>
+      <i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw margin-bottom color-blue"></i>
       <span class="sr-only">Загрузка...</span>
       
-      <i class="fa fa-refresh fa-spin fa-3x fa-fw margin-bottom"></i>
+      <i class="fa fa-refresh fa-spin fa-3x fa-fw margin-bottom color-blue"></i>
       <span class="sr-only">Загрузка...</span>
       
-      <i class="fa fa-cog fa-spin fa-3x fa-fw margin-bottom"></i>
+      <i class="fa fa-cog fa-spin fa-3x fa-fw margin-bottom color-blue"></i>
       <span class="sr-only">Загрузка...</span>
       
-      <i class="fa fa-spinner fa-pulse fa-3x fa-fw margin-bottom"></i>
-      <span class="sr-only">Загрузка...</span><br>
+      <i class="fa fa-spinner fa-pulse fa-3x fa-fw margin-bottom color-blue"></i>
+      <span class="sr-only">Загрузка...</span>      
+      </p>
       
-      <i class="fa fa-shield"></i> Обычное состояние<br>
-      <i class="fa fa-shield fa-rotate-90"></i> fa-rotate-90<br>
-      <i class="fa fa-shield fa-rotate-180"></i> fa-rotate-180<br>
-      <i class="fa fa-shield fa-rotate-270"></i> fa-rotate-270<br>
-      <i class="fa fa-shield fa-flip-horizontal"></i> fa-flip-horizontal<br>
-      <i class="fa fa-shield fa-flip-vertical"></i> fa-flip-vertical
+      <p>
+      <i class="fa fa-shield color-blue"></i> Обычное состояние<br>
+      <i class="fa fa-shield fa-rotate-90 color-blue"></i> fa-rotate-90<br>
+      <i class="fa fa-shield fa-rotate-180 color-blue"></i> fa-rotate-180<br>
+      <i class="fa fa-shield fa-rotate-270 color-blue"></i> fa-rotate-270<br>
+      <i class="fa fa-shield fa-flip-horizontal color-blue"></i> fa-flip-horizontal<br>
+      <i class="fa fa-shield fa-flip-vertical color-blue"></i> fa-flip-vertical
+      </p>
+      
     </div>
   </div>
 </div>
@@ -780,6 +786,59 @@ int main()
 <td data-label="Оплата">0 руб.</td>
 <td data-label="Наличие ноутбука">&nbsp;</td>
 <td data-label="Наличие паспорта">&#9899;</td>
+</tr>
+</tbody>
+</table>
+
+<table class="table_adaptive_classic">
+<caption>Учет товаров</caption>
+<thead>
+<tr>
+<th>ФИО</th>
+<th>Оплата</th>
+<th>Наличие ноутбука</th>
+<th>Наличие паспорта</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td data-label="ФИО">Сергиенко Антон Борисович</td>
+<td data-label="Наличие ноутбука">1 123 руб.</td>
+<td data-label="Оплата"><i class="fa fa-circle font-size-70" aria-hidden="true"></i></td>
+<td data-label="Наличие паспорта"><i class="fa fa-circle font-size-70" aria-hidden="true"></i></td>
+</tr>
+<tr>
+<td data-label="ФИО">Владимиров Пётр Васильевич</td>
+<td data-label="Оплата">411 руб.</td>
+<td data-label="Наличие ноутбука"><i class="fa fa-circle font-size-70" aria-hidden="true"></i></td>
+<td data-label="Наличие паспорта"><i class="fa fa-circle font-size-70" aria-hidden="true"></i></td>
+</tr>
+<tr>
+<td data-label="ФИО">Воротцов Игорь Витальевич</td>
+<td data-label="Оплата">8 010 руб.</td>
+<td data-label="Наличие ноутбука"><i class="fa fa-circle font-size-70" aria-hidden="true"></i></td>
+<td data-label="Наличие паспорта"><i class="fa fa-circle font-size-70" aria-hidden="true"></i></td>
+</tr>
+<tr class="subhead">
+<td colspan="4">Вне обработки</td>
+</tr>
+<tr>
+<td data-label="ФИО">Уваров Борис Тимофеевич</td>
+<td data-label="Наличие ноутбука">999 руб.</td>
+<td data-label="Оплата"><i class="fa fa-circle font-size-70" aria-hidden="true"></i></td>
+<td data-label="Наличие паспорта"><i class="fa fa-circle font-size-70" aria-hidden="true"></i></td>
+</tr>
+<tr>
+<td data-label="ФИО">Клесин Алексей Алексеевич</td>
+<td data-label="Оплата">48 458 руб.</td>
+<td class="circle_in_table" data-label="Наличие ноутбука"><i class="fa fa-circle font-size-70" aria-hidden="true"></i></td>
+<td data-label="Наличие паспорта"><i class="fa fa-circle font-size-70" aria-hidden="true"></i></td>
+</tr>
+<tr>
+<td data-label="ФИО">Кизоров Антоний Егорьевич</td>
+<td data-label="Оплата">0 руб.</td>
+<td data-label="Наличие ноутбука"><i class="fa fa-circle font-size-70" aria-hidden="true"></i></td>
+<td data-label="Наличие паспорта"><i class="fa fa-circle font-size-70" aria-hidden="true"></i></td>
 </tr>
 </tbody>
 </table>

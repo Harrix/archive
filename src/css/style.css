@@ -636,10 +636,47 @@ a.anchor {
     font-size: 30px;
 }
 
+/* List of changes*/
 .content  .title+p{
     font-size: 20px;
     font-weight: 300;
 }
+}
+
+.content  .changes {
+    display: table;
+    list-style: none !important;
+    margin-left: 80px;
+}
+
+.content  .change-label-container {
+    float: left;
+    margin-left: -100px;
+    width: 80px;
+    text-align: right;
+}
+
+.content  .change-label {
+    font-style: normal;
+    color: #fff;
+    padding: 2px 8px;
+    font-size: 14px;
+    display: inline-block;
+    text-transform: uppercase;
+    font-size: 12px;
+}
+
+.content  .change-new, .content  .change-added {
+    background-color: #6cc644;
+}
+.content  .change-fixed {
+    background-color: #428dc9;
+}
+.content  .change-improved, .change-updated {
+    background-color: #9361cc;
+}
+.content  .change-removed {
+    background-color: #e18c58;
 }
 
 /* Top-link */

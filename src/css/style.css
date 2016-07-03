@@ -331,6 +331,17 @@ header {
     margin-top: 40px;
 }
 
+.harrix-section .header-image {
+    padding: 0 20%;
+}
+
+@media (max-width: 600px)
+{
+.harrix-section .header-image {
+    padding: 0 5%;
+}
+}
+
 @media (max-width: 768px)
 {
 .harrix-section {

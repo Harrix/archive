@@ -333,6 +333,7 @@ header {
 
 .harrix-section .header-image {
     padding: 0 20%;
+    margin-top: 40px;
 }
 
 @media (max-width: 600px)

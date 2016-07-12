@@ -8,7 +8,9 @@ function changeSizeFiguraInPhotoswipeGallery()
 $(document).ready(function(){
     
   //Запускаем подсветку синтаксиса
-  hljs.initHighlightingOnLoad();
+  $('pre code').each(function(i, block) {
+    hljs.highlightBlock(block);
+  });
   
   //Меняем размеры элементов у галерей
   changeSizeFiguraInPhotoswipeGallery();

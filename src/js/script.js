@@ -5,8 +5,7 @@ function changeSizeFiguraInPhotoswipeGallery()
     $(".msnry_item").width(w_figura);
 }
 
-$(document).ready(function(){
-    
+$(document).ready(function(){    
   //Запускаем подсветку синтаксиса
   $('pre code').each(function(i, block) {
     hljs.highlightBlock(block);

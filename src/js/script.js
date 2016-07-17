@@ -39,6 +39,7 @@ $(document).ready(function(){
       $("#header").addClass("header-small");
       $("#main-nav").addClass("main-nav-small");
       $("#navbar-toggler").addClass("navbar-toggler-small");
+      $(".first-section").addClass("first-section-small");
     }
     else {
       $("#logo").removeClass("logo-small");
@@ -46,6 +47,7 @@ $(document).ready(function(){
       $("#header").removeClass("header-small");
       $("#main-nav").removeClass("main-nav-small");
       $("#navbar-toggler").removeClass("navbar-toggler-small");
+      $(".first-section").removeClass("first-section-small");
     }
   });
   

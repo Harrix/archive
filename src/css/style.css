@@ -957,13 +957,17 @@ footer {
     width: 100%;
 }
 
+.docs .col-lg-6 {
+    width: 45%;
+}
+
 /* Configuring plugins */
 /* ------------------------------------------------------------------ */
 /* KaTeX */
 .content .tex {
     font-size: 16px;
     text-align: center;
-    overflow:auto;
+    overflow: auto;
 }
 
 .content .tex::-webkit-scrollbar {

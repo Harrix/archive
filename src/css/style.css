@@ -162,18 +162,26 @@ body ::-moz-selection {
 
 .container-sm {
     max-width: 576px;
+    padding-left: 15px;
+    padding-right: 15px;
 }
 
 .container-md {
     max-width: 720px;
+    padding-left: 15px;
+    padding-right: 15px;
 }
 
 .container-lg {
     max-width: 940px;
+    padding-left: 15px;
+    padding-right: 15px;
 }
 
 .container-xl {
     max-width: 1140px;
+    padding-left: 15px;
+    padding-right: 15px;
 }
 
 /* Header */

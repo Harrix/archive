@@ -72,6 +72,12 @@ $(document).ready(function() {
   $('.spoiler').click(function() {
     $(this).toggleClass("folded").toggleClass("unfolded").next().slideToggle();
   });
+  
+  //Подготавливаем сплойеры
+  //$('.spoiler-text-sidebar').hide();
+  $('.spoiler-sidebar').click(function() {
+    $(this).toggleClass("folded").toggleClass("unfolded").next().slideToggle();
+  });
 
 });
 

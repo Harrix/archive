@@ -6,20 +6,13 @@ function changeSizeFiguraInPhotoswipeGallery()
     $(".msnry_item").width(w_figura);
 }
 
-function heightIframeSidebar()
+function forcedDisplaySidebar()
 {
-    //Функция подсчета высоты iframe в боковой панели в документации
+    //Функция принудительного показа боковой панели при увеличении размера окна
     var width_content = $("body").width();
     
     if (width_content > 992)
-    {
-      $("iframe").height($("#sidebar").height());
       $('.spoiler-text-sidebar').show();
-    }
-    else
-    {
-      $("iframe").height(200);
-    }
 }
 
 $(document).ready(function() {    
@@ -27,7 +20,7 @@ $(document).ready(function() {
   $('pre code').each(function(i, block) {
     hljs.highlightBlock(block);
   });
-  
+
   //Меняем размеры элементов у галерей
   changeSizeFiguraInPhotoswipeGallery();
     
@@ -44,16 +37,13 @@ $(document).ready(function() {
     fitWidth: true,  
   });
   
-  //Подсчет высоты iframe в боковой панели в документации
-  heightIframeSidebar();
-  
   //События при изменении размера окна
   $(window).resize(function() {
     //При изменении размеров окна тоже нужно поменять размеры изображений в галереях 
     changeSizeFiguraInPhotoswipeGallery();
     
-    //Если есть боковая панель (в режиме документации), то подсчитываем высоту фрейма
-    heightIframeSidebar();
+    //Принудительно показываем боковую панель при увеличении размера окна
+    forcedDisplaySidebar()
   });
   
   //Работаем с заголовком при скролле страницы
@@ -99,12 +89,13 @@ $(document).ready(function() {
     $(this).toggleClass("folded").toggleClass("unfolded").next().slideToggle();
   });
   
-  //Подготавливаем сплойеры
-  //$('.spoiler-text-sidebar').hide();
+  //В мобильной версии список разделов прячем под сплойером. Тут его работа прописана
   $('.spoiler-sidebar').click(function() {
     $(this).toggleClass("folded").toggleClass("unfolded").next().slideToggle();
   });
-
+  
+  //Включаем авторазмер iframe, которые есть на странице
+  iFrameResize({});
 });
 
 $(function() {

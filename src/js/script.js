@@ -1,8 +1,25 @@
 function changeSizeFiguraInPhotoswipeGallery()
 {
+    //Функция подсчета ширины рисунков в галереях
     var width_content = $(".content").width();
     var w_figura = (width_content - 40)/3;
     $(".msnry_item").width(w_figura);
+}
+
+function heightIframeSidebar()
+{
+    //Функция подсчета высоты iframe в боковой панели в документации
+    var width_content = $("body").width();
+    
+    if (width_content > 992)
+    {
+      $("iframe").height($("#sidebar").height());
+      $('.spoiler-text-sidebar').show();
+    }
+    else
+    {
+      $("iframe").height(200);
+    }
 }
 
 $(document).ready(function() {    
@@ -27,8 +44,17 @@ $(document).ready(function() {
     fitWidth: true,  
   });
   
-  //При изменении размеров окна тоже нужно помнять размеры изображений в галереях 
-  $(window).resize(changeSizeFiguraInPhotoswipeGallery);
+  //Подсчет высоты iframe в боковой панели в документации
+  heightIframeSidebar();
+  
+  //События при изменении размера окна
+  $(window).resize(function() {
+    //При изменении размеров окна тоже нужно поменять размеры изображений в галереях 
+    changeSizeFiguraInPhotoswipeGallery();
+    
+    //Если есть боковая панель (в режиме документации), то подсчитываем высоту фрейма
+    heightIframeSidebar();
+  });
   
   //Работаем с заголовком при скролле страницы
   $(window).scroll(function(){

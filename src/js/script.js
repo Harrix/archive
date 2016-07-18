@@ -5,7 +5,7 @@ function changeSizeFiguraInPhotoswipeGallery()
     $(".msnry_item").width(w_figura);
 }
 
-$(document).ready(function(){    
+$(document).ready(function() {    
   //Запускаем подсветку синтаксиса
   $('pre code').each(function(i, block) {
     hljs.highlightBlock(block);
@@ -65,6 +65,12 @@ $(document).ready(function(){
   $('#top-link').click(function(){
     $('html, body').animate({scrollTop : 0},800);
     return false;
+  });
+  
+  //Подготавливаем сплойеры
+  $('.spoiler-text').hide();
+  $('.spoiler').click(function() {
+    $(this).toggleClass("folded").toggleClass("unfolded").next().slideToggle();
   });
 
 });

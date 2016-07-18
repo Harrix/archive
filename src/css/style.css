@@ -853,6 +853,18 @@ footer {
 }
 }
 
+.spoiler a{
+
+}
+ 
+.spoiler:hover {
+     cursor: pointer;
+}
+ 
+.spoiler-text {
+
+}
+
 /* Configuring plugins */
 /* ------------------------------------------------------------------ */
 /* KaTeX */

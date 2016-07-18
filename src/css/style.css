@@ -684,7 +684,7 @@ a.anchor {
     font-size: 30px;
 }
 
-/* List of changes*/
+/* List of changes */
 .content  .title+p{
     font-size: 20px;
     font-weight: 300;
@@ -729,6 +729,11 @@ a.anchor {
 }
 .content  .change-removed {
     background-color: #f5944c;
+}
+
+/* Сплойер */
+.spoiler-text {
+    display: none;
 }
 
 /* Top-link */
@@ -851,18 +856,6 @@ footer {
 .header-docs {
     background-color: #fff;
 }
-}
-
-.spoiler a{
-
-}
- 
-.spoiler:hover {
-     cursor: pointer;
-}
- 
-.spoiler-text {
-
 }
 
 /* Configuring plugins */

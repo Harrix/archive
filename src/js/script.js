@@ -1,7 +1,7 @@
 function changeSizeFiguraInPhotoswipeGallery()
 {
     //Функция подсчета ширины рисунков в галереях
-    var width_content = $(".content").width();
+    var width_content = $(".content-with-gallery").width();
     var w_figura = (width_content - 40)/3;
     $(".msnry_item").width(w_figura);
 }

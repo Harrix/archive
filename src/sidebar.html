@@ -43,6 +43,7 @@
     <script src="js/jquery.min.js"></script><!-- jquery -->
     <script src="js/tether.min.js"></script><!-- Для Bootstrap 4 -->
     <script src="js/bootstrap.js"></script><!-- Bootstrap 4 -->
+    <script src="js/TreeListFilter.js"></script><!-- Фильтр для списков TreeListFilter -->
     <!-- Для Internet Explorer -->
     <!--[if lt IE 9]>
       <script src="js/html5shiv.js"></script>
@@ -56,46 +57,47 @@
 <div class="container-xl padding-null-left-right padding-top">
   <div class="row">
     <div class="content col-md-12">
-      <ul>
-        <li><a href="docs.html">Первая страница документации</a></li>
-        <li><a href="docs 2.html">Вторая страница документации</a></li>
-        <li><a href="docs.html">Первая страница документации</a></li>
-        <li><a href="docs 2.html">Вторая страница документации</a></li>
-        <li><a href="docs.html">Первая страница документации</a></li>
-        <li><a href="docs 2.html">Вторая страница документации</a></li>
-        <li><a href="docs.html">Первая страница документации</a></li>
-        <li><a href="docs 2.html">Вторая страница документации</a></li>
-        <li><a href="docs.html">Первая страница документации</a></li>
-        <li><a href="docs 2.html">Вторая страница документации</a></li>
-        <li><a href="docs.html">Первая страница документации</a></li>
-        <li><a href="docs 2.html">Вторая страница документации</a></li>
-        <li><a href="docs.html">Первая страница документации</a></li>
-        <li><a href="docs 2.html">Вторая страница документации</a></li>
-        <li><a href="docs.html">Первая страница документации</a></li>
-        <li><a href="docs 2.html">Вторая страница документации</a></li>
-        <li><a href="docs.html">Первая страница документации</a></li>
-        <li><a href="docs 2.html">Вторая страница документации</a></li>
-        <li><a href="docs.html">Первая страница документации</a></li>
-        <li><a href="docs 2.html">Вторая страница документации</a></li>
-        <li><a href="docs.html">Первая страница документации</a></li>
-        <li><a href="docs 2.html">Вторая страница документации</a></li>
-        <li><a href="docs.html">Первая страница документации</a></li>
-        <li><a href="docs 2.html">Вторая страница документации</a></li>
-        <li><a href="docs.html">Первая страница документации</a></li>
-        <li><a href="docs 2.html">Вторая страница документации</a></li>
-        <li><a href="docs.html">Первая страница документации</a></li>
-        <li><a href="docs 2.html">Вторая страница документации</a></li>
-        <li><a href="docs.html">Первая страница документации</a></li>
-        <li><a href="docs 2.html">Вторая страница документации</a></li>
-        <li><a href="docs.html">Первая страница документации</a></li>
-        <li><a href="docs 2.html">Вторая страница документации</a></li>
-        <li><a href="docs.html">Первая страница документации</a></li>
-        <li><a href="docs 2.html">Вторая страница документации</a></li>
-        <li><a href="docs.html">Первая страница документации</a></li>
-        <li><a href="docs 2.html">Вторая страница документации</a></li>
-        <li><a href="docs.html">Первая страница документации</a></li>
-        <li><a href="docs 2.html">Вторая страница документации</a></li>
-      <ul>
+      <p><input id="filter" type="text" placeholder="Поиск..." /></p>
+<ul id="root_tree">
+<li>David &#8211; CEO
+<ol>
+<li>Peter &#8211; Development Manager
+<ul>
+<li>Ken &#8211; Project Manager</li>
+<li>Tom &#8211; Project Manager</li>
+</ul>
+</li>
+<li>Anna &#8211; Development Manager
+<ol>
+<li>Bob &#8211; Project Manager</li>
+<li>Jerry &#8211; Project Manager</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>John &#8211; CTO
+<ul>
+<li>Khan &#8211; Technical Architect
+<ol>
+<li>Jacob &#8211; Technical Lead</li>
+<li>Mason &#8211; Technical Lead</li>
+<li>Michael &#8211; Technical Lead</li>
+</ol>
+</li>
+<li>James &#8211; Principle Consultant
+<ul>
+<li>Andrew &#8211; Senior Consultant</li>
+<li>Joseph &#8211; Technical Specialist</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<script type="text/javascript">// <![CDATA[
+$(function() {
+		$('#filter').treeListFilter('#root_tree', 200);
+	});
+// ]]&gt;</script>
     </div>
   </div>
 </div>

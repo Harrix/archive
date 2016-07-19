@@ -52,57 +52,53 @@
   </head>
 
   <body>
-<!-- Основной контент -->
-
-<div class="container-xl padding-null-left-right padding-top">
-  <div class="row">
-    <div class="content col-md-12">
-      <p><input id="filter" type="text" placeholder="Поиск..." /></p>
-<ul id="root_tree">
-<li>David &#8211; CEO
-<ol>
-<li>Peter &#8211; Development Manager
-<ul>
-<li>Ken &#8211; Project Manager</li>
-<li>Tom &#8211; Project Manager</li>
-</ul>
-</li>
-<li>Anna &#8211; Development Manager
-<ol>
-<li>Bob &#8211; Project Manager</li>
-<li>Jerry &#8211; Project Manager</li>
-</ol>
-</li>
-</ol>
-</li>
-<li>John &#8211; CTO
-<ul>
-<li>Khan &#8211; Technical Architect
-<ol>
-<li>Jacob &#8211; Technical Lead</li>
-<li>Mason &#8211; Technical Lead</li>
-<li>Michael &#8211; Technical Lead</li>
-</ol>
-</li>
-<li>James &#8211; Principle Consultant
-<ul>
-<li>Andrew &#8211; Senior Consultant</li>
-<li>Joseph &#8211; Technical Specialist</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<script type="text/javascript">// <![CDATA[
-$(function() {
-		$('#filter').treeListFilter('#root_tree', 200);
-	});
-// ]]&gt;</script>
+    <div class="container-xl padding-null-left-right padding-top">
+      <div class="row">
+        <div class="content col-md-12">
+          <p><input id="filter" type="text" placeholder="Поиск..." /></p>
+          <ul id="root_tree">
+            <li>David &#8211; CEO
+            <ul>
+              <li>Peter &#8211; Development Manager
+              <ul>
+                <li>Ken &#8211; Project Manager</li>
+                <li>Tom &#8211; Project Manager</li>
+              </ul>
+              </li>
+              <li>Anna &#8211; Development Manager
+              <ul>
+                <li>Bob &#8211; Project Manager</li>
+                <li>Jerry &#8211; Project Manager</li>
+              </ul>
+              </li>
+            </ul>
+            </li>
+            <li>John &#8211; CTO
+            <ul>
+              <li>Khan &#8211; Technical Architect
+              <ul>
+                <li>Jacob &#8211; Technical Lead</li>
+                <li>Mason &#8211; Technical Lead</li>
+                <li>Michael &#8211; Technical Lead</li>
+              </ul>
+              </li>
+              <li>James &#8211; Principle Consultant
+              <ul>
+                <li>Andrew &#8211; Senior Consultant</li>
+                <li>Joseph &#8211; Technical Specialist</li>
+              </ul>
+              </li>
+            </ul>
+            </li>
+          </ul>
+          <script type="text/javascript">
+          $(function() {
+              $('#filter').treeListFilter('#root_tree', 200);
+            });
+          </script>
+        </div>
+      </div>
     </div>
-  </div>
-</div>
-
-<!-- Основной контент - Конец -->
 
     <script>
       var iFrameResizer = {

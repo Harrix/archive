@@ -7,18 +7,15 @@ Coy theme (via Prism.js) Sergienko Anton <harrix.org>
 .hljs {
   display: block;
   overflow-x: auto;
-  padding-left: 5px;
-  padding-right: 5px;
-  padding-top: 5px;
-  padding-bottom: 15px;
+  padding: 10px;
   color: #002D7A;
-  background: #f8f8ff;
+  background: #f5f6f8;
   font-family: 'PT Mono', monospace;
   font-size: 12px;
   margin: 0px;
   line-height: 15px;
   white-space: pre-wrap;
-  border-width: 1px;
+  border-width: 0px;
   border-color: #eee;
   border-style: solid;
 }

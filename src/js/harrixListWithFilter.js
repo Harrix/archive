@@ -13,6 +13,11 @@
     })
     .keyup(function() {
       $(input).change();
+    })
+    .on('paste', function () {
+      setTimeout(function () {
+        $(input).change();
+      }, 100);
     });
     return this;
   };

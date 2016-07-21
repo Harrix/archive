@@ -57,44 +57,42 @@
         <div class="content col-md-12">
           <p><input id="filter" type="text" placeholder="Поиск..." /></p>
           <ul id="root_tree">
-            <li>David &#8211; CEO
+            <li>Функции
             <ul>
-              <li>Peter &#8211; Development Manager
+              <li>По работе с матрицами
               <ul>
-                <li>Ken &#8211; Project Manager</li>
-                <li>Tom &#8211; Project Manager</li>
+                <li>Add</li>
+                <li>Minus.</li>
               </ul>
               </li>
-              <li>Anna &#8211; Development Manager
+              <li>По работе с векторами
               <ul>
-                <li>Bob &#8211; Project Manager</li>
-                <li>Jerry &#8211; Project Manager</li>
+                <li>vectortovector</li>
+                <li>Findff</li>
               </ul>
               </li>
             </ul>
             </li>
-            <li>John &#8211; CTO
+            <li>Файлы
             <ul>
-              <li>Khan &#8211; Technical Architect
+              <li>Заголовочные
               <ul>
-                <li>Jacob &#8211; Technical Lead</li>
-                <li>Mason &#8211; Technical Lead</li>
-                <li>Michael &#8211; Technical Lead</li>
+                <li>main.h</li>
+                <li>libary.h</li>
+                <li>Classic</li>
               </ul>
               </li>
-              <li>James &#8211; Principle Consultant
+              <li>Еще файлы
               <ul>
-                <li>Andrew &#8211; Senior Consultant</li>
-                <li>Joseph &#8211; Technical Specialist</li>
+                <li>Там</li>
+                <li>векторы</li>
               </ul>
               </li>
             </ul>
             </li>
           </ul>
           <script type="text/javascript">
-          $(function() {
-              $('#filter').harrixListWithFilter('#root_tree', 200);
-            });
+              $().harrixListWithFilter('#root_tree', '#filter');
           </script>
         </div>
       </div>

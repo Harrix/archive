@@ -1,55 +1,57 @@
-jQuery.fn.harrixListWithFilter = function(list, timeout) {
-	var list = jQuery(list);
-	var input = this;
-	var keyTimeout;
-	var lastFilter = '';
-	
-	// Default timeout	
-	if (timeout === undefined) {
-		timeout = 200;
-	}
-	
-	function filterList(ulObject, filterValue) {
-		if (!ulObject.is('ul') && !ulObject.is('ol')) {
-			return false;
-		}
-		var children = ulObject.children();
-		var result = false;
-		for (var i = 0; i < children.length; i++) {
-			var liObject = jQuery(children[i]);
-			if(liObject.is('li')) {
-				var display = false;
-				if (liObject.children().length > 0) {
-					for (var j = 0; j < liObject.children().length; j++) {
-						var subDisplay = filterList(jQuery(liObject.children()[j]), filterValue);
-						display = display || subDisplay;
-					}
-				}
-				if (!display) {
-					var text = liObject.text();
-					display = text.toLowerCase().indexOf(filterValue) >= 0;
-				}			
-				liObject.css('display', display ? '' : 'none');
-				result = result || display;
-			} 
-		}
-		return result;
-	}
-		
-	input.change(function() {
-		var filter = input.val().toLowerCase();
-		//var startTime = new Date().getTime();
-		filterList(list, filter);
-		//var endTime = new Date().getTime();
-		//console.log('Search for ' + filter + ' took: ' + (endTime - startTime) + 'ms');
-		return false;
-	}).keydown(function() {
-		clearTimeout(keyTimeout);
-		keyTimeout = setTimeout(function() {
-			if( input.val() === lastFilter ) return;
-			lastFilter = input.val();
-			input.change();
-		}, timeout);
-	});
-	return this;
-}
+ /*
+ * File: harrixListWithFilter.js
+ * Desc: list with filter.
+ * Requires: jQuery.
+ * License: MIT.
+ */
+(function( $ ){
+
+  $.fn.harrixListWithFilter = function(ul, input) {
+    $(input)
+    .change(function() {
+      doFilter($(ul), $(input).val().toLowerCase());
+    })
+    .keyup(function() {
+      $(input).change();
+    });
+    return this;
+  };
+  
+  function doFilter(obj, filter) {
+    var showObj = false;
+    $.each( obj.children(), function( i, val ) {
+      var li = $(val);
+      if (li.is('li')) {
+        var show = checkChildren(li.children(), filter);
+        if (show == false)
+          show = findString(li.text().toLowerCase(), filter);
+        if (show == true)
+          li.show();
+        else
+          li.hide();
+        if (show == true)
+          showObj = true;
+      }
+    });    
+    return showObj;
+  };
+  
+  function checkChildren(children, filter) {
+    var show = false;
+    if (children.length > 0) {
+      $.each( children, function( i, val ) {
+        if (doFilter($(val), filter) == true)
+          show = true;
+      });
+    }
+    return show;      
+  };
+  
+  function findString(text, textFind) {
+    var find = false;
+    if (text.indexOf(textFind) >= 0)
+      find = true;
+    return find;      
+  };
+
+})( jQuery );

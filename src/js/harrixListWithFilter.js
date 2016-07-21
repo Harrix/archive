@@ -11,10 +11,7 @@
     .change(function() {
       doFilter($(ul), $(input).val().toLowerCase());
     })
-    .keyup(function() {
-      $(input).change();
-    })
-    .on('paste', function () {
+    .on('keyup paste', function () {
       setTimeout(function () {
         $(input).change();
       }, 100);

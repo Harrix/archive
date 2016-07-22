@@ -1088,12 +1088,9 @@ a.pswp__share--vk:hover {
 
 
 .expList ul, li {
-    list-style: none;
-    margin:0;
-    padding:0;
-    cursor: pointer;
+    display: none;
 }
-.expList li {
+/*.expList li {
     line-height:140%;
     text-indent:0px;
     background-position: 1px 8px;
@@ -1105,4 +1102,4 @@ a.pswp__share--vk:hover {
 }
 .expList .expanded {
     background-image: url(../assets/expanded.png);
-}
+}*/

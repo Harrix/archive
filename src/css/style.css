@@ -1084,3 +1084,25 @@ a.pswp__share--vk:hover {
 .pswp__caption__center{
     text-align: center;
 }
+
+
+
+.expList ul, li {
+    list-style: none;
+    margin:0;
+    padding:0;
+    cursor: pointer;
+}
+.expList li {
+    line-height:140%;
+    text-indent:0px;
+    background-position: 1px 8px;
+    padding-left: 20px;
+    background-repeat: no-repeat;
+}
+.expList .collapsed {
+    background-image: url(../assets/collapsed.png);
+}
+.expList .expanded {
+    background-image: url(../assets/expanded.png);
+}

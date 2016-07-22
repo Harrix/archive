@@ -52,11 +52,11 @@
   </head>
 
   <body>
-    <div class="container-xl padding-null-left-right padding-top">
+    <div class="container-xl padding-null-left-right padding-top" id="listContainer">
       <div class="row">
         <div class="content col-md-12">
           <p><input id="filter" type="text" placeholder="Поиск..." /></p>
-          <ul id="root_tree">
+          <ul id="root_tree" class="expList">
             <li>Функции
             <ul>
               <li>По работе с матрицами
@@ -94,6 +94,9 @@
           <script type="text/javascript">
               $().harrixListWithFilter('#root_tree', '#filter');
           </script>
+          
+
+          
         </div>
       </div>
     </div>

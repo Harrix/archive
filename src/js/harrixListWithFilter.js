@@ -16,13 +16,61 @@
         $(input).change();
       }, 100);
     });
+    
+    bypassingElements ($(ul).children());
+    
+    //prepareList($(ul));
+    
     return this;
+  };
+  
+  function bypassingElements (children)
+  {
+    if (children.length > 0) {
+      $.each( children, function( i, element ) {
+        var element = $(element);
+        
+        var te = element.text();      
+        console.log(te);
+        
+        element.click(function(event) {
+          if (this == event.target) {
+          var element = $(this);
+        
+        var te = //element.text();
+     element
+    .clone()    //clone the element
+    .children() //select all the children
+    .remove()   //remove all the children
+    .end()  //again go back to selected element
+    .text();        
+        
+          alert( te );
+          }
+        });
+        
+        bypassingElements(element.children());
+      });
+    }        
+  }
+  
+  function prepareList(element) {
+  $(element).find('li:has(ul)')
+  	.click( function(event) {
+  		if (this == event.target) {
+  			$(this).toggleClass('expanded');
+  			$(this).children('ul').toggle('medium');
+  		}
+  		return false;
+  	})
+  	.addClass('collapsed')
+  	.children('ul').hide();
   };
   
   function doFilter(obj, filter) {
     var showObj = false;
-    $.each( obj.children(), function( i, val ) {
-      var li = $(val);
+    $.each( obj.children(), function( i, element ) {
+      var li = $(element);
       if (li.is('li')) {
         var show = checkChildren(li.children(), filter);
         if (show == false)
@@ -41,8 +89,8 @@
   function checkChildren(children, filter) {
     var show = false;
     if (children.length > 0) {
-      $.each( children, function( i, val ) {
-        if (doFilter($(val), filter) == true)
+      $.each( children, function( i, element ) {
+        if (doFilter($(element), filter) == true)
           show = true;
       });
     }

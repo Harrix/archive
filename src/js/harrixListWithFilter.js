@@ -38,12 +38,13 @@
           var element = $(this);
         
         var te = //element.text();
-     element
+    /* element
     .clone()    //clone the element
     .children() //select all the children
     .remove()   //remove all the children
     .end()  //again go back to selected element
-    .text();        
+    .text();    */
+element.contents().get(0).nodeValue.toLowerCase();
         
           alert( te );
           }
@@ -74,7 +75,7 @@
       if (li.is('li')) {
         var show = checkChildren(li.children(), filter);
         if (show == false)
-          show = findString(li.text().toLowerCase(), filter);
+          show = findString(li.contents().get(0).nodeValue.toLowerCase(), filter);
         if (show == true)
           li.show();
         else

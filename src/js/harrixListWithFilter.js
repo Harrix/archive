@@ -6,7 +6,7 @@
  */
 (function( $ ){
 
-  $.fn.harrixListWithFilter = function(ul, input, options, functionS) {
+  $.fn.harrixListWithFilter = function(ul, input, options) {
     
     var plugin = this;
     
@@ -19,18 +19,6 @@
     
     plugin.settings = $.extend({}, defaults, options);
     
-    var funcSS = functionS;
-    
-    if (funcSS === undefined) {
-		  funcSS = findString;
-	  } 
-    //console.log(funcSS);
-    
-    
-    //console.log(plugin.settings.functionSearch);
-    //console.log('------------------------');
-
-    //launch processing filter
     $(input)
     .change(function() {
       doFilter($(ul), $(input).val().toLowerCase());
@@ -44,8 +32,6 @@
     //$(ul).click(handler);
     //$(ul).find("ul").hide;
 
-    
-    //bypassing all items
     listTraversal ($(ul).children());
   
     function handler(event) {
@@ -53,7 +39,7 @@
       if (target.is("li")) {
         target.children().toggle();
       }
-    }
+    };
     
     function listTraversal (children)
     {
@@ -64,17 +50,16 @@
           listTraversal(element.children());
         });
       }        
-    }
+    };
     
-    function workWithElement (element) {
-      
+    function workWithElement (element) {      
       if (plugin.settings.clearListStyle == true)
         element.css('list-style', 'none');
       
-      if (element.children().length > 0)
+      /*if (element.children().length > 0)
         element.css('cursor', 'pointer');
       else
-        element.css('cursor', 'default');
+        element.css('cursor', 'default');*/
       
       /*element.click(function(event) {
         if (this == event.target) {
@@ -82,12 +67,10 @@
           var text = getTextFromLiInNestedList(element);  
           alert( text );
         }
-      });*/
-      
-    }
+      });*/      
+    };
   
     function doFilter(obj, filter) {
-      console.log(funcSS);
       var showObj = false;
       $.each( obj.children(), function( i, element ) {
         var li = $(element);
@@ -140,12 +123,10 @@
     };
     
     function findString(text, textFind) {
-      if (textFind === undefined) {
+      if (textFind === undefined)
          return true;
-       }
-       else if (!textFind.trim()) {
+       else if (!textFind.trim())
          return true;
-       }
       var find = false;
       if (text.indexOf(textFind) >= 0)
         find = true;

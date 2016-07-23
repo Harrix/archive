@@ -180,25 +180,22 @@
             </li>
           </ul>
           <script type="text/javascript">
-            function findString2(text, textFind) {
-            if (textFind === undefined) {
-        return true;
-      }
-      else if (!textFind.trim()) {
-        return true;
-      }
-            
-    var find = false;
-    if (text.indexOf('еще') >= 0)
-      find = true;
-    return find;      
-  };
+    function findString2(text, textFind) {
+      if (textFind === undefined)
+         return true;
+       else if (!textFind.trim())
+         return true;
+      var find = false;
+      if (text.indexOf('еще') >= 0)
+        find = true;
+      return find;      
+    };
   
               $().harrixListWithFilter('#root_tree3', '#filter3',{
                 clearListStyle : true,
                 searchBy : 'value',
                 functionSearch : findString2,
-              }, findString2);
+              });
           </script>
           
 

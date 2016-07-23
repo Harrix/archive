@@ -83,6 +83,7 @@
         var show = checkChildren( li.children(), filter );
         if (show == false)
           show = settings.functionSearch( getTextFromLiInNestedList(li).toLowerCase(), filter );
+          //show = findString( getTextFromLiInNestedList(li).toLowerCase(), filter );
         if (show == true)
           li.show();
         else
@@ -128,11 +129,13 @@
     return show;      
   };
   
+
+
+})( jQuery );
+
   function findString(text, textFind) {
     var find = false;
     if (text.indexOf(textFind) >= 0)
       find = true;
     return find;      
   };
-
-})( jQuery );

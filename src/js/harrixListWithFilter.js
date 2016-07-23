@@ -14,10 +14,17 @@
       clearListStyle : true,
       searchBy : 'content',
       functionSearch : findString,
-      //collapsedStart : true,      
+      collapsedStart : true,
 	  };
     
     plugin.settings = $.extend({}, defaults, options);
+    
+    $(ul).click(toggleUl);
+    
+    if (plugin.settings.collapsedStart == true)
+      $(ul).find("ul").hide;
+
+    listTraversal ($(ul).children());
     
     $(input)
     .change(function() {
@@ -28,13 +35,8 @@
         $(input).change();
       }, 100);
     });
-    
-    //$(ul).click(handler);
-    //$(ul).find("ul").hide;
-
-    listTraversal ($(ul).children());
   
-    function handler(event) {
+    function toggleUl(event) {
       var target = $(event.target);
       if (target.is("li")) {
         target.children().toggle();

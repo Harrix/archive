@@ -15,6 +15,7 @@
       searchBy : 'content',
       functionSearch : findString,
       collapsedStart : true,
+      changeCursor : true,
 	  };
     
     plugin.settings = $.extend({}, defaults, options);
@@ -22,7 +23,7 @@
     $(ul).click(toggleUl);
     
     if (plugin.settings.collapsedStart == true)
-      $(ul).find("ul").hide;
+      $(ul).find("ul").hide();
     
     if (plugin.settings.clearListStyle == true)
       $(ul).find("li").css('list-style', 'none');
@@ -57,14 +58,14 @@
       }        
     };
     
-    function workWithElement (element) {      
-      /*if (plugin.settings.clearListStyle == true)
-        element.css('list-style', 'none');*/
-      
-      if (element.children().length > 0)
-        element.css('cursor', 'default');
-      else
-        element.css('cursor', 'default');
+    function workWithElement (element) {
+      if (plugin.settings.changeCursor == true)
+      {
+        if (element.children().length > 0)
+          element.css('cursor', 'default');
+        else
+          element.css('cursor', 'pointer');
+      }
       
       /*element.click(function(event) {
         if (this == event.target) {

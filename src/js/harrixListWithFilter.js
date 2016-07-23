@@ -13,6 +13,7 @@
       clearListStyle : true,
       searchBy : 'content',
       functionSearch: findString,
+      collapsedStart: true,
 	  }; 
     settings = $.extend({}, defaults, options);
 
@@ -27,7 +28,8 @@
       }, 100);
     });
     
-    //$(ul).click(handler).find( "ul" );
+    //$(ul).click(handler);
+    //$(ul).find("ul").hide;
     
     //bypassing all items
     listTraversal ($(ul).children());
@@ -63,13 +65,13 @@
     else
       element.css('cursor', 'default');
     
-    element.click(function(event) {
+    /*element.click(function(event) {
       if (this == event.target) {
         var element = $(this);    
         var text = getTextFromLiInNestedList(element);  
         alert( text );
       }
-    });
+    });*/
     
   }
 

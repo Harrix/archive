@@ -43,6 +43,7 @@
     function toggleUl(event) {
       var target = $(event.target);
       if (target.is("li")) {
+        if (isLiTreeLeaf(target) == false)
         target.children().toggle();
       }
     };
@@ -55,16 +56,16 @@
           processingElement (element);        
           listTraversal(element.children(), processingElement);
         });
-      }        
+      }
     };
     
     function workWithElement (element) {
       if (plugin.settings.changeCursor == true)
       {
         if (isLiTreeLeaf(element) == true)
-          element.css('cursor', 'default');
-        else
           element.css('cursor', 'pointer');
+        else
+          element.css('cursor', 'default');
       }
       
       /*element.click(function(event) {
@@ -132,9 +133,9 @@
       if (element.is('li'))
         {
           if (element.children().find('li').length > 0)
-            return true;
-          else
             return false;
+          else
+            return true;
         }
       return false;
     };

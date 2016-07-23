@@ -6,13 +6,7 @@
  */
 (function( $ ){
 
-  $.fn.harrixListWithFilter = function(ul, input, options) {
-    
-    var defaults = {
-      clearListStyle : true,
-	  }; 
-    settings = $.extend({}, defaults, options);
-
+  $.fn.harrixListWithFilter = function(ul, input) {
     $(input)
     .change(function() {
       doFilter($(ul), $(input).val().toLowerCase());
@@ -23,38 +17,42 @@
       }, 100);
     });
     
-    listTraversal ($(ul).children());
+    bypassingElements ($(ul).children());
     
-    prepareList($(ul));
+    //prepareList($(ul));
     
     return this;
   };
   
-  function listTraversal (children)
+  function bypassingElements (children)
   {
     if (children.length > 0) {
       $.each( children, function( i, element ) {
-        var element = $(element);        
-        workWithElement (element);        
-        listTraversal(element.children());
+        var element = $(element);
+        
+        var te = element.text();      
+        console.log(te);
+        
+        element.click(function(event) {
+          if (this == event.target) {
+          var element = $(this);
+        
+        var te = //element.text();
+    /* element
+    .clone()    //clone the element
+    .children() //select all the children
+    .remove()   //remove all the children
+    .end()  //again go back to selected element
+    .text();    */
+element.contents().get(0).nodeValue.toLowerCase();
+        
+          alert( te );
+          }
+        });
+        
+        bypassingElements(element.children());
       });
     }        
-  }
-  
-  function workWithElement (element) {
-    if (settings.clearListStyle == true)
-      element.css('list-style', 'none');
-    if (element.children().length > 0)
-      element.css('cursor', 'pointer');
-    else
-      element.css('cursor', 'default');
-    /*element.click(function(event) {
-      if (this == event.target) {
-        var element = $(this);    
-        var text = element.contents().get(0).nodeValue.toLowerCase();    
-        alert( text );
-      }
-    });*/
   }
   
   function prepareList(element) {
@@ -85,11 +83,7 @@
         if (show == true)
           showObj = true;
       }
-    });
-    if (showObj == true)
-          obj.show();
-        else
-          obj.hide();
+    });    
     return showObj;
   };
   

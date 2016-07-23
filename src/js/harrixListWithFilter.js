@@ -43,8 +43,13 @@
     function toggleUl(event) {
       var target = $(event.target);
       if (target.is("li")) {
-        if (isLiTreeLeaf(target) == false)
-        target.children().toggle();
+        //if (isLiTreeLeaf(target) == false)
+        //target.children().toggle();
+        $.each( target.children(), function( i, element ) {
+          var element = $(element);
+          if (element.is('ul'))
+            element.toggle();
+        });
       }
     };
     

@@ -31,6 +31,9 @@
     //$(ul).click(handler);
     //$(ul).find("ul").hide;
     
+    console.log(settings.findString);
+    console.log(findString);
+    
     //bypassing all items
     listTraversal ($(ul).children());
     
@@ -129,13 +132,12 @@
     return show;      
   };
   
-
-
-})( jQuery );
-
   function findString(text, textFind) {
+    alert(1);
     var find = false;
     if (text.indexOf(textFind) >= 0)
       find = true;
     return find;      
   };
+
+})( jQuery );

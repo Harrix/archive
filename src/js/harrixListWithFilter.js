@@ -6,7 +6,13 @@
  */
 (function( $ ){
 
-  $.fn.harrixListWithFilter = function(ul, input) {
+  $.fn.harrixListWithFilter = function(ul, input, options) {
+    
+    var defaults = {
+      clearListStyle : true,
+	  }; 
+    settings = $.extend({}, defaults, options);
+
     $(input)
     .change(function() {
       doFilter($(ul), $(input).val().toLowerCase());
@@ -17,42 +23,38 @@
       }, 100);
     });
     
-    bypassingElements ($(ul).children());
+    listTraversal ($(ul).children());
     
-    //prepareList($(ul));
+    prepareList($(ul));
     
     return this;
   };
   
-  function bypassingElements (children)
+  function listTraversal (children)
   {
     if (children.length > 0) {
       $.each( children, function( i, element ) {
-        var element = $(element);
-        
-        var te = element.text();      
-        console.log(te);
-        
-        element.click(function(event) {
-          if (this == event.target) {
-          var element = $(this);
-        
-        var te = //element.text();
-    /* element
-    .clone()    //clone the element
-    .children() //select all the children
-    .remove()   //remove all the children
-    .end()  //again go back to selected element
-    .text();    */
-element.contents().get(0).nodeValue.toLowerCase();
-        
-          alert( te );
-          }
-        });
-        
-        bypassingElements(element.children());
+        var element = $(element);        
+        workWithElement (element);        
+        listTraversal(element.children());
       });
     }        
+  }
+  
+  function workWithElement (element) {
+    if (settings.clearListStyle == true)
+      element.css('list-style', 'none');
+    if (element.children().length > 0)
+      element.css('cursor', 'pointer');
+    else
+      element.css('cursor', 'default');
+    /*element.click(function(event) {
+      if (this == event.target) {
+        var element = $(this);    
+        var text = element.contents().get(0).nodeValue.toLowerCase();    
+        alert( text );
+      }
+    });*/
   }
   
   function prepareList(element) {
@@ -83,7 +85,11 @@ element.contents().get(0).nodeValue.toLowerCase();
         if (show == true)
           showObj = true;
       }
-    });    
+    });
+    if (showObj == true)
+          obj.show();
+        else
+          obj.hide();
     return showObj;
   };
   

@@ -23,6 +23,9 @@
     
     if (plugin.settings.collapsedStart == true)
       $(ul).find("ul").hide;
+    
+    if (plugin.settings.clearListStyle == true)
+      $(ul).find("li").css('list-style', 'none');
 
     listTraversal ($(ul).children());
     
@@ -55,13 +58,13 @@
     };
     
     function workWithElement (element) {      
-      if (plugin.settings.clearListStyle == true)
-        element.css('list-style', 'none');
+      /*if (plugin.settings.clearListStyle == true)
+        element.css('list-style', 'none');*/
       
-      /*if (element.children().length > 0)
-        element.css('cursor', 'pointer');
+      if (element.children().length > 0)
+        element.css('cursor', 'default');
       else
-        element.css('cursor', 'default');*/
+        element.css('cursor', 'default');
       
       /*element.click(function(event) {
         if (this == event.target) {

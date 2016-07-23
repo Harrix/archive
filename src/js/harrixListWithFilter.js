@@ -61,7 +61,7 @@
     function workWithElement (element) {
       if (plugin.settings.changeCursor == true)
       {
-        if (element.children().length > 0)
+        if (isLiTreeLeaf(element) == true)
           element.css('cursor', 'default');
         else
           element.css('cursor', 'pointer');
@@ -126,6 +126,17 @@
         }
       }
       return text;
+    };
+    
+    function isLiTreeLeaf(element) {
+      if (element.is('li'))
+        {
+          if (element.children().find('li').length > 0)
+            return true;
+          else
+            return false;
+        }
+      return false;
     };
     
     function findString(text, textFind) {

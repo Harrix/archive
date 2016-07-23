@@ -28,8 +28,8 @@
     //console.log(funcSS);
     
     
-    console.log(plugin.settings.functionSearch);
-    console.log('------------------------');
+    //console.log(plugin.settings.functionSearch);
+    //console.log('------------------------');
 
     //launch processing filter
     $(input)
@@ -88,16 +88,17 @@
   }
 
   function doFilter(obj, filter) {
-    console.log(plugin.settings.functionSearch);
-    console.log(plugin.settings.searchBy);
-    console.log('++++++++++++++');
+    //console.log(plugin.settings.functionSearch);
+    console.log(funcSS);
+    //console.log(plugin.settings.searchBy);
+    //console.log('++++++++++++++');
     var showObj = false;
     $.each( obj.children(), function( i, element ) {
       var li = $(element);
       if (li.is('li')) {
         var show = checkChildren( li.children(), filter );
         if (show == false)
-          show = plugin.settings.functionSearch( getTextFromLiInNestedList(li).toLowerCase(), filter );
+          show = funcSS( getTextFromLiInNestedList(li).toLowerCase(), filter );
           //show = findString( getTextFromLiInNestedList(li).toLowerCase(), filter );
         if (show == true)
           li.show();
@@ -145,6 +146,12 @@
   };
   
   function findString(text, textFind) {
+    if (textFind === undefined) {
+       return true;
+     }
+     else if (!textFind.trim()) {
+       return true;
+     }
     var find = false;
     if (text.indexOf(textFind) >= 0)
       find = true;

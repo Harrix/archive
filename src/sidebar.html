@@ -181,20 +181,18 @@
           </ul>
           <script type="text/javascript">
             function findString2(text, textFind) {
-            //alert(3);
+            if (textFind === undefined) {
+        return true;
+      }
+      else if (!textFind.trim()) {
+        return true;
+      }
+            
     var find = false;
     if (text.indexOf('еще') >= 0)
       find = true;
     return find;      
   };
-  
-  jQuery.fn.findString3 = function(text, textFind) {
-//alert(4);
-    var find = false;
-    if (text.indexOf('фа') >= 0)
-      find = true;
-    return find;  
-  }
   
               $().harrixListWithFilter('#root_tree3', '#filter3',{
                 clearListStyle : true,

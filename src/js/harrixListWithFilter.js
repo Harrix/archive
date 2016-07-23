@@ -25,7 +25,7 @@
     
     listTraversal ($(ul).children());
     
-    prepareList($(ul));
+    //prepareList($(ul));
     
     return this;
   };

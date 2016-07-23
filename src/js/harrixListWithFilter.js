@@ -8,15 +8,14 @@
 
   $.fn.harrixListWithFilter = function(ul, input, options, functionS) {
     
-    //plugin settings
+    var plugin = this;
+    
     var defaults = {
       clearListStyle : true,
       searchBy : 'content',
       functionSearch : findString,
       //collapsedStart : true,      
 	  };
-    
-    var plugin = this;
     
     plugin.settings = $.extend({}, defaults, options);
     
@@ -49,116 +48,111 @@
     //bypassing all items
     listTraversal ($(ul).children());
   
-  function handler(event) {
-    var target = $(event.target);
-    if (target.is("li")) {
-      target.children().toggle();
+    function handler(event) {
+      var target = $(event.target);
+      if (target.is("li")) {
+        target.children().toggle();
+      }
     }
-  }
-  
-  function listTraversal (children)
-  {
-    if (children.length > 0) {
-      $.each( children, function( i, element ) {
-        var element = $(element);        
-        workWithElement (element);        
-        listTraversal(element.children());
-      });
-    }        
-  }
-  
-  function workWithElement (element) {
     
-    if (plugin.settings.clearListStyle == true)
-      element.css('list-style', 'none');
+    function listTraversal (children)
+    {
+      if (children.length > 0) {
+        $.each( children, function( i, element ) {
+          var element = $(element);        
+          workWithElement (element);        
+          listTraversal(element.children());
+        });
+      }        
+    }
     
-    if (element.children().length > 0)
-      element.css('cursor', 'pointer');
-    else
-      element.css('cursor', 'default');
-    
-    /*element.click(function(event) {
-      if (this == event.target) {
-        var element = $(this);    
-        var text = getTextFromLiInNestedList(element);  
-        alert( text );
-      }
-    });*/
-    
-  }
-
-  function doFilter(obj, filter) {
-    //console.log(plugin.settings.functionSearch);
-    console.log(funcSS);
-    //console.log(plugin.settings.searchBy);
-    //console.log('++++++++++++++');
-    var showObj = false;
-    $.each( obj.children(), function( i, element ) {
-      var li = $(element);
-      if (li.is('li')) {
-        var show = checkChildren( li.children(), filter );
-        if (show == false)
-          show = funcSS( getTextFromLiInNestedList(li).toLowerCase(), filter );
-          //show = findString( getTextFromLiInNestedList(li).toLowerCase(), filter );
-        if (show == true)
-          li.show();
-        else
-          li.hide();
-        if (show == true)
-          showObj = true;
-      }
-    });
-    if (obj.is('li'))
-      if (showObj == true)
-        obj.show();
+    function workWithElement (element) {
+      
+      if (plugin.settings.clearListStyle == true)
+        element.css('list-style', 'none');
+      
+      if (element.children().length > 0)
+        element.css('cursor', 'pointer');
       else
-        obj.hide();
-    return showObj;
-  };
-  
-  function getTextFromLiInNestedList (element)
-  {
-    var text;
-    if (plugin.settings.searchBy == 'content')
-      text = element.text();
-    if (plugin.settings.searchBy == 'value') {
-      text = element.data('value');
-      if (text === undefined) {
-        text = element.text();
-      }
-      else if (!text.trim()) {
-        text = element.text();
-      }
+        element.css('cursor', 'default');
+      
+      /*element.click(function(event) {
+        if (this == event.target) {
+          var element = $(this);    
+          var text = getTextFromLiInNestedList(element);  
+          alert( text );
+        }
+      });*/
+      
     }
-    //console.log(text);
-    return text;
-  }
   
-  function checkChildren(children, filter) {
-    var show = false;
-    if (children.length > 0) {
-      $.each( children, function( i, element ) {
-        if (doFilter($(element), filter) == true)
-          show = true;
+    function doFilter(obj, filter) {
+      console.log(funcSS);
+      var showObj = false;
+      $.each( obj.children(), function( i, element ) {
+        var li = $(element);
+        if (li.is('li')) {
+          var show = checkChildren( li.children(), filter );
+          if (show == false)
+            show = plugin.settings.functionSearch( getTextFromLiInNestedList(li).toLowerCase(), filter );
+          if (show == true)
+            li.show();
+          else
+            li.hide();
+          if (show == true)
+            showObj = true;
+        }
       });
-    }
-    return show;      
-  };
+      if (obj.is('li'))
+        if (showObj == true)
+          obj.show();
+        else
+          obj.hide();
+      return showObj;
+    };
+    
+    function checkChildren(children, filter) {
+      var show = false;
+      if (children.length > 0) {
+        $.each( children, function( i, element ) {
+          if (doFilter($(element), filter) == true)
+            show = true;
+        });
+      }
+      return show;      
+    };
+    
+    function getTextFromLiInNestedList (element)
+    {
+      var text;
+      if (plugin.settings.searchBy == 'content')
+        text = element.text();
+      if (plugin.settings.searchBy == 'value') {
+        text = element.data('value');
+        if (text === undefined) {
+          text = element.text();
+        }
+        else if (!text.trim()) {
+          text = element.text();
+        }
+      }
+      return text;
+    };
+    
+    function findString(text, textFind) {
+      if (textFind === undefined) {
+         return true;
+       }
+       else if (!textFind.trim()) {
+         return true;
+       }
+      var find = false;
+      if (text.indexOf(textFind) >= 0)
+        find = true;
+      return find;      
+    };
   
-  function findString(text, textFind) {
-    if (textFind === undefined) {
-       return true;
-     }
-     else if (!textFind.trim()) {
-       return true;
-     }
-    var find = false;
-    if (text.indexOf(textFind) >= 0)
-      find = true;
-    return find;      
-  };
-  
-      return this;
+    return this;
   };
 
 })( jQuery );

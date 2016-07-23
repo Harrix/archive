@@ -11,6 +11,7 @@
     //plugin settings
     var defaults = {
       clearListStyle : true,
+      searchBy : 'content',
 	  }; 
     settings = $.extend({}, defaults, options);
 
@@ -25,7 +26,7 @@
       }, 100);
     });
     
-    $(ul).click(handler).find( "ul" );
+    //$(ul).click(handler).find( "ul" );
     
     //bypassing all items
     listTraversal ($(ul).children());
@@ -61,13 +62,13 @@
     else
       element.css('cursor', 'default');
     
-    /*element.click(function(event) {
+    element.click(function(event) {
       if (this == event.target) {
         var element = $(this);    
-        var text = element.contents().get(0).nodeValue.toLowerCase();    
+        var text = getTextFromLiInNestedList(element);  
         alert( text );
       }
-    });*/
+    });
     
   }
 
@@ -98,9 +99,18 @@
   function getTextFromLiInNestedList (element)
   {
     var text;
-    //text = element.clone().children().remove().end().text();
-    text = element.text();
-    console.log(text);
+    if (settings.searchBy == 'content')
+      text = element.text();
+    if (settings.searchBy == 'value') {
+      text = element.data('value');
+      if (text === undefined) {
+        text = element.text();
+      }
+      else if (!text.trim()) {
+        text = element.text();
+      }
+    }
+    //console.log(text);
     return text;
   }
   

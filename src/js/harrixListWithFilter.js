@@ -28,7 +28,7 @@
     if (plugin.settings.clearListStyle == true)
       $(ul).find("li").css('list-style', 'none');
 
-    listTraversal ($(ul).children());
+    listTraversal ($(ul).children(), workWithElement);
     
     $(input)
     .change(function() {
@@ -47,13 +47,13 @@
       }
     };
     
-    function listTraversal (children)
+    function listTraversal (list, processingElement)
     {
-      if (children.length > 0) {
-        $.each( children, function( i, element ) {
+      if (list.length > 0) {
+        $.each( list, function( i, element ) {
           var element = $(element);        
-          workWithElement (element);        
-          listTraversal(element.children());
+          processingElement (element);        
+          listTraversal(element.children(), processingElement);
         });
       }        
     };

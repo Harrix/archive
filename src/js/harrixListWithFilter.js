@@ -12,6 +12,7 @@
     var defaults = {
       clearListStyle : true,
       searchBy : 'content',
+      functionSearch: findString,
 	  }; 
     settings = $.extend({}, defaults, options);
 
@@ -79,7 +80,7 @@
       if (li.is('li')) {
         var show = checkChildren( li.children(), filter );
         if (show == false)
-          show = findString( getTextFromLiInNestedList(li).toLowerCase(), filter );
+          show = settings.functionSearch( getTextFromLiInNestedList(li).toLowerCase(), filter );
         if (show == true)
           li.show();
         else

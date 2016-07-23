@@ -143,6 +143,56 @@
               });
           </script>
           
+          <p><input id="filter3" type="text" placeholder="Поиск..." /></p>
+          <ul id="root_tree3" class="expList">
+            <li data-value="Функции">Функции
+            <ul>
+              <li data-value="По работе с матрицами">По работе с матрицами
+              <ul>
+                <li data-value="Add котовлас">Add</li>
+                <li data-value="Minus."><span>M</span>inus.</li>
+              </ul>
+              </li>
+              <li data-value="По работе с векторами">По работе с векторами
+              <ul>
+                <li data-value="vectortovector"><a href="http://harrix.org">vectortovector</a></li>
+                <li data-value="Findff">Findff</li>
+              </ul>
+              </li>
+            </ul>
+            </li>
+            <li data-value="Файлы">Файлы
+            <ul>
+              <li data-value="Заголовочные">Заголовочные
+              <ul>
+                <li data-value="main.h">main.h</li>
+                <li data-value="">libary.h</li>
+                <li >Classic</li>
+              </ul>
+              </li>
+              <li data-value="Еще файлы">Еще файлы
+              <ul>
+                <li data-value="Там">Там</li>
+                <li data-value="векторы">векторы</li>
+              </ul>
+              </li>
+            </ul>
+            </li>
+          </ul>
+          <script type="text/javascript">
+            function findString2(text, textFind) {
+    var find = false;
+    if (text.indexOf('a') >= 0)
+      find = true;
+    return find;      
+  };
+              $().harrixListWithFilter('#root_tree3', '#filter3',{
+                clearListStyle : true,
+                searchBy : 'value',
+                functionSearch: findString2,
+              });
+          </script>
+          
 
           
         </div>

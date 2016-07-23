@@ -12,16 +12,24 @@
     var defaults = {
       clearListStyle : true,
       searchBy : 'content',
-      collapsedStart: true,
-	  }; 
-    settings = $.extend({}, defaults, options);
+      functionSearch : findString,
+      //collapsedStart : true,      
+	  };
+    
+    var plugin = this;
+    
+    plugin.settings = $.extend({}, defaults, options);
     
     var funcSS = functionS;
     
     if (funcSS === undefined) {
 		  funcSS = findString;
 	  } 
-    console.log(funcSS);
+    //console.log(funcSS);
+    
+    
+    console.log(plugin.settings.functionSearch);
+    console.log('------------------------');
 
     //launch processing filter
     $(input)
@@ -61,7 +69,7 @@
   
   function workWithElement (element) {
     
-    if (settings.clearListStyle == true)
+    if (plugin.settings.clearListStyle == true)
       element.css('list-style', 'none');
     
     if (element.children().length > 0)
@@ -80,13 +88,16 @@
   }
 
   function doFilter(obj, filter) {
+    console.log(plugin.settings.functionSearch);
+    console.log(plugin.settings.searchBy);
+    console.log('++++++++++++++');
     var showObj = false;
     $.each( obj.children(), function( i, element ) {
       var li = $(element);
       if (li.is('li')) {
         var show = checkChildren( li.children(), filter );
         if (show == false)
-          show = funcSS( getTextFromLiInNestedList(li).toLowerCase(), filter );
+          show = plugin.settings.functionSearch( getTextFromLiInNestedList(li).toLowerCase(), filter );
           //show = findString( getTextFromLiInNestedList(li).toLowerCase(), filter );
         if (show == true)
           li.show();
@@ -107,9 +118,9 @@
   function getTextFromLiInNestedList (element)
   {
     var text;
-    if (settings.searchBy == 'content')
+    if (plugin.settings.searchBy == 'content')
       text = element.text();
-    if (settings.searchBy == 'value') {
+    if (plugin.settings.searchBy == 'value') {
       text = element.data('value');
       if (text === undefined) {
         text = element.text();

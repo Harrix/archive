@@ -48,13 +48,13 @@
       element.css('cursor', 'pointer');
     else
       element.css('cursor', 'default');
-    /*element.click(function(event) {
+    element.click(function(event) {
       if (this == event.target) {
         var element = $(this);    
         var text = element.contents().get(0).nodeValue.toLowerCase();    
         alert( text );
       }
-    });*/
+    });
   }
   
   function prepareList(element) {

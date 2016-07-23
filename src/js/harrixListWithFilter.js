@@ -8,11 +8,13 @@
 
   $.fn.harrixListWithFilter = function(ul, input, options) {
     
+    //plugin settings
     var defaults = {
       clearListStyle : true,
 	  }; 
     settings = $.extend({}, defaults, options);
 
+    //launch processing filter
     $(input)
     .change(function() {
       doFilter($(ul), $(input).val().toLowerCase());
@@ -23,12 +25,20 @@
       }, 100);
     });
     
-    listTraversal ($(ul).children());
+    $(ul).click(handler).find( "ul" );
     
-    //prepareList($(ul));
+    //bypassing all items
+    listTraversal ($(ul).children());
     
     return this;
   };
+  
+  function handler(event) {
+    var target = $(event.target);
+    if (target.is("li")) {
+      target.children().toggle();
+    }
+  }
   
   function listTraversal (children)
   {
@@ -42,42 +52,33 @@
   }
   
   function workWithElement (element) {
+    
     if (settings.clearListStyle == true)
       element.css('list-style', 'none');
+    
     if (element.children().length > 0)
       element.css('cursor', 'pointer');
     else
       element.css('cursor', 'default');
-    element.click(function(event) {
+    
+    /*element.click(function(event) {
       if (this == event.target) {
         var element = $(this);    
         var text = element.contents().get(0).nodeValue.toLowerCase();    
         alert( text );
       }
-    });
+    });*/
+    
   }
-  
-  function prepareList(element) {
-  $(element).find('li:has(ul)')
-  	.click( function(event) {
-  		if (this == event.target) {
-  			$(this).toggleClass('expanded');
-  			$(this).children('ul').toggle('medium');
-  		}
-  		return false;
-  	})
-  	.addClass('collapsed')
-  	.children('ul').hide();
-  };
-  
+
   function doFilter(obj, filter) {
     var showObj = false;
     $.each( obj.children(), function( i, element ) {
       var li = $(element);
       if (li.is('li')) {
-        var show = checkChildren(li.children(), filter);
+        var show = checkChildren( li.children(), filter );
         if (show == false)
-          show = findString(li.contents().get(0).nodeValue.toLowerCase(), filter);
+          show = findString( getTextFromLiInNestedList(li).toLowerCase(), filter );
         if (show == true)
           li.show();
         else
@@ -86,12 +87,22 @@
           showObj = true;
       }
     });
-    if (showObj == true)
-          obj.show();
-        else
-          obj.hide();
+    if (obj.is('li'))
+      if (showObj == true)
+        obj.show();
+      else
+        obj.hide();
     return showObj;
   };
+  
+  function getTextFromLiInNestedList (element)
+  {
+    var text;
+    //text = element.clone().children().remove().end().text();
+    text = element.text();
+    console.log(text);
+    return text;
+  }
   
   function checkChildren(children, filter) {
     var show = false;

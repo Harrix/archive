@@ -6,16 +6,22 @@
  */
 (function( $ ){
 
-  $.fn.harrixListWithFilter = function(ul, input, options) {
+  $.fn.harrixListWithFilter = function(ul, input, options, functionS) {
     
     //plugin settings
     var defaults = {
       clearListStyle : true,
       searchBy : 'content',
-      functionSearch: findString,
       collapsedStart: true,
 	  }; 
     settings = $.extend({}, defaults, options);
+    
+    var funcSS = functionS;
+    
+    if (funcSS === undefined) {
+		  funcSS = findString;
+	  } 
+    console.log(funcSS);
 
     //launch processing filter
     $(input)
@@ -30,15 +36,10 @@
     
     //$(ul).click(handler);
     //$(ul).find("ul").hide;
-    
-    console.log(settings.findString);
-    console.log(findString);
+
     
     //bypassing all items
     listTraversal ($(ul).children());
-    
-    return this;
-  };
   
   function handler(event) {
     var target = $(event.target);
@@ -85,7 +86,7 @@
       if (li.is('li')) {
         var show = checkChildren( li.children(), filter );
         if (show == false)
-          show = settings.functionSearch( getTextFromLiInNestedList(li).toLowerCase(), filter );
+          show = funcSS( getTextFromLiInNestedList(li).toLowerCase(), filter );
           //show = findString( getTextFromLiInNestedList(li).toLowerCase(), filter );
         if (show == true)
           li.show();
@@ -133,11 +134,13 @@
   };
   
   function findString(text, textFind) {
-    alert(1);
     var find = false;
     if (text.indexOf(textFind) >= 0)
       find = true;
     return find;      
+  };
+  
+      return this;
   };
 
 })( jQuery );

@@ -129,14 +129,6 @@
           element.css('cursor', 'default');          
         }
       }
-      
-      /*element.click(function(event) {
-        if (this == event.target) {
-          var element = $(this);    
-          var text = getTextFromLiInNestedList(element);  
-          alert( text );
-        }
-      });*/      
     };
   
     function doFilter(obj, filter) {

@@ -1,6 +1,10 @@
 .harrixListWithFilter ul {
     display: none;
 }
+.harrixListWithFilter .no-results {
+    display: none;
+}
+
 /*.expList li {
     line-height:140%;
     text-indent:0px;

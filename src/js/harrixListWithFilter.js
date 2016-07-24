@@ -43,10 +43,15 @@
       {
         doFilter($(ul), text);
         $(ul).find("ul").show();
+        if ($(ul).find("li:visible").length == 0)
+          $(ul).find(".no-results").show();
+        else
+          $(ul).find(".no-results").hide();
       }
       else
       {
         listTraversal ($(ul).children(), returnStateCollapse);
+        $(ul).find(".no-results").hide();
       }
     })
     .on('keyup paste', function () {
@@ -59,7 +64,6 @@
       var element = $(element);
       if (element.is('ul'))
       {
-        console.log(element.attr('data-collapse'));
         if (element.attr('data-collapse') == 'true') {
           element.hide();
         } else {

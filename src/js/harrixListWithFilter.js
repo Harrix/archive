@@ -67,6 +67,9 @@
           element.show();
         }
       }
+      else if (element.is('li')) {
+        element.show();
+      }
     };
   
     function toggleUl(event) {

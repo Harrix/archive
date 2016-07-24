@@ -29,6 +29,7 @@
     }
     else
     {
+      $(ul).find("ul").show();
       $(ul).find("ul").attr('data-collapse', 'false');
     }
     

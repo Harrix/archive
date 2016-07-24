@@ -33,6 +33,7 @@
     $(input)
     .change(function() {
       doFilter($(ul), $(input).val().toLowerCase());
+      $(ul).find("ul").show();
     })
     .on('keyup paste', function () {
       setTimeout(function () {

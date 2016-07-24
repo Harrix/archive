@@ -23,7 +23,14 @@
     $(ul).click(toggleUl);
     
     if (plugin.settings.collapsedStart == true)
+    {
       $(ul).find("ul").hide();
+      $(ul).find("ul").attr('data-collapse', 'true');
+    }
+    else
+    {
+      $(ul).find("ul").attr('data-collapse', 'false');
+    }
     
     if (plugin.settings.clearListStyle == true)
       $(ul).find("li").css('list-style', 'none');
@@ -32,14 +39,35 @@
     
     $(input)
     .change(function() {
-      doFilter($(ul), $(input).val().toLowerCase());
-      $(ul).find("ul").show();
+      var text = $(input).val().toLowerCase();
+      if (text.trim())
+      {
+        doFilter($(ul), text);
+        $(ul).find("ul").show();
+      }
+      else
+      {
+        listTraversal ($(ul).children(), returnStateCollapse);
+      }
     })
     .on('keyup paste', function () {
       setTimeout(function () {
         $(input).change();
       }, 100);
     });
+    
+    function returnStateCollapse (element) {
+      var element = $(element);
+      if (element.is('ul'))
+      {
+        console.log(element.attr('data-collapse'));
+        if (element.attr('data-collapse') == 'true') {
+          element.hide();
+        } else {
+          element.show();
+        }
+      }
+    };
   
     function toggleUl(event) {
       var target = $(event.target);
@@ -47,13 +75,25 @@
         $.each( target.children(), function( i, element ) {
           var element = $(element);
           if (element.is('ul'))
+          {
             element.toggle();
+            toogleAttr (element, 'data-collapse', 'true', 'false');
+          }
         });
       }
       else {
         if (!target.is("ul")) {
           target.closest("li").find('ul:first').toggle();
+          toogleAttr (target.closest("li").find('ul:first'), 'data-collapse', 'true', 'false');
         }
+      }
+    };
+    
+    function toogleAttr (element, name, first, second) {
+      if (element.attr(name) == first) {
+        element.attr(name, second);
+      } else {
+        element.attr(name, first);
       }
     };
     

@@ -73,7 +73,17 @@
         if (isLiTreeLeaf(element) == true)
           element.css('cursor', 'pointer');
         else
-          element.css('cursor', 'default');
+        {
+          if ((!element.is("li"))&&(!element.is("ul")))
+          {
+            if (isLiTreeLeaf(element.closest("li")) == true)
+              element.css('cursor', 'pointer');
+            else
+              element.css('cursor', 'default');
+          }
+        else
+          element.css('cursor', 'default');          
+        }
       }
       
       /*element.click(function(event) {

@@ -24,13 +24,11 @@
     
     if (plugin.settings.collapsedStart == true)
     {
-      $(ul).find("ul").hide();
-      $(ul).find("ul").attr('data-collapse', 'true');
+      $(ul).find("ul").hide().attr('data-collapse', 'true');
     }
     else
     {
-      $(ul).find("ul").show();
-      $(ul).find("ul").attr('data-collapse', 'false');
+      $(ul).find("ul").show().attr('data-collapse', 'false');
     }
     
     if (plugin.settings.clearListStyle == true)

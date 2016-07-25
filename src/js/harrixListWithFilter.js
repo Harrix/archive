@@ -169,7 +169,7 @@
       if (element.is("ul") == true)
       {
         var count = element.find('li').length;
-        liWorkWithElement.prepend( '<span class="count_li">'+count+'</span>' );
+        liWorkWithElement.append( '<span class="count_li">'+count+'</span>' );
       }
     };
   

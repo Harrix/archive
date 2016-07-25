@@ -188,7 +188,8 @@
         if (li.is('li')) {
           var show = checkChildren( li.children(), filter );
           if (!show)
-            show = plugin.settings.functionSearch( getTextFromLiInNestedList(li).toLowerCase(), filter );
+            show = plugin.settings.functionSearch( getTextFromLiInNestedList(li).toLowerCase(),
+                                                   filter );
           if (show)
             li.show();
           else

@@ -33,33 +33,6 @@
     
     if (plugin.settings.clearListStyle == true)
       $(ul).find("li").css('list-style', 'none');
-      
-    /*$(ul).find("ul").attr('data-count', '0');
-    $(ul).find("ul").each(function (i, element) {
-      var element=$(element);
-      var count = element.find('li').length;
-      
-      var prevElement = element.prev();
-      var prevLi;
-      if (prevElement.is('li') == true)
-      {
-        prevLi = prevElement;
-      }
-      else
-      {
-        //prevLi = prevElement.closest("li");
-        prevLi = prevElement;
-      }
-      
-      prevLi.attr('data-count', count).css('color', 'red');
-      
-      //element.find('li').css('color', 'yellow');
-      //var firstLi = element.find('li').eq(0);
-      //prevLi.append( '<span class="count_li">'+count+'</span>' );
-      //console.log(firstLi);
-      //element.find('li').append( '<span class="count_li">'+count+'</span>' );
-      //target.closest("li").find('ul:first'), 'data-collapse', 'true', 'false');
-    });*/
 
     listTraversal ($(ul).children(), workWithElement);
     
@@ -141,8 +114,7 @@
       }
     };
     
-    var liWorkWithElement;
-    
+    var liWorkWithElement;    
     function workWithElement (element) {
       if (plugin.settings.changeCursor == true)
       {
@@ -169,7 +141,7 @@
       if (element.is("ul") == true)
       {
         var count = element.find('li').length;
-        liWorkWithElement.append( '<span class="count_li">'+count+'</span>' );
+        liWorkWithElement.prepend( '<span class="count_li">'+count+'</span>' );
       }
     };
   

@@ -6,8 +6,10 @@
 }
 
 .harrixListWithFilter .count_li {
-    color: red;
+    float: right;
 }
+
+
 
 /*.expList li {
     line-height:140%;

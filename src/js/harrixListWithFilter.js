@@ -17,6 +17,7 @@
       collapsedStart : true,
       changeCursor : true,
       countItems : 'none',
+      showZeroCountItems : true,
 	  };
     
     plugin.settings = $.extend({}, defaults, options);
@@ -144,7 +145,28 @@
         if (element.is("ul"))
         {
           var count = element.find('li').length;
-          liWorkWithElement.prepend( '<span class="count_li">'+count+'</span>' );
+          if ((plugin.settings.showZeroCountItems) || 
+             ((!plugin.settings.showZeroCountItems) && (count > 0)))
+            liWorkWithElement.prepend( '<span class="count_li">'+count+'</span>' );
+        }
+      }
+      if (plugin.settings.countItems == 'only-leafs')
+      {
+        if (element.is("li"))
+        {
+          liWorkWithElement = element;
+        }
+        if (element.is("ul"))
+        {
+          var count = 0;
+          element.find('li').each(function (index, element) {
+            var element = $(element);
+            if (element.find('ul').length == 0)
+              count++;
+          });
+          if ((plugin.settings.showZeroCountItems) || 
+             ((!plugin.settings.showZeroCountItems) && (count > 0)))
+            liWorkWithElement.prepend( '<span class="count_li">'+count+'</span>' );
         }
       }
     };

@@ -141,6 +141,8 @@
       }
     };
     
+    var liWorkWithElement;
+    
     function workWithElement (element) {
       if (plugin.settings.changeCursor == true)
       {
@@ -158,6 +160,16 @@
         else
           element.css('cursor', 'default');          
         }
+      }
+      
+      if (element.is("li") == true)
+      {
+        liWorkWithElement = element;
+      }
+      if (element.is("ul") == true)
+      {
+        var count = element.find('li').length;
+        liWorkWithElement.prepend( '<span class="count_li">'+count+'</span>' );
       }
     };
   

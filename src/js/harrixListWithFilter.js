@@ -34,6 +34,8 @@
     }
     
     if (plugin.settings.listStyle == 'none')
+      $(ul).find("li").css('list-style', 'none');    
+    if (plugin.settings.listStyle == 'arrows')
       $(ul).find("li").css('list-style', 'none');
 
     listTraversal ($(ul).children(), workWithElement);
@@ -85,8 +87,9 @@
           if (element.is('ul'))
           {
             element.toggle();
-            target.toggleClass("collapsed expanded");
             toogleAttr (element, 'data-collapse', 'true', 'false');
+            if (plugin.settings.listStyle == 'arrows')
+              target.toggleClass("collapsed expanded");
           }
         });
       }

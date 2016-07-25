@@ -136,12 +136,13 @@
         }
       }
       
-      if (plugin.settings.countItems == 'all-li')
-      {
-        if (element.is("li"))
+      if (element.is("li"))
         {
           liWorkWithElement = element;
         }
+      
+      if (plugin.settings.countItems == 'all-li')
+      {
         if (element.is("ul"))
         {
           var count = element.find('li').length;
@@ -152,10 +153,6 @@
       }
       if (plugin.settings.countItems == 'only-leafs')
       {
-        if (element.is("li"))
-        {
-          liWorkWithElement = element;
-        }
         if (element.is("ul"))
         {
           var count = 0;

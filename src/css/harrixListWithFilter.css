@@ -15,16 +15,8 @@
     margin-left: 10px;
 }
 .harrixListWithFilter li.collapsed {
-    content:''; 
-    background-size:contain; 
-    background-repeat:no-repeat; 
-    padding-left: 20px; 
-    background-image: url(../assets/collapsed.svg);
+    list-style-image: url('../assets/collapsed.svg');
 }
 .harrixListWithFilter  li.expanded {
-    content:''; 
-    background-size:contain; 
-    background-repeat:no-repeat; 
-    padding-left: 20px; 
-    background-image: url(../assets/expanded.svg);
+    list-style-image: url('../assets/expanded.svg');
 }

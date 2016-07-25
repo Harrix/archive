@@ -164,6 +164,13 @@
             liWorkWithElement.prepend( '<span class="count_li">'+count+'</span>' );
         }
       }
+      
+      if (plugin.settings.listStyle == 'arrows')
+      {
+        if (element.is("ul"))
+        {
+        }
+      }
     };
   
     function doFilter(obj, filter) {

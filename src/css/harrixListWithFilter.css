@@ -1,12 +1,19 @@
 .harrixListWithFilter ul {
     display: none;
 }
+
+.harrixListWithFilter ul, li {
+    max-width: 500px;
+    overflow: hidden;
+}
+
 .harrixListWithFilter .no-results {
     display: none;
 }
 
 .harrixListWithFilter .count_li {
     float: right;
+    margin-left: 10px;
 }
 
 

@@ -16,6 +16,7 @@
       functionSearch : findString,
       collapsedStart : true,
       changeCursor : true,
+      countItems : 'none',
 	  };
     
     plugin.settings = $.extend({}, defaults, options);
@@ -134,14 +135,17 @@
         }
       }
       
-      if (element.is("li") == true)
+      if (plugin.settings.countItems == 'all-li')
       {
-        liWorkWithElement = element;
-      }
-      if (element.is("ul") == true)
-      {
-        var count = element.find('li').length;
-        liWorkWithElement.prepend( '<span class="count_li">'+count+'</span>' );
+        if (element.is("li") == true)
+        {
+          liWorkWithElement = element;
+        }
+        if (element.is("ul") == true)
+        {
+          var count = element.find('li').length;
+          liWorkWithElement.prepend( '<span class="count_li">'+count+'</span>' );
+        }
       }
     };
   

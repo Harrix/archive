@@ -85,6 +85,7 @@
           if (element.is('ul'))
           {
             element.toggle();
+            target.toggleClass("collapsed expanded");
             toogleAttr (element, 'data-collapse', 'true', 'false');
           }
         });
@@ -169,6 +170,10 @@
       {
         if (element.is("ul"))
         {
+          if (element.attr('data-collapse') == 'true')
+            liWorkWithElement.addClass( "collapsed" );
+          else
+            liWorkWithElement.addClass( "expanded" );
         }
       }
     };

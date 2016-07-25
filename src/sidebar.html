@@ -58,7 +58,7 @@
         <div class="content col-md-12">
           <p><input id="filter" type="text" placeholder="Поиск..." /></p>
           <ul id="root_tree" class="harrixListWithFilter">
-            <li>Функции
+            <li class="collapsed">Функции
             <ul>
               <li>По работе с матрицами
               <ul>
@@ -95,7 +95,7 @@
           </ul>
           <script type="text/javascript">
               jQuery().harrixListWithFilter('#root_tree', '#filter',{
-                listStyle : 'none',
+                listStyle : 'arrows',
                 searchBy : 'content',
               });
           </script>

@@ -33,6 +33,12 @@
     
     if (plugin.settings.clearListStyle == true)
       $(ul).find("li").css('list-style', 'none');
+      
+    $(ul).find("ul").attr('data-count', '0');
+    $(ul).find("ul").each(function (i, element) {
+      var element=$(element);
+      element.attr('data-count', element.find('li').length);
+    });
 
     listTraversal ($(ul).children(), workWithElement);
     

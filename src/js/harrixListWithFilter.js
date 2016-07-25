@@ -23,7 +23,7 @@
     
     $(ul).click(toggleUl);
     
-    if (plugin.settings.collapsedStart == true)
+    if (plugin.settings.collapsedStart)
     {
       $(ul).find("ul").hide().attr('data-collapse', 'true');
     }
@@ -32,7 +32,7 @@
       $(ul).find("ul").show().attr('data-collapse', 'false');
     }
     
-    if (plugin.settings.clearListStyle == true)
+    if (plugin.settings.clearListStyle)
       $(ul).find("li").css('list-style', 'none');
 
     listTraversal ($(ul).children(), workWithElement);
@@ -117,15 +117,15 @@
     
     var liWorkWithElement;    
     function workWithElement (element) {
-      if (plugin.settings.changeCursor == true)
+      if (plugin.settings.changeCursor)
       {
-        if (isLiTreeLeaf(element) == true)
+        if (isLiTreeLeaf(element))
           element.css('cursor', 'pointer');
         else
         {
           if ((!element.is("li"))&&(!element.is("ul")))
           {
-            if (isLiTreeLeaf(element.closest("li")) == true)
+            if (isLiTreeLeaf(element.closest("li")))
               element.css('cursor', 'pointer');
             else
               element.css('cursor', 'default');
@@ -137,11 +137,11 @@
       
       if (plugin.settings.countItems == 'all-li')
       {
-        if (element.is("li") == true)
+        if (element.is("li"))
         {
           liWorkWithElement = element;
         }
-        if (element.is("ul") == true)
+        if (element.is("ul"))
         {
           var count = element.find('li').length;
           liWorkWithElement.prepend( '<span class="count_li">'+count+'</span>' );
@@ -155,18 +155,18 @@
         var li = $(element);
         if (li.is('li')) {
           var show = checkChildren( li.children(), filter );
-          if (show == false)
+          if (!show)
             show = plugin.settings.functionSearch( getTextFromLiInNestedList(li).toLowerCase(), filter );
-          if (show == true)
+          if (show)
             li.show();
           else
             li.hide();
-          if (show == true)
+          if (show)
             showObj = true;
         }
       });
       if (obj.is('li'))
-        if (showObj == true)
+        if (showObj)
           obj.show();
         else
           obj.hide();
@@ -177,7 +177,7 @@
       var show = false;
       if (children.length > 0) {
         $.each( children, function( i, element ) {
-          if (doFilter($(element), filter) == true)
+          if (doFilter($(element), filter))
             show = true;
         });
       }

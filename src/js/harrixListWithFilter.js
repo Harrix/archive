@@ -137,9 +137,7 @@
       }
       
       if (element.is("li"))
-        {
-          liWorkWithElement = element;
-        }
+        liWorkWithElement = element;
       
       if (plugin.settings.countItems == 'all-li')
       {

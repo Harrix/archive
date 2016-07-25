@@ -95,7 +95,7 @@
           </ul>
           <script type="text/javascript">
               jQuery().harrixListWithFilter('#root_tree', '#filter',{
-                clearListStyle : true,
+                listStyle : 'none',
                 searchBy : 'content',
               });
           </script>
@@ -140,7 +140,7 @@
           </ul>
           <script type="text/javascript">
               jQuery().harrixListWithFilter('#root_tree2', '#filter2',{
-                clearListStyle : false,
+                listStyle : 'default',
                 searchBy : 'value',
                 collapsedStart: true,
                 changeCursor: true,
@@ -199,7 +199,7 @@
     };
   
               jQuery().harrixListWithFilter('#root_tree3', '#filter3',{
-                clearListStyle : true,
+                listStyle : 'none',
                 searchBy : 'value',
                 functionSearch : findString2,
                 countItems : 'only-leafs',

@@ -11,7 +11,7 @@
     var plugin = this;
     
     var defaults = {
-      clearListStyle : true,
+      listStyle : 'default',
       searchBy : 'content',
       functionSearch : findString,
       collapsedStart : true,
@@ -33,7 +33,7 @@
       $(ul).find("ul").show().attr('data-collapse', 'false');
     }
     
-    if (plugin.settings.clearListStyle)
+    if (plugin.settings.listStyle == 'none')
       $(ul).find("li").css('list-style', 'none');
 
     listTraversal ($(ul).children(), workWithElement);

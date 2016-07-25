@@ -4,7 +4,7 @@
 
 .harrixListWithFilter ul, li {
     max-width: 500px;
-    overflow: hidden;
+    /*overflow: hidden;*/
 }
 
 .harrixListWithFilter .no-results {

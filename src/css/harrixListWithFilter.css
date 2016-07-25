@@ -14,9 +14,11 @@
     float: right;
     margin-left: 10px;
 }
+
 .harrixListWithFilter li.collapsed {
     list-style-image: url('../assets/collapsed.svg');
 }
+
 .harrixListWithFilter  li.expanded {
     list-style-image: url('../assets/expanded.svg');
 }

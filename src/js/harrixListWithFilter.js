@@ -34,9 +34,15 @@
     }
     
     if (plugin.settings.listStyle == 'none')
-      $(ul).find("li").css('list-style', 'none');    
-    if (plugin.settings.listStyle == 'arrows')
+    {
       $(ul).find("li").css('list-style', 'none');
+      $(ul).css('padding-left', '0px');
+    }
+    if (plugin.settings.listStyle == 'arrows')
+    {
+      $(ul).find("li").css('list-style', 'none');
+      $(ul).css('padding-left', '0px');
+    }
 
     listTraversal ($(ul).children(), workWithElement);
     

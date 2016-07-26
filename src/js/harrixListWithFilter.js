@@ -33,6 +33,16 @@
     {
       $(ul).find("ul").show().attr('data-collapse', 'false');
     }
+    if (plugin.settings.collapsedStart == 'close-last-ul')
+    {
+      $(ul).find("ul").each(function (index, element) {
+        var element = $(element);
+        if (element.find('ul').length == 0 )
+          element.hide().attr('data-collapse', 'true');
+        else
+          element.show().attr('data-collapse', 'false');
+      });
+    }
     
     if (plugin.settings.listStyle == 'default')
     {

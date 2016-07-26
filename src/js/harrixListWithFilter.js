@@ -156,25 +156,28 @@
     };
   
     function toggleUl(event) {
-      var target = $(event.target);
-      if (target.is("li")) {
-        $.each( target.children(), function( i, element ) {
-          var element = $(element);
-          if (element.is('ul'))
-          {
-            element.toggle();
-            toggleAttr (element, 'data-collapse', 'true', 'false');
-            toggleCollapsEdexpanded (target, element);
+      var filter = $(input).val().toLowerCase();
+      if (!filter.trim()) {        
+        var target = $(event.target);
+        if (target.is("li")) {
+          $.each( target.children(), function( i, element ) {
+            var element = $(element);
+            if (element.is('ul'))
+            {
+              element.toggle();
+              toggleAttr (element, 'data-collapse', 'true', 'false');
+              toggleCollapsEdexpanded (target, element);
+            }
+          });
+        }
+        else {
+          if (!target.is("ul")) {
+            var li = target.closest("li");
+            var ulFirst = li.find('ul:first');
+            ulFirst.toggle();
+            toggleAttr (ulFirst, 'data-collapse', 'true', 'false');
+            toggleCollapsEdexpanded (li, ulFirst);
           }
-        });
-      }
-      else {
-        if (!target.is("ul")) {
-          var li = target.closest("li");
-          var ulFirst = li.find('ul:first');
-          ulFirst.toggle();
-          toggleAttr (ulFirst, 'data-collapse', 'true', 'false');
-          toggleCollapsEdexpanded (li, ulFirst);
         }
       }
     };

@@ -190,8 +190,7 @@
       }
       if (plugin.settings.paddingLi === 'none')
       {
-        //if (element.is("li"))
-            element.css('padding-left','0px');
+        element.css('padding-left','0px');
       }
       
       if (element.is("li"))

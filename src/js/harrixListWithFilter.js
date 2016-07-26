@@ -24,6 +24,8 @@
     
     plugin.settings = $.extend({}, defaults, options);
     
+    var liWorkWithElement;
+    
     $(ul).click(toggleUl);
     
     if (plugin.settings.collapsedStart == 'all')
@@ -76,6 +78,7 @@
     }
 
     listTraversal ($(ul).children(), workWithElement);
+    listTraversal ($(ul).children(), distributeCollapsedExpanded);
     
     $(input)
     .change(function() {
@@ -84,6 +87,26 @@
       {
         doFilter($(ul), text);
         $(ul).find("ul").show();
+        
+        $(ul).find("li:visible").each(function (index, element) {
+          var element = $(element);
+          if (element.find("li:visible").length > 0)
+          {
+            if ((element.hasClass('collapsed'))||(element.hasClass('expanded')))
+            {
+              element.removeClass('collapsed');
+              element.addClass('expanded');
+            }
+          }
+          else
+          {
+            if ((element.hasClass('collapsed'))||(element.hasClass('expanded')))
+            {
+              element.removeClass('expanded');
+              element.addClass('collapsed');
+            }
+          }
+        });
         
         if ($(ul).find("li:visible").length == 0)
           $(ul).find(".no-results").show();
@@ -105,6 +128,7 @@
       else
       {
         listTraversal ($(ul).children(), returnStateCollapse);
+        listTraversal ($(ul).children(), distributeCollapsedExpanded);
         $(ul).find(".no-results").hide();
       }
     })
@@ -193,8 +217,7 @@
         });
       }
     };
-    
-    var liWorkWithElement;    
+       
     function workWithElement (element) {
       if (plugin.settings.changeCursor)
       {
@@ -253,7 +276,11 @@
             liWorkWithElement.prepend( '<span class="count_li">'+count+'</span>' );
         }
       }
-      
+    };
+    
+    function distributeCollapsedExpanded (element) {
+      /*if (element.is("li"))
+        liWorkWithElement = element;      
       if (plugin.settings.listStyle == 'arrows')
       {
         if (element.is("ul"))
@@ -262,6 +289,23 @@
             liWorkWithElement.addClass( "collapsed" );
           else
             liWorkWithElement.addClass( "expanded" );
+        }
+      }*/
+      if (element.is('li'))
+      {
+        if (!isLiTreeLeaf(element))
+        {
+          var ulForLi = element.find('ul:first');
+          if (ulForLi.attr('data-collapse') == 'true')
+          {
+            element.addClass( "collapsed" );
+            element.removeClass( "expanded" );
+          }
+          else
+          {
+            element.addClass( "expanded" );
+            element.removeClass( "collapsed" );
+          }
         }
       }
     };

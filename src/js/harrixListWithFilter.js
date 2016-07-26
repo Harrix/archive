@@ -18,7 +18,7 @@
       changeCursor : true,
       countItems : 'none',
       showZeroCountItems : true,
-      paddingLeftLeafs : false,
+      paddingLi : 'default',
 	  };
     
     plugin.settings = $.extend({}, defaults, options);
@@ -182,12 +182,17 @@
         }
       }
       
-      if (plugin.settings.paddingLeftLeafs)
+      if (plugin.settings.paddingLi === 'left-leafs')
       {
         if (element.is("li"))
           if (isLiTreeLeaf(element))
             element.addClass('padding-left');
-      }        
+      }
+      if (plugin.settings.paddingLi === 'none')
+      {
+        //if (element.is("li"))
+            element.css('padding-left','0px');
+      }
       
       if (element.is("li"))
         liWorkWithElement = element;

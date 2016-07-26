@@ -51,8 +51,7 @@
       var filter = $(input).val().toLowerCase();
       if (filter.trim())
       {
-        if (plugin.settings.showSubListByFilter)
-          $(ul).find("li").removeAttr('data-filterthere');
+        $(ul).find("li").removeAttr('data-find');
         
         doFilter($(ul), filter);
         $(ul).find("ul").show();
@@ -84,22 +83,22 @@
         
         if (plugin.settings.showSubListByFilter)
         {
-          $(ul).find("li:visible").each(function (index, element) {
+          /*$(ul).find("li:visible").each(function (index, element) {
             var element = $(element);
             var filter = $(input).val().toLowerCase();
             var text = getTextFromLiInNestedList(element).toLowerCase();
-            var filterThere = plugin.settings.functionSearch( text, filter );
-            if (filterThere)
-              element.attr('data-filterthere','true');
+            var find = plugin.settings.functionSearch( text, filter );
+            if (find)
+              element.attr('data-find','true');
           });
-          $(ul).find("[data-filterthere='true']").each(function (index, element) {
+          $(ul).find("[data-find='true']").each(function (index, element) {
             var element = $(element);
-            if (element.find("[data-filterthere='true']").length == 0)
+            if (element.find("[data-find='true']").length == 0)
             {
               element.find('ul').hide().attr('data-collapse', 'true');
               element.find('li').show();
             }
-          });
+          });*/
           //listTraversal ($(ul).children(), distributeCollapsedExpanded);
           //element.find('ul').hide().attr('data-collapse', 'true');
           //element.find('li').show();
@@ -322,7 +321,10 @@
             show = plugin.settings.functionSearch( text, filter );
           }
           if (show)
+          {
             li.show();
+            li.attr('data-find','true');
+          }
           else
             li.hide();
           if (show)

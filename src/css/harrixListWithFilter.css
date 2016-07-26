@@ -1,4 +1,5 @@
 .harrixListWithFilter  {
+    padding-left: 18px;
 }
 
 .harrixListWithFilter ul, li {
@@ -7,6 +8,7 @@
 
 .harrixListWithFilter ul {
     display: none;
+    padding-left: 18px;
 }
 
 .harrixListWithFilter li {
@@ -15,6 +17,7 @@
 
 .harrixListWithFilter li.padding-left:before {
     padding-left: 18px;
+    margin-left: 18px;
 }
 
 .harrixListWithFilter .no-results {

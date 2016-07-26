@@ -161,7 +161,7 @@
           if (element.is('ul'))
           {
             element.toggle();
-            toogleAttr (element, 'data-collapse', 'true', 'false');
+            toggleAttr (element, 'data-collapse', 'true', 'false');
             if (plugin.settings.listStyle == 'arrows')
               if ((target.hasClass( "collapsed" ))||(target.hasClass( "expanded" )))
                 if (element.attr('data-collapse') == 'true')
@@ -182,7 +182,7 @@
           var li = target.closest("li");
           var ulFirst = li.find('ul:first');
           ulFirst.toggle();
-          toogleAttr (ulFirst, 'data-collapse', 'true', 'false');
+          toggleAttr (ulFirst, 'data-collapse', 'true', 'false');
           if (plugin.settings.listStyle == 'arrows')
             if ((li.hasClass( "collapsed" ))||(li.hasClass( "expanded" )))
               if (ulFirst.attr('data-collapse') == 'true')
@@ -199,7 +199,7 @@
       }
     };
     
-    function toogleAttr (element, name, first, second) {
+    function toggleAttr (element, name, first, second) {
       if (element.attr(name) == first) {
         element.attr(name, second);
       } else {

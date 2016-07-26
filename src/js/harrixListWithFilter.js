@@ -48,10 +48,13 @@
     
     $(input)
     .change(function() {
-      var text = $(input).val().toLowerCase();
-      if (text.trim())
+      var filter = $(input).val().toLowerCase();
+      if (filter.trim())
       {
-        doFilter($(ul), text);
+        if (plugin.settings.showSubListByFilter)
+          $(ul).find("li").removeAttr('data-filterthere');
+        
+        doFilter($(ul), filter);
         $(ul).find("ul").show();
         
         $(ul).find("li:visible").each(function (index, element) {
@@ -83,12 +86,23 @@
         {
           $(ul).find("li:visible").each(function (index, element) {
             var element = $(element);
-            if (element.find("li:visible").length == 0)
+            var filter = $(input).val().toLowerCase();
+            var text = getTextFromLiInNestedList(element).toLowerCase();
+            var filterThere = plugin.settings.functionSearch( text, filter );
+            if (filterThere)
+              element.attr('data-filterthere','true');
+          });
+          $(ul).find("[data-filterthere='true']").each(function (index, element) {
+            var element = $(element);
+            if (element.find("[data-filterthere='true']").length == 0)
             {
-              //element.find('ul').hide();
+              element.find('ul').hide().attr('data-collapse', 'true');
               element.find('li').show();
             }
           });
+          //listTraversal ($(ul).children(), distributeCollapsedExpanded);
+          //element.find('ul').hide().attr('data-collapse', 'true');
+          //element.find('li').show();
         }
       }
       else
@@ -157,7 +171,7 @@
   
     function toggleUl(event) {
       var filter = $(input).val().toLowerCase();
-      if (!filter.trim()) {        
+      if ((!filter.trim()) || ((plugin.settings.showSubListByFilter))) {        
         var target = $(event.target);
         if (target.is("li")) {
           $.each( target.children(), function( i, element ) {
@@ -338,7 +352,12 @@
     {
       var text;
       if (plugin.settings.searchBy == 'content')
+      {
         text = element.text();
+        if (text.indexOf('\n') >= 0) {
+          text = text.substring(0, text.indexOf('\n'));
+        }
+      }
       if (plugin.settings.searchBy == 'value') {
         text = element.data('value');
         if (text === undefined) {
@@ -363,10 +382,6 @@
     };
     
     function findString(text, textFind) {
-      if (textFind === undefined)
-         return true;
-       else if (!textFind.trim())
-         return true;
       var find = false;
       if (text.indexOf(textFind) >= 0)
         find = true;

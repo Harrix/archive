@@ -1,12 +1,16 @@
 .harrixListWithFilter  {
 }
 
+.harrixListWithFilter ul, li {
+    max-width: 500px;
+}
+
 .harrixListWithFilter ul {
     display: none;
 }
 
-.harrixListWithFilter ul, li {
-    max-width: 500px;
+.harrixListWithFilter li {
+    list-style: none;
 }
 
 .harrixListWithFilter .no-results {

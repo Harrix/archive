@@ -33,6 +33,10 @@
       $(ul).find("ul").show().attr('data-collapse', 'false');
     }
     
+    if (plugin.settings.listStyle == 'default')
+    {
+      $(ul).find("li").css('list-style', 'inherit');
+    }
     if (plugin.settings.listStyle == 'none')
     {
       $(ul).find("li").css('list-style', 'none');

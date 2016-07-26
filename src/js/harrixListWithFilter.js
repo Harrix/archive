@@ -89,19 +89,18 @@
             element.toggle();
             toogleAttr (element, 'data-collapse', 'true', 'false');
             if (plugin.settings.listStyle == 'arrows')
-            {
-              if (element.attr('data-collapse') == 'false')
-                target.toggleClass("collapsed expanded");
-              else
-                target.toggleClass("expanded collapsed");
-            }
+              target.toggleClass('collapsed expanded');
           }
         });
       }
       else {
         if (!target.is("ul")) {
-          target.closest("li").find('ul:first').toggle();
-          toogleAttr (target.closest("li").find('ul:first'), 'data-collapse', 'true', 'false');
+          var li = target.closest("li");
+          var ulFirst = li.find('ul:first');
+          ulFirst.toggle();
+          toogleAttr (ulFirst, 'data-collapse', 'true', 'false');
+          if (plugin.settings.listStyle == 'arrows')
+            li.toggleClass('collapsed expanded');
         }
       }
     };

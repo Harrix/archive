@@ -80,6 +80,15 @@
         else
           $(ul).find(".no-results").hide();
         
+        $(ul).find("li:visible").each(function (index, element) {
+          var element = $(element);
+          var filter = $(input).val().toLowerCase();
+          var text = getTextFromLiInNestedList(element).toLowerCase();
+          var find = plugin.settings.functionSearch( text, filter );
+          if (find)
+            element.attr('data-find','true');
+        });
+        
         if (plugin.settings.showSubListByFilter)
         {
           $(ul).find("[data-find='true']").each(function (index, element) {
@@ -304,8 +313,6 @@
           {
             var text = getTextFromLiInNestedList(li).toLowerCase();
             show = plugin.settings.functionSearch( text, filter );
-            if (show)
-              li.attr('data-find','true');
           }
           if (show)
           {

@@ -304,16 +304,16 @@
           {
             var text = getTextFromLiInNestedList(li).toLowerCase();
             show = plugin.settings.functionSearch( text, filter );
+            if (show)
+              li.attr('data-find','true');
           }
           if (show)
           {
+            showObj = true;
             li.show();
-            li.attr('data-find','true');
           }
           else
             li.hide();
-          if (show)
-            showObj = true;
         }
       });
       if (obj.is('li'))

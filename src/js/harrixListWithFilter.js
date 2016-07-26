@@ -24,8 +24,6 @@
     
     plugin.settings = $.extend({}, defaults, options);
     
-    var liWorkWithElement;
-    
     $(ul).click(toggleUl);
     
     setOptionCollapsedStart();
@@ -213,7 +211,8 @@
         });
       }
     };
-       
+
+    var liWorkWithElement;    
     function workWithElement (element) {
       if (plugin.settings.changeCursor)
       {

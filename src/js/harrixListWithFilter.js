@@ -279,18 +279,6 @@
     };
     
     function distributeCollapsedExpanded (element) {
-      /*if (element.is("li"))
-        liWorkWithElement = element;      
-      if (plugin.settings.listStyle == 'arrows')
-      {
-        if (element.is("ul"))
-        {
-          if (element.attr('data-collapse') == 'true')
-            liWorkWithElement.addClass( "collapsed" );
-          else
-            liWorkWithElement.addClass( "expanded" );
-        }
-      }*/
       if (element.is('li'))
       {
         if (!isLiTreeLeaf(element))

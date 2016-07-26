@@ -140,7 +140,16 @@
             toogleAttr (element, 'data-collapse', 'true', 'false');
             if (plugin.settings.listStyle == 'arrows')
               if ((target.hasClass( "collapsed" ))||(target.hasClass( "expanded" )))
-                target.toggleClass('collapsed expanded');
+                if (element.attr('data-collapse') == 'true')
+                {
+                  target.addClass('collapsed');
+                  target.removeClass('expanded');
+                }
+                else
+                {
+                  target.addClass('expanded');
+                  target.removeClass('collapsed');
+                }
           }
         });
       }
@@ -152,7 +161,16 @@
           toogleAttr (ulFirst, 'data-collapse', 'true', 'false');
           if (plugin.settings.listStyle == 'arrows')
             if ((li.hasClass( "collapsed" ))||(li.hasClass( "expanded" )))
-              li.toggleClass('collapsed expanded');
+              if (ulFirst.attr('data-collapse') == 'true')
+                {
+                  li.addClass('collapsed');
+                  li.removeClass('expanded');
+                }
+                else
+                {
+                  li.addClass('expanded');
+                  li.removeClass('collapsed');
+                }
         }
       }
     };

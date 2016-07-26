@@ -50,11 +50,11 @@
         var element = $(element);
         if (element.is('li'))
         {
-        $.each( element.children(), function( i, element ) {
-          var element = $(element);
-          if (element.is('ul'))
-            element.show().attr('data-collapse', 'false');
-        });
+          $.each( element.children(), function( i, element ) {
+            var element = $(element);
+            if (element.is('ul'))
+              element.show().attr('data-collapse', 'false');
+          });
         }
       });
     }

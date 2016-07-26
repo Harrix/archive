@@ -49,10 +49,9 @@
     $(input)
     .change(function() {
       var filter = $(input).val().toLowerCase();
+      $(ul).find("li").removeAttr('data-find');
       if (filter.trim())
       {
-        $(ul).find("li").removeAttr('data-find');
-        
         doFilter($(ul), filter);
         $(ul).find("ul").show();
         
@@ -83,25 +82,11 @@
         
         if (plugin.settings.showSubListByFilter)
         {
-          /*$(ul).find("li:visible").each(function (index, element) {
-            var element = $(element);
-            var filter = $(input).val().toLowerCase();
-            var text = getTextFromLiInNestedList(element).toLowerCase();
-            var find = plugin.settings.functionSearch( text, filter );
-            if (find)
-              element.attr('data-find','true');
-          });
           $(ul).find("[data-find='true']").each(function (index, element) {
             var element = $(element);
-            if (element.find("[data-find='true']").length == 0)
-            {
-              element.find('ul').hide().attr('data-collapse', 'true');
-              element.find('li').show();
-            }
-          });*/
-          //listTraversal ($(ul).children(), distributeCollapsedExpanded);
-          //element.find('ul').hide().attr('data-collapse', 'true');
-          //element.find('li').show();
+            element.find('ul').hide().attr('data-collapse', 'true');
+            element.find('li').show();
+          });
         }
       }
       else
@@ -355,21 +340,27 @@
       var text;
       if (plugin.settings.searchBy == 'content')
       {
-        text = element.text();
-        if (text.indexOf('\n') >= 0) {
-          text = text.substring(0, text.indexOf('\n'));
-        }
+        text = getTextToNewLine (element);
       }
       if (plugin.settings.searchBy == 'value') {
         text = element.data('value');
         if (text === undefined) {
-          text = element.text();
+          text = getTextToNewLine (element);
         }
         else if (!text.trim()) {
-          text = element.text();
+          text = getTextToNewLine (element);
         }
       }
       return text;
+    };
+    
+    function getTextToNewLine (element)
+    {
+      var text = element.text();
+        if (text.indexOf('\n') >= 0) {
+          text = text.substring(0, text.indexOf('\n'));
+        }
+        return text;
     };
     
     function isLiTreeLeaf(element) {

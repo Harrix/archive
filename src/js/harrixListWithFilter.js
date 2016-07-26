@@ -241,8 +241,10 @@
         if (li.is('li')) {
           var show = checkChildren( li.children(), filter );
           if (!show)
-            show = plugin.settings.functionSearch( getTextFromLiInNestedList(li).toLowerCase(),
-                                                   filter );
+          {
+            var text = getTextFromLiInNestedList(li).toLowerCase();
+            show = plugin.settings.functionSearch( text, filter );
+          }
           if (show)
             li.show();
           else

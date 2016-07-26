@@ -89,7 +89,8 @@
             element.toggle();
             toogleAttr (element, 'data-collapse', 'true', 'false');
             if (plugin.settings.listStyle == 'arrows')
-              target.toggleClass('collapsed expanded');
+              if ((target.hasClass( "collapsed" ))||(target.hasClass( "expanded" )))
+                target.toggleClass('collapsed expanded');
           }
         });
       }
@@ -100,7 +101,8 @@
           ulFirst.toggle();
           toogleAttr (ulFirst, 'data-collapse', 'true', 'false');
           if (plugin.settings.listStyle == 'arrows')
-            li.toggleClass('collapsed expanded');
+            if ((li.hasClass( "collapsed" ))||(li.hasClass( "expanded" )))
+              li.toggleClass('collapsed expanded');
         }
       }
     };

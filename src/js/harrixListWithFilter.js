@@ -43,6 +43,21 @@
           element.show().attr('data-collapse', 'false');
       });
     }
+    if (plugin.settings.collapsedStart == 'first-open')
+    {
+      $(ul).find("ul").hide().attr('data-collapse', 'true');
+      $.each( $(ul).children(), function( i, element ) {
+        var element = $(element);
+        if (element.is('li'))
+        {
+        $.each( element.children(), function( i, element ) {
+          var element = $(element);
+          if (element.is('ul'))
+            element.show().attr('data-collapse', 'false');
+        });
+        }
+      });
+    }
     
     if (plugin.settings.listStyle == 'default')
     {

@@ -11,14 +11,14 @@
     var plugin = this;
     
     var defaults = {
-      listStyle : 'default',
-      searchBy : 'content',
-      functionSearch : findString,
-      collapsedStart : 'none',
       changeCursor : true,
+      collapsedStart : 'none',
       countItems : 'none',
-      showZeroCountItems : true,
+      functionSearch : findString,
+      listStyle : 'default',
       paddingLi : 'default',
+      searchBy : 'content',
+      showZeroCountItems : true,
 	  };
     
     plugin.settings = $.extend({}, defaults, options);

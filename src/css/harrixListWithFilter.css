@@ -13,6 +13,10 @@
     list-style: none;
 }
 
+.harrixListWithFilter li.padding-left:before {
+    padding-left: 18px;
+}
+
 .harrixListWithFilter .no-results {
     display: none;
 }

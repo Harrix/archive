@@ -18,6 +18,7 @@
       changeCursor : true,
       countItems : 'none',
       showZeroCountItems : true,
+      paddingLeftLeafs : false,
 	  };
     
     plugin.settings = $.extend({}, defaults, options);
@@ -155,6 +156,13 @@
           element.css('cursor', 'default');          
         }
       }
+      
+      if (plugin.settings.paddingLeftLeafs)
+      {
+        if (element.is("li"))
+          if (isLiTreeLeaf(element))
+            element.addClass('padding-left');
+      }        
       
       if (element.is("li"))
         liWorkWithElement = element;

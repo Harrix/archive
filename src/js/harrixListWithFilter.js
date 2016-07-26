@@ -18,6 +18,7 @@
       listStyle : 'default',
       paddingLi : 'default',
       searchBy : 'content',
+      showSubListByFilter : false,
       showZeroCountItems : true,
 	  };
     
@@ -83,10 +84,23 @@
       {
         doFilter($(ul), text);
         $(ul).find("ul").show();
+        
         if ($(ul).find("li:visible").length == 0)
           $(ul).find(".no-results").show();
         else
           $(ul).find(".no-results").hide();
+        
+        if (plugin.settings.showSubListByFilter)
+        {
+          $(ul).find("li:visible").each(function (index, element) {
+            var element = $(element);
+            if (element.find("li:visible").length == 0)
+            {
+              //element.find('ul').hide();
+              element.find('li').show();
+            }
+          });
+        }
       }
       else
       {

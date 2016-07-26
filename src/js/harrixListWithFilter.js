@@ -162,18 +162,7 @@
           {
             element.toggle();
             toggleAttr (element, 'data-collapse', 'true', 'false');
-            if (plugin.settings.listStyle == 'arrows')
-              if ((target.hasClass( "collapsed" ))||(target.hasClass( "expanded" )))
-                if (element.attr('data-collapse') == 'true')
-                {
-                  target.addClass('collapsed');
-                  target.removeClass('expanded');
-                }
-                else
-                {
-                  target.addClass('expanded');
-                  target.removeClass('collapsed');
-                }
+            toggleCollapsEdexpanded (target, element);
           }
         });
       }
@@ -183,20 +172,23 @@
           var ulFirst = li.find('ul:first');
           ulFirst.toggle();
           toggleAttr (ulFirst, 'data-collapse', 'true', 'false');
-          if (plugin.settings.listStyle == 'arrows')
-            if ((li.hasClass( "collapsed" ))||(li.hasClass( "expanded" )))
-              if (ulFirst.attr('data-collapse') == 'true')
-                {
-                  li.addClass('collapsed');
-                  li.removeClass('expanded');
-                }
-                else
-                {
-                  li.addClass('expanded');
-                  li.removeClass('collapsed');
-                }
+          toggleCollapsEdexpanded (li, ulFirst);
         }
       }
+    };
+    
+    function toggleCollapsEdexpanded (li, ul)
+    {
+      if (plugin.settings.listStyle == 'arrows')
+        if ((li.hasClass( "collapsed" ))||(li.hasClass( "expanded" )))
+          if (ul.attr('data-collapse') == 'true') {
+              li.addClass('collapsed');
+              li.removeClass('expanded');
+            }
+            else {
+              li.addClass('expanded');
+              li.removeClass('collapsed');
+            }      
     };
     
     function toggleAttr (element, name, first, second) {

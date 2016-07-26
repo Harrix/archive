@@ -28,39 +28,7 @@
     
     $(ul).click(toggleUl);
     
-    if (plugin.settings.collapsedStart == 'all')
-    {
-      $(ul).find("ul").hide().attr('data-collapse', 'true');
-    }
-    if (plugin.settings.collapsedStart == 'none')
-    {
-      $(ul).find("ul").show().attr('data-collapse', 'false');
-    }
-    if (plugin.settings.collapsedStart == 'close-last-ul')
-    {
-      $(ul).find("ul").each(function (index, element) {
-        var element = $(element);
-        if (element.find('ul').length == 0 )
-          element.hide().attr('data-collapse', 'true');
-        else
-          element.show().attr('data-collapse', 'false');
-      });
-    }
-    if (plugin.settings.collapsedStart == 'first-open')
-    {
-      $(ul).find("ul").hide().attr('data-collapse', 'true');
-      $.each( $(ul).children(), function( i, element ) {
-        var element = $(element);
-        if (element.is('li'))
-        {
-          $.each( element.children(), function( i, element ) {
-            var element = $(element);
-            if (element.is('ul'))
-              element.show().attr('data-collapse', 'false');
-          });
-        }
-      });
-    }
+    setOptionCollapsedStart();
     
     if (plugin.settings.listStyle == 'default')
     {
@@ -137,6 +105,42 @@
         $(input).change();
       }, 100);
     });
+    
+    function setOptionCollapsedStart() {
+      if (plugin.settings.collapsedStart == 'all')
+      {
+        $(ul).find("ul").hide().attr('data-collapse', 'true');
+      }
+      if (plugin.settings.collapsedStart == 'none')
+      {
+        $(ul).find("ul").show().attr('data-collapse', 'false');
+      }
+      if (plugin.settings.collapsedStart == 'close-last-ul')
+      {
+        $(ul).find("ul").each(function (index, element) {
+          var element = $(element);
+          if (element.find('ul').length == 0 )
+            element.hide().attr('data-collapse', 'true');
+          else
+            element.show().attr('data-collapse', 'false');
+        });
+      }
+      if (plugin.settings.collapsedStart == 'first-open')
+      {
+        $(ul).find("ul").hide().attr('data-collapse', 'true');
+        $.each( $(ul).children(), function( i, element ) {
+          var element = $(element);
+          if (element.is('li'))
+          {
+            $.each( element.children(), function( i, element ) {
+              var element = $(element);
+              if (element.is('ul'))
+                element.show().attr('data-collapse', 'false');
+            });
+          }
+        });
+      }     
+    };
     
     function returnStateCollapse (element) {
       var element = $(element);

@@ -97,6 +97,7 @@
               jQuery().harrixListWithFilter('#root_tree', '#filter',{
                 listStyle : 'arrows',
                 searchBy : 'content',
+                collapsedStart: 'all',
               });
           </script>
           
@@ -142,9 +143,8 @@
               jQuery().harrixListWithFilter('#root_tree2', '#filter2',{
                 listStyle : 'arrows',
                 searchBy : 'value',
-                collapsedStart: true,
                 changeCursor: true,
-                collapsedStart: false,
+                collapsedStart: 'none',
                 countItems : 'all-li',
               });
           </script>
@@ -203,6 +203,7 @@
                 searchBy : 'value',
                 functionSearch : findString2,
                 countItems : 'only-leafs',
+                collapsedStart: 'all',
               });
           </script>
           

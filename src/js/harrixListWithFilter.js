@@ -14,7 +14,7 @@
       listStyle : 'default',
       searchBy : 'content',
       functionSearch : findString,
-      collapsedStart : true,
+      collapsedStart : 'none',
       changeCursor : true,
       countItems : 'none',
       showZeroCountItems : true,
@@ -24,11 +24,11 @@
     
     $(ul).click(toggleUl);
     
-    if (plugin.settings.collapsedStart)
+    if (plugin.settings.collapsedStart == 'all')
     {
       $(ul).find("ul").hide().attr('data-collapse', 'true');
     }
-    else
+    if (plugin.settings.collapsedStart == 'none')
     {
       $(ul).find("ul").show().attr('data-collapse', 'false');
     }

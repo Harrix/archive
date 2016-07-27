@@ -50,6 +50,7 @@
     .change(function() {
       var filter = $(input).val().toLowerCase();
       $(ul).find("li").removeAttr('data-find');
+      
       if (filter.trim())
       {
         doFilter($(ul), filter);
@@ -91,16 +92,22 @@
         
         if (plugin.settings.showSubListByFilter)
         {
-          //hide().attr('data-collapse', 'true');
-          /*$(ul).find("[data-find='true']").each(function (index, element) {
+          $(ul).find("[data-find='true']").each(function (index, element) {
             var element = $(element);
             element.find('ul').each(function (index, subUl) {
               var subUl = $(subUl);
+              if (subUl.find("[data-find='true']").length == 0) {
+                subUl.hide().attr('data-collapse', 'true');
+              }
+              else {
+                subUl.show().attr('data-collapse', 'false');
+              }
               
             });
             element.show();
             element.find('li').show();
-          });*/
+          });
+          listTraversal ($(ul).children(), distributeCollapsedExpanded);
         }
       }
       else

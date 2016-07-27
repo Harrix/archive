@@ -114,7 +114,10 @@
         listTraversal ($(ul).children(), updateCountItems);
         
         if (plugin.settings.showSubListByFilter)
+          //listTraversal ($(ul).children(), updateCountItems2);
         {
+          console.log('------------');
+          
           $(ul).find("[data-find='true']").each(function (index, elementFind) {
             var elementFind = $(elementFind);
             elementFind.find('.count_li').each(function (index, element) {
@@ -122,6 +125,17 @@
               var count = element.attr('data-count');
               element.text(count);
             });
+            elementFind.text(elementFind.attr('data-count'));
+          });
+          $(ul).find("li").each(function (index, elementFind) {
+            var elementFind = $(elementFind);
+            if (elementFind.closest("[data-find='true']").length == 0)
+            {
+              if (!isLiTreeLeaf(elementFind))
+              {
+                console.log(getTextFromLiInNestedList (elementFind));
+              }
+            }
           });
         }
       }
@@ -331,6 +345,53 @@
           element.find('li:visible').each(function (index, element) {
             var element = $(element);
             if (element.find('ul:visible').length == 0)
+              count++;
+          });
+          if ((plugin.settings.showZeroCountItems) || 
+             ((!plugin.settings.showZeroCountItems) && (count > 0)))
+            liWorkWithElement.find('.count_li').text(count);
+        }
+      }
+    };
+    
+/*        if (plugin.settings.showSubListByFilter)
+        {
+          $(ul).find("[data-find='true']").each(function (index, element) {
+            var element = $(element);
+            element.find('ul').each(function (index, subUl) {
+              var subUl = $(subUl);
+              if (subUl.find("[data-find='true']").length == 0) {
+                subUl.hide().attr('data-collapse', 'true');
+              }
+              else {
+                subUl.show().attr('data-collapse', 'false');
+              }
+            });
+            element.show();
+            element.find('li').show();
+          });
+          listTraversal ($(ul).children(), distributeCollapsedExpanded);
+        }*/
+        
+    function updateCountItems2 (element) {
+      if (element.is("li"))
+        liWorkWithElement = element;
+      
+      if (element.is("ul:visible"))
+      {
+        if (plugin.settings.countItems == 'all-li')
+        {
+          var count = element.find('li:visible').length;
+          if ((plugin.settings.showZeroCountItems) || 
+             ((!plugin.settings.showZeroCountItems) && (count > 0)))
+            liWorkWithElement.find('.count_li').text(count);
+        }
+        if (plugin.settings.countItems == 'only-leafs')
+        {
+          var count = 0;
+          element.find('li:visible').each(function (index, element) {
+            var element = $(element);
+            if (element.find('ul').length == 0)
               count++;
           });
           if ((plugin.settings.showZeroCountItems) || 

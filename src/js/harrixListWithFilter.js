@@ -29,17 +29,14 @@
     
     setOptionCollapsedStart();
     
-    if (plugin.settings.listStyle == 'default')
-    {
+    if (plugin.settings.listStyle == 'default') {
       $(ul).find("li").css('list-style', 'inherit');
     }
-    if (plugin.settings.listStyle == 'none')
-    {
+    if (plugin.settings.listStyle == 'none') {
       $(ul).find("li").css('list-style', 'none');
       $(ul).css('padding-left', '0px');
     }
-    if (plugin.settings.listStyle == 'arrows')
-    {
+    if (plugin.settings.listStyle == 'arrows') {
       $(ul).find("li").css('list-style', 'none');
       $(ul).css('padding-left', '0px');
     }
@@ -53,25 +50,20 @@
       var filter = $(input).val().toLowerCase();
       $(ul).find("li").removeAttr('data-find');
       
-      if (filter.trim())
-      {
+      if (filter.trim()) {
         doFilter($(ul), filter);
         $(ul).find("ul").show();
         
         $(ul).find("li:visible").each(function (index, element) {
           var element = $(element);
-          if (element.find("li:visible").length > 0)
-          {
-            if ((element.hasClass('collapsed'))||(element.hasClass('expanded')))
-            {
+          if (element.find("li:visible").length > 0) {
+            if ((element.hasClass('collapsed'))||(element.hasClass('expanded'))) {
               element.removeClass('collapsed');
               element.addClass('expanded');
             }
           }
-          else
-          {
-            if ((element.hasClass('collapsed'))||(element.hasClass('expanded')))
-            {
+          else {
+            if ((element.hasClass('collapsed'))||(element.hasClass('expanded'))) {
               element.removeClass('expanded');
               element.addClass('collapsed');
             }
@@ -117,8 +109,7 @@
         else
           listTraversal ($(ul).children(), updateCountItems);
       }
-      else
-      {
+      else {
         listTraversal ($(ul).children(), returnStateCollapse);
         listTraversal ($(ul).children(), distributeCollapsedExpanded);
         $(ul).find('.count_li').each(function (index, element) {
@@ -136,16 +127,13 @@
     });
     
     function setOptionCollapsedStart() {
-      if (plugin.settings.collapsedStart == 'all')
-      {
+      if (plugin.settings.collapsedStart == 'all') {
         $(ul).find("ul").hide().attr('data-collapse', 'true');
       }
-      if (plugin.settings.collapsedStart == 'none')
-      {
+      if (plugin.settings.collapsedStart == 'none') {
         $(ul).find("ul").show().attr('data-collapse', 'false');
       }
-      if (plugin.settings.collapsedStart == 'close-last-ul')
-      {
+      if (plugin.settings.collapsedStart == 'close-last-ul') {
         $(ul).find("ul").each(function (index, element) {
           var element = $(element);
           if (element.find('ul').length == 0 )
@@ -154,13 +142,11 @@
             element.show().attr('data-collapse', 'false');
         });
       }
-      if (plugin.settings.collapsedStart == 'first-open')
-      {
+      if (plugin.settings.collapsedStart == 'first-open') {
         $(ul).find("ul").hide().attr('data-collapse', 'true');
         $.each( $(ul).children(), function( i, element ) {
           var element = $(element);
-          if (element.is('li'))
-          {
+          if (element.is('li')) {
             $.each( element.children(), function( i, element ) {
               var element = $(element);
               if (element.is('ul'))
@@ -173,8 +159,7 @@
     
     function returnStateCollapse (element) {
       var element = $(element);
-      if (element.is('ul'))
-      {
+      if (element.is('ul')) {
         if (element.attr('data-collapse') == 'true') {
           element.hide();
         } else {
@@ -192,8 +177,7 @@
       if (target.is("li")) {
         $.each( target.children(), function( i, element ) {
           var element = $(element);
-          if (element.is('ul'))
-          {
+          if (element.is('ul')) {
             element.toggle();
             toggleAttr (element, 'data-collapse', 'true', 'false');
             toggleCollapsEdexpanded (target, element);
@@ -211,8 +195,7 @@
       }
     };
     
-    function toggleCollapsEdexpanded (li, ul)
-    {
+    function toggleCollapsEdexpanded (li, ul) {
       if (plugin.settings.listStyle == 'arrows')
         if ((li.hasClass( "collapsed" ))||(li.hasClass( "expanded" )))
           if (ul.attr('data-collapse') == 'true') {
@@ -245,14 +228,11 @@
     };
 
     function workWithElement (element) {
-      if (plugin.settings.changeCursor)
-      {
+      if (plugin.settings.changeCursor) {
         if (isLiTreeLeaf(element))
           element.css('cursor', 'pointer');
-        else
-        {
-          if ((!element.is("li"))&&(!element.is("ul")))
-          {
+        else {
+          if ((!element.is("li"))&&(!element.is("ul"))) {
             if (isLiTreeLeaf(element.closest("li")))
               element.css('cursor', 'pointer');
             else
@@ -263,16 +243,13 @@
         }
       }
       
-      if (plugin.settings.paddingLi === 'left-leafs')
-      {
+      if (plugin.settings.paddingLi === 'left-leafs') {
         if (element.is("li"))
           if (isLiTreeLeaf(element))
             element.addClass('padding-left');
       }
       if (plugin.settings.paddingLi === 'none')
-      {
         element.css('padding-left','0px');
-      }
     };
 
     var liWorkWithElement;    
@@ -280,17 +257,14 @@
       if (element.is("li"))
         liWorkWithElement = element;
       
-      if (element.is("ul"))
-      {
-        if (plugin.settings.countItems == 'all-li')
-        {
+      if (element.is("ul")) {
+        if (plugin.settings.countItems == 'all-li') {
           var count = element.find('li').length;
           if ((plugin.settings.showZeroCountItems) || 
              ((!plugin.settings.showZeroCountItems) && (count > 0)))
             liWorkWithElement.prepend( '<span class="count_li" data-count="'+count+'">'+count+'</span>' );
         }
-        if (plugin.settings.countItems == 'only-leafs')
-        {
+        if (plugin.settings.countItems == 'only-leafs') {
           var count = 0;
           element.find('li').each(function (index, element) {
             var element = $(element);
@@ -308,17 +282,14 @@
       if (element.is("li"))
         liWorkWithElement = element;
       
-      if (element.is("ul:visible"))
-      {
-        if (plugin.settings.countItems == 'all-li')
-        {
+      if (element.is("ul:visible")) {
+        if (plugin.settings.countItems == 'all-li') {
           var count = element.find('li:visible').length;
           if ((plugin.settings.showZeroCountItems) || 
              ((!plugin.settings.showZeroCountItems) && (count > 0)))
             liWorkWithElement.find('.count_li').text(count);
         }
-        if (plugin.settings.countItems == 'only-leafs')
-        {
+        if (plugin.settings.countItems == 'only-leafs') {
           var count = 0;
           element.find('li:visible').each(function (index, element) {
             var element = $(element);
@@ -344,14 +315,11 @@
       });
       $(ul).find("li").each(function (index, elementFind) {
         var elementFind = $(elementFind);
-        if (elementFind.closest("[data-find='true']").length == 0)
-        {
-          if ((!isLiTreeLeaf(elementFind)))
-          {
+        if (elementFind.closest("[data-find='true']").length == 0) {
+          if ((!isLiTreeLeaf(elementFind))) {
             var count = 0;
             elementFind.find('li').each(function (index, element) {
-              if ($(element).css('display')!='none')
-              {
+              if ($(element).css('display')!='none') {
                 if (plugin.settings.countItems == 'only-leafs')
                   if (isLiTreeLeaf($(element)))
                     count++;
@@ -366,18 +334,14 @@
     };
     
     function distributeCollapsedExpanded (element) {
-      if (element.is('li'))
-      {
-        if (!isLiTreeLeaf(element))
-        {
+      if (element.is('li')) {
+        if (!isLiTreeLeaf(element)) {
           var ulForLi = element.find('ul:first');
-          if (ulForLi.attr('data-collapse') == 'true')
-          {
+          if (ulForLi.attr('data-collapse') == 'true') {
             element.addClass( "collapsed" );
             element.removeClass( "expanded" );
           }
-          else
-          {
+          else {
             element.addClass( "expanded" );
             element.removeClass( "collapsed" );
           }
@@ -391,13 +355,11 @@
         var li = $(element);
         if (li.is('li')) {
           var show = checkChildren( li.children(), filter );
-          if (!show)
-          {
+          if (!show) {
             var text = getTextFromLiInNestedList(li).toLowerCase();
             show = plugin.settings.functionSearch( text, filter );
           }
-          if (show)
-          {
+          if (show) {
             showObj = true;
             li.show();
           }
@@ -424,11 +386,9 @@
       return show;      
     };
     
-    function getTextFromLiInNestedList (element)
-    {
+    function getTextFromLiInNestedList (element) {
       var text;
-      if (plugin.settings.searchBy == 'content')
-      {
+      if (plugin.settings.searchBy == 'content') {
         text = getTextToNewLine (element);
       }
       if (plugin.settings.searchBy == 'value') {
@@ -443,8 +403,7 @@
       return text;
     };
     
-    function getTextToNewLine (element)
-    {
+    function getTextToNewLine (element) {
       var text = element.text();
         if (text.indexOf('\n') >= 0) {
           text = text.substring(0, text.indexOf('\n'));
@@ -453,8 +412,7 @@
     };
     
     function isLiTreeLeaf(element) {
-      if (element.is('li'))
-        {
+      if (element.is('li')) {
           if (element.children().find('li').length > 0)
             return false;
           else

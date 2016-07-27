@@ -353,14 +353,10 @@
               if ($(element).css('display')!='none')
               {
                 if (plugin.settings.countItems == 'only-leafs')
-                {
                   if (isLiTreeLeaf($(element)))
                     count++;
-                }
                 if (plugin.settings.countItems == 'all-li')
-                {
                   count++;
-                }
               }
             });
             elementFind.find('.count_li:first').text(count);

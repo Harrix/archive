@@ -14,6 +14,7 @@
       changeCursor : true,
       collapsedStart : 'none',
       countItems : 'none',
+      countItemsInFilter: 'none',
       functionSearch : findString,
       listStyle : 'default',
       paddingLi : 'default',
@@ -269,19 +270,16 @@
       if (element.is("li"))
         liWorkWithElement = element;
       
-      if (plugin.settings.countItems == 'all-li')
+      if (element.is("ul"))
       {
-        if (element.is("ul"))
+        if (plugin.settings.countItems == 'all-li')
         {
           var count = element.find('li').length;
           if ((plugin.settings.showZeroCountItems) || 
              ((!plugin.settings.showZeroCountItems) && (count > 0)))
             liWorkWithElement.prepend( '<span class="count_li">'+count+'</span>' );
         }
-      }
-      if (plugin.settings.countItems == 'only-leafs')
-      {
-        if (element.is("ul"))
+        if (plugin.settings.countItems == 'only-leafs')
         {
           var count = 0;
           element.find('li').each(function (index, element) {
@@ -293,7 +291,7 @@
              ((!plugin.settings.showZeroCountItems) && (count > 0)))
             liWorkWithElement.prepend( '<span class="count_li">'+count+'</span>' );
         }
-      }      
+      }
     };
     
     function distributeCollapsedExpanded (element) {

@@ -114,10 +114,7 @@
         listTraversal ($(ul).children(), updateCountItems);
         
         if (plugin.settings.showSubListByFilter)
-          //listTraversal ($(ul).children(), updateCountItems2);
         {
-          console.log('------------');
-          
           $(ul).find("[data-find='true']").each(function (index, elementFind) {
             var elementFind = $(elementFind);
             elementFind.find('.count_li').each(function (index, element) {
@@ -131,9 +128,24 @@
             var elementFind = $(elementFind);
             if (elementFind.closest("[data-find='true']").length == 0)
             {
-              if (!isLiTreeLeaf(elementFind))
+              if ((!isLiTreeLeaf(elementFind)))
               {
-                console.log(getTextFromLiInNestedList (elementFind));
+                var count = 0;
+                elementFind.find('li').each(function (index, element) {
+                  if ($(element).css('display')!='none')
+                  {
+                    if (plugin.settings.countItems == 'only-leafs')
+                    {
+                      if (isLiTreeLeaf($(element)))
+                        count++;
+                    }
+                    if (plugin.settings.countItems == 'all-li')
+                    {
+                      count++;
+                    }
+                  }
+                });
+                elementFind.find('.count_li:first').text(count);
               }
             }
           });
@@ -353,25 +365,6 @@
         }
       }
     };
-    
-/*        if (plugin.settings.showSubListByFilter)
-        {
-          $(ul).find("[data-find='true']").each(function (index, element) {
-            var element = $(element);
-            element.find('ul').each(function (index, subUl) {
-              var subUl = $(subUl);
-              if (subUl.find("[data-find='true']").length == 0) {
-                subUl.hide().attr('data-collapse', 'true');
-              }
-              else {
-                subUl.show().attr('data-collapse', 'false');
-              }
-            });
-            element.show();
-            element.find('li').show();
-          });
-          listTraversal ($(ul).children(), distributeCollapsedExpanded);
-        }*/
         
     function updateCountItems2 (element) {
       if (element.is("li"))

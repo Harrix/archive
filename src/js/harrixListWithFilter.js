@@ -104,18 +104,23 @@
               else {
                 subUl.show().attr('data-collapse', 'false');
               }
-              
             });
             element.show();
             element.find('li').show();
           });
           listTraversal ($(ul).children(), distributeCollapsedExpanded);
         }
+      listTraversal ($(ul).children(), updateCountItems);
       }
       else
       {
         listTraversal ($(ul).children(), returnStateCollapse);
         listTraversal ($(ul).children(), distributeCollapsedExpanded);
+        $(ul).find('.count_li').each(function (index, element) {
+            var element = $(element);
+            var count = element.attr('data-count');
+            element.text(count);
+          });
         $(ul).find(".no-results").hide();
       }
     })
@@ -277,7 +282,7 @@
           var count = element.find('li').length;
           if ((plugin.settings.showZeroCountItems) || 
              ((!plugin.settings.showZeroCountItems) && (count > 0)))
-            liWorkWithElement.prepend( '<span class="count_li">'+count+'</span>' );
+            liWorkWithElement.prepend( '<span class="count_li" data-count="'+count+'">'+count+'</span>' );
         }
         if (plugin.settings.countItems == 'only-leafs')
         {
@@ -289,7 +294,38 @@
           });
           if ((plugin.settings.showZeroCountItems) || 
              ((!plugin.settings.showZeroCountItems) && (count > 0)))
-            liWorkWithElement.prepend( '<span class="count_li">'+count+'</span>' );
+            liWorkWithElement.prepend( '<span class="count_li" data-count="'+count+'">'+count+'</span>' );
+        }
+      }
+    };
+    
+    function updateCountItems (element) {
+      if (element.is("li"))
+        liWorkWithElement = element;
+      
+      if (element.is("ul:visible"))
+      {
+        if (!plugin.settings.showSubListByFilter)
+        {
+          if (plugin.settings.countItems == 'all-li')
+          {
+            var count = element.find('li:visible').length;
+            if ((plugin.settings.showZeroCountItems) || 
+               ((!plugin.settings.showZeroCountItems) && (count > 0)))
+              liWorkWithElement.find('.count_li').text(count);
+          }
+          if (plugin.settings.countItems == 'only-leafs')
+          {
+            var count = 0;
+            element.find('li:visible').each(function (index, element) {
+              var element = $(element);
+              if (element.find('ul:visible').length == 0)
+                count++;
+            });
+            if ((plugin.settings.showZeroCountItems) || 
+               ((!plugin.settings.showZeroCountItems) && (count > 0)))
+              liWorkWithElement.find('.count_li').text(count);
+          }
         }
       }
     };

@@ -91,11 +91,16 @@
         
         if (plugin.settings.showSubListByFilter)
         {
-          $(ul).find("[data-find='true']").each(function (index, element) {
+          //hide().attr('data-collapse', 'true');
+          /*$(ul).find("[data-find='true']").each(function (index, element) {
             var element = $(element);
-            element.find('ul').hide().attr('data-collapse', 'true');
+            element.find('ul').each(function (index, subUl) {
+              var subUl = $(subUl);
+              
+            });
+            element.show();
             element.find('li').show();
-          });
+          });*/
         }
       }
       else

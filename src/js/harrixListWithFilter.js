@@ -110,7 +110,20 @@
           });
           listTraversal ($(ul).children(), distributeCollapsedExpanded);
         }
-      listTraversal ($(ul).children(), updateCountItems);
+        
+        listTraversal ($(ul).children(), updateCountItems);
+        
+        if (plugin.settings.showSubListByFilter)
+        {
+          $(ul).find("[data-find='true']").each(function (index, elementFind) {
+            var elementFind = $(elementFind);
+            elementFind.find('.count_li').each(function (index, element) {
+              var element = $(element);
+              var count = element.attr('data-count');
+              element.text(count);
+            });
+          });
+        }
       }
       else
       {
@@ -305,7 +318,7 @@
       
       if (element.is("ul:visible"))
       {
-        if (!plugin.settings.showSubListByFilter)
+        if (plugin.settings.countItems == 'all-li')
         {
           var count = element.find('li:visible').length;
           if ((plugin.settings.showZeroCountItems) || 

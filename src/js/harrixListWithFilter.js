@@ -103,16 +103,22 @@
           listTraversal ($(ul).children(), distributeCollapsedExpanded);
         }
         
-
-        if (plugin.settings.showSubListByFilter)
-          updateCountItemsShowSubListByFilter();
-        else
-          listTraversal ($(ul).children(), updateCountItems);
+        if (plugin.settings.countItemsInFilter == 'none') {
+          $(ul).find('.count_li').hide();
+        }
+        if (plugin.settings.countItemsInFilter == 'not-changed') {          
+        }
+        if (plugin.settings.countItemsInFilter == 'changed') {
+          if (plugin.settings.showSubListByFilter)
+            updateCountItemsShowSubListByFilter();
+          else
+            listTraversal ($(ul).children(), updateCountItems);
+        }
       }
       else {
         listTraversal ($(ul).children(), returnStateCollapse);
         listTraversal ($(ul).children(), distributeCollapsedExpanded);
-        $(ul).find('.count_li').each(function (index, element) {
+        $(ul).find('.count_li').show().each(function (index, element) {
             var element = $(element);
             var count = element.attr('data-count');
             element.text(count);

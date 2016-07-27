@@ -44,6 +44,7 @@
     }
 
     listTraversal ($(ul).children(), workWithElement);
+    listTraversal ($(ul).children(), showCountItems);
     listTraversal ($(ul).children(), distributeCollapsedExpanded);
     
     $(input)
@@ -232,7 +233,6 @@
       }
     };
 
-    var liWorkWithElement;    
     function workWithElement (element) {
       if (plugin.settings.changeCursor)
       {
@@ -262,7 +262,10 @@
       {
         element.css('padding-left','0px');
       }
-      
+    };
+
+    var liWorkWithElement;    
+    function showCountItems (element) {
       if (element.is("li"))
         liWorkWithElement = element;
       
@@ -290,7 +293,7 @@
              ((!plugin.settings.showZeroCountItems) && (count > 0)))
             liWorkWithElement.prepend( '<span class="count_li">'+count+'</span>' );
         }
-      }
+      }      
     };
     
     function distributeCollapsedExpanded (element) {

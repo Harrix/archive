@@ -10,8 +10,9 @@
     
     var plugin = this;
     
-    var ul = $(list).find('.ul-root:first');
-    var input = $(list).find('.input-filter:first');
+    var list = $(list);
+    var ul = list.find('.ul-root:first');
+    var input = list.find('.input-filter:first');
     
     var defaults = {
       changeCursor : true,
@@ -74,9 +75,9 @@
         });
         
         if (ul.find("li:visible").length == 0)
-          $(list).find(".no-results:first").show();
+          list.find(".no-results:first").show();
         else
-          $(list).find(".no-results:first").hide();
+          list.find(".no-results:first").hide();
         
         ul.find("li:visible").each(function (index, element) {
           var element = $(element);
@@ -126,7 +127,7 @@
             var count = element.attr('data-count');
             element.text(count);
           });
-        $(list).find(".no-results:first").hide();
+        list.find(".no-results:first").hide();
       }
     })
     .on('keyup paste', function () {
@@ -204,10 +205,10 @@
       }
     };
     
-    function toggleCollapsEdexpanded (li, list) {
+    function toggleCollapsEdexpanded (li, ulList) {
       if (plugin.settings.listStyle == 'arrows')
         if ((li.hasClass( "collapsed" ))||(li.hasClass( "expanded" )))
-          if (list.attr('data-collapse') == 'true') {
+          if (ulList.attr('data-collapse') == 'true') {
               li.addClass('collapsed');
               li.removeClass('expanded');
             }
@@ -225,10 +226,10 @@
       }
     };
     
-    function listTraversal (list, processingElement)
+    function listTraversal (listT, processingElement)
     {
-      if (list.length > 0) {
-        $.each( list, function( i, element ) {
+      if (listT.length > 0) {
+        $.each( listT, function( i, element ) {
           var element = $(element);        
           processingElement (element);        
           listTraversal(element.children(), processingElement);

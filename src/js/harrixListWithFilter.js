@@ -204,10 +204,10 @@
       }
     };
     
-    function toggleCollapsEdexpanded (li, ul) {
+    function toggleCollapsEdexpanded (li, list) {
       if (plugin.settings.listStyle == 'arrows')
         if ((li.hasClass( "collapsed" ))||(li.hasClass( "expanded" )))
-          if (ul.attr('data-collapse') == 'true') {
+          if (list.attr('data-collapse') == 'true') {
               li.addClass('collapsed');
               li.removeClass('expanded');
             }

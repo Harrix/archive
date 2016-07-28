@@ -6,9 +6,12 @@
  */
 (function( $ ){
 
-  $.fn.harrixListWithFilter = function(ul, input, options) {
+  $.fn.harrixListWithFilter = function(list, options) {
     
     var plugin = this;
+    
+    var ul = $(list).find('.ul-root:first');
+    var input = $(list).find('.input-filter:first');
     
     var defaults = {
       changeCursor : true,

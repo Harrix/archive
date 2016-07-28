@@ -56,14 +56,14 @@
     <div class="container-xl padding-null-left-right padding-top" id="listContainer">
       <div class="row">
         <div class="content col-md-12">
-        <div class="harrixListWithFilter">
-          <div><input id="filter" type="text" placeholder="Поиск..." /></div>
+        <div class="harrixListWithFilter" id="list">
+          <div><input type="text" placeholder="Поиск..." class="input-filter"/></div>
           <div class="buttons">
           <a href="#" class="button-expand">Expand All</a> | 
           <a href="#" class="button-collapse">Collapse All</a>
           </div>
           
-          <ul id="root_tree" class="ul-root">
+          <ul class="ul-root">
             <li>Функции Add матрицы
             <ul>
               <li><a href="docs 2.html">Отдельная статья</a></li>
@@ -108,7 +108,7 @@
           </ul>
           </div>
           <script type="text/javascript">
-              jQuery().harrixListWithFilter('#root_tree', '#filter',{
+              jQuery().harrixListWithFilter('#list',{
                 listStyle : 'arrows',
                 searchBy : 'content',
                 collapsedStart: 'none',
@@ -119,8 +119,14 @@
               });
           </script>
           
-          <p><input id="filter0" type="text" placeholder="Поиск..." /></p>
-          <ul id="root_tree0" class="harrixListWithFilter">
+          <div class="harrixListWithFilter" id="list0">
+          <div><input type="text" placeholder="Поиск..." class="input-filter"/></div>
+          <div class="buttons">
+          <a href="#" class="button-expand">Expand All</a> | 
+          <a href="#" class="button-collapse">Collapse All</a>
+          </div>
+          
+          <ul class="ul-root">
             <li>Функции Add матрицы
             <ul>
               <li><a href="docs 2.html">Отдельная статья</a></li>
@@ -163,8 +169,9 @@
             </li>
           <p class="no-results">No results</p>
           </ul>
+          </div>
           <script type="text/javascript">
-              jQuery().harrixListWithFilter('#root_tree0', '#filter0',{
+              jQuery().harrixListWithFilter('#list0',{
                 listStyle : 'arrows',
                 searchBy : 'content',
                 collapsedStart: 'none',
@@ -173,9 +180,14 @@
               });
           </script>
           
+          <div class="harrixListWithFilter" id="list2">
+          <div><input type="text" placeholder="Поиск..." class="input-filter"/></div>
+          <div class="buttons">
+          <a href="#" class="button-expand">Expand All</a> | 
+          <a href="#" class="button-collapse">Collapse All</a>
+          </div>
           
-          <p><input id="filter2" type="text" placeholder="Поиск..." /></p>
-          <ul id="root_tree2" class="harrixListWithFilter">
+          <ul class="ul-root">
             <li data-value="Функции">Ф<span>ункции</span>
             <ul>
               <li data-value="По работе с матрицами">По <span>работе</span> с матрицами
@@ -211,8 +223,9 @@
             </li>
           <p class="no-results">No results</p>
           </ul>
+          </div>
           <script type="text/javascript">
-              jQuery().harrixListWithFilter('#root_tree2', '#filter2',{
+              jQuery().harrixListWithFilter('#list2',{
                 listStyle : 'arrows',
                 searchBy : 'value',
                 changeCursor: true,
@@ -222,8 +235,14 @@
               });
           </script>
           
-          <p><input id="filter3" type="text" placeholder="Поиск..." /></p>
-          <ul id="root_tree3" class="harrixListWithFilter">
+          <div class="harrixListWithFilter" id="list3">
+          <div><input type="text" placeholder="Поиск..." class="input-filter"/></div>
+          <div class="buttons">
+          <a href="#" class="button-expand">Expand All</a> | 
+          <a href="#" class="button-collapse">Collapse All</a>
+          </div>
+          
+          <ul class="ul-root">
             <li data-value="Функции">Функции
             <ul>
               <li data-value="По работе с матрицами">По работе с матрицами
@@ -259,6 +278,7 @@
             </li>
           <p class="no-results">No results</p>
           </ul>
+          </div>
           <script type="text/javascript">
     function findString2(text, textFind) {
       if (textFind === undefined)
@@ -271,7 +291,7 @@
       return find;      
     };
   
-              jQuery().harrixListWithFilter('#root_tree3', '#filter3',{
+              jQuery().harrixListWithFilter('#list3',{
                 listStyle : 'none',
                 searchBy : 'value',
                 functionSearch : findString2,
@@ -280,9 +300,14 @@
               });
           </script>
           
+         <div class="harrixListWithFilter" id="list4">
+         <div><input type="text" placeholder="Поиск..." class="input-filter"/></div>
+          <div class="buttons">
+          <a href="#" class="button-expand">Expand All</a> | 
+          <a href="#" class="button-collapse">Collapse All</a>
+          </div>
           
-         <p><input id="filter4" type="text" placeholder="Поиск..." /></p>
-          <ul id="root_tree4" class="harrixListWithFilter">
+          <ul class="ul-root">
             <li>Функции Add матрицы</li>
             <li>Функции Add матрицы</li>
             <li>Функции Add матрицы</li>
@@ -304,8 +329,9 @@
             <li>Функции Add матрицы</li>
           <p class="no-results">No results</p>
           </ul>
+          </div>
           <script type="text/javascript">
-              jQuery().harrixListWithFilter('#root_tree4', '#filter4',{
+              jQuery().harrixListWithFilter('#list4',{
                 listStyle : 'arrows',
                 searchBy : 'content',
                 collapsedStart: 'none',

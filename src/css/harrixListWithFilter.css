@@ -1,3 +1,7 @@
+.harrixListWithFilter .ul-root ul, .harrixListWithFilter .ul-root .no-results, .harrixListWithFilter .buttons {
+    display: none;
+}
+
 .harrixListWithFilter  {
     max-width: 500px;
 }
@@ -7,21 +11,11 @@
 }
 
 .harrixListWithFilter .ul-root ul {
-    display: none;
     padding-left: 18px;
 }
 
 .harrixListWithFilter .ul-root li {
     list-style: none;
-}
-
-.harrixListWithFilter .ul-root li.padding-left:before {
-    padding-left: 18px;
-    margin-left: 18px;
-}
-
-.harrixListWithFilter .ul-root .no-results {
-    display: none;
 }
 
 .harrixListWithFilter .ul-root .count_li {
@@ -49,4 +43,17 @@
     background-size: contain; 
     background-repeat: no-repeat; 
     padding-left: 18px; 
+}
+
+.harrixListWithFilter .ul-root li.padding-left:before {
+    padding-left: 18px;
+    margin-left: 18px;
+}
+
+.harrixListWithFilter .ul-root .no-results {
+    
+}
+
+.harrixListWithFilter .ul-root .buttons{
+    
 }

@@ -56,8 +56,9 @@
     <div class="container-xl padding-null-left-right padding-top" id="listContainer">
       <div class="row">
         <div class="content col-md-12">
+        <div class="harrixListWithFilter">
           <p><input id="filter" type="text" placeholder="Поиск..." /></p>
-          <ul id="root_tree" class="harrixListWithFilter">
+          <ul id="root_tree" class="ul-root">
             <li>Функции Add матрицы
             <ul>
               <li><a href="docs 2.html">Отдельная статья</a></li>
@@ -100,6 +101,7 @@
             </li>
           <p class="no-results">No results</p>
           </ul>
+          </div>
           <script type="text/javascript">
               jQuery().harrixListWithFilter('#root_tree', '#filter',{
                 listStyle : 'arrows',

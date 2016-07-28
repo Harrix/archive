@@ -28,36 +28,36 @@
     
     plugin.settings = $.extend({}, defaults, options);
     
-    $(ul).click(toggleUl);
+    ul.click(toggleUl);
     
     setOptionCollapsedStart();
     
     if (plugin.settings.listStyle == 'default') {
-      $(ul).find("li").css('list-style', 'inherit');
+      ul.find("li").css('list-style', 'inherit');
     }
     if (plugin.settings.listStyle == 'none') {
-      $(ul).find("li").css('list-style', 'none');
-      $(ul).css('padding-left', '0px');
+      ul.find("li").css('list-style', 'none');
+      ul.css('padding-left', '0px');
     }
     if (plugin.settings.listStyle == 'arrows') {
-      $(ul).find("li").css('list-style', 'none');
-      $(ul).css('padding-left', '0px');
+      ul.find("li").css('list-style', 'none');
+      ul.css('padding-left', '0px');
     }
 
-    listTraversal ($(ul).children(), workWithElement);
-    listTraversal ($(ul).children(), showCountItems);
-    listTraversal ($(ul).children(), distributeCollapsedExpanded);
+    listTraversal (ul.children(), workWithElement);
+    listTraversal (ul.children(), showCountItems);
+    listTraversal (ul.children(), distributeCollapsedExpanded);
     
     $(input)
     .change(function() {
       var filter = $(input).val().toLowerCase();
-      $(ul).find("li").removeAttr('data-find');
+      ul.find("li").removeAttr('data-find');
       
       if (filter.trim()) {
-        doFilter($(ul), filter);
-        $(ul).find("ul").show();
+        doFilter(ul, filter);
+        ul.find("ul").show();
         
-        $(ul).find("li:visible").each(function (index, element) {
+        ul.find("li:visible").each(function (index, element) {
           var element = $(element);
           if (element.find("li:visible").length > 0) {
             if ((element.hasClass('collapsed'))||(element.hasClass('expanded'))) {
@@ -73,12 +73,12 @@
           }
         });
         
-        if ($(ul).find("li:visible").length == 0)
-          $(ul).find(".no-results").show();
+        if (ul.find("li:visible").length == 0)
+          ul.find(".no-results").show();
         else
-          $(ul).find(".no-results").hide();
+          ul.find(".no-results").hide();
         
-        $(ul).find("li:visible").each(function (index, element) {
+        ul.find("li:visible").each(function (index, element) {
           var element = $(element);
           var filter = $(input).val().toLowerCase();
           var text = getTextFromLiInNestedList(element).toLowerCase();
@@ -89,7 +89,7 @@
         
         if (plugin.settings.showSubListByFilter)
         {
-          $(ul).find("[data-find='true']").each(function (index, element) {
+          ul.find("[data-find='true']").each(function (index, element) {
             var element = $(element);
             element.find('ul').each(function (index, subUl) {
               var subUl = $(subUl);
@@ -103,11 +103,11 @@
             element.show();
             element.find('li').show();
           });
-          listTraversal ($(ul).children(), distributeCollapsedExpanded);
+          listTraversal (ul.children(), distributeCollapsedExpanded);
         }
         
         if (plugin.settings.countItemsInFilter == 'none') {
-          $(ul).find('.count_li').hide();
+          ul.find('.count_li').hide();
         }
         if (plugin.settings.countItemsInFilter == 'not-changed') {          
         }
@@ -115,18 +115,18 @@
           if (plugin.settings.showSubListByFilter)
             updateCountItemsShowSubListByFilter();
           else
-            listTraversal ($(ul).children(), updateCountItems);
+            listTraversal (ul.children(), updateCountItems);
         }
       }
       else {
-        listTraversal ($(ul).children(), returnStateCollapse);
-        listTraversal ($(ul).children(), distributeCollapsedExpanded);
-        $(ul).find('.count_li').show().each(function (index, element) {
+        listTraversal (ul.children(), returnStateCollapse);
+        listTraversal (ul.children(), distributeCollapsedExpanded);
+        ul.find('.count_li').show().each(function (index, element) {
             var element = $(element);
             var count = element.attr('data-count');
             element.text(count);
           });
-        $(ul).find(".no-results").hide();
+        ul.find(".no-results").hide();
       }
     })
     .on('keyup paste', function () {
@@ -137,13 +137,13 @@
     
     function setOptionCollapsedStart() {
       if (plugin.settings.collapsedStart == 'all') {
-        $(ul).find("ul").hide().attr('data-collapse', 'true');
+        ul.find("ul").hide().attr('data-collapse', 'true');
       }
       if (plugin.settings.collapsedStart == 'none') {
-        $(ul).find("ul").show().attr('data-collapse', 'false');
+        ul.find("ul").show().attr('data-collapse', 'false');
       }
       if (plugin.settings.collapsedStart == 'close-last-ul') {
-        $(ul).find("ul").each(function (index, element) {
+        ul.find("ul").each(function (index, element) {
           var element = $(element);
           if (element.find('ul').length == 0 )
             element.hide().attr('data-collapse', 'true');
@@ -152,8 +152,8 @@
         });
       }
       if (plugin.settings.collapsedStart == 'first-open') {
-        $(ul).find("ul").hide().attr('data-collapse', 'true');
-        $.each( $(ul).children(), function( i, element ) {
+        ul.find("ul").hide().attr('data-collapse', 'true');
+        $.each( ul.children(), function( i, element ) {
           var element = $(element);
           if (element.is('li')) {
             $.each( element.children(), function( i, element ) {
@@ -313,7 +313,7 @@
     };
     
     function updateCountItemsShowSubListByFilter() {
-      $(ul).find("[data-find='true']").each(function (index, elementFind) {
+      ul.find("[data-find='true']").each(function (index, elementFind) {
         var elementFind = $(elementFind);
         elementFind.find('.count_li').each(function (index, element) {
           var element = $(element);
@@ -322,7 +322,7 @@
         });
         elementFind.text(elementFind.attr('data-count'));
       });
-      $(ul).find("li").each(function (index, elementFind) {
+      ul.find("li").each(function (index, elementFind) {
         var elementFind = $(elementFind);
         if (elementFind.closest("[data-find='true']").length == 0) {
           if ((!isLiTreeLeaf(elementFind))) {

@@ -74,9 +74,9 @@
         });
         
         if (ul.find("li:visible").length == 0)
-          ul.find(".no-results").show();
+          $(list).find(".no-results:first").show();
         else
-          ul.find(".no-results").hide();
+          $(list).find(".no-results:first").hide();
         
         ul.find("li:visible").each(function (index, element) {
           var element = $(element);
@@ -126,7 +126,7 @@
             var count = element.attr('data-count');
             element.text(count);
           });
-        ul.find(".no-results").hide();
+        $(list).find(".no-results:first").hide();
       }
     })
     .on('keyup paste', function () {

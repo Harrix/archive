@@ -23,6 +23,7 @@
       listStyle : 'default',
       paddingLi : 'default',
       searchBy : 'content',
+      showCollapsedExpndedAll: false,
       showSubListByFilter : false,
       showZeroCountItems : true,
 	  };
@@ -32,6 +33,10 @@
     ul.click(toggleUl);
     
     setOptionCollapsedStart();
+    
+    if (plugin.settings.showCollapsedExpndedAll) {
+      list.find(".buttons").show();
+    }
     
     if (plugin.settings.listStyle == 'default') {
       ul.find("li").css('list-style', 'inherit');
@@ -48,6 +53,18 @@
     listTraversal (ul.children(), workWithElement);
     listTraversal (ul.children(), showCountItems);
     listTraversal (ul.children(), distributeCollapsedExpanded);
+    
+    list.find('.button-expand:first')
+    .click(function() {
+      ul.find("ul").show().attr('data-collapse', 'false');
+      listTraversal (ul.children(), distributeCollapsedExpanded);
+    });
+    
+    list.find('.button-collapse:first')
+    .click(function() {
+      ul.find("ul").hide().attr('data-collapse', 'true');
+      listTraversal (ul.children(), distributeCollapsedExpanded);
+    });
     
     $(input)
     .change(function() {

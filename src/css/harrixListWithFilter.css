@@ -50,7 +50,22 @@
     margin-left: 18px;
 }
 
-.harrixListWithFilter .ul-root .no-results {
+.harrixListWithFilter .input-filter {
+    width: 100%;
+    padding: 0 .75rem 1px 1.75rem;
+    background: #fff;
+    border: 1px solid;
+    border-color: #d4d4d4;
+    border-radius: 3px;
+}
+
+.harrixListWithFilter .input-filter:focus {
+    outline: 0;
+    border-color: #35b5f4;
+    box-shadow: 0 0 1px #35b5f4;
+}
+
+.harrixListWithFilter .ul-root .buttons{
     
 }
 

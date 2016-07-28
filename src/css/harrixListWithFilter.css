@@ -1,9 +1,9 @@
-.harrixListWithFilter .ul-root  {
-    padding-left: 18px;
+.harrixListWithFilter  {
+    max-width: 500px;
 }
 
-.harrixListWithFilter .ul-root ul, li {
-    max-width: 500px;
+.harrixListWithFilter .ul-root  {
+    padding-left: 18px;
 }
 
 .harrixListWithFilter .ul-root ul {
@@ -50,22 +50,3 @@
     background-repeat: no-repeat; 
     padding-left: 18px; 
 }
-
-/*input[type="text"] {
-   border: 1px solid #cccccc;
-   border-radius: 3px;
-   -webkit-border-radius: 3px;
-   -moz-border-radius: 3px;
-   -khtml-border-radius: 3px;
-   background: #ffffff !important;
-   outline: none;
-   height: 24px;
-   width: 120px;
-   color: #cccccc;
-   font-size: 11px;
-}
-
-input[type="text"]:focus {
-  color: #000000;
-  border: 1px solid #000000
-}*/

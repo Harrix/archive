@@ -66,6 +66,12 @@
       listTraversal (ul.children(), distributeCollapsedExpanded);
     });
     
+    list.find('.search-clear:first')
+    .click(function() {
+      input.val("");
+      input.change();
+    });
+    
     $(input)
     .change(function() {
       var filter = $(input).val().toLowerCase();
@@ -74,6 +80,8 @@
       if (filter.trim()) {
         doFilter(ul, filter);
         ul.find("ul").show();
+        
+        list.find('.search-clear:first').css('display','block');
         
         ul.find("li:visible").each(function (index, element) {
           var element = $(element);
@@ -145,6 +153,7 @@
             element.text(count);
           });
         list.find(".no-results:first").hide();
+        list.find('.search-clear:first').css('display','none');
       }
     })
     .on('keyup paste', function () {

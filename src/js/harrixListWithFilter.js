@@ -99,6 +99,20 @@
           }
         });
         
+        ul.show();
+        
+        ul.find("li:visible").each(function (index, element) {
+          var element = $(element);
+          var filter = $(input).val().toLowerCase();
+          var text = getTextFromLiInNestedList(element).toLowerCase();
+          var find = plugin.settings.functionSearch( text, filter );
+          if (find)
+            element.attr('data-find','true');
+        });
+        
+        if (plugin.settings.showCollapsedExpndedAll)
+          list.find(".buttons").hide();
+
         if (ul.find("li:visible").length == 0)
         {
           ul.hide();
@@ -109,15 +123,7 @@
           ul.show();
           list.find(".no-results:first").hide();
         }
-        
-        ul.find("li:visible").each(function (index, element) {
-          var element = $(element);
-          var filter = $(input).val().toLowerCase();
-          var text = getTextFromLiInNestedList(element).toLowerCase();
-          var find = plugin.settings.functionSearch( text, filter );
-          if (find)
-            element.attr('data-find','true');
-        });
+
         
         if (plugin.settings.showSubListByFilter)
         {
@@ -161,6 +167,8 @@
         list.find(".no-results:first").hide();
         ul.show();
         list.find('.search-clear:first').css('display','none');
+        if (plugin.settings.showCollapsedExpndedAll)
+          list.find(".buttons").show();
       }
     })
     .on('keyup paste', function () {

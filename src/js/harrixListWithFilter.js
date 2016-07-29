@@ -145,7 +145,7 @@
         }
         
         if (plugin.settings.countItemsInFilter == 'none') {
-          ul.find('.count_li').hide();
+          ul.find('.count-li').hide();
         }
         if (plugin.settings.countItemsInFilter == 'not-changed') {          
         }
@@ -159,7 +159,7 @@
       else {
         listTraversal (ul.children(), returnStateCollapse);
         listTraversal (ul.children(), distributeCollapsedExpanded);
-        ul.find('.count_li').show().each(function (index, element) {
+        ul.find('.count-li').show().each(function (index, element) {
             var element = $(element);
             var count = element.attr('data-count');
             element.text(count);
@@ -313,7 +313,7 @@
           var count = element.find('li').length;
           if ((plugin.settings.showZeroCountItems) || 
              ((!plugin.settings.showZeroCountItems) && (count > 0)))
-            liWorkWithElement.prepend( '<span class="count_li" data-count="'+count+'">'+count+'</span>' );
+            liWorkWithElement.prepend( '<span class="count-li" data-count="'+count+'">'+count+'</span>' );
         }
         if (plugin.settings.countItems == 'only-leafs') {
           var count = 0;
@@ -324,7 +324,7 @@
           });
           if ((plugin.settings.showZeroCountItems) || 
              ((!plugin.settings.showZeroCountItems) && (count > 0)))
-            liWorkWithElement.prepend( '<span class="count_li" data-count="'+count+'">'+count+'</span>' );
+            liWorkWithElement.prepend( '<span class="count-li" data-count="'+count+'">'+count+'</span>' );
         }
       }
     };
@@ -338,7 +338,7 @@
           var count = element.find('li:visible').length;
           if ((plugin.settings.showZeroCountItems) || 
              ((!plugin.settings.showZeroCountItems) && (count > 0)))
-            liWorkWithElement.find('.count_li').text(count);
+            liWorkWithElement.find('.count-li').text(count);
         }
         if (plugin.settings.countItems == 'only-leafs') {
           var count = 0;
@@ -349,7 +349,7 @@
           });
           if ((plugin.settings.showZeroCountItems) || 
              ((!plugin.settings.showZeroCountItems) && (count > 0)))
-            liWorkWithElement.find('.count_li').text(count);
+            liWorkWithElement.find('.count-li').text(count);
         }
       }
     };
@@ -357,7 +357,7 @@
     function updateCountItemsShowSubListByFilter() {
       ul.find("[data-find='true']").each(function (index, elementFind) {
         var elementFind = $(elementFind);
-        elementFind.find('.count_li').each(function (index, element) {
+        elementFind.find('.count-li').each(function (index, element) {
           var element = $(element);
           var count = element.attr('data-count');
           element.text(count);
@@ -378,7 +378,7 @@
                   count++;
               }
             });
-            elementFind.find('.count_li:first').text(count);
+            elementFind.find('.count-li:first').text(count);
           }
         }
       });
@@ -456,10 +456,15 @@
     
     function getTextToNewLine (element) {
       var text = element.text();
-        if (text.indexOf('\n') >= 0) {
-          text = text.substring(0, text.indexOf('\n'));
-        }
-        return text;
+      
+      if (text.indexOf('\n') >= 0)
+        text = text.substring(0, text.indexOf('\n'));
+
+      var attr = element.find('.count-li:first').text();
+      if (!(attr === undefined))
+        text = text.substring(text.indexOf(attr)+attr.length, text.length);
+
+      return text;
     };
     
     function isLiTreeLeaf(element) {

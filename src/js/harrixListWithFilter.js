@@ -124,7 +124,6 @@
           list.find(".no-results:first").hide();
         }
 
-        
         if (plugin.settings.showSubListByFilter)
         {
           ul.find("[data-find='true']").each(function (index, element) {

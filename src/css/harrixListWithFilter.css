@@ -58,6 +58,7 @@
 }
 
 .harrixListWithFilter .input-filter {
+    color: #5f5f5f;
     width: 100%;
     position: relative;
     padding-left: 25px;

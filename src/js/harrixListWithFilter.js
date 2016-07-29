@@ -100,9 +100,15 @@
         });
         
         if (ul.find("li:visible").length == 0)
+        {
+          ul.hide();
           list.find(".no-results:first").show();
+        }
         else
+        {
+          ul.show();
           list.find(".no-results:first").hide();
+        }
         
         ul.find("li:visible").each(function (index, element) {
           var element = $(element);
@@ -153,6 +159,7 @@
             element.text(count);
           });
         list.find(".no-results:first").hide();
+        ul.show();
         list.find('.search-clear:first').css('display','none');
       }
     })

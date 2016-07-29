@@ -83,12 +83,10 @@
         
         list.find('.search-clear:first').css('display','block');
         
-        ul.show();  
-        console.log('-------------');
+        ul.show();
+        
         ul.find("li:visible").each(function (index, element) {
           var element = $(element);
-          //if (getTextFromLiInNestedList (element).indexOf('ще') >= 0) 
-            console.log(getTextFromLiInNestedList (element));
           if (element.find("li:visible").length > 0) {
             if ((element.hasClass('collapsed'))||(element.hasClass('expanded'))) {
               element.removeClass('collapsed');
@@ -125,6 +123,19 @@
           ul.show();
           list.find(".no-results:first").hide();
         }
+        
+        
+        console.log('*********');
+        ul.find("li:visible").each(function (index, element) {
+          var element = $(element);
+            console.log(getTextFromLiInNestedList (element));
+            if (element.hasClass('collapsed')) {
+              console.log('collapsed');
+            }
+            if (element.hasClass('expanded')) {
+              console.log('expanded');
+            }
+        });
         console.log('+++++++++++++');
         if (plugin.settings.showSubListByFilter)
         {
@@ -146,6 +157,17 @@
           });
           listTraversal (ul.children(), distributeCollapsedExpanded);
         }
+        console.log('/////////////////');
+        ul.find("li:visible").each(function (index, element) {
+          var element = $(element);
+            console.log(getTextFromLiInNestedList (element));
+            if (element.hasClass('collapsed')) {
+              console.log('collapsed');
+            }
+            if (element.hasClass('expanded')) {
+              console.log('expanded');
+            }
+        });
         
         if (plugin.settings.countItemsInFilter == 'none') {
           ul.find('.count-li').hide();

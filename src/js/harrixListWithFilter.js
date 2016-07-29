@@ -124,25 +124,10 @@
           list.find(".no-results:first").hide();
         }
         
-        
-        console.log('*********');
-        ul.find("li:visible").each(function (index, element) {
-          var element = $(element);
-            console.log(getTextFromLiInNestedList (element));
-            if (element.hasClass('collapsed')) {
-              console.log('collapsed');
-            }
-            if (element.hasClass('expanded')) {
-              console.log('expanded');
-            }
-        });
-        console.log('+++++++++++++');
         if (plugin.settings.showSubListByFilter)
         {
           ul.find("[data-find='true']").each(function (index, element) {
             var element = $(element);
-            //if (getTextFromLiInNestedList (element).indexOf('ще') >= 0)
-              console.log(getTextFromLiInNestedList (element));
             element.find('ul').each(function (index, subUl) {
               var subUl = $(subUl);
               if (subUl.find("[data-find='true']").length == 0) {
@@ -155,19 +140,13 @@
             element.show();
             element.find('li').show();
           });
+          ul.find("ul").each(function (index, element) {
+            var element = $(element);
+            if (element.find('li:visible').length > 0)
+              element.show().attr('data-collapse', 'false');
+           });
           listTraversal (ul.children(), distributeCollapsedExpanded);
         }
-        console.log('/////////////////');
-        ul.find("li:visible").each(function (index, element) {
-          var element = $(element);
-            console.log(getTextFromLiInNestedList (element));
-            if (element.hasClass('collapsed')) {
-              console.log('collapsed');
-            }
-            if (element.hasClass('expanded')) {
-              console.log('expanded');
-            }
-        });
         
         if (plugin.settings.countItemsInFilter == 'none') {
           ul.find('.count-li').hide();

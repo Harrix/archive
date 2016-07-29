@@ -83,8 +83,12 @@
         
         list.find('.search-clear:first').css('display','block');
         
+        ul.show();  
+        console.log('-------------');
         ul.find("li:visible").each(function (index, element) {
           var element = $(element);
+          //if (getTextFromLiInNestedList (element).indexOf('ще') >= 0) 
+            console.log(getTextFromLiInNestedList (element));
           if (element.find("li:visible").length > 0) {
             if ((element.hasClass('collapsed'))||(element.hasClass('expanded'))) {
               element.removeClass('collapsed');
@@ -98,9 +102,7 @@
             }
           }
         });
-        
-        ul.show();
-        
+
         ul.find("li:visible").each(function (index, element) {
           var element = $(element);
           var filter = $(input).val().toLowerCase();
@@ -123,11 +125,13 @@
           ul.show();
           list.find(".no-results:first").hide();
         }
-
+        console.log('+++++++++++++');
         if (plugin.settings.showSubListByFilter)
         {
           ul.find("[data-find='true']").each(function (index, element) {
             var element = $(element);
+            //if (getTextFromLiInNestedList (element).indexOf('ще') >= 0)
+              console.log(getTextFromLiInNestedList (element));
             element.find('ul').each(function (index, subUl) {
               var subUl = $(subUl);
               if (subUl.find("[data-find='true']").length == 0) {

@@ -298,21 +298,17 @@
           <div class="no-results">No results</div>
           </div>
           <script type="text/javascript">
-    function findString2(text, textFind) {
-      if (textFind === undefined)
-         return true;
-       else if (!textFind.trim())
-         return true;
+function findStringInBeginning(text, textFind) {
       var find = false;
-      if (text.indexOf('еще') >= 0)
+      if (text.indexOf(textFind) == 0)
         find = true;
-      return find;      
-    };
+      return find;     
+};
   
               jQuery().harrixListWithFilter('#list3',{
                 listStyle : 'none',
                 searchBy : 'value',
-                functionSearch : findString2,
+                functionSearch : findStringInBeginning,
                 countItems : 'only-leafs',
                 collapsedStart: 'all',
               });

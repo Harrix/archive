@@ -1,4 +1,4 @@
-.harrixListWithFilter .ul-root ul, .harrixListWithFilter .no-results, .harrixListWithFilter .buttons {
+.harrixListWithFilter .ul-root ul, .harrixListWithFilter .no-results, .harrixListWithFilter .buttons, .harrixListWithFilter .only-li{
     display: none;
 }
 

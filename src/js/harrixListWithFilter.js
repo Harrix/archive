@@ -86,15 +86,9 @@
         list.find('.search-clear:first').css('display','block');
         
         if (plugin.settings.showFilterResults != 'only-li')
-        {
-          ul.show();
-          divOnlyLi.hide();
-        }
+          toogleUlDivOnlyLi(true);
         else
-        {
-          ul.hide();
-          divOnlyLi.show();
-        }
+          toogleUlDivOnlyLi(false);
         
         ul.find("li:visible").each(function (index, element) {
           var element = $(element);
@@ -199,6 +193,17 @@
         $(input).change();
       }, 100);
     });
+    
+    function toogleUlDivOnlyLi(ulShow) {
+      if (ulShow) {
+        ul.show();
+        divOnlyLi.hide();
+      }
+      else {
+        ul.hide();
+        divOnlyLi.show();
+      }   
+    };
     
     function setOptionCollapsedStart() {
       if (plugin.settings.collapsedStart == 'all') {

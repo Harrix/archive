@@ -13,6 +13,7 @@
     var list = $(list);
     var ul = list.find('.ul-root:first');
     var input = list.find('.input-filter:first');
+    var divOnlyLi = list.find('.only-li:first');
     
     var defaults = {
       changeCursor : true,
@@ -84,7 +85,16 @@
         
         list.find('.search-clear:first').css('display','block');
         
-        ul.show();
+        if (plugin.settings.showFilterResults != 'only-li')
+        {
+          ul.show();
+          divOnlyLi.hide();
+        }
+        else
+        {
+          ul.hide();
+          divOnlyLi.show();
+        }
         
         ul.find("li:visible").each(function (index, element) {
           var element = $(element);

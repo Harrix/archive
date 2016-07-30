@@ -479,11 +479,11 @@
     
     function isLiTreeLeaf(element) {
       if (element.is('li')) {
-          if (element.children().find('li').length > 0)
-            return false;
-          else
-            return true;
-        }
+        if (element.children().find('li').length > 0)
+          return false;
+        else
+          return true;
+      }
       return false;
     };
     

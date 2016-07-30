@@ -22,6 +22,7 @@
       functionSearch : findString,
       listStyle : 'default',
       paddingLi : 'default',
+      rememberStateBeforeFiltering: true,
       searchBy : 'content',
       showCollapsedExpndedAll: false,
       showSubListByFilter : false,
@@ -159,6 +160,14 @@
           else
             listTraversal (ul.children(), updateCountItems);
         }
+        
+        if (!plugin.settings.rememberStateBeforeFiltering)
+        {
+          ul.find("ul").each(function (index, element) {
+            var element = $(element);
+            element.attr('data-collapse-history', element.attr('data-collapse'));
+          });
+        }
       }
       else {
         listTraversal (ul.children(), returnStateCollapse);
@@ -237,8 +246,8 @@
           if (element.is('ul')) {
             element.toggle();
             toggleAttr (element, 'data-collapse', 'true', 'false');
-            if (!filter.trim())
-              toggleAttr (element, 'data-collapse-history', 'true', 'false');
+            if ((!filter.trim())||(!plugin.settings.rememberStateBeforeFiltering))
+              element.attr('data-collapse-history', element.attr('data-collapse'));
             toggleCollapsEdexpanded (target, element);
           }
         });
@@ -249,8 +258,8 @@
           var ulFirst = li.find('ul:first');
           ulFirst.toggle();
           toggleAttr (ulFirst, 'data-collapse', 'true', 'false');
-          if (!filter.trim())
-              toggleAttr (element, 'data-collapse-history', 'true', 'false');
+          if ((!filter.trim())||(!plugin.settings.rememberStateBeforeFiltering))
+            element.attr('data-collapse-history', element.attr('data-collapse'));
           toggleCollapsEdexpanded (li, ulFirst);
         }
       }

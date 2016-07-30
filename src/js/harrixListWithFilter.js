@@ -86,8 +86,7 @@
         if (plugin.settings.showCollapsedExpndedAll)
           list.find(".buttons").hide();
         
-        if (plugin.settings.showFilterResults != 'only-leafs')
-        {
+        if (plugin.settings.showFilterResults != 'only-leafs') {
           divOnlyLi.hide();
           
           doFilter(ul, filter);
@@ -120,19 +119,16 @@
               element.attr('data-find','true');
           });
           
-          if (ul.find("li:visible").length == 0)
-          {
+          if (ul.find("li:visible").length == 0) {
             ul.hide();
             list.find(".no-results:first").show();
           }
-          else
-          {
+          else {
             ul.show();
             list.find(".no-results:first").hide();
           }
           
-          if (plugin.settings.showFilterResults == 'with-sublists')
-          {
+          if (plugin.settings.showFilterResults == 'with-sublists') {
             ul.find("[data-find='true']").each(function (index, element) {
               var element = $(element);
               element.find('ul').each(function (index, subUl) {
@@ -167,16 +163,14 @@
               listTraversal (ul.children(), updateCountItems);
           }
           
-          if (!plugin.settings.rememberStateBeforeFiltering)
-          {
+          if (!plugin.settings.rememberStateBeforeFiltering) {
             ul.find("ul").each(function (index, element) {
               var element = $(element);
               element.attr('data-collapse-history', element.attr('data-collapse'));
             });
           }
         }
-        else
-        {
+        else {
           ul.hide();
           divOnlyLi.empty();
           divOnlyLi.show();
@@ -187,8 +181,7 @@
               var filter = input.val().toLowerCase();
               var text = getTextFromLiInNestedList(element).toLowerCase();
               var find = plugin.settings.functionSearch( text, filter );
-              if (find)
-              {
+              if (find) {
                 element.attr('data-find','true');
                 divOnlyLi.append(element.clone());
               }
@@ -326,8 +319,7 @@
       }
     };
     
-    function listTraversal (listT, processingElement)
-    {
+    function listTraversal (listT, processingElement) {
       if (listT.length > 0) {
         $.each( listT, function( i, element ) {
           var element = $(element);        

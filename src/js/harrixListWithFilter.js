@@ -121,11 +121,15 @@
         if (ul.find("li:visible").length == 0)
         {
           ul.hide();
+          divOnlyLi.hide();
           list.find(".no-results:first").show();
         }
         else
         {
-          ul.show();
+          if (plugin.settings.showFilterResults != 'only-li')
+            toogleUlDivOnlyLi(true);
+          else
+            toogleUlDivOnlyLi(false);
           list.find(".no-results:first").hide();
         }
         
@@ -182,7 +186,10 @@
             element.text(count);
           });
         list.find(".no-results:first").hide();
-        ul.show();
+        if (plugin.settings.showFilterResults != 'only-li')
+          toogleUlDivOnlyLi(true);
+        else
+          toogleUlDivOnlyLi(false);
         list.find('.search-clear:first').css('display','none');
         if (plugin.settings.showCollapsedExpndedAll)
           list.find(".buttons").show();

@@ -56,13 +56,13 @@
     
     list.find('.button-expand:first')
     .click(function() {
-      ul.find("ul").show().attr('data-collapse', 'false');
+      ul.find("ul").show().attr('data-collapse', 'false').attr('data-collapse-history', 'false');
       listTraversal (ul.children(), distributeCollapsedExpanded);
     });
     
     list.find('.button-collapse:first')
     .click(function() {
-      ul.find("ul").hide().attr('data-collapse', 'true');
+      ul.find("ul").hide().attr('data-collapse', 'true').attr('data-collapse-history', 'true');
       listTraversal (ul.children(), distributeCollapsedExpanded);
     });
     
@@ -183,29 +183,29 @@
     
     function setOptionCollapsedStart() {
       if (plugin.settings.collapsedStart == 'all') {
-        ul.find("ul").hide().attr('data-collapse', 'true');
+        ul.find("ul").hide().attr('data-collapse', 'true').attr('data-collapse-history', 'true');
       }
       if (plugin.settings.collapsedStart == 'none') {
-        ul.find("ul").show().attr('data-collapse', 'false');
+        ul.find("ul").show().attr('data-collapse', 'false').attr('data-collapse-history', 'false');
       }
       if (plugin.settings.collapsedStart == 'close-last-ul') {
         ul.find("ul").each(function (index, element) {
           var element = $(element);
           if (element.find('ul').length == 0 )
-            element.hide().attr('data-collapse', 'true');
+            element.hide().attr('data-collapse', 'true').attr('data-collapse-history', 'true');
           else
-            element.show().attr('data-collapse', 'false');
+            element.show().attr('data-collapse', 'false').attr('data-collapse-history', 'false');
         });
       }
       if (plugin.settings.collapsedStart == 'first-open') {
-        ul.find("ul").hide().attr('data-collapse', 'true');
+        ul.find("ul").hide().attr('data-collapse', 'true').attr('data-collapse-history', 'true');
         $.each( ul.children(), function( i, element ) {
           var element = $(element);
           if (element.is('li')) {
             $.each( element.children(), function( i, element ) {
               var element = $(element);
               if (element.is('ul'))
-                element.show().attr('data-collapse', 'false');
+                element.show().attr('data-collapse', 'false').attr('data-collapse-history', 'false');
             });
           }
         });
@@ -215,10 +215,12 @@
     function returnStateCollapse (element) {
       var element = $(element);
       if (element.is('ul')) {
-        if (element.attr('data-collapse') == 'true') {
+        if (element.attr('data-collapse-history') == 'true') {
           element.hide();
+          element.attr('data-collapse','true');
         } else {
           element.show();
+          element.attr('data-collapse','false');
         }
       }
       else if (element.is('li')) {
@@ -235,6 +237,8 @@
           if (element.is('ul')) {
             element.toggle();
             toggleAttr (element, 'data-collapse', 'true', 'false');
+            if (!filter.trim())
+              toggleAttr (element, 'data-collapse-history', 'true', 'false');
             toggleCollapsEdexpanded (target, element);
           }
         });
@@ -245,6 +249,8 @@
           var ulFirst = li.find('ul:first');
           ulFirst.toggle();
           toggleAttr (ulFirst, 'data-collapse', 'true', 'false');
+          if (!filter.trim())
+              toggleAttr (element, 'data-collapse-history', 'true', 'false');
           toggleCollapsEdexpanded (li, ulFirst);
         }
       }

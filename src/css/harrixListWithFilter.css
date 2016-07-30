@@ -85,6 +85,10 @@
     color:#a9a9a9;
 }
 
+.harrixListWithFilter .input-filter::-ms-clear {
+    display: none;
+}
+
 .harrixListWithFilter .input-filter:focus {
     outline: 0;
     border-color: #cacaca;

@@ -117,3 +117,7 @@
 .harrixListWithFilter .no-results {
     margin-bottom: 12px;      
 }
+
+.harrixListWithFilter .only-li {
+    margin-bottom: 12px;  
+}

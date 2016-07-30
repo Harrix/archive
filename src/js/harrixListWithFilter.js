@@ -77,18 +77,22 @@
     input
     .change(function() {
       var filter = input.val().toLowerCase();
+      
       ul.find("li").removeAttr('data-find');
       
       if (filter.trim()) {
-        if (plugin.settings.showFilterResults != 'only-li')
+        list.find('.search-clear:first').css('display','block');
+        
+        if (plugin.settings.showCollapsedExpndedAll)
+          list.find(".buttons").hide();
+        
+        if (plugin.settings.showFilterResults != 'only-leafs')
         {
           divOnlyLi.hide();
           
           doFilter(ul, filter);
           ul.find("ul").show();
-          
-          list.find('.search-clear:first').css('display','block');
-          
+
           ul.show();
           
           ul.find("li:visible").each(function (index, element) {
@@ -115,9 +119,6 @@
             if (find)
               element.attr('data-find','true');
           });
-          
-          if (plugin.settings.showCollapsedExpndedAll)
-            list.find(".buttons").hide();
           
           if (ul.find("li:visible").length == 0)
           {
@@ -177,8 +178,31 @@
         else
         {
           ul.hide();
+          divOnlyLi.empty();
           divOnlyLi.show();
 
+          ul.find("li").each(function (index, element) {
+            var element = $(element);
+            if (isLiTreeLeaf(element)) {
+              var filter = input.val().toLowerCase();
+              var text = getTextFromLiInNestedList(element).toLowerCase();
+              var find = plugin.settings.functionSearch( text, filter );
+              if (find)
+              {
+                element.attr('data-find','true');
+                divOnlyLi.append(element.clone());
+              }
+            }
+          });
+          
+          if (divOnlyLi.find("li:visible").length == 0) {
+            divOnlyLi.hide();
+            list.find(".no-results:first").show();
+          }
+          else {
+            divOnlyLi.show();
+            list.find(".no-results:first").hide();
+          }
         }
       }
       else {
@@ -191,6 +215,10 @@
           });
         list.find(".no-results:first").hide();
         ul.show();
+        if (plugin.settings.showFilterResults == 'only-leafs') {
+          divOnlyLi.empty();
+          divOnlyLi.hide();
+        }
         list.find('.search-clear:first').css('display','none');
         if (plugin.settings.showCollapsedExpndedAll)
           list.find(".buttons").show();

@@ -72,6 +72,7 @@
     .click(function() {
       input.val("");
       input.change();
+      input.focus();
     });
     
     input

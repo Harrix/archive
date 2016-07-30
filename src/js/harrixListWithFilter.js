@@ -74,9 +74,9 @@
       input.change();
     });
     
-    $(input)
+    input
     .change(function() {
-      var filter = $(input).val().toLowerCase();
+      var filter = input.val().toLowerCase();
       ul.find("li").removeAttr('data-find');
       
       if (filter.trim()) {
@@ -109,7 +109,7 @@
           
           ul.find("li:visible").each(function (index, element) {
             var element = $(element);
-            var filter = $(input).val().toLowerCase();
+            var filter = input.val().toLowerCase();
             var text = getTextFromLiInNestedList(element).toLowerCase();
             var find = plugin.settings.functionSearch( text, filter );
             if (find)
@@ -178,6 +178,7 @@
         {
           ul.hide();
           divOnlyLi.show();
+
         }
       }
       else {
@@ -197,7 +198,7 @@
     })
     .on('keyup paste', function () {
       setTimeout(function () {
-        $(input).change();
+        input.change();
       }, 100);
     });
     
@@ -249,7 +250,7 @@
     };
   
     function toggleUl(event) {
-      var filter = $(input).val().toLowerCase();
+      var filter = input.val().toLowerCase();
       var target = $(event.target);
       if (target.is("li")) {
         $.each( target.children(), function( i, element ) {

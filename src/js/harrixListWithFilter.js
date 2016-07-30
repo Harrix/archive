@@ -25,7 +25,7 @@
       rememberStateBeforeFiltering: true,
       searchBy : 'content',
       showCollapsedExpndedAll: false,
-      showSubListByFilter : false,
+      showFilterResults : 'default',
       showZeroCountItems : true,
 	  };
     
@@ -125,7 +125,7 @@
           list.find(".no-results:first").hide();
         }
         
-        if (plugin.settings.showSubListByFilter)
+        if (plugin.settings.showFilterResults == 'with-sublists')
         {
           ul.find("[data-find='true']").each(function (index, element) {
             var element = $(element);
@@ -155,8 +155,8 @@
         if (plugin.settings.countItemsInFilter == 'not-changed') {          
         }
         if (plugin.settings.countItemsInFilter == 'changed') {
-          if (plugin.settings.showSubListByFilter)
-            updateCountItemsShowSubListByFilter();
+          if (plugin.settings.showFilterResults == 'with-sublists')
+            updateCountItemsshowFilterResults();
           else
             listTraversal (ul.children(), updateCountItems);
         }
@@ -373,7 +373,7 @@
       }
     };
     
-    function updateCountItemsShowSubListByFilter() {
+    function updateCountItemsshowFilterResults() {
       ul.find("[data-find='true']").each(function (index, elementFind) {
         var elementFind = $(elementFind);
         elementFind.find('.count-li').each(function (index, element) {

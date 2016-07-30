@@ -80,94 +80,104 @@
       ul.find("li").removeAttr('data-find');
       
       if (filter.trim()) {
-        doFilter(ul, filter);
-        ul.find("ul").show();
-        
-        list.find('.search-clear:first').css('display','block');
-        
-        ul.show();
-        
-        ul.find("li:visible").each(function (index, element) {
-          var element = $(element);
-          if (element.find("li:visible").length > 0) {
-            if ((element.hasClass('collapsed'))||(element.hasClass('expanded'))) {
-              element.removeClass('collapsed');
-              element.addClass('expanded');
-            }
-          }
-          else {
-            if ((element.hasClass('collapsed'))||(element.hasClass('expanded'))) {
-              element.removeClass('expanded');
-              element.addClass('collapsed');
-            }
-          }
-        });
-
-        ul.find("li:visible").each(function (index, element) {
-          var element = $(element);
-          var filter = $(input).val().toLowerCase();
-          var text = getTextFromLiInNestedList(element).toLowerCase();
-          var find = plugin.settings.functionSearch( text, filter );
-          if (find)
-            element.attr('data-find','true');
-        });
-        
-        if (plugin.settings.showCollapsedExpndedAll)
-          list.find(".buttons").hide();
-
-        if (ul.find("li:visible").length == 0)
+        if (plugin.settings.showFilterResults != 'only-li')
         {
-          ul.hide();
-          list.find(".no-results:first").show();
+          divOnlyLi.hide();
+          
+          doFilter(ul, filter);
+          ul.find("ul").show();
+          
+          list.find('.search-clear:first').css('display','block');
+          
+          ul.show();
+          
+          ul.find("li:visible").each(function (index, element) {
+            var element = $(element);
+            if (element.find("li:visible").length > 0) {
+              if ((element.hasClass('collapsed'))||(element.hasClass('expanded'))) {
+                element.removeClass('collapsed');
+                element.addClass('expanded');
+              }
+            }
+            else {
+              if ((element.hasClass('collapsed'))||(element.hasClass('expanded'))) {
+                element.removeClass('expanded');
+                element.addClass('collapsed');
+              }
+            }
+          });
+          
+          ul.find("li:visible").each(function (index, element) {
+            var element = $(element);
+            var filter = $(input).val().toLowerCase();
+            var text = getTextFromLiInNestedList(element).toLowerCase();
+            var find = plugin.settings.functionSearch( text, filter );
+            if (find)
+              element.attr('data-find','true');
+          });
+          
+          if (plugin.settings.showCollapsedExpndedAll)
+            list.find(".buttons").hide();
+          
+          if (ul.find("li:visible").length == 0)
+          {
+            ul.hide();
+            list.find(".no-results:first").show();
+          }
+          else
+          {
+            ul.show();
+            list.find(".no-results:first").hide();
+          }
+          
+          if (plugin.settings.showFilterResults == 'with-sublists')
+          {
+            ul.find("[data-find='true']").each(function (index, element) {
+              var element = $(element);
+              element.find('ul').each(function (index, subUl) {
+                var subUl = $(subUl);
+                if (subUl.find("[data-find='true']").length == 0) {
+                  subUl.hide().attr('data-collapse', 'true');
+                }
+                else {
+                  subUl.show().attr('data-collapse', 'false');
+                }
+              });
+              element.show();
+              element.find('li').show();
+            });
+            ul.find("ul").each(function (index, element) {
+              var element = $(element);
+              if (element.find('li:visible').length > 0)
+                element.show().attr('data-collapse', 'false');
+             });
+            listTraversal (ul.children(), distributeCollapsedExpanded);
+          }
+          
+          if (plugin.settings.countItemsInFilter == 'none') {
+            ul.find('.count-li').hide();
+          }
+          if (plugin.settings.countItemsInFilter == 'not-changed') {          
+          }
+          if (plugin.settings.countItemsInFilter == 'changed') {
+            if (plugin.settings.showFilterResults == 'with-sublists')
+              updateCountItemsshowFilterResults();
+            else
+              listTraversal (ul.children(), updateCountItems);
+          }
+          
+          if (!plugin.settings.rememberStateBeforeFiltering)
+          {
+            ul.find("ul").each(function (index, element) {
+              var element = $(element);
+              element.attr('data-collapse-history', element.attr('data-collapse'));
+            });
+          }
         }
         else
         {
-          ul.show();
-          list.find(".no-results:first").hide();
-        }
-        
-        if (plugin.settings.showFilterResults == 'with-sublists')
-        {
-          ul.find("[data-find='true']").each(function (index, element) {
-            var element = $(element);
-            element.find('ul').each(function (index, subUl) {
-              var subUl = $(subUl);
-              if (subUl.find("[data-find='true']").length == 0) {
-                subUl.hide().attr('data-collapse', 'true');
-              }
-              else {
-                subUl.show().attr('data-collapse', 'false');
-              }
-            });
-            element.show();
-            element.find('li').show();
-          });
-          ul.find("ul").each(function (index, element) {
-            var element = $(element);
-            if (element.find('li:visible').length > 0)
-              element.show().attr('data-collapse', 'false');
-           });
-          listTraversal (ul.children(), distributeCollapsedExpanded);
-        }
-        
-        if (plugin.settings.countItemsInFilter == 'none') {
-          ul.find('.count-li').hide();
-        }
-        if (plugin.settings.countItemsInFilter == 'not-changed') {          
-        }
-        if (plugin.settings.countItemsInFilter == 'changed') {
-          if (plugin.settings.showFilterResults == 'with-sublists')
-            updateCountItemsshowFilterResults();
-          else
-            listTraversal (ul.children(), updateCountItems);
-        }
-        
-        if (!plugin.settings.rememberStateBeforeFiltering)
-        {
-          ul.find("ul").each(function (index, element) {
-            var element = $(element);
-            element.attr('data-collapse-history', element.attr('data-collapse'));
-          });
+          ul.hide();
+          divOnlyLi.show();
         }
       }
       else {

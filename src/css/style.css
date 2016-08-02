@@ -303,11 +303,11 @@ header {
 
 @media (max-width:767px){
 .navbar .nav-link {
-    float:none;
+    float: none;
 }
 
 .navbar .nav-link+.nav-link {
-    margin-left:0;
+    margin-left: 0;
 }
 }
 

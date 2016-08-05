@@ -15,13 +15,15 @@ Button {
 
     contentItem: Row {
         id: contentItem
-        spacing: 3
+        spacing: 2
         anchors.centerIn: parent
+
         Loader {
             id: loaderIcon
             width: loaderIcon.status ? text.height : 0
             height: text.height
         }
+
         Text {
             id: text
             text: control.text
@@ -52,7 +54,7 @@ Button {
         }
 
         Behavior on color {
-            ColorAnimation { duration: 100 }
+            ColorAnimation { duration: 200 }
         }
     }
 }

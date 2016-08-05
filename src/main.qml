@@ -45,10 +45,11 @@ ApplicationWindow {
 
             onClicked: qmlSignal("яблок")
 
-            content:  Text {
-                font.pointSize: 20
+            icon:  Text {
+                font.pointSize: Settings.fontSize
+                color: Settings.colorFontButton
                 font.family: "FontAwesome"
-                text: "\uf000"
+                text: "\uf019"
             }
         }
 

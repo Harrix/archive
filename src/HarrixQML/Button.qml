@@ -3,7 +3,7 @@ import QtQuick.Controls 2.0
 import "."
 
 Button {
-    property alias content: mContentLoader.sourceComponent
+    property alias icon: loaderIcon.sourceComponent
 
     id: control
     text: qsTr("Button")
@@ -14,26 +14,27 @@ Button {
     highlighted: true
 
     contentItem: Row {
-        spacing: 10
+        id: contentItem
+        spacing: 3
         anchors.centerIn: parent
         Loader {
-            id: mContentLoader
-            anchors.fill: parent
-            //anchors.margins: HarrixSettings.marginCommon
+            id: loaderIcon
+            width: loaderIcon.status ? text.height : 0
+            height: text.height
         }
         Text {
-        id: contentItem
-        text: control.text
-        font.family: Settings.fontName
-        font.pixelSize: Settings.fontSize
-        font.weight: Font.Bold
-        font.capitalization: Font.AllUppercase
-        color: Settings.colorFontButton
-        horizontalAlignment: Text.AlignHCenter
-        verticalAlignment: Text.AlignVCenter
-        elide: Text.ElideRight
-        renderType: Settings.fontRenderType
-    }
+            id: text
+            text: control.text
+            font.family: Settings.fontName
+            font.pixelSize: Settings.fontSize
+            font.weight: Font.Bold
+            font.capitalization: Font.AllUppercase
+            color: Settings.colorFontButton
+            horizontalAlignment: Text.AlignHCenter
+            verticalAlignment: Text.AlignVCenter
+            elide: Text.ElideRight
+            renderType: Settings.fontRenderType
+        }
     }
 
     background: Rectangle {

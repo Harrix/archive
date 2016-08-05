@@ -11,7 +11,6 @@ Button {
     padding: 8
     leftPadding: 24
     rightPadding: 24
-    highlighted: true
 
     contentItem: Row {
         id: contentItem

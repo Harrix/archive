@@ -43,7 +43,23 @@ ApplicationWindow {
             id: button2
             text: qsTr("Скачать")
 
-            onClicked: qmlSignal("яблок")
+            onClicked: qmlSignal("помидор")
+
+            icon:  Text {
+                font.pointSize: Settings.fontSize
+                color: Settings.colorFontButton
+                font.family: "FontAwesome"
+                text: "\uf019"
+            }
+        }
+
+        Button {
+            id: button3
+            text: qsTr("Скачать")
+
+            enabled: false
+
+            onClicked: qmlSignal("топинамбуров")
 
             icon:  Text {
                 font.pointSize: Settings.fontSize

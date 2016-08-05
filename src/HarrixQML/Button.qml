@@ -43,13 +43,16 @@ Button {
         border.width: 0
         radius: 0
 
-        MouseArea {
+        MouseAreaRipple {
             id: mouseArea
             anchors.fill: parent
             hoverEnabled: true
             onEntered: parent.color = "#f54d4c"
             onExited: parent.color = "#de2b26"
-            onClicked: control.clicked()
+            onClicked: {
+                console.log("111");
+                control.clicked()
+            }
         }
 
         Behavior on color {

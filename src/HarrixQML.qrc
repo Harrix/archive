@@ -10,5 +10,6 @@
         <file>HarrixQML/js/FontAwesome.js</file>
         <file>HarrixQML/ServiceFonts.qml</file>
         <file>HarrixQML/ServiceRipple.qml</file>
+        <file>HarrixQML/MouseAreaRipple.qml</file>
     </qresource>
 </RCC>

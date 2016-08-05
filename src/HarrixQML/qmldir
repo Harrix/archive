@@ -3,6 +3,7 @@ module HarrixQML
 # Visual components
 ApplicationWindow 1.0 ApplicationWindow.qml
 Button 1.0 Button.qml
+MouseAreaRipple 1.0 MouseAreaRipple.qml
 
 # Service components
 ServiceFonts 1.0 ServiceFonts.qml

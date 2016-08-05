@@ -14,7 +14,7 @@ Button {
 
     contentItem: Row {
         id: contentItem
-        spacing: 2
+        spacing: 4
         anchors.centerIn: parent
 
         Loader {

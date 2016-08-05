@@ -8,5 +8,6 @@
         <file>HarrixQML/fonts/FontAwesome.ttf</file>
         <file>HarrixQML/fonts/OpenSans.ttf</file>
         <file>HarrixQML/fonts/PTMono.ttf</file>
+        <file>HarrixQML/js/FontAwesome.js</file>
     </qresource>
 </RCC>

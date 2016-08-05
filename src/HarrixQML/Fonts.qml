@@ -3,12 +3,12 @@ import "."
 
 Item {
     FontLoader {
-        source: "qrc:/fonts/HarrixQML/fonts/OpenSans.ttf" //Open Sans
+        source: "qrc:/HarrixQML/fonts/OpenSans.ttf" //Open Sans
     }
     FontLoader {
-        source: "qrc:/fonts/HarrixQML/fonts/PTMono.ttf" //PT Mono
+        source: "qrc:/HarrixQML/fonts/PTMono.ttf" //PT Mono
     }
     FontLoader {
-        source: "qrc:/fonts/HarrixQML/fonts/FontAwesome.ttf" //FontAwesome
+        source: "qrc:/HarrixQML/fonts/FontAwesome.ttf" //FontAwesome
     }
 }

@@ -5,8 +5,6 @@
         <file>HarrixQML/ApplicationWindow.qml</file>
         <file>HarrixQML/Settings.qml</file>
         <file>HarrixQML/qmldir</file>
-    </qresource>
-    <qresource prefix="/fonts">
         <file>HarrixQML/fonts/FontAwesome.ttf</file>
         <file>HarrixQML/fonts/OpenSans.ttf</file>
         <file>HarrixQML/fonts/PTMono.ttf</file>

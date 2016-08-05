@@ -47,9 +47,25 @@ ApplicationWindow {
 
             icon:  Text {
                 font.pointSize: Settings.fontSize
+                renderType: Settings.fontRenderType
                 color: Settings.colorFontButton
                 font.family: "FontAwesome"
-                text: "\uf019"
+                text: FontAwesome.Icon.fa_download
+            }
+        }
+
+        Button {
+            id: button22
+            text: qsTr("Скачать")
+
+            onClicked: qmlSignal("помидор")
+
+            icon:  Text {
+                font.pointSize: Settings.fontSize
+                renderType: Settings.fontRenderType
+                color: Settings.colorFontButton
+                font.family: "FontAwesome"
+                text: FontAwesome.Icon.fa_camera_retro
             }
         }
 
@@ -63,9 +79,10 @@ ApplicationWindow {
 
             icon:  Text {
                 font.pointSize: Settings.fontSize
+                renderType: Settings.fontRenderType
                 color: Settings.colorFontButton
                 font.family: "FontAwesome"
-                text: FontAwesome.Icon.Glass
+                text: FontAwesome.Icon.fa_download
             }
         }
 

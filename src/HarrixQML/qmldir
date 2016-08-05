@@ -1,10 +1,14 @@
 module HarrixQML
 
+# Visual components
 ApplicationWindow 1.0 ApplicationWindow.qml
 Button 1.0 Button.qml
 
+# Service components
 Fonts 1.0 Fonts.qml
 
+# JavaScript
 FontAwesome 1.0 js/FontAwesome.js
 
+# Settings of the module
 singleton Settings 1.0 Settings.qml

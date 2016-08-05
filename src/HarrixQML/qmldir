@@ -5,7 +5,8 @@ ApplicationWindow 1.0 ApplicationWindow.qml
 Button 1.0 Button.qml
 
 # Service components
-Fonts 1.0 Fonts.qml
+ServiceFonts 1.0 ServiceFonts.qml
+ServiceRipple 1.0 ServiceRipple.qml
 
 # JavaScript
 FontAwesome 1.0 js/FontAwesome.js

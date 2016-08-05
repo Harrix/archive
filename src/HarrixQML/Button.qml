@@ -55,5 +55,9 @@ Button {
         Behavior on color {
             ColorAnimation { duration: 200 }
         }
+
+        /*ServiceRipple {
+            mouseArea: mousearea
+        }*/
     }
 }

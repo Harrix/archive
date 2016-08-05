@@ -65,7 +65,7 @@ ApplicationWindow {
                 renderType: Settings.fontRenderType
                 color: Settings.colorFontButton
                 font.family: "FontAwesome"
-                text: FontAwesome.Icon.fa_camera_retro
+                text: FontAwesome.Icon.fa_vk
             }
         }
 

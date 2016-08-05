@@ -1,7 +1,6 @@
 <RCC>
     <qresource prefix="/">
         <file>HarrixQML/Button.qml</file>
-        <file>HarrixQML/Fonts.qml</file>
         <file>HarrixQML/ApplicationWindow.qml</file>
         <file>HarrixQML/Settings.qml</file>
         <file>HarrixQML/qmldir</file>
@@ -9,5 +8,7 @@
         <file>HarrixQML/fonts/OpenSans.ttf</file>
         <file>HarrixQML/fonts/PTMono.ttf</file>
         <file>HarrixQML/js/FontAwesome.js</file>
+        <file>HarrixQML/ServiceFonts.qml</file>
+        <file>HarrixQML/ServiceRipple.qml</file>
     </qresource>
 </RCC>

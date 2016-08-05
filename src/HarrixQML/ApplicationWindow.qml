@@ -14,7 +14,7 @@ ApplicationWindow {
     font.family: Settings.fontName
     font.pixelSize: Settings.fontSize
 
-    Fonts {
+    ServiceFonts {
         id: fonts
     }
 }

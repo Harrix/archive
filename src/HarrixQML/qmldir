@@ -1,0 +1,8 @@
+module HarrixQML
+
+ApplicationWindow 1.0 ApplicationWindow.qml
+Button 1.0 Button.qml
+
+Fonts 1.0 Fonts.qml
+
+singleton Settings 1.0 Settings.qml

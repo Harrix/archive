@@ -6,6 +6,8 @@ import QtQuick.Layouts 1.3
 import "HarrixQML"
 //import "HarrixQML" as Harrix
 
+import "fontawesome.js" as FontAwesome
+
 ApplicationWindow {
 
     title: qsTr("Сложение двух чисел")
@@ -65,7 +67,7 @@ ApplicationWindow {
                 font.pointSize: Settings.fontSize
                 color: Settings.colorFontButton
                 font.family: "FontAwesome"
-                text: "\uf019"
+                text: FontAwesome.Icon.Glass
             }
         }
 

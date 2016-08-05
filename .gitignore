@@ -29,10 +29,13 @@ Makefile*
 
 *.autosave
 
-#QtCtreator Qml
+# QtCtreator Qml
 *.qmlproject.user
 *.qmlproject.user.*
 
-#Harrix configuration
+# QtCtreator CMake
+CMakeLists.txt.user
+
+# Harrix configuration
 *_build*
 *release*

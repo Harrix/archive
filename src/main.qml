@@ -65,11 +65,5 @@ ApplicationWindow {
             readOnly: true
             width: 250
         }
-
-        Text {
-                font.pointSize: 20
-                font.family: "FontAwesome"
-                text: "\uf000"
-            }
     }
 }

@@ -6,7 +6,6 @@ Button {
     property alias icon: loaderIcon.sourceComponent
 
     id: control
-    text: qsTr("Button")
 
     padding: 8
     leftPadding: 24
@@ -43,8 +42,9 @@ Button {
         color: control.down ? "#f54d4c" : "#de2b26"
         border.width: 0
         radius: 0
+
         MouseArea {
-            id: mousearea
+            id: mouseArea
             anchors.fill: parent
             hoverEnabled: true
             onEntered: parent.color = "#f54d4c"

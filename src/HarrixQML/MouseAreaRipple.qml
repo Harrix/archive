@@ -97,22 +97,23 @@ MouseArea {
 
     onPressed: rippleEffect()
 
-    function rippleEffect()
-    {
-        var mouseX = mouseArea.mouseX;
-        var mouseY = mouseArea.mouseY;
+    function rippleEffect() {
+        if (!animation.running) {
+            var mouseX = mouseArea.mouseX;
+            var mouseY = mouseArea.mouseY;
 
-        ripple.x = mouseX;
-        ripple.y = mouseY;
-        ripple.opacity = rippleOpacity;
+            ripple.x = mouseX;
+            ripple.y = mouseY;
+            ripple.opacity = rippleOpacity;
 
-        d.radiusEnd = maximumRadius (mouseX, mouseY,
-                                     mouseArea.width, mouseArea.height);
+            d.radiusEnd = maximumRadius (mouseX, mouseY,
+                                         mouseArea.width, mouseArea.height);
 
-        d.xEnd = mouseX - d.radiusEnd * 0.85090352453;
-        d.yEnd = mouseY - d.radiusEnd * 0.85090352453;
+            d.xEnd = mouseX - d.radiusEnd * 0.85090352453;
+            d.yEnd = mouseY - d.radiusEnd * 0.85090352453;
 
-        animation.running = true;
+            animation.running = true;
+        }
     }
 
     function distanceTwoPoints(x1, y1, x2, y2) {

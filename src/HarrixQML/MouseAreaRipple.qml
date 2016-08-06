@@ -46,23 +46,54 @@ MouseArea {
         running: false
 
         ParallelAnimation {
-            NumberAnimation { target: ripple; property: "x"; to: d.xEnd; duration: 300; }
-            NumberAnimation { target: ripple; property: "y"; to: d.yEnd; duration: 300; }
-            NumberAnimation { target: ripple; property: "width"; from: 0; to: 2*d.radiusEnd; duration: 300; }
-            NumberAnimation { target: ripple; property: "height"; from: 0; to: 2*d.radiusEnd; duration: 300; }
-            NumberAnimation { target: ripple; property: "radius"; from: 0; to: d.radiusEnd; duration: 300; }
+            NumberAnimation {
+                target: ripple
+                property: "x"
+                to: d.xEnd
+                duration: 300
+            }
+            NumberAnimation {
+                target: ripple
+                property: "y"
+                to: d.yEnd;
+                duration: 300
+            }
+            NumberAnimation {
+                target: ripple
+                property: "width"
+                from: 0
+                to: 2*d.radiusEnd;
+                duration: 300
+            }
+            NumberAnimation {
+                target: ripple;
+                property: "height"
+                from: 0
+                to: 2*d.radiusEnd
+                duration: 300;
+            }
+            NumberAnimation {
+                target: ripple
+                property: "radius"
+                from: 0
+                to: d.radiusEnd
+                duration: 300
+            }
         }
 
-        NumberAnimation { target: ripple; property: "opacity"; to: 0; duration: 100 }
-        NumberAnimation { target: ripple; property: "width"; to: 0; duration: 1 }
-        NumberAnimation { target: ripple; property: "height"; to: 0; duration: 1 }
+        NumberAnimation {
+            target: ripple
+            property: "opacity"
+            to: 0
+            duration: 100
+        }
     }
 
     onPressed: {
         d.mouseX = mouseArea.mouseX;
         d.mouseY = mouseArea.mouseY;
-        d.radiusEnd = 1.5*maximumRadius (d.mouseX, d.mouseY,
-                                         mouseArea.width, mouseArea.height);
+        d.radiusEnd = maximumRadius (d.mouseX, d.mouseY,
+                                     mouseArea.width, mouseArea.height);
 
         d.radiusBegin = 10;
         d.xEnd = d.mouseX - d.radiusEnd * 0.85090352453;

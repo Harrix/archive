@@ -7,8 +7,6 @@ MouseArea {
 
     QtObject {
         id: d
-        property int mouseX: 0
-        property int mouseY: 0
         property int radiusEnd: 0
         property int radiusBegin: 0
         property int xEnd: 0
@@ -89,18 +87,21 @@ MouseArea {
         }
     }
 
-    onPressed: {
-        d.mouseX = mouseArea.mouseX;
-        d.mouseY = mouseArea.mouseY;
-        d.radiusEnd = maximumRadius (d.mouseX, d.mouseY,
+    onPressed: rippleEffect()
+
+    function rippleEffect()
+    {
+        var mouseX = mouseArea.mouseX;
+        var mouseY = mouseArea.mouseY;
+        d.radiusEnd = maximumRadius (mouseX, mouseY,
                                      mouseArea.width, mouseArea.height);
 
         d.radiusBegin = 10;
-        d.xEnd = d.mouseX - d.radiusEnd * 0.85090352453;
-        d.yEnd = d.mouseY - d.radiusEnd * 0.85090352453;
+        d.xEnd = mouseX - d.radiusEnd * 0.85090352453;
+        d.yEnd = mouseY - d.radiusEnd * 0.85090352453;
 
-        ripple.x = d.mouseX - d.radiusBegin * 0.85090352453;
-        ripple.y = d.mouseY - d.radiusBegin * 0.85090352453;
+        ripple.x = mouseX - d.radiusBegin * 0.85090352453;
+        ripple.y = mouseY - d.radiusBegin * 0.85090352453;
 
         ripple.opacity = 0.3;
         animation.running = true;

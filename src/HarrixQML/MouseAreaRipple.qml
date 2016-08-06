@@ -62,9 +62,7 @@ MouseArea {
         d.mouseX = mouseArea.mouseX;
         d.mouseY = mouseArea.mouseY;
         d.radiusEnd = 1.5*maximumRadius (d.mouseX, d.mouseY,
-                                            mouseArea.width, mouseArea.height);
-
-        console.log(d.radiusEnd);
+                                         mouseArea.width, mouseArea.height);
 
         d.radiusBegin = 10;
         d.xEnd = d.mouseX - d.radiusEnd * 0.85090352453;

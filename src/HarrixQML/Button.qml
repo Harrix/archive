@@ -50,7 +50,6 @@ Button {
             onEntered: parent.color = "#f54d4c"
             onExited: parent.color = "#de2b26"
             onClicked: {
-                console.log("111");
                 control.clicked()
             }
         }
@@ -58,9 +57,5 @@ Button {
         Behavior on color {
             ColorAnimation { duration: 200 }
         }
-
-        /*ServiceRipple {
-            mouseArea: mousearea
-        }*/
     }
 }

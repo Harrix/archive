@@ -98,5 +98,21 @@ ApplicationWindow {
             readOnly: true
             width: 250
         }
+
+        Image {
+            source: "qrc:/images/harrix_photo.png"
+            width: 300
+            height: 300
+            smooth: true
+
+            MouseAreaRipple {
+                id: mouseAreaImage
+                anchors.fill: parent
+                hoverEnabled: true
+                onClicked: {
+                    console.log("image")
+                }
+            }
+        }
     }
 }

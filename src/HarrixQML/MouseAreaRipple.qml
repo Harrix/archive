@@ -2,13 +2,15 @@ import QtQuick 2.7
 import QtGraphicalEffects 1.0
 
 MouseArea {
+    property real rippleOpacity: 0.3
+    property int rippleDuration: 300
+
     id: mouseArea
     anchors.fill: parent
 
     QtObject {
         id: d
         property int radiusEnd: 0
-        property int radiusBegin: 0
         property int xEnd: 0
         property int yEnd: 0
     }
@@ -48,34 +50,34 @@ MouseArea {
                 target: ripple
                 property: "x"
                 to: d.xEnd
-                duration: 300
+                duration: rippleDuration
             }
             NumberAnimation {
                 target: ripple
                 property: "y"
-                to: d.yEnd;
-                duration: 300
+                to: d.yEnd
+                duration: rippleDuration
             }
             NumberAnimation {
                 target: ripple
                 property: "width"
                 from: 0
-                to: 2*d.radiusEnd;
-                duration: 300
+                to: 2*d.radiusEnd
+                duration: rippleDuration
             }
             NumberAnimation {
                 target: ripple;
                 property: "height"
                 from: 0
                 to: 2*d.radiusEnd
-                duration: 300;
+                duration: rippleDuration
             }
             NumberAnimation {
                 target: ripple
                 property: "radius"
                 from: 0
                 to: d.radiusEnd
-                duration: 300
+                duration: rippleDuration
             }
         }
 
@@ -93,17 +95,17 @@ MouseArea {
     {
         var mouseX = mouseArea.mouseX;
         var mouseY = mouseArea.mouseY;
+
+        ripple.x = mouseX;
+        ripple.y = mouseY;
+        ripple.opacity = rippleOpacity;
+
         d.radiusEnd = maximumRadius (mouseX, mouseY,
                                      mouseArea.width, mouseArea.height);
 
-        d.radiusBegin = 10;
         d.xEnd = mouseX - d.radiusEnd * 0.85090352453;
         d.yEnd = mouseY - d.radiusEnd * 0.85090352453;
 
-        ripple.x = mouseX - d.radiusBegin * 0.85090352453;
-        ripple.y = mouseY - d.radiusBegin * 0.85090352453;
-
-        ripple.opacity = 0.3;
         animation.running = true;
     }
 

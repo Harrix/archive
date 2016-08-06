@@ -8,8 +8,7 @@
         <file>HarrixQML/fonts/OpenSans.ttf</file>
         <file>HarrixQML/fonts/PTMono.ttf</file>
         <file>HarrixQML/js/FontAwesome.js</file>
-        <file>HarrixQML/ServiceFonts.qml</file>
-        <file>HarrixQML/ServiceRipple.qml</file>
         <file>HarrixQML/MouseAreaRipple.qml</file>
+        <file>HarrixQML/Fonts.qml</file>
     </qresource>
 </RCC>

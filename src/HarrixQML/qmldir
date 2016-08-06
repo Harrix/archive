@@ -6,8 +6,7 @@ Button 1.0 Button.qml
 MouseAreaRipple 1.0 MouseAreaRipple.qml
 
 # Service components
-ServiceFonts 1.0 ServiceFonts.qml
-ServiceRipple 1.0 ServiceRipple.qml
+Fonts 1.0 Fonts.qml
 
 # JavaScript
 FontAwesome 1.0 js/FontAwesome.js

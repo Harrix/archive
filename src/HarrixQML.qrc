@@ -6,12 +6,12 @@
         <file>HarrixQML/fonts/FontAwesome.ttf</file>
         <file>HarrixQML/fonts/OpenSans.ttf</file>
         <file>HarrixQML/fonts/PTMono.ttf</file>
-        <file>HarrixQML/js/FontAwesome.js</file>
         <file>HarrixQML/IconFontAwesome.qml</file>
         <file>HarrixQML/TextField.qml</file>
         <file>HarrixQML/service/Fonts.qml</file>
         <file>HarrixQML/service/Settings.qml</file>
         <file>HarrixQML/service/MouseAreaRipple.qml</file>
         <file>HarrixQML/service/TypesOfButton.qml</file>
+        <file>HarrixQML/service/FontAwesome.qml</file>
     </qresource>
 </RCC>

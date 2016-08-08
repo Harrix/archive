@@ -13,4 +13,4 @@ singleton TypesOfButton 1.0 service/TypesOfButton.qml
 singleton Settings 1.0 service/Settings.qml
 
 # JavaScript
-FontAwesome 1.0 js/FontAwesome.js
+singleton FontAwesome 1.0 service/FontAwesome.qml

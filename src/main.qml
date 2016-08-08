@@ -42,14 +42,14 @@ ApplicationWindow {
             id: button2
             text: qsTr("Скачать")
             onClicked: qmlSignal("помидор")
-            icon:  IconFontAwesome { symbol: FontAwesome.Icon.fa_download }
+            icon:  IconFontAwesome { symbol: FontAwesome.fa_download }
         }
 
         Button {
             id: button22
             text: qsTr("Скачать")
             onClicked: qmlSignal("помидор")
-            icon:  IconFontAwesome { symbol: FontAwesome.Icon.fa_vk }
+            icon:  IconFontAwesome { symbol: FontAwesome.fa_vk }
         }
 
         Button {
@@ -57,7 +57,7 @@ ApplicationWindow {
             text: qsTr("Скачать")
             enabled: false
             onClicked: qmlSignal("топинамбуров")
-            icon:  IconFontAwesome { symbol: FontAwesome.Icon.fa_download }
+            icon:  IconFontAwesome { symbol: FontAwesome.fa_download }
         }
 
         Text {

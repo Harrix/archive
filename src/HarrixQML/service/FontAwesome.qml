@@ -201,7 +201,6 @@ QtObject {
     readonly property string fa_square : "\uf0c8"
     readonly property string fa_navicon : "\uf0c9"
     readonly property string fa_reorder : "\uf0c9"
-
     readonly property string fa_bars : "\uf0c9"
     readonly property string fa_list_ul : "\uf0ca"
     readonly property string fa_list_ol : "\uf0cb"

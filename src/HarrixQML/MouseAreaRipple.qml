@@ -4,7 +4,7 @@ import QtGraphicalEffects 1.0
 MouseArea {
     property real rippleOpacity: 0.3
     property int rippleDuration: 300
-    property var rippleEasingType: Easing.Linear
+    property int rippleEasingType: Easing.Linear
 
     id: mouseArea
     anchors.fill: parent

@@ -7,7 +7,7 @@ Button {
     property string fontName: Settings.fontName
     property int fontSize: Settings.fontSize
     property string colorFontButton: Settings.colorFontButton
-    property var fontRenderType: Settings.fontRenderType
+    property int fontRenderType: Settings.fontRenderType
 
     id: control
 

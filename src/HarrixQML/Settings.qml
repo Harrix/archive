@@ -12,5 +12,5 @@ QtObject {
     readonly property string fontName: "Open Sans"
     readonly property string fontNameCode: "PT Mono"
     readonly property int fontSize: 14
-    readonly property var fontRenderType: Text.NativeRendering
+    readonly property int fontRenderType: Text.NativeRendering
 }

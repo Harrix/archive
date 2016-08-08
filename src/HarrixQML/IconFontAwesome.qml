@@ -4,7 +4,7 @@ import "."
 Text {
     property string symbol: FontAwesome.Icon.fa_glass
     property string fontSize: Settings.fontSize
-    property var fontRenderType: Settings.fontRenderType
+    property int fontRenderType: Settings.fontRenderType
     property string colorFont: Settings.colorFontButton
 
     font.pointSize: fontSize

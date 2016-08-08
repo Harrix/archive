@@ -3,7 +3,6 @@ import QtQuick.Controls 2.0
 import "."
 
 TextField {
-
     id: control
 
     background: Rectangle {

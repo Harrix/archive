@@ -8,6 +8,7 @@ Button {
     property int fontSize: Settings.fontSize
     property string colorFontButton: Settings.colorFontButton
     property int fontRenderType: Settings.fontRenderType
+    property int durationAnimation: Settings.durationAnimation
 
     id: control
 

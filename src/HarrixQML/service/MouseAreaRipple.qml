@@ -1,9 +1,10 @@
 import QtQuick 2.7
 import QtGraphicalEffects 1.0
+import ".."
 
 MouseArea {
     property real rippleOpacity: 0.3
-    property int rippleDuration: 300
+    property int durationAnimation: Settings.durationAnimation
     property int rippleEasingType: Easing.Linear
 
     id: mouseArea
@@ -51,14 +52,14 @@ MouseArea {
                 target: ripple
                 property: "x"
                 to: d.xEnd
-                duration: rippleDuration
+                duration: durationAnimation
                 easing.type: rippleEasingType
             }
             NumberAnimation {
                 target: ripple
                 property: "y"
                 to: d.yEnd
-                duration: rippleDuration
+                duration: durationAnimation
                 easing.type: rippleEasingType
             }
             NumberAnimation {
@@ -66,7 +67,7 @@ MouseArea {
                 property: "width"
                 from: 0
                 to: 2*d.radiusEnd
-                duration: rippleDuration
+                duration: durationAnimation
                 easing.type: rippleEasingType
             }
             NumberAnimation {
@@ -74,7 +75,7 @@ MouseArea {
                 property: "height"
                 from: 0
                 to: 2*d.radiusEnd
-                duration: rippleDuration
+                duration: durationAnimation
                 easing.type: rippleEasingType
             }
             NumberAnimation {
@@ -82,7 +83,7 @@ MouseArea {
                 property: "radius"
                 from: 0
                 to: d.radiusEnd
-                duration: rippleDuration
+                duration: durationAnimation
                 easing.type: rippleEasingType
             }
         }
@@ -91,7 +92,7 @@ MouseArea {
             target: ripple
             property: "opacity"
             to: 0
-            duration: 100
+            duration: durationAnimation/3
         }
     }
 

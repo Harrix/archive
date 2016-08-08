@@ -13,4 +13,7 @@ QtObject {
     readonly property string fontNameCode: "PT Mono"
     readonly property int fontSize: 14
     readonly property int fontRenderType: Text.NativeRendering
+
+    //Durations
+    readonly property int durationAnimation: 300
 }

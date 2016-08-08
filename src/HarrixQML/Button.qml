@@ -4,6 +4,10 @@ import "."
 
 Button {
     property alias icon: loaderIcon.sourceComponent
+    property string fontName: Settings.fontName
+    property int fontSize: Settings.fontSize
+    property string colorFontButton: Settings.colorFontButton
+    property var fontRenderType: Settings.fontRenderType
 
     id: control
 
@@ -25,15 +29,15 @@ Button {
         Text {
             id: text
             text: control.text
-            font.family: Settings.fontName
-            font.pixelSize: Settings.fontSize
+            font.family: fontName
+            font.pixelSize: fontSize
             font.weight: Font.Bold
             font.capitalization: Font.AllUppercase
-            color: Settings.colorFontButton
+            color: colorFontButton
             horizontalAlignment: Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter
             elide: Text.ElideRight
-            renderType: Settings.fontRenderType
+            renderType: fontRenderType
         }
     }
 

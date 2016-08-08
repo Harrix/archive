@@ -5,14 +5,18 @@ import "."
 
 ApplicationWindow {
     property alias fonts: fonts
+    property string fontName: Settings.fontName
+    property int fontSize: Settings.fontSize
+    property string colorFont: Settings.colorFont
+    property string colorBackground: Settings.colorBackground
 
     visible: true
     width: 640
     height: 480
     title: qsTr("Harrix Window")
-    color: Settings.colorBackground
-    font.family: Settings.fontName
-    font.pixelSize: Settings.fontSize
+    color: colorBackground
+    font.family: fontName
+    font.pixelSize: fontSize
 
     Fonts {
         id: fonts

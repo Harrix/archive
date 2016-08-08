@@ -12,5 +12,6 @@
         <file>HarrixQML/service/Fonts.qml</file>
         <file>HarrixQML/service/Settings.qml</file>
         <file>HarrixQML/service/MouseAreaRipple.qml</file>
+        <file>HarrixQML/service/TypesOfButton.qml</file>
     </qresource>
 </RCC>

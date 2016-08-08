@@ -3,6 +3,7 @@ import QtQuick.Controls 2.0
 import "."
 
 Button {
+    property int type: TypesOfButton.red
     property alias icon: loaderIcon.sourceComponent
     property string fontName: Settings.fontName
     property int fontSize: Settings.fontSize
@@ -44,7 +45,7 @@ Button {
 
     background: Rectangle {
         opacity: enabled ? 1 : 0.3
-        color: control.down ? "#f54d4c" : "#de2b26"
+        color: determineColor ()
         border.width: 0
         radius: 0
 
@@ -62,5 +63,13 @@ Button {
         Behavior on color {
             ColorAnimation { duration: 200 }
         }
+    }
+
+    function determineColor () {
+        if (type == TypesOfButton.red)
+            if (control.down)
+                return "#f54d4c";
+            else
+                return "#de2b26";
     }
 }

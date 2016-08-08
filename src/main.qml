@@ -35,36 +35,28 @@ ApplicationWindow {
         Button {
             id: button
             text: qsTr("Скачать")
-
             onClicked: qmlSignal("яблок")
         }
 
         Button {
             id: button2
             text: qsTr("Скачать")
-
             onClicked: qmlSignal("помидор")
-
             icon:  IconFontAwesome { symbol: FontAwesome.Icon.fa_download }
         }
 
         Button {
             id: button22
             text: qsTr("Скачать")
-
             onClicked: qmlSignal("помидор")
-
             icon:  IconFontAwesome { symbol: FontAwesome.Icon.fa_vk }
         }
 
         Button {
             id: button3
             text: qsTr("Скачать")
-
             enabled: false
-
             onClicked: qmlSignal("топинамбуров")
-
             icon:  IconFontAwesome { symbol: FontAwesome.Icon.fa_download }
         }
 

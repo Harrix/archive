@@ -109,8 +109,8 @@ MouseArea {
             d.radiusEnd = maximumRadius (mouseX, mouseY,
                                          mouseArea.width, mouseArea.height);
 
-            d.xEnd = mouseX - d.radiusEnd * 0.85090352453;
-            d.yEnd = mouseY - d.radiusEnd * 0.85090352453;
+            d.xEnd = mouseX - d.radiusEnd
+            d.yEnd = mouseY - d.radiusEnd
 
             animation.running = true;
         }

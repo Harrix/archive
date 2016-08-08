@@ -5,11 +5,11 @@ ApplicationWindow 1.0 ApplicationWindow.qml
 Button 1.0 Button.qml
 
 # Service components
-Fonts 1.0 Fonts.qml
-MouseAreaRipple 1.0 MouseAreaRipple.qml
+Fonts 1.0 service/Fonts.qml
+MouseAreaRipple 1.0 service/MouseAreaRipple.qml
+
+# Settings of the module
+singleton Settings 1.0 service/Settings.qml
 
 # JavaScript
 FontAwesome 1.0 js/FontAwesome.js
-
-# Settings of the module
-singleton Settings 1.0 Settings.qml

@@ -45,13 +45,7 @@ ApplicationWindow {
 
             onClicked: qmlSignal("помидор")
 
-            icon:  Text {
-                font.pointSize: Settings.fontSize
-                renderType: Settings.fontRenderType
-                color: Settings.colorFontButton
-                font.family: "FontAwesome"
-                text: FontAwesome.Icon.fa_download
-            }
+            icon:  IconFontAwesome { symbol: FontAwesome.Icon.fa_download }
         }
 
         Button {
@@ -60,13 +54,7 @@ ApplicationWindow {
 
             onClicked: qmlSignal("помидор")
 
-            icon:  Text {
-                font.pointSize: Settings.fontSize
-                renderType: Settings.fontRenderType
-                color: Settings.colorFontButton
-                font.family: "FontAwesome"
-                text: FontAwesome.Icon.fa_vk
-            }
+            icon:  IconFontAwesome { symbol: FontAwesome.Icon.fa_vk }
         }
 
         Button {
@@ -77,13 +65,7 @@ ApplicationWindow {
 
             onClicked: qmlSignal("топинамбуров")
 
-            icon:  Text {
-                font.pointSize: Settings.fontSize
-                renderType: Settings.fontRenderType
-                color: Settings.colorFontButton
-                font.family: "FontAwesome"
-                text: FontAwesome.Icon.fa_download
-            }
+            icon:  IconFontAwesome { symbol: FontAwesome.Icon.fa_download }
         }
 
         Text {

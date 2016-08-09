@@ -15,10 +15,11 @@ ApplicationWindow {
     Row {
         spacing: 10
         anchors.fill: parent
+        anchors.margins: Settings.marginCommon
 
         Column {
             spacing: 10
-            anchors.left: parent.left
+
             width: parent.width/3
             height: parent.height
 
@@ -32,7 +33,7 @@ ApplicationWindow {
 
         SwipeView {
             id: swipeView
-            anchors.right: parent.right
+
             width: 2*parent.width/3
             height: parent.height
             //currentIndex: tabBar.currentIndex

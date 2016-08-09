@@ -30,4 +30,7 @@ QtObject {
     //Opacities
     readonly property real opacityNotEnabled: 0.3
     readonly property real opacityRipple: 0.3
+
+    //Indents
+    readonly property int marginCommon: 10
 }

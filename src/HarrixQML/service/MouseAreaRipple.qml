@@ -105,7 +105,7 @@ MouseArea {
 
             ripple.x = mouseX;
             ripple.y = mouseY;
-            ripple.opacity = rippleOpacity;
+            ripple.opacity = opacityRipple;
 
             privateVar.radiusEnd = maximumRadius (mouseX, mouseY,
                                                   mouseArea.width, mouseArea.height);

@@ -12,6 +12,7 @@ ApplicationWindow {
     visibility: "Maximized"
 
     onWidthChanged: console.log(width)
+    Component.onCompleted: console.log(width)
 
     RowLayout {
         id: layout

@@ -3,21 +3,21 @@ import QtQuick.Controls 2.0
 import "."
 
 Button {
-    property int type: ButtonRed
+    property int type: Enums.buttons.red
     colorButton: setColor()
     colorButtonHover: setColorHover()
 
     function setColor() {
         switch (type) {
-        case ButtonRed:
+        case Enums.buttons.red:
             colorButton = Settings.colorRed;
             colorButtonHover = Settings.colorRedLight;
             break;
-        case ButtonBlue:
+        case Enums.buttons.blue:
             colorButton = Settings.colorBlue;
             colorButtonHover = Settings.colorBlueLight;
             break;
-        case ButtonGreen:
+        case Enums.buttons.green:
             colorButton = Settings.colorGreen;
             colorButtonHover = Settings.colorGreenLight;
             break;

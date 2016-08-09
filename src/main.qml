@@ -32,7 +32,21 @@ ApplicationWindow {
             Layout.preferredHeight: parent.height
             Layout.rightMargin: Settings.marginCommon
 
-            PageBasicComponents {}
+            SwipeView {
+                id: swipeViewContent
+
+                anchors.fill: parent
+                //currentIndex: tabBar.currentIndex
+
+                PageBasicComponents {}
+
+                Page {
+                    Label {
+                        text: qsTr("Second page")
+                        anchors.centerIn: parent
+                    }
+                }
+            }
         }
     }
 }

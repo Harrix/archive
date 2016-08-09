@@ -3,15 +3,17 @@ import QtGraphicalEffects 1.0
 import ".."
 
 MouseArea {
-    property real rippleOpacity: 0.3
+    property real opacityRipple: 0.3
     property int durationAnimation: Settings.durationAnimation
-    property int rippleEasingType: Easing.Linear
+    property int easingTypeRipple: Easing.Linear
 
     id: mouseArea
     anchors.fill: parent
 
+    onPressed: rippleEffect()
+
     QtObject {
-        id: d
+        id: privateVar
         property int radiusEnd: 0
         property int xEnd: 0
         property int yEnd: 0
@@ -51,40 +53,40 @@ MouseArea {
             NumberAnimation {
                 target: ripple
                 property: "x"
-                to: d.xEnd
+                to: privateVar.xEnd
                 duration: durationAnimation
-                easing.type: rippleEasingType
+                easing.type: easingTypeRipple
             }
             NumberAnimation {
                 target: ripple
                 property: "y"
-                to: d.yEnd
+                to: privateVar.yEnd
                 duration: durationAnimation
-                easing.type: rippleEasingType
+                easing.type: easingTypeRipple
             }
             NumberAnimation {
                 target: ripple
                 property: "width"
                 from: 0
-                to: 2*d.radiusEnd
+                to: 2*privateVar.radiusEnd
                 duration: durationAnimation
-                easing.type: rippleEasingType
+                easing.type: easingTypeRipple
             }
             NumberAnimation {
                 target: ripple;
                 property: "height"
                 from: 0
-                to: 2*d.radiusEnd
+                to: 2*privateVar.radiusEnd
                 duration: durationAnimation
-                easing.type: rippleEasingType
+                easing.type: easingTypeRipple
             }
             NumberAnimation {
                 target: ripple
                 property: "radius"
                 from: 0
-                to: d.radiusEnd
+                to: privateVar.radiusEnd
                 duration: durationAnimation
-                easing.type: rippleEasingType
+                easing.type: easingTypeRipple
             }
         }
 
@@ -96,8 +98,6 @@ MouseArea {
         }
     }
 
-    onPressed: rippleEffect()
-
     function rippleEffect() {
         if (!animation.running) {
             var mouseX = mouseArea.mouseX;
@@ -107,11 +107,11 @@ MouseArea {
             ripple.y = mouseY;
             ripple.opacity = rippleOpacity;
 
-            d.radiusEnd = maximumRadius (mouseX, mouseY,
-                                         mouseArea.width, mouseArea.height);
+            privateVar.radiusEnd = maximumRadius (mouseX, mouseY,
+                                                  mouseArea.width, mouseArea.height);
 
-            d.xEnd = mouseX - d.radiusEnd
-            d.yEnd = mouseY - d.radiusEnd
+            privateVar.xEnd = mouseX - privateVar.radiusEnd
+            privateVar.yEnd = mouseY - privateVar.radiusEnd
 
             animation.running = true;
         }

@@ -40,8 +40,8 @@ Page{
 
         ButtonBlue {
             id: button22
-            text: qsTr("Download")
-            onClicked: qmlSignal( qsTr("tomato") )
+            text: qsTr("Console")
+            onClicked: console.log( Qt.platform.os )
             icon:  IconFontAwesome { symbol: FontAwesome.fa_vk }
         }
 

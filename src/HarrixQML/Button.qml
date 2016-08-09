@@ -3,7 +3,6 @@ import QtQuick.Controls 2.0
 import "."
 
 Button {
-    property int type: TypesOfButton.red
     property alias icon: loaderIcon.sourceComponent
     property string fontName: Settings.fontName
     property int fontSize: Settings.fontSize

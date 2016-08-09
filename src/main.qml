@@ -32,27 +32,27 @@ ApplicationWindow {
             width: 250
         }
 
-        Button {
+        ButtonColor {
             id: button
             text: qsTr("Скачать")
             onClicked: qmlSignal("яблок")
         }
 
-        Button {
+        ButtonColor {
             id: button2
             text: qsTr("Скачать")
             onClicked: qmlSignal("помидор")
             icon:  IconFontAwesome { symbol: FontAwesome.fa_download }
         }
 
-        Button {
+        ButtonColor {
             id: button22
             text: qsTr("Скачать")
             onClicked: qmlSignal("помидор")
             icon:  IconFontAwesome { symbol: FontAwesome.fa_vk }
         }
 
-        Button {
+        ButtonColor {
             id: button3
             text: qsTr("Скачать")
             enabled: false

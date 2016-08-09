@@ -13,5 +13,6 @@
         <file>HarrixQML/service/MouseAreaRipple.qml</file>
         <file>HarrixQML/service/FontAwesome.qml</file>
         <file>HarrixQML/ButtonColor.qml</file>
+        <file>HarrixQML/service/Enums.qml</file>
     </qresource>
 </RCC>

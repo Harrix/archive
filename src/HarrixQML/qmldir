@@ -3,12 +3,12 @@ module HarrixQML
 # Visual components
 ApplicationWindow 1.0 ApplicationWindow.qml
 Button 1.0 Button.qml
-ButtonColor 1.0 ButtonColor.qml
+ButtonBlue 1.0 ButtonBlue.qml
+ButtonGreen 1.0 ButtonGreen.qml
 IconFontAwesome 1.0 IconFontAwesome.qml
 
 # Service components
 Fonts 1.0 service/Fonts.qml
 MouseAreaRipple 1.0 service/MouseAreaRipple.qml
 singleton FontAwesome 1.0 service/FontAwesome.qml
-singleton Enums 1.0 service/Enums.qml
 singleton Settings 1.0 service/Settings.qml

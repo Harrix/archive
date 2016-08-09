@@ -32,29 +32,27 @@ ApplicationWindow {
             width: 250
         }
 
-        ButtonColor {
+        Button {
             id: button
             text: qsTr("Скачать")
             onClicked: qmlSignal("яблок")
         }
 
-        ButtonColor {
+        ButtonGreen {
             id: button2
-            type: Enums.buttons.green
             text: qsTr("Скачать")
             onClicked: qmlSignal("помидор")
             icon:  IconFontAwesome { symbol: FontAwesome.fa_download }
         }
 
-        ButtonColor {
+        ButtonBlue {
             id: button22
-            type: Enums.buttons.blue
             text: qsTr("Скачать")
             onClicked: qmlSignal("помидор")
             icon:  IconFontAwesome { symbol: FontAwesome.fa_vk }
         }
 
-        ButtonColor {
+        Button {
             id: button3
             text: qsTr("Скачать")
             enabled: false

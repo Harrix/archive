@@ -10,12 +10,8 @@ Page{
     signal qmlSignal(string msg)
 
     Column {
-
-
         spacing: Settings.marginCommon
         anchors.fill: parent
-
-
 
         TextField {
             id: field1

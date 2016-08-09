@@ -45,7 +45,7 @@ Button {
 
     background: Rectangle {
         opacity: enabled ? 1 : 0.3
-        color: determineColor ()
+        color: control.down ? "#f54d4c" : "#de2b26"
         border.width: 0
         radius: 0
 
@@ -61,15 +61,7 @@ Button {
         }
 
         Behavior on color {
-            ColorAnimation { duration: 200 }
+            ColorAnimation { duration: durationAnimation }
         }
-    }
-
-    function determineColor () {
-        if (type == TypesOfButton.red)
-            if (control.down)
-                return "#f54d4c";
-            else
-                return "#de2b26";
     }
 }

@@ -17,4 +17,6 @@ include(deployment.pri)
 HEADERS += \
     handlersignals.h
 
+VERSION = 1.0
+
 RC_ICONS = harrix.ico

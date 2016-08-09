@@ -24,4 +24,8 @@ QtObject {
 
     //Durations
     readonly property int durationAnimation: 300
+
+    //Opacities
+    readonly property real opacityNotEnabled: 0.3
+    readonly property real opacityRipple: 0.3
 }

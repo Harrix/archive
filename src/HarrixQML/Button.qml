@@ -12,6 +12,7 @@ Button {
     property string colorFontButton: Settings.colorFontButton
     property int fontRenderType: Settings.fontRenderType
     property int durationAnimation: Settings.durationAnimation
+    property int opacityNotEnabled: Settings.opacityNotEnabled
 
     id: control
 
@@ -46,7 +47,7 @@ Button {
     }
 
     background: Rectangle {
-        opacity: enabled ? 1 : 0.3
+        opacity: enabled ? 1 : opacityNotEnabled
         color: control.down ? colorButtonHover : colorButton
         border.width: 0
         radius: 0
@@ -57,9 +58,7 @@ Button {
             hoverEnabled: true
             onEntered: parent.color = colorButtonHover
             onExited: parent.color = colorButton
-            onClicked: {
-                control.clicked()
-            }
+            onClicked: control.clicked()
         }
 
         Behavior on color {

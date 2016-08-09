@@ -3,7 +3,7 @@ import QtGraphicalEffects 1.0
 import ".."
 
 MouseArea {
-    property real opacityRipple: 0.3
+    property real opacityRipple: Settings.opacityRipple
     property int durationAnimation: Settings.durationAnimation
     property int easingTypeRipple: Easing.Linear
 

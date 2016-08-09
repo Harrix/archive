@@ -9,8 +9,14 @@ Column {
     objectName: "leftPanel"
 
     spacing: 10
-
     anchors.fill: parent
+
+    Image {
+        source: "qrc:/images/logo-harrix.svg"
+        height: 60
+        fillMode: Image.PreserveAspectFit
+        smooth: true
+    }
 
     TextField {
         id: field10

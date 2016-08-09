@@ -8,7 +8,7 @@ import "HarrixQML"
 
 ApplicationWindow {
 
-    title: qsTr("Сложение двух чисел")
+    title: qsTr("Harrix-QMLComponents - Demo")
 
     visibility: "Maximized"
 
@@ -21,47 +21,47 @@ ApplicationWindow {
         TextField {
             id: field1
             objectName: "field1"
-            placeholderText: "Введите первое число!"
+            placeholderText: qsTr("Input first number")
             width: 250
         }
 
         TextField {
             id: field2
             objectName: "field2"
-            placeholderText: "Введите второе число"
+            placeholderText: qsTr("Input second number")
             width: 250
         }
 
         Button {
             id: button
-            text: qsTr("Скачать")
-            onClicked: qmlSignal("яблок")
+            text: qsTr("Download")
+            onClicked: qmlSignal( qsTr("apples") )
         }
 
         ButtonGreen {
             id: button2
-            text: qsTr("Скачать")
-            onClicked: qmlSignal("помидор")
+            text: qsTr("Download")
+            onClicked: qmlSignal( qsTr("tables") )
             icon:  IconFontAwesome { symbol: FontAwesome.fa_download }
         }
 
         ButtonBlue {
             id: button22
-            text: qsTr("Скачать")
-            onClicked: qmlSignal("помидор")
+            text: qsTr("Download")
+            onClicked: qmlSignal( qsTr("tomato") )
             icon:  IconFontAwesome { symbol: FontAwesome.fa_vk }
         }
 
         Button {
             id: button3
-            text: qsTr("Скачать")
+            text: qsTr("Download")
             enabled: false
-            onClicked: qmlSignal("топинамбуров")
+            onClicked: qmlSignal( qsTr("images") )
             icon:  IconFontAwesome { symbol: FontAwesome.fa_download }
         }
 
         Text {
-            text: "Ответ:"
+            text: "Answer:"
             font.pixelSize: textArea.font.pixelSize
         }
 

@@ -11,7 +11,7 @@ Button {
     property string colorFontButton: Settings.colorFontButton
     property int fontRenderType: Settings.fontRenderType
     property int durationAnimation: Settings.durationAnimation
-    property int opacityNotEnabled: Settings.opacityNotEnabled
+    property real opacityNotEnabled: Settings.opacityNotEnabled
 
     id: control
 

@@ -11,6 +11,8 @@ ApplicationWindow {
 
     visibility: "Maximized"
 
+    onWidthChanged: console.log(width)
+
     RowLayout {
         id: layout
         anchors.fill: parent

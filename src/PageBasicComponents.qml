@@ -9,8 +9,8 @@ Column {
     id: pageBasicComponents
     objectName: "pageBasicComponents"
 
-    spacing: 10
-    anchors.left: parent.left
+    spacing: Settings.marginCommon
+    anchors.fill: parent
 
     signal qmlSignal(string msg)
 
@@ -18,14 +18,12 @@ Column {
         id: field1
         objectName: "field1"
         placeholderText: qsTr("Input first number")
-        width: 250
     }
 
     TextField {
         id: field2
         objectName: "field2"
         placeholderText: qsTr("Input second number")
-        width: 250
     }
 
     Button {

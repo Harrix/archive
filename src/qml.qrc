@@ -3,5 +3,6 @@
         <file>main.qml</file>
         <file>images/harrix_photo.png</file>
         <file>PageBasicComponents.qml</file>
+        <file>LeftPanel.qml</file>
     </qresource>
 </RCC>

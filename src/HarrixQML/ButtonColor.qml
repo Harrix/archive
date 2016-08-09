@@ -4,6 +4,7 @@ import "."
 
 Button {
     property int type: Enums.buttons.red
+
     colorButton: setColor()
     colorButtonHover: setColorHover()
 

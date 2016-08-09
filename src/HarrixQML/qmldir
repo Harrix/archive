@@ -10,6 +10,5 @@ IconFontAwesome 1.0 IconFontAwesome.qml
 Fonts 1.0 service/Fonts.qml
 MouseAreaRipple 1.0 service/MouseAreaRipple.qml
 singleton FontAwesome 1.0 service/FontAwesome.qml
-
-# Settings of the module
+singleton Enums 1.0 service/Enums.qml
 singleton Settings 1.0 service/Settings.qml

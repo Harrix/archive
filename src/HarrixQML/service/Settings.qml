@@ -8,6 +8,7 @@ QtObject {
     readonly property color colorFont: "#5f5f5f"
     readonly property color colorFontButton: "#fff"
 
+    //Common colors
     readonly property color colorRed: "#de2b26"
     readonly property color colorRedLight: "#f54d4c"
     readonly property color colorRedDark: "#8d130f"
@@ -20,7 +21,7 @@ QtObject {
     readonly property string fontName: "Open Sans"
     readonly property string fontNameCode: "PT Mono"
     readonly property int fontSize: 14
-    readonly property int fontRenderType: Text.NativeRendering
+    readonly property int fontRenderType: Text.QtRendering
 
     //Durations
     readonly property int durationAnimation: 300

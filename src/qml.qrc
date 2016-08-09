@@ -2,5 +2,6 @@
     <qresource prefix="/">
         <file>main.qml</file>
         <file>images/harrix_photo.png</file>
+        <file>PageBasicComponents.qml</file>
     </qresource>
 </RCC>

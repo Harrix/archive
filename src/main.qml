@@ -12,79 +12,40 @@ ApplicationWindow {
 
     visibility: "Maximized"
 
-    signal qmlSignal(string msg)
-
-    Column {
+    Row {
         spacing: 10
-        anchors.centerIn: parent
+        anchors.fill: parent
 
-        TextField {
-            id: field1
-            objectName: "field1"
-            placeholderText: qsTr("Input first number")
-            width: 250
+        Column {
+            spacing: 10
+            anchors.left: parent.left
+            width: parent.width/3
+            height: parent.height
+
+            TextField {
+                id: field10
+                objectName: "field10"
+                placeholderText: qsTr("Input first number")
+                width: 250
+            }
         }
 
-        TextField {
-            id: field2
-            objectName: "field2"
-            placeholderText: qsTr("Input second number")
-            width: 250
-        }
+        SwipeView {
+            id: swipeView
+            anchors.right: parent.right
+            width: 2*parent.width/3
+            height: parent.height
+            //currentIndex: tabBar.currentIndex
 
-        Button {
-            id: button
-            text: qsTr("Download")
-            onClicked: qmlSignal( qsTr("apples") )
-        }
+            PageBasicComponents {
 
-        ButtonGreen {
-            id: button2
-            text: qsTr("Download")
-            onClicked: qmlSignal( qsTr("tables") )
-            icon:  IconFontAwesome { symbol: FontAwesome.fa_download }
-        }
+            }
 
-        ButtonBlue {
-            id: button22
-            text: qsTr("Download")
-            onClicked: qmlSignal( qsTr("tomato") )
-            icon:  IconFontAwesome { symbol: FontAwesome.fa_vk }
-        }
 
-        Button {
-            id: button3
-            text: qsTr("Download")
-            enabled: false
-            onClicked: qmlSignal( qsTr("images") )
-            icon:  IconFontAwesome { symbol: FontAwesome.fa_download }
-        }
-
-        Text {
-            text: "Answer:"
-            font.pixelSize: textArea.font.pixelSize
-        }
-
-        TextArea {
-            id: textArea
-            objectName: "textArea"
-            wrapMode: TextArea.Wrap
-            readOnly: true
-            width: 250
-        }
-
-        Image {
-            source: "qrc:/images/harrix_photo.png"
-            width: 300
-            height: 300
-            smooth: true
-
-            MouseAreaRipple {
-                id: mouseAreaImage
-                anchors.fill: parent
-                hoverEnabled: true
-                onClicked: {
-                    console.log("image")
+            Page {
+                Label {
+                    text: qsTr("Second page")
+                    anchors.centerIn: parent
                 }
             }
         }

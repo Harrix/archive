@@ -12,6 +12,9 @@ TextField {
     property int durationAnimation: Settings.durationAnimation
     property int opacityNotEnabled: Settings.opacityNotEnabled
 
+    selectionColor: Settings.colorRed
+    selectedTextColor: "#fff"
+
     id: control
 
     background: Rectangle {
@@ -19,5 +22,10 @@ TextField {
         implicitWidth: 120
         height: control.activeFocus ? 2 : 1
         color: control.activeFocus ? colorTextFieldHover : colorTextField
+
+        Behavior on color {
+            ColorAnimation { duration: durationAnimation }
+        }
+
     }
 }

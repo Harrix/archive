@@ -16,7 +16,8 @@ int main(int argc, char *argv[])
 
     HandlerSignals *handlerSignals= new HandlerSignals(root);
 
-    QObject::connect(root, SIGNAL(qmlSignal(QString)),
+    QObject* ob = root->findChild<QObject*>("pageBasicComponents");
+    QObject::connect(ob, SIGNAL(qmlSignal(QString)),
                      handlerSignals, SLOT(cppSlot(QString)));
 
     return app.exec();

@@ -7,6 +7,7 @@ QtObject {
     readonly property color colorBackground: "#fff"
     readonly property color colorFont: "#5f5f5f"
     readonly property color colorFontButton: "#fff"
+    readonly property color colorRipple: "#fff"
 
     //Common colors
     readonly property color colorRed: "#de2b26"

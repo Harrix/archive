@@ -6,6 +6,7 @@ MouseArea {
     property real opacityRipple: Settings.opacityRipple
     property int durationAnimation: Settings.durationAnimation
     property int easingTypeRipple: Easing.Linear
+    property int colorRipple: Settings.colorRipple
 
     id: mouseArea
     anchors.fill: parent
@@ -27,7 +28,7 @@ MouseArea {
 
         Rectangle {
             id: ripple
-            color: "#fff"
+            color: colorRipple
             opacity: 0
         }
     }

@@ -7,6 +7,8 @@ Button {
     property alias icon: loaderIcon.sourceComponent
     property string fontName: Settings.fontName
     property int fontSize: Settings.fontSize
+    property string colorButton: Settings.colorRed
+    property string colorButtonHover: Settings.colorRedLight
     property string colorFontButton: Settings.colorFontButton
     property int fontRenderType: Settings.fontRenderType
     property int durationAnimation: Settings.durationAnimation
@@ -45,7 +47,7 @@ Button {
 
     background: Rectangle {
         opacity: enabled ? 1 : 0.3
-        color: control.down ? "#f54d4c" : "#de2b26"
+        color: control.down ? colorButtonHover : colorButton
         border.width: 0
         radius: 0
 
@@ -53,8 +55,8 @@ Button {
             id: mouseArea
             anchors.fill: parent
             hoverEnabled: true
-            onEntered: parent.color = "#f54d4c"
-            onExited: parent.color = "#de2b26"
+            onEntered: parent.color = colorButtonHover
+            onExited: parent.color = colorButton
             onClicked: {
                 control.clicked()
             }

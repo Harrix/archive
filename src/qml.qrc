@@ -4,5 +4,6 @@
         <file>images/harrix_photo.png</file>
         <file>PageBasicComponents.qml</file>
         <file>LeftPanel.qml</file>
+        <file>images/logo-harrix.svg</file>
     </qresource>
 </RCC>

@@ -2,6 +2,7 @@ module HarrixQML
 
 # Visual components
 ApplicationWindow 1.0 ApplicationWindow.qml
+MainWindow 1.0 MainWindow.qml
 Button 1.0 Button.qml
 ButtonBlue 1.0 ButtonBlue.qml
 ButtonGreen 1.0 ButtonGreen.qml

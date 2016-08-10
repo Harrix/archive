@@ -14,5 +14,6 @@
         <file>HarrixQML/service/FontAwesome.qml</file>
         <file>HarrixQML/ButtonBlue.qml</file>
         <file>HarrixQML/ButtonGreen.qml</file>
+        <file>HarrixQML/MainWindow.qml</file>
     </qresource>
 </RCC>

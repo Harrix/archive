@@ -7,5 +7,5 @@ ApplicationWindow {
     visibility: "Maximized"
 
     onWidthChanged: console.log(width)
-    Component.onCompleted: console.log(width)
+    Component.onCompleted: console.log("onCompleted = "+width)
 }

@@ -4,7 +4,6 @@ import QtQuick.Layouts 1.3
 import "."
 
 ApplicationWindow {
-    property alias fonts: fonts
     property string fontName: SettingsApp.fontName
     property int fontSize: SettingsApp.fontSize
     property string colorFont: SettingsApp.colorFont
@@ -17,8 +16,4 @@ ApplicationWindow {
     color: colorBackground
     font.family: fontName
     font.pixelSize: fontSize
-
-    Fonts {
-        id: fonts
-    }
 }

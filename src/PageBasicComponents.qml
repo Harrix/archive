@@ -10,7 +10,7 @@ Page{
     signal qmlSignal(string msg)
 
     Column {
-        spacing: Settings.marginCommon
+        spacing: SettingsApp.marginCommon
         anchors.fill: parent
 
         TextField {

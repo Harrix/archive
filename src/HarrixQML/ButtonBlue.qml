@@ -3,6 +3,6 @@ import QtQuick.Controls 2.0
 import "."
 
 Button {
-    colorButton: Settings.colorBlue
-    colorButtonHover: Settings.colorBlueLight
+    colorButton: SettingsApp.colorBlue
+    colorButtonHover: SettingsApp.colorBlueLight
 }

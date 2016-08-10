@@ -3,10 +3,10 @@ import QtGraphicalEffects 1.0
 import ".."
 
 MouseArea {
-    property real opacityRipple: Settings.opacityRipple
-    property int durationAnimation: Settings.durationAnimation
+    property real opacityRipple: SettingsApp.opacityRipple
+    property int durationAnimation: SettingsApp.durationAnimation
     property int easingTypeRipple: Easing.Linear
-    property color colorRipple: Settings.colorRipple
+    property color colorRipple: SettingsApp.colorRipple
 
     id: mouseArea
     anchors.fill: parent

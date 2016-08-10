@@ -3,9 +3,9 @@ import "."
 
 Text {
     property string symbol: FontAwesome.Icon.fa_glass
-    property string fontSize: Settings.fontSize
-    property int fontRenderType: Settings.fontRenderType
-    property string colorFont: Settings.colorFontButton
+    property string fontSize: SettingsApp.fontSize
+    property int fontRenderType: SettingsApp.fontRenderType
+    property string colorFont: SettingsApp.colorFontButton
 
     font.pointSize: fontSize
     renderType: fontRenderType

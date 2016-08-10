@@ -3,16 +3,16 @@ import QtQuick.Controls 2.0
 import "."
 
 TextField {
-    property string fontName: Settings.fontName
-    property int fontSize: Settings.fontSize
-    property string colorTextField: Settings.colorRed
-    property string colorTextFieldHover: Settings.colorRedLight
-    property string colorFontTextField: Settings.colorFontButton
-    property int fontRenderType: Settings.fontRenderType
-    property int durationAnimation: Settings.durationAnimation
-    property int opacityNotEnabled: Settings.opacityNotEnabled
+    property string fontName: SettingsApp.fontName
+    property int fontSize: SettingsApp.fontSize
+    property string colorTextField: SettingsApp.colorRed
+    property string colorTextFieldHover: SettingsApp.colorRedLight
+    property string colorFontTextField: SettingsApp.colorFontButton
+    property int fontRenderType: SettingsApp.fontRenderType
+    property int durationAnimation: SettingsApp.durationAnimation
+    property int opacityNotEnabled: SettingsApp.opacityNotEnabled
 
-    selectionColor: Settings.colorRed
+    selectionColor: SettingsApp.colorRed
     selectedTextColor: "#fff"
 
     id: control

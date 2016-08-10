@@ -14,17 +14,28 @@ ApplicationWindow {
     onWidthChanged: console.log(width)
     Component.onCompleted: console.log(width)
 
+    Drawer {
+            id: drawer
+            width: 0.66 * window.width
+            height: window.height
+
+            Label {
+                text: qsTr("1111 page")
+                anchors.centerIn: parent
+            }
+        }
+
     RowLayout {
         id: layout
         anchors.fill: parent
-        spacing: Settings.marginCommon
+        spacing: SettingsApp.marginCommon
 
         Rectangle {
             Layout.fillWidth: true
             Layout.minimumWidth: 300
             Layout.preferredWidth: parent.width/4
             Layout.minimumHeight: parent.height
-            Layout.leftMargin: Settings.marginCommon
+            Layout.leftMargin: SettingsApp.marginCommon
 
             LeftPanel {}
         }
@@ -33,7 +44,7 @@ ApplicationWindow {
             Layout.fillWidth: true
             Layout.preferredWidth: 3*parent.width/4
             Layout.preferredHeight: parent.height
-            Layout.rightMargin: Settings.marginCommon
+            Layout.rightMargin: SettingsApp.marginCommon
 
             SwipeView {
                 id: swipeViewContent

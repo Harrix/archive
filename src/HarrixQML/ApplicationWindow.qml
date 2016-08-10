@@ -5,10 +5,10 @@ import "."
 
 ApplicationWindow {
     property alias fonts: fonts
-    property string fontName: Settings.fontName
-    property int fontSize: Settings.fontSize
-    property string colorFont: Settings.colorFont
-    property string colorBackground: Settings.colorBackground
+    property string fontName: SettingsApp.fontName
+    property int fontSize: SettingsApp.fontSize
+    property string colorFont: SettingsApp.colorFont
+    property string colorBackground: SettingsApp.colorBackground
 
     visible: true
     width: 640

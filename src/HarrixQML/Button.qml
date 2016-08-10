@@ -4,14 +4,14 @@ import "."
 
 Button {
     property alias icon: loaderIcon.sourceComponent
-    property string fontName: Settings.fontName
-    property int fontSize: Settings.fontSize
-    property string colorButton: Settings.colorRed
-    property string colorButtonHover: Settings.colorRedLight
-    property string colorFontButton: Settings.colorFontButton
-    property int fontRenderType: Settings.fontRenderType
-    property int durationAnimation: Settings.durationAnimation
-    property real opacityNotEnabled: Settings.opacityNotEnabled
+    property string fontName: SettingsApp.fontName
+    property int fontSize: SettingsApp.fontSize
+    property string colorButton: SettingsApp.colorRed
+    property string colorButtonHover: SettingsApp.colorRedLight
+    property string colorFontButton: SettingsApp.colorFontButton
+    property int fontRenderType: SettingsApp.fontRenderType
+    property int durationAnimation: SettingsApp.durationAnimation
+    property real opacityNotEnabled: SettingsApp.opacityNotEnabled
 
     id: control
 

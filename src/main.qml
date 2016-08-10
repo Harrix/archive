@@ -12,8 +12,8 @@ MainWindow {
 
     Drawer {
             id: drawer
-            width: 0.66 * window.width
-            height: window.height
+            width: 0.66 * parent.width
+            height: parent.height
 
             Label {
                 text: qsTr("1111 page")

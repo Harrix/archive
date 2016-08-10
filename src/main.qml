@@ -5,58 +5,49 @@ import QtQuick.Layouts 1.3
 import "HarrixQML"
 
 MainWindow {
+       property var content: content
 
     title: qsTr("Harrix-QMLComponents - Demo")
 
+    Component {
+           id: redSquare
+
+           LeftPanel{}
+       }
 
 
-    Drawer {
-            id: drawer
-            width: 0.66 * parent.width
-            height: parent.height
+    Component {
+           id: blueSquare
 
-            Label {
-                text: qsTr("1111 page")
-                anchors.centerIn: parent
-            }
-        }
+           Rectangle {
+               color: "blue"
+               width: 10
+               height: 10
+           }
+       }
 
-    RowLayout {
-        id: layout
+
+    Loader {
+        id: content
         anchors.fill: parent
-        spacing: SettingsApp.marginCommon
+        anchors.margins: SettingsApp.marginCommon
+    }
 
-        Rectangle {
-            Layout.fillWidth: true
-            Layout.minimumWidth: 300
-            Layout.preferredWidth: parent.width/4
-            Layout.minimumHeight: parent.height
-            Layout.leftMargin: SettingsApp.marginCommon
 
-            LeftPanel {}
+    Component.onCompleted: {
+        var platform = Qt.platform.os;
+        if (platform === "android") {
+            /*var component = Qt.createComponent("AndroidContent.qml");
+            if (component.status == Component.Ready)
+                component.createObject(content);*/
+            redSquare.createObject(content);
         }
+        else {
+            /*var component2 = Qt.createComponent("LeftPanel.qml");
+            if (component2.status == Component.Ready)
+                component2.createObject(content);*/
+            blueSquare.createObject(content);
 
-        Rectangle {
-            Layout.fillWidth: true
-            Layout.preferredWidth: 3*parent.width/4
-            Layout.preferredHeight: parent.height
-            Layout.rightMargin: SettingsApp.marginCommon
-
-            SwipeView {
-                id: swipeViewContent
-
-                anchors.fill: parent
-                //currentIndex: tabBar.currentIndex
-
-                PageBasicComponents {}
-
-                Page {
-                    Label {
-                        text: qsTr("Second page")
-                        anchors.centerIn: parent
-                    }
-                }
-            }
         }
     }
 }

@@ -5,5 +5,7 @@
         <file>PageBasicComponents.qml</file>
         <file>LeftPanel.qml</file>
         <file>images/logo-harrix.svg</file>
+        <file>AndroidContent.qml</file>
+        <file>WindowsContent.qml</file>
     </qresource>
 </RCC>

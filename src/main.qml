@@ -19,10 +19,20 @@ MainWindow {
     Component {
            id: blueSquare
 
-           Rectangle {
-               color: "blue"
-               width: 10
-               height: 10
+           SwipeView {
+               id: swipeViewContent
+
+               anchors.fill: parent
+               //currentIndex: tabBar.currentIndex
+
+               PageBasicComponents {}
+
+               Page {
+                   Label {
+                       text: qsTr("Second page")
+                       anchors.centerIn: parent
+                   }
+               }
            }
        }
 

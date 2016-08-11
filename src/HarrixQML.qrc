@@ -15,5 +15,6 @@
         <file>HarrixQML/ButtonBlue.qml</file>
         <file>HarrixQML/ButtonGreen.qml</file>
         <file>HarrixQML/MainWindow.qml</file>
+        <file>HarrixQML/MainWindowAndroid.qml</file>
     </qresource>
 </RCC>

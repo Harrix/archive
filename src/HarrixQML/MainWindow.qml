@@ -4,8 +4,9 @@ import QtQuick.Layouts 1.3
 import "."
 
 ApplicationWindow {
-    property var content: content
-    property string testlabel: testlabel
+    property alias leftPanel: leftPanelLoader.sourceComponent
+    property alias content: contentLoader.sourceComponent
+    property int marginCommon: SettingsApp.marginCommon
 
     id: mainWindow
     objectName: "mainWindow"
@@ -13,65 +14,39 @@ ApplicationWindow {
     visibility: "Maximized"
     title: qsTr("Harrix-QMLComponents - Demo")
 
-    Component {
-        id: redSquare
-
-        Label {
-            text: "Text"
-            anchors.centerIn: parent
-        }
-    }
-
-
-    Component {
-        id: blueSquare
-
-        SwipeView {
-            id: swipeViewContent
-
-            anchors.fill: parent
-            //currentIndex: tabBar.currentIndex
-
-            Page {
-                Label {
-                    text: "testlabel"
-                    anchors.centerIn: parent
-                }
-            }
-
-            Page {
-                Label {
-                    text: testlabel
-                    anchors.centerIn: parent
-                }
-            }
-        }
-    }
-
-    Loader {
-        id: content
+    RowLayout {
+        id: layout
         anchors.fill: parent
-        anchors.margins: SettingsApp.marginCommon
+        spacing: SettingsApp.marginCommon
+
+        Container {
+            Layout.fillWidth: true
+            Layout.minimumWidth: 300
+            Layout.preferredWidth: parent.width/4
+            Layout.minimumHeight: parent.height
+            z: 2
+            anchors.margins: marginCommon
+
+            Loader {
+                id: leftPanelLoader
+                anchors.fill: parent
+            }
+        }
+
+        Container {
+            Layout.fillWidth: true
+            Layout.preferredWidth: 3*parent.width/4
+            Layout.preferredHeight: parent.height
+            z: 1
+            anchors.margins: marginCommon
+
+            Loader {
+                id: contentLoader
+                anchors.fill: parent
+            }
+        }
     }
 
-    Component.onCompleted: {
-        var platform = Qt.platform.os;
-        if (platform === "android") {
-            /*var component = Qt.createComponent("AndroidContent.qml");
-         if (component.status == Component.Ready)
-             component.createObject(content);*/
-            if (redSquare.status == Component.Ready)
-                redSquare.createObject(content);
-        }
-        else {
-            /*var component2 = Qt.createComponent("LeftPanel.qml");
-         if (component2.status == Component.Ready)
-             component2.createObject(content);*/
-            if (blueSquare.status == Component.Ready)
-                blueSquare.createObject(content);
-        }
-    }
 
     onWidthChanged: console.log(width)
-
 }

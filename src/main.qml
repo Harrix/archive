@@ -5,5 +5,21 @@ import QtQuick.Layouts 1.3
 import "HarrixQML"
 
 MainWindow {
-testlabel: "45"
+    leftPanel: LeftPanel{}
+
+    content: SwipeView {
+        id: swipeViewContent
+
+        anchors.fill: parent
+        //currentIndex: tabBar.currentIndex
+
+        PageBasicComponents {}
+
+        Page {
+            Label {
+                text: qsTr("Second page")
+                anchors.centerIn: parent
+            }
+        }
+    }
 }

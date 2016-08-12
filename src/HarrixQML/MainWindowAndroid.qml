@@ -12,11 +12,11 @@ ApplicationWindow {
     visibility: "Maximized"
 
     property var content: content
- property string testlabel: testlabel
+    property string testlabel: testlabel
 
- title: qsTr("Harrix-QMLComponents - Demo")
+    title: qsTr("Harrix-QMLComponents - Demo")
 
- Component {
+    Component {
         id: redSquare
 
         Label {
@@ -26,7 +26,7 @@ ApplicationWindow {
     }
 
 
- Component {
+    Component {
         id: blueSquare
 
 
@@ -54,30 +54,30 @@ ApplicationWindow {
     }
 
 
- Loader {
-     id: content
-     anchors.fill: parent
-     anchors.margins: SettingsApp.marginCommon
- }
+    Loader {
+        id: content
+        anchors.fill: parent
+        anchors.margins: SettingsApp.marginCommon
+    }
 
 
- Component.onCompleted: {
-     var platform = Qt.platform.os;
-     if (platform === "android") {
-         /*var component = Qt.createComponent("AndroidContent.qml");
+    Component.onCompleted: {
+        var platform = Qt.platform.os;
+        if (platform === "android") {
+            /*var component = Qt.createComponent("AndroidContent.qml");
          if (component.status == Component.Ready)
              component.createObject(content);*/
-         redSquare.createObject(content);
-     }
-     else {
-         /*var component2 = Qt.createComponent("LeftPanel.qml");
+            redSquare.createObject(content);
+        }
+        else {
+            /*var component2 = Qt.createComponent("LeftPanel.qml");
          if (component2.status == Component.Ready)
              component2.createObject(content);*/
 
-         blueSquare.createObject(content);
+            blueSquare.createObject(content);
 
-     }
- }
+        }
+    }
 
     onWidthChanged: console.log(width)
 

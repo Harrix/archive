@@ -11,8 +11,6 @@ MouseArea {
     id: mouseArea
     anchors.fill: parent
 
-    onPressed: rippleEffect()
-
     QtObject {
         id: privateVar
         property int radiusEnd: 0
@@ -98,6 +96,8 @@ MouseArea {
             duration: durationAnimation/3
         }
     }
+
+    onPressed: rippleEffect()
 
     function rippleEffect() {
         if (!animation.running) {

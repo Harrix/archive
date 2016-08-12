@@ -23,6 +23,23 @@ QtObject {
     readonly property string fontNameCode: "PT Mono"
     readonly property int fontSize: 14
     readonly property int fontRenderType: Text.QtRendering
+    readonly property int fontWeightButton: Font.Bold
+    readonly property int fontCapitalizationButton: Font.AllUppercase
+
+    //Indents
+    readonly property int marginCommon: 10
+    readonly property int spacingCommon: 10
+    readonly property int spacingIconText: 6
+    readonly property int paddingButton: 8
+    readonly property int leftPaddingButton: 24
+    readonly property int rightPaddingButton: 24
+
+    //Sizes
+    readonly property int widthWindow: 640
+    readonly property int heightWindow: 480
+
+    //EasingType
+    readonly property int easingTypeRipple: Easing.Linear
 
     //Durations
     readonly property int durationAnimation: 300
@@ -30,7 +47,4 @@ QtObject {
     //Opacities
     readonly property real opacityNotEnabled: 0.3
     readonly property real opacityRipple: 0.3
-
-    //Indents
-    readonly property int marginCommon: 10
 }

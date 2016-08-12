@@ -12,16 +12,22 @@ Button {
     property int fontRenderType: SettingsApp.fontRenderType
     property int durationAnimation: SettingsApp.durationAnimation
     property real opacityNotEnabled: SettingsApp.opacityNotEnabled
+    property int paddingButton: SettingsApp.paddingButton
+    property int leftPaddingButton: SettingsApp.leftPaddingButton
+    property int rightPaddingButton: SettingsApp.rightPaddingButton
+    property int spacingIconText: SettingsApp.spacingIconText
+    property int fontWeightButton: SettingsApp.fontWeightButton
+    property int fontCapitalizationButton: SettingsApp.fontCapitalizationButton
 
     id: control
 
-    padding: 8
-    leftPadding: 24
-    rightPadding: 24
+    padding: paddingButton
+    leftPadding: leftPaddingButton
+    rightPadding: rightPaddingButton
 
     contentItem: Row {
         id: contentItem
-        spacing: 6
+        spacing: spacingIconText
         anchors.centerIn: parent
 
         Loader {
@@ -35,8 +41,8 @@ Button {
             text: control.text
             font.family: fontName
             font.pixelSize: fontSize
-            font.weight: Font.Bold
-            font.capitalization: Font.AllUppercase
+            font.weight: fontWeightButton
+            font.capitalization: fontCapitalizationButton
             color: colorFontButton
             horizontalAlignment: Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter

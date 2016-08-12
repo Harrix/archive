@@ -8,10 +8,12 @@ ApplicationWindow {
     property int fontSize: SettingsApp.fontSize
     property string colorFont: SettingsApp.colorFont
     property string colorBackground: SettingsApp.colorBackground
+    property int widthWindow: SettingsApp.widthWindow
+    property int heightWindow: SettingsApp.heightWindow
 
     visible: true
-    width: 640
-    height: 480
+    width: widthWindow
+    height: heightWindow
     title: qsTr("Harrix Window")
     color: colorBackground
     font.family: fontName

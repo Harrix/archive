@@ -5,7 +5,7 @@ import ".."
 MouseArea {
     property real opacityRipple: SettingsApp.opacityRipple
     property int durationAnimation: SettingsApp.durationAnimation
-    property int easingTypeRipple: Easing.Linear
+    property int easingTypeRipple: SettingsApp.easingTypeRipple
     property color colorRipple: SettingsApp.colorRipple
 
     id: mouseArea

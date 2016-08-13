@@ -11,8 +11,6 @@ Column {
     spacing: 10
     anchors.fill: parent
 
-    anchors.margins: SettingsApp.marginCommon
-
     Image {
         source: "qrc:/images/logo-harrix.svg"
         height: 60

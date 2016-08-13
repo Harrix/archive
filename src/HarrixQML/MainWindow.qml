@@ -48,11 +48,12 @@ ApplicationWindow {
         Loader {
             id: leftPanelLoader
             anchors.fill: parent
+            anchors.margins: SettingsApp.marginCommon
         }
 
         Rectangle {
-            x: parent.width - 10
-            width: 10
+            x: parent.width - 15
+            width: 15
             height: parent.height
             color: "#21be2b"
 
@@ -88,6 +89,8 @@ ApplicationWindow {
         Loader {
             id: contentLoader
             anchors.fill: parent
+            anchors.margins: SettingsApp.marginCommon
+            anchors.leftMargin: 0
         }
     }
 
@@ -97,6 +100,6 @@ ApplicationWindow {
         if (paneLeft.x < 0)
             paneLeft.x = 0;
         else
-            paneLeft.x = -paneLeft.width + 10;
+            paneLeft.x = -paneLeft.width + 15;
     }
 }

@@ -15,15 +15,15 @@ ApplicationWindow {
     title: qsTr("Harrix-QMLComponents - Demo")
 
     RowLayout {
-        id: layout
+        id: layoutApp
         anchors.fill: parent
         spacing: SettingsApp.marginCommon
 
-        Container {
+        Pane {
             Layout.fillWidth: true
             Layout.minimumWidth: 300
-            Layout.preferredWidth: parent.width/4
             Layout.minimumHeight: parent.height
+            Layout.preferredWidth: 2*Math.min(layoutApp.width, layoutApp.height)/3
             z: 2
             anchors.margins: marginCommon
 
@@ -33,9 +33,9 @@ ApplicationWindow {
             }
         }
 
-        Container {
+        Pane {
             Layout.fillWidth: true
-            Layout.preferredWidth: 3*parent.width/4
+            Layout.preferredWidth: layoutApp.width - 2*Math.min(layoutApp.width, layoutApp.height)/3
             Layout.preferredHeight: parent.height
             z: 1
             anchors.margins: marginCommon
@@ -46,7 +46,6 @@ ApplicationWindow {
             }
         }
     }
-
 
     onWidthChanged: console.log(width)
 }

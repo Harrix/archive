@@ -17,29 +17,26 @@ ApplicationWindow {
     header: ToolBar {
         ButtonBlue{
             text: qsTr("Open Drawer")
-            onClicked:  {
-                if (paneLeft.x < 0)
-                    paneLeft.x = 0;
-                else
-                    paneLeft.x = -paneLeft.width;
-            }
+            onClicked:  toogleDrawer ()
         }
+        z:4
     }
 
     footer: ToolBar {
         ButtonBlue{
             text: qsTr("Footer")
         }
+        z:3
     }
 
-    Pane {
+    Frame {
         id: paneLeft
         height: parent.height
         width: Math.max( 0.25*parent.width, 250)
         z: 2
-        anchors.leftMargin: marginCommon
+        padding: 0
+        anchors.margins: 0
         anchors.rightMargin: 0
-        anchors.topMargin: 0
         y:0
         x:0
 
@@ -53,20 +50,35 @@ ApplicationWindow {
             anchors.fill: parent
         }
 
+        Rectangle {
+            x: parent.width - 10
+            width: 10
+            height: parent.height
+            color: "#21be2b"
+
+            MouseArea {
+                anchors.fill: parent
+                hoverEnabled: true
+                cursorShape: containsMouse ? Qt.PointingHandCursor : Qt.ArrowCursor
+                onClicked: toogleDrawer ()
+            }
+        }
+
         Behavior on x {
             NumberAnimation { duration: SettingsApp.durationAnimation }
         }
 
     }
 
-    Pane {
+    Frame {
         id: paneRight
         height: parent.height
         width: parent.width - paneLeft.width - paneLeft.x
         z: 1
         y:0
-        anchors.margins: marginCommon
+        anchors.margins: 0
         anchors.left: paneLeft.right
+        padding: 0
 
         Rectangle {
             anchors.fill: parent
@@ -80,4 +92,11 @@ ApplicationWindow {
     }
 
     onWidthChanged: console.log(width)
+
+    function toogleDrawer () {
+        if (paneLeft.x < 0)
+            paneLeft.x = 0;
+        else
+            paneLeft.x = -paneLeft.width + 10;
+    }
 }

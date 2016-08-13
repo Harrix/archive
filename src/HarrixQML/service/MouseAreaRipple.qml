@@ -7,9 +7,11 @@ MouseArea {
     property int durationAnimation: SettingsApp.durationAnimation
     property int easingTypeRipple: SettingsApp.easingTypeRipple
     property color colorRipple: SettingsApp.colorRipple
+    property int cursorShapeRipple: SettingsApp.cursorShapeRipple
 
     id: mouseArea
     anchors.fill: parent
+    cursorShape: cursorShapeRipple
 
     QtObject {
         id: privateVar

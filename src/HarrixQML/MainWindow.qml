@@ -14,36 +14,68 @@ ApplicationWindow {
     visibility: "Maximized"
     title: qsTr("Harrix-QMLComponents - Demo")
 
-    RowLayout {
-        id: layoutApp
-        anchors.fill: parent
-        spacing: SettingsApp.marginCommon
-
-        Pane {
-            Layout.fillWidth: true
-            Layout.minimumWidth: 300
-            Layout.minimumHeight: parent.height
-            Layout.preferredWidth: 2*Math.min(layoutApp.width, layoutApp.height)/3
-            z: 2
-            anchors.margins: marginCommon
-
-            Loader {
-                id: leftPanelLoader
-                anchors.fill: parent
+    header: ToolBar {
+        ButtonBlue{
+            text: qsTr("Open Drawer")
+            onClicked:  {
+                if (paneLeft.x < 0)
+                    paneLeft.x = 0;
+                else
+                    paneLeft.x = -paneLeft.width;
             }
         }
+    }
 
-        Pane {
-            Layout.fillWidth: true
-            Layout.preferredWidth: layoutApp.width - 2*Math.min(layoutApp.width, layoutApp.height)/3
-            Layout.preferredHeight: parent.height
-            z: 1
-            anchors.margins: marginCommon
+    footer: ToolBar {
+        ButtonBlue{
+            text: qsTr("Footer")
+        }
+    }
 
-            Loader {
-                id: contentLoader
-                anchors.fill: parent
-            }
+    Pane {
+        id: paneLeft
+        height: parent.height
+        width: Math.max( 0.25*parent.width, 250)
+        z: 2
+        anchors.leftMargin: marginCommon
+        anchors.rightMargin: 0
+        anchors.topMargin: 0
+        y:0
+        x:0
+
+        Rectangle {
+            anchors.fill: parent
+            color:"blue"
+        }
+
+        Loader {
+            id: leftPanelLoader
+            anchors.fill: parent
+        }
+
+        Behavior on x {
+            NumberAnimation { duration: SettingsApp.durationAnimation }
+        }
+
+    }
+
+    Pane {
+        id: paneRight
+        height: parent.height
+        width: parent.width - paneLeft.width - paneLeft.x
+        z: 1
+        y:0
+        anchors.margins: marginCommon
+        anchors.left: paneLeft.right
+
+        Rectangle {
+            anchors.fill: parent
+            color:"yellow"
+        }
+
+        Loader {
+            id: contentLoader
+            anchors.fill: parent
         }
     }
 

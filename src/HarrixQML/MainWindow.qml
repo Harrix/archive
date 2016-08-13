@@ -29,44 +29,65 @@ ApplicationWindow {
         z:3
     }
 
-    Frame {
+    Rectangle {
         id: paneLeft
         height: parent.height
         width: Math.max( 0.25*parent.width, 250)
         z: 2
-        padding: 0
+        //padding: 0
         anchors.margins: 0
         anchors.rightMargin: 0
         y:0
         x:0
+        MouseArea {
 
-        Rectangle {
-            anchors.fill: parent
-            color:"blue"
-        }
-
-        Loader {
-            id: leftPanelLoader
-            anchors.fill: parent
-            anchors.margins: SettingsApp.marginCommon
-        }
-
-        Rectangle {
-            x: parent.width - 15
-            width: 15
-            height: parent.height
-            color: "#21be2b"
-
-            MouseArea {
+            Rectangle {
                 anchors.fill: parent
-                hoverEnabled: true
-                cursorShape: Qt.PointingHandCursor
-                onClicked: toogleDrawer ()
+                color:"blue"
             }
+
+            Loader {
+                id: leftPanelLoader
+                anchors.fill: parent
+                anchors.margins: SettingsApp.marginCommon
+            }
+
+            Rectangle {
+                x: parent.width - 15
+                width: 15
+                height: parent.height
+                color: "#21be2b"
+
+                MouseArea {
+                    anchors.fill: parent
+                    hoverEnabled: true
+                    cursorShape: Qt.PointingHandCursor
+                    onClicked: toogleDrawer ()
+
+                    drag.target: paneLeft
+                    //drag.minimumX: _minimumX
+                    //drag.maximumX: _maximumX
+                    drag.axis: Qt.Horizontal
+                }
+            }
+
+
+            anchors.fill: parent
+            hoverEnabled: true
+            drag.target: paneLeft
+            //drag.minimumX: _minimumX
+            //drag.maximumX: _maximumX
+            drag.axis: Qt.Horizontal
+            //propagateComposedEvents:false
+            //preventStealing: true
+            drag.filterChildren: true
         }
 
         Behavior on x {
-            NumberAnimation { duration: SettingsApp.durationAnimation }
+            NumberAnimation {
+                duration: 500
+                easing.type: Easing.OutBack
+            }
         }
 
     }

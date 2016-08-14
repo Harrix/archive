@@ -7,8 +7,7 @@ import "HarrixQML"
 MainWindow {
     drawer: LeftPanel{}
 
-    content: PageBasicComponents {}
-        /*SwipeView {
+    content: SwipeView {
         id: swipeViewContent
 
         anchors.fill: parent
@@ -23,5 +22,5 @@ MainWindow {
                 anchors.centerIn: parent
             }
         }
-    }*/
+    }
 }

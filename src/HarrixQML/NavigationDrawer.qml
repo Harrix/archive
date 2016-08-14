@@ -14,6 +14,8 @@ Rectangle {
     property int easingTypeNavigationDrawer: SettingsApp.easingTypeNavigationDrawer
     property int zNavigationDrawer: 2
 
+    signal toogleNav()
+
     id: navigationDrawer
     objectName: "navigationDrawer"
 
@@ -27,6 +29,7 @@ Rectangle {
 
     MouseArea {
         id: mouseAreaDrag
+        enabled: false
 
         /*Rectangle {
             anchors.fill: parent
@@ -47,9 +50,11 @@ Rectangle {
             //color: "#21be2b"
 
             MouseArea {
+                id: mouseAreaStartDrag
+                enabled: false
                 anchors.fill: parent
                 hoverEnabled: true
-                cursorShape: Qt.PointingHandCursor
+                //cursorShape: Qt.PointingHandCursor
                 onClicked: toogleNavigationDrawer ()
 
                 drag.target: navigationDrawer
@@ -71,9 +76,7 @@ Rectangle {
         onPressed: focus = true
     }
 
-    onXChanged: {
-        //if (x)
-    }
+
 
     Behavior on x {
         NumberAnimation {
@@ -82,11 +85,36 @@ Rectangle {
         }
     }
 
+    onXChanged: {
+        //if (x)
+    }
+
+    function setTypeNavigationDrawer (type) {
+        if (type === "fix") {
+            showNavigationDrawer ();
+            mouseAreaDrag.enabled = false;
+            mouseAreaStartDrag.enabled = false;
+        }
+        if (type === "drawer") {
+            hideNavigationDrawer ();
+            mouseAreaDrag.enabled = true;
+            mouseAreaStartDrag.enabled = true;
+        }
+    }
+
     function toogleNavigationDrawer () {
         if (navigationDrawer.x < 0)
-            navigationDrawer.x = 0;
+            showNavigationDrawer ();
         else
-            navigationDrawer.x = -navigationDrawer.width + startDragDistance;
+            hideNavigationDrawer ();
+    }
+
+    function showNavigationDrawer () {
+        navigationDrawer.x = 0;
+    }
+
+    function hideNavigationDrawer () {
+        navigationDrawer.x = -navigationDrawer.width + startDragDistance;
     }
 
     function widthNavigationDrawer () {

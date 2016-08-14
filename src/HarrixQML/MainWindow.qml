@@ -25,7 +25,7 @@ ApplicationWindow {
             id: headerPanel
             width: parent.width
             height: 84
-            z:3
+            z: 30
 
             Loader {
                 id: headLoader
@@ -36,6 +36,7 @@ ApplicationWindow {
         }
 
         Rectangle {
+            id: mainRow
             width: parent.width
             height: parent.height - headerPanel.height
 
@@ -47,17 +48,17 @@ ApplicationWindow {
             Rectangle {
                 id: paneRight
                 height: parent.height
-                width: parent.width - navigationDrawer.width //- navigationDrawer.x
-                z: 1
+                width: widthPaneRight ()
+                z: 10
                 y: 0
                 anchors.margins: 0
                 anchors.left: navigationDrawer.right
                 anchors.rightMargin: marginCommon
 
-                /*Rectangle {
+                Rectangle {
                     anchors.fill: parent
                     color:"yellow"
-                }*/
+                }
 
                 Loader {
                     id: contentLoader
@@ -70,5 +71,18 @@ ApplicationWindow {
         }
     }
 
-    onWidthChanged: console.log(width)
+    function widthPaneRight () {
+        if (navigationDrawer.type == "fix")
+          return mainRow.width - navigationDrawer.width //- navigationDrawer.x
+        if (navigationDrawer.type == "drawer")
+            return mainRow.width - SettingsApp.startDragDistance// - navigationDrawer.width - navigationDrawer.x
+    }
+
+    onWidthChanged: {
+        console.log(width)
+        if ((width < 500)||(width < height))
+            navigationDrawer.type = "drawer";
+        else
+            navigationDrawer.type = "fix";
+    }
 }

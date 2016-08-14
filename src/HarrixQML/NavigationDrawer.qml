@@ -12,7 +12,9 @@ Rectangle {
     property int marginCommon: SettingsApp.marginCommon
     property string colorBackground: SettingsApp.colorBackground
     property int easingTypeNavigationDrawer: SettingsApp.easingTypeNavigationDrawer
-    property int zNavigationDrawer: 2
+    property int zNavigationDrawer: 20
+    property string type: "fix"
+    property string position: "open"
 
     signal toogleNav()
 
@@ -31,10 +33,25 @@ Rectangle {
         id: mouseAreaDrag
         enabled: false
 
-        /*Rectangle {
-            anchors.fill: parent
-            color:"blue"
-        }*/
+        Rectangle {
+            id: dark
+            parent: navigationDrawer.parent
+            //anchors.fill: parent
+            height:parent.height
+            width:parent.width
+            y:0
+            x:20
+            color:"#000"
+            z: 19
+            opacity: 0
+            visible: false
+            Behavior on opacity {
+                NumberAnimation {
+                    duration: SettingsApp.durationAnimation
+                    easing.type: Easing.Linear
+                }
+            }
+        }
 
         Loader {
             id: contentLoader
@@ -47,7 +64,7 @@ Rectangle {
             x: parent.width - 2 * startDragDistance
             width: 2 * startDragDistance
             height: parent.height
-            //color: "#21be2b"
+            color: "#21be2b"
 
             MouseArea {
                 id: mouseAreaStartDrag
@@ -58,7 +75,7 @@ Rectangle {
                 onClicked: toogleNavigationDrawer ()
 
                 drag.target: navigationDrawer
-                drag.minimumX: -navigationDrawer.width
+                drag.minimumX: -navigationDrawer.width + startDragDistance
                 drag.maximumX: 0
                 drag.axis: Qt.Horizontal
                 onPressed: {
@@ -69,14 +86,12 @@ Rectangle {
 
         anchors.fill: parent
         drag.target: navigationDrawer
-        drag.minimumX: -navigationDrawer.width
+        drag.minimumX: -navigationDrawer.width + startDragDistance
         drag.maximumX: 0
         drag.axis: Qt.Horizontal
         drag.filterChildren: true
         onPressed: focus = true
     }
-
-
 
     Behavior on x {
         NumberAnimation {
@@ -89,14 +104,14 @@ Rectangle {
         //if (x)
     }
 
-    function setTypeNavigationDrawer (type) {
+    onTypeChanged: {
         if (type === "fix") {
-            showNavigationDrawer ();
+            position = "open";
             mouseAreaDrag.enabled = false;
             mouseAreaStartDrag.enabled = false;
         }
         if (type === "drawer") {
-            hideNavigationDrawer ();
+            position = "close";
             mouseAreaDrag.enabled = true;
             mouseAreaStartDrag.enabled = true;
         }
@@ -104,17 +119,24 @@ Rectangle {
 
     function toogleNavigationDrawer () {
         if (navigationDrawer.x < 0)
-            showNavigationDrawer ();
+            position = "open";
         else
-            hideNavigationDrawer ();
+            position = "close";
     }
 
-    function showNavigationDrawer () {
-        navigationDrawer.x = 0;
-    }
-
-    function hideNavigationDrawer () {
-        navigationDrawer.x = -navigationDrawer.width + startDragDistance;
+    onPositionChanged: {
+        if (position === "open") {
+            navigationDrawer.x = 0;
+            if (type === "drawer") {
+                dark.visible=true;
+                dark.opacity = 0.3;
+            }
+        }
+        if (position == "close") {
+            navigationDrawer.x = -navigationDrawer.width + startDragDistance;
+            dark.visible=false;
+            dark.opacity = 0;
+        }
     }
 
     function widthNavigationDrawer () {

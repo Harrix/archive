@@ -80,9 +80,27 @@ ApplicationWindow {
 
     onWidthChanged: {
         console.log(width)
-        if ((width < 500)||(width < height))
+        if ((width < 500)||(width < height)) {
             navigationDrawer.type = "drawer";
+            console.log ("drawer");
+        }
         else
+        {
             navigationDrawer.type = "fix";
+            console.log ("fix");
+        }
+    }
+
+    onHeightChanged: {
+        console.log(width)
+        if ((width < 500)||(width < height)) {
+            navigationDrawer.type = "drawer";
+            console.log ("drawer");
+        }
+        else
+        {
+            navigationDrawer.type = "fix";
+            console.log ("fix");
+        }
     }
 }

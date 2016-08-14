@@ -36,15 +36,15 @@ Rectangle {
         Rectangle {
             id: dark
             parent: navigationDrawer.parent
-            //anchors.fill: parent
-            height:parent.height
-            width:parent.width
-            y:0
-            x:20
-            color:"#000"
+            height: parent.height
+            width: parent.width
+            y: 0
+            x: navigationDrawer.width + navigationDrawer.x
+            //anchors.left: navigationDrawer.right
+            //anchors.right: navigationDrawer.parent.right
+            color: "#000"
             z: 19
             opacity: 0
-            visible: false
             Behavior on opacity {
                 NumberAnimation {
                     duration: SettingsApp.durationAnimation
@@ -79,7 +79,7 @@ Rectangle {
                 drag.maximumX: 0
                 drag.axis: Qt.Horizontal
                 onPressed: {
-                    console.log ("drag x = ");
+                    //console.log ("drag x = ");
                 }
             }
         }
@@ -100,43 +100,41 @@ Rectangle {
         }
     }
 
-    onXChanged: {
-        //if (x)
-    }
-
     onTypeChanged: {
         if (type === "fix") {
             position = "open";
             mouseAreaDrag.enabled = false;
             mouseAreaStartDrag.enabled = false;
+            dark.opacity = 0;
         }
         if (type === "drawer") {
             position = "close";
             mouseAreaDrag.enabled = true;
             mouseAreaStartDrag.enabled = true;
+            dark.opacity = 0;
         }
-    }
-
-    function toogleNavigationDrawer () {
-        if (navigationDrawer.x < 0)
-            position = "open";
-        else
-            position = "close";
     }
 
     onPositionChanged: {
         if (position === "open") {
             navigationDrawer.x = 0;
-            if (type === "drawer") {
-                dark.visible=true;
+            if (type === "drawer")
                 dark.opacity = 0.3;
-            }
+            else
+                dark.opacity = 0;
         }
         if (position == "close") {
             navigationDrawer.x = -navigationDrawer.width + startDragDistance;
-            dark.visible=false;
             dark.opacity = 0;
         }
+    }
+
+    function toogleNavigationDrawer () {
+        if (type === "drawer")
+            if (position === "close")
+                position = "open";
+            else
+                position = "close";
     }
 
     function widthNavigationDrawer () {

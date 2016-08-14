@@ -7,10 +7,12 @@ import "HarrixQML"
 MainWindow {
     drawer: LeftPanel{}
 
-    content: SwipeView {
+    content: PageBasicComponents {}
+        /*SwipeView {
         id: swipeViewContent
 
         anchors.fill: parent
+        //anchors.margins: 10
         //currentIndex: tabBar.currentIndex
 
         PageBasicComponents {}
@@ -21,5 +23,5 @@ MainWindow {
                 anchors.centerIn: parent
             }
         }
-    }
+    }*/
 }

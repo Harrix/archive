@@ -40,8 +40,6 @@ Rectangle {
             width: parent.width
             y: 0
             x: navigationDrawer.width + navigationDrawer.x
-            //anchors.left: navigationDrawer.right
-            //anchors.right: navigationDrawer.parent.right
             color: "#000"
             z: 19
             opacity: 0
@@ -142,5 +140,12 @@ Rectangle {
             width = minimumWidth;
         else
             width = Math.max( parseFloat(percentWidthOfParent) * parent.width, minimumWidth);
+    }
+
+    function defineTypeNavigationDrawer (width, height) {
+        if ((width < 500)||(width < height))
+            navigationDrawer.type = "drawer";
+        else
+            navigationDrawer.type = "fix";
     }
 }

@@ -73,34 +73,12 @@ ApplicationWindow {
 
     function widthPaneRight () {
         if (navigationDrawer.type == "fix")
-          return mainRow.width - navigationDrawer.width //- navigationDrawer.x
+          return mainRow.width - navigationDrawer.width
         if (navigationDrawer.type == "drawer")
-            return mainRow.width - SettingsApp.startDragDistance// - navigationDrawer.width - navigationDrawer.x
+            return mainRow.width - SettingsApp.startDragDistance
     }
 
-    onWidthChanged: {
-        console.log(width)
-        if ((width < 500)||(width < height)) {
-            navigationDrawer.type = "drawer";
-            console.log ("drawer");
-        }
-        else
-        {
-            navigationDrawer.type = "fix";
-            console.log ("fix");
-        }
-    }
+    onWidthChanged: navigationDrawer.defineTypeNavigationDrawer (width, height)
 
-    onHeightChanged: {
-        console.log(width)
-        if ((width < 500)||(width < height)) {
-            navigationDrawer.type = "drawer";
-            console.log ("drawer");
-        }
-        else
-        {
-            navigationDrawer.type = "fix";
-            console.log ("fix");
-        }
-    }
+    onHeightChanged: navigationDrawer.defineTypeNavigationDrawer (width, height)
 }

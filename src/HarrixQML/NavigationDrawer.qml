@@ -80,6 +80,7 @@ Rectangle {
                 drag.minimumX: -navigationDrawer.width + startDragDistance
                 drag.maximumX: 0
                 drag.axis: Qt.Horizontal
+                onReleased: releasedDrag(mouseAreaStartDrag)
             }
         }
 
@@ -89,7 +90,7 @@ Rectangle {
         drag.maximumX: 0
         drag.axis: Qt.Horizontal
         drag.filterChildren: true
-        onPressed: focus = true
+        onReleased: releasedDrag(mouseAreaDrag)
     }
 
     Behavior on x {
@@ -99,32 +100,40 @@ Rectangle {
         }
     }
 
+    function releasedDrag(mouseArea) {
+        if (mouseArea.drag.active) {
+            console.log("p = " + privateVar.previousX)
+            console.log("x = " + navigationDrawer.x)
+
+            if ((navigationDrawer.x > -(1-0.33)*navigationDrawer.width)&&(navigationDrawer.x <= 0)) {
+                if (navigationDrawer.x > privateVar.previousX) {
+                    showNavigationDrawer();
+                    privateVar.startDrag = false;
+                }
+            }
+
+            if (privateVar.startDrag === true) {
+                if ((navigationDrawer.x > -0.33*navigationDrawer.width)&&(navigationDrawer.x <= 0)) {
+                    if (navigationDrawer.x < privateVar.previousX) {
+                        showNavigationDrawer();
+                        privateVar.startDrag = false;
+                    }
+                }
+            }
+
+            if (privateVar.startDrag === true)
+                hideNavigationDrawer();
+
+            Qt.inputMethod.hide();
+            privateVar.startDrag = false;
+        }
+    }
+
     onXChanged: {
         if ((mouseAreaDrag.drag.active)||(mouseAreaStartDrag.drag.active)) {
-            console.log ("drag x = " + x);
             if (privateVar.startDrag === false) {
                 privateVar.startDrag = true;
                 privateVar.previousX = x;
-            }
-            else {
-                if ((x > -navigationDrawer.width/2)&&(x <= 0)) {
-                    if (privateVar.previousX < x) {
-                        privateVar.startDrag = false;
-                        position = "open";
-                        privateVar.previousX = 0;
-                        Qt.inputMethod.hide();
-                    }
-                }
-                if ((x >= -navigationDrawer.width)&&(x < -navigationDrawer.width/2)) {
-                    if (privateVar.previousX > x) {
-                        privateVar.startDrag = false;
-                        position = "close";
-                        privateVar.previousX = 0;
-                        Qt.inputMethod.hide();
-                    }
-                }
-                if (privateVar.startDrag === true)
-                    privateVar.previousX = x;
             }
         }
     }
@@ -145,17 +154,25 @@ Rectangle {
     }
 
     onPositionChanged: {
-        if (position === "open") {
-            navigationDrawer.x = 0;
-            if (type === "drawer")
-                dark.opacity = 0.3;
-            else
-                dark.opacity = 0;
-        }
-        if (position == "close") {
-            navigationDrawer.x = -navigationDrawer.width + startDragDistance;
+        if (position === "open")
+            showNavigationDrawer ()
+        if (position === "close")
+            hideNavigationDrawer ()
+    }
+
+    function showNavigationDrawer () {
+        position = "open";
+        navigationDrawer.x = 0;
+        if (type === "drawer")
+            dark.opacity = 0.9;
+        else
             dark.opacity = 0;
-        }
+    }
+
+    function hideNavigationDrawer () {
+        position = "close";
+        navigationDrawer.x = -navigationDrawer.width + startDragDistance;
+        dark.opacity = 0;
     }
 
     function toogleNavigationDrawer () {

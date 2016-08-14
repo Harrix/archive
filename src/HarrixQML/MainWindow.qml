@@ -18,7 +18,7 @@ ApplicationWindow {
     header: ToolBar {
         ButtonBlue{
             text: qsTr("Open Drawer")
-            onClicked:  navigationDrawer.toogleDrawer ()
+            onClicked:  navigationDrawer.toogleNavigationDrawer ()
         }
         z:4
     }

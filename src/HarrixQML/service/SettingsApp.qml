@@ -33,13 +33,16 @@ QtObject {
     readonly property int paddingButton: 8
     readonly property int leftPaddingButton: 24
     readonly property int rightPaddingButton: 24
+    readonly property int startDragDistance: Qt.styleHints.startDragDistance
 
     //Sizes
     readonly property int widthWindow: 640
     readonly property int heightWindow: 480
+    readonly property int widthMinimumNavigationDrawer: 320
 
     //EasingType
     readonly property int easingTypeRipple: Easing.Linear
+    readonly property int easingTypeNavigationDrawer: Easing.OutBack
 
     //Durations
     readonly property int durationAnimation: 300

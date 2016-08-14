@@ -45,9 +45,9 @@ ApplicationWindow {
             Frame {
                 id: paneRight
                 height: parent.height
-                width: parent.width - navigationDrawer.width - navigationDrawer.x
+                width: parent.width - navigationDrawer.width //- navigationDrawer.x
                 z: 1
-                y:0
+                y: 0
                 anchors.margins: 0
                 anchors.left: navigationDrawer.right
                 anchors.rightMargin: marginCommon
@@ -63,6 +63,8 @@ ApplicationWindow {
                     anchors.fill: parent
                     anchors.margins: SettingsApp.marginCommon
                     anchors.leftMargin: 0
+                    anchors.rightMargin: 10
+                    clip: true
                 }
             }
         }

@@ -24,6 +24,7 @@ Rectangle {
     y: 0
     x: 0
     z: zNavigationDrawer
+    clip: true
 
     MouseArea {
         id: mouseAreaDrag
@@ -37,6 +38,7 @@ Rectangle {
             id: contentLoader
             anchors.fill: parent
             anchors.margins: marginCommon
+            clip: true
         }
 
         Rectangle {

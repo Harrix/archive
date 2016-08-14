@@ -143,9 +143,9 @@ Rectangle {
     }
 
     function defineTypeNavigationDrawer (width, height) {
-        if ((width < 500)||(width < height))
-            navigationDrawer.type = "drawer";
+        if ((width <= 640)||(width < height))
+            type = "drawer";
         else
-            navigationDrawer.type = "fix";
+            type = "fix";
     }
 }

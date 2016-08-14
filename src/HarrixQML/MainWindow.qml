@@ -15,46 +15,56 @@ ApplicationWindow {
     visibility: "Maximized"
     title: qsTr("Harrix-QMLComponents - Demo")
 
-    header: ToolBar {
-        ButtonBlue{
-            text: qsTr("Open Drawer")
-            onClicked:  navigationDrawer.toogleNavigationDrawer ()
-        }
-        z:4
-    }
+    Column {
+        anchors.fill: parent
+        spacing: 0
 
-    footer: ToolBar {
-        ButtonBlue{
-            text: qsTr("Footer")
-        }
-        z:3
-    }
-
-    NavigationDrawer {
-        id: navigationDrawer
-        drawer: drawer
-    }
-
-    Frame {
-        id: paneRight
-        height: parent.height
-        width: parent.width - navigationDrawer.width - navigationDrawer.x
-        z: 1
-        y:0
-        anchors.margins: 0
-        anchors.left: navigationDrawer.right
-        padding: 0
-
-        Rectangle {
-            anchors.fill: parent
-            color:"yellow"
+        Pane {
+            id: header
+            width: parent.width
+            padding: 0
+            height: 84
+            ButtonBlue{
+                text: qsTr("Open Drawer")
+                onClicked:  navigationDrawer.toogleNavigationDrawer ()
+            }
+            z:4
         }
 
-        Loader {
-            id: contentLoader
-            anchors.fill: parent
-            anchors.margins: SettingsApp.marginCommon
-            anchors.leftMargin: 0
+
+        Pane {
+            width: parent.width
+            height: parent.height - header.height
+            padding: 0
+
+            NavigationDrawer {
+                id: navigationDrawer
+                drawer: drawer
+            }
+
+            Frame {
+                id: paneRight
+                height: parent.height
+                width: parent.width - navigationDrawer.width - navigationDrawer.x
+                z: 1
+                y:0
+                anchors.margins: 0
+                anchors.left: navigationDrawer.right
+                anchors.rightMargin: marginCommon
+                padding: 0
+
+                Rectangle {
+                    anchors.fill: parent
+                    color:"yellow"
+                }
+
+                Loader {
+                    id: contentLoader
+                    anchors.fill: parent
+                    anchors.margins: SettingsApp.marginCommon
+                    anchors.leftMargin: 0
+                }
+            }
         }
     }
 

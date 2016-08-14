@@ -14,7 +14,6 @@ Rectangle {
     property int easingTypeNavigationDrawer: SettingsApp.easingTypeNavigationDrawer
     property int zNavigationDrawer: 2
 
-
     id: navigationDrawer
     objectName: "navigationDrawer"
 
@@ -29,10 +28,10 @@ Rectangle {
     MouseArea {
         id: mouseAreaDrag
 
-        Rectangle {
+        /*Rectangle {
             anchors.fill: parent
             color:"blue"
-        }
+        }*/
 
         Loader {
             id: contentLoader
@@ -45,7 +44,7 @@ Rectangle {
             x: parent.width - 2 * startDragDistance
             width: 2 * startDragDistance
             height: parent.height
-            color: "#21be2b"
+            //color: "#21be2b"
 
             MouseArea {
                 anchors.fill: parent
@@ -57,6 +56,9 @@ Rectangle {
                 drag.minimumX: -navigationDrawer.width
                 drag.maximumX: 0
                 drag.axis: Qt.Horizontal
+                onPressed: {
+                    console.log ("drag x = ");
+                }
             }
         }
 

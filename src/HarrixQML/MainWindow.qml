@@ -6,7 +6,9 @@ import "."
 ApplicationWindow {
     property alias drawer: navigationDrawer.drawer
     property alias content: contentLoader.sourceComponent
+    property alias head: headLoader.sourceComponent
 
+    property alias navigationDrawer: navigationDrawer
     property int marginCommon: SettingsApp.marginCommon
 
     id: mainWindow
@@ -19,30 +21,30 @@ ApplicationWindow {
         anchors.fill: parent
         spacing: 0
 
-        Pane {
-            id: header
+        Rectangle {
+            id: headerPanel
             width: parent.width
-            padding: 0
             height: 84
-            ButtonBlue{
-                text: qsTr("Open Drawer")
-                onClicked:  navigationDrawer.toogleNavigationDrawer ()
+            z:3
+
+            Loader {
+                id: headLoader
+                anchors.fill: parent
+                anchors.margins: marginCommon
+                clip: true
             }
-            z:4
         }
 
-
-        Pane {
+        Rectangle {
             width: parent.width
-            height: parent.height - header.height
-            padding: 0
+            height: parent.height - headerPanel.height
 
             NavigationDrawer {
                 id: navigationDrawer
                 drawer: drawer
             }
 
-            Frame {
+            Rectangle {
                 id: paneRight
                 height: parent.height
                 width: parent.width - navigationDrawer.width //- navigationDrawer.x
@@ -51,19 +53,17 @@ ApplicationWindow {
                 anchors.margins: 0
                 anchors.left: navigationDrawer.right
                 anchors.rightMargin: marginCommon
-                padding: 0
 
-                Rectangle {
+                /*Rectangle {
                     anchors.fill: parent
                     color:"yellow"
-                }
+                }*/
 
                 Loader {
                     id: contentLoader
                     anchors.fill: parent
-                    anchors.margins: SettingsApp.marginCommon
+                    anchors.margins: marginCommon
                     anchors.leftMargin: 0
-                    anchors.rightMargin: 10
                     clip: true
                 }
             }
@@ -71,6 +71,4 @@ ApplicationWindow {
     }
 
     onWidthChanged: console.log(width)
-
-
 }

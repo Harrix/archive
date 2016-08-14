@@ -16,8 +16,6 @@ Rectangle {
     property string type: "fix"
     property string position: "open"
 
-    signal toogleNav()
-
     id: navigationDrawer
     objectName: "navigationDrawer"
 
@@ -28,6 +26,12 @@ Rectangle {
     x: 0
     z: zNavigationDrawer
     clip: true
+
+    QtObject {
+        id: privateVar
+        property int previousX: 0
+        property bool startDrag: false
+    }
 
     MouseArea {
         id: mouseAreaDrag
@@ -76,9 +80,6 @@ Rectangle {
                 drag.minimumX: -navigationDrawer.width + startDragDistance
                 drag.maximumX: 0
                 drag.axis: Qt.Horizontal
-                onPressed: {
-                    //console.log ("drag x = ");
-                }
             }
         }
 
@@ -95,6 +96,36 @@ Rectangle {
         NumberAnimation {
             duration: SettingsApp.durationAnimation
             easing.type: easingTypeNavigationDrawer
+        }
+    }
+
+    onXChanged: {
+        if ((mouseAreaDrag.drag.active)||(mouseAreaStartDrag.drag.active)) {
+            console.log ("drag x = " + x);
+            if (privateVar.startDrag === false) {
+                privateVar.startDrag = true;
+                privateVar.previousX = x;
+            }
+            else {
+                if ((x > -navigationDrawer.width/2)&&(x <= 0)) {
+                    if (privateVar.previousX < x) {
+                        privateVar.startDrag = false;
+                        position = "open";
+                        privateVar.previousX = 0;
+                        Qt.inputMethod.hide();
+                    }
+                }
+                if ((x >= -navigationDrawer.width)&&(x < -navigationDrawer.width/2)) {
+                    if (privateVar.previousX > x) {
+                        privateVar.startDrag = false;
+                        position = "close";
+                        privateVar.previousX = 0;
+                        Qt.inputMethod.hide();
+                    }
+                }
+                if (privateVar.startDrag === true)
+                    privateVar.previousX = x;
+            }
         }
     }
 

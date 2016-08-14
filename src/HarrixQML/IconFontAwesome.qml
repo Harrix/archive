@@ -3,6 +3,7 @@ import "."
 
 Text {
     property string symbol: FontAwesome.Icon.fa_glass
+
     property string fontSize: SettingsApp.fontSize
     property int fontRenderType: SettingsApp.fontRenderType
     property string colorFont: SettingsApp.colorFontButton

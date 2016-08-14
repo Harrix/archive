@@ -6,6 +6,7 @@ import "."
 ApplicationWindow {
     property alias drawer: navigationDrawer.drawer
     property alias content: contentLoader.sourceComponent
+
     property int marginCommon: SettingsApp.marginCommon
 
     id: mainWindow
@@ -29,10 +30,10 @@ ApplicationWindow {
         z:3
     }
 
- NavigationDrawer {
-     id: navigationDrawer
- drawer: drawer
- }
+    NavigationDrawer {
+        id: navigationDrawer
+        drawer: drawer
+    }
 
     Frame {
         id: paneRight

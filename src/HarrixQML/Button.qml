@@ -4,6 +4,7 @@ import "."
 
 Button {
     property alias icon: loaderIcon.sourceComponent
+
     property string fontName: SettingsApp.fontName
     property int fontSize: SettingsApp.fontSize
     property string colorButton: SettingsApp.colorRed

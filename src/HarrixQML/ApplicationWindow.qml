@@ -18,4 +18,6 @@ ApplicationWindow {
     color: colorBackground
     font.family: fontName
     font.pixelSize: fontSize
+
+    Fonts {}
 }

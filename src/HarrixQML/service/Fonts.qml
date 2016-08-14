@@ -1,8 +1,6 @@
 import QtQuick 2.7
 import "."
 
-pragma Singleton
-
 Item {
     FontLoader {
         source: "qrc:/HarrixQML/fonts/OpenSans.ttf" //Open Sans

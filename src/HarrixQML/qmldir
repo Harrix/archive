@@ -12,6 +12,6 @@ IconFontAwesome 1.0 IconFontAwesome.qml
 
 # Service components
 MouseAreaRipple 1.0 service/MouseAreaRipple.qml
-singleton Fonts 1.0 service/Fonts.qml
+Fonts 1.0 service/Fonts.qml
 singleton FontAwesome 1.0 service/FontAwesome.qml
 singleton SettingsApp 1.0 service/SettingsApp.qml

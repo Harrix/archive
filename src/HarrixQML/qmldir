@@ -4,6 +4,7 @@ module HarrixQML
 ApplicationWindow 1.0 ApplicationWindow.qml
 MainWindow 1.0 MainWindow.qml
 MainWindowAndroid 1.0 MainWindowAndroid.qml
+NavigationDrawer 1.0 NavigationDrawer.qml
 Button 1.0 Button.qml
 ButtonBlue 1.0 ButtonBlue.qml
 ButtonGreen 1.0 ButtonGreen.qml

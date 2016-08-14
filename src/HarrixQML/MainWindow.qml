@@ -4,7 +4,7 @@ import QtQuick.Layouts 1.3
 import "."
 
 ApplicationWindow {
-    property alias leftPanel: leftPanelLoader.sourceComponent
+    property alias drawer: navigationDrawer.drawer
     property alias content: contentLoader.sourceComponent
     property int marginCommon: SettingsApp.marginCommon
 
@@ -17,7 +17,7 @@ ApplicationWindow {
     header: ToolBar {
         ButtonBlue{
             text: qsTr("Open Drawer")
-            onClicked:  toogleDrawer ()
+            onClicked:  navigationDrawer.toogleDrawer ()
         }
         z:4
     }
@@ -29,77 +29,19 @@ ApplicationWindow {
         z:3
     }
 
-    Rectangle {
-        id: paneLeft
-        height: parent.height
-        width: Math.max( 0.25*parent.width, 250)
-        z: 2
-        //padding: 0
-        anchors.margins: 0
-        anchors.rightMargin: 0
-        y:0
-        x:0
-        MouseArea {
-
-            Rectangle {
-                anchors.fill: parent
-                color:"blue"
-            }
-
-            Loader {
-                id: leftPanelLoader
-                anchors.fill: parent
-                anchors.margins: SettingsApp.marginCommon
-            }
-
-            Rectangle {
-                x: parent.width - 15
-                width: 15
-                height: parent.height
-                color: "#21be2b"
-
-                MouseArea {
-                    anchors.fill: parent
-                    hoverEnabled: true
-                    cursorShape: Qt.PointingHandCursor
-                    onClicked: toogleDrawer ()
-
-                    drag.target: paneLeft
-                    //drag.minimumX: _minimumX
-                    //drag.maximumX: _maximumX
-                    drag.axis: Qt.Horizontal
-                }
-            }
-
-
-            anchors.fill: parent
-            hoverEnabled: true
-            drag.target: paneLeft
-            //drag.minimumX: _minimumX
-            //drag.maximumX: _maximumX
-            drag.axis: Qt.Horizontal
-            //propagateComposedEvents:false
-            //preventStealing: true
-            drag.filterChildren: true
-        }
-
-        Behavior on x {
-            NumberAnimation {
-                duration: 500
-                easing.type: Easing.OutBack
-            }
-        }
-
-    }
+ NavigationDrawer {
+     id: navigationDrawer
+ drawer: drawer
+ }
 
     Frame {
         id: paneRight
         height: parent.height
-        width: parent.width - paneLeft.width - paneLeft.x
+        width: parent.width - navigationDrawer.width - navigationDrawer.x
         z: 1
         y:0
         anchors.margins: 0
-        anchors.left: paneLeft.right
+        anchors.left: navigationDrawer.right
         padding: 0
 
         Rectangle {
@@ -117,10 +59,5 @@ ApplicationWindow {
 
     onWidthChanged: console.log(width)
 
-    function toogleDrawer () {
-        if (paneLeft.x < 0)
-            paneLeft.x = 0;
-        else
-            paneLeft.x = -paneLeft.width + 15;
-    }
+
 }

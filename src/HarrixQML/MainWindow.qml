@@ -9,6 +9,7 @@ ApplicationWindow {
     //property alias head: headLoader.sourceComponent
 
     property alias navigationDrawer: navigationDrawer
+    property alias headLoader: headLoader
 
     property int marginCommon: SettingsApp.marginCommon
     property int startDragDistance: SettingsApp.startDragDistance
@@ -34,7 +35,7 @@ ApplicationWindow {
 
             Loader {
                 id: headLoader
-                source: "HeadAndroid.qml"
+                source: "Head.qml"
                 anchors.fill: parent
                 anchors.margins: marginCommon
                 clip: true

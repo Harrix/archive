@@ -50,6 +50,7 @@ ApplicationWindow {
             NavigationDrawer {
                 id: navigationDrawer
                 drawer: drawer
+                window: mainWindow
             }
 
             Rectangle {
@@ -73,7 +74,6 @@ ApplicationWindow {
     }
 
     signal changeSizeWindow()
-    signal changeSizeWindowWidthHeight(int width, int height)
 
     onWidthChanged: changeSizeWindow()
     onHeightChanged: changeSizeWindow()

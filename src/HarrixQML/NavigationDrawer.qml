@@ -6,6 +6,8 @@ import "."
 Rectangle {
     property alias drawer: contentLoader.sourceComponent
 
+    property var window
+
     property int widthNavigationDrawer: SettingsApp.widthNavigationDrawer
     property int startDragDistance: SettingsApp.startDragDistance
     property int marginCommon: SettingsApp.marginCommon
@@ -233,18 +235,11 @@ Rectangle {
     }
 
     Connections {
-        target: mainWindow
-
-        onChangeSizeWindowWidthHeight: {
-            if ((width <= widthWindowAfterWhichFixDrawer)||(width < height))
-                fixNavigationDrawer = false;
-            else
-                fixNavigationDrawer = true;
-        }
+        target: window
 
         onChangeSizeWindow: {
-            if ((mainWindow.width <= widthWindowAfterWhichFixDrawer)
-                    ||(mainWindow.width < mainWindow.height))
+            if ((window.width <= widthWindowAfterWhichFixDrawer)
+                    ||(window.width < window.height))
                 fixNavigationDrawer = false;
             else
                 fixNavigationDrawer = true;

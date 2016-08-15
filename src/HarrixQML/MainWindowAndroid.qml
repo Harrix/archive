@@ -8,4 +8,5 @@ MainWindow {
     objectName: "mainWindow"
 
     headLoader.source: "HeadAndroid.qml"
+    headLoader.anchors.margins: 0
 }

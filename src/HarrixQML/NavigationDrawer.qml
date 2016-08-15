@@ -135,6 +135,7 @@ Rectangle {
                 privateVar.startDrag = true;
                 privateVar.previousX = x;
             }
+            dark.opacity = lineTwoPoint(x, -navigationDrawer.width + startDragDistance, 0, 0, 0.9);
         }
     }
 
@@ -195,5 +196,25 @@ Rectangle {
             type = "drawer";
         else
             type = "fix";
+    }
+
+    function lineTwoPoint(x, x1, y1, x2, y2) {
+        var y=0;
+
+        if ((x1 === x2)&&(y1 === y2))
+            y = y1;
+        else
+            if (y1 === y2)
+                y = y1;
+            else
+                if (x1 === x2)
+                    if (x === x1)
+                        y = y1;
+                    else
+                        y = 0;
+                else
+                    y = (x-x1)*(y2-y1)/(x2-x1)+y1;
+
+        return y;
     }
 }

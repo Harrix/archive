@@ -15,6 +15,7 @@ Rectangle {
     property int easingTypeNavigationDrawer: SettingsApp.easingTypeNavigationDrawer
     property int easingDarkNavigationDrawer: SettingsApp.easingDarkNavigationDrawer
     property int durationAnimation: SettingsApp.durationAnimation
+    property int widthWindowAfterWhichFixDrawer: SettingsApp.widthWindowAfterWhichFixDrawer
     property real percentFailureSwipe: 0.05
     property int zNavigationDrawer: 20
 
@@ -235,14 +236,15 @@ Rectangle {
     }
 
     onChangeSizeWindowWidthHeight: {
-        if ((width <= 640)||(width < height))
+        if ((width <= widthWindowAfterWhichFixDrawer)||(width < height))
             fixNavigationDrawer = false;
         else
             fixNavigationDrawer = true;
     }
 
     onChangeSizeWindow: {
-        if ((mainWindow.width <= 640)||(mainWindow.width < mainWindow.height))
+        if ((mainWindow.width <= widthWindowAfterWhichFixDrawer)
+                ||(mainWindow.width < mainWindow.height))
             fixNavigationDrawer = false;
         else
             fixNavigationDrawer = true;

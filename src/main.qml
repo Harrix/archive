@@ -4,7 +4,7 @@ import QtQuick.Layouts 1.3
 
 import "HarrixQML"
 
-MainWindowAndroid {
+MainWindow {
 
     title: qsTr("Harrix-QMLComponents - Demo")
 

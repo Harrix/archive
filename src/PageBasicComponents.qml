@@ -51,7 +51,7 @@ Page{
             ButtonBlue {
                 id: button22
                 text: qsTr("Console")
-                onClicked: console.log( Qt.platform.os )
+                onClicked: testSignal("send signal")
                 icon:  IconFontAwesome { symbol: FontAwesome.fa_vk }
             }
 

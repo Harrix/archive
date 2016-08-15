@@ -24,5 +24,10 @@ Rectangle {
             text: qsTr("Open Drawer")
             onClicked:  navigationDrawer.toogleNavigationDrawer()
         }
+
+        ButtonBlue{
+            text: qsTr("Open Drawer")
+            onClicked:  testSignal("send signal from Head")
+        }
     }
 }

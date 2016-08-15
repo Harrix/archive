@@ -9,10 +9,10 @@ Button {
     property int fontSize: SettingsApp.fontSize
     property string colorButton: SettingsApp.colorRed
     property string colorButtonHover: SettingsApp.colorRedLight
+    property string colorButtonHover: SettingsApp.colorRedLight
     property string colorFontButton: SettingsApp.colorFontButton
     property int fontRenderType: SettingsApp.fontRenderType
     property int durationAnimation: SettingsApp.durationAnimation
-    property real opacityNotEnabled: SettingsApp.opacityNotEnabled
     property int paddingButton: SettingsApp.paddingButton
     property int leftPaddingButton: SettingsApp.leftPaddingButton
     property int rightPaddingButton: SettingsApp.rightPaddingButton

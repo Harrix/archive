@@ -54,7 +54,7 @@ Button {
 
     background: Rectangle {
         opacity: enabled ? 1 : opacityNotEnabled
-        color: control.down ? colorButtonHover : colorButton
+        color: defineColor()
         border.width: 0
         radius: 0
 
@@ -72,5 +72,12 @@ Button {
                 duration: durationAnimation
             }
         }
+    }
+
+    function defineColor() {
+        if (control.down)
+            return colorButtonHover;
+        else
+            return colorButton;
     }
 }

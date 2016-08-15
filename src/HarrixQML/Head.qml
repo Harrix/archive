@@ -5,6 +5,7 @@ import "."
 Rectangle {
     id:headerApp
     objectName: "headerApp"
+
     anchors.fill: parent
     height:84
 

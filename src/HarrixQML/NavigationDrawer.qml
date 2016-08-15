@@ -5,8 +5,7 @@ import "."
 
 Rectangle {
     property alias drawer: contentLoader.sourceComponent
-
-    property var window
+    property alias window: connectionsChangeSizeWindow.target
 
     property int widthNavigationDrawer: SettingsApp.widthNavigationDrawer
     property int startDragDistance: SettingsApp.startDragDistance
@@ -209,6 +208,18 @@ Rectangle {
             hideNavigationDrawer ();
     }
 
+    Connections {
+        id: connectionsChangeSizeWindow
+
+        onChangeSizeWindow: {
+            if ((window.width <= widthWindowAfterWhichFixDrawer)
+                    ||(window.width < window.height))
+                fixNavigationDrawer = false;
+            else
+                fixNavigationDrawer = true;
+        }
+    }
+
     function showNavigationDrawer () {
         openNavigationDrawer = true;
         navigationDrawer.x = 0;
@@ -232,18 +243,6 @@ Rectangle {
                 openNavigationDrawer = true;
             else
                 openNavigationDrawer = false;
-    }
-
-    Connections {
-        target: window
-
-        onChangeSizeWindow: {
-            if ((window.width <= widthWindowAfterWhichFixDrawer)
-                    ||(window.width < window.height))
-                fixNavigationDrawer = false;
-            else
-                fixNavigationDrawer = true;
-        }
     }
 
     function lineTwoPoint(x, x1, y1, x2, y2) {

@@ -69,7 +69,7 @@ MouseArea {
                 target: ripple
                 property: "width"
                 from: 0
-                to: 2*privateVar.radiusEnd
+                to: 2 * privateVar.radiusEnd
                 duration: durationAnimation
                 easing.type: easingTypeRipple
             }
@@ -77,7 +77,7 @@ MouseArea {
                 target: ripple;
                 property: "height"
                 from: 0
-                to: 2*privateVar.radiusEnd
+                to: 2 * privateVar.radiusEnd
                 duration: durationAnimation
                 easing.type: easingTypeRipple
             }
@@ -95,7 +95,7 @@ MouseArea {
             target: ripple
             property: "opacity"
             to: 0
-            duration: durationAnimation/3
+            duration: durationAnimation / 3
         }
     }
 
@@ -121,7 +121,7 @@ MouseArea {
     }
 
     function distanceTwoPoints(x1, y1, x2, y2) {
-        var s = Math.sqrt( (x2 - x1)*(x2 - x1) + (y2 - y1)*(y2 - y1));
+        var s = Math.sqrt( (x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1));
         return s;
     }
 

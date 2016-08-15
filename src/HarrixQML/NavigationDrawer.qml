@@ -25,7 +25,6 @@ Rectangle {
     y: 0
     x: 0
     z: zNavigationDrawer
-    clip: true
 
     QtObject {
         id: privateVar
@@ -47,12 +46,22 @@ Rectangle {
             color: "#000"
             z: 19
             opacity: 0
-            /*Behavior on opacity {
-                NumberAnimation {
+
+                NumberAnimation on opacity  {
+                    id: animationDarkOn
                     duration: SettingsApp.durationAnimation
                     easing.type: Easing.Linear
+                    running: false
+                    to: 0.9
                 }
-            }*/
+
+                NumberAnimation on opacity  {
+                    id: animationDarkOff
+                    duration: SettingsApp.durationAnimation
+                    easing.type: Easing.Linear
+                    running: false
+                    to: 0
+                }
         }
 
         Loader {
@@ -144,36 +153,37 @@ Rectangle {
             position = "open";
             mouseAreaDrag.enabled = false;
             mouseAreaStartDrag.enabled = false;
-            dark.opacity = 0;
+            animationDarkOff.running = true;
         }
         if (type === "drawer") {
             position = "close";
             mouseAreaDrag.enabled = true;
             mouseAreaStartDrag.enabled = true;
-            dark.opacity = 0;
+            animationDarkOff.running = true;
         }
     }
 
     onPositionChanged: {
         if (position === "open")
-            showNavigationDrawer ()
+            showNavigationDrawer ();
         if (position === "close")
-            hideNavigationDrawer ()
+            hideNavigationDrawer ();
     }
 
     function showNavigationDrawer () {
         position = "open";
         navigationDrawer.x = 0;
         if (type === "drawer")
-            dark.opacity = 0.9;
+            animationDarkOn.running = true;
         else
-            dark.opacity = 0;
+            animationDarkOff.running = true;
+
     }
 
     function hideNavigationDrawer () {
         position = "close";
         navigationDrawer.x = -navigationDrawer.width + startDragDistance;
-        dark.opacity = 0;
+        animationDarkOff.running = true;
     }
 
     function toogleNavigationDrawer () {
@@ -200,7 +210,6 @@ Rectangle {
 
     function lineTwoPoint(x, x1, y1, x2, y2) {
         var y=0;
-
         if ((x1 === x2)&&(y1 === y2))
             y = y1;
         else
@@ -214,7 +223,6 @@ Rectangle {
                         y = 0;
                 else
                     y = (x-x1)*(y2-y1)/(x2-x1)+y1;
-
         return y;
     }
 }

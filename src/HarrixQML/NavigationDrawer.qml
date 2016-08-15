@@ -94,7 +94,14 @@ Rectangle {
             x: parent.width - 2 * startDragDistance
             width: 2 * startDragDistance
             height: parent.height
-            color: "#21be2b"
+            color: "transparent"
+        }
+
+        Rectangle {
+            x: parent.width - 3 * startDragDistance
+            width: 4 * startDragDistance
+            height: parent.height
+            color: "transparent"
 
             MouseArea {
                 id: mouseAreaStartDrag

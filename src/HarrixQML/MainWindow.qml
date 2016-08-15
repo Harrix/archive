@@ -9,23 +9,28 @@ ApplicationWindow {
     property alias head: headLoader.sourceComponent
 
     property alias navigationDrawer: navigationDrawer
+
     property int marginCommon: SettingsApp.marginCommon
+    property int startDragDistance: SettingsApp.startDragDistance
+    property int heightHeadPanel: 84
+    property int zHeadPanel: 30
+    property int zContentPanel: 10
 
     id: mainWindow
     objectName: "mainWindow"
 
     visibility: "Maximized"
-    title: qsTr("Harrix-QMLComponents - Demo")
 
     Column {
+        id: mainColumn
         anchors.fill: parent
         spacing: 0
 
         Rectangle {
-            id: headerPanel
+            id: headPanel
             width: parent.width
-            height: 84
-            z: 30
+            height: heightHeadPanel
+            z: zHeadPanel
 
             Loader {
                 id: headLoader
@@ -38,7 +43,7 @@ ApplicationWindow {
         Rectangle {
             id: mainRow
             width: parent.width
-            height: parent.height - headerPanel.height
+            height: parent.height - headPanel.height
 
             NavigationDrawer {
                 id: navigationDrawer
@@ -46,14 +51,13 @@ ApplicationWindow {
             }
 
             Rectangle {
-                id: paneRight
+                id: contentPanel
                 height: parent.height
                 width: widthPaneRight ()
-                z: 10
                 y: 0
+                z: zContentPanel
                 anchors.margins: 0
                 anchors.left: navigationDrawer.right
-                anchors.rightMargin: marginCommon
 
                 Loader {
                     id: contentLoader
@@ -67,13 +71,12 @@ ApplicationWindow {
     }
 
     onWidthChanged: navigationDrawer.defineTypeNavigationDrawerSelf ()
-
     onHeightChanged: navigationDrawer.defineTypeNavigationDrawerSelf ()
 
     function widthPaneRight () {
         if (navigationDrawer.fixNavigationDrawer === true)
           return mainRow.width - navigationDrawer.width
         else
-            return mainRow.width - SettingsApp.startDragDistance / 2
+            return mainRow.width - startDragDistance / 2
     }
 }

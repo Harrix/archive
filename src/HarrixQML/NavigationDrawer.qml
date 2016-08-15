@@ -97,7 +97,7 @@ Rectangle {
         }
 
         Rectangle {
-            x: parent.width - 3/2 * startDragDistance
+            x: parent.width - startDragDistance
             width: 2 * startDragDistance
             height: parent.height
             color: "transparent"
@@ -111,7 +111,7 @@ Rectangle {
                 onClicked: toogleNavigationDrawer ()
 
                 drag.target: navigationDrawer
-                drag.minimumX: -navigationDrawer.width + startDragDistance/2
+                drag.minimumX: -navigationDrawer.width + startDragDistance / 2
                 drag.maximumX: 0
                 drag.axis: Qt.Horizontal
                 onReleased: releasedDrag(mouseAreaStartDrag)
@@ -120,7 +120,7 @@ Rectangle {
 
         anchors.fill: parent
         drag.target: navigationDrawer
-        drag.minimumX: -navigationDrawer.width + startDragDistance/2
+        drag.minimumX: -navigationDrawer.width + startDragDistance / 2
         drag.maximumX: 0
         drag.axis: Qt.Horizontal
         drag.filterChildren: true
@@ -167,7 +167,7 @@ Rectangle {
                 privateVar.startDrag = true;
                 privateVar.previousX = x;
             }
-            dark.opacity = lineTwoPoint(x, -navigationDrawer.width + startDragDistance/2, 0, 0, 0.9);
+            dark.opacity = lineTwoPoint(x, -navigationDrawer.width + startDragDistance / 2, 0, 0, 0.9);
         }
     }
 
@@ -205,7 +205,7 @@ Rectangle {
 
     function hideNavigationDrawer () {
         position = "close";
-        navigationDrawer.x = -navigationDrawer.width + startDragDistance/2;
+        navigationDrawer.x = -navigationDrawer.width + startDragDistance / 2;
         animationDarkOff.running = true;
     }
 

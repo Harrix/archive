@@ -6,7 +6,7 @@ import "."
 ApplicationWindow {
     property alias drawer: navigationDrawer.drawer
     property alias content: contentLoader.sourceComponent
-    property alias head: headLoader.sourceComponent
+    //property alias head: headLoader.sourceComponent
 
     property alias navigationDrawer: navigationDrawer
 
@@ -32,11 +32,15 @@ ApplicationWindow {
             height: heightHeadPanel
             z: zHeadPanel
 
-            Loader {
+            /*Loader {
                 id: headLoader
                 anchors.fill: parent
                 anchors.margins: marginCommon
                 clip: true
+            }*/
+
+            Header {
+                id: headerComponent
             }
         }
 
@@ -75,7 +79,7 @@ ApplicationWindow {
 
     function widthPaneRight () {
         if (navigationDrawer.fixNavigationDrawer === true)
-          return mainRow.width - navigationDrawer.width
+            return mainRow.width - navigationDrawer.width
         else
             return mainRow.width - startDragDistance / 2
     }

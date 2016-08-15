@@ -18,7 +18,8 @@ Rectangle {
     property real percentFailureSwipe: 0.05
     property int zNavigationDrawer: 20
     property string type: "fix"
-    property string position: "open"
+
+    property bool openNavigationDrawer: true
 
     id: navigationDrawer
     objectName: "navigationDrawer"
@@ -150,7 +151,6 @@ Rectangle {
 
     function releasedDrag(mouseArea) {
         if (mouseArea.drag.active) {
-
             if (betweenTwoNumbers(navigationDrawer.x,
                                   -(1-percentFailureSwipe)*navigationDrawer.width, 0)) {
                 if (navigationDrawer.x > privateVar.startX)
@@ -186,28 +186,28 @@ Rectangle {
 
     onTypeChanged: {
         if (type === "fix") {
-            position = "open";
+            openNavigationDrawer = true;
             mouseAreaDrag.enabled = false;
             mouseAreaStartDrag.enabled = false;
             animationDarkOff.running = true;
         }
         if (type === "drawer") {
-            position = "close";
+            openNavigationDrawer = false;
             mouseAreaDrag.enabled = true;
             mouseAreaStartDrag.enabled = true;
             animationDarkOff.running = true;
         }
     }
 
-    onPositionChanged: {
-        if (position === "open")
+    onOpenNavigationDrawerChanged: {
+        if (openNavigationDrawer === true)
             showNavigationDrawer ();
-        if (position === "close")
+        if (openNavigationDrawer === false)
             hideNavigationDrawer ();
     }
 
     function showNavigationDrawer () {
-        position = "open";
+        openNavigationDrawer = true;
         navigationDrawer.x = 0;
         if (type === "drawer")
             animationDarkOn.running = true;
@@ -217,7 +217,7 @@ Rectangle {
     }
 
     function hideNavigationDrawer () {
-        position = "close";
+        openNavigationDrawer = false;
         navigationDrawer.x = privateVar.minimumX;
         animationDarkOff.running = true;
         privateVar.startDrag = false;
@@ -225,10 +225,10 @@ Rectangle {
 
     function toogleNavigationDrawer () {
         if (type === "drawer")
-            if (position === "close")
-                position = "open";
+            if (openNavigationDrawer === false)
+                openNavigationDrawer = true;
             else
-                position = "close";
+                openNavigationDrawer = false;
     }
 
     function defineTypeNavigationDrawer (width, height) {

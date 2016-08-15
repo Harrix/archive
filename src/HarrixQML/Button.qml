@@ -75,7 +75,7 @@ Button {
 
     function defineColor() {
         if (enabled === false)
-            return "#000";
+            return colorButtonNotEnabled;
         if (control.down)
             return colorButtonHover;
         else

@@ -227,6 +227,13 @@ Rectangle {
             type = "fix";
     }
 
+    function defineTypeNavigationDrawerSelf () {
+        if ((mainWindow.width <= 640)||(mainWindow.width < mainWindow.height))
+            type = "drawer";
+        else
+            type = "fix";
+    }
+
     function lineTwoPoint(x, x1, y1, x2, y2) {
         var y=0;
         if ((x1 === x2)&&(y1 === y2))

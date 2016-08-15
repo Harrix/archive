@@ -71,14 +71,14 @@ ApplicationWindow {
         }
     }
 
+    onWidthChanged: navigationDrawer.defineTypeNavigationDrawerSelf ()
+
+    onHeightChanged: navigationDrawer.defineTypeNavigationDrawerSelf ()
+
     function widthPaneRight () {
         if (navigationDrawer.type == "fix")
           return mainRow.width - navigationDrawer.width
         if (navigationDrawer.type == "drawer")
             return mainRow.width - SettingsApp.startDragDistance
     }
-
-    onWidthChanged: navigationDrawer.defineTypeNavigationDrawer (width, height)
-
-    onHeightChanged: navigationDrawer.defineTypeNavigationDrawer (width, height)
 }

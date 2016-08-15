@@ -39,7 +39,7 @@ Rectangle {
             id: dark
             parent: navigationDrawer.parent
             height: parent.height
-            width: parent.width
+            width: parent.width * 1.5
             y: 0
             x: navigationDrawer.width + navigationDrawer.x
             color: "#000"

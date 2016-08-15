@@ -130,8 +130,6 @@ Rectangle {
 
     function releasedDrag(mouseArea) {
         if (mouseArea.drag.active) {
-            console.log("p = " + privateVar.previousX)
-            console.log("x = " + navigationDrawer.x)
 
             if ((navigationDrawer.x > -(1-0.05)*navigationDrawer.width)&&(navigationDrawer.x <= 0)) {
                 if (navigationDrawer.x > privateVar.previousX) {

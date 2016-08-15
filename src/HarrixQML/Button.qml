@@ -53,7 +53,6 @@ Button {
     }
 
     background: Rectangle {
-        opacity: enabled ? 1 : opacityNotEnabled
         color: defineColor()
         border.width: 0
         radius: 0

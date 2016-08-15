@@ -55,11 +55,6 @@ ApplicationWindow {
                 anchors.left: navigationDrawer.right
                 anchors.rightMargin: marginCommon
 
-                Rectangle {
-                    anchors.fill: parent
-                    color:"yellow"
-                }
-
                 Loader {
                     id: contentLoader
                     anchors.fill: parent

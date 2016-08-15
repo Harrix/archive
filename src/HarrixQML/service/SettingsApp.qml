@@ -36,12 +36,18 @@ QtObject {
     readonly property int leftPaddingButton: 24
     readonly property int rightPaddingButton: 24
     readonly property int startDragDistance: 20
+    readonly property real percentFailureSwipe: 0.05
 
     //Sizes
     readonly property int widthWindow: 640
     readonly property int heightWindow: 480
     readonly property int widthNavigationDrawer: 320
     readonly property int widthWindowAfterWhichFixDrawer: 640
+
+    //Z
+    readonly property int zContentPanel: 10
+    readonly property int zNavigationDrawer: 20
+    readonly property int zHeadPanel: 30
 
     //EasingType
     readonly property int easingTypeRipple: Easing.Linear

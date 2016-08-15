@@ -12,10 +12,10 @@ ApplicationWindow {
     property alias headLoader: headLoader
 
     property int marginCommon: SettingsApp.marginCommon
-    property int startDragDistance: SettingsApp.startDragDistance
+    property int startDragDistance: SettingsApp.startDragDistance    
+    property int zHeadPanel: SettingsApp.zHeadPanel
+    property int zContentPanel: SettingsApp.zContentPanel
     property int heightHeadPanel: 84
-    property int zHeadPanel: 30
-    property int zContentPanel: 10
 
     id: mainWindow
     objectName: "mainWindow"

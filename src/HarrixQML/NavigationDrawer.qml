@@ -16,8 +16,8 @@ Rectangle {
     property int easingDarkNavigationDrawer: SettingsApp.easingDarkNavigationDrawer
     property int durationAnimation: SettingsApp.durationAnimation
     property int widthWindowAfterWhichFixDrawer: SettingsApp.widthWindowAfterWhichFixDrawer
-    property real percentFailureSwipe: 0.05
-    property int zNavigationDrawer: 20
+    property real percentFailureSwipe: SettingsApp.percentFailureSwipe
+    property int zNavigationDrawer: SettingsApp.zNavigationDrawer
 
     property bool openNavigationDrawer: true
     property bool fixNavigationDrawer: true

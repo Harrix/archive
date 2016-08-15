@@ -47,12 +47,12 @@ Rectangle {
             color: "#000"
             z: 19
             opacity: 0
-            Behavior on opacity {
+            /*Behavior on opacity {
                 NumberAnimation {
                     duration: SettingsApp.durationAnimation
                     easing.type: Easing.Linear
                 }
-            }
+            }*/
         }
 
         Loader {

@@ -68,7 +68,9 @@ Button {
         }
 
         Behavior on color {
-            ColorAnimation { duration: durationAnimation }
+            ColorAnimation {
+                duration: durationAnimation
+            }
         }
     }
 }

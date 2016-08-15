@@ -22,9 +22,6 @@ Rectangle {
     property bool openNavigationDrawer: true
     property bool fixNavigationDrawer: true
 
-    signal changeSizeWindow()
-    signal changeSizeWindowWidthHeight(int width, int height)
-
     id: navigationDrawer
     objectName: "navigationDrawer"
 
@@ -235,19 +232,23 @@ Rectangle {
                 openNavigationDrawer = false;
     }
 
-    onChangeSizeWindowWidthHeight: {
-        if ((width <= widthWindowAfterWhichFixDrawer)||(width < height))
-            fixNavigationDrawer = false;
-        else
-            fixNavigationDrawer = true;
-    }
+    Connections {
+        target: mainWindow
 
-    onChangeSizeWindow: {
-        if ((mainWindow.width <= widthWindowAfterWhichFixDrawer)
-                ||(mainWindow.width < mainWindow.height))
-            fixNavigationDrawer = false;
-        else
-            fixNavigationDrawer = true;
+        onChangeSizeWindowWidthHeight: {
+            if ((width <= widthWindowAfterWhichFixDrawer)||(width < height))
+                fixNavigationDrawer = false;
+            else
+                fixNavigationDrawer = true;
+        }
+
+        onChangeSizeWindow: {
+            if ((mainWindow.width <= widthWindowAfterWhichFixDrawer)
+                    ||(mainWindow.width < mainWindow.height))
+                fixNavigationDrawer = false;
+            else
+                fixNavigationDrawer = true;
+        }
     }
 
     function lineTwoPoint(x, x1, y1, x2, y2) {

@@ -72,8 +72,11 @@ ApplicationWindow {
         }
     }
 
-    onWidthChanged: navigationDrawer.changeSizeWindow()
-    onHeightChanged: navigationDrawer.changeSizeWindow()
+    signal changeSizeWindow()
+    signal changeSizeWindowWidthHeight(int width, int height)
+
+    onWidthChanged: changeSizeWindow()
+    onHeightChanged: changeSizeWindow()
 
     function widthPaneRight () {
         if (navigationDrawer.fixNavigationDrawer === true)

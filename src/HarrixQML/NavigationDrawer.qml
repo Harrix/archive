@@ -43,7 +43,7 @@ Rectangle {
             y: 0
             x: navigationDrawer.width + navigationDrawer.x
             color: "#000"
-            z: 19
+            z: zNavigationDrawer - 1
             opacity: 0
 
             NumberAnimation on opacity  {

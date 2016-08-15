@@ -33,7 +33,7 @@ QtObject {
     readonly property int paddingButton: 8
     readonly property int leftPaddingButton: 24
     readonly property int rightPaddingButton: 24
-    readonly property int startDragDistance: Qt.styleHints.startDragDistance
+    readonly property int startDragDistance: 20
 
     //Sizes
     readonly property int widthWindow: 640

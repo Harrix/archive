@@ -17,9 +17,9 @@ Rectangle {
     property int durationAnimation: SettingsApp.durationAnimation
     property real percentFailureSwipe: 0.05
     property int zNavigationDrawer: 20
-    property string type: "fix"
 
     property bool openNavigationDrawer: true
+    property bool fixNavigationDrawer: true
 
     id: navigationDrawer
     objectName: "navigationDrawer"
@@ -184,14 +184,14 @@ Rectangle {
         }
     }
 
-    onTypeChanged: {
-        if (type === "fix") {
+    onFixNavigationDrawerChanged: {
+        if (fixNavigationDrawer === true) {
             openNavigationDrawer = true;
             mouseAreaDrag.enabled = false;
             mouseAreaStartDrag.enabled = false;
             animationDarkOff.running = true;
         }
-        if (type === "drawer") {
+        else {
             openNavigationDrawer = false;
             mouseAreaDrag.enabled = true;
             mouseAreaStartDrag.enabled = true;
@@ -209,7 +209,7 @@ Rectangle {
     function showNavigationDrawer () {
         openNavigationDrawer = true;
         navigationDrawer.x = 0;
-        if (type === "drawer")
+        if (fixNavigationDrawer === false)
             animationDarkOn.running = true;
         else
             animationDarkOff.running = true;
@@ -224,7 +224,7 @@ Rectangle {
     }
 
     function toogleNavigationDrawer () {
-        if (type === "drawer")
+        if (fixNavigationDrawer === false)
             if (openNavigationDrawer === false)
                 openNavigationDrawer = true;
             else
@@ -233,16 +233,16 @@ Rectangle {
 
     function defineTypeNavigationDrawer (width, height) {
         if ((width <= 640)||(width < height))
-            type = "drawer";
+            fixNavigationDrawer = false;
         else
-            type = "fix";
+            fixNavigationDrawer = true;
     }
 
     function defineTypeNavigationDrawerSelf () {
         if ((mainWindow.width <= 640)||(mainWindow.width < mainWindow.height))
-            type = "drawer";
+            fixNavigationDrawer = false;
         else
-            type = "fix";
+            fixNavigationDrawer = true;
     }
 
     function lineTwoPoint(x, x1, y1, x2, y2) {

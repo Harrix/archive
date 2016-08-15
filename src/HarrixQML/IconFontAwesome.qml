@@ -8,9 +8,16 @@ Text {
     property int fontRenderType: SettingsApp.fontRenderType
     property string colorFont: SettingsApp.colorFontButton
 
-    font.pointSize: fontSize
+    font.pointSize: defindeFontSize ()
     renderType: fontRenderType
     color: colorFont
     font.family: "FontAwesome"
     text: symbol
+
+    function defindeFontSize () {
+        if (Qt.platform.os === "android")
+            return fontSize + 2;
+        else
+            return fontSize;
+    }
 }

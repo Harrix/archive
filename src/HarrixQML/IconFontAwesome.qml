@@ -1,23 +1,17 @@
 import QtQuick 2.7
+import QtQuick.Controls 2.0
 import "."
 
-Text {
+Label {
     property string symbol: FontAwesome.Icon.fa_glass
 
-    property int fontSize: SettingsApp.fontSize
+    property int fontSize: SettingsApp.fontSize + 5
     property int fontRenderType: SettingsApp.fontRenderType
     property string colorFont: SettingsApp.colorFontButton
 
-    font.pointSize: defindeFontSize ()
+    font.pixelSize: fontSize
     renderType: fontRenderType
     color: colorFont
     font.family: "FontAwesome"
     text: symbol
-
-    function defindeFontSize () {
-        if (Qt.platform.os === "android")
-            return fontSize + 4;
-        else
-            return fontSize;
-    }
 }

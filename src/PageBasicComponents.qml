@@ -51,7 +51,7 @@ Page{
             ButtonBlue {
                 id: button22
                 text: qsTr("Console")
-                onClicked: testSignal("send signal")
+                //onClicked: testSignal("send signal")
                 icon:  IconFontAwesome { symbol: FontAwesome.fa_vk }
             }
 

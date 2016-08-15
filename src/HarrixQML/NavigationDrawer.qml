@@ -47,21 +47,22 @@ Rectangle {
             z: 19
             opacity: 0
 
-                NumberAnimation on opacity  {
-                    id: animationDarkOn
-                    duration: SettingsApp.durationAnimation
-                    easing.type: Easing.Linear
-                    running: false
-                    to: 0.9
-                }
+            NumberAnimation on opacity  {
+                id: animationDarkOn
+                duration: SettingsApp.durationAnimation
+                easing.type: Easing.Linear
+                running: false
+                to: 0.9
+            }
 
-                NumberAnimation on opacity  {
-                    id: animationDarkOff
-                    duration: SettingsApp.durationAnimation
-                    easing.type: Easing.Linear
-                    running: false
-                    to: 0
-                }
+            NumberAnimation on opacity  {
+                id: animationDarkOff
+                duration: SettingsApp.durationAnimation
+                easing.type: Easing.Linear
+                running: false
+                to: 0
+            }
+
         }
 
         Loader {

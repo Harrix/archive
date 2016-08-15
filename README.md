@@ -1,2 +1,3 @@
-# HarrixQMLComponents
-QML. Набор QML компонентов [В разработке]
+# Harrix QMLComponents
+
+Set QML components [Under Construction]

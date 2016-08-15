@@ -76,8 +76,8 @@ ApplicationWindow {
         }
     }
 
-    onWidthChanged: navigationDrawer.defineTypeNavigationDrawerSelf ()
-    onHeightChanged: navigationDrawer.defineTypeNavigationDrawerSelf ()
+    onWidthChanged: navigationDrawer.changeSizeWindow()
+    onHeightChanged: navigationDrawer.changeSizeWindow()
 
     function widthPaneRight () {
         if (navigationDrawer.fixNavigationDrawer === true)

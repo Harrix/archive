@@ -21,6 +21,9 @@ Rectangle {
     property bool openNavigationDrawer: true
     property bool fixNavigationDrawer: true
 
+    signal changeSizeWindow()
+    signal changeSizeWindowWidthHeight(int width, int height)
+
     id: navigationDrawer
     objectName: "navigationDrawer"
 
@@ -231,14 +234,14 @@ Rectangle {
                 openNavigationDrawer = false;
     }
 
-    function defineTypeNavigationDrawer (width, height) {
+    onChangeSizeWindowWidthHeight: {
         if ((width <= 640)||(width < height))
             fixNavigationDrawer = false;
         else
             fixNavigationDrawer = true;
     }
 
-    function defineTypeNavigationDrawerSelf () {
+    onChangeSizeWindow: {
         if ((mainWindow.width <= 640)||(mainWindow.width < mainWindow.height))
             fixNavigationDrawer = false;
         else

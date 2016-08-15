@@ -105,7 +105,7 @@ Rectangle {
             console.log("p = " + privateVar.previousX)
             console.log("x = " + navigationDrawer.x)
 
-            if ((navigationDrawer.x > -(1-0.33)*navigationDrawer.width)&&(navigationDrawer.x <= 0)) {
+            if ((navigationDrawer.x > -(1-0.05)*navigationDrawer.width)&&(navigationDrawer.x <= 0)) {
                 if (navigationDrawer.x > privateVar.previousX) {
                     showNavigationDrawer();
                     privateVar.startDrag = false;
@@ -113,7 +113,7 @@ Rectangle {
             }
 
             if (privateVar.startDrag === true) {
-                if ((navigationDrawer.x > -0.33*navigationDrawer.width)&&(navigationDrawer.x <= 0)) {
+                if ((navigationDrawer.x > -0.05*navigationDrawer.width)&&(navigationDrawer.x <= 0)) {
                     if (navigationDrawer.x < privateVar.previousX) {
                         showNavigationDrawer();
                         privateVar.startDrag = false;

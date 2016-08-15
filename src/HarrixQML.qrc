@@ -18,5 +18,6 @@
         <file>HarrixQML/MainWindowAndroid.qml</file>
         <file>HarrixQML/NavigationDrawer.qml</file>
         <file>HarrixQML/Head.qml</file>
+        <file>HarrixQML/HeadAndroid.qml</file>
     </qresource>
 </RCC>

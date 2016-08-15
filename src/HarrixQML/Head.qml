@@ -27,7 +27,7 @@ Rectangle {
 
         ButtonBlue{
             text: qsTr("Open Drawer")
-            onClicked:  testSignal("send signal from Head")
+            //onClicked:  testSignal("send signal from Head")
         }
     }
 }

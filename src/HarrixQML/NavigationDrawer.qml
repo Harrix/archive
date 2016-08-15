@@ -63,6 +63,24 @@ Rectangle {
                 to: 0
             }
 
+            MouseArea {
+                id: mouseAreaDark
+                enabled: false
+                visible: false
+                anchors.fill: parent
+                onClicked: {
+                    enabled = false;
+                    hideNavigationDrawer();
+                }
+            }
+
+            onOpacityChanged: {
+                if (opacity === 0.9) {
+                    mouseAreaDark.enabled = true
+                    mouseAreaDark.visible = true
+                }
+            }
+
         }
 
         Loader {

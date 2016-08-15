@@ -15,6 +15,7 @@ Rectangle {
     property int easingTypeNavigationDrawer: SettingsApp.easingTypeNavigationDrawer
     property int easingDarkNavigationDrawer: SettingsApp.easingDarkNavigationDrawer
     property int durationAnimation: SettingsApp.durationAnimation
+    property real percentFailureSwipe: 0.05
     property int zNavigationDrawer: 20
     property string type: "fix"
     property string position: "open"
@@ -150,19 +151,17 @@ Rectangle {
     function releasedDrag(mouseArea) {
         if (mouseArea.drag.active) {
 
-            if (betweenTwoNumbers(navigationDrawer.x, -(1-0.05)*navigationDrawer.width, 0)) {
-                if (navigationDrawer.x > privateVar.startX) {
+            if (betweenTwoNumbers(navigationDrawer.x,
+                                  -(1-percentFailureSwipe)*navigationDrawer.width, 0)) {
+                if (navigationDrawer.x > privateVar.startX)
                     showNavigationDrawer();
-                    privateVar.startDrag = false;
-                }
             }
 
             if (privateVar.startDrag === true) {
-                if (betweenTwoNumbers(navigationDrawer.x, -0.05*navigationDrawer.width, 0)) {
-                    if (navigationDrawer.x < privateVar.startX) {
+                if (betweenTwoNumbers(navigationDrawer.x,
+                                      -percentFailureSwipe*navigationDrawer.width, 0)) {
+                    if (navigationDrawer.x < privateVar.startX)
                         showNavigationDrawer();
-                        privateVar.startDrag = false;
-                    }
                 }
             }
 
@@ -170,7 +169,6 @@ Rectangle {
                 hideNavigationDrawer();
 
             Qt.inputMethod.hide();
-            privateVar.startDrag = false;
         }
     }
 
@@ -215,13 +213,14 @@ Rectangle {
             animationDarkOn.running = true;
         else
             animationDarkOff.running = true;
-
+        privateVar.startDrag = false;
     }
 
     function hideNavigationDrawer () {
         position = "close";
         navigationDrawer.x = privateVar.minimumX;
         animationDarkOff.running = true;
+        privateVar.startDrag = false;
     }
 
     function toogleNavigationDrawer () {

@@ -44,6 +44,7 @@ QtObject {
     //EasingType
     readonly property int easingTypeRipple: Easing.Linear
     readonly property int easingTypeNavigationDrawer: Easing.OutBack
+    readonly property int easingDarkNavigationDrawer: Easing.Linear
 
     //Durations
     readonly property int durationAnimation: 300
@@ -51,7 +52,7 @@ QtObject {
     //Opacities
     readonly property real opacityNotEnabled: 0.3
     readonly property real opacityRipple: 0.3
-    readonly property real opacityNavigationDrawerDark: 0.5
+    readonly property real opacityDarkNavigationDrawer: 0.5
 
     //Opacities
     readonly property int cursorShapeRipple: Qt.PointingHandCursor

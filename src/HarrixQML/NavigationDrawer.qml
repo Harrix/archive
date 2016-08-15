@@ -11,8 +11,10 @@ Rectangle {
     property int marginCommon: SettingsApp.marginCommon
     property string colorBackground: SettingsApp.colorBackground
     property string colorNavigationDrawerDark: SettingsApp.colorNavigationDrawerDark
-    property real opacityNavigationDrawerDark: SettingsApp.opacityNavigationDrawerDark
+    property real opacityDarkNavigationDrawer: SettingsApp.opacityDarkNavigationDrawer
     property int easingTypeNavigationDrawer: SettingsApp.easingTypeNavigationDrawer
+    property int easingDarkNavigationDrawer: SettingsApp.easingDarkNavigationDrawer
+    property int durationAnimation: SettingsApp.durationAnimation
     property int zNavigationDrawer: 20
     property string type: "fix"
     property string position: "open"
@@ -36,8 +38,9 @@ Rectangle {
 
     MouseArea {
         id: mouseAreaDrag
-        enabled: false        
+        enabled: false
         anchors.fill: parent
+
         drag.target: navigationDrawer
         drag.minimumX: privateVar.minimumX
         drag.maximumX: 0
@@ -59,16 +62,16 @@ Rectangle {
 
             NumberAnimation on opacity  {
                 id: animationDarkOn
-                duration: SettingsApp.durationAnimation
-                easing.type: Easing.Linear
+                duration: durationAnimation
+                easing.type: easingDarkNavigationDrawer
                 running: false
-                to: opacityNavigationDrawerDark
+                to: opacityDarkNavigationDrawer
             }
 
             NumberAnimation on opacity  {
                 id: animationDarkOff
-                duration: SettingsApp.durationAnimation
-                easing.type: Easing.Linear
+                duration: durationAnimation
+                easing.type: easingDarkNavigationDrawer
                 running: false
                 to: 0
             }
@@ -82,10 +85,14 @@ Rectangle {
                     enabled = false;
                     hideNavigationDrawer();
                 }
+                onReleased: {
+                    enabled = false;
+                    hideNavigationDrawer();
+                }
             }
 
             onOpacityChanged: {
-                if (opacity === opacityNavigationDrawerDark) {
+                if (opacity === opacityDarkNavigationDrawer) {
                     mouseAreaDark.enabled = true;
                     mouseAreaDark.visible = true;
                 }
@@ -101,6 +108,7 @@ Rectangle {
         }
 
         Rectangle {
+            id: startDragVisible
             x: parent.width - startDragDistance
             width: startDragDistance
             height: parent.height
@@ -108,6 +116,7 @@ Rectangle {
         }
 
         Rectangle {
+            id: startDragInvisible
             x: parent.width - startDragDistance
             width: 2 * startDragDistance
             height: parent.height
@@ -118,13 +127,13 @@ Rectangle {
                 enabled: false
                 anchors.fill: parent
                 hoverEnabled: true
-                //cursorShape: Qt.PointingHandCursor
                 onClicked: toogleNavigationDrawer ()
 
                 drag.target: navigationDrawer
                 drag.minimumX: privateVar.minimumX
                 drag.maximumX: 0
                 drag.axis: Qt.Horizontal
+
                 onReleased: releasedDrag(mouseAreaStartDrag)
             }
         }
@@ -133,7 +142,7 @@ Rectangle {
 
     Behavior on x {
         NumberAnimation {
-            duration: SettingsApp.durationAnimation
+            duration: durationAnimation
             easing.type: easingTypeNavigationDrawer
         }
     }
@@ -141,7 +150,7 @@ Rectangle {
     function releasedDrag(mouseArea) {
         if (mouseArea.drag.active) {
 
-            if ((navigationDrawer.x > -(1-0.05)*navigationDrawer.width)&&(navigationDrawer.x <= 0)) {
+            if (betweenTwoNumbers(navigationDrawer.x, -(1-0.05)*navigationDrawer.width, 0)) {
                 if (navigationDrawer.x > privateVar.startX) {
                     showNavigationDrawer();
                     privateVar.startDrag = false;
@@ -149,7 +158,7 @@ Rectangle {
             }
 
             if (privateVar.startDrag === true) {
-                if ((navigationDrawer.x > -0.05*navigationDrawer.width)&&(navigationDrawer.x <= 0)) {
+                if (betweenTwoNumbers(navigationDrawer.x, -0.05*navigationDrawer.width, 0)) {
                     if (navigationDrawer.x < privateVar.startX) {
                         showNavigationDrawer();
                         privateVar.startDrag = false;
@@ -173,7 +182,7 @@ Rectangle {
             }
             dark.opacity = lineTwoPoint(x,
                                         privateVar.minimumX, 0,
-                                        0, opacityNavigationDrawerDark);
+                                        0, opacityDarkNavigationDrawer);
         }
     }
 
@@ -238,7 +247,7 @@ Rectangle {
     }
 
     function lineTwoPoint(x, x1, y1, x2, y2) {
-        var y=0;
+        var y = 0;
         if ((x1 === x2)&&(y1 === y2))
             y = y1;
         else
@@ -253,5 +262,18 @@ Rectangle {
                 else
                     y = (x-x1)*(y2-y1)/(x2-x1)+y1;
         return y;
+    }
+
+    function betweenTwoNumbers(x, a, b) {
+        var result = false;
+        if (a <= b) {
+            if ((x >= a)&&(x <= b))
+                result = true;
+        }
+        else {
+            if ((x >= b)&&(x <= a))
+                result = true;
+        }
+        return result;
     }
 }

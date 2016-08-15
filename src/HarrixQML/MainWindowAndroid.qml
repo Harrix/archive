@@ -6,4 +6,6 @@ import "."
 MainWindow {
     id: mainWindow
     objectName: "mainWindow"
+
+    headLoader.source: "HeadAndroid.qml"
 }

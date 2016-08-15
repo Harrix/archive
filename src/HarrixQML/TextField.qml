@@ -10,7 +10,6 @@ TextField {
     property string colorFontTextField: SettingsApp.colorFontButton
     property int fontRenderType: SettingsApp.fontRenderType
     property int durationAnimation: SettingsApp.durationAnimation
-    property int opacityNotEnabled: SettingsApp.opacityNotEnabled
 
     selectionColor: SettingsApp.colorRed
     selectedTextColor: "#fff"

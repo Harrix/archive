@@ -32,15 +32,12 @@ ApplicationWindow {
             height: heightHeadPanel
             z: zHeadPanel
 
-            /*Loader {
+            Loader {
                 id: headLoader
+                source: "Head.qml"
                 anchors.fill: parent
                 anchors.margins: marginCommon
                 clip: true
-            }*/
-
-            Header {
-                id: headerComponent
             }
         }
 

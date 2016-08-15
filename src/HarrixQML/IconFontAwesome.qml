@@ -16,7 +16,7 @@ Text {
 
     function defindeFontSize () {
         if (Qt.platform.os === "android")
-            return fontSize + 2;
+            return fontSize + 4;
         else
             return fontSize;
     }

@@ -7,7 +7,6 @@ Rectangle {
     property alias drawer: contentLoader.sourceComponent
 
     property int widthNavigationDrawer: SettingsApp.widthNavigationDrawer
-    property var percentWidthOfParent: "none"
     property int startDragDistance: SettingsApp.startDragDistance
     property int marginCommon: SettingsApp.marginCommon
     property string colorBackground: SettingsApp.colorBackground

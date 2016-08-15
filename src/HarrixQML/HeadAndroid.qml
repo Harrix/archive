@@ -1,5 +1,13 @@
-import QtQuick 2.0
+import QtQuick 2.7
+import QtQuick.Controls 2.0
+import "."
 
-Item {
+Rectangle {
+    id:headerApp
+    objectName: "headerApp"
 
+    anchors.fill: parent
+    height:84
+
+    color: SettingsApp.colorRed
 }

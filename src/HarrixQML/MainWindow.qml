@@ -34,7 +34,7 @@ ApplicationWindow {
 
             Loader {
                 id: headLoader
-                source: "Head.qml"
+                source: "HeadAndroid.qml"
                 anchors.fill: parent
                 anchors.margins: marginCommon
                 clip: true

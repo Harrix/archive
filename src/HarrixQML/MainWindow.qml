@@ -20,10 +20,6 @@ ApplicationWindow {
     id: mainWindow
     objectName: "mainWindow"
 
-    signal testSignal(string msg)
-
-    onTestSignal: console.log (msg)
-
     visibility: "Maximized"
 
     Column {

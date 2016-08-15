@@ -6,7 +6,7 @@ import "."
 Rectangle {
     property alias drawer: contentLoader.sourceComponent
 
-    property int minimumWidth: SettingsApp.widthMinimumNavigationDrawer
+    property int widthNavigationDrawer: SettingsApp.widthNavigationDrawer
     property var percentWidthOfParent: "none"
     property int startDragDistance: SettingsApp.startDragDistance
     property int marginCommon: SettingsApp.marginCommon
@@ -20,7 +20,7 @@ Rectangle {
     objectName: "navigationDrawer"
 
     height: parent.height
-    width: widthNavigationDrawer ()
+    width: widthNavigationDrawer
     anchors.margins: 0
     y: 0
     x: 0
@@ -216,13 +216,6 @@ Rectangle {
                 position = "open";
             else
                 position = "close";
-    }
-
-    function widthNavigationDrawer () {
-        if (percentWidthOfParent === "none")
-            width = minimumWidth;
-        else
-            width = Math.max( parseFloat(percentWidthOfParent) * parent.width, minimumWidth);
     }
 
     function defineTypeNavigationDrawer (width, height) {

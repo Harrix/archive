@@ -38,7 +38,7 @@ QtObject {
     //Sizes
     readonly property int widthWindow: 640
     readonly property int heightWindow: 480
-    readonly property int widthMinimumNavigationDrawer: 320
+    readonly property int widthNavigationDrawer: 320
 
     //EasingType
     readonly property int easingTypeRipple: Easing.Linear

@@ -8,6 +8,7 @@ QtObject {
     readonly property color colorFont: "#5f5f5f"
     readonly property color colorFontButton: "#fff"
     readonly property color colorRipple: "#fff"
+    readonly property color colorNavigationDrawerDark: "#000"
 
     //Common colors
     readonly property color colorRed: "#de2b26"
@@ -50,6 +51,7 @@ QtObject {
     //Opacities
     readonly property real opacityNotEnabled: 0.3
     readonly property real opacityRipple: 0.3
+    readonly property real opacityNavigationDrawerDark: 0.5
 
     //Opacities
     readonly property int cursorShapeRipple: Qt.PointingHandCursor

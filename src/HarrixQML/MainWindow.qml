@@ -12,13 +12,15 @@ ApplicationWindow {
     property alias headLoader: headLoader
 
     property int marginCommon: SettingsApp.marginCommon
-    property int startDragDistance: SettingsApp.startDragDistance    
+    property int startDragDistance: SettingsApp.startDragDistance
     property int zHeadPanel: SettingsApp.zHeadPanel
     property int zContentPanel: SettingsApp.zContentPanel
     property int heightHeadPanel: 84
 
     id: mainWindow
     objectName: "mainWindow"
+
+    signal changeSizeWindow()
 
     visibility: "Maximized"
 
@@ -72,8 +74,6 @@ ApplicationWindow {
             }
         }
     }
-
-    signal changeSizeWindow()
 
     onWidthChanged: changeSizeWindow()
     onHeightChanged: changeSizeWindow()

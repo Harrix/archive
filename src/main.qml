@@ -6,6 +6,8 @@ import "HarrixQML"
 
 MainWindow {
 
+    title: qsTr("Harrix-QMLComponents - Demo")
+
     head: Rectangle {
         anchors.fill: parent
         height:84

@@ -957,6 +957,20 @@ footer {
     width: 100%;
 }
 
+#sidebar::-webkit-scrollbar {
+    -webkit-appearance: none;
+}
+#sidebar::-webkit-scrollbar:vertical {
+    width: 6px;
+}
+#sidebar::-webkit-scrollbar:horizontal {
+    height: 6px;
+}
+#sidebar::-webkit-scrollbar-thumb {
+    background-color: #cdcdcd;
+    border-radius: 3px;
+}
+
 /* Configuring plugins */
 /* ------------------------------------------------------------------ */
 /* KaTeX */
@@ -970,13 +984,14 @@ footer {
     -webkit-appearance: none;
 }
 .content .tex::-webkit-scrollbar:vertical {
-    width: 10px;
+    width: 6px;
 }
 .content .tex::-webkit-scrollbar:horizontal {
-    height: 10px;
+    height: 6px;
 }
 .content .tex::-webkit-scrollbar-thumb {
-    background-color: #eee;
+    background-color: #cdcdcd;
+    border-radius: 3px;
 }
 
 /* Chart.js */

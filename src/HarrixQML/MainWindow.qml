@@ -40,6 +40,7 @@ ApplicationWindow {
                 source: "Head.qml"
                 anchors.fill: parent
                 anchors.margins: marginCommon
+                anchors.horizontalCenter: parent.horizontalCenter
                 clip: true
             }
         }

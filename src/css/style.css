@@ -926,6 +926,10 @@ footer {
   display: block !important;
 }
 
+#div-logo {
+    position: relative;
+}
+
 .after-sidebar-lg-3 {
     padding-left: 25% !important;
     margin-left: 20px !important;
@@ -950,6 +954,16 @@ footer {
     padding-left: 0px !important;
     margin-left: 15px !important;
     box-sizing: border-box;
+}
+#div-logo {
+    position: fixed;
+    left: 50%;
+    width: auto;
+    -webkit-transform: translateX(-50%);
+    -moz-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    -o-transform: translateX(-50%);
+    transform: translateX(-50%);
 }
 }
 

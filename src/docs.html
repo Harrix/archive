@@ -70,7 +70,7 @@
     <![endif]-->
   </head>
 
-  <body class="docs">
+  <body class="docs" id="bb">
   
     <header id="header">
       <div class="navbar after-sidebar-lg-3 container-xl" id="header-nav" role="banner">
@@ -97,7 +97,6 @@
     <div id="dark">
     </div>
     
-    <div class="darkww" id="darkww">
     <div class="handle content col-lg-3 sidebar" id="sidebar">
     111
        <iframe src="sidebar.html" id="iframe-for-sidebar" frameborder="0">
@@ -105,10 +104,12 @@
       </iframe>
     </div>
     
-    </div>
     
     <script>
-new Dragdealer('darkww');
+new Dragdealer('bb', {
+disabled: false,
+left:-320,
+});
 </script>
 
     <div class="content container-xl after-sidebar-lg-3 first-section">

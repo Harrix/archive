@@ -989,16 +989,6 @@ footer {
     border-radius: 3px;
 }
 
-.dragdealer {
-    height: 40px;
-    position: relative;
-    width:500px;
-}
-.red-bar {
-
-    width: 100px;
-}
-
 /* Configuring plugins */
 /* ------------------------------------------------------------------ */
 /* KaTeX */

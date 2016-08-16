@@ -56,7 +56,7 @@ $(document).ready(function() {
       $("#header-nav").addClass("header-nav-small");
       $("#header").addClass("header-small");
       $("#main-nav").addClass("main-nav-small");
-      $("#navbar-toggler").addClass("navbar-toggler-small");
+      $(".navbar-toggler").addClass("navbar-toggler-small");
       $(".first-section").addClass("first-section-small");
     }
     else {
@@ -64,7 +64,7 @@ $(document).ready(function() {
       $("#header-nav").removeClass("header-nav-small");
       $("#header").removeClass("header-small");
       $("#main-nav").removeClass("main-nav-small");
-      $("#navbar-toggler").removeClass("navbar-toggler-small");
+      $(".navbar-toggler").removeClass("navbar-toggler-small");
       $(".first-section").removeClass("first-section-small");
     }
   });

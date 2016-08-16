@@ -921,8 +921,26 @@ footer {
   -o-transition: opacity 0.3s ease-in-out;
 }
 
+#for-swipe {
+  position: fixed;
+  display: none;
+  transition: left 0.3s ease-in-out;
+  -webkit-transition: left 0.3s ease-in-out;
+  -moz-transition: left 0.3s ease-in-out;
+  -o-transition: left 0.3s ease-in-out;
+}
+
+#for-swipe-in {
+  position: fixed;
+  display: none;
+  transition: left 0.3s ease-in-out;
+  -webkit-transition: left 0.3s ease-in-out;
+  -moz-transition: left 0.3s ease-in-out;
+  -o-transition: left 0.3s ease-in-out;
+}
+
 .dark-open {
-  opacity: 0.6 !important;
+  opacity: 0.5 !important;
   display: block !important;
 }
 
@@ -954,6 +972,32 @@ footer {
     padding-left: 0px !important;
     margin-left: 15px !important;
     box-sizing: border-box;
+}
+#for-swipe {
+  display: block;
+  background-color: green;
+  opacity:0.0;
+  width: 15px;
+  height: 100%;
+  z-index: 10020;
+  top: 0px;
+  left: 0px;
+}
+.for-swipe-open {
+  left: 320px !important;
+}
+#for-swipe-in {
+  display: block;
+  background-color: green;
+  opacity:0.0;
+  width: 15px;
+  height: 100%;
+  z-index: 10020;
+  top: 0px;
+  left: -21px;
+}
+.for-swipe-in-open {
+  left: 299px !important;
 }
 }
 

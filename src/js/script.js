@@ -14,6 +14,8 @@ function forcedDisplaySidebar()
     if (width_content > 992) {
       $('#sidebar').removeClass("sidebar-open").show();
       $('#dark').removeClass("dark-open").hide();
+      $('#for-swipe').removeClass("for-swipe-open").hide();
+      $('#for-swipe-in').removeClass("for-swipe-in-open").hide();
     }
 }
 
@@ -95,14 +97,44 @@ $(document).ready(function() {
   $('.hamburger').click(function() {
     $('#sidebar').toggleClass("sidebar-open");
     $('#dark').toggleClass("dark-open");
+    $('#for-swipe').toggleClass("for-swipe-open");
+    $('#for-swipe-in').toggleClass("for-swipe-in-open");
   });
   //При нажатии на затемнение убираем левую панель
   $('#dark').click(function(){
      $('.hamburger').click();
   });
+  $('#for-swipe').click(function(){
+     $('.hamburger').click();
+  });
+  $('#for-swipe-in').click(function(){
+     $('.hamburger').click();
+  });
   
   //Включаем авторазмер iframe, которые есть на странице
   iFrameResize({});
+  
+  var myElement = document.getElementById('for-swipe');
+  var hammertime = new Hammer(myElement);
+  hammertime.on('swipeleft', function(ev) {
+	  if ( $('#for-swipe').hasClass('for-swipe-open') == true )
+      $('.hamburger').click();
+  });
+  hammertime.on('swiperight', function(ev) {
+	  if ( $('#for-swipe').hasClass('for-swipe-open') == false )
+      $('.hamburger').click();
+  });
+  
+  var myElement2 = document.getElementById('for-swipe-in');
+  var hammertime2 = new Hammer(myElement2);
+  hammertime2.on('swipeleft', function(ev) {
+	  if ( $('#for-swipe-in').hasClass('for-swipe-in-open') == true )
+      $('.hamburger').click();
+  });
+  hammertime2.on('swiperight', function(ev) {
+	  if ( $('#for-swipe-in').hasClass('for-swipe-in-open') == false )
+      $('.hamburger').click();
+  });
 });
 
 $(function() {

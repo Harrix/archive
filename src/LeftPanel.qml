@@ -27,4 +27,19 @@ Column {
         text: qsTr("Download")
 
     }
+
+    ListView {
+        width: 160
+        height: 240
+
+        model: Qt.fontFamilies()
+
+        delegate: ItemDelegate {
+            text: modelData
+            width: parent.width
+            onClicked: console.log("clicked:", modelData)
+        }
+
+        ScrollIndicator.vertical: ScrollIndicator { }
+    }
 }

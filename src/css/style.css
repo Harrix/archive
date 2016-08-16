@@ -955,6 +955,10 @@ footer {
     margin-left: 15px !important;
     box-sizing: border-box;
 }
+}
+
+@media (max-width: 767px)
+{
 #div-logo {
     position: fixed;
     left: 50%;

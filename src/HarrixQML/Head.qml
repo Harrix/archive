@@ -25,10 +25,11 @@ Rectangle {
         height: menu.height
         width: menu.width
         anchors.verticalCenter: parent.verticalCenter
+        anchors.rightMargin: 50
 
         Row {
             id: menu
-            spacing: 10
+            spacing: 15
 
             Label {
                 text: qsTr("File")

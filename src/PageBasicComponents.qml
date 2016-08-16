@@ -41,6 +41,11 @@ Page{
                 onClicked: qmlSignal( qsTr("apples") )
             }
 
+            ButtonBlue{
+                text: qsTr("Open Drawer")
+                onClicked:  navigationDrawer.toogleNavigationDrawer()
+            }
+
             ButtonGreen {
                 id: button2
                 text: qsTr("Download")

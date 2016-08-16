@@ -12,7 +12,7 @@ function forcedDisplaySidebar()
     var width_content = $("body").width();
     
     if (width_content > 992)
-      $('.spoiler-text-sidebar').show();
+      $('.sidebar').show();
 }
 
 $(document).ready(function() {    
@@ -90,8 +90,8 @@ $(document).ready(function() {
   });
   
   //В мобильной версии список разделов прячем под сплойером. Тут его работа прописана
-  $('.spoiler-sidebar').click(function() {
-    $(this).toggleClass("folded").toggleClass("unfolded").next().slideToggle();
+  $('.hamburger').click(function() {
+    $('#sidebar').slideToggle();
   });
   
   //Включаем авторазмер iframe, которые есть на странице

@@ -921,15 +921,6 @@ footer {
   -o-transition: opacity 0.3s ease-in-out;
 }
 
-.darkww {
-   position: fixed;
-  background-color: #000;
-  width:100%;
-  height:100%;
-  z-index: 1000; 
-  top: 0px;
-}
-
 .dark-open {
   opacity: 0.6 !important;
   display: block !important;

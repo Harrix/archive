@@ -893,12 +893,37 @@ footer {
 /* ------------------------------------------------------------------ */
 .sidebar {
     position: fixed;
+    background-color: #fff;
     display: block;
     max-height: 100%;
     height: 100%;
     overflow-y: auto;
     top: 0px;
     z-index: 1001;
+    transition: left 0.3s ease-in-out;
+    -webkit-transition: left 0.3s ease-in-out;
+    -moz-transition: left 0.3s ease-in-out;
+    -o-transition: left 0.3s ease-in-out;
+}
+
+#dark {
+  position: fixed;
+  background-color: #000;
+  width:100%;
+  height:100%;
+  z-index: 1000;
+  top: 0px;
+  opacity: 0;
+  display: none;
+  transition: opacity 0.3s ease-in-out;
+  -webkit-transition: opacity 0.3s ease-in-out;
+  -moz-transition: opacity 0.3s ease-in-out;
+  -o-transition: opacity 0.3s ease-in-out;
+}
+
+.dark-open {
+  opacity: 0.6 !important;
+  display: block !important;
 }
 
 .after-sidebar-lg-3 {
@@ -913,7 +938,10 @@ footer {
     position: fixed;
     width: 320px;
     max-height: none;
-    z-index: 100;
+    left: -320px;
+}
+.sidebar-open {
+    left: 0px;
 }
 .after-sidebar-lg-3 {
     position: relative;
@@ -922,23 +950,6 @@ footer {
     padding-left: 0px !important;
     margin-left: 15px !important;
     box-sizing: border-box;
-}
-.header-docs {
-    background-color: #fff;
-}
-}
-
-/*.spoiler-text-sidebar {
-    display: block;
-}*/
-
-@media (max-width: 992px)
-{
-.sidebar {
-    display: none;
-}
-.spoiler-text-sidebar {
-    /*display: none;*/
 }
 }
 

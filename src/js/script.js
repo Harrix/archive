@@ -11,8 +11,10 @@ function forcedDisplaySidebar()
     //Функция принудительного показа боковой панели при увеличении размера окна
     var width_content = $("body").width();
     
-    if (width_content > 992)
-      $('.sidebar').show();
+    if (width_content > 992) {
+      $('#sidebar').removeClass("sidebar-open").show();
+      $('#dark').removeClass("dark-open").hide();
+    }
 }
 
 $(document).ready(function() {    
@@ -43,7 +45,7 @@ $(document).ready(function() {
     changeSizeFiguraInPhotoswipeGallery();
     
     //Принудительно показываем боковую панель при увеличении размера окна
-    forcedDisplaySidebar()
+    forcedDisplaySidebar();
   });
   
   //Работаем с заголовком при скролле страницы
@@ -91,7 +93,12 @@ $(document).ready(function() {
   
   //В мобильной версии список разделов прячем под сплойером. Тут его работа прописана
   $('.hamburger').click(function() {
-    $('#sidebar').slideToggle();
+    $('#sidebar').toggleClass("sidebar-open");
+    $('#dark').toggleClass("dark-open");
+  });
+  //При нажатии на затемнение убираем левую панель
+  $('#dark').click(function(){
+     $('.hamburger').click();
   });
   
   //Включаем авторазмер iframe, которые есть на странице

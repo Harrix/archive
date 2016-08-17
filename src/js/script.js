@@ -1,24 +1,3 @@
-function changeSizeFiguraInPhotoswipeGallery()
-{
-    //Функция подсчета ширины рисунков в галереях
-    var width_content = $(".content-with-gallery").width();
-    var w_figura = (width_content - 40)/3;
-    $(".msnry_item").width(w_figura);
-}
-
-function forcedDisplaySidebar()
-{
-    //Функция принудительного показа боковой панели при увеличении размера окна
-    var width_content = $("body").width();
-    
-    if (width_content > 992) {
-      $('#sidebar').removeClass("sidebar-open").show();
-      $('#dark').removeClass("dark-open").hide();
-      $('#for-swipe').removeClass("for-swipe-open").hide();
-      $('#for-swipe-in').removeClass("for-swipe-in-open").hide();
-    }
-}
-
 $(document).ready(function() {    
   //Запускаем подсветку синтаксиса
   $('pre code').each(function(i, block) {
@@ -93,7 +72,31 @@ $(document).ready(function() {
     $(this).toggleClass("folded").toggleClass("unfolded").next().slideToggle();
   });
   
-  //В мобильной версии список разделов прячем под сплойером. Тут его работа прописана
+  //Включаем авторазмер iframe, которые есть на странице
+  iFrameResize({});
+  
+  //Работаем с левой панелью
+  forNavigationDrawer();//
+});
+
+$(function() {
+  //Плавная прокрутка по якорям
+  $('a[href*="#"]:not([href="#"])').click(function() {
+    if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
+      var target = $(this.hash);
+      target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
+      if (target.length) {
+        $('html, body').animate({
+          scrollTop: target.offset().top
+        }, 800);
+        return false;
+      }
+    }
+  });
+});
+
+function forNavigationDrawer() {
+  //Клик на гамбургер
   $('.hamburger').click(function() {
     $('#sidebar').toggleClass("sidebar-open");
     $('#dark').toggleClass("dark-open");
@@ -111,49 +114,51 @@ $(document).ready(function() {
      $('.hamburger').click();
   });
   
-  //Включаем авторазмер iframe, которые есть на странице
-  iFrameResize({});
-  
-  var myElement = document.getElementById('for-swipe');
-  var hammertime = new Hammer(myElement);
-  hammertime.on('swipeleft', function(ev) {
+  //Свайпы
+  var forSwipe = document.getElementById('for-swipe');
+  var hammertimeForSwipe = new Hammer(forSwipe);
+  hammertimeForSwipe.on('swipeleft', function(ev) {
 	  if ( $('#for-swipe').hasClass('for-swipe-open') == true )
       $('.hamburger').click();
   });
-  hammertime.on('swiperight', function(ev) {
+  hammertimeForSwipe.on('swiperight', function(ev) {
 	  if ( $('#for-swipe').hasClass('for-swipe-open') == false )
       $('.hamburger').click();
   });
   
-  var myElement2 = document.getElementById('for-swipe-in');
-  var hammertime2 = new Hammer(myElement2);
-  hammertime2.on('swipeleft', function(ev) {
+  var forSwipeIn = document.getElementById('for-swipe-in');
+  var hammertimeForSwipeIn = new Hammer(forSwipeIn);
+  hammertimeForSwipeIn.on('swipeleft', function(ev) {
 	  if ( $('#for-swipe-in').hasClass('for-swipe-in-open') == true )
       $('.hamburger').click();
   });
-  hammertime2.on('swiperight', function(ev) {
+  hammertimeForSwipeIn.on('swiperight', function(ev) {
 	  if ( $('#for-swipe-in').hasClass('for-swipe-in-open') == false )
       $('.hamburger').click();
   });
   
-  var myElement3 = document.getElementById('dark');
-  var hammertime3 = new Hammer(myElement3);
-  hammertime3.on('swipe', function(ev) {
+  var dark = document.getElementById('dark');
+  var hammertimeDark = new Hammer(dark);
+  hammertimeDark.on('swipe', function(ev) {
       $('.hamburger').click();
-  });
-});
+  });  
+}
 
-$(function() {
-  $('a[href*="#"]:not([href="#"])').click(function() {
-    if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
-      var target = $(this.hash);
-      target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
-      if (target.length) {
-        $('html, body').animate({
-          scrollTop: target.offset().top
-        }, 800);
-        return false;
-      }
-    }
-  });
-});
+function forcedDisplaySidebar() {
+  //Функция принудительного показа боковой панели при увеличении размера окна
+  var width_content = $("body").width();
+  
+  if (width_content > 992) {
+    $('#sidebar').removeClass("sidebar-open").show();
+    $('#dark').removeClass("dark-open").hide();
+    $('#for-swipe').removeClass("for-swipe-open").hide();
+    $('#for-swipe-in').removeClass("for-swipe-in-open").hide();
+  }
+}
+
+function changeSizeFiguraInPhotoswipeGallery() {
+  //Функция подсчета ширины рисунков в галереях
+  var width_content = $(".content-with-gallery").width();
+  var w_figura = (width_content - 40)/3;
+  $(".msnry_item").width(w_figura);
+}

@@ -76,7 +76,7 @@ $(document).ready(function() {
   iFrameResize({});
   
   //Работаем с левой панелью
-  forNavigationDrawer();//
+  if ($('*').is('#sidebar')) forNavigationDrawer();//
 });
 
 $(function() {

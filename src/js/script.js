@@ -135,6 +135,12 @@ $(document).ready(function() {
 	  if ( $('#for-swipe-in').hasClass('for-swipe-in-open') == false )
       $('.hamburger').click();
   });
+  
+  var myElement3 = document.getElementById('dark');
+  var hammertime3 = new Hammer(myElement3);
+  hammertime3.on('swipe', function(ev) {
+      $('.hamburger').click();
+  });
 });
 
 $(function() {

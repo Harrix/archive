@@ -37,14 +37,22 @@ ApplicationWindow {
             id: head
         }
 
-        Loader {
-            id: contentLoader
+        Rectangle {
+            id: contentPanel
             height: parent.height - head.height
             width: parent.width
-            anchors.margins: marginCommon
-            anchors.leftMargin: 0
-            clip: true
+            y: 0
+            anchors.margins: 0
+
+            Loader {
+                id: contentLoader
+                anchors.fill: parent
+                anchors.margins: marginCommon
+                anchors.leftMargin: 0
+                clip: true
+            }
         }
+
     }
 
     onWidthChanged: changeSizeWindow()

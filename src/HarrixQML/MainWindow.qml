@@ -52,7 +52,6 @@ ApplicationWindow {
                 clip: true
             }
         }
-
     }
 
     onWidthChanged: changeSizeWindow()

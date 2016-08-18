@@ -10,7 +10,7 @@ MainWindow {
 
     //head:
 
-    drawer: LeftPanel{}
+    navigationDrawer.drawer: LeftPanel{}
 
     content: SwipeView {
         id: swipeViewContent

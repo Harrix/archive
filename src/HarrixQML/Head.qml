@@ -9,7 +9,7 @@ Rectangle {
     anchors.horizontalCenter: parent.horizontalCenter
     height: 84
     //width: 1140
-    anchors.fill: parent
+    //anchors.fill: parent
 
     Image {
         source: "qrc:/images/logo-harrix.svg"

@@ -4,18 +4,13 @@ import QtQuick.Layouts 1.3
 import "."
 
 ApplicationWindow {
-    property alias drawer: navigationDrawer.drawer
     property alias content: contentLoader.sourceComponent
-    //property alias head: headLoader.sourceComponent
-
+    property alias head: head
     property alias navigationDrawer: navigationDrawer
-    property alias headLoader: headLoader
 
     property int marginCommon: SettingsApp.marginCommon
-    property int startDragDistance: SettingsApp.startDragDistance
     property int zHeadPanel: SettingsApp.zHeadPanel
     property int zContentPanel: SettingsApp.zContentPanel
-    property int heightHeadPanel: 84
 
     id: mainWindow
     objectName: "mainWindow"
@@ -40,11 +35,9 @@ ApplicationWindow {
         anchors.left: navigationDrawer.right
         spacing: 0
 
-        Loader {
-            id: headLoader
-            sourceComponent: Head {}
+        Head {
+            id: head
             width: parent.width
-            height: heightHeadPanel
             z: zHeadPanel
             anchors.margins: marginCommon
             anchors.horizontalCenter: parent.horizontalCenter
@@ -53,7 +46,7 @@ ApplicationWindow {
 
         Rectangle {
             id: contentPanel
-            height: parent.height - headLoader.height
+            height: parent.height - head.height
             width: parent.width
             y: 0
             z: zContentPanel
@@ -77,6 +70,6 @@ ApplicationWindow {
         if (navigationDrawer.fixNavigationDrawer === true)
             return mainWindow.width - navigationDrawer.width
         else
-            return mainWindow.width - startDragDistance / 2
+            return mainWindow.width - navigationDrawer.startDragDistance / 2
     }
 }

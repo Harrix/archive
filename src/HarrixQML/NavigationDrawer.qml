@@ -7,18 +7,18 @@ Rectangle {
     property alias drawer: contentLoader.sourceComponent
     property alias window: connectionsChangeSizeWindow.target
 
-    property int widthNavigationDrawer: SettingsApp.widthNavigationDrawer
-    property int startDragDistance: SettingsApp.startDragDistance
     property int marginCommon: SettingsApp.marginCommon
     property string colorBackground: SettingsApp.colorBackground
-    property string colorNavigationDrawerDark: SettingsApp.colorNavigationDrawerDark
-    property real opacityDarkNavigationDrawer: SettingsApp.opacityDarkNavigationDrawer
-    property int easingTypeNavigationDrawer: SettingsApp.easingTypeNavigationDrawer
-    property int easingDarkNavigationDrawer: SettingsApp.easingDarkNavigationDrawer
     property int durationAnimation: SettingsApp.durationAnimation
-    property int widthWindowAfterWhichFixDrawer: SettingsApp.widthWindowAfterWhichFixDrawer
-    property real percentFailureSwipe: SettingsApp.percentFailureSwipe
-    property int zNavigationDrawer: SettingsApp.zNavigationDrawer
+    property int widthNavigationDrawer: 320
+    property int startDragDistance: 20
+    property string colorNavigationDrawerDark: "#000"
+    property real opacityDarkNavigationDrawer: 0.5
+    property int easingTypeNavigationDrawer: Easing.OutBack
+    property int easingDarkNavigationDrawer: Easing.Linear
+    property int widthWindowAfterWhichFixDrawer: 640
+    property real percentFailureSwipe: 0.05
+    property int zNavigationDrawer: 100
 
     property bool openNavigationDrawer: true
     property bool fixNavigationDrawer: true

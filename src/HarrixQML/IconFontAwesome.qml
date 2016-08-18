@@ -5,9 +5,9 @@ import "."
 Label {
     property string symbol: FontAwesome.Icon.fa_glass
 
-    property int fontSize: SettingsApp.fontSize + 5
+    property int fontSize: SettingsApp.fontSizeFontAwesome
     property int fontRenderType: SettingsApp.fontRenderType
-    property string colorFont: SettingsApp.colorFontButton
+    property string colorFont: SettingsApp.colorFontInColorRectangle
 
     font.pixelSize: fontSize
     renderType: fontRenderType

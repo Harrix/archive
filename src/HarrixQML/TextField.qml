@@ -7,7 +7,7 @@ TextField {
     property int fontSize: SettingsApp.fontSize
     property string colorTextField: SettingsApp.colorRed
     property string colorTextFieldHover: SettingsApp.colorRedLight
-    property string colorFontTextField: SettingsApp.colorFontButton
+    property string colorFontTextField: SettingsApp.colorFontInColorRectangle
     property int fontRenderType: SettingsApp.fontRenderType
     property int durationAnimation: SettingsApp.durationAnimation
 

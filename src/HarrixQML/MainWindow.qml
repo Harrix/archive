@@ -9,8 +9,6 @@ ApplicationWindow {
     property alias navigationDrawer: navigationDrawer
 
     property int marginCommon: SettingsApp.marginCommon
-    property int zHeadPanel: SettingsApp.zHeadPanel
-    property int zContentPanel: SettingsApp.zContentPanel
 
     id: mainWindow
     objectName: "mainWindow"
@@ -30,7 +28,7 @@ ApplicationWindow {
         height: parent.height
         width: widthPaneRight ()
         y: 0
-        z: zContentPanel
+        z: navigationDrawer.zNavigationDrawer-1
         anchors.margins: 0
         anchors.left: navigationDrawer.right
         spacing: 0
@@ -38,7 +36,6 @@ ApplicationWindow {
         Head {
             id: head
             width: parent.width
-            z: zHeadPanel
             anchors.margins: marginCommon
             anchors.horizontalCenter: parent.horizontalCenter
             clip: true
@@ -49,7 +46,6 @@ ApplicationWindow {
             height: parent.height - head.height
             width: parent.width
             y: 0
-            z: zContentPanel
             anchors.margins: 0
 
             Loader {

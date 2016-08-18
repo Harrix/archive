@@ -8,8 +8,8 @@ ApplicationWindow {
     property int fontSize: SettingsApp.fontSize
     property string colorFont: SettingsApp.colorFont
     property string colorBackground: SettingsApp.colorBackground
-    property int widthWindow: SettingsApp.widthWindow
-    property int heightWindow: SettingsApp.heightWindow
+    property int widthWindow: 640
+    property int heightWindow: 480
 
     visible: true
     width: widthWindow

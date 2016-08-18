@@ -10,15 +10,15 @@ Button {
     property string colorButton: SettingsApp.colorRed
     property string colorButtonHover: SettingsApp.colorRedLight
     property string colorButtonNotEnabled: SettingsApp.colorNotEnabled
-    property string colorFontButton: SettingsApp.colorFontButton
+    property string colorFontButton: SettingsApp.colorFontInColorRectangle
     property int fontRenderType: SettingsApp.fontRenderType
     property int durationAnimation: SettingsApp.durationAnimation
-    property int paddingButton: SettingsApp.paddingButton
-    property int leftPaddingButton: SettingsApp.leftPaddingButton
-    property int rightPaddingButton: SettingsApp.rightPaddingButton
-    property int spacingIconText: SettingsApp.spacingIconText
-    property int fontWeightButton: SettingsApp.fontWeightButton
-    property int fontCapitalizationButton: SettingsApp.fontCapitalizationButton
+    property int paddingButton: 8
+    property int leftPaddingButton: 24
+    property int rightPaddingButton: 24
+    property int spacingIconText: 10
+    property int fontWeightButton: Font.Bold
+    property int fontCapitalizationButton:Font.AllUppercase
 
     id: control
 

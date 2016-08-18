@@ -1,3 +1,8 @@
+/*
+If the setting can be used somewhere else, then it prescribes in this file.
+If the setting is used qml only one file, the file it is prescribed.
+*/
+
 import QtQuick 2.7
 
 pragma Singleton
@@ -6,9 +11,7 @@ QtObject {
     //Colors
     readonly property color colorBackground: "#fff"
     readonly property color colorFont: "#5f5f5f"
-    readonly property color colorFontButton: "#fff"
-    readonly property color colorRipple: "#fff"
-    readonly property color colorNavigationDrawerDark: "#000"
+    readonly property color colorFontInColorRectangle: "#fff"
     readonly property color colorNotEnabled: "#d0d0d0"
 
     //Common colors
@@ -24,43 +27,13 @@ QtObject {
     readonly property string fontName: "Open Sans"
     readonly property string fontNameCode: "PT Mono"
     readonly property int fontSize: 14
+    readonly property int fontSizeFontAwesome: 19
     readonly property int fontRenderType: Text.QtRendering
-    readonly property int fontWeightButton: Font.Bold
-    readonly property int fontCapitalizationButton: Font.AllUppercase
 
     //Indents
     readonly property int marginCommon: 10
     readonly property int spacingCommon: 10
-    readonly property int spacingIconText: 6
-    readonly property int paddingButton: 8
-    readonly property int leftPaddingButton: 24
-    readonly property int rightPaddingButton: 24
-    readonly property int startDragDistance: 20
-    readonly property real percentFailureSwipe: 0.05
-
-    //Sizes
-    readonly property int widthWindow: 640
-    readonly property int heightWindow: 480
-    readonly property int widthNavigationDrawer: 320
-    readonly property int widthWindowAfterWhichFixDrawer: 640
-
-    //Z
-    readonly property int zContentPanel: 10
-    readonly property int zNavigationDrawer: 20
-    readonly property int zHeadPanel: 30
-
-    //EasingType
-    readonly property int easingTypeRipple: Easing.Linear
-    readonly property int easingTypeNavigationDrawer: Easing.OutBack
-    readonly property int easingDarkNavigationDrawer: Easing.Linear
 
     //Durations
     readonly property int durationAnimation: 300
-
-    //Opacities
-    readonly property real opacityRipple: 0.3
-    readonly property real opacityDarkNavigationDrawer: 0.5
-
-    //Opacities
-    readonly property int cursorShapeRipple: Qt.PointingHandCursor
 }

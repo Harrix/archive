@@ -3,7 +3,11 @@ import QtQuick.Controls 2.0
 import "."
 
 Rectangle {
+    property alias logo: logo
+
     property int marginCommon: SettingsApp.marginCommon
+    property int heightLogo: 60
+    property int heightIcons: 22
 
     id:head
     objectName: "head"
@@ -17,19 +21,19 @@ Rectangle {
     Image {
         id: hamburger
         source: "qrc:/HarrixQML/images/drawer.svg"
-        height: 22
+        height: heightIcons
         fillMode: Image.PreserveAspectFit
-        smooth: true
         anchors.left: head.left
         anchors.verticalCenter: parent.verticalCenter
+        visible: false
+        enabled: false
     }
 
     Image {
-        source: "qrc:/images/logo-harrix.svg"
-        height: 60
+        id: logo
+        height: heightLogo
         fillMode: Image.PreserveAspectFit
-        smooth: true
-        anchors.left: hamburger.right
+        anchors.left: head.left
         anchors.verticalCenter: parent.verticalCenter
     }
 
@@ -67,9 +71,8 @@ Rectangle {
             Image {
                 id: ellipsis
                 source: "qrc:/HarrixQML/images/menu.svg"
-                height: 22
+                height: heightIcons
                 fillMode: Image.PreserveAspectFit
-                smooth: true
             }
         }
     }

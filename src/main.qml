@@ -9,6 +9,7 @@ MainWindow {
     title: qsTr("Harrix-QMLComponents - Demo")
 
     navigationDrawer.drawer: LeftPanel{}
+    head.logo.source: "qrc:/images/logo-harrix.svg"
 
     content: SwipeView {
         id: swipeViewContent

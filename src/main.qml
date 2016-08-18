@@ -12,7 +12,7 @@ MainWindow {
 
     drawer: LeftPanel{}
 
-    /*content: SwipeView {
+    content: SwipeView {
         id: swipeViewContent
         anchors.fill: parent
         //currentIndex: tabBar.currentIndex
@@ -25,5 +25,5 @@ MainWindow {
                 anchors.centerIn: parent
             }
         }
-    }*/
+    }
 }

@@ -15,7 +15,7 @@ MainWindow {
     head.centerMobileElement: Image {
         source: "qrc:/images/logo-harrix-flattened.svg"
         id: logoMobile
-        height: 40
+        height: 22
         fillMode: Image.PreserveAspectFit
     }
 

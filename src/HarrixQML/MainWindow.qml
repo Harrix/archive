@@ -35,10 +35,6 @@ ApplicationWindow {
 
         Head {
             id: head
-            width: parent.width
-            anchors.margins: marginCommon
-            anchors.horizontalCenter: parent.horizontalCenter
-            clip: true
         }
 
         Rectangle {

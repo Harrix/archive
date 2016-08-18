@@ -3,13 +3,16 @@ import QtQuick.Controls 2.0
 import "."
 
 Rectangle {
+    property int marginCommon: SettingsApp.marginCommon
+
     id:head
     objectName: "head"
 
-    anchors.horizontalCenter: parent.horizontalCenter
+    width: parent.width
     height: 84
-    //width: 1140
-    //anchors.fill: parent
+    anchors.margins: marginCommon
+    anchors.horizontalCenter: parent.horizontalCenter
+    clip: true
 
     Image {
         source: "qrc:/images/logo-harrix.svg"

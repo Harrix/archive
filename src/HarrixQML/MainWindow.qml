@@ -5,11 +5,11 @@ import "."
 
 ApplicationWindow {
     property alias drawer: navigationDrawer.drawer
-    property alias content: contentLoader.sourceComponent
+    //property alias content: contentLoader.sourceComponent
     //property alias head: headLoader.sourceComponent
 
     property alias navigationDrawer: navigationDrawer
-    property alias headLoader: headLoader
+    //property alias headLoader: headLoader
 
     property int marginCommon: SettingsApp.marginCommon
     property int startDragDistance: SettingsApp.startDragDistance
@@ -24,66 +24,21 @@ ApplicationWindow {
 
     visibility: "Maximized"
 
-    Row {
-        id: mainRow
-        anchors.fill: parent
-        spacing: 0
-
-        NavigationDrawer {
-            id: navigationDrawer
-            drawer: drawer
-            window: mainWindow
-        }
-
-        Column {
-            id: mainColumn
-            height: parent.height
-            width: widthPaneRight ()
-            spacing: 0
-
-            Rectangle {
-                id: headPanel
-                //width: parent.width
-                height: heightHeadPanel
-                z: zHeadPanel
-
-                Loader {
-                    id: headLoader
-                    source: "Head.qml"
-                    anchors.fill: parent
-                    anchors.margins: marginCommon
-                    anchors.horizontalCenter: parent.horizontalCenter
-                    clip: true
-                }
-            }
-
-            Rectangle {
-                id: contentPanel
-                height: 300
-                width: parent.width
-                y: 0
-                z: zContentPanel
-                anchors.margins: 0
-                anchors.left: navigationDrawer.right
-
-                Loader {
-                    id: contentLoader
-                    anchors.fill: parent
-                    anchors.margins: marginCommon
-                    anchors.leftMargin: 0
-                    clip: true
-                }
-            }
-        }
+    NavigationDrawer {
+        id: navigationDrawer
+        drawer: drawer
+        window: mainWindow
     }
+
+
 
     onWidthChanged: changeSizeWindow()
     onHeightChanged: changeSizeWindow()
 
     function widthPaneRight () {
         if (navigationDrawer.fixNavigationDrawer === true)
-            return mainRow.width - navigationDrawer.width
+            return mainWindow.width - navigationDrawer.width
         else
-            return mainRow.width - startDragDistance / 2
+            return mainWindow.width - startDragDistance / 2
     }
 }

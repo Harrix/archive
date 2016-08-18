@@ -18,9 +18,9 @@ MainWindow {
         PageBasicComponents {}
 
         Page {
-            Label {
-                text: qsTr("Second page")
-                anchors.centerIn: parent
+            Rectangle {
+                anchors.fill: parent
+                color: "red"
             }
         }
     }

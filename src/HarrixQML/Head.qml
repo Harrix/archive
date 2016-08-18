@@ -15,11 +15,21 @@ Rectangle {
     clip: true
 
     Image {
+        id: hamburger
+        source: "qrc:/HarrixQML/images/hamburger.svg"
+        height: 22
+        fillMode: Image.PreserveAspectFit
+        smooth: true
+        anchors.left: head.left
+        anchors.verticalCenter: parent.verticalCenter
+    }
+
+    Image {
         source: "qrc:/images/logo-harrix.svg"
         height: 60
         fillMode: Image.PreserveAspectFit
         smooth: true
-        anchors.left: head.left
+        anchors.left: hamburger.right
         anchors.verticalCenter: parent.verticalCenter
     }
 
@@ -52,6 +62,14 @@ Rectangle {
             Label {
                 text: qsTr("About")
                 font.pixelSize: SettingsApp.fontSize
+            }
+
+            Image {
+                id: ellipsis
+                source: "qrc:/HarrixQML/images/ellipsis-vertical.svg"
+                height: 22
+                fillMode: Image.PreserveAspectFit
+                //smooth: true
             }
         }
     }

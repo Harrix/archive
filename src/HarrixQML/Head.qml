@@ -13,6 +13,8 @@ Rectangle {
     property int heightLogo: 60
     property int heightIcons: 22
 
+    property bool mobileMode: true
+
     id:head
     objectName: "head"
 
@@ -87,14 +89,19 @@ Rectangle {
         }
     }
 
+    onMobileModeChanged: {
+
+    }
+
     Connections {
         id: connectionsChangeSizeWindow
 
         onChangeSizeWindow: {
             if ((window.width <= widthTransitionInMobileMode)
-                    ||(window.width < window.height)) {
-              console.log ('Mobile mode');
-            }
+                    ||(window.width < window.height))
+                mobileMode = true;
+            else
+                mobileMode = false;
         }
     }
 }

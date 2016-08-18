@@ -13,7 +13,7 @@ Rectangle {
     property int heightLogo: 60
     property int heightIcons: 22
 
-    property bool mobileMode: true
+    property bool mobileMode: false
 
     id:head
     objectName: "head"
@@ -90,7 +90,15 @@ Rectangle {
     }
 
     onMobileModeChanged: {
-
+        if (mobileMode == true) {
+            anchors.margin = 0
+            color = SettingsApp.colorRed
+            console.log('Mobile mode!')
+        }
+        if (mobileMode == false) {
+            anchors.margins = marginCommon
+            color = SettingsApp.colorBackground
+        }
     }
 
     Connections {

@@ -9,7 +9,15 @@ MainWindow {
     title: qsTr("Harrix-QMLComponents - Demo")
 
     navigationDrawer.drawer: LeftPanel{}
+
     head.logo.source: "qrc:/images/logo-harrix.svg"
+
+    head.centerMobileElement: Image {
+        source: "qrc:/images/logo-harrix-flattened.svg"
+        id: logoMobile
+        height: 40
+        fillMode: Image.PreserveAspectFit
+    }
 
     content: SwipeView {
         id: swipeViewContent

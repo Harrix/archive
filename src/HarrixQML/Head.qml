@@ -4,6 +4,7 @@ import "."
 
 Rectangle {
     property alias logo: logo
+    property alias centerMobileElement: centerMobileElement.sourceComponent
 
     property int marginCommon: SettingsApp.marginCommon
     property int heightHead: 84
@@ -36,6 +37,12 @@ Rectangle {
         fillMode: Image.PreserveAspectFit
         anchors.left: head.left
         anchors.verticalCenter: parent.verticalCenter
+    }
+
+    Loader {
+        id: centerMobileElement
+        anchors.verticalCenter: parent.verticalCenter
+        anchors.horizontalCenter: parent.horizontalCenter
     }
 
     Rectangle {

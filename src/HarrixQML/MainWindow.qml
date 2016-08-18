@@ -24,42 +24,43 @@ ApplicationWindow {
 
     visibility: "Maximized"
 
-    Column {
-        id: mainColumn
+    Row {
+        id: mainRow
         anchors.fill: parent
         spacing: 0
 
-        Rectangle {
-            id: headPanel
-            width: parent.width
-            height: heightHeadPanel
-            z: zHeadPanel
-
-            Loader {
-                id: headLoader
-                source: "Head.qml"
-                anchors.fill: parent
-                anchors.margins: marginCommon
-                anchors.horizontalCenter: parent.horizontalCenter
-                clip: true
-            }
+        NavigationDrawer {
+            id: navigationDrawer
+            drawer: drawer
+            window: mainWindow
         }
 
-        Rectangle {
-            id: mainRow
-            width: parent.width
-            height: parent.height - headPanel.height
+        Column {
+            id: mainColumn
+            height: parent.height
+            width: widthPaneRight ()
+            spacing: 0
 
-            NavigationDrawer {
-                id: navigationDrawer
-                drawer: drawer
-                window: mainWindow
+            Rectangle {
+                id: headPanel
+                //width: parent.width
+                height: heightHeadPanel
+                z: zHeadPanel
+
+                Loader {
+                    id: headLoader
+                    source: "Head.qml"
+                    anchors.fill: parent
+                    anchors.margins: marginCommon
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    clip: true
+                }
             }
 
             Rectangle {
                 id: contentPanel
-                height: parent.height
-                width: widthPaneRight ()
+                height: 300
+                width: parent.width
                 y: 0
                 z: zContentPanel
                 anchors.margins: 0

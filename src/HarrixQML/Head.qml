@@ -8,6 +8,7 @@ Rectangle {
     property alias window: connectionsChangeSizeWindow.target
 
     property int marginCommon: SettingsApp.marginCommon
+    property int widthTransitionInMobileMode: SettingsApp.widthTransitionInMobileMode
     property int heightHead: 84
     property int heightLogo: 60
     property int heightIcons: 22
@@ -90,11 +91,10 @@ Rectangle {
         id: connectionsChangeSizeWindow
 
         onChangeSizeWindow: {
-            if ((window.width <= widthWindowAfterWhichFixDrawer)
-                    ||(window.width < window.height))
-                fixNavigationDrawer = false;
-            else
-                fixNavigationDrawer = true;
+            if ((window.width <= widthTransitionInMobileMode)
+                    ||(window.width < window.height)) {
+              console.log ('Mobile mode');
+            }
         }
     }
 }

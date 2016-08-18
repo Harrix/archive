@@ -10,13 +10,13 @@ Rectangle {
     property int marginCommon: SettingsApp.marginCommon
     property string colorBackground: SettingsApp.colorBackground
     property int durationAnimation: SettingsApp.durationAnimation
+    property int widthTransitionInMobileMode: SettingsApp.widthTransitionInMobileMode
     property int widthNavigationDrawer: 320
     property int startDragDistance: 20
     property string colorNavigationDrawerDark: "#000"
     property real opacityDarkNavigationDrawer: 0.5
     property int easingTypeNavigationDrawer: Easing.OutBack
     property int easingDarkNavigationDrawer: Easing.Linear
-    property int widthWindowAfterWhichFixDrawer: 640
     property real percentFailureSwipe: 0.05
     property int zNavigationDrawer: 100
 
@@ -214,7 +214,7 @@ Rectangle {
         id: connectionsChangeSizeWindow
 
         onChangeSizeWindow: {
-            if ((window.width <= widthWindowAfterWhichFixDrawer)
+            if ((window.width <= widthTransitionInMobileMode)
                     ||(window.width < window.height))
                 fixNavigationDrawer = false;
             else

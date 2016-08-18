@@ -40,25 +40,20 @@ ApplicationWindow {
         anchors.left: navigationDrawer.right
         spacing: 0
 
-        Rectangle {
-            id: headPanel
+        Loader {
+            id: headLoader
+            sourceComponent: Head {}
             width: parent.width
             height: heightHeadPanel
             z: zHeadPanel
-
-            Loader {
-                id: headLoader
-                sourceComponent: Head {}
-                anchors.fill: parent
-                anchors.margins: marginCommon
-                anchors.horizontalCenter: parent.horizontalCenter
-                clip: true
-            }
+            anchors.margins: marginCommon
+            anchors.horizontalCenter: parent.horizontalCenter
+            clip: true
         }
 
         Rectangle {
             id: contentPanel
-            height: parent.height - headPanel.height
+            height: parent.height - headLoader.height
             width: parent.width
             y: 0
             z: zContentPanel

@@ -6,6 +6,7 @@ Rectangle {
     property alias logo: logo
 
     property int marginCommon: SettingsApp.marginCommon
+    property int heightHead: 84
     property int heightLogo: 60
     property int heightIcons: 22
 
@@ -13,7 +14,7 @@ Rectangle {
     objectName: "head"
 
     width: parent.width
-    height: 84
+    height: heightHead
     anchors.margins: marginCommon
     anchors.horizontalCenter: parent.horizontalCenter
     clip: true

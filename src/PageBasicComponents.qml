@@ -102,6 +102,7 @@ Page{
                 width: parent.width
                 wrapMode: Text.WrapAnywhere
                 anchors.margins: SettingsApp.marginCommon
+                renderType: Text.NativeRendering
             }
 
             Label {

@@ -35,6 +35,7 @@ ApplicationWindow {
 
         Head {
             id: head
+            window: mainWindow
         }
 
         Rectangle {

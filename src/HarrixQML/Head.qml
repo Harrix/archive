@@ -5,6 +5,7 @@ import "."
 Rectangle {
     property alias logo: logo
     property alias centerMobileElement: centerMobileElement.sourceComponent
+    property alias window: connectionsChangeSizeWindow.target
 
     property int marginCommon: SettingsApp.marginCommon
     property int heightHead: 84
@@ -82,6 +83,18 @@ Rectangle {
                 height: heightIcons
                 fillMode: Image.PreserveAspectFit
             }
+        }
+    }
+
+    Connections {
+        id: connectionsChangeSizeWindow
+
+        onChangeSizeWindow: {
+            if ((window.width <= widthWindowAfterWhichFixDrawer)
+                    ||(window.width < window.height))
+                fixNavigationDrawer = false;
+            else
+                fixNavigationDrawer = true;
         }
     }
 }

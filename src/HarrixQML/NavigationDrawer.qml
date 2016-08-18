@@ -191,12 +191,14 @@ Rectangle {
             openNavigationDrawer = true;
             mouseAreaDrag.enabled = false;
             mouseAreaStartDrag.enabled = false;
-            animationDarkOff.running = true;
+            mouseAreaDark.enabled = false;
+            animationDarkOff.running = true;            
         }
         else {
             openNavigationDrawer = false;
             mouseAreaDrag.enabled = true;
             mouseAreaStartDrag.enabled = true;
+            mouseAreaDark.enabled = true;
             animationDarkOff.running = true;
         }
     }

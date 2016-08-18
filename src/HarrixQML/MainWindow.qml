@@ -5,7 +5,7 @@ import "."
 
 ApplicationWindow {
     property alias content: contentLoader.sourceComponent
-    property alias head: head
+    //property alias head: head
     property alias navigationDrawer: navigationDrawer
 
     property int marginCommon: SettingsApp.marginCommon

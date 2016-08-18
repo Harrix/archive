@@ -8,8 +8,6 @@ MainWindow {
 
     title: qsTr("Harrix-QMLComponents - Demo")
 
-    //head:
-
     navigationDrawer.drawer: LeftPanel{}
 
     content: SwipeView {

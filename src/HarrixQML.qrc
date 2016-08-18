@@ -17,7 +17,7 @@
         <file>HarrixQML/MainWindow.qml</file>
         <file>HarrixQML/NavigationDrawer.qml</file>
         <file>HarrixQML/Head.qml</file>
-        <file>HarrixQML/images/ellipsis-vertical.svg</file>
-        <file>HarrixQML/images/hamburger.svg</file>
+        <file>HarrixQML/images/drawer.svg</file>
+        <file>HarrixQML/images/menu.svg</file>
     </qresource>
 </RCC>

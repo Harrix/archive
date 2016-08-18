@@ -16,7 +16,7 @@ Rectangle {
 
     Image {
         id: hamburger
-        source: "qrc:/HarrixQML/images/hamburger.svg"
+        source: "qrc:/HarrixQML/images/drawer.svg"
         height: 22
         fillMode: Image.PreserveAspectFit
         smooth: true
@@ -66,10 +66,10 @@ Rectangle {
 
             Image {
                 id: ellipsis
-                source: "qrc:/HarrixQML/images/ellipsis-vertical.svg"
+                source: "qrc:/HarrixQML/images/menu.svg"
                 height: 22
                 fillMode: Image.PreserveAspectFit
-                //smooth: true
+                smooth: true
             }
         }
     }

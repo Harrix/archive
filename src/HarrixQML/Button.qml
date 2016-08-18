@@ -9,7 +9,7 @@ Button {
     property int fontSize: SettingsApp.fontSize
     property string colorButton: SettingsApp.colorRed
     property string colorButtonHover: SettingsApp.colorRedLight
-    property string colorButtonNotEnabled: SettingsApp.colorButtonNotEnabled
+    property string colorButtonNotEnabled: SettingsApp.colorNotEnabled
     property string colorFontButton: SettingsApp.colorFontButton
     property int fontRenderType: SettingsApp.fontRenderType
     property int durationAnimation: SettingsApp.durationAnimation

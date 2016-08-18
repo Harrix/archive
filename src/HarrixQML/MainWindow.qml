@@ -42,6 +42,7 @@ ApplicationWindow {
             height: parent.height - head.height
             width: parent.width
             anchors.margins: marginCommon
+            anchors.leftMargin: 0
             clip: true
         }
     }
@@ -51,8 +52,8 @@ ApplicationWindow {
 
     function widthPaneRight () {
         if (navigationDrawer.fixNavigationDrawer === true)
-            return mainWindow.width - navigationDrawer.width - navigationDrawer.startDragDistance
+            return mainWindow.width - navigationDrawer.width
         else
-            return mainWindow.width - navigationDrawer.startDragDistance
+            return mainWindow.width - navigationDrawer.startDragDistance / 2
     }
 }

@@ -8,7 +8,6 @@ Page{
     id: pageBasicComponents
     objectName: "pageBasicComponents"
     signal qmlSignal(string msg)
-
     Flickable {
         focus: true
 

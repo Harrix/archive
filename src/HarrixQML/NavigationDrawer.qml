@@ -19,7 +19,6 @@ Rectangle {
     property int zNavigationDrawer: 100
 
     property bool openNavigationDrawer: true
-    property bool fixNavigationDrawer: true
 
     id: navigationDrawer
     objectName: "navigationDrawer"
@@ -177,23 +176,6 @@ Rectangle {
         }
     }
 
-    onFixNavigationDrawerChanged: {
-        if (fixNavigationDrawer === true) {
-            openNavigationDrawer = true;
-            mouseAreaDrag.enabled = false;
-            mouseAreaStartDrag.enabled = false;
-            mouseAreaDark.enabled = false;
-            animationDarkOff.running = true;
-        }
-        else {
-            openNavigationDrawer = false;
-            mouseAreaDrag.enabled = true;
-            mouseAreaStartDrag.enabled = true;
-            mouseAreaDark.enabled = true;
-            animationDarkOff.running = true;
-        }
-    }
-
     onOpenNavigationDrawerChanged: {
         if (openNavigationDrawer === true)
             showNavigationDrawer ();
@@ -204,19 +186,28 @@ Rectangle {
     Connections {
         id: connectionsChangeSizeWindow
 
-        onChangeSizeWindow: {
-            if ((window.width <= 640)
-                    ||(window.width < window.height))
-                fixNavigationDrawer = false;
-            else
-                fixNavigationDrawer = true;
+        onMobileModeChanged: {
+            if (mobileMode) {
+                openNavigationDrawer = false;
+                mouseAreaDrag.enabled = true;
+                mouseAreaStartDrag.enabled = true;
+                mouseAreaDark.enabled = true;
+                animationDarkOff.running = true;
+            }
+            else {
+                openNavigationDrawer = true;
+                mouseAreaDrag.enabled = false;
+                mouseAreaStartDrag.enabled = false;
+                mouseAreaDark.enabled = false;
+                animationDarkOff.running = true;
+            }
         }
     }
 
     function showNavigationDrawer () {
         openNavigationDrawer = true;
         navigationDrawer.x = 0;
-        if (fixNavigationDrawer === false)
+        if (window.mobileMode)
             animationDarkOn.running = true;
         else
             animationDarkOff.running = true;
@@ -231,7 +222,7 @@ Rectangle {
     }
 
     function toogleNavigationDrawer () {
-        if (fixNavigationDrawer === false)
+        if (window.mobileMode)
             if (openNavigationDrawer === false)
                 openNavigationDrawer = true;
             else

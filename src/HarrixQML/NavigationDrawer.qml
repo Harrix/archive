@@ -7,7 +7,6 @@ Rectangle {
     property alias drawer: contentLoader.sourceComponent
     property alias window: connectionsChangeSizeWindow.target
 
-    property int marginCommon: SettingsApp.marginCommon
     property string colorBackground: SettingsApp.colorBackground
     property int durationAnimation: SettingsApp.durationAnimation
     property int widthTransitionInMobileMode: SettingsApp.widthTransitionInMobileMode
@@ -108,8 +107,7 @@ Rectangle {
         Loader {
             id: contentLoader
             anchors.fill: parent
-            anchors.margins: marginCommon
-            anchors.bottomMargin: 0
+            anchors.margins: 0
             clip: true
         }
 
@@ -186,7 +184,7 @@ Rectangle {
             mouseAreaDrag.enabled = false;
             mouseAreaStartDrag.enabled = false;
             mouseAreaDark.enabled = false;
-            animationDarkOff.running = true;            
+            animationDarkOff.running = true;
         }
         else {
             openNavigationDrawer = false;

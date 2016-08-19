@@ -21,7 +21,8 @@ Page{
         Column {
             id: column22
             spacing: SettingsApp.spacingCommon
-            width: parent.width
+            width: parent.width - 2*marginCommon
+            x: marginCommon
 
             TextField {
                 id: field1

@@ -8,6 +8,8 @@ ApplicationWindow {
     property alias head: head
     property alias navigationDrawer: navigationDrawer
 
+    property bool mobileMode: true
+
     property int marginCommon: SettingsApp.marginCommon
     property int startDragDistance: SettingsApp.startDragDistance
 

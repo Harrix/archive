@@ -7,5 +7,6 @@
         <file>images/logo-harrix.svg</file>
         <file>images/logo-harrix-flattened.svg</file>
         <file>Content.qml</file>
+        <file>CenterMobileElement.qml</file>
     </qresource>
 </RCC>

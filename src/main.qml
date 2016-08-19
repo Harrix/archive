@@ -12,12 +12,7 @@ MainWindow {
 
     head.logo.source: "qrc:/images/logo-harrix.svg"
 
-    head.centerMobileElement: Image {
-        source: "qrc:/images/logo-harrix.svg"
-        id: logoMobile
-        height: 40
-        fillMode: Image.PreserveAspectFit
-    }
+    head.centerMobileElement: CenterMobileElement {}
 
     content: Content {}
 }

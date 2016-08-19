@@ -32,6 +32,7 @@ Rectangle {
     y: 0
     x: 0
     z: zNavigationDrawer
+    color: colorBackground
 
     QtObject {
         id: privateVar

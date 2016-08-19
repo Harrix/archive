@@ -19,18 +19,5 @@ MainWindow {
         fillMode: Image.PreserveAspectFit
     }
 
-    content: SwipeView {
-        id: swipeViewContent
-        anchors.fill: parent
-        //currentIndex: tabBar.currentIndex
-
-        PageBasicComponents {}
-
-        Page {
-            Rectangle {
-                anchors.fill: parent
-                color: "red"
-            }
-        }
-    }
+    content: Content {}
 }

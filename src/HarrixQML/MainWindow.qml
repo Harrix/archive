@@ -48,8 +48,7 @@ ApplicationWindow {
             Loader {
                 id: contentLoader
                 anchors.fill: parent
-                anchors.margins: marginCommon
-                anchors.leftMargin: 0
+                anchors.margins: 0
                 clip: true
             }
         }

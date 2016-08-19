@@ -90,12 +90,12 @@ Rectangle {
     }
 
     onMobileModeChanged: {
-        if (mobileMode == true) {
-            anchors.margin = 0
+        if (mobileMode === true) {
+            anchors.margins = 0
             color = SettingsApp.colorRed
             console.log('Mobile mode!')
         }
-        if (mobileMode == false) {
+        if (mobileMode === false) {
             anchors.margins = marginCommon
             color = SettingsApp.colorBackground
         }

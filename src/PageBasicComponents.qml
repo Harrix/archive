@@ -20,7 +20,7 @@ Page{
 
         Column {
             id: column22
-            spacing: SettingsHarrixQML.spacingCommon
+            spacing: spacingCommon
             width: parent.width - 2*marginCommon
             x: marginCommon
 
@@ -102,7 +102,7 @@ Page{
                 text: "The <b>hedgehog</b> was <a href='http://harrix.org'>engaged</a> in a fight with another hedgehog, which seemed to Alice an excellent opportunity for croqueting one of them with the other: the only difficulty was, that her flamingo was gone across to the other side of the garden, where Alice could see it trying in a helpless sort of way to fly up into a tree. By the time she had caught the flamingo and brought it back, the fight was over, and both the hedgehogs were out of sight: 'but it doesn't matter much,' thought Alice, 'as all the arches are gone from this side of the ground.' So she tucked it away under her arm, that it might not escape again, and went back for a little more conversation with her friend. When she got back to the Cheshire Cat, she was surprised to find quite a large crowd collected round it: there was a dispute going on between the executioner, the King, and the Queen, who were all talking at once, while all the rest were quite silent, and looked very uncomfortable."
                 width: parent.width
                 wrapMode: Text.WrapAnywhere
-                anchors.margins: SettingsHarrixQML.marginCommon
+                anchors.margins: marginCommon
                 renderType: Text.NativeRendering
             }
 
@@ -112,14 +112,14 @@ Page{
 <p>By the time she had caught the flamingo and brought it back.</p>"
                 width: parent.width
                 wrapMode: Text.Wrap
-                anchors.margins: SettingsHarrixQML.marginCommon
+                anchors.margins: marginCommon
             }
 
             Label {
                 text: "T!he hedgehog was engaged in a fight with another hedgehog, which seemed to Alice an excellent opportunity for croqueting one of them with the other: the only difficulty was, that her flamingo was gone across to the other side of the garden, where Alice could see it trying in a helpless sort of way to fly up into a tree. By the time she had caught the flamingo and brought it back, the fight was over, and both the hedgehogs were out of sight: 'but it doesn't matter much,' thought Alice, 'as all the arches are gone from this side of the ground.' So she tucked it away under her arm, that it might not escape again, and went back for a little more conversation with her friend. When she got back to the Cheshire Cat, she was surprised to find quite a large crowd collected round it: there was a dispute going on between the executioner, the King, and the Queen, who were all talking at once, while all the rest were quite silent, and looked very uncomfortable."
                 width: parent.width
                 wrapMode: Text.Wrap
-                anchors.margins: SettingsHarrixQML.marginCommon
+                anchors.margins: marginCommon
                 font.weight: Font.Black
             }
 
@@ -127,7 +127,7 @@ Page{
                 text: "The hedgehog was engaged in a fight with another hedgehog, which seemed to Alice an excellent opportunity for croqueting one of them with the other: the only difficulty was, that her flamingo was gone across to the other side of the garden, where Alice could see it trying in a helpless sort of way to fly up into a tree. By the time she had caught the flamingo and brought it back, the fight was over, and both the hedgehogs were out of sight: 'but it doesn't matter much,' thought Alice, 'as all the arches are gone from this side of the ground.' So she tucked it away under her arm, that it might not escape again, and went back for a little more conversation with her friend. When she got back to the Cheshire Cat, she was surprised to find quite a large crowd collected round it: there was a dispute going on between the executioner, the King, and the Queen, who were all talking at once, while all the rest were quite silent, and looked very uncomfortable."
                 width: parent.width
                 wrapMode: Text.Wrap
-                anchors.margins: SettingsHarrixQML.marginCommon
+                anchors.margins: marginCommon
             }
 
             Image {

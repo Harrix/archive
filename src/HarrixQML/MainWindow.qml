@@ -11,6 +11,7 @@ ApplicationWindow {
     property bool mobileMode: false
 
     property int marginCommon: SettingsHarrixQML.marginCommon
+    property int spacingCommon: SettingsHarrixQML.spacingCommon
     property int widthTransitionInMobileMode: 640
 
     id: mainWindow

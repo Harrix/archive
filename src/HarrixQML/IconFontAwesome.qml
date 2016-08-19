@@ -9,6 +9,8 @@ Label {
     property int fontRenderType: SettingsApp.fontRenderType
     property string colorFont: SettingsApp.colorFontInColorRectangle
 
+    id: iconFontAwesome
+
     font.pixelSize: fontSize
     renderType: fontRenderType
     color: colorFont

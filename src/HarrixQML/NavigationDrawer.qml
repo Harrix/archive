@@ -18,8 +18,7 @@ Rectangle {
     property real percentFailureSwipe: 0.05
     property int zNavigationDrawer: 100
 
-
-            property bool mobileMode2: false
+    property bool openNavigationDrawer: true
 
     id: navigationDrawer
     objectName: "navigationDrawer"
@@ -37,15 +36,6 @@ Rectangle {
         property int startX: 0
         property bool startDrag: false
         property int minimumX: -navigationDrawer.width
-
-        property bool openNavigationDrawer: true
-
-        onOpenNavigationDrawerChanged: {
-            if (openNavigationDrawer === true)
-                showNavigationDrawer ();
-            if (openNavigationDrawer === false)
-                hideNavigationDrawer ();
-        }
     }
 
     MouseArea {
@@ -186,33 +176,38 @@ Rectangle {
         }
     }
 
+    onOpenNavigationDrawerChanged: {
+        if (openNavigationDrawer === true)
+            showNavigationDrawer ();
+        if (openNavigationDrawer === false)
+            hideNavigationDrawer ();
+    }
+
     Connections {
         id: connectionsChangeSizeWindow
 
         onMobileModeChanged: {
             if (mobileMode) {
-                privateVar.openNavigationDrawer = false;
+                openNavigationDrawer = false;
                 mouseAreaDrag.enabled = true;
                 mouseAreaStartDrag.enabled = true;
                 mouseAreaDark.enabled = true;
                 animationDarkOff.running = true;
-                navigationDrawer.mobileMode2 = true;
             }
             else {
-                privateVar.openNavigationDrawer = true;
+                openNavigationDrawer = true;
                 mouseAreaDrag.enabled = false;
                 mouseAreaStartDrag.enabled = false;
                 mouseAreaDark.enabled = false;
                 animationDarkOff.running = true;
-                navigationDrawer.mobileMode2 = false;
             }
         }
     }
 
     function showNavigationDrawer () {
-        privateVar.openNavigationDrawer = true;
+        openNavigationDrawer = true;
         navigationDrawer.x = 0;
-        if (navigationDrawer.mobileMode)
+        if (window.mobileMode)
             animationDarkOn.running = true;
         else
             animationDarkOff.running = true;
@@ -220,18 +215,18 @@ Rectangle {
     }
 
     function hideNavigationDrawer () {
-        privateVar.openNavigationDrawer = false;
+        openNavigationDrawer = false;
         navigationDrawer.x = privateVar.minimumX;
         animationDarkOff.running = true;
         privateVar.startDrag = false;
     }
 
     function toogleNavigationDrawer () {
-        if (navigationDrawer.mobileMode2)
-            if (privateVar.openNavigationDrawer === false)
-                privateVar.openNavigationDrawer = true;
+        if (window.mobileMode)
+            if (openNavigationDrawer === false)
+                openNavigationDrawer = true;
             else
-                privateVar.openNavigationDrawer = false;
+                openNavigationDrawer = false;
     }
 
     function lineTwoPoint(x, x1, y1, x2, y2) {

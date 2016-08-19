@@ -16,8 +16,6 @@ ApplicationWindow {
     id: mainWindow
     objectName: "mainWindow"
 
-    signal changeSizeWindow()
-
     visibility: "Maximized"
 
     NavigationDrawer {
@@ -57,8 +55,8 @@ ApplicationWindow {
         }
     }
 
-    onWidthChanged: {changeSizeWindow(); checkMobileMode ();}
-    onHeightChanged: {changeSizeWindow(); checkMobileMode ();}
+    onWidthChanged:  checkMobileMode();
+    onHeightChanged: checkMobileMode();
 
     function checkMobileMode () {
         if ((mainWindow.width <= widthTransitionInMobileMode)

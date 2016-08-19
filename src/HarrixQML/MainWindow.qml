@@ -9,6 +9,8 @@ ApplicationWindow {
     property alias navigationDrawer: navigationDrawer
 
     property int marginCommon: SettingsApp.marginCommon
+    property int marginContentLoader: SettingsApp.marginCommon
+    property int startDragDistance: SettingsApp.startDragDistance
 
     id: mainWindow
     objectName: "mainWindow"
@@ -48,7 +50,8 @@ ApplicationWindow {
             Loader {
                 id: contentLoader
                 anchors.fill: parent
-                anchors.margins: 0
+                anchors.margins: marginContentLoader
+                anchors.topMargin: 0
                 clip: true
             }
         }
@@ -61,6 +64,6 @@ ApplicationWindow {
         if (navigationDrawer.fixNavigationDrawer === true)
             return mainWindow.width - navigationDrawer.width
         else
-            return mainWindow.width - navigationDrawer.startDragDistance / 2
+            return mainWindow.width
     }
 }

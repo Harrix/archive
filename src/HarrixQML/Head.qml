@@ -9,6 +9,9 @@ Rectangle {
 
     property int marginCommon: SettingsApp.marginCommon
     property int widthTransitionInMobileMode: SettingsApp.widthTransitionInMobileMode
+    property int startDragDistance: SettingsApp.startDragDistance
+    property color colorBackground: SettingsApp.colorBackground
+    property color colorBackgroundMobile: SettingsApp.colorRed
     property int heightHead: 84
     property int heightLogo: 60
     property int heightIcons: 22
@@ -21,8 +24,6 @@ Rectangle {
     width: parent.width
     height: heightHead
     anchors.margins: marginCommon
-    anchors.horizontalCenter: parent.horizontalCenter
-    clip: true
 
     Image {
         id: hamburger
@@ -54,7 +55,7 @@ Rectangle {
         height: menu.height
         width: menu.width
         anchors.verticalCenter: parent.verticalCenter
-        anchors.rightMargin: 50
+        //anchors.rightMargin: 50
 
         Row {
             id: menu
@@ -92,12 +93,11 @@ Rectangle {
     onMobileModeChanged: {
         if (mobileMode === true) {
             anchors.margins = 0
-            color = SettingsApp.colorRed
-            console.log('Mobile mode!')
+            color = colorBackgroundMobile
         }
         if (mobileMode === false) {
             anchors.margins = marginCommon
-            color = SettingsApp.colorBackground
+            color = colorBackground
         }
     }
 

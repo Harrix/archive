@@ -12,7 +12,7 @@ Rectangle {
     property int durationAnimation: SettingsApp.durationAnimation
     property int widthTransitionInMobileMode: SettingsApp.widthTransitionInMobileMode
     property int widthNavigationDrawer: 320
-    property int startDragDistance: 20
+    property int startDragDistance: SettingsApp.startDragDistance
     property string colorNavigationDrawerDark: "#000"
     property real opacityDarkNavigationDrawer: 0.5
     property int easingTypeNavigationDrawer: Easing.OutBack
@@ -38,7 +38,7 @@ Rectangle {
         id: privateVar
         property int startX: 0
         property bool startDrag: false
-        property int minimumX: -navigationDrawer.width + startDragDistance / 2
+        property int minimumX: -navigationDrawer.width
     }
 
     MouseArea {
@@ -110,14 +110,6 @@ Rectangle {
             anchors.fill: parent
             anchors.margins: marginCommon
             clip: true
-        }
-
-        Rectangle {
-            id: startDragVisible
-            x: parent.width - startDragDistance
-            width: startDragDistance
-            height: parent.height
-            color: "transparent"
         }
 
         Rectangle {

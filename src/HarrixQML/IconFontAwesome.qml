@@ -5,9 +5,9 @@ import "."
 Label {
     property string symbol: FontAwesome.Icon.fa_glass
 
-    property int fontSize: SettingsApp.fontSizeFontAwesome
-    property int fontRenderType: SettingsApp.fontRenderType
-    property string colorFont: SettingsApp.colorFontInColorRectangle
+    property int fontSize: SettingsHarrixQML.fontSizeFontAwesome
+    property int fontRenderType: SettingsHarrixQML.fontRenderType
+    property string colorFont: SettingsHarrixQML.colorFontInColorRectangle
 
     id: iconFontAwesome
 

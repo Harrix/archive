@@ -3,15 +3,15 @@ import QtQuick.Controls 2.0
 import "."
 
 TextField {
-    property string fontName: SettingsApp.fontName
-    property int fontSize: SettingsApp.fontSize
-    property string colorTextField: SettingsApp.colorRed
-    property string colorTextFieldHover: SettingsApp.colorRedLight
-    property string colorFontTextField: SettingsApp.colorFontInColorRectangle
-    property int fontRenderType: SettingsApp.fontRenderType
-    property int durationAnimation: SettingsApp.durationAnimation
+    property string fontName: SettingsHarrixQML.fontName
+    property int fontSize: SettingsHarrixQML.fontSize
+    property string colorTextField: SettingsHarrixQML.colorRed
+    property string colorTextFieldHover: SettingsHarrixQML.colorRedLight
+    property string colorFontTextField: SettingsHarrixQML.colorFontInColorRectangle
+    property int fontRenderType: SettingsHarrixQML.fontRenderType
+    property int durationAnimation: SettingsHarrixQML.durationAnimation
 
-    selectionColor: SettingsApp.colorRed
+    selectionColor: SettingsHarrixQML.colorRed
     selectedTextColor: "#fff"
 
     selectByMouse: true

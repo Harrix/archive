@@ -7,8 +7,8 @@ Rectangle {
     property alias drawer: contentLoader.sourceComponent
     property alias window: connectionsChangeSizeWindow.target
 
-    property string colorBackground: SettingsApp.colorBackground
-    property int durationAnimation: SettingsApp.durationAnimation
+    property string colorBackground: SettingsHarrixQML.colorBackground
+    property int durationAnimation: SettingsHarrixQML.durationAnimation
     property int widthNavigationDrawer: 320
     property int startDragDistance: 20
     property string colorNavigationDrawerDark: "#000"

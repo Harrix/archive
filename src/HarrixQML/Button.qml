@@ -5,14 +5,14 @@ import "."
 Button {
     property alias icon: loaderIcon.sourceComponent
 
-    property string fontName: SettingsApp.fontName
-    property int fontSize: SettingsApp.fontSize
-    property string colorButton: SettingsApp.colorRed
-    property string colorButtonHover: SettingsApp.colorRedLight
-    property string colorButtonNotEnabled: SettingsApp.colorNotEnabled
-    property string colorFontButton: SettingsApp.colorFontInColorRectangle
-    property int fontRenderType: SettingsApp.fontRenderType
-    property int durationAnimation: SettingsApp.durationAnimation
+    property string fontName: SettingsHarrixQML.fontName
+    property int fontSize: SettingsHarrixQML.fontSize
+    property string colorButton: SettingsHarrixQML.colorRed
+    property string colorButtonHover: SettingsHarrixQML.colorRedLight
+    property string colorButtonNotEnabled: SettingsHarrixQML.colorNotEnabled
+    property string colorFontButton: SettingsHarrixQML.colorFontInColorRectangle
+    property int fontRenderType: SettingsHarrixQML.fontRenderType
+    property int durationAnimation: SettingsHarrixQML.durationAnimation
     property int paddingButton: 8
     property int leftPaddingButton: 24
     property int rightPaddingButton: 24

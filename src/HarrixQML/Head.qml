@@ -7,9 +7,9 @@ Rectangle {
     property alias centerMobileElement: centerMobileElement.sourceComponent
     property alias window: connectionsChangeSizeWindow.target
 
-    property int marginCommon: SettingsApp.marginCommon
-    property color colorBackground: SettingsApp.colorBackground
-    property color colorBackgroundMobile: SettingsApp.colorRed
+    property int marginCommon: SettingsHarrixQML.marginCommon
+    property color colorBackground: SettingsHarrixQML.colorBackground
+    property color colorBackgroundMobile: SettingsHarrixQML.colorRed
     property int heightHead: 84
     property int heightLogo: 60
     property int heightIcons: 22
@@ -59,22 +59,22 @@ Rectangle {
 
             Label {
                 text: qsTr("File")
-                font.pixelSize: SettingsApp.fontSize
+                font.pixelSize: SettingsHarrixQML.fontSize
             }
 
             Label {
                 text: qsTr("Edit")
-                font.pixelSize: SettingsApp.fontSize
+                font.pixelSize: SettingsHarrixQML.fontSize
             }
 
             Label {
                 text: qsTr("Options")
-                font.pixelSize: SettingsApp.fontSize
+                font.pixelSize: SettingsHarrixQML.fontSize
             }
 
             Label {
                 text: qsTr("About")
-                font.pixelSize: SettingsApp.fontSize
+                font.pixelSize: SettingsHarrixQML.fontSize
             }
 
             Image {

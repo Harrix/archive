@@ -5,7 +5,7 @@ import ".."
 MouseArea {
     property real opacityRipple: 0.3
     property color colorRipple: "#fff"
-    property int durationAnimation: SettingsApp.durationAnimation
+    property int durationAnimation: SettingsHarrixQML.durationAnimation
     property int easingTypeRipple: Easing.Linear
     property int cursorShapeRipple: Qt.PointingHandCursor
 

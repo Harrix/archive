@@ -14,4 +14,4 @@ IconFontAwesome 1.0 IconFontAwesome.qml
 MouseAreaRipple 1.0 service/MouseAreaRipple.qml
 Fonts 1.0 service/Fonts.qml
 singleton FontAwesome 1.0 service/FontAwesome.qml
-singleton SettingsApp 1.0 service/SettingsApp.qml
+singleton SettingsHarrixQML 1.0 service/SettingsHarrixQML.qml

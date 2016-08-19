@@ -4,10 +4,10 @@ import QtQuick.Layouts 1.3
 import "."
 
 ApplicationWindow {
-    property string fontName: SettingsApp.fontName
-    property int fontSize: SettingsApp.fontSize
-    property string colorFont: SettingsApp.colorFont
-    property string colorBackground: SettingsApp.colorBackground
+    property string fontName: SettingsHarrixQML.fontName
+    property int fontSize: SettingsHarrixQML.fontSize
+    property string colorFont: SettingsHarrixQML.colorFont
+    property string colorBackground: SettingsHarrixQML.colorBackground
     property int widthWindow: 640
     property int heightWindow: 480
 

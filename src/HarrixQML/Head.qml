@@ -94,10 +94,12 @@ Rectangle {
         if (mobileMode === true) {
             anchors.margins = 0
             color = colorBackgroundMobile
+            height = 30
         }
         if (mobileMode === false) {
             anchors.margins = marginCommon
             color = colorBackground
+            height = heightHead
         }
     }
 

@@ -109,6 +109,7 @@ Rectangle {
             id: contentLoader
             anchors.fill: parent
             anchors.margins: marginCommon
+            anchors.bottomMargin: 0
             clip: true
         }
 

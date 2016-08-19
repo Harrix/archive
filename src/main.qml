@@ -5,7 +5,6 @@ import QtQuick.Layouts 1.3
 import "HarrixQML"
 
 MainWindow {
-
     title: qsTr("Harrix-QMLComponents - Demo")
 
     navigationDrawer.drawer: LeftPanel{}

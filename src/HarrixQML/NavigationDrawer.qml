@@ -18,8 +18,6 @@ Rectangle {
     property real percentFailureSwipe: 0.05
     property int zNavigationDrawer: 100
 
-    property bool mobileModeDrawer: true
-
     id: navigationDrawer
     objectName: "navigationDrawer"
 
@@ -37,6 +35,7 @@ Rectangle {
         property bool startDrag: false
         property int minimumX: -navigationDrawer.width
         property bool openNavigationDrawer: true
+        property bool mobileModeDrawer: true
 
         onOpenNavigationDrawerChanged: {
             if (openNavigationDrawer === true)
@@ -189,7 +188,7 @@ Rectangle {
 
         onMobileModeChanged: {
             if (mobileMode) {
-                mobileModeDrawer = true;
+                privateVar.mobileModeDrawer = true;
                 privateVar.openNavigationDrawer = false;
                 mouseAreaDrag.enabled = true;
                 mouseAreaStartDrag.enabled = true;
@@ -197,7 +196,7 @@ Rectangle {
                 animationDarkOff.running = true;
             }
             else {
-                mobileModeDrawer = false;
+                privateVar.mobileModeDrawer = false;
                 privateVar.openNavigationDrawer = true;
                 mouseAreaDrag.enabled = false;
                 mouseAreaStartDrag.enabled = false;
@@ -210,7 +209,7 @@ Rectangle {
     function showNavigationDrawer () {
         privateVar.openNavigationDrawer = true;
         navigationDrawer.x = 0;
-        if (mobileModeDrawer)
+        if (privateVar.mobileModeDrawer)
             animationDarkOn.running = true;
         else
             animationDarkOff.running = true;
@@ -225,7 +224,7 @@ Rectangle {
     }
 
     function toogleNavigationDrawer () {
-        if (mobileModeDrawer)
+        if (privateVar.mobileModeDrawer)
             if (privateVar.openNavigationDrawer === false)
                 privateVar.openNavigationDrawer = true;
             else

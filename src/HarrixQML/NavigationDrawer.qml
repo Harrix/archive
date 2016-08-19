@@ -19,6 +19,7 @@ Rectangle {
     property int zNavigationDrawer: 100
 
     property bool openNavigationDrawer: true
+    property bool mobileModeDrawer: true
 
     id: navigationDrawer
     objectName: "navigationDrawer"
@@ -188,6 +189,7 @@ Rectangle {
 
         onMobileModeChanged: {
             if (mobileMode) {
+                mobileModeDrawer = true;
                 openNavigationDrawer = false;
                 mouseAreaDrag.enabled = true;
                 mouseAreaStartDrag.enabled = true;
@@ -195,6 +197,7 @@ Rectangle {
                 animationDarkOff.running = true;
             }
             else {
+                mobileModeDrawer = false;
                 openNavigationDrawer = true;
                 mouseAreaDrag.enabled = false;
                 mouseAreaStartDrag.enabled = false;
@@ -207,7 +210,7 @@ Rectangle {
     function showNavigationDrawer () {
         openNavigationDrawer = true;
         navigationDrawer.x = 0;
-        if (window.mobileMode)
+        if (mobileModeDrawer)
             animationDarkOn.running = true;
         else
             animationDarkOff.running = true;
@@ -222,7 +225,7 @@ Rectangle {
     }
 
     function toogleNavigationDrawer () {
-        if (window.mobileMode)
+        if (mobileModeDrawer)
             if (openNavigationDrawer === false)
                 openNavigationDrawer = true;
             else

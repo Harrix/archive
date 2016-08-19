@@ -10,6 +10,7 @@ MouseArea {
     property int cursorShapeRipple: Qt.PointingHandCursor
 
     id: mouseArea
+
     anchors.fill: parent
     cursorShape: cursorShapeRipple
 

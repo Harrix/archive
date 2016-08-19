@@ -8,14 +8,11 @@ Rectangle {
     property alias window: connectionsChangeSizeWindow.target
 
     property int marginCommon: SettingsApp.marginCommon
-    property int widthTransitionInMobileMode: SettingsApp.widthTransitionInMobileMode
     property color colorBackground: SettingsApp.colorBackground
     property color colorBackgroundMobile: SettingsApp.colorRed
     property int heightHead: 84
     property int heightLogo: 60
     property int heightIcons: 22
-
-    property bool mobileMode: false
 
     id:head
     objectName: "head"
@@ -89,28 +86,20 @@ Rectangle {
         }
     }
 
-    onMobileModeChanged: {
-        if (mobileMode === true) {
-            anchors.margins = 0
-            color = colorBackgroundMobile
-            height = 30
-        }
-        if (mobileMode === false) {
-            anchors.margins = marginCommon
-            color = colorBackground
-            height = heightHead
-        }
-    }
-
     Connections {
         id: connectionsChangeSizeWindow
 
-        onChangeSizeWindow: {
-            if ((window.width <= widthTransitionInMobileMode)
-                    ||(window.width < window.height))
-                mobileMode = true;
-            else
-                mobileMode = false;
+        onMobileModeChanged: {
+            if (mobileMode) {
+                anchors.margins = 0
+                color = colorBackgroundMobile
+                height = 30
+            }
+            else {
+                anchors.margins = marginCommon
+                color = colorBackground
+                height = heightHead
+            }
         }
     }
 }

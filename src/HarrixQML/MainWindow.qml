@@ -8,9 +8,10 @@ ApplicationWindow {
     property alias head: head
     property alias navigationDrawer: navigationDrawer
 
-    property bool mobileMode: true
+    property bool mobileMode: false
 
     property int marginCommon: SettingsApp.marginCommon
+    property int widthTransitionInMobileMode: 640
 
     id: mainWindow
     objectName: "mainWindow"
@@ -56,13 +57,21 @@ ApplicationWindow {
         }
     }
 
-    onWidthChanged: changeSizeWindow()
-    onHeightChanged: changeSizeWindow()
+    onWidthChanged: {changeSizeWindow(); checkMobileMode ();}
+    onHeightChanged: {changeSizeWindow(); checkMobileMode ();}
+
+    function checkMobileMode () {
+        if ((mainWindow.width <= widthTransitionInMobileMode)
+                ||(mainWindow.width < mainWindow.height))
+            mobileMode = true;
+        else
+            mobileMode = false;
+    }
 
     function widthPaneRight () {
-        if (navigationDrawer.fixNavigationDrawer === true)
-            return mainWindow.width - navigationDrawer.width
-        else
+        if (mobileMode)
             return mainWindow.width
+        else
+            return mainWindow.width - navigationDrawer.width
     }
 }

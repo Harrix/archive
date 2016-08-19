@@ -9,7 +9,6 @@ Rectangle {
 
     property string colorBackground: SettingsApp.colorBackground
     property int durationAnimation: SettingsApp.durationAnimation
-    property int widthTransitionInMobileMode: SettingsApp.widthTransitionInMobileMode
     property int widthNavigationDrawer: 320
     property int startDragDistance: 20
     property string colorNavigationDrawerDark: "#000"
@@ -206,7 +205,7 @@ Rectangle {
         id: connectionsChangeSizeWindow
 
         onChangeSizeWindow: {
-            if ((window.width <= widthTransitionInMobileMode)
+            if ((window.width <= 640)
                     ||(window.width < window.height))
                 fixNavigationDrawer = false;
             else

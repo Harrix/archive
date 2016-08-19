@@ -34,9 +34,6 @@ QtObject {
     readonly property int marginCommon: 10
     readonly property int spacingCommon: 10
 
-    //Sizes
-    readonly property int widthTransitionInMobileMode: 640
-
     //Durations
     readonly property int durationAnimation: 300
 }

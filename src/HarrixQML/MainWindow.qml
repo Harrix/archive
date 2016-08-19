@@ -9,7 +9,6 @@ ApplicationWindow {
     property alias navigationDrawer: navigationDrawer
 
     property int marginCommon: SettingsApp.marginCommon
-    property int marginContentLoader: SettingsApp.marginCommon
     property int startDragDistance: SettingsApp.startDragDistance
 
     id: mainWindow
@@ -50,8 +49,7 @@ ApplicationWindow {
             Loader {
                 id: contentLoader
                 anchors.fill: parent
-                anchors.margins: marginContentLoader
-                anchors.topMargin: 0
+                anchors.margins: 0
                 clip: true
             }
         }

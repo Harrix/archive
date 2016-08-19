@@ -9,7 +9,6 @@ Rectangle {
 
     property int marginCommon: SettingsApp.marginCommon
     property int widthTransitionInMobileMode: SettingsApp.widthTransitionInMobileMode
-    property int startDragDistance: SettingsApp.startDragDistance
     property color colorBackground: SettingsApp.colorBackground
     property color colorBackgroundMobile: SettingsApp.colorRed
     property int heightHead: 84

@@ -11,7 +11,6 @@ ApplicationWindow {
     property bool mobileMode: true
 
     property int marginCommon: SettingsApp.marginCommon
-    property int startDragDistance: SettingsApp.startDragDistance
 
     id: mainWindow
     objectName: "mainWindow"

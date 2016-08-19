@@ -33,7 +33,6 @@ QtObject {
     //Indents
     readonly property int marginCommon: 10
     readonly property int spacingCommon: 10
-    readonly property int startDragDistance: 20
 
     //Sizes
     readonly property int widthTransitionInMobileMode: 640

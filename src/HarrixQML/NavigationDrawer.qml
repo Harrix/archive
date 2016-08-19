@@ -11,7 +11,7 @@ Rectangle {
     property int durationAnimation: SettingsApp.durationAnimation
     property int widthTransitionInMobileMode: SettingsApp.widthTransitionInMobileMode
     property int widthNavigationDrawer: 320
-    property int startDragDistance: SettingsApp.startDragDistance
+    property int startDragDistance: 20
     property string colorNavigationDrawerDark: "#000"
     property real opacityDarkNavigationDrawer: 0.5
     property int easingTypeNavigationDrawer: Easing.OutBack

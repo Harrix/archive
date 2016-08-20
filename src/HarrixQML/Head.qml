@@ -49,6 +49,7 @@ Rectangle {
         id: centerMobileElement
         anchors.verticalCenter: parent.verticalCenter
         anchors.horizontalCenter: parent.horizontalCenter
+        visible: false
     }
 
     Rectangle {
@@ -99,13 +100,17 @@ Rectangle {
                 privateVar.mobileModeHead = true;
                 anchors.margins = 0;
                 color = colorBackgroundMobile;
-                height = 30;
+                height = 40;
+                logo.visible = false;
+                centerMobileElement.visible = true;
             }
             else {
                 privateVar.mobileModeHead = false;
                 anchors.margins = marginCommon;
                 color = colorBackground;
                 height = heightHead;
+                logo.visible = true;
+                centerMobileElement.visible = false;
             }
         }
     }

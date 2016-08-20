@@ -21,6 +21,11 @@ Rectangle {
     height: heightHead
     anchors.margins: marginCommon
 
+    QtObject {
+        id: privateVar
+        property bool mobileModeHead: true
+    }
+
     Image {
         id: hamburger
         source: "qrc:/HarrixQML/images/drawer.svg"
@@ -91,14 +96,16 @@ Rectangle {
 
         onMobileModeChanged: {
             if (mobileMode) {
-                anchors.margins = 0
-                color = colorBackgroundMobile
-                height = 30
+                privateVar.mobileModeHead = true;
+                anchors.margins = 0;
+                color = colorBackgroundMobile;
+                height = 30;
             }
             else {
-                anchors.margins = marginCommon
-                color = colorBackground
-                height = heightHead
+                privateVar.mobileModeHead = false;
+                anchors.margins = marginCommon;
+                color = colorBackground;
+                height = heightHead;
             }
         }
     }

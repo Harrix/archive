@@ -9,5 +9,7 @@
         <file>Content.qml</file>
         <file>CenterMobileElement.qml</file>
         <file>SettingsApp.qml</file>
+        <file>images/logo-harrix-flattened-white.svg</file>
+        <file>images/logo-harrix-white.svg</file>
     </qresource>
 </RCC>

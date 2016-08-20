@@ -28,7 +28,7 @@ Rectangle {
 
     Image {
         id: hamburger
-        source: "qrc:/HarrixQML/images/drawer.svg"
+        source: "qrc:/HarrixQML/images/drawer-white.svg"
         height: heightIcons
         fillMode: Image.PreserveAspectFit
         anchors.left: head.left
@@ -85,7 +85,7 @@ Rectangle {
 
             Image {
                 id: ellipsis
-                source: "qrc:/HarrixQML/images/menu.svg"
+                source: "qrc:/HarrixQML/images/menu-white.svg"
                 height: heightIcons
                 fillMode: Image.PreserveAspectFit
             }

@@ -8,7 +8,7 @@ Image {
     id: centerMobileElement
     objectName: "centerMobileElement"
 
-    source: "qrc:/images/logo-harrix.svg"
+    source: "qrc:/images/logo-harrix-white.svg"
     height: 40
     fillMode: Image.PreserveAspectFit
 }

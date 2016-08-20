@@ -100,9 +100,10 @@ Rectangle {
                 privateVar.mobileModeHead = true;
                 anchors.margins = 0;
                 color = colorBackgroundMobile;
-                height = 40;
+                height = 48;
                 logo.visible = false;
                 centerMobileElement.visible = true;
+                hamburger.visible = true;
             }
             else {
                 privateVar.mobileModeHead = false;
@@ -111,6 +112,7 @@ Rectangle {
                 height = heightHead;
                 logo.visible = true;
                 centerMobileElement.visible = false;
+                hamburger.visible = false;
             }
         }
     }

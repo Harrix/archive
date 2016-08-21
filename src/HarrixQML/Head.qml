@@ -7,6 +7,8 @@ Rectangle {
     property alias centerMobileElement: centerMobileElement.sourceComponent
     property alias window: connectionsChangeSizeWindow.target
 
+    property bool colorMobileMode: false
+
     property int marginCommon: SettingsHarrixQML.marginCommon
     property color colorBackground: SettingsHarrixQML.colorBackground
     property color colorBackgroundMobile: SettingsHarrixQML.colorRed
@@ -58,15 +60,15 @@ Rectangle {
         width: 400
         anchors.verticalCenter: parent.verticalCenter
         anchors.rightMargin: 20
+        color: "transparent"
 
-        ListView {
+        /*ListView {
             id: listView
             currentIndex: -1
             anchors.fill: parent
             orientation: ListView.Horizontal
 
             delegate: ItemDelegate {
-                width: 150
                 text: model.title
                 highlighted: ListView.isCurrentItem
                 onClicked: {
@@ -82,23 +84,21 @@ Rectangle {
             model: ListModel {
                 ListElement { title: "BusyIndicator"; source: "qrc:/pages/BusyIndicatorPage.qml" }
                 ListElement { title: "Button"; source: "qrc:/pages/ButtonPage.qml" }
-                ListElement { title: "CheckBox"; source: "qrc:/pages/CheckBoxPage.qml" }
-                ListElement { title: "ComboBox"; source: "qrc:/pages/ComboBoxPage.qml" }
             }
 
             ScrollIndicator.vertical: ScrollIndicator { }
+        }*/
+
+
+
+
+        Image {
+            id: rightIcon
+            source: "qrc:/HarrixQML/images/menu-white.svg"
+            height: heightIcons
+            fillMode: Image.PreserveAspectFit
+            visible: false
         }
-
-
-
-
-            Image {
-                id: rightIcon
-                source: "qrc:/HarrixQML/images/menu-white.svg"
-                height: heightIcons
-                fillMode: Image.PreserveAspectFit
-                visible: false
-            }
     }
 
     Connections {
@@ -107,8 +107,14 @@ Rectangle {
         onMobileModeChanged: {
             if (mobileMode) {
                 privateVar.mobileModeHead = true;
+                if (colorMobileMode) {
+                    color = colorBackgroundMobile;
+                }
+                else {
+                    color = colorBackgroundMobile;
+                }
+
                 anchors.margins = 0;
-                color = colorBackgroundMobile;
                 height = 48;
                 logo.visible = false;
                 centerMobileElement.visible = true;

@@ -11,7 +11,20 @@ MainWindow {
 
     head.logo.source: "qrc:/images/logo-harrix.svg"
 
-    head.centerMobileElement: CenterMobileElement {}
+    head.centerMobileElement: CenterMobileElement {id:centerMobileElementApp;}
+
+    head.colorMobileMode: false
 
     content: Content {}
+
+    Component.onCompleted: {
+        if (head.colorMobileMode) {
+            head.logo.source = "qrc:/images/logo-harrix-white.svg";
+            //head.centerMobileElement.item.source2 = "qrc:/images/logo-harrix-white.svg";
+        }
+        else {
+            head.logo.source = "qrc:/images/logo-harrix.svg"
+            //head.centerMobileElement.item.source2 = "qrc:/images/logo-harrix.svg";
+        }
+    }
 }

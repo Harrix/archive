@@ -54,43 +54,51 @@ Rectangle {
 
     Rectangle {
         anchors.right: parent.right
-        height: menu.height
-        width: menu.width
+        height: 40
+        width: 400
         anchors.verticalCenter: parent.verticalCenter
         anchors.rightMargin: 20
 
+        ListView {
+            id: listView
+            currentIndex: -1
+            anchors.fill: parent
+            orientation: ListView.Horizontal
 
-        Row {
-            id: menu
-            spacing: 15
-
-            Label {
-                text: qsTr("File")
-                font.pixelSize: SettingsHarrixQML.fontSize
+            delegate: ItemDelegate {
+                width: 150
+                text: model.title
+                highlighted: ListView.isCurrentItem
+                onClicked: {
+                    if (listView.currentIndex != index) {
+                        listView.currentIndex = index
+                        //titleLabel.text = model.title
+                        //stackView.replace(model.source)
+                    }
+                    //drawer.close()
+                }
             }
 
-            Label {
-                text: qsTr("Edit")
-                font.pixelSize: SettingsHarrixQML.fontSize
+            model: ListModel {
+                ListElement { title: "BusyIndicator"; source: "qrc:/pages/BusyIndicatorPage.qml" }
+                ListElement { title: "Button"; source: "qrc:/pages/ButtonPage.qml" }
+                ListElement { title: "CheckBox"; source: "qrc:/pages/CheckBoxPage.qml" }
+                ListElement { title: "ComboBox"; source: "qrc:/pages/ComboBoxPage.qml" }
             }
 
-            Label {
-                text: qsTr("Options")
-                font.pixelSize: SettingsHarrixQML.fontSize
-            }
+            ScrollIndicator.vertical: ScrollIndicator { }
+        }
 
-            Label {
-                text: qsTr("About")
-                font.pixelSize: SettingsHarrixQML.fontSize
-            }
+
+
 
             Image {
                 id: rightIcon
                 source: "qrc:/HarrixQML/images/menu-white.svg"
                 height: heightIcons
                 fillMode: Image.PreserveAspectFit
+                visible: false
             }
-        }
     }
 
     Connections {

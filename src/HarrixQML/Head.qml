@@ -57,7 +57,8 @@ Rectangle {
         height: menu.height
         width: menu.width
         anchors.verticalCenter: parent.verticalCenter
-        //anchors.rightMargin: 50
+        anchors.rightMargin: 20
+
 
         Row {
             id: menu

@@ -21,5 +21,7 @@
         <file>HarrixQML/service/SettingsHarrixQML.qml</file>
         <file>HarrixQML/images/drawer-white.svg</file>
         <file>HarrixQML/images/menu-white.svg</file>
+        <file>HarrixQML/images/arrow.svg</file>
+        <file>HarrixQML/images/arrow-white.svg</file>
     </qresource>
 </RCC>

@@ -5,8 +5,6 @@ import QtQuick.Layouts 1.3
 import "HarrixQML"
 
 Image {
-    property alias source2: centerMobileElementApp.source
-
     id: centerMobileElementApp
     objectName: "centerMobileElementApp"
 

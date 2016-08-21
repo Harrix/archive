@@ -20,11 +20,13 @@ MainWindow {
     Component.onCompleted: {
         if (head.colorMobileMode) {
             head.logo.source = "qrc:/images/logo-harrix-white.svg";
-            //head.centerMobileElement.item.source2 = "qrc:/images/logo-harrix-white.svg";
+            head.centerMobileElementLoader.item.source = "qrc:/images/logo-harrix-white.svg";
+            console.log("head.colorMobileMode = " + head.colorMobileMode);
         }
         else {
             head.logo.source = "qrc:/images/logo-harrix.svg"
-            //head.centerMobileElement.item.source2 = "qrc:/images/logo-harrix.svg";
+            head.centerMobileElementLoader.item.source = "qrc:/images/logo-harrix.svg";
+            console.log("head.colorMobileMode = " + head.colorMobileMode);
         }
     }
 }

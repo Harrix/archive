@@ -27,14 +27,14 @@ Rectangle {
     }
 
     Image {
-        id: hamburger
+        id: leftIcon
         source: "qrc:/HarrixQML/images/drawer-white.svg"
         height: heightIcons
         fillMode: Image.PreserveAspectFit
         anchors.left: head.left
         anchors.verticalCenter: parent.verticalCenter
+        anchors.leftMargin: 20
         visible: false
-        enabled: false
     }
 
     Image {
@@ -84,7 +84,7 @@ Rectangle {
             }
 
             Image {
-                id: ellipsis
+                id: rightIcon
                 source: "qrc:/HarrixQML/images/menu-white.svg"
                 height: heightIcons
                 fillMode: Image.PreserveAspectFit
@@ -103,7 +103,7 @@ Rectangle {
                 height = 48;
                 logo.visible = false;
                 centerMobileElement.visible = true;
-                hamburger.visible = true;
+                leftIcon.visible = true;
             }
             else {
                 privateVar.mobileModeHead = false;
@@ -112,7 +112,7 @@ Rectangle {
                 height = heightHead;
                 logo.visible = true;
                 centerMobileElement.visible = false;
-                hamburger.visible = false;
+                leftIcon.visible = false;
             }
         }
     }

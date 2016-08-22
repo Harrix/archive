@@ -24,7 +24,7 @@ ApplicationWindow {
     signal toogleNavigationDrawer();
     signal sendMobileMode(bool mobileMode);
 
-    //visibility: "Maximized"
+    visibility: "Maximized"
     font.family: fontName
     font.pixelSize: fontSize
 
@@ -69,20 +69,16 @@ ApplicationWindow {
 
     Connections {
         id: listenerSignals
-
     }
 
-    onWidthChanged:  checkMobileMode();
-    onHeightChanged: checkMobileMode();
+    onWidthChanged:        checkMobileMode();
+    onHeightChanged:       checkMobileMode();
     Component.onCompleted: checkMobileMode();
 
     function checkMobileMode () {
-        if ((mainWindow.width <= widthTransitionInMobileMode)
-                ||(mainWindow.width < mainWindow.height))
-            mobileMode = true;
-        else
-            mobileMode = false;
-        console.log(mobileMode);
+        var check = ((mainWindow.width <= widthTransitionInMobileMode)
+                      ||(mainWindow.width < mainWindow.height));
+        mobileMode = check ? true : false;
         sendMobileMode(mobileMode);
     }
 

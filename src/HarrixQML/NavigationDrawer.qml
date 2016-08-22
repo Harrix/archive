@@ -31,6 +31,7 @@ Rectangle {
         property int minimumX: -navigationDrawer.width
         property bool openNavigationDrawer: true
         property bool mobileModeDrawer: true
+        property bool firstOnSendMobileMode: false
 
         onOpenNavigationDrawerChanged: {
             if (openNavigationDrawer === true)
@@ -166,28 +167,29 @@ Rectangle {
     Connections {
         id: listenerSignals
 
-        onMobileModeChanged: {
-            console.log("get signal");
-            if (mobileMode) {
-                privateVar.mobileModeDrawer = true;
-                privateVar.openNavigationDrawer = false;
-                mouseAreaDrag.enabled = true;
-                mouseAreaStartDrag.enabled = true;
-                mouseAreaDark.enabled = true;
-                animationDarkOff.running = true;
+        onSendMobileMode: {
+            if ((privateVar.firstOnSendMobileMode === false)
+                    || (mobileMode !== privateVar.mobileModeDrawer)) {
+                if (mobileMode) {
+                    privateVar.mobileModeDrawer = true;
+                    privateVar.openNavigationDrawer = false;
+                    mouseAreaDrag.enabled = true;
+                    mouseAreaStartDrag.enabled = true;
+                    mouseAreaDark.enabled = true;
+                    animationDarkOff.running = true;
+                }
+                else {
+                    privateVar.mobileModeDrawer = false;
+                    privateVar.openNavigationDrawer = true;
+                    mouseAreaDrag.enabled = false;
+                    mouseAreaStartDrag.enabled = false;
+                    mouseAreaDark.enabled = false;
+                    animationDarkOff.running = true;
+                }
             }
             else {
-                privateVar.mobileModeDrawer = false;
-                privateVar.openNavigationDrawer = true;
-                mouseAreaDrag.enabled = false;
-                mouseAreaStartDrag.enabled = false;
-                mouseAreaDark.enabled = false;
-                animationDarkOff.running = true;
+                privateVar.firstOnSendMobileMode = true;
             }
-        }
-
-        onSendMobileMode: {
-            console.log("get sendMobileMode " + mobileMode);
         }
 
         onToogleNavigationDrawer: {
@@ -198,6 +200,7 @@ Rectangle {
                     privateVar.openNavigationDrawer = false;
         }
     }
+
 
     function showNavigationDrawer () {
         privateVar.openNavigationDrawer = true;

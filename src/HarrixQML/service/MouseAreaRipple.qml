@@ -1,7 +1,6 @@
 import QtQuick 2.7
 import QtGraphicalEffects 1.0
 import ".."
-import "."
 
 MouseArea {
     id: mouseArea

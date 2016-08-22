@@ -1,13 +1,13 @@
 <RCC>
     <qresource prefix="/">
-        <file>HarrixQML/internal/ApplicationWindow.qml</file>
+        <file>HarrixQML/ApplicationWindow.qml</file>
         <file>HarrixQML/Button.qml</file>
         <file>HarrixQML/ButtonBlue.qml</file>
         <file>HarrixQML/ButtonGreen.qml</file>
-        <file>HarrixQML/internal/Head.qml</file>
-        <file>HarrixQML/internal/IconFontAwesome.qml</file>
+        <file>HarrixQML/Head.qml</file>
+        <file>HarrixQML/IconFontAwesome.qml</file>
         <file>HarrixQML/MainWindow.qml</file>
-        <file>HarrixQML/internal/NavigationDrawer.qml</file>
+        <file>HarrixQML/NavigationDrawer.qml</file>
         <file>HarrixQML/TextField.qml</file>
         <file>HarrixQML/fonts/FontAwesome.ttf</file>
         <file>HarrixQML/fonts/OpenSans.ttf</file>
@@ -17,7 +17,7 @@
         <file>HarrixQML/qmldir</file>
         <file>HarrixQML/service/FontAwesome.qml</file>
         <file>HarrixQML/service/Fonts.qml</file>
-        <file>HarrixQML/internal/MouseAreaRipple.qml</file>
+        <file>HarrixQML/service/MouseAreaRipple.qml</file>
         <file>HarrixQML/service/SettingsHarrixQML.qml</file>
         <file>HarrixQML/images/drawer-white.svg</file>
         <file>HarrixQML/images/menu-white.svg</file>

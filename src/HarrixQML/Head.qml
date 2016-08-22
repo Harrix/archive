@@ -92,6 +92,37 @@ Rectangle {
         }
     }
 
+    states: [
+        State {
+            name: "normal"
+            PropertyChanges {
+                target: head
+                anchors.margins: marginCommon
+            }
+        },
+        State {
+            name: "normalScroll"
+            PropertyChanges {
+                target: head
+                anchors.margins: marginCommon
+            }
+        },
+        State {
+            name: "mobile"
+            PropertyChanges {
+                target: head
+                anchors.margins: 0
+            }
+        },
+        State {
+            name: "mobileColor"
+            PropertyChanges {
+                target: head
+                anchors.margins: 0
+            }
+        }
+    ]
+
     Connections {
         id: listenerSignals
 

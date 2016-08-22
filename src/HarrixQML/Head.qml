@@ -3,6 +3,9 @@ import QtQuick.Controls 2.0
 import "."
 
 Rectangle {
+    id:head
+    objectName: "head"
+
     //Variables that it is necessary to set.
     property alias logo: logo
     property alias centerMobileElement: centerMobileElement.sourceComponent
@@ -21,9 +24,6 @@ Rectangle {
     property int heightHead: 84
     property int heightLogo: 60
     property int heightIcons: 22
-
-    id:head
-    objectName: "head"
 
     width: parent.width
     height: heightHead

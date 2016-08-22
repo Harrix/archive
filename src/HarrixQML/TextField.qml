@@ -3,6 +3,8 @@ import QtQuick.Controls 2.0
 import "."
 
 TextField {
+    id: control
+
     property string fontName: SettingsHarrixQML.fontName
     property int fontSize: SettingsHarrixQML.fontSize
     property string colorTextField: SettingsHarrixQML.colorRed
@@ -20,8 +22,6 @@ TextField {
         cursorShape: Qt.IBeamCursor
         acceptedButtons: Qt.NoButton
     }
-
-    id: control
 
     background: Rectangle {
         y: control.height - height - control.bottomPadding / 2

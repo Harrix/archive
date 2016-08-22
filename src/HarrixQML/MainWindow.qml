@@ -4,6 +4,9 @@ import QtQuick.Layouts 1.3
 import "."
 
 ApplicationWindow {
+    id: mainWindow
+    objectName: "mainWindow"
+
     property alias content: contentLoader.sourceComponent
     property alias head: head
     property alias navigationDrawer: navigationDrawer
@@ -13,9 +16,6 @@ ApplicationWindow {
     property int marginCommon: SettingsHarrixQML.marginCommon
     property int spacingCommon: SettingsHarrixQML.spacingCommon
     property int widthTransitionInMobileMode: 640
-
-    id: mainWindow
-    objectName: "mainWindow"
 
     visibility: "Maximized"
 

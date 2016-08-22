@@ -4,6 +4,9 @@ import QtQuick.Layouts 1.3
 import "."
 
 Rectangle {
+    id: navigationDrawer
+    objectName: "navigationDrawer"
+
     property alias drawer: contentLoader.sourceComponent
     property alias signalSender: listenerSignals.target
 
@@ -17,9 +20,6 @@ Rectangle {
     property int easingDarkNavigationDrawer: Easing.Linear
     property real percentFailureSwipe: 0.05
     property int zNavigationDrawer: 100
-
-    id: navigationDrawer
-    objectName: "navigationDrawer"
 
     height: parent.height
     width: widthNavigationDrawer

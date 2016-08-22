@@ -56,6 +56,11 @@ ApplicationWindow {
         }
     }
 
+    Connections {
+        id: listenerSignals
+
+    }
+
     onWidthChanged:  checkMobileMode();
     onHeightChanged: checkMobileMode();
 

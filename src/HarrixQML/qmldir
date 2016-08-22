@@ -1,9 +1,9 @@
 module HarrixQML
 
 # Visual components
-ApplicationWindow 1.0 ApplicationWindow.qml
+ApplicationWindow 1.0 internal/ApplicationWindow.qml
 MainWindow 1.0 MainWindow.qml
-NavigationDrawer 1.0 NavigationDrawer.qml
+NavigationDrawer 1.0 internal/NavigationDrawer.qml
 Head 1.0 Head.qml
 Button 1.0 Button.qml
 ButtonBlue 1.0 ButtonBlue.qml

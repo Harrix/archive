@@ -45,7 +45,7 @@ Page{
 
             ButtonBlue{
                 text: qsTr("Open Drawer")
-                onClicked:  navigationDrawer.toogleNavigationDrawer()
+                onClicked:  toogleNavigationDrawer()
             }
 
             ButtonGreen {

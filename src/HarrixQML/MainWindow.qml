@@ -20,6 +20,9 @@ ApplicationWindow {
     property int spacingCommon: SettingsHarrixQML.spacingCommon
     property int widthTransitionInMobileMode: 640
 
+    //Signals
+    signal toogleNavigationDrawer();
+
     visibility: "Maximized"
     font.family: fontName
     font.pixelSize: fontSize

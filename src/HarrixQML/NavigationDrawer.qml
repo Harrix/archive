@@ -184,6 +184,14 @@ Rectangle {
                 animationDarkOff.running = true;
             }
         }
+
+        onToogleNavigationDrawer: {
+            if (privateVar.mobileModeDrawer)
+                if (privateVar.openNavigationDrawer === false)
+                    privateVar.openNavigationDrawer = true;
+                else
+                    privateVar.openNavigationDrawer = false;
+        }
     }
 
     function showNavigationDrawer () {
@@ -201,14 +209,6 @@ Rectangle {
         navigationDrawer.x = privateVar.minimumX;
         animationDarkOff.running = true;
         privateVar.startDrag = false;
-    }
-
-    function toogleNavigationDrawer () {
-        if (privateVar.mobileModeDrawer)
-            if (privateVar.openNavigationDrawer === false)
-                privateVar.openNavigationDrawer = true;
-            else
-                privateVar.openNavigationDrawer = false;
     }
 
     function releasedDrag(mouseArea) {

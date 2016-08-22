@@ -132,7 +132,7 @@ Rectangle {
                 enabled: false
                 anchors.fill: parent
                 hoverEnabled: true
-                onClicked: toogleNavigationDrawer()
+                onClicked: toogle()
 
                 drag.target: navigationDrawer
                 drag.minimumX: privateVar.minimumX
@@ -190,13 +190,15 @@ Rectangle {
             }
         }
 
-        onToogleNavigationDrawer: {
-            if (privateVar.mobileModeDrawer)
-                if (privateVar.openNavigationDrawer === false)
-                    privateVar.openNavigationDrawer = true;
-                else
-                    privateVar.openNavigationDrawer = false;
-        }
+        onToogleNavigationDrawer: toogle()
+    }
+
+    function toogle() {
+        if (privateVar.mobileModeDrawer)
+            if (privateVar.openNavigationDrawer === false)
+                privateVar.openNavigationDrawer = true;
+            else
+                privateVar.openNavigationDrawer = false;
     }
 
 

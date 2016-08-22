@@ -2,7 +2,7 @@
     <qresource prefix="/">
         <file>main.qml</file>
         <file>images/harrix_photo.png</file>
-        <file>PageBasicComponents.qml</file>
+        <file>pages/PageBasicComponents.qml</file>
         <file>LeftPanel.qml</file>
         <file>images/logo-harrix.svg</file>
         <file>images/logo-harrix-flattened.svg</file>

@@ -5,6 +5,7 @@ import "."
 TextField {
     id: textField
 
+    //Common properties which can be changed if necessary
     property string fontName: SettingsHarrixQML.fontName
     property int fontSize: SettingsHarrixQML.fontSize
     property string colorTextField: SettingsHarrixQML.colorRed

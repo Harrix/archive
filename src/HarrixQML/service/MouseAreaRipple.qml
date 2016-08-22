@@ -5,21 +5,23 @@ import ".."
 MouseArea {
     id: mouseArea
 
+    //Common properties which can be changed if necessary
     property real opacityRipple: 0.3
     property color colorRipple: "#fff"
     property int durationAnimation: SettingsHarrixQML.durationAnimation
     property int easingTypeRipple: Easing.Linear
     property int cursorShapeRipple: Qt.PointingHandCursor
 
-    anchors.fill: parent
-    cursorShape: cursorShapeRipple
-
+    //Private properties
     QtObject {
         id: privateVar
         property int radiusEnd: 0
         property int xEnd: 0
         property int yEnd: 0
     }
+
+    anchors.fill: parent
+    cursorShape: cursorShapeRipple
 
     Rectangle {
         id: container

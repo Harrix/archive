@@ -7,9 +7,11 @@ Rectangle {
     id: navigationDrawer
     objectName: "navigationDrawer"
 
+    //Variables that it is necessary to set
     property alias drawer: contentLoader.sourceComponent
     property alias signalSender: listenerSignals.target
 
+    //Common properties which can be changed if necessary
     property string colorBackground: SettingsHarrixQML.colorBackground
     property int durationAnimation: SettingsHarrixQML.durationAnimation
     property int widthNavigationDrawer: 320
@@ -21,14 +23,7 @@ Rectangle {
     property real percentFailureSwipe: 0.05
     property int zNavigationDrawer: 100
 
-    height: parent.height
-    width: widthNavigationDrawer
-    anchors.margins: 0
-    y: 0
-    x: 0
-    z: zNavigationDrawer
-    color: colorBackground
-
+    //Private properties
     QtObject {
         id: privateVar
         property int startX: 0
@@ -44,6 +39,14 @@ Rectangle {
                 hideNavigationDrawer ();
         }
     }
+
+    height: parent.height
+    width: widthNavigationDrawer
+    anchors.margins: 0
+    y: 0
+    x: 0
+    z: zNavigationDrawer
+    color: colorBackground
 
     MouseArea {
         id: mouseAreaDrag

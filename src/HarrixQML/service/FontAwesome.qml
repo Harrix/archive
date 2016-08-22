@@ -3,6 +3,7 @@ import QtQuick 2.7
 pragma Singleton
 
 QtObject {
+    //Constants properties
     readonly property string fa_glass : "\uf000"
     readonly property string fa_music : "\uf001"
     readonly property string fa_search : "\uf002"

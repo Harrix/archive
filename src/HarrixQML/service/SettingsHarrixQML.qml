@@ -8,6 +8,8 @@ import QtQuick 2.7
 pragma Singleton
 
 QtObject {
+    //Constants properties
+
     //Colors
     readonly property color colorBackground: "#fff"
     readonly property color colorFont: "#5f5f5f"

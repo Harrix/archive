@@ -7,12 +7,15 @@ ApplicationWindow {
     id: mainWindow
     objectName: "mainWindow"
 
+    //Properties that it is necessary to set
     property alias content: contentLoader.sourceComponent
     property alias head: head
     property alias navigationDrawer: navigationDrawer
 
+    //Properties that it is to set if necessary
     property bool mobileMode: false
 
+    //Common properties which can be changed if necessary
     property int marginCommon: SettingsHarrixQML.marginCommon
     property int spacingCommon: SettingsHarrixQML.spacingCommon
     property int widthTransitionInMobileMode: 640

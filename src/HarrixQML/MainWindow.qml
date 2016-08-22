@@ -20,7 +20,7 @@ ApplicationWindow {
     property int spacingCommon: SettingsHarrixQML.spacingCommon
     property int widthTransitionInMobileMode: 640
 
-    visibility: "Maximized"
+    //visibility: "Maximized"
     font.family: fontName
     font.pixelSize: fontSize
 
@@ -70,13 +70,20 @@ ApplicationWindow {
 
     onWidthChanged:  checkMobileMode();
     onHeightChanged: checkMobileMode();
+    Component.onCompleted: onMobileModeChanged();
 
     function checkMobileMode () {
+        console.log("SSS");
+        console.log("mobileMode " + mobileMode);
         if ((mainWindow.width <= widthTransitionInMobileMode)
-                ||(mainWindow.width < mainWindow.height))
+                ||(mainWindow.width < mainWindow.height)) {
             mobileMode = true;
-        else
+            console.log("mobileMode " + mobileMode);
+        }
+        else {
             mobileMode = false;
+            console.log("mobileMode " + mobileMode);
+        }
     }
 
     function widthPaneRight () {

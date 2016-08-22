@@ -11,7 +11,7 @@ ApplicationWindow {
     property int fontSize: SettingsHarrixQML.fontSize
     property string colorFont: SettingsHarrixQML.colorFont
     property string colorBackground: SettingsHarrixQML.colorBackground
-    property int widthWindow: 640
+    property int widthWindow: 600
     property int heightWindow: 480
 
     visible: true

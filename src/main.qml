@@ -16,10 +16,10 @@ MainWindow {
     head.colorMobileMode: false
 
     head.mainMenu: ListModel {
-        ListElement { name: "Mercury";}
-        ListElement { name: "Venus"; }
-        ListElement { name: "Earth";}
-        ListElement { name: "Mars";}
+        ListElement { name: "Главная";}
+        ListElement { name: "Проекты"; }
+        ListElement { name: "Harrix.org";}
+        ListElement { name: "Контакты";}
     }
 
     content: Content {}

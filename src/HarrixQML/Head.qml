@@ -38,6 +38,7 @@ Rectangle {
     width: parent.width
     height: heightHead
     anchors.margins: marginCommon
+    state: "normal"
 
     Image {
         id: leftIcon
@@ -46,7 +47,7 @@ Rectangle {
         fillMode: Image.PreserveAspectFit
         anchors.left: head.left
         anchors.verticalCenter: parent.verticalCenter
-        anchors.leftMargin: 20
+        anchors.leftMargin: marginCommon
         visible: false
     }
 
@@ -60,37 +61,31 @@ Rectangle {
 
     Loader {
         id: centerMobileElement
-        anchors.verticalCenter: parent.verticalCenter
-        anchors.horizontalCenter: parent.horizontalCenter
+        anchors.centerIn: parent
         visible: false
     }
 
-    Rectangle {
+    Image {
+        id: rightIcon
+        source: "qrc:/HarrixQML/images/menu-white.svg"
+        height: heightIcons
+        fillMode: Image.PreserveAspectFit
+        visible: false
+        anchors.rightMargin: marginCommon
+    }
+
+    Row {
+        spacing: 5
         anchors.right: parent.right
-        height: 40
-        width: 400
         anchors.verticalCenter: parent.verticalCenter
-        anchors.rightMargin: 20
-        color: "transparent"
 
-        Image {
-            id: rightIcon
-            source: "qrc:/HarrixQML/images/menu-white.svg"
-            height: heightIcons
-            fillMode: Image.PreserveAspectFit
-            visible: false
-        }
+        Repeater {
+            id: mainMenu
 
-        Row {
-            spacing: 2
-            anchors.right: parent.right
-
-            Repeater {
-                id: mainMenu
-
-                Text {
-                    text: name
-                }
+            Label {
+                text: name
+                font.pointSize: SettingsHarrixQML.fontSize
+                font.family: SettingsHarrixQML.fontName
             }
         }
     }
@@ -187,7 +182,7 @@ Rectangle {
     Connections {
         id: listenerSignals
 
-        onMobileModeChanged: {
+        /*onMobileModeChanged: {
             if (mobileMode) {
                 privateVar.mobileModeHead = true;
                 leftIcon.visible = true;
@@ -197,6 +192,6 @@ Rectangle {
 
                 leftIcon.visible = false;
             }
-        }
+        }*/
     }
 }

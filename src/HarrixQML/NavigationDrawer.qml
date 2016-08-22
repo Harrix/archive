@@ -30,17 +30,13 @@ Rectangle {
         property bool startDrag: false
         property int minimumX: -navigationDrawer.width
         property bool openNavigationDrawer: true
-        property bool mobileModeDrawer: false
+        property bool mobileModeDrawer: true
 
         onOpenNavigationDrawerChanged: {
-            if (openNavigationDrawer === true) {
-                console.log("5");
+            if (openNavigationDrawer === true)
                 showNavigationDrawer ();
-            }
-            if (openNavigationDrawer === false) {
-                console.log("6");
+            if (openNavigationDrawer === false)
                 hideNavigationDrawer ();
-            }
         }
     }
 
@@ -194,16 +190,12 @@ Rectangle {
         }
     }
 
+    Component.onCompleted: setState()
+
     Connections {
         id: listenerSignals
 
-        onSendMobileMode: {
-            if (privateVar.mobileModeDrawer!=mobileMode)
-                if (mobileMode)
-                    state = "mobileMode";
-                else
-                    state = "fixMode";
-        }
+        onMobileModeChanged: setState()
 
         onToogleNavigationDrawer: {
             if (privateVar.mobileModeDrawer)
@@ -214,17 +206,20 @@ Rectangle {
         }
     }
 
+    function setState() {
+        if (mobileMode)
+            state = "mobileMode";
+        else
+            state = "fixMode";
+    }
+
     function showNavigationDrawer () {
         privateVar.openNavigationDrawer = true;
         navigationDrawer.x = 0;
-        if (privateVar.mobileModeDrawer) {
+        if (privateVar.mobileModeDrawer)
             animationDarkOn.running = true;
-            console.log ("mobileModeDrawer = true")
-        }
-        else {
+        else
             animationDarkOff.running = true;
-            console.log ("mobileModeDrawer = false")
-        }
         privateVar.startDrag = false;
     }
 

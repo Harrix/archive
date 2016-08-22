@@ -163,26 +163,41 @@ Rectangle {
         }
     }
 
+    states: [
+        State {
+            name: "mobileMode"
+            PropertyChanges {
+                target: privateVar;
+                mobileModeDrawer: true;
+                openNavigationDrawer: false;
+            }
+            PropertyChanges { target: mouseAreaDrag; enabled: true; }
+            PropertyChanges { target: mouseAreaStartDrag; enabled: true; }
+            PropertyChanges { target: mouseAreaDark; enabled: true; }
+            PropertyChanges { target: animationDarkOff; running: true; }
+        },
+        State {
+            name: "fixMode"
+            PropertyChanges {
+                target: privateVar;
+                mobileModeDrawer: false;
+                openNavigationDrawer: true;
+            }
+            PropertyChanges { target: mouseAreaDrag; enabled: false; }
+            PropertyChanges { target: mouseAreaStartDrag; enabled: false; }
+            PropertyChanges { target: mouseAreaDark; enabled: false; }
+            PropertyChanges { target: animationDarkOff; running: true; }
+        }
+    ]
+
     Connections {
         id: listenerSignals
 
         onMobileModeChanged: {
-            if (mobileMode) {
-                privateVar.mobileModeDrawer = true;
-                privateVar.openNavigationDrawer = false;
-                mouseAreaDrag.enabled = true;
-                mouseAreaStartDrag.enabled = true;
-                mouseAreaDark.enabled = true;
-                animationDarkOff.running = true;
-            }
-            else {
-                privateVar.mobileModeDrawer = false;
-                privateVar.openNavigationDrawer = true;
-                mouseAreaDrag.enabled = false;
-                mouseAreaStartDrag.enabled = false;
-                mouseAreaDark.enabled = false;
-                animationDarkOff.running = true;
-            }
+            if (mobileMode)
+                state = "mobileMode";
+            else
+                state = "fixMode";
         }
 
         onToogleNavigationDrawer: {

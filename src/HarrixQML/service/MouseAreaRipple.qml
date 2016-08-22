@@ -7,10 +7,10 @@ MouseArea {
 
     //Common properties which can be changed if necessary
     property int durationAnimation: SettingsHarrixQML.durationAnimation
+    property int cursorShapeRipple: SettingsHarrixQML.cursorHover
     property real opacityRipple: 0.3
     property color colorRipple: "#fff"
-    property int easingTypeRipple: Easing.Linear
-    property int cursorShapeRipple: Qt.PointingHandCursor
+    property int easingTypeRipple: Easing.Linear    
 
     //Private properties
     QtObject {

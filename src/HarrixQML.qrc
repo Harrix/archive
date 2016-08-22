@@ -5,7 +5,7 @@
         <file>HarrixQML/ButtonBlue.qml</file>
         <file>HarrixQML/ButtonGreen.qml</file>
         <file>HarrixQML/Head.qml</file>
-        <file>HarrixQML/IconFontAwesome.qml</file>
+        <file>HarrixQML/internal/IconFontAwesome.qml</file>
         <file>HarrixQML/MainWindow.qml</file>
         <file>HarrixQML/NavigationDrawer.qml</file>
         <file>HarrixQML/TextField.qml</file>

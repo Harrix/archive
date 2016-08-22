@@ -8,7 +8,7 @@ Head 1.0 Head.qml
 Button 1.0 Button.qml
 ButtonBlue 1.0 ButtonBlue.qml
 ButtonGreen 1.0 ButtonGreen.qml
-IconFontAwesome 1.0 IconFontAwesome.qml
+IconFontAwesome 1.0 internal/IconFontAwesome.qml
 
 # Service components
 MouseAreaRipple 1.0 internal/MouseAreaRipple.qml

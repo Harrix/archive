@@ -10,6 +10,7 @@ Rectangle {
     property alias logo: logo
     property alias centerMobileElement: centerMobileElement.sourceComponent
     property alias signalSender: listenerSignals.target
+    property alias mainMenu: mainMenu.model
 
     //Properties that it is to set if necessary
     property bool colorMobileMode: false
@@ -75,6 +76,19 @@ Rectangle {
             height: heightIcons
             fillMode: Image.PreserveAspectFit
             visible: false
+        }
+
+        Row {
+            spacing: 2
+            anchors.right: parent.right
+
+            Repeater {
+                id: mainMenu
+
+                Text {
+                    text: name
+                }
+            }
         }
     }
 

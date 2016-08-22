@@ -15,6 +15,13 @@ MainWindow {
 
     head.colorMobileMode: false
 
+    head.mainMenu: ListModel {
+        ListElement { name: "Mercury";}
+        ListElement { name: "Venus"; }
+        ListElement { name: "Earth";}
+        ListElement { name: "Mars";}
+    }
+
     content: Content {}
 
     Component.onCompleted: {

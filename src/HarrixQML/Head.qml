@@ -51,6 +51,14 @@ Rectangle {
         anchors.verticalCenter: parent.verticalCenter
         anchors.leftMargin: marginIcons
         visible: false
+        MouseArea {
+            anchors.fill: parent
+            hoverEnabled: true
+            //onEntered: parent.color = SettingsHarrixQML.colorBlue
+            //onExited: parent.color = "#25292c"
+            cursorShape: Qt.PointingHandCursor
+            onClicked: toogleNavigationDrawer()
+        }
     }
 
     Image {
@@ -74,6 +82,14 @@ Rectangle {
         anchors.right: head.right
         anchors.verticalCenter: parent.verticalCenter
         anchors.rightMargin: marginIcons
+        MouseArea {
+            anchors.fill: parent
+            hoverEnabled: true
+            //onEntered: parent.color = SettingsHarrixQML.colorBlue
+            //onExited: parent.color = "#25292c"
+            cursorShape: Qt.PointingHandCursor
+            //onClicked: toogleNavigationDrawer()
+        }
     }
 
     Row {

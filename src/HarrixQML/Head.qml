@@ -23,7 +23,10 @@ Rectangle {
     property color colorBackground: SettingsHarrixQML.colorBackground
     property color colorBackgroundMobile: SettingsHarrixQML.colorRed
     property int heightHead: 84
+    property int heightHeadScroll: 48
+    property int heightHeadMobile: 48
     property int heightLogo: 60
+    property int heightLogoScroll: 40
     property int heightIcons: 22
 
     //Private properties
@@ -98,6 +101,21 @@ Rectangle {
             PropertyChanges {
                 target: head
                 anchors.margins: marginCommon
+                height: heightHead
+                color: colorBackground
+            }
+            PropertyChanges {
+                target: logo
+                visible: true
+                height: heightLogo
+            }
+            PropertyChanges {
+                target: centerMobileElement
+                visible: false
+            }
+            PropertyChanges {
+                target: leftIcon
+                visible: false
             }
         },
         State {
@@ -105,6 +123,21 @@ Rectangle {
             PropertyChanges {
                 target: head
                 anchors.margins: marginCommon
+                height: heightHeadScroll
+                color: colorBackground
+            }
+            PropertyChanges {
+                target: logo
+                visible: true
+                height: heightLogoScroll
+            }
+            PropertyChanges {
+                target: centerMobileElement
+                visible: false
+            }
+            PropertyChanges {
+                target: leftIcon
+                visible: false
             }
         },
         State {
@@ -112,6 +145,20 @@ Rectangle {
             PropertyChanges {
                 target: head
                 anchors.margins: 0
+                height: heightHeadMobile
+                color: colorBackground
+            }
+            PropertyChanges {
+                target: logo
+                visible: false
+            }
+            PropertyChanges {
+                target: centerMobileElement
+                visible: true
+            }
+            PropertyChanges {
+                target: leftIcon
+                visible: true
             }
         },
         State {
@@ -119,6 +166,20 @@ Rectangle {
             PropertyChanges {
                 target: head
                 anchors.margins: 0
+                height: heightHeadMobile
+                color: colorBackgroundMobile
+            }
+            PropertyChanges {
+                target: logo
+                visible: false
+            }
+            PropertyChanges {
+                target: centerMobileElement
+                visible: true
+            }
+            PropertyChanges {
+                target: leftIcon
+                visible: true
             }
         }
     ]
@@ -129,26 +190,11 @@ Rectangle {
         onMobileModeChanged: {
             if (mobileMode) {
                 privateVar.mobileModeHead = true;
-                if (colorMobileMode) {
-                    color = colorBackgroundMobile;
-                }
-                else {
-                    color = colorBackgroundMobile;
-                }
-
-                anchors.margins = 0;
-                height = 48;
-                logo.visible = false;
-                centerMobileElement.visible = true;
                 leftIcon.visible = true;
             }
             else {
                 privateVar.mobileModeHead = false;
-                anchors.margins = marginCommon;
-                color = colorBackground;
-                height = heightHead;
-                logo.visible = true;
-                centerMobileElement.visible = false;
+
                 leftIcon.visible = false;
             }
         }

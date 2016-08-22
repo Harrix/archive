@@ -35,9 +35,9 @@ Rectangle {
 
         onOpenNavigationDrawerChanged: {
             if (openNavigationDrawer === true)
-                showNavigationDrawer ();
+                showNavigationDrawer();
             if (openNavigationDrawer === false)
-                hideNavigationDrawer ();
+                hideNavigationDrawer();
         }
     }
 
@@ -132,7 +132,7 @@ Rectangle {
                 enabled: false
                 anchors.fill: parent
                 hoverEnabled: true
-                onClicked: toogleNavigationDrawer ()
+                onClicked: toogleNavigationDrawer()
 
                 drag.target: navigationDrawer
                 drag.minimumX: privateVar.minimumX
@@ -200,7 +200,7 @@ Rectangle {
     }
 
 
-    function showNavigationDrawer () {
+    function showNavigationDrawer() {
         privateVar.openNavigationDrawer = true;
         navigationDrawer.x = 0;
         if (privateVar.mobileModeDrawer)
@@ -210,7 +210,7 @@ Rectangle {
         privateVar.startDrag = false;
     }
 
-    function hideNavigationDrawer () {
+    function hideNavigationDrawer() {
         privateVar.openNavigationDrawer = false;
         navigationDrawer.x = privateVar.minimumX;
         animationDarkOff.running = true;

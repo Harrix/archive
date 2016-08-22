@@ -37,7 +37,7 @@ ApplicationWindow {
     Column {
         id: mainColumn
         height: parent.height
-        width: widthPaneRight ()
+        width: widthPaneRight()
         y: 0
         z: navigationDrawer.zNavigationDrawer-1
         anchors.margins: 0
@@ -75,14 +75,14 @@ ApplicationWindow {
     onHeightChanged:       checkMobileMode();
     Component.onCompleted: checkMobileMode();
 
-    function checkMobileMode () {
+    function checkMobileMode() {
         var check = ((mainWindow.width <= widthTransitionInMobileMode)
                       ||(mainWindow.width < mainWindow.height));
         mobileMode = check ? true : false;
         sendMobileMode(mobileMode);
     }
 
-    function widthPaneRight () {
+    function widthPaneRight() {
         if (mobileMode)
             return mainWindow.width;
         else

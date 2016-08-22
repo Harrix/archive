@@ -3,6 +3,8 @@ import QtQuick.Controls 2.0
 import "."
 
 Button {
+    id: button
+
     property alias icon: loaderIcon.sourceComponent
 
     property string fontName: SettingsHarrixQML.fontName
@@ -19,8 +21,6 @@ Button {
     property int spacingIconText: 10
     property int fontWeightButton: Font.Bold
     property int fontCapitalizationButton:Font.AllUppercase
-
-    id: control
 
     padding: paddingButton
     leftPadding: leftPaddingButton
@@ -39,7 +39,7 @@ Button {
 
         Text {
             id: text
-            text: control.text
+            text: button.text
             font.family: fontName
             font.pixelSize: fontSize
             font.weight: fontWeightButton
@@ -63,7 +63,7 @@ Button {
             hoverEnabled: true
             onEntered: parent.color = colorButtonHover
             onExited: parent.color = colorButton
-            onClicked: control.clicked()
+            onClicked: button.clicked()
         }
 
         Behavior on color {
@@ -76,7 +76,7 @@ Button {
     function defineColor() {
         if (enabled === false)
             return colorButtonNotEnabled;
-        if (control.down)
+        if (button.down)
             return colorButtonHover;
         else
             return colorButton;

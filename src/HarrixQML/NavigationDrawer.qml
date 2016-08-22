@@ -151,29 +151,6 @@ Rectangle {
         }
     }
 
-    function releasedDrag(mouseArea) {
-        if (mouseArea.drag.active) {
-            if (betweenTwoNumbers(navigationDrawer.x,
-                                  -(1-percentFailureSwipe)*navigationDrawer.width, 0)) {
-                if (navigationDrawer.x > privateVar.startX)
-                    showNavigationDrawer();
-            }
-
-            if (privateVar.startDrag === true) {
-                if (betweenTwoNumbers(navigationDrawer.x,
-                                      -percentFailureSwipe*navigationDrawer.width, 0)) {
-                    if (navigationDrawer.x < privateVar.startX)
-                        showNavigationDrawer();
-                }
-            }
-
-            if (privateVar.startDrag === true)
-                hideNavigationDrawer();
-
-            Qt.inputMethod.hide();
-        }
-    }
-
     onXChanged: {
         if ((mouseAreaDrag.drag.active)||(mouseAreaStartDrag.drag.active)) {
             if (privateVar.startDrag === false) {
@@ -232,6 +209,29 @@ Rectangle {
                 privateVar.openNavigationDrawer = true;
             else
                 privateVar.openNavigationDrawer = false;
+    }
+
+    function releasedDrag(mouseArea) {
+        if (mouseArea.drag.active) {
+            if (betweenTwoNumbers(navigationDrawer.x,
+                                  -(1-percentFailureSwipe)*navigationDrawer.width, 0)) {
+                if (navigationDrawer.x > privateVar.startX)
+                    showNavigationDrawer();
+            }
+
+            if (privateVar.startDrag === true) {
+                if (betweenTwoNumbers(navigationDrawer.x,
+                                      -percentFailureSwipe*navigationDrawer.width, 0)) {
+                    if (navigationDrawer.x < privateVar.startX)
+                        showNavigationDrawer();
+                }
+            }
+
+            if (privateVar.startDrag === true)
+                hideNavigationDrawer();
+
+            Qt.inputMethod.hide();
+        }
     }
 
     function lineTwoPoint(x, x1, y1, x2, y2) {

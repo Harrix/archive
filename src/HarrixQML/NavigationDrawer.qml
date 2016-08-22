@@ -33,14 +33,10 @@ Rectangle {
         property bool mobileModeDrawer: true
 
         onOpenNavigationDrawerChanged: {
-            if (openNavigationDrawer === true) {
+            if (openNavigationDrawer === true)
                 showNavigationDrawer ();
-                console.log ("open");
-            }
-            if (openNavigationDrawer === false) {
+            if (openNavigationDrawer === false)
                 hideNavigationDrawer ();
-                console.log ("close");
-            }
         }
     }
 
@@ -194,7 +190,6 @@ Rectangle {
         id: listenerSignals
 
         onMobileModeChanged: {
-            console.log("!!!!!!!!!!!")
             if (mobileMode) {
                 privateVar.mobileModeDrawer = true;
                 privateVar.openNavigationDrawer = false;
@@ -202,7 +197,6 @@ Rectangle {
                 mouseAreaStartDrag.enabled = true;
                 mouseAreaDark.enabled = true;
                 animationDarkOff.running = true;
-                console.log("signal close")
             }
             else {
                 privateVar.mobileModeDrawer = false;
@@ -211,7 +205,6 @@ Rectangle {
                 mouseAreaStartDrag.enabled = false;
                 mouseAreaDark.enabled = false;
                 animationDarkOff.running = true;
-                console.log("signal open")
             }
         }
     }

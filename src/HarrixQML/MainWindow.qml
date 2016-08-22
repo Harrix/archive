@@ -74,8 +74,8 @@ ApplicationWindow {
 
     function widthPaneRight () {
         if (mobileMode)
-            return mainWindow.width
+            return mainWindow.width;
         else
-            return mainWindow.width - navigationDrawer.width
+            return mainWindow.width - navigationDrawer.width;
     }
 }

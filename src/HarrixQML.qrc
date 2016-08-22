@@ -23,5 +23,9 @@
         <file>HarrixQML/images/menu-white.svg</file>
         <file>HarrixQML/images/arrow.svg</file>
         <file>HarrixQML/images/arrow-white.svg</file>
+        <file>HarrixQML/images/search.svg</file>
+        <file>HarrixQML/images/search-share.svg</file>
+        <file>HarrixQML/images/share.svg</file>
+        <file>HarrixQML/images/share-white.svg</file>
     </qresource>
 </RCC>

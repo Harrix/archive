@@ -8,6 +8,7 @@ Rectangle {
     property alias window: connectionsChangeSizeWindow.target
 
     property alias centerMobileElementLoader: centerMobileElement
+    property alias centerMobileElementLoader: centerMobileElement
 
     property bool colorMobileMode: false
 

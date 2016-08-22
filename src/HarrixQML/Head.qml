@@ -6,7 +6,7 @@ Rectangle {
     //Variables that it is necessary to set.
     property alias logo: logo
     property alias centerMobileElement: centerMobileElement.sourceComponent
-    property alias signalSender: connectionsChangeSizeWindow.target
+    property alias signalSender: listenerSignals.target
 
 
     property bool colorMobileMode: false
@@ -78,7 +78,7 @@ Rectangle {
     }
 
     Connections {
-        id: connectionsChangeSizeWindow
+        id: listenerSignals
 
         onMobileModeChanged: {
             if (mobileMode) {

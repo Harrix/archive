@@ -5,7 +5,7 @@ import "."
 
 Rectangle {
     property alias drawer: contentLoader.sourceComponent
-    property alias signalSender: connectionsChangeSizeWindow.target
+    property alias signalSender: listenerSignals.target
 
     property string colorBackground: SettingsHarrixQML.colorBackground
     property int durationAnimation: SettingsHarrixQML.durationAnimation
@@ -184,7 +184,7 @@ Rectangle {
     }
 
     Connections {
-        id: connectionsChangeSizeWindow
+        id: listenerSignals
 
         onMobileModeChanged: {
             if (mobileMode) {

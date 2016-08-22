@@ -129,11 +129,13 @@ Rectangle {
 
         onSendWidthForMenu: {
             var wM = rowMainMenu.width;
-            console.log ("wM = " + wM);
             if (w > wM)
                 state = "expanded";
             else
-                state = "collapsed";
+                if (colorMobileMode)
+                    state = "collapsedColor";
+                else
+                    state = "collapsed";
         }
     }
 }

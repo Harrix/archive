@@ -80,6 +80,7 @@ Rectangle {
     MainMenu {
         id: mainMenuHead
         signalSender: head
+        colorMobileMode: head.colorMobileMode
         anchors.right: parent.right
         anchors.verticalCenter: parent.verticalCenter
     }
@@ -216,10 +217,9 @@ Rectangle {
     onWidthChanged: {
         var w = width;
         if (logo.visible)
-            w = w - logo.x - logo.width;
+            w = w - logo.x - logo.width - marginIcons;
         else
-            w = w - centerMobileElement.x - centerMobileElement.width;
-        console.log(w)
+            w = w - centerMobileElement.x - centerMobileElement.width - marginIcons;
         sendWidthForMenu(w)
     }
 }

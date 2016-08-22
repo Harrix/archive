@@ -38,6 +38,9 @@ Rectangle {
         property bool firstOnSendMobileMode: false
     }
 
+    //Signals
+    signal sendWidthForMenu(real w);
+
     width: parent.width
     height: heightHead
     anchors.margins: marginCommon
@@ -208,5 +211,15 @@ Rectangle {
                 privateVar.firstOnSendMobileMode = true;
             }
         }
+    }
+
+    onWidthChanged: {
+        var w = width;
+        if (logo.visible)
+            w = w - logo.x - logo.width;
+        else
+            w = w - centerMobileElementItem.x - centerMobileElementItem.width;
+        console.log(w)
+        sendWidthForMenu(w)
     }
 }

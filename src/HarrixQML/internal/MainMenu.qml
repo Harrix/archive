@@ -126,5 +126,14 @@ Rectangle {
 
     Connections {
         id: listenerSignals
+
+        onSendWidthForMenu: {
+            var wM = rowMainMenu.width;
+            console.log ("wM = " + wM);
+            if (w > wM)
+                state = "expanded";
+            else
+                state = "collapsed";
+        }
     }
 }

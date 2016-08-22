@@ -167,6 +167,7 @@ Rectangle {
         id: listenerSignals
 
         onMobileModeChanged: {
+            console.log("get signal");
             if (mobileMode) {
                 privateVar.mobileModeDrawer = true;
                 privateVar.openNavigationDrawer = false;
@@ -183,6 +184,10 @@ Rectangle {
                 mouseAreaDark.enabled = false;
                 animationDarkOff.running = true;
             }
+        }
+
+        onSendMobileMode: {
+            console.log("get sendMobileMode " + mobileMode);
         }
 
         onToogleNavigationDrawer: {

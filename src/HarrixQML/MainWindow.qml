@@ -22,8 +22,9 @@ ApplicationWindow {
 
     //Signals
     signal toogleNavigationDrawer();
+    signal sendMobileMode(bool mobileMode);
 
-    visibility: "Maximized"
+    //visibility: "Maximized"
     font.family: fontName
     font.pixelSize: fontSize
 
@@ -73,6 +74,7 @@ ApplicationWindow {
 
     onWidthChanged:  checkMobileMode();
     onHeightChanged: checkMobileMode();
+    Component.onCompleted: checkMobileMode();
 
     function checkMobileMode () {
         if ((mainWindow.width <= widthTransitionInMobileMode)
@@ -80,6 +82,8 @@ ApplicationWindow {
             mobileMode = true;
         else
             mobileMode = false;
+        console.log(mobileMode);
+        sendMobileMode(mobileMode);
     }
 
     function widthPaneRight () {

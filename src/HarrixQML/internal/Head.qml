@@ -10,7 +10,7 @@ Rectangle {
     property alias logo: logo
     property alias centerMobileElement: centerMobileElement.sourceComponent
     property alias signalSender: listenerSignals.target
-    property alias mainMenu: mainMenu.model
+    property alias mainMenu: mainMenuHead.mainMenu
 
     //Properties that it is to set if necessary
     property bool colorMobileMode: false
@@ -74,59 +74,11 @@ Rectangle {
         visible: false
     }
 
-    Image {
-        id: rightIcon
-        height: heightIcons
-        fillMode: Image.PreserveAspectFit
-        visible: false
-        anchors.right: head.right
-        anchors.verticalCenter: parent.verticalCenter
-        anchors.rightMargin: marginIcons
-        MouseArea {
-            anchors.fill: parent
-            hoverEnabled: true
-            //onEntered: parent.color = SettingsHarrixQML.colorBlue
-            //onExited: parent.color = "#25292c"
-            cursorShape: Qt.PointingHandCursor
-            //onClicked: toogleNavigationDrawer()
-        }
-    }
-
-    Row {
-        id: rowMainMenu
-        spacing: 0
+    MainMenu {
+        id: mainMenuHead
+        signalSender: head
         anchors.right: parent.right
         anchors.verticalCenter: parent.verticalCenter
-        anchors.rightMargin: marginIcons
-
-        Repeater {
-            id: mainMenu
-
-            Label {
-                text: name
-                font.pixelSize: SettingsHarrixQML.fontSize
-                font.family: SettingsHarrixQML.fontName
-                color: "#25292c"
-                padding: 5
-                leftPadding: 8
-                rightPadding: 8
-
-                MouseArea {
-                    anchors.fill: parent
-                    hoverEnabled: true
-                    onEntered: parent.color = SettingsHarrixQML.colorBlue
-                    onExited: parent.color = "#25292c"
-                    cursorShape: Qt.PointingHandCursor
-                    //onClicked:
-                }
-
-                Behavior on color {
-                    ColorAnimation {
-                        duration: durationAnimation
-                    }
-                }
-            }
-        }
     }
 
     states: [
@@ -156,15 +108,6 @@ Rectangle {
                 visible: false
                 source: "qrc:/HarrixQML/images/drawer.svg"
             }
-            PropertyChanges {
-                target: rightIcon
-                visible: false
-                source: "qrc:/HarrixQML/images/menu.svg"
-            }
-            PropertyChanges {
-                target: rowMainMenu
-                visible: true
-            }
         },
         State {
             name: "normalScroll"
@@ -192,15 +135,6 @@ Rectangle {
                 visible: false
                 source: "qrc:/HarrixQML/images/drawer.svg"
             }
-            PropertyChanges {
-                target: rightIcon
-                visible: false
-                source: "qrc:/HarrixQML/images/menu.svg"
-            }
-            PropertyChanges {
-                target: rowMainMenu
-                visible: true
-            }
         },
         State {
             name: "mobile"
@@ -227,15 +161,6 @@ Rectangle {
                 visible: true
                 source: "qrc:/HarrixQML/images/drawer.svg"
             }
-            PropertyChanges {
-                target: rightIcon
-                visible: true
-                source: "qrc:/HarrixQML/images/menu.svg"
-            }
-            PropertyChanges {
-                target: rowMainMenu
-                visible: false
-            }
         },
         State {
             name: "mobileColor"
@@ -261,15 +186,6 @@ Rectangle {
                 target: leftIcon
                 visible: true
                 source: "qrc:/HarrixQML/images/drawer-white.svg"
-            }
-            PropertyChanges {
-                target: rightIcon
-                visible: true
-                source: "qrc:/HarrixQML/images/menu-white.svg"
-            }
-            PropertyChanges {
-                target: rowMainMenu
-                visible: false
             }
         }
     ]

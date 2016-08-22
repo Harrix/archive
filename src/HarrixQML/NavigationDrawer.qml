@@ -190,15 +190,12 @@ Rectangle {
         }
     }
 
+    Component.onCompleted: setState()
+
     Connections {
         id: listenerSignals
 
-        onMobileModeChanged: {
-            if (mobileMode)
-                state = "mobileMode";
-            else
-                state = "fixMode";
-        }
+        onMobileModeChanged: setState()
 
         onToogleNavigationDrawer: {
             if (privateVar.mobileModeDrawer)
@@ -207,6 +204,13 @@ Rectangle {
                 else
                     privateVar.openNavigationDrawer = false;
         }
+    }
+
+    function setState() {
+        if (mobileMode)
+            state = "mobileMode";
+        else
+            state = "fixMode";
     }
 
     function showNavigationDrawer () {

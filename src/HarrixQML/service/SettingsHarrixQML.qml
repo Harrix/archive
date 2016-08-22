@@ -38,4 +38,7 @@ QtObject {
 
     //Durations
     readonly property int durationAnimation: 300
+
+    //Cursors
+    readonly property int cursorHover: Qt.PointingHandCursor
 }

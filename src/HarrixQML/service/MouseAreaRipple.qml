@@ -3,13 +3,13 @@ import QtGraphicalEffects 1.0
 import ".."
 
 MouseArea {
+    id: mouseArea
+
     property real opacityRipple: 0.3
     property color colorRipple: "#fff"
     property int durationAnimation: SettingsHarrixQML.durationAnimation
     property int easingTypeRipple: Easing.Linear
     property int cursorShapeRipple: Qt.PointingHandCursor
-
-    id: mouseArea
 
     anchors.fill: parent
     cursorShape: cursorShapeRipple

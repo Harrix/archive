@@ -105,6 +105,22 @@ Rectangle {
                 target: rowMainMenu
                 visible: false
             }
+        },
+        State {
+            name: "collapsedColor"
+            PropertyChanges {
+                target: mainMenuHead
+                width: rowMainMenu.width
+            }
+            PropertyChanges {
+                target: rightIcon
+                visible: true
+                source: "qrc:/HarrixQML/images/menu-white.svg"
+            }
+            PropertyChanges {
+                target: rowMainMenu
+                visible: false
+            }
         }
     ]
 

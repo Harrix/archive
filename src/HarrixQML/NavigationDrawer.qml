@@ -151,18 +151,6 @@ Rectangle {
         }
     }
 
-    onXChanged: {
-        if ((mouseAreaDrag.drag.active)||(mouseAreaStartDrag.drag.active)) {
-            if (privateVar.startDrag === false) {
-                privateVar.startDrag = true;
-                privateVar.startX = x;
-            }
-            dark.opacity = lineTwoPoint(x,
-                                        privateVar.minimumX, 0,
-                                        0, opacityDarkNavigationDrawer);
-        }
-    }
-
     states: [
         State {
             name: "mobileMode"
@@ -189,6 +177,18 @@ Rectangle {
             PropertyChanges { target: animationDarkOff; running: true; }
         }
     ]
+
+    onXChanged: {
+        if ((mouseAreaDrag.drag.active)||(mouseAreaStartDrag.drag.active)) {
+            if (privateVar.startDrag === false) {
+                privateVar.startDrag = true;
+                privateVar.startX = x;
+            }
+            dark.opacity = lineTwoPoint(x,
+                                        privateVar.minimumX, 0,
+                                        0, opacityDarkNavigationDrawer);
+        }
+    }
 
     Connections {
         id: listenerSignals

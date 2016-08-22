@@ -218,7 +218,7 @@ Rectangle {
         if (logo.visible)
             w = w - logo.x - logo.width;
         else
-            w = w - centerMobileElementItem.x - centerMobileElementItem.width;
+            w = w - centerMobileElement.x - centerMobileElement.width;
         console.log(w)
         sendWidthForMenu(w)
     }

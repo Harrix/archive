@@ -28,11 +28,13 @@ Rectangle {
     property int heightLogo: 60
     property int heightLogoScroll: 40
     property int heightIcons: 22
+    property int marginIcons: 25
 
     //Private properties
     QtObject {
         id: privateVar
-        property bool mobileModeHead: true
+        property bool mobileModeHead: false
+        property bool firstOnSendMobileMode: false
     }
 
     width: parent.width
@@ -42,18 +44,16 @@ Rectangle {
 
     Image {
         id: leftIcon
-        source: "qrc:/HarrixQML/images/drawer-white.svg"
         height: heightIcons
         fillMode: Image.PreserveAspectFit
         anchors.left: head.left
         anchors.verticalCenter: parent.verticalCenter
-        anchors.leftMargin: marginCommon
+        anchors.leftMargin: marginIcons
         visible: false
     }
 
     Image {
         id: logo
-        height: heightLogo
         fillMode: Image.PreserveAspectFit
         anchors.left: head.left
         anchors.verticalCenter: parent.verticalCenter
@@ -67,24 +67,27 @@ Rectangle {
 
     Image {
         id: rightIcon
-        source: "qrc:/HarrixQML/images/menu-white.svg"
         height: heightIcons
         fillMode: Image.PreserveAspectFit
         visible: false
-        anchors.rightMargin: marginCommon
+        anchors.right: head.right
+        anchors.verticalCenter: parent.verticalCenter
+        anchors.rightMargin: marginIcons
     }
 
     Row {
+        id: rowMainMenu
         spacing: 5
         anchors.right: parent.right
         anchors.verticalCenter: parent.verticalCenter
+        anchors.rightMargin: marginIcons
 
         Repeater {
             id: mainMenu
 
             Label {
                 text: name
-                font.pointSize: SettingsHarrixQML.fontSize
+                font.pixelSize: SettingsHarrixQML.fontSize
                 font.family: SettingsHarrixQML.fontName
             }
         }
@@ -93,6 +96,10 @@ Rectangle {
     states: [
         State {
             name: "normal"
+            PropertyChanges {
+                target: privateVar
+                mobileModeHead: false
+            }
             PropertyChanges {
                 target: head
                 anchors.margins: marginCommon
@@ -111,10 +118,24 @@ Rectangle {
             PropertyChanges {
                 target: leftIcon
                 visible: false
+                source: "qrc:/HarrixQML/images/drawer.svg"
+            }
+            PropertyChanges {
+                target: rightIcon
+                visible: false
+                source: "qrc:/HarrixQML/images/menu.svg"
+            }
+            PropertyChanges {
+                target: rowMainMenu
+                visible: true
             }
         },
         State {
             name: "normalScroll"
+            PropertyChanges {
+                target: privateVar
+                mobileModeHead: false
+            }
             PropertyChanges {
                 target: head
                 anchors.margins: marginCommon
@@ -133,10 +154,24 @@ Rectangle {
             PropertyChanges {
                 target: leftIcon
                 visible: false
+                source: "qrc:/HarrixQML/images/drawer.svg"
+            }
+            PropertyChanges {
+                target: rightIcon
+                visible: false
+                source: "qrc:/HarrixQML/images/menu.svg"
+            }
+            PropertyChanges {
+                target: rowMainMenu
+                visible: true
             }
         },
         State {
             name: "mobile"
+            PropertyChanges {
+                target: privateVar
+                mobileModeHead: true
+            }
             PropertyChanges {
                 target: head
                 anchors.margins: 0
@@ -154,10 +189,24 @@ Rectangle {
             PropertyChanges {
                 target: leftIcon
                 visible: true
+                source: "qrc:/HarrixQML/images/drawer.svg"
+            }
+            PropertyChanges {
+                target: rightIcon
+                visible: true
+                source: "qrc:/HarrixQML/images/menu.svg"
+            }
+            PropertyChanges {
+                target: rowMainMenu
+                visible: false
             }
         },
         State {
             name: "mobileColor"
+            PropertyChanges {
+                target: privateVar
+                mobileModeHead: true
+            }
             PropertyChanges {
                 target: head
                 anchors.margins: 0
@@ -175,6 +224,16 @@ Rectangle {
             PropertyChanges {
                 target: leftIcon
                 visible: true
+                source: "qrc:/HarrixQML/images/drawer-white.svg"
+            }
+            PropertyChanges {
+                target: rightIcon
+                visible: true
+                source: "qrc:/HarrixQML/images/menu-white.svg"
+            }
+            PropertyChanges {
+                target: rowMainMenu
+                visible: false
             }
         }
     ]
@@ -182,16 +241,20 @@ Rectangle {
     Connections {
         id: listenerSignals
 
-        /*onMobileModeChanged: {
-            if (mobileMode) {
-                privateVar.mobileModeHead = true;
-                leftIcon.visible = true;
+        onSendMobileMode: {
+            if ((privateVar.firstOnSendMobileMode === false)
+                    || (mobileMode !== privateVar.mobileModeHead)) {
+                if (mobileMode) {
+                    if (colorMobileMode)
+                        state = "mobileColor";
+                    else
+                        state = "mobile";
+                }
+                else {
+                    state = "normal";
+                }
+                privateVar.firstOnSendMobileMode = true;
             }
-            else {
-                privateVar.mobileModeHead = false;
-
-                leftIcon.visible = false;
-            }
-        }*/
+        }
     }
 }

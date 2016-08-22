@@ -64,36 +64,6 @@ Rectangle {
         anchors.rightMargin: 20
         color: "transparent"
 
-        /*ListView {
-            id: listView
-            currentIndex: -1
-            anchors.fill: parent
-            orientation: ListView.Horizontal
-
-            delegate: ItemDelegate {
-                text: model.title
-                highlighted: ListView.isCurrentItem
-                onClicked: {
-                    if (listView.currentIndex != index) {
-                        listView.currentIndex = index
-                        //titleLabel.text = model.title
-                        //stackView.replace(model.source)
-                    }
-                    //drawer.close()
-                }
-            }
-
-            model: ListModel {
-                ListElement { title: "BusyIndicator"; source: "qrc:/pages/BusyIndicatorPage.qml" }
-                ListElement { title: "Button"; source: "qrc:/pages/ButtonPage.qml" }
-            }
-
-            ScrollIndicator.vertical: ScrollIndicator { }
-        }*/
-
-
-
-
         Image {
             id: rightIcon
             source: "qrc:/HarrixQML/images/menu-white.svg"

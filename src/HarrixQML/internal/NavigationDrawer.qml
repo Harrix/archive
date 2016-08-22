@@ -109,6 +109,10 @@ Rectangle {
                     mouseAreaDark.enabled = true;
                     mouseAreaDark.visible = true;
                 }
+                if (opacity === 0) {
+                    mouseAreaDark.enabled = false;
+                    mouseAreaDark.visible = false;
+                }
             }
 
         }

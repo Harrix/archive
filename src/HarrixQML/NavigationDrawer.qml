@@ -5,7 +5,7 @@ import "."
 
 Rectangle {
     property alias drawer: contentLoader.sourceComponent
-    property alias window: connectionsChangeSizeWindow.target
+    property alias signalSender: connectionsChangeSizeWindow.target
 
     property string colorBackground: SettingsHarrixQML.colorBackground
     property int durationAnimation: SettingsHarrixQML.durationAnimation

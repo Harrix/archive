@@ -6,7 +6,7 @@ Rectangle {
     //Variables that it is necessary to set.
     property alias logo: logo
     property alias centerMobileElement: centerMobileElement.sourceComponent
-    property alias window: connectionsChangeSizeWindow.target
+    property alias signalSender: connectionsChangeSizeWindow.target
 
 
     property bool colorMobileMode: false

@@ -22,7 +22,7 @@ ApplicationWindow {
     NavigationDrawer {
         id: navigationDrawer
         drawer: drawer
-        window: mainWindow
+        signalSender: mainWindow
     }
 
     Column {
@@ -37,7 +37,7 @@ ApplicationWindow {
 
         Head {
             id: head
-            window: mainWindow
+            signalSender: mainWindow
         }
 
         Rectangle {

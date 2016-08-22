@@ -24,7 +24,7 @@ ApplicationWindow {
     signal toogleNavigationDrawer();
     signal sendMobileMode(bool mobileMode);
 
-    visibility: "Maximized"
+    //visibility: "Maximized"
     font.family: fontName
     font.pixelSize: fontSize
 

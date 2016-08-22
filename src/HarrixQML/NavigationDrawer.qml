@@ -170,6 +170,10 @@ Rectangle {
         onSendMobileMode: {
             if ((privateVar.firstOnSendMobileMode === false)
                     || (mobileMode !== privateVar.mobileModeDrawer)) {
+                console.log (privateVar.firstOnSendMobileMode);
+                console.log (mobileMode);
+                console.log (privateVar.mobileModeDrawer);
+                console.log ("---");
                 if (mobileMode) {
                     privateVar.mobileModeDrawer = true;
                     privateVar.openNavigationDrawer = false;
@@ -186,8 +190,6 @@ Rectangle {
                     mouseAreaDark.enabled = false;
                     animationDarkOff.running = true;
                 }
-            }
-            else {
                 privateVar.firstOnSendMobileMode = true;
             }
         }

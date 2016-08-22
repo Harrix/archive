@@ -3,14 +3,18 @@ import QtQuick.Controls 2.0
 import "."
 
 Rectangle {
+    //Variables that it is necessary to set.
     property alias logo: logo
     property alias centerMobileElement: centerMobileElement.sourceComponent
     property alias window: connectionsChangeSizeWindow.target
 
-    property alias centerMobileElementItem: centerMobileElement.item
 
     property bool colorMobileMode: false
 
+    //Variables, through which you can access the elements.
+    property alias centerMobileElementItem: centerMobileElement.item
+
+    //Common properties which can be changed if necessary.
     property int marginCommon: SettingsHarrixQML.marginCommon
     property color colorBackground: SettingsHarrixQML.colorBackground
     property color colorBackgroundMobile: SettingsHarrixQML.colorRed

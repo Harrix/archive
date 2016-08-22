@@ -1,17 +1,20 @@
 module HarrixQML
 
 # Visual components
-ApplicationWindow 1.0 internal/ApplicationWindow.qml
-MainWindow 1.0 MainWindow.qml
-NavigationDrawer 1.0 internal/NavigationDrawer.qml
-Head 1.0 internal/Head.qml
 Button 1.0 Button.qml
 ButtonBlue 1.0 ButtonBlue.qml
 ButtonGreen 1.0 ButtonGreen.qml
+MainWindow 1.0 MainWindow.qml
+TextField 1.0 TextField.qml
+
+# Internal components
+ApplicationWindow 1.0 internal/ApplicationWindow.qml
+Head 1.0 internal/Head.qml
 IconFontAwesome 1.0 internal/IconFontAwesome.qml
+MouseAreaRipple 1.0 internal/MouseAreaRipple.qml
+NavigationDrawer 1.0 internal/NavigationDrawer.qml
 
 # Service components
-MouseAreaRipple 1.0 internal/MouseAreaRipple.qml
 Fonts 1.0 service/Fonts.qml
 singleton FontAwesome 1.0 service/FontAwesome.qml
 singleton SettingsHarrixQML 1.0 service/SettingsHarrixQML.qml

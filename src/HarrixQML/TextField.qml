@@ -3,7 +3,7 @@ import QtQuick.Controls 2.0
 import "."
 
 TextField {
-    id: control
+    id: textField
 
     property string fontName: SettingsHarrixQML.fontName
     property int fontSize: SettingsHarrixQML.fontSize
@@ -24,10 +24,10 @@ TextField {
     }
 
     background: Rectangle {
-        y: control.height - height - control.bottomPadding / 2
+        y: textField.height - height - textField.bottomPadding / 2
         implicitWidth: 120
-        height: control.activeFocus ? 2 : 1
-        color: control.activeFocus ? colorTextFieldHover : colorTextField
+        height: textField.activeFocus ? 2 : 1
+        color: textField.activeFocus ? colorTextFieldHover : colorTextField
 
         Behavior on color {
             ColorAnimation { duration: durationAnimation }

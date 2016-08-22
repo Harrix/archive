@@ -19,8 +19,4 @@ ApplicationWindow {
     height: heightWindow
     title: qsTr("Harrix Window")
     color: colorBackground
-    font.family: fontName
-    font.pixelSize: fontSize
-
-    Fonts {}
 }

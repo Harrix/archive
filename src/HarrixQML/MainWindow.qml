@@ -21,6 +21,8 @@ ApplicationWindow {
     property int widthTransitionInMobileMode: 640
 
     visibility: "Maximized"
+    font.family: fontName
+    font.pixelSize: fontSize
 
     NavigationDrawer {
         id: navigationDrawer
@@ -58,6 +60,8 @@ ApplicationWindow {
             }
         }
     }
+
+    Fonts {}
 
     Connections {
         id: listenerSignals

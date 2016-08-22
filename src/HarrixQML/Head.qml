@@ -22,6 +22,7 @@ Rectangle {
     property int marginCommon: SettingsHarrixQML.marginCommon
     property color colorBackground: SettingsHarrixQML.colorBackground
     property color colorBackgroundMobile: SettingsHarrixQML.colorRed
+    property int durationAnimation: SettingsHarrixQML.durationAnimation
     property int heightHead: 84
     property int heightHeadScroll: 48
     property int heightHeadMobile: 48
@@ -77,7 +78,7 @@ Rectangle {
 
     Row {
         id: rowMainMenu
-        spacing: 5
+        spacing: 0
         anchors.right: parent.right
         anchors.verticalCenter: parent.verticalCenter
         anchors.rightMargin: marginIcons
@@ -89,6 +90,25 @@ Rectangle {
                 text: name
                 font.pixelSize: SettingsHarrixQML.fontSize
                 font.family: SettingsHarrixQML.fontName
+                color: "#25292c"
+                padding: 5
+                leftPadding: 8
+                rightPadding: 8
+
+                MouseArea {
+                    anchors.fill: parent
+                    hoverEnabled: true
+                    onEntered: parent.color = SettingsHarrixQML.colorBlue
+                    onExited: parent.color = "#25292c"
+                    cursorShape: Qt.PointingHandCursor
+                    //onClicked:
+                }
+
+                Behavior on color {
+                    ColorAnimation {
+                        duration: durationAnimation
+                    }
+                }
             }
         }
     }

@@ -4,7 +4,7 @@ module HarrixQML
 ApplicationWindow 1.0 internal/ApplicationWindow.qml
 MainWindow 1.0 MainWindow.qml
 NavigationDrawer 1.0 internal/NavigationDrawer.qml
-Head 1.0 Head.qml
+Head 1.0 internal/Head.qml
 Button 1.0 Button.qml
 ButtonBlue 1.0 ButtonBlue.qml
 ButtonGreen 1.0 ButtonGreen.qml

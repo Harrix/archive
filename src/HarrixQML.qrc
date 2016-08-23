@@ -29,6 +29,5 @@
         <file>HarrixQML/service/SettingsHarrixQML.qml</file>
         <file>HarrixQML/internal/MainMenu.qml</file>
         <file>HarrixQML/Label.qml</file>
-        <file>HarrixQML/internal/MouseAreaRippleWithoutMask.qml</file>
     </qresource>
 </RCC>

@@ -12,7 +12,6 @@ ApplicationWindow 1.0 internal/ApplicationWindow.qml
 Head 1.0 internal/Head.qml
 IconFontAwesome 1.0 internal/IconFontAwesome.qml
 MouseAreaRipple 1.0 internal/MouseAreaRipple.qml
-MouseAreaRippleWithoutMask 1.0 internal/MouseAreaRippleWithoutMask.qml
 NavigationDrawer 1.0 internal/NavigationDrawer.qml
 
 # Service components

@@ -59,12 +59,13 @@ Rectangle {
                 leftPadding: 8
                 rightPadding: 8
 
-                MouseArea {
+                MouseAreaRippleWithoutMask {
                     anchors.fill: parent
                     hoverEnabled: true
                     onEntered: parent.color = colorFontMenuHover
                     onExited: parent.color = colorFontMenu
                     cursorShape: Qt.PointingHandCursor
+                    colorRipple: SettingsHarrixQML.colorBlue
                     //onClicked:
                 }
 

@@ -26,12 +26,10 @@ MainWindow {
 
     Component.onCompleted: {
         if (head.colorMobileMode) {
-            //head.logo.source = "qrc:/images/logo-harrix-white.svg";
             head.centerMobileElementItem.source = "qrc:/images/logo-harrix-white.svg";
             console.log("head.colorMobileMode = " + head.colorMobileMode);
         }
         else {
-            //head.logo.source = "qrc:/images/logo-harrix.svg"
             head.centerMobileElementItem.source = "qrc:/images/logo-harrix.svg";
             console.log("head.colorMobileMode = " + head.colorMobileMode);
         }

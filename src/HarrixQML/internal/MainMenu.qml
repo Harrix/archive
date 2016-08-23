@@ -19,7 +19,7 @@ Rectangle {
     property int marginIcons: SettingsHarrixQML.marginIcons
     property int heightIcons: SettingsHarrixQML.heightIcons
     property color colorFontMenuHover: SettingsHarrixQML.colorBlue
-    property color colorFontMenu: SettingsHarrixQML.colorFont
+    property color colorFontMenu: "#25292c"
 
     state: "expanded"
 

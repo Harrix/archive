@@ -27,7 +27,7 @@ Rectangle {
     property int heightIcons: SettingsHarrixQML.heightIcons
     property int heightHead: 84
     property int heightHeadScroll: 48
-    property int heightHeadMobile: 48
+    property int heightHeadMobile: 56
     property int heightLogo: 60
     property int heightLogoScroll: 40
 

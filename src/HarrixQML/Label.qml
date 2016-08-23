@@ -18,4 +18,5 @@ Label {
     font.family: fontName
     color: colorFont
     lineHeight: fontLineHeight
+    horizontalAlignment: Text.AlignJustify
 }

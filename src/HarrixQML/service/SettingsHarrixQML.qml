@@ -29,8 +29,10 @@ QtObject {
     readonly property string fontName: "Open Sans"
     readonly property string fontNameCode: "PT Mono"
     readonly property int fontSize: 14
+    readonly property int fontSizeText: 16
     readonly property int fontSizeFontAwesome: 19
-    readonly property int fontRenderType: Text.QtRendering
+    readonly property int fontRenderType: Text.NativeRendering
+    readonly property real fontLineHeight: 1.3
 
     //Indents
     readonly property int marginCommon: 10

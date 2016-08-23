@@ -28,5 +28,6 @@
         <file>HarrixQML/service/Fonts.qml</file>
         <file>HarrixQML/service/SettingsHarrixQML.qml</file>
         <file>HarrixQML/internal/MainMenu.qml</file>
+        <file>HarrixQML/Label.qml</file>
     </qresource>
 </RCC>

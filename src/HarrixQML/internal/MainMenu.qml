@@ -19,7 +19,7 @@ Rectangle {
     property int marginIcons: SettingsHarrixQML.marginIcons
     property int heightIcons: SettingsHarrixQML.heightIcons
     property color colorFontMenuHover: SettingsHarrixQML.colorBlue
-    property color colorFontMenu: "#25292c"
+    property color colorFontMenu: SettingsHarrixQML.colorFont
 
     state: "expanded"
 
@@ -53,9 +53,8 @@ Rectangle {
 
             Label {
                 text: name
-                font.pixelSize: fontSize
-                font.family: fontName
-                color: "#25292c"
+                fontSize: fontSize
+                color: colorFontMenu
                 padding: 5
                 leftPadding: 8
                 rightPadding: 8

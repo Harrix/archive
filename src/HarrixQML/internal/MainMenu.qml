@@ -14,8 +14,12 @@ Rectangle {
     property bool colorMobileMode: false
 
     //Common properties which can be changed if necessary
-    property int marginIcons: 25
-    property int heightIcons: 22
+    property string fontName: SettingsHarrixQML.fontName
+    property int fontSize: SettingsHarrixQML.fontSize
+    property int marginIcons: SettingsHarrixQML.marginIcons
+    property int heightIcons: SettingsHarrixQML.heightIcons
+    property color colorFontMenuHover: SettingsHarrixQML.colorBlue
+    property color colorFontMenu: "#25292c"
 
     state: "expanded"
 
@@ -49,8 +53,8 @@ Rectangle {
 
             Label {
                 text: name
-                font.pixelSize: SettingsHarrixQML.fontSize
-                font.family: SettingsHarrixQML.fontName
+                font.pixelSize: fontSize
+                font.family: fontName
                 color: "#25292c"
                 padding: 5
                 leftPadding: 8
@@ -59,8 +63,8 @@ Rectangle {
                 MouseArea {
                     anchors.fill: parent
                     hoverEnabled: true
-                    onEntered: parent.color = SettingsHarrixQML.colorBlue
-                    onExited: parent.color = "#25292c"
+                    onEntered: parent.color = colorFontMenuHover
+                    onExited: parent.color = colorFontMenu
                     cursorShape: Qt.PointingHandCursor
                     //onClicked:
                 }
@@ -77,50 +81,29 @@ Rectangle {
     states: [
         State {
             name: "expanded"
-            PropertyChanges {
-                target: mainMenuHead
-                width: rowMainMenu.width
-            }
-            PropertyChanges {
-                target: rightIcon
-                visible: false
-            }
-            PropertyChanges {
-                target: rowMainMenu
-                visible: true
-            }
+            PropertyChanges { target: mainMenuHead; width: rowMainMenu.width; }
+            PropertyChanges { target: rightIcon; visible: false; }
+            PropertyChanges { target: rowMainMenu; visible: true; }
         },
         State {
             name: "collapsed"
-            PropertyChanges {
-                target: mainMenuHead
-                width: rowMainMenu.width
-            }
+            PropertyChanges { target: mainMenuHead; width: rowMainMenu.width; }
             PropertyChanges {
                 target: rightIcon
                 visible: true
                 source: "qrc:/HarrixQML/images/menu.svg"
             }
-            PropertyChanges {
-                target: rowMainMenu
-                visible: false
-            }
+            PropertyChanges { target: rowMainMenu; visible: false; }
         },
         State {
             name: "collapsedColor"
-            PropertyChanges {
-                target: mainMenuHead
-                width: rowMainMenu.width
-            }
+            PropertyChanges { target: mainMenuHead; width: rowMainMenu.width; }
             PropertyChanges {
                 target: rightIcon
                 visible: true
                 source: "qrc:/HarrixQML/images/menu-white.svg"
             }
-            PropertyChanges {
-                target: rowMainMenu
-                visible: false
-            }
+            PropertyChanges { target: rowMainMenu; visible: false; }
         }
     ]
 

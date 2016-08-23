@@ -35,6 +35,10 @@ QtObject {
     //Indents
     readonly property int marginCommon: 10
     readonly property int spacingCommon: 10
+    readonly property int marginIcons: 25
+
+    //Sizes
+    readonly property int heightIcons: 22
 
     //Durations
     readonly property int durationAnimation: 300

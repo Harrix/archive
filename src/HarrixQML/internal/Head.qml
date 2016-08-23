@@ -23,13 +23,14 @@ Rectangle {
     property color colorBackground: SettingsHarrixQML.colorBackground
     property color colorBackgroundMobile: SettingsHarrixQML.colorRed
     property int durationAnimation: SettingsHarrixQML.durationAnimation
+    property int marginIcons: SettingsHarrixQML.marginIcons
+    property int heightIcons: SettingsHarrixQML.heightIcons
     property int heightHead: 84
     property int heightHeadScroll: 48
     property int heightHeadMobile: 48
     property int heightLogo: 60
     property int heightLogoScroll: 40
-    property int heightIcons: 22
-    property int marginIcons: 25
+
 
     //Private properties
     QtObject {

@@ -6,8 +6,8 @@
 	.st0{fill:#FFFFFF;}
 </style>
 <g>
-	<circle class="st0" cx="70.8" cy="30.7" r="10.2"/>
-	<circle class="st0" cx="70.8" cy="70.8" r="10.2"/>
-	<circle class="st0" cx="70.8" cy="111" r="10.2"/>
+	<circle class="st0" cx="70.8" cy="31.7" r="10"/>
+	<circle class="st0" cx="70.8" cy="70.8" r="10"/>
+	<circle class="st0" cx="70.8" cy="110" r="10"/>
 </g>
 </svg>

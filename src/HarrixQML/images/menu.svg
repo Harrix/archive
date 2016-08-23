@@ -3,11 +3,11 @@
 <svg version="1.1" id="Layer_2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 viewBox="0 0 141.7 141.7" style="enable-background:new 0 0 141.7 141.7;" xml:space="preserve">
 <style type="text/css">
-	.st0{fill:#CCCCCC;}
+	.st0{fill:#25292C;}
 </style>
 <g>
-	<circle class="st0" cx="70.8" cy="30.7" r="10.2"/>
-	<circle class="st0" cx="70.8" cy="70.8" r="10.2"/>
-	<circle class="st0" cx="70.8" cy="111" r="10.2"/>
+	<circle class="st0" cx="70.8" cy="31.7" r="10"/>
+	<circle class="st0" cx="70.8" cy="70.8" r="10"/>
+	<circle class="st0" cx="70.8" cy="110" r="10"/>
 </g>
 </svg>

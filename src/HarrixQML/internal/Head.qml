@@ -203,12 +203,15 @@ Rectangle {
                     || (mobileMode !== privateVar.mobileModeHead)) {
                 if (mobileMode) {
                     if (colorMobileMode)
-                        state = "mobileColor";
+                        head.state = "mobileColor";
                     else
-                        state = "mobile";
+                        head.state = "mobile";
+                    console.log("mobile");
                 }
                 else {
-                    state = "normal";
+                    head.state = "normal";
+                    console.log("normal");
+                    console.log(logo.source);
                 }
                 privateVar.firstOnSendMobileMode = true;
             }

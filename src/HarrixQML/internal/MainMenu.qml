@@ -20,6 +20,7 @@ Rectangle {
     property int heightIcons: SettingsHarrixQML.heightIcons
     property color colorFontMenuHover: SettingsHarrixQML.colorBlue
     property color colorFontMenu: SettingsHarrixQML.colorFontDark
+    property int cursorShapeMenu: SettingsHarrixQML.cursorHover
     property int topPaddingMenu: 5
     property int bottomPaddingMenu: 5
     property int leftPaddingMenu: 8
@@ -69,7 +70,7 @@ Rectangle {
                     hoverEnabled: true
                     onEntered: parent.color = colorFontMenuHover
                     onExited: parent.color = colorFontMenu
-                    cursorShape: Qt.PointingHandCursor
+                    cursorShape: cursorShapeMenu
                     //onClicked:
                 }
 

@@ -201,7 +201,7 @@ Rectangle {
         id: listenerSignals
 
         onSendMobileMode: {
-            if ((privateVar.firstOnSendMobileMode === false)
+            if ((!privateVar.firstOnSendMobileMode)
                     || (mobileMode !== privateVar.mobileModeHead)) {
                 if (mobileMode) {
                     if (colorMobileMode)

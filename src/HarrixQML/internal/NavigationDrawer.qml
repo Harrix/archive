@@ -158,7 +158,7 @@ Rectangle {
 
     onXChanged: {
         if ((mouseAreaDrag.drag.active)||(mouseAreaStartDrag.drag.active)) {
-            if (privateVar.startDrag === false) {
+            if (!privateVar.startDrag) {
                 privateVar.startDrag = true;
                 privateVar.startX = x;
             }
@@ -172,7 +172,7 @@ Rectangle {
         id: listenerSignals
 
         onSendMobileMode: {
-            if ((privateVar.firstOnSendMobileMode === false)
+            if ((!privateVar.firstOnSendMobileMode)
                     || (mobileMode !== privateVar.mobileModeDrawer)) {
                 if (mobileMode) {
                     privateVar.mobileModeDrawer = true;
@@ -199,7 +199,7 @@ Rectangle {
 
     function toogle() {
         if (privateVar.mobileModeDrawer)
-            if (privateVar.openNavigationDrawer === false)
+            if (!privateVar.openNavigationDrawer)
                 privateVar.openNavigationDrawer = true;
             else
                 privateVar.openNavigationDrawer = false;

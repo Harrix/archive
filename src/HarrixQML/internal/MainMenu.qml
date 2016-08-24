@@ -48,7 +48,7 @@ Rectangle {
         MouseArea {
             anchors.fill: parent
             cursorShape: cursorShapeMenu
-            //onClicked: toogleNavigationDrawer()
+            onClicked: toogleVecticalMainMenu()
         }
     }
 
@@ -96,7 +96,13 @@ Rectangle {
         y: head.height
         color: colorBackgroundColumn
         width: head.width
-        height: Math.min(columnMainMenu.height, 300)
+        height: 0
+
+        Behavior on height {
+            NumberAnimation {
+                duration: durationAnimation
+            }
+        }
 
         Flickable {
             focus: true
@@ -196,5 +202,12 @@ Rectangle {
                     state = "collapsed";
             }
         }
+    }
+
+    function toogleVecticalMainMenu() {
+        if (rectangleColumnMainMenu.height === 0)
+            rectangleColumnMainMenu.height = Math.min(columnMainMenu.height, 300);
+        else
+            rectangleColumnMainMenu.height = 0;
     }
 }

@@ -27,6 +27,12 @@ Rectangle {
         visible: false
         x: 0
         y: 0
+
+        Behavior on color {
+            ColorAnimation {
+                duration: durationAnimation
+            }
+        }
     }
 
     Image {
@@ -52,9 +58,5 @@ Rectangle {
         onExited: rectangleColor.color = colorIcon
     }
 
-    Behavior on color {
-        ColorAnimation {
-            duration: durationAnimation
-        }
-    }
+    onColorIconChanged: rectangleColor.color = colorIcon
 }

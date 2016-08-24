@@ -25,13 +25,9 @@ MainWindow {
     content: Content {}
 
     Component.onCompleted: {
-        if (head.colorMobileMode) {
+        if (head.colorMobileMode)
             head.centerMobileElementItem.source = "qrc:/images/logo-harrix-white.svg";
-            console.log("head.colorMobileMode = " + head.colorMobileMode);
-        }
-        else {
+        else
             head.centerMobileElementItem.source = "qrc:/images/logo-harrix.svg";
-            console.log("head.colorMobileMode = " + head.colorMobileMode);
-        }
     }
 }

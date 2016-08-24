@@ -18,10 +18,10 @@ Rectangle {
     property int fontSize: SettingsHarrixQML.fontSize
     property int marginIcons: SettingsHarrixQML.marginIcons
     property int sizeIcons: SettingsHarrixQML.sizeIcons
-    property color colorMenuHover: SettingsHarrixQML.colorBlue
     property color colorMenu: SettingsHarrixQML.colorDarkElement
-    property color colorMenuInColorRectangle: SettingsHarrixQML.colorLightElement
-    property color colorMenuHoverInColorRectangle: SettingsHarrixQML.colorLightElementHover
+    property color colorMenuHover: SettingsHarrixQML.colorDarkElementHover
+    property color colorMenuLight: SettingsHarrixQML.colorLightElement
+    property color colorMenuLightHover: SettingsHarrixQML.colorLightElementHover
     property int cursorShapeMenu: SettingsHarrixQML.cursorHover
     property int topPaddingMenu: 5
     property int bottomPaddingMenu: 5
@@ -109,8 +109,8 @@ Rectangle {
             PropertyChanges {
                 target: rightIcon
                 visible: true
-                colorIcon: colorMenuInColorRectangle
-                colorIconHover: colorMenuHoverInColorRectangle
+                colorIcon: colorMenuLight
+                colorIconHover: colorMenuLightHover
             }
             PropertyChanges { target: rowMainMenu; visible: false; }
         }

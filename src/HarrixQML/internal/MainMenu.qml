@@ -85,6 +85,21 @@ Rectangle {
         }
     }
 
+    Column {
+        id: columnMainMenu
+        spacing: 0
+        y: 0
+        x: 0
+        anchors.margins: marginIcons
+        width: 1000
+        z: 7000
+        //parent: mainMenuHead.parent
+
+        Label {
+            text: "1111"
+        }
+    }
+
     states: [
         State {
             name: "expanded"

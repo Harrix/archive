@@ -34,9 +34,9 @@ Rectangle {
         property bool firstOnSendMobileMode: false
 
         onOpenNavigationDrawerChanged: {
-            if (openNavigationDrawer === true)
+            if (openNavigationDrawer)
                 showNavigationDrawer();
-            if (openNavigationDrawer === false)
+            else
                 hideNavigationDrawer();
         }
     }
@@ -231,7 +231,7 @@ Rectangle {
                     showNavigationDrawer();
             }
 
-            if (privateVar.startDrag === true) {
+            if (privateVar.startDrag) {
                 if (betweenTwoNumbers(navigationDrawer.x,
                                       -percentFailureSwipe*navigationDrawer.width, 0)) {
                     if (navigationDrawer.x < privateVar.startX)
@@ -239,7 +239,7 @@ Rectangle {
                 }
             }
 
-            if (privateVar.startDrag === true)
+            if (privateVar.startDrag)
                 hideNavigationDrawer();
 
             Qt.inputMethod.hide();

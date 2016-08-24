@@ -9,10 +9,11 @@ Rectangle {
     property alias source: mask.source
     property color colorIcon: SettingsHarrixQML.colorFontDark
     property color colorIconHover: SettingsHarrixQML.colorBlue
-    property int cursorShapeIcon: SettingsHarrixQML.cursorHover
 
     //Common properties which can be changed if necessary
     property int sizeIcons: SettingsHarrixQML.sizeIcons
+    property int cursorShapeIcon: SettingsHarrixQML.cursorHover
+    property int durationAnimation: SettingsHarrixQML.durationAnimation
 
     width: sizeIcons
     height: sizeIcons
@@ -49,5 +50,11 @@ Rectangle {
         cursorShape: cursorShapeIcon
         onEntered: rectangleColor.color = colorIconHover
         onExited: rectangleColor.color = colorIcon
+    }
+
+    Behavior on color {
+        ColorAnimation {
+            duration: durationAnimation
+        }
     }
 }

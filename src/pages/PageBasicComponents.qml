@@ -25,11 +25,6 @@ Page{
             width: parent.width - 2*marginCommon
             x: marginCommon
 
-            IconWithMask {
-                source: "qrc:/HarrixQML/images/drawer.svg"
-                colorIcon: "gray"
-            }
-
             TextField {
                 id: field1
                 objectName: "field1"

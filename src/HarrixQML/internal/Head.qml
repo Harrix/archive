@@ -3,7 +3,7 @@ import QtQuick.Controls 2.0
 import ".."
 
 Rectangle {
-    id:head
+    id: head
     objectName: "head"
 
     //Properties that it is necessary to set

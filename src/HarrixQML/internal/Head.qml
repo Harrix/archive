@@ -50,7 +50,7 @@ Rectangle {
     IconWithMask {
         id: leftIcon
         source: "qrc:/HarrixQML/images/drawer.svg"
-        colorIcon: "gray"
+        colorIcon: SettingsHarrixQML.colorFontDark
         anchors.left: head.left
         anchors.verticalCenter: parent.verticalCenter
         anchors.leftMargin: marginIcons
@@ -109,6 +109,7 @@ Rectangle {
             PropertyChanges {
                 target: leftIcon
                 visible: false
+                colorIcon: SettingsHarrixQML.colorFontDark
             }
         },
         State {
@@ -135,6 +136,7 @@ Rectangle {
             PropertyChanges {
                 target: leftIcon
                 visible: false
+                colorIcon: SettingsHarrixQML.colorFontDark
             }
         },
         State {
@@ -160,6 +162,7 @@ Rectangle {
             PropertyChanges {
                 target: leftIcon
                 visible: true
+                colorIcon: SettingsHarrixQML.colorFontDark
             }
         },
         State {
@@ -185,6 +188,7 @@ Rectangle {
             PropertyChanges {
                 target: leftIcon
                 visible: true
+                colorIcon: "white"
             }
         }
     ]

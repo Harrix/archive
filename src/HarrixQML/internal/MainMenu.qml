@@ -18,8 +18,9 @@ Rectangle {
     property int fontSize: SettingsHarrixQML.fontSize
     property int marginIcons: SettingsHarrixQML.marginIcons
     property int sizeIcons: SettingsHarrixQML.sizeIcons
-    property color colorFontMenuHover: SettingsHarrixQML.colorBlue
-    property color colorFontMenu: SettingsHarrixQML.colorFontDark
+    property color colorMenuHover: SettingsHarrixQML.colorBlue
+    property color colorMenu: SettingsHarrixQML.colorFontDark
+    property color colorMenuInColorRectangle: SettingsHarrixQML.colorFontInColorRectangle
     property int cursorShapeMenu: SettingsHarrixQML.cursorHover
     property int topPaddingMenu: 5
     property int bottomPaddingMenu: 5
@@ -34,7 +35,7 @@ Rectangle {
     IconWithMask {
         id: rightIcon
         source: "qrc:/HarrixQML/images/menu.svg"
-        colorIcon: "gray"
+        colorIcon: colorMenu
         visible: false
         anchors.right: parent.right
         anchors.verticalCenter: parent.verticalCenter
@@ -62,7 +63,7 @@ Rectangle {
             Label {
                 text: caption
                 fontSize: fontSize
-                color: colorFontMenu
+                color: colorMenu
                 topPadding: topPaddingMenu
                 bottomPadding: bottomPaddingMenu
                 leftPadding: leftPaddingMenu
@@ -71,8 +72,8 @@ Rectangle {
                 MouseArea {
                     anchors.fill: parent
                     hoverEnabled: true
-                    onEntered: parent.color = colorFontMenuHover
-                    onExited: parent.color = colorFontMenu
+                    onEntered: parent.color = colorMenuHover
+                    onExited: parent.color = colorMenu
                     cursorShape: cursorShapeMenu
                     onClicked: clickItemMainMenu (name)
                 }
@@ -99,6 +100,7 @@ Rectangle {
             PropertyChanges {
                 target: rightIcon
                 visible: true
+                colorIcon: colorMenu
             }
             PropertyChanges { target: rowMainMenu; visible: false; }
         },
@@ -108,6 +110,7 @@ Rectangle {
             PropertyChanges {
                 target: rightIcon
                 visible: true
+                colorIcon: colorMenuInColorRectangle
             }
             PropertyChanges { target: rowMainMenu; visible: false; }
         }

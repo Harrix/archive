@@ -20,6 +20,38 @@ MainWindow {
         ListElement { name: "Options";    caption: qsTr("Options"); }
         ListElement { name: "Harrix.org"; caption: qsTr("Harrix.org");}
         ListElement { name: "About";      caption: qsTr("About");}
+        ListElement { name: "File";       caption: qsTr("File"); }
+        ListElement { name: "Options";    caption: qsTr("Options"); }
+        ListElement { name: "Harrix.org"; caption: qsTr("Harrix.org");}
+        ListElement { name: "About";      caption: qsTr("About");}
+        ListElement { name: "File";       caption: qsTr("File"); }
+        ListElement { name: "Options";    caption: qsTr("Options"); }
+        ListElement { name: "Harrix.org"; caption: qsTr("Harrix.org");}
+        ListElement { name: "About";      caption: qsTr("About");}
+        ListElement { name: "File";       caption: qsTr("File"); }
+        ListElement { name: "Options";    caption: qsTr("Options"); }
+        ListElement { name: "Harrix.org"; caption: qsTr("Harrix.org");}
+        ListElement { name: "About";      caption: qsTr("About");}
+        ListElement { name: "File";       caption: qsTr("File"); }
+        ListElement { name: "Options";    caption: qsTr("Options"); }
+        ListElement { name: "Harrix.org"; caption: qsTr("Harrix.org");}
+        ListElement { name: "About";      caption: qsTr("About");}
+        ListElement { name: "File";       caption: qsTr("File"); }
+        ListElement { name: "Options";    caption: qsTr("Options"); }
+        ListElement { name: "Harrix.org"; caption: qsTr("Harrix.org");}
+        ListElement { name: "About";      caption: qsTr("About");}
+        ListElement { name: "File";       caption: qsTr("File"); }
+        ListElement { name: "Options";    caption: qsTr("Options"); }
+        ListElement { name: "Harrix.org"; caption: qsTr("Harrix.org");}
+        ListElement { name: "About";      caption: qsTr("About");}
+        ListElement { name: "File";       caption: qsTr("File"); }
+        ListElement { name: "Options";    caption: qsTr("Options"); }
+        ListElement { name: "Harrix.org"; caption: qsTr("Harrix.org");}
+        ListElement { name: "About";      caption: qsTr("About");}
+        ListElement { name: "File";       caption: qsTr("File"); }
+        ListElement { name: "Options";    caption: qsTr("Options"); }
+        ListElement { name: "Harrix.org"; caption: qsTr("Harrix.org");}
+        ListElement { name: "About";      caption: qsTr("About");}
     }
 
     content: Content {}

@@ -96,39 +96,49 @@ Rectangle {
         y: head.height
         color: colorBackgroundColumn
         width: head.width
-        height: columnMainMenu.height
+        height: 300//Math.min(columnMainMenu.height, 300)
 
-        Column {
-            id: columnMainMenu
-            spacing: 0
-            anchors.margins: marginIcons
+        Flickable {
+            focus: true
+            width: parent.width
+            height: rectangleColumnMainMenu.height
+            contentWidth: parent.width
+            contentHeight: columnMainMenu.height
 
-            Repeater {
-                id: columnMainMenuRepeater
+            ScrollBar.vertical: ScrollBar { id: vbar; }
 
-                model: mainMenu
+            Column {
+                id: columnMainMenu
+                spacing: 0
+                anchors.margins: marginIcons
 
-                Label {
-                    text: caption
-                    fontSize: fontSize
-                    color: colorMenu
-                    topPadding: topPaddingMenu
-                    bottomPadding: bottomPaddingMenu
-                    leftPadding: leftPaddingMenu
-                    rightPadding: rightPaddingMenu
+                Repeater {
+                    id: columnMainMenuRepeater
 
-                    MouseArea {
-                        anchors.fill: parent
-                        hoverEnabled: true
-                        onEntered: parent.color = colorMenuHover
-                        onExited: parent.color = colorMenu
-                        cursorShape: cursorShapeMenu
-                        onClicked: clickItemMainMenu (name)
-                    }
+                    model: mainMenu
 
-                    Behavior on color {
-                        ColorAnimation {
-                            duration: durationAnimation
+                    Label {
+                        text: caption
+                        fontSize: fontSize
+                        color: colorMenu
+                        topPadding: topPaddingMenu
+                        bottomPadding: bottomPaddingMenu
+                        leftPadding: leftPaddingMenu
+                        rightPadding: rightPaddingMenu
+
+                        MouseArea {
+                            anchors.fill: parent
+                            hoverEnabled: true
+                            onEntered: parent.color = colorMenuHover
+                            onExited: parent.color = colorMenu
+                            cursorShape: cursorShapeMenu
+                            onClicked: clickItemMainMenu (name)
+                        }
+
+                        Behavior on color {
+                            ColorAnimation {
+                                duration: durationAnimation
+                            }
                         }
                     }
                 }

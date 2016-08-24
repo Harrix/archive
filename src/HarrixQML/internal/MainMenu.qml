@@ -103,24 +103,35 @@ Rectangle {
             spacing: 0
             anchors.margins: marginIcons
 
-            Label {
-                text: "1111"
-            }
+            Repeater {
+                id: columnMainMenuRepeater
 
-            Label {
-                text: "2222"
-            }
+                model: mainMenu
 
-            Label {
-                text: "3333"
-            }
+                Label {
+                    text: caption
+                    fontSize: fontSize
+                    color: colorMenu
+                    topPadding: topPaddingMenu
+                    bottomPadding: bottomPaddingMenu
+                    leftPadding: leftPaddingMenu
+                    rightPadding: rightPaddingMenu
 
-            Label {
-                text: "4444"
-            }
+                    MouseArea {
+                        anchors.fill: parent
+                        hoverEnabled: true
+                        onEntered: parent.color = colorMenuHover
+                        onExited: parent.color = colorMenu
+                        cursorShape: cursorShapeMenu
+                        onClicked: clickItemMainMenu (name)
+                    }
 
-            Label {
-                text: "5555"
+                    Behavior on color {
+                        ColorAnimation {
+                            duration: durationAnimation
+                        }
+                    }
+                }
             }
         }
     }

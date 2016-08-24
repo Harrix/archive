@@ -40,7 +40,7 @@ ApplicationWindow {
         height: parent.height
         width: widthPaneRight()
         y: 0
-        z: navigationDrawer.zNavigationDrawer-1
+        z: navigationDrawer.zNavigationDrawer - 1
         anchors.margins: 0
         anchors.left: navigationDrawer.right
         spacing: 0
@@ -48,7 +48,7 @@ ApplicationWindow {
         Head {
             id: head
             signalSender: mainWindow
-            z: navigationDrawer.zNavigationDrawer-2
+            z: navigationDrawer.zNavigationDrawer - 2
         }
 
         Rectangle {
@@ -56,7 +56,7 @@ ApplicationWindow {
             height: parent.height - head.height
             width: parent.width
             y: 0
-            z: navigationDrawer.zNavigationDrawer-3
+            z: navigationDrawer.zNavigationDrawer - 3
             anchors.margins: 0
 
             Loader {

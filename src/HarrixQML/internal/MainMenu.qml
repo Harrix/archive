@@ -96,7 +96,7 @@ Rectangle {
         y: head.height
         color: colorBackgroundColumn
         width: head.width
-        height: 300//Math.min(columnMainMenu.height, 300)
+        height: Math.min(columnMainMenu.height, 300)
 
         Flickable {
             focus: true
@@ -104,6 +104,7 @@ Rectangle {
             height: rectangleColumnMainMenu.height
             contentWidth: parent.width
             contentHeight: columnMainMenu.height
+            clip: true
 
             ScrollBar.vertical: ScrollBar { id: vbar; }
 

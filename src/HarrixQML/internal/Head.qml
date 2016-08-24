@@ -26,6 +26,7 @@ Rectangle {
     property int durationAnimation: SettingsHarrixQML.durationAnimation
     property int marginIcons: SettingsHarrixQML.marginIcons
     property int sizeIcons: SettingsHarrixQML.sizeIcons
+    property int cursorShapeIcon: SettingsHarrixQML.cursorHover
     property int heightHead: 84
     property int heightHeadScroll: 48
     property int heightHeadMobile: 56
@@ -57,8 +58,7 @@ Rectangle {
         visible: false
         MouseArea {
             anchors.fill: parent
-            hoverEnabled: true
-            cursorShape: Qt.PointingHandCursor
+            cursorShape: cursorShapeIcon
             onClicked: toogleNavigationDrawer()
         }
     }

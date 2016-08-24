@@ -7,7 +7,9 @@ Rectangle {
 
     //Properties that it is necessary to set
     property alias source: mask.source
-    property color colorIcon: mask.source
+    property color colorIcon: SettingsHarrixQML.colorFontDark
+    property color colorIconHover: SettingsHarrixQML.colorBlue
+    property int cursorShapeIcon: SettingsHarrixQML.cursorHover
 
     //Common properties which can be changed if necessary
     property int sizeIcons: SettingsHarrixQML.sizeIcons
@@ -17,7 +19,7 @@ Rectangle {
     color: "transparent"
     clip: true
 
-    Rectangle {        
+    Rectangle {
         id: rectangleColor
         anchors.fill: parent
         color: colorIcon
@@ -39,5 +41,13 @@ Rectangle {
         anchors.fill: iconWithMask
         source: rectangleColor
         maskSource: mask
+    }
+
+    MouseArea {
+        anchors.fill: parent
+        hoverEnabled: true
+        cursorShape: cursorShapeIcon
+        onEntered: rectangleColor.color = colorIconHover
+        onExited: rectangleColor.color = colorIcon
     }
 }

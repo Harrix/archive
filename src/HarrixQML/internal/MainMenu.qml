@@ -42,10 +42,7 @@ Rectangle {
         anchors.rightMargin: marginIcons
         MouseArea {
             anchors.fill: parent
-            hoverEnabled: true
-            //onEntered: parent.color = SettingsHarrixQML.colorBlue
-            //onExited: parent.color = "#25292c"
-            cursorShape: Qt.PointingHandCursor
+            cursorShape: cursorShapeMenu
             //onClicked: toogleNavigationDrawer()
         }
     }

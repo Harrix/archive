@@ -13,6 +13,9 @@ Rectangle {
     //Properties that it is to set if necessary
     property bool colorMobileMode: false
 
+    //Properties, through which you can access the elements
+    property alias head: mainMenuHead.parent
+
     //Common properties which can be changed if necessary
     property string fontName: SettingsHarrixQML.fontName
     property int fontSize: SettingsHarrixQML.fontSize
@@ -88,15 +91,31 @@ Rectangle {
     Column {
         id: columnMainMenu
         spacing: 0
-        y: 0
         x: 0
         anchors.margins: marginIcons
+        y: 50
         width: 1000
         z: 7000
-        //parent: mainMenuHead.parent
+        parent: head
 
         Label {
             text: "1111"
+        }
+
+        Label {
+            text: "2222"
+        }
+
+        Label {
+            text: "3333"
+        }
+
+        Label {
+            text: "4444"
+        }
+
+        Label {
+            text: "5555"
         }
     }
 

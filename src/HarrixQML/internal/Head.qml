@@ -209,17 +209,24 @@ Rectangle {
                 }
                 else
                     head.state = "normal";
+                sendWidthForMainMenu(calculateWidthForMainMenu(),
+                                     colorMobileMode, privateVar.mobileModeHead);
                 privateVar.firstOnSendMobileMode = true;
             }
         }
     }
 
     onWidthChanged: {
-        var widthForMenu = width;
+        sendWidthForMainMenu(calculateWidthForMainMenu(),
+                             colorMobileMode, privateVar.mobileModeHead);
+    }
+
+    function calculateWidthForMainMenu() {
+        var widthForMenu = head.width;
         if (!privateVar.mobileModeHead)
-            widthForMenu -= logo.x + logo.width + marginIcons;
+            widthForMenu -= logo.x + logo.width + 2 * marginIcons;
         else
-            widthForMenu -= centerMobileElement.x + centerMobileElement.width + marginIcons;
-        sendWidthForMainMenu(widthForMenu, colorMobileMode, privateVar.mobileModeHead);
+            widthForMenu -= centerMobileElement.x + centerMobileElement.width + 2 * marginIcons;
+        return widthForMenu;
     }
 }

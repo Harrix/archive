@@ -25,7 +25,7 @@ Rectangle {
     property color colorBackgroundMobile: SettingsHarrixQML.colorRed
     property int durationAnimation: SettingsHarrixQML.durationAnimation
     property int marginIcons: SettingsHarrixQML.marginIcons
-    property int heightIcons: SettingsHarrixQML.sizeIcons
+    property int sizeIcons: SettingsHarrixQML.sizeIcons
     property int heightHead: 84
     property int heightHeadScroll: 48
     property int heightHeadMobile: 56
@@ -49,7 +49,7 @@ Rectangle {
 
     Image {
         id: leftIcon
-        height: heightIcons
+        height: sizeIcons
         fillMode: Image.PreserveAspectFit
         anchors.left: head.left
         anchors.verticalCenter: parent.verticalCenter
@@ -74,7 +74,7 @@ Rectangle {
 
     IconWithMask {
         source: "qrc:/HarrixQML/images/drawer.svg"
-        colorIcon: "blue"
+        colorIcon: "gray"
 
         anchors.left: logo.right
         anchors.verticalCenter: parent.verticalCenter

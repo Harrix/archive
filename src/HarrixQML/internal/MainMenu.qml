@@ -17,7 +17,7 @@ Rectangle {
     property string fontName: SettingsHarrixQML.fontName
     property int fontSize: SettingsHarrixQML.fontSize
     property int marginIcons: SettingsHarrixQML.marginIcons
-    property int heightIcons: SettingsHarrixQML.sizeIcons
+    property int sizeIcons: SettingsHarrixQML.sizeIcons
     property color colorFontMenuHover: SettingsHarrixQML.colorBlue
     property color colorFontMenu: SettingsHarrixQML.colorFontDark
     property int cursorShapeMenu: SettingsHarrixQML.cursorHover
@@ -33,7 +33,7 @@ Rectangle {
 
     Image {
         id: rightIcon
-        height: heightIcons
+        height: sizeIcons
         fillMode: Image.PreserveAspectFit
         visible: false
         anchors.right: parent.right

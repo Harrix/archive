@@ -2,8 +2,8 @@ import QtQuick 2.7
 import QtGraphicalEffects 1.0
 import ".."
 
-Item {
-    id: iconWithSVGMask
+Rectangle {
+    id: iconWithMask
 
     //Properties that it is necessary to set
     property alias source: mask.source
@@ -14,23 +14,29 @@ Item {
 
     width: sizeIcons
     height: sizeIcons
+    color: "transparent"
+    clip: true
 
-    Rectangle {
+    Rectangle {        
         id: rectangleColor
         anchors.fill: parent
         color: colorIcon
         visible: false
+        x: 0
+        y: 0
     }
 
     Image {
         id: mask
-        sourceSize: Qt.size(parent.width, parent.height)
-        smooth: true
+        height: sizeIcons
+        fillMode: Image.PreserveAspectFit
         visible: false
+        x: 0
+        y: 0
     }
 
     OpacityMask {
-        anchors.fill: iconWithSVGMask
+        anchors.fill: iconWithMask
         source: rectangleColor
         maskSource: mask
     }

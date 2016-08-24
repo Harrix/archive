@@ -74,7 +74,6 @@ Rectangle {
 
     IconWithSVGMask {
         source: "qrc:/HarrixQML/images/drawer.svg"
-        source: "qrc:/HarrixQML/images/drawer.svg"
         colorIcon: "blue"
 
         anchors.left: logo.right

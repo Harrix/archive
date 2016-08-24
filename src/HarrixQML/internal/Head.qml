@@ -40,7 +40,7 @@ Rectangle {
     }
 
     //Signals
-    signal sendWidthForMenu(real w);
+    signal sendWidthForMainMenu(real widthForMenu, bool colorMobileModeHead, bool mobileModeHead);
 
     width: parent.width
     height: heightHead
@@ -206,24 +206,20 @@ Rectangle {
                         head.state = "mobileColor";
                     else
                         head.state = "mobile";
-                    console.log("mobile");
                 }
-                else {
+                else
                     head.state = "normal";
-                    console.log("normal");
-                    console.log(logo.source);
-                }
                 privateVar.firstOnSendMobileMode = true;
             }
         }
     }
 
     onWidthChanged: {
-        var w = width;
-        if (logo.visible)
-            w = w - logo.x - logo.width - marginIcons;
+        var widthForMenu = width;
+        if (!privateVar.mobileModeHead)
+            widthForMenu -= logo.x + logo.width + marginIcons;
         else
-            w = w - centerMobileElement.x - centerMobileElement.width - marginIcons;
-        sendWidthForMenu(w)
+            widthForMenu -= centerMobileElement.x + centerMobileElement.width + marginIcons;
+        sendWidthForMainMenu(widthForMenu, colorMobileMode, privateVar.mobileModeHead);
     }
 }

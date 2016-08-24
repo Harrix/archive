@@ -100,7 +100,7 @@ Rectangle {
             PropertyChanges { target: rowMainMenu; visible: false; }
         },
         State {
-            name: "collapsedColor"
+            name: "collapsedWhite"
             PropertyChanges { target: mainMenuHead; width: rowMainMenu.width; }
             PropertyChanges {
                 target: rightIcon
@@ -114,15 +114,20 @@ Rectangle {
     Connections {
         id: listenerSignals
 
-        onSendWidthForMenu: {
-            var wM = rowMainMenu.width;
-            if (w > wM)
+        onSendWidthForMainMenu: {
+            var widthMainMenu = rowMainMenu.width;
+            if (widthForMenu > widthMainMenu)
                 state = "expanded";
-            else
-                if (colorMobileMode)
-                    state = "collapsedColor";
+            else {
+                if (mobileModeHead) {
+                    if (colorMobileMode)
+                        state = "collapsedWhite";
+                    else
+                        state = "collapsed";
+                }
                 else
                     state = "collapsed";
+            }
         }
     }
 }

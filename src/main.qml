@@ -7,7 +7,7 @@ import "HarrixQML"
 MainWindow {
     title: qsTr("Harrix-QMLComponents - Demo")
 
-    navigationDrawer.drawer: LeftPanel{}
+    navigationDrawer.drawer: LeftPanel {}
 
     head.logo.source: "qrc:/images/logo-harrix.svg"
 

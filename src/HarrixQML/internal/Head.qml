@@ -32,7 +32,6 @@ Rectangle {
     property int heightLogo: 60
     property int heightLogoScroll: 40
 
-
     //Private properties
     QtObject {
         id: privateVar

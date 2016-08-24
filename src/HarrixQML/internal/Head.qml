@@ -72,7 +72,7 @@ Rectangle {
         anchors.verticalCenter: parent.verticalCenter
     }
 
-    IconWithSVGMask {
+    IconWithMask {
         source: "qrc:/HarrixQML/images/drawer.svg"
         colorIcon: "blue"
 

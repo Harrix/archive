@@ -110,6 +110,7 @@ Rectangle {
                 target: leftIcon
                 visible: false
                 colorIcon: SettingsHarrixQML.colorFontDark
+                colorIconHover: SettingsHarrixQML.colorBlue
             }
         },
         State {
@@ -137,6 +138,7 @@ Rectangle {
                 target: leftIcon
                 visible: false
                 colorIcon: SettingsHarrixQML.colorFontDark
+                colorIconHover: SettingsHarrixQML.colorBlue
             }
         },
         State {
@@ -163,6 +165,7 @@ Rectangle {
                 target: leftIcon
                 visible: true
                 colorIcon: SettingsHarrixQML.colorFontDark
+                colorIconHover: SettingsHarrixQML.colorBlue
             }
         },
         State {
@@ -189,6 +192,7 @@ Rectangle {
                 target: leftIcon
                 visible: true
                 colorIcon: "white"
+                colorIconHover: SettingsHarrixQML.colorFontHoverInColorRectangle
             }
         }
     ]

@@ -11,6 +11,7 @@ TextField 1.0 TextField.qml
 ApplicationWindow 1.0 internal/ApplicationWindow.qml
 Head 1.0 internal/Head.qml
 IconFontAwesome 1.0 internal/IconFontAwesome.qml
+IconWithSVGMask 1.0 internal/IconWithSVGMask.qml
 MouseAreaRipple 1.0 internal/MouseAreaRipple.qml
 NavigationDrawer 1.0 internal/NavigationDrawer.qml
 

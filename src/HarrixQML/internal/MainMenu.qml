@@ -26,6 +26,9 @@ Rectangle {
     property int leftPaddingMenu: 8
     property int rightPaddingMenu: 8
 
+    //Signals
+    signal clickItemMainMenu (string name);
+
     state: "expanded"
 
     Image {
@@ -57,7 +60,7 @@ Rectangle {
             id: mainMenuRepeater
 
             Label {
-                text: name
+                text: caption
                 fontSize: fontSize
                 color: colorFontMenu
                 topPadding: topPaddingMenu
@@ -71,7 +74,7 @@ Rectangle {
                     onEntered: parent.color = colorFontMenuHover
                     onExited: parent.color = colorFontMenu
                     cursorShape: cursorShapeMenu
-                    //onClicked:
+                    onClicked: clickItemMainMenu (name)
                 }
 
                 Behavior on color {

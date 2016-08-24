@@ -17,6 +17,7 @@ Rectangle {
 
     //Properties, through which you can access the elements
     property alias centerMobileElementItem: centerMobileElement.item
+    property alias mainMenuHead: mainMenuHead
 
     //Common properties which can be changed if necessary
     property int marginCommon: SettingsHarrixQML.marginCommon

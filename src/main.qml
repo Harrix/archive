@@ -16,13 +16,17 @@ MainWindow {
     head.colorMobileMode: true
 
     head.mainMenu: ListModel {
-        ListElement { name: "Главная";}
-        ListElement { name: "Проекты"; }
-        ListElement { name: "Harrix.org";}
-        ListElement { name: "Контакты";}
+        ListElement { name: "File";       caption: qsTr("File"); }
+        ListElement { name: "Options";    caption: qsTr("Options"); }
+        ListElement { name: "Harrix.org"; caption: qsTr("Harrix.org");}
+        ListElement { name: "About";      caption: qsTr("About");}
     }
 
     content: Content {}
+
+    onClickItemMainMenu: {
+        console.log(name);
+    }
 
     Component.onCompleted: {
         if (head.colorMobileMode)

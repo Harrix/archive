@@ -23,6 +23,7 @@ ApplicationWindow {
     //Signals
     signal toogleNavigationDrawer();
     signal sendMobileMode(bool mobileMode);
+    signal clickItemMainMenu (string name);
 
     visibility: "Maximized"
     font.family: fontName
@@ -68,7 +69,10 @@ ApplicationWindow {
     Fonts {}
 
     Connections {
-        id: listenerSignals
+        id: listenerSignalsFromMainMenu
+        target: head.mainMenuHead
+
+        onClickItemMainMenu: clickItemMainMenu (name)
     }
 
     onWidthChanged:        checkMobileMode();
@@ -77,7 +81,7 @@ ApplicationWindow {
 
     function checkMobileMode() {
         var check = ((mainWindow.width <= widthTransitionInMobileMode)
-                      ||(mainWindow.width < mainWindow.height));
+                     ||(mainWindow.width < mainWindow.height));
         mobileMode = check ? true : false;
         sendMobileMode(mobileMode);
     }

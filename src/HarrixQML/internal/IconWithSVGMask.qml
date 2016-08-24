@@ -19,6 +19,7 @@ Item {
         id: rectangleColor
         anchors.fill: parent
         color: colorIcon
+        visible: false
     }
 
     Image {

@@ -30,5 +30,6 @@
         <file>HarrixQML/internal/MainMenu.qml</file>
         <file>HarrixQML/Label.qml</file>
         <file>HarrixQML/internal/IconWithSVGMask.qml</file>
+        <file>HarrixQML/images/test.png</file>
     </qresource>
 </RCC>

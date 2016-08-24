@@ -72,6 +72,15 @@ Rectangle {
         anchors.verticalCenter: parent.verticalCenter
     }
 
+    IconWithSVGMask {
+        source: "qrc:/HarrixQML/images/drawer.svg"
+        source: "qrc:/HarrixQML/images/drawer.svg"
+        colorIcon: "blue"
+
+        anchors.left: logo.right
+        anchors.verticalCenter: parent.verticalCenter
+    }
+
     Loader {
         id: centerMobileElement
         anchors.centerIn: parent

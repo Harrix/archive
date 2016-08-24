@@ -47,10 +47,10 @@ Rectangle {
     anchors.margins: marginCommon
     state: "normal"
 
-    Image {
+    IconWithMask {
         id: leftIcon
-        height: sizeIcons
-        fillMode: Image.PreserveAspectFit
+        source: "qrc:/HarrixQML/images/drawer.svg"
+        colorIcon: "gray"
         anchors.left: head.left
         anchors.verticalCenter: parent.verticalCenter
         anchors.leftMargin: marginIcons
@@ -58,8 +58,6 @@ Rectangle {
         MouseArea {
             anchors.fill: parent
             hoverEnabled: true
-            //onEntered: parent.color = SettingsHarrixQML.colorBlue
-            //onExited: parent.color = "#25292c"
             cursorShape: Qt.PointingHandCursor
             onClicked: toogleNavigationDrawer()
         }
@@ -69,14 +67,6 @@ Rectangle {
         id: logo
         fillMode: Image.PreserveAspectFit
         anchors.left: head.left
-        anchors.verticalCenter: parent.verticalCenter
-    }
-
-    IconWithMask {
-        source: "qrc:/HarrixQML/images/drawer.svg"
-        colorIcon: "gray"
-
-        anchors.left: logo.right
         anchors.verticalCenter: parent.verticalCenter
     }
 
@@ -119,7 +109,6 @@ Rectangle {
             PropertyChanges {
                 target: leftIcon
                 visible: false
-                source: "qrc:/HarrixQML/images/drawer.svg"
             }
         },
         State {
@@ -146,7 +135,6 @@ Rectangle {
             PropertyChanges {
                 target: leftIcon
                 visible: false
-                source: "qrc:/HarrixQML/images/drawer.svg"
             }
         },
         State {
@@ -172,7 +160,6 @@ Rectangle {
             PropertyChanges {
                 target: leftIcon
                 visible: true
-                source: "qrc:/HarrixQML/images/drawer.svg"
             }
         },
         State {
@@ -198,7 +185,6 @@ Rectangle {
             PropertyChanges {
                 target: leftIcon
                 visible: true
-                source: "qrc:/HarrixQML/images/drawer-white.svg"
             }
         }
     ]

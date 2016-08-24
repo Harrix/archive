@@ -14,7 +14,7 @@ QtObject {
     readonly property color colorBackground: "#fff"
     readonly property color colorFont: "#5f5f5f"
     readonly property color colorDarkElement: "#25292c"
-    readonly property color colorDarkElementHover: "#19a5a5"
+    readonly property color colorDarkElementHover: colorBlue
     readonly property color colorLightElement: "#fff"
     readonly property color colorLightElementHover: "#eee"
     readonly property color colorNotEnabled: "#d0d0d0"
@@ -32,8 +32,8 @@ QtObject {
     readonly property string fontName: "Open Sans"
     readonly property string fontNameCode: "PT Mono"
     readonly property int fontSize: 14
-    readonly property int fontSizeText: 16
-    readonly property int fontSizeFontAwesome: 19
+    readonly property int fontSizeText: fontSize + 2
+    readonly property int fontSizeFontAwesome: fontSize + 5
     readonly property int fontRenderType: Text.NativeRendering
     readonly property real fontLineHeight: 1.3
 

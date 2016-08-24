@@ -31,10 +31,10 @@ Rectangle {
 
     state: "expanded"
 
-    Image {
+    IconWithMask {
         id: rightIcon
-        height: sizeIcons
-        fillMode: Image.PreserveAspectFit
+        source: "qrc:/HarrixQML/images/menu.svg"
+        colorIcon: "gray"
         visible: false
         anchors.right: parent.right
         anchors.verticalCenter: parent.verticalCenter
@@ -99,7 +99,6 @@ Rectangle {
             PropertyChanges {
                 target: rightIcon
                 visible: true
-                source: "qrc:/HarrixQML/images/menu.svg"
             }
             PropertyChanges { target: rowMainMenu; visible: false; }
         },
@@ -109,7 +108,6 @@ Rectangle {
             PropertyChanges {
                 target: rightIcon
                 visible: true
-                source: "qrc:/HarrixQML/images/menu-white.svg"
             }
             PropertyChanges { target: rowMainMenu; visible: false; }
         }

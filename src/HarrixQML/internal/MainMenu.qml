@@ -25,6 +25,7 @@ Rectangle {
     property color colorMenuHover: SettingsHarrixQML.colorDarkElementHover
     property color colorMenuLight: SettingsHarrixQML.colorLightElement
     property color colorMenuLightHover: SettingsHarrixQML.colorLightElementHover
+    property color colorBackgroundColumn: SettingsHarrixQML.colorBackground
     property int cursorShapeMenu: SettingsHarrixQML.cursorHover
     property int topPaddingMenu: 5
     property int bottomPaddingMenu: 5
@@ -88,34 +89,39 @@ Rectangle {
         }
     }
 
-    Column {
-        id: columnMainMenu
-        spacing: 0
-        x: 0
-        anchors.margins: marginIcons
-        y: 50
-        width: 1000
-        z: 7000
+    Rectangle {
+        id: rectangleColumnMainMenu
         parent: head
+        x: 0
+        y: head.height
+        color: colorBackgroundColumn
+        width: head.width
+        height: columnMainMenu.height
 
-        Label {
-            text: "1111"
-        }
+        Column {
+            id: columnMainMenu
+            spacing: 0
+            anchors.margins: marginIcons
 
-        Label {
-            text: "2222"
-        }
+            Label {
+                text: "1111"
+            }
 
-        Label {
-            text: "3333"
-        }
+            Label {
+                text: "2222"
+            }
 
-        Label {
-            text: "4444"
-        }
+            Label {
+                text: "3333"
+            }
 
-        Label {
-            text: "5555"
+            Label {
+                text: "4444"
+            }
+
+            Label {
+                text: "5555"
+            }
         }
     }
 

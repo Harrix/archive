@@ -51,7 +51,7 @@ Rectangle {
     IconWithMask {
         id: leftIcon
         source: "qrc:/HarrixQML/images/drawer.svg"
-        colorIcon: SettingsHarrixQML.colorFontDark
+        colorIcon: SettingsHarrixQML.colorDarkElement
         anchors.left: head.left
         anchors.verticalCenter: parent.verticalCenter
         anchors.leftMargin: marginIcons
@@ -109,7 +109,7 @@ Rectangle {
             PropertyChanges {
                 target: leftIcon
                 visible: false
-                colorIcon: SettingsHarrixQML.colorFontDark
+                colorIcon: SettingsHarrixQML.colorDarkElement
                 colorIconHover: SettingsHarrixQML.colorBlue
             }
         },
@@ -137,7 +137,7 @@ Rectangle {
             PropertyChanges {
                 target: leftIcon
                 visible: false
-                colorIcon: SettingsHarrixQML.colorFontDark
+                colorIcon: SettingsHarrixQML.colorDarkElement
                 colorIconHover: SettingsHarrixQML.colorBlue
             }
         },
@@ -164,7 +164,7 @@ Rectangle {
             PropertyChanges {
                 target: leftIcon
                 visible: true
-                colorIcon: SettingsHarrixQML.colorFontDark
+                colorIcon: SettingsHarrixQML.colorDarkElement
                 colorIconHover: SettingsHarrixQML.colorBlue
             }
         },
@@ -192,7 +192,7 @@ Rectangle {
                 target: leftIcon
                 visible: true
                 colorIcon: "white"
-                colorIconHover: SettingsHarrixQML.colorFontHoverInColorRectangle
+                colorIconHover: SettingsHarrixQML.colorLightElementHover
             }
         }
     ]

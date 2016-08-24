@@ -10,7 +10,7 @@ TextField {
     property int fontSize: SettingsHarrixQML.fontSize
     property string colorTextField: SettingsHarrixQML.colorRed
     property string colorTextFieldHover: SettingsHarrixQML.colorRedLight
-    property string colorFontTextField: SettingsHarrixQML.colorFontInColorRectangle
+    property string colorFontTextField: SettingsHarrixQML.colorLightElement
     property int fontRenderType: SettingsHarrixQML.fontRenderType
     property int durationAnimation: SettingsHarrixQML.durationAnimation
 

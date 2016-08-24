@@ -14,7 +14,7 @@ Button {
     property string colorButton: SettingsHarrixQML.colorRed
     property string colorButtonHover: SettingsHarrixQML.colorRedLight
     property string colorButtonNotEnabled: SettingsHarrixQML.colorNotEnabled
-    property string colorFontButton: SettingsHarrixQML.colorFontInColorRectangle
+    property string colorFontButton: SettingsHarrixQML.colorLightElement
     property int fontRenderType: SettingsHarrixQML.fontRenderType
     property int durationAnimation: SettingsHarrixQML.durationAnimation
     property int paddingButton: 8

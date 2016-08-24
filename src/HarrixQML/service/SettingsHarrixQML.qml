@@ -13,9 +13,10 @@ QtObject {
     //Colors
     readonly property color colorBackground: "#fff"
     readonly property color colorFont: "#5f5f5f"
-    readonly property color colorFontDark: "#25292c"
-    readonly property color colorFontInColorRectangle: "#fff"
-    readonly property color colorFontHoverInColorRectangle: "#eee"
+    readonly property color colorDarkElement: "#25292c"
+    readonly property color colorDarkElementHover: "#19a5a5"
+    readonly property color colorLightElement: "#fff"
+    readonly property color colorLightElementHover: "#eee"
     readonly property color colorNotEnabled: "#d0d0d0"
 
     //Common colors

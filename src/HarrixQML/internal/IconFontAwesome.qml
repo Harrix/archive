@@ -11,7 +11,7 @@ Label {
     //Common properties which can be changed if necessary
     property int fontSize: SettingsHarrixQML.fontSizeFontAwesome
     property int fontRenderType: SettingsHarrixQML.fontRenderType
-    property string colorFont: SettingsHarrixQML.colorFontInColorRectangle
+    property string colorFont: SettingsHarrixQML.colorLightElement
 
     font.pixelSize: fontSize
     renderType: fontRenderType

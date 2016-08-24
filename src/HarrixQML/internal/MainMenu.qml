@@ -19,9 +19,9 @@ Rectangle {
     property int marginIcons: SettingsHarrixQML.marginIcons
     property int sizeIcons: SettingsHarrixQML.sizeIcons
     property color colorMenuHover: SettingsHarrixQML.colorBlue
-    property color colorMenu: SettingsHarrixQML.colorFontDark
-    property color colorMenuInColorRectangle: SettingsHarrixQML.colorFontInColorRectangle
-    property color colorMenuHoverInColorRectangle: SettingsHarrixQML.colorFontHoverInColorRectangle
+    property color colorMenu: SettingsHarrixQML.colorDarkElement
+    property color colorMenuInColorRectangle: SettingsHarrixQML.colorLightElement
+    property color colorMenuHoverInColorRectangle: SettingsHarrixQML.colorLightElementHover
     property int cursorShapeMenu: SettingsHarrixQML.cursorHover
     property int topPaddingMenu: 5
     property int bottomPaddingMenu: 5

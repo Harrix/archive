@@ -20,6 +20,10 @@ Rectangle {
     property int heightIcons: SettingsHarrixQML.heightIcons
     property color colorFontMenuHover: SettingsHarrixQML.colorBlue
     property color colorFontMenu: SettingsHarrixQML.colorFontDark
+    property int topPaddingMenu: 5
+    property int bottomPaddingMenu: 5
+    property int leftPaddingMenu: 8
+    property int rightPaddingMenu: 8
 
     state: "expanded"
 
@@ -55,9 +59,10 @@ Rectangle {
                 text: name
                 fontSize: fontSize
                 color: colorFontMenu
-                padding: 5
-                leftPadding: 8
-                rightPadding: 8
+                topPadding: topPaddingMenu
+                bottomPadding: bottomPaddingMenu
+                leftPadding: leftPaddingMenu
+                rightPadding: rightPaddingMenu
 
                 MouseArea {
                     anchors.fill: parent

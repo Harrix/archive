@@ -17,7 +17,7 @@ Rectangle {
     property string fontName: SettingsHarrixQML.fontName
     property int fontSize: SettingsHarrixQML.fontSize
     property int marginIcons: SettingsHarrixQML.marginIcons
-    property int heightIcons: SettingsHarrixQML.heightIcons
+    property int heightIcons: SettingsHarrixQML.sizeIcons
     property color colorFontMenuHover: SettingsHarrixQML.colorBlue
     property color colorFontMenu: SettingsHarrixQML.colorFontDark
     property int cursorShapeMenu: SettingsHarrixQML.cursorHover

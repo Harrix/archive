@@ -41,7 +41,7 @@ QtObject {
     readonly property int marginIcons: 18
 
     //Sizes
-    readonly property int heightIcons: 26
+    readonly property int sizeIcons: 26
 
     //Durations
     readonly property int durationAnimation: 300

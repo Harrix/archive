@@ -26,12 +26,12 @@ Rectangle {
         color: colorIcon
         visible: false
         x: 0
-        y: 0
+        y: 0      
 
-        Behavior on color {
-            ColorAnimation {
-                duration: durationAnimation
-            }
+        ColorAnimation on color {
+            id: colorAnimation
+            running: false
+            duration: durationAnimation
         }
     }
 
@@ -54,8 +54,14 @@ Rectangle {
         anchors.fill: parent
         hoverEnabled: true
         cursorShape: cursorShapeIcon
-        onEntered: rectangleColor.color = colorIconHover
-        onExited: rectangleColor.color = colorIcon
+        onEntered: {
+            colorAnimation.to = colorIconHover
+            colorAnimation.running = true
+        }
+        onExited: {
+            colorAnimation.to = colorIcon
+            colorAnimation.running = true
+        }
     }
 
     onColorIconChanged: rectangleColor.color = colorIcon

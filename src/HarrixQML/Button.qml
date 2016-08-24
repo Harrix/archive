@@ -22,7 +22,7 @@ Button {
     property int rightPaddingButton: 24
     property int spacingIconText: 10
     property int fontWeightButton: Font.Bold
-    property int fontCapitalizationButton:Font.AllUppercase
+    property int fontCapitalizationButton: Font.AllUppercase
 
     padding: paddingButton
     leftPadding: leftPaddingButton

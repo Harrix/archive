@@ -95,64 +95,17 @@ Rectangle {
 
     function clickItemMenu (name, submenu) {
         if (submenu === undefined)
-            clickItemMainMenu (name)
+            clickItemMainMenu (name);
         else {
             var lengthModel = submenu.count;
             console.log ("Submenu is " + lengthModel);
-            var lengthMenuShow = submenuShow.contentModel.count;
-            for (var i=0; i<lengthModel; i++) {
-                //submenuShow.addItem(component.createObject(MenuItem, {"text": "111"}));
-                //submenuShow.addItem(MenuItem);
-                //var it = submenuShow.createObject (menuItem2, {"text": "111"});
-                //item22.text = submenu.get(i).caption;
-                //submenuShow.addItem(item22);
-                //var fgh2 = Qt.createComponent(fgh);
-                //fgh2.text = submenu.get(i).caption;
-                //submenuShow.addItem(fgh2);
+            for (var i = 0; i < lengthModel; i++) {
                 console.log (i);
-            }
-            submenuShow.open()
-
-        }
-    }
-
-    Component
-    {
-        id: fgh
-        MenuItem {
-            text:"dd"
-        }
-    }
-
-    MenuItem {
-        id: item22
-    }
-
-    ListModel {
-        id: modelll
-        ListElement {
-            name: "Add";
-            caption: qsTr("New");
-        }
-        ListElement {
-            name: "New";
-            caption: qsTr("New");
-        }
-        ListElement {
-            name: "Exit";
-            caption: qsTr("New");
-        }
-    }
-
-    Menu {
-        id: submenuShow
-        Repeater {
-            model: modelll
-            MenuItem {
-                text: model.caption
+                console.log (submenu.get(i).caption);
             }
         }
     }
+
 
     Rectangle {
         id: rectangleColumnMainMenu

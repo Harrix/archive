@@ -98,7 +98,7 @@ Rectangle {
             clickActiveItemMenu (name);
         else {
             var lengthModel = submenu.count;
-            var model = createModel(mainMenu);
+            var model = createListModel(mainMenu);
             console.log ("Submenu is " + lengthModel);
             for (var i = 0; i < lengthModel; i++) {
                 console.log (i);
@@ -110,16 +110,34 @@ Rectangle {
     }
 
     Component {
-        id: someComponent
+        id: сomponentListModel
         ListModel {
         }
     }
 
-    function createModel(parent) {
-        var newModel = someComponent.createObject(parent);
+    function createListModel(parent) {
+        var newModel = сomponentListModel.createObject(parent);
         return newModel;
     }
 
+    function buildModelVerticalMenu() {
+        var model = createListModel(mainMenu);
+
+        for (var i = 0; i < mainMenuModel.count; i++) {
+            model.append({"caption": mainMenuModel.get(i).caption,
+                             "name": mainMenuModel.get(i).name});
+
+            var submenuArray = mainMenuModel.get(i).submenu;
+            if (submenuArray !== undefined) {
+                for (var j = 0; j < submenuArray.count; j++) {
+                    model.append({"caption": submenuArray.get(j).caption,
+                                     "name": submenuArray.get(j).name});
+                }
+            }
+        }
+
+        columnMainMenuRepeater.model = model;
+    }
 
     Rectangle {
         id: rectangleColumnMainMenu
@@ -151,10 +169,12 @@ Rectangle {
                 spacing: 0
                 anchors.margins: marginIcons
 
+                Component.onCompleted: buildModelVerticalMenu()
+
                 Repeater {
                     id: columnMainMenuRepeater
 
-                    model: mainMenuModel
+                    //model: mainMenuModel
 
                     Label {
                         text: caption
@@ -254,7 +274,7 @@ Rectangle {
     function toogleVecticalMainMenu() {
         if (rectangleColumnMainMenu.height === 0)
             rectangleColumnMainMenu.height = Math.min(columnMainMenu.height,
-                                                      maximumHeightVerticalMainMenu);
+                                                      mainWindow.heightWindow - head.height);//TODO
         else
             rectangleColumnMainMenu.height = 0;
     }

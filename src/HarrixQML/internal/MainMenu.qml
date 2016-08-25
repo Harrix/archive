@@ -270,7 +270,6 @@ Rectangle {
             submenuHorizontalMainMenu.model.destroy();
 
             var model = createListModel(mainMenu);
-
             var i=0;
             for (i = 0; i < mainMenuModel.count; i++) {
                 if (mainMenuModel.get(i).name === name) {

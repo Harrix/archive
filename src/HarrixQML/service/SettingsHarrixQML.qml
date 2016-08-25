@@ -18,6 +18,7 @@ QtObject {
     readonly property color colorLightElement: "#fff"
     readonly property color colorLightElementHover: "#eee"
     readonly property color colorNotEnabled: "#d0d0d0"
+    readonly property color colorBorder: "#eee"
 
     //Common colors
     readonly property color colorRed: "#de2b26"

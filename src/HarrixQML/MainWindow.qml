@@ -23,7 +23,7 @@ ApplicationWindow {
     //Signals
     signal toogleNavigationDrawer();
     signal sendMobileMode(bool mobileMode);
-    signal clickItemMainMenu (string name);
+    signal clickActiveItemMenu (string name);
 
     visibility: "Maximized"
     font.family: fontName
@@ -74,7 +74,7 @@ ApplicationWindow {
         id: listenerSignalsFromMainMenu
         target: head.mainMenu
 
-        onClickItemMainMenu: clickItemMainMenu (name)
+        onClickActiveItemMenu: clickActiveItemMenu (name)
     }
 
     onWidthChanged:        checkMobileMode();

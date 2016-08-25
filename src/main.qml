@@ -18,7 +18,7 @@ MainWindow {
 
     head.mainMenu.mainMenuModel: MainMenuModel {}
 
-    onClickItemMainMenu: {
+    onClickActiveItemMenu: {
         console.log(name);
         /*if (name === "File")
            optionsMenu.open();*/

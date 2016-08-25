@@ -37,7 +37,7 @@ Rectangle {
     property int maximumHeightVerticalMainMenu: 318
 
     //Signals
-    signal clickItemMainMenu (string name);
+    signal clickActiveItemMenu (string name);
 
     state: "expanded"
 
@@ -95,7 +95,7 @@ Rectangle {
 
     function clickItemMenu (name, submenu) {
         if (submenu === undefined)
-            clickItemMainMenu (name);
+            clickActiveItemMenu (name);
         else {
             var lengthModel = submenu.count;
             var model = createModel(mainMenu);
@@ -179,7 +179,7 @@ Rectangle {
                             onEntered: parent.color = colorMenuHover
                             onExited: parent.color = colorMenu
                             cursorShape: cursorShapeMenu
-                            onClicked: clickItemMainMenu (name)
+                            onClicked: clickActiveItemMenu (name)
                         }
 
                         Behavior on color {

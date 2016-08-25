@@ -81,11 +81,11 @@ Rectangle {
                     hoverEnabled: true
                     onEntered: {
                         parent.color = colorMenuHover;
-                        showSubmenuHorizontalMainMenu(name, submenu);
+                        showSubmenuHorizontalMainMenu(this.parent, name, submenu);
                     }
                     onExited: {
                         parent.color = colorMenu;
-                        submenuHorizontalMainMenu.visible = true;
+                        submenuHorizontalMainMenu.visible = false;
                     }
                     cursorShape: cursorShapeMenu
                     //onClicked: clickItemMenu (name, submenu)
@@ -102,12 +102,14 @@ Rectangle {
 
     Rectangle {
         id: submenuHorizontalMainMenu
-        color: colorBackgroundColumn
+        //parent: mainMenu.parent
+        color: "red"//colorBackgroundColumn
         width: 100
         height: 100
         visible: false
 
         Label {
+            id: label
             text: "Text"
         }
     }
@@ -271,8 +273,13 @@ Rectangle {
         }
     }*/
 
-    function showSubmenuHorizontalMainMenu(name, submenu) {
-
+    function showSubmenuHorizontalMainMenu(label, name, submenu) {
+        if (submenu !== undefined) {
+        submenuHorizontalMainMenu.x = label.x//mainMenu.x;
+        submenuHorizontalMainMenu.y = 0;
+        submenuHorizontalMainMenu.visible = true;
+        submenuHorizontalMainMenu.label.text = name;
+        }
     }
 
     function buildModelVerticalMenu() {

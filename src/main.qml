@@ -12,7 +12,7 @@ MainWindow {
 
     head.logo.source: "qrc:/images/logo-harrix.svg"
 
-    head.centerMobileElement: CenterMobileElement {id:centerMobileElementApp;}
+    head.centerMobileElement: CenterMobileElement { }
 
     head.colorMobileMode: false
 

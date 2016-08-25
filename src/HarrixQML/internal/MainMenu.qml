@@ -267,9 +267,26 @@ Rectangle {
             submenuHorizontalMainMenu.x = label.x - marginCommon
             submenuHorizontalMainMenu.y = marginCommon;
 
-            //submenuHorizontalMainMenu.model.destroy();
+            submenuHorizontalMainMenu.model.destroy();
 
+            var model = createListModel(mainMenu);
 
+            var i=0;
+            for (i = 0; i < mainMenuModel.count; i++) {
+                if (mainMenuModel.get(i).name === name) {
+                    var submenuArray = mainMenuModel.get(i).submenu;
+                    if (submenuArray !== undefined) {
+                        for (var j = 0; j < submenuArray.count; j++) {
+                            model.append({"caption": submenuArray.get(j).caption,
+                                             "name": submenuArray.get(j).name,
+                                             "sub": true});
+                        }
+                    }
+
+                }
+            }
+
+            submenuHorizontalMainMenu.model = model;
             submenuHorizontalMainMenu.open();
         }
     }

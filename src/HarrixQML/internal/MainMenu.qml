@@ -297,10 +297,10 @@ Rectangle {
     }
 
     function toogleVecticalMainMenu() {
-        if (rectangleColumnMainMenu.height === 0)
+        if (rectangleColumnMainMenu.height > 0)
+            rectangleColumnMainMenu.height = 0;
+        else
             rectangleColumnMainMenu.height = Math.min(columnMainMenu.height,
                                                       mainWindow.heightWindow - head.height);//TODO
-        else
-            rectangleColumnMainMenu.height = 0;
     }
 }

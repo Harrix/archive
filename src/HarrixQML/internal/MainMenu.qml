@@ -31,7 +31,7 @@ Rectangle {
     property int topPaddingMenu: 5
     property int bottomPaddingMenu: 5
     property int topPaddingMenuVertical: 16
-    property int bottomPaddingMenuVertical: 12
+    property int bottomPaddingMenuVertical: 13
     property int leftPaddingMenu: 8
     property int rightPaddingMenu: 8
 
@@ -140,7 +140,7 @@ Rectangle {
                         Rectangle {
                             height: 1
                             width: rectangleColumnMainMenu.width
-                            y: parent.height
+                            y: parent.height - 1
                             color: SettingsHarrixQML.colorBorder
                         }
 

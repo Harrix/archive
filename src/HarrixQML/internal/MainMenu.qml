@@ -172,6 +172,7 @@ Rectangle {
             PropertyChanges { target: mainMenuHead; width: rowMainMenu.width; }
             PropertyChanges { target: rightIcon; visible: false; }
             PropertyChanges { target: rowMainMenu; visible: true; }
+            PropertyChanges { target: rectangleColumnMainMenu; visible: false; }
         },
         State {
             name: "collapsed"
@@ -183,6 +184,7 @@ Rectangle {
                 colorIconHover: colorMenuHover
             }
             PropertyChanges { target: rowMainMenu; visible: false; }
+            PropertyChanges { target: rectangleColumnMainMenu; visible: true; }
         },
         State {
             name: "collapsedWhite"
@@ -194,6 +196,7 @@ Rectangle {
                 colorIconHover: colorMenuLightHover
             }
             PropertyChanges { target: rowMainMenu; visible: false; }
+            PropertyChanges { target: rectangleColumnMainMenu; visible: true; }
         }
     ]
 
@@ -202,8 +205,12 @@ Rectangle {
 
         onSendWidthForMainMenu: {
             var widthMainMenu = rowMainMenu.width;
-            if (widthForMenu > widthMainMenu)
-                state = "expanded";
+            if (widthForMenu > widthMainMenu) {
+                if ((colorMobileMode) && (mobileModeHead))
+                    state = "collapsedWhite";
+                else
+                    state = "expanded";
+            }
             else {
                 if (mobileModeHead) {
                     if (colorMobileMode)

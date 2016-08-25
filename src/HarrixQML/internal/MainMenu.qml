@@ -94,22 +94,6 @@ Rectangle {
         }
     }
 
-    function clickItemMenu (name, submenu) {
-        if (submenu === undefined)
-            clickActiveItemMenu (name);
-        else {
-            var lengthModel = submenu.count;
-            var model = createListModel(mainMenu);
-            console.log ("Submenu is " + lengthModel);
-            for (var i = 0; i < lengthModel; i++) {
-                console.log (i);
-                console.log (submenu.get(i).caption);
-                model.append({"caption": submenu.get(i).caption, "name": submenu.get(i).name});
-            }
-            columnMainMenuRepeater.model = model;
-        }
-    }
-
     Rectangle {
         id: rectangleColumnMainMenu
         parent: head
@@ -251,6 +235,22 @@ Rectangle {
     function createListModel(parent) {
         var newModel = сomponentListModel.createObject(parent);
         return newModel;
+    }
+
+    function clickItemMenu (name, submenu) {
+        if (submenu === undefined)
+            clickActiveItemMenu (name);
+        else {
+            var lengthModel = submenu.count;
+            var model = createListModel(mainMenu);
+            console.log ("Submenu is " + lengthModel);
+            for (var i = 0; i < lengthModel; i++) {
+                console.log (i);
+                console.log (submenu.get(i).caption);
+                model.append({"caption": submenu.get(i).caption, "name": submenu.get(i).name});
+            }
+            columnMainMenuRepeater.model = model;
+        }
     }
 
     function buildModelVerticalMenu() {

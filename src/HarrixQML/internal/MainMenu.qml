@@ -9,6 +9,7 @@ Rectangle {
     //Properties that it is necessary to set
     property alias mainMenu: mainMenuRepeater.model
     property alias signalSender: listenerSignals.target
+    property var arraySubmenu
 
     //Properties that it is to set if necessary
     property bool colorMobileMode: false

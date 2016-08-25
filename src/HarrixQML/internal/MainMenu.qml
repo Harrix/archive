@@ -80,12 +80,12 @@ Rectangle {
                 MouseArea {
                     anchors.fill: parent
                     hoverEnabled: true
-                    onEntered: parent.color = colorMenuHover;
-                    onExited: parent.color = colorMenu;
+                    onEntered: parent.color = colorMenuHover
+                    onExited: parent.color = colorMenu
                     cursorShape: cursorShapeMenu
                     onClicked: {
                         clickActiveItemMenu(name);
-                        submenuHorizontalMainMenu.open();
+                        showSubmenuHorizontalMainMenu(this.parent, name, submenu)
                     }
                 }
 
@@ -266,10 +266,12 @@ Rectangle {
 
     function showSubmenuHorizontalMainMenu(label, name, submenu) {
         if (submenu !== undefined) {
-            submenuHorizontalMainMenu.x = label.x//mainMenu.x;
-            submenuHorizontalMainMenu.y = 0;
-            submenuHorizontalMainMenu.visible = true;
-            submenuHorizontalMainMenu.text = name;
+            //submenuHorizontalMainMenu.x = label.x//mainMenu.x;
+            //submenuHorizontalMainMenu.y = 0;
+            //submenuHorizontalMainMenu.visible = true;
+            //submenuHorizontalMainMenu.text = name;
+
+            submenuHorizontalMainMenu.open();
         }
     }
 

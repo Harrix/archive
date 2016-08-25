@@ -275,8 +275,7 @@ Rectangle {
                     if (submenuArray !== undefined) {
                         for (var j = 0; j < submenuArray.count; j++) {
                             model.append({"caption": submenuArray.get(j).caption,
-                                             "name": submenuArray.get(j).name,
-                                             "sub": true});
+                                             "name": submenuArray.get(j).name});
                         }
                     }
 

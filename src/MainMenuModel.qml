@@ -22,20 +22,8 @@ ListModel {
         name: "About";
         caption: qsTr("About");
         submenu: [
-            ListElement { name: "Help";    caption: qsTr("Help"); },
-            ListElement { name: "About";    caption: qsTr("About"); }
+            ListElement { name: "Help";            caption: qsTr("Help"); },
+            ListElement { name: "AboutProgram";    caption: qsTr("About Program"); }
         ]
-    }
-    ListElement {
-        name: "TestItem";
-        caption: qsTr("Test Item");
-    }
-    ListElement {
-        name: "TestItem2";
-        caption: qsTr("Test Item 2");
-    }
-    ListElement {
-        name: "TestItem3";
-        caption: qsTr("Test Item 3");
     }
 }

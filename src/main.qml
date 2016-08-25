@@ -3,6 +3,7 @@ import QtQuick.Controls 2.0
 import QtQuick.Layouts 1.3
 
 import "HarrixQML"
+import "HarrixQML/internal"
 
 MainWindow {
     title: qsTr("Harrix-QMLComponents - Demo")
@@ -28,21 +29,6 @@ MainWindow {
         console.log(name);
         if (name === "File")
            optionsMenu.open();
-    }
-
-    Menu {
-        id: optionsMenu
-        x: parent.width - width
-        transformOrigin: Menu.TopRight
-
-        MenuItem {
-            text: "Settings"
-            //onTriggered: settingsPopup.open()
-        }
-        MenuItem {
-            text: "About"
-            //onTriggered: aboutDialog.open()
-        }
     }
 
     Component.onCompleted: {

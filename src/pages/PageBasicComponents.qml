@@ -54,7 +54,12 @@ Page{
 
         Instantiator {
             id: instantiatormenuTest
-            model: modelTest
+            model: ListModel {
+                ListElement {
+                    name: "Text";
+                    caption: qsTr("Text");
+                }
+            }
             onObjectAdded: menuTest.insertItem( index, object )
             onObjectRemoved: menuTest.removeItem( object )
             delegate: MenuItem {

@@ -96,13 +96,41 @@ Rectangle {
     function clickItemMenu (name, submenu) {
         if (submenu === undefined)
             clickItemMainMenu (name)
-        else
-            console.log ("Submenu is");
+        else {
+            var lengthModel = submenu.count;
+            console.log ("Submenu is " + lengthModel);
+            var lengthMenuShow = submenuShow.contentModel.count;
+            console.log ("Submenu is " + lengthMenuShow);
+            for (var i=0; i<lengthModel; i++) {
+                //submenuShow.addItem(component.createObject(MenuItem, {"text": "111"}));
+                //submenuShow.addItem(MenuItem);
+                //var it = submenuShow.createObject (menuItem2, {"text": "111"});
+                //item22.text = submenu.get(i).caption;
+                //submenuShow.addItem(item22);
+                var fgh2 = Qt.createComponent(fgh);
+                //fgh2.text = submenu.get(i).caption;
+                submenuShow.addItem(fgh2);
+                console.log (i);
+            }
+           submenuShow.open()
+
+        }
     }
 
-    Menu {
-        id: submenu
+    Component
+    {
+        id: fgh
+        MenuItem {
+text:"dd"
+        }
+    }
 
+        MenuItem {
+            id: item22
+        }
+
+    Menu {
+        id: submenuShow
     }
 
     Rectangle {

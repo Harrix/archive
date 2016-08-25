@@ -156,8 +156,6 @@ Rectangle {
                 Repeater {
                     id: columnMainMenuRepeater
 
-                    //model: mainMenuModel
-
                     Label {
                         text: caption
                         fontSize: fontSize

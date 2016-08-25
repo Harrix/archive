@@ -128,45 +128,35 @@ Rectangle {
 
                     model: mainMenuModel
 
-                    Column {
-                        spacing: 0
+                    Label {
+                        text: caption
+                        fontSize: fontSize
+                        color: colorMenu
+                        topPadding: topPaddingMenuVertical
+                        bottomPadding: bottomPaddingMenuVertical
+                        leftPadding: leftPaddingMenu
+                        rightPadding: rightPaddingMenu
+                        width: rectangleColumnMainMenu.width
 
-                        Label {
-                            text: caption
-                            fontSize: fontSize
-                            color: colorMenu
-                            topPadding: topPaddingMenuVertical
-                            bottomPadding: bottomPaddingMenuVertical
-                            leftPadding: leftPaddingMenu
-                            rightPadding: rightPaddingMenu
+                        Rectangle {
+                            height: 1
                             width: rectangleColumnMainMenu.width
-
-                            Rectangle {
-                                height: 1
-                                width: rectangleColumnMainMenu.width
-                                y: parent.height - 1
-                                color: SettingsHarrixQML.colorBorder
-                            }
-
-                            MouseArea {
-                                anchors.fill: parent
-                                hoverEnabled: true
-                                onEntered: parent.color = colorMenuHover
-                                onExited: parent.color = colorMenu
-                                cursorShape: cursorShapeMenu
-                                onClicked: clickItemMainMenu (name)
-                            }
-
-                            Behavior on color {
-                                ColorAnimation {
-                                    duration: durationAnimation
-                                }
-                            }
+                            y: parent.height - 1
+                            color: SettingsHarrixQML.colorBorder
                         }
-                        Repeater {
-                            model: ListModel {model: subMenu}
-                            Label {
-                                text: caption
+
+                        MouseArea {
+                            anchors.fill: parent
+                            hoverEnabled: true
+                            onEntered: parent.color = colorMenuHover
+                            onExited: parent.color = colorMenu
+                            cursorShape: cursorShapeMenu
+                            onClicked: clickItemMainMenu (name)
+                        }
+
+                        Behavior on color {
+                            ColorAnimation {
+                                duration: durationAnimation
                             }
                         }
                     }

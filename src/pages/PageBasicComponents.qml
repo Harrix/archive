@@ -1,6 +1,7 @@
 import QtQuick 2.7
 import QtQuick.Controls 2.0
 import QtQuick.Layouts 1.3
+import QtQml 2.2
 
 import "../HarrixQML"
 
@@ -28,14 +29,17 @@ Page{
 
     Menu {
         id: menuTest
-        MenuItem {
-            text: "1111"
-        }
-        MenuItem {
-            text: "2222"
-        }
-        MenuItem {
-            text: "3333"
+
+        Instantiator {
+            model: modelTest
+            onObjectAdded: menuTest.insertItem( index, object )
+            onObjectRemoved: menuTest.removeItem( object )
+            delegate: MenuItem {
+                text: caption
+                onTriggered: {
+                    //menuModel.executeCommand( role_command, role_user );
+                }
+            }
         }
     }
 
@@ -94,7 +98,7 @@ Page{
             Button {
                 id: button3
                 text: qsTr("Download")
-                enabled: false                
+                enabled: false
                 icon:  IconFontAwesome { symbol: FontAwesome.fa_apple }
             }
 

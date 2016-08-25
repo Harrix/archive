@@ -79,8 +79,14 @@ Rectangle {
                 MouseArea {
                     anchors.fill: parent
                     hoverEnabled: true
-                    onEntered: parent.color = colorMenuHover
-                    onExited: parent.color = colorMenu
+                    onEntered: {
+                        parent.color = colorMenuHover;
+                        showSubmenuHorizontalMainMenu(name, submenu);
+                    }
+                    onExited: {
+                        parent.color = colorMenu;
+                        submenuHorizontalMainMenu.visible = true;
+                    }
                     cursorShape: cursorShapeMenu
                     //onClicked: clickItemMenu (name, submenu)
                 }
@@ -91,6 +97,18 @@ Rectangle {
                     }
                 }
             }
+        }
+    }
+
+    Rectangle {
+        id: submenuHorizontalMainMenu
+        color: colorBackgroundColumn
+        width: 100
+        height: 100
+        visible: false
+
+        Label {
+            text: "Text"
         }
     }
 
@@ -252,6 +270,10 @@ Rectangle {
             columnMainMenuRepeater.model = model;
         }
     }*/
+
+    function showSubmenuHorizontalMainMenu(name, submenu) {
+
+    }
 
     function buildModelVerticalMenu() {
         var model = createListModel(mainMenu);

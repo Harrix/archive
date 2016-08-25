@@ -74,7 +74,6 @@ Rectangle {
                 leftPadding: leftPaddingMenu
                 rightPadding: rightPaddingMenu
 
-
                 MouseArea {
                     anchors.fill: parent
                     hoverEnabled: true

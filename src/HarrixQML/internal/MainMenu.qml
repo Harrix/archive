@@ -33,6 +33,7 @@ Rectangle {
     property int topPaddingMenuVertical: 16
     property int bottomPaddingMenuVertical: 13
     property int leftPaddingMenu: 8
+    property int leftPaddingSubmenu: 30
     property int rightPaddingMenu: 8
     property int maximumHeightVerticalMainMenu: 318
 
@@ -109,36 +110,6 @@ Rectangle {
         }
     }
 
-    Component {
-        id: сomponentListModel
-        ListModel {
-        }
-    }
-
-    function createListModel(parent) {
-        var newModel = сomponentListModel.createObject(parent);
-        return newModel;
-    }
-
-    function buildModelVerticalMenu() {
-        var model = createListModel(mainMenu);
-
-        for (var i = 0; i < mainMenuModel.count; i++) {
-            model.append({"caption": mainMenuModel.get(i).caption,
-                             "name": mainMenuModel.get(i).name});
-
-            var submenuArray = mainMenuModel.get(i).submenu;
-            if (submenuArray !== undefined) {
-                for (var j = 0; j < submenuArray.count; j++) {
-                    model.append({"caption": submenuArray.get(j).caption,
-                                     "name": submenuArray.get(j).name});
-                }
-            }
-        }
-
-        columnMainMenuRepeater.model = model;
-    }
-
     Rectangle {
         id: rectangleColumnMainMenu
         parent: head
@@ -182,7 +153,7 @@ Rectangle {
                         color: colorMenu
                         topPadding: topPaddingMenuVertical
                         bottomPadding: bottomPaddingMenuVertical
-                        leftPadding: leftPaddingMenu
+                        leftPadding: sub ? leftPaddingSubmenu : leftPaddingMenu
                         rightPadding: rightPaddingMenu
                         width: rectangleColumnMainMenu.width
 
@@ -247,6 +218,12 @@ Rectangle {
         }
     ]
 
+    Component {
+        id: сomponentListModel
+        ListModel {
+        }
+    }
+
     Connections {
         id: listenerSignals
 
@@ -269,6 +246,32 @@ Rectangle {
                     state = "collapsed";
             }
         }
+    }
+
+    function createListModel(parent) {
+        var newModel = сomponentListModel.createObject(parent);
+        return newModel;
+    }
+
+    function buildModelVerticalMenu() {
+        var model = createListModel(mainMenu);
+
+        for (var i = 0; i < mainMenuModel.count; i++) {
+            model.append({"caption": mainMenuModel.get(i).caption,
+                             "name": mainMenuModel.get(i).name,
+                             "sub": false});
+
+            var submenuArray = mainMenuModel.get(i).submenu;
+            if (submenuArray !== undefined) {
+                for (var j = 0; j < submenuArray.count; j++) {
+                    model.append({"caption": submenuArray.get(j).caption,
+                                     "name": submenuArray.get(j).name,
+                                     "sub": true});
+                }
+            }
+        }
+
+        columnMainMenuRepeater.model = model;
     }
 
     function toogleVecticalMainMenu() {

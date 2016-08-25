@@ -98,12 +98,26 @@ Rectangle {
             clickItemMainMenu (name);
         else {
             var lengthModel = submenu.count;
+            var model = createModel(mainMenu);
             console.log ("Submenu is " + lengthModel);
             for (var i = 0; i < lengthModel; i++) {
                 console.log (i);
                 console.log (submenu.get(i).caption);
+                model.append({"caption": submenu.get(i).caption, "name": submenu.get(i).name});
             }
+            columnMainMenuRepeater.model = model;
         }
+    }
+
+    Component {
+        id: someComponent
+        ListModel {
+        }
+    }
+
+    function createModel(parent) {
+        var newModel = someComponent.createObject(parent);
+        return newModel;
     }
 
 

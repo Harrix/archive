@@ -23,7 +23,7 @@ ListModel {
         caption: qsTr("About");
         submenu: [
             ListElement { name: "Help";            caption: qsTr("Help"); },
-            ListElement { name: "AboutProgram";    caption: qsTr("About Program"); }
+            ListElement { name: "AboutProgram";    caption: qsTr("About program"); }
         ]
     }
 }

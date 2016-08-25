@@ -26,9 +26,12 @@ Rectangle {
     property color colorMenuLight: SettingsHarrixQML.colorLightElement
     property color colorMenuLightHover: SettingsHarrixQML.colorLightElementHover
     property color colorBackgroundColumn: SettingsHarrixQML.colorBackground
+    property color colorBorder: SettingsHarrixQML.colorBorder
     property int cursorShapeMenu: SettingsHarrixQML.cursorHover
     property int topPaddingMenu: 5
     property int bottomPaddingMenu: 5
+    property int topPaddingMenuVertical: 16
+    property int bottomPaddingMenuVertical: 12
     property int leftPaddingMenu: 8
     property int rightPaddingMenu: 8
 
@@ -70,6 +73,7 @@ Rectangle {
                 bottomPadding: bottomPaddingMenu
                 leftPadding: leftPaddingMenu
                 rightPadding: rightPaddingMenu
+
 
                 MouseArea {
                     anchors.fill: parent
@@ -128,10 +132,18 @@ Rectangle {
                         text: caption
                         fontSize: fontSize
                         color: colorMenu
-                        topPadding: topPaddingMenu
-                        bottomPadding: bottomPaddingMenu
+                        topPadding: topPaddingMenuVertical
+                        bottomPadding: bottomPaddingMenuVertical
                         leftPadding: leftPaddingMenu
                         rightPadding: rightPaddingMenu
+                        width: rectangleColumnMainMenu.width
+
+                        Rectangle {
+                            height: 1
+                            width: rectangleColumnMainMenu.width
+                            y: parent.height
+                            color: SettingsHarrixQML.colorBorder
+                        }
 
                         MouseArea {
                             anchors.fill: parent
@@ -148,6 +160,7 @@ Rectangle {
                             }
                         }
                     }
+
                 }
             }
         }

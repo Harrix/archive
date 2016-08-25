@@ -1,5 +1,6 @@
 import QtQuick 2.7
 import QtQuick.Controls 2.0
+import QtQml 2.2
 import ".."
 
 Rectangle {
@@ -79,16 +80,12 @@ Rectangle {
                 MouseArea {
                     anchors.fill: parent
                     hoverEnabled: true
-                    onEntered: {
-                        parent.color = colorMenuHover;
-                        showSubmenuHorizontalMainMenu(this.parent, name, submenu);
-                    }
-                    onExited: {
-                        parent.color = colorMenu;
-                        submenuHorizontalMainMenu.visible = false;
-                    }
+                    onEntered: parent.color = colorMenuHover;
+                    onExited: parent.color = colorMenu;
                     cursorShape: cursorShapeMenu
-                    //onClicked: clickItemMenu (name, submenu)
+                    onClicked: {
+                        submenuHorizontalMainMenu.open();
+                    }
                 }
 
                 Behavior on color {
@@ -100,20 +97,26 @@ Rectangle {
         }
     }
 
-    Rectangle {
+    Menu {
         id: submenuHorizontalMainMenu
+        property alias model: instantiatorSubmenuHorizontalMainMenu.model
 
-        property alias text: label.text
-
-        //parent: mainMenu.parent
-        color: "red"//colorBackgroundColumn
-        width: 100
-        height: 100
-        visible: false
-
-        Label {
-            id: label
-            text: "Text"
+        Instantiator {
+            id: instantiatorSubmenuHorizontalMainMenu
+            model: ListModel {
+                ListElement {
+                    name: "Text";
+                    caption: qsTr("Text");
+                }
+            }
+            onObjectAdded: submenuHorizontalMainMenu.insertItem( index, object )
+            onObjectRemoved: submenuHorizontalMainMenu.removeItem( object )
+            delegate: MenuItem {
+                text: caption
+                onTriggered: {
+                    clickActiveItemMenu (name);
+                }
+            }
         }
     }
 
@@ -262,10 +265,10 @@ Rectangle {
 
     function showSubmenuHorizontalMainMenu(label, name, submenu) {
         if (submenu !== undefined) {
-        submenuHorizontalMainMenu.x = label.x//mainMenu.x;
-        submenuHorizontalMainMenu.y = 0;
-        submenuHorizontalMainMenu.visible = true;
-        submenuHorizontalMainMenu.text = name;
+            submenuHorizontalMainMenu.x = label.x//mainMenu.x;
+            submenuHorizontalMainMenu.y = 0;
+            submenuHorizontalMainMenu.visible = true;
+            submenuHorizontalMainMenu.text = name;
         }
     }
 

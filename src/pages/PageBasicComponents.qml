@@ -10,6 +10,35 @@ Page{
 
     signal qmlSignal(string msg)
 
+    ListModel {
+        id: modelTest
+        ListElement {
+            name: "Options";
+            caption: qsTr("Options");
+        }
+        ListElement {
+            name: "File";
+            caption: qsTr("File");
+        }
+        ListElement {
+            name: "Edit";
+            caption: qsTr("Edit");
+        }
+    }
+
+    Menu {
+        id: menuTest
+        MenuItem {
+            text: "1111"
+        }
+        MenuItem {
+            text: "2222"
+        }
+        MenuItem {
+            text: "3333"
+        }
+    }
+
     Flickable {
         focus: true
         width: parent.width
@@ -59,14 +88,14 @@ Page{
                 id: button22
                 text: qsTr("Console")
                 icon:  IconFontAwesome { symbol: FontAwesome.fa_vk }
+                onClicked: menuTest.open()
             }
 
             Button {
                 id: button3
                 text: qsTr("Download")
-                enabled: false
-                onClicked: qmlSignal( qsTr("images") )
-                icon:  IconFontAwesome { symbol: FontAwesome.fa_download }
+                enabled: false                
+                icon:  IconFontAwesome { symbol: FontAwesome.fa_apple }
             }
 
             Label {

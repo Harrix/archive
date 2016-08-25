@@ -13,7 +13,7 @@ MainWindow {
 
     head.centerMobileElement: CenterMobileElement {id:centerMobileElementApp;}
 
-    head.colorMobileMode: true
+    head.colorMobileMode: false
 
     head.mainMenu: ListModel {
         ListElement { name: "File";       caption: qsTr("File"); }
@@ -26,6 +26,23 @@ MainWindow {
 
     onClickItemMainMenu: {
         console.log(name);
+        if (name === "File")
+           optionsMenu.open();
+    }
+
+    Menu {
+        id: optionsMenu
+        x: parent.width - width
+        transformOrigin: Menu.TopRight
+
+        MenuItem {
+            text: "Settings"
+            //onTriggered: settingsPopup.open()
+        }
+        MenuItem {
+            text: "About"
+            //onTriggered: aboutDialog.open()
+        }
     }
 
     Component.onCompleted: {

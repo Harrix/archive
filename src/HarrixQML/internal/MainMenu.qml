@@ -82,7 +82,7 @@ Rectangle {
                     onEntered: parent.color = colorMenuHover
                     onExited: parent.color = colorMenu
                     cursorShape: cursorShapeMenu
-                    onClicked: clickItemMenu (name, submenu)
+                    //onClicked: clickItemMenu (name, submenu)
                 }
 
                 Behavior on color {
@@ -237,7 +237,7 @@ Rectangle {
         return newModel;
     }
 
-    function clickItemMenu (name, submenu) {
+    /*function clickItemMenu (name, submenu) {
         if (submenu === undefined)
             clickActiveItemMenu (name);
         else {
@@ -251,7 +251,7 @@ Rectangle {
             }
             columnMainMenuRepeater.model = model;
         }
-    }
+    }*/
 
     function buildModelVerticalMenu() {
         var model = createListModel(mainMenu);

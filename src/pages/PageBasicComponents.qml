@@ -27,10 +27,33 @@ Page{
         }
     }
 
+    ListModel {
+        id: modelTest2
+        ListElement {
+            name: "About";
+            caption: qsTr("About");
+        }
+        ListElement {
+            name: "Terminator";
+            caption: qsTr("Terminator");
+        }
+        ListElement {
+            name: "Matrix";
+            caption: qsTr("Matrix");
+        }
+
+        ListElement {
+            name: "Harry Potter";
+            caption: qsTr("Harry Potter");
+        }
+    }
+
     Menu {
         id: menuTest
+        property alias model: instantiatormenuTest.model
 
         Instantiator {
+            id: instantiatormenuTest
             model: modelTest
             onObjectAdded: menuTest.insertItem( index, object )
             onObjectRemoved: menuTest.removeItem( object )
@@ -90,9 +113,22 @@ Page{
 
             ButtonBlue {
                 id: button22
-                text: qsTr("Console")
+                text: qsTr("Open menu")
                 icon:  IconFontAwesome { symbol: FontAwesome.fa_vk }
-                onClicked: menuTest.open()
+                onClicked:  {
+                    menuTest.model = modelTest
+                    menuTest.open()
+                }
+            }
+
+            ButtonBlue {
+                id: button22996
+                text: qsTr("Open menu 2")
+                icon:  IconFontAwesome { symbol: FontAwesome.fa_vk }
+                onClicked:  {
+                    menuTest.model = modelTest2
+                    menuTest.open()
+                }
             }
 
             Button {

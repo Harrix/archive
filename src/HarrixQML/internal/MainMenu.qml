@@ -81,7 +81,7 @@ Rectangle {
                     onEntered: parent.color = colorMenuHover
                     onExited: parent.color = colorMenu
                     cursorShape: cursorShapeMenu
-                    onClicked: clickItemMainMenu (name)
+                    onClicked: clickItemMenu (name, submenu)
                 }
 
                 Behavior on color {
@@ -91,6 +91,18 @@ Rectangle {
                 }
             }
         }
+    }
+
+    function clickItemMenu (name, submenu) {
+        if (submenu === undefined)
+            clickItemMainMenu (name)
+        else
+            console.log ("Submenu is");
+    }
+
+    Menu {
+        id: submenu
+
     }
 
     Rectangle {

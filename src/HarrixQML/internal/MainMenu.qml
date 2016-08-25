@@ -84,6 +84,7 @@ Rectangle {
                     onExited: parent.color = colorMenu;
                     cursorShape: cursorShapeMenu
                     onClicked: {
+                        clickActiveItemMenu(name);
                         submenuHorizontalMainMenu.open();
                     }
                 }
@@ -114,7 +115,7 @@ Rectangle {
             delegate: MenuItem {
                 text: caption
                 onTriggered: {
-                    clickActiveItemMenu (name);
+                    clickActiveItemMenu(name);
                 }
             }
         }
@@ -180,7 +181,7 @@ Rectangle {
                             onEntered: parent.color = colorMenuHover
                             onExited: parent.color = colorMenu
                             cursorShape: cursorShapeMenu
-                            onClicked: clickActiveItemMenu (name)
+                            onClicked: clickActiveItemMenu(name)
                         }
 
                         Behavior on color {

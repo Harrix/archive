@@ -23,13 +23,13 @@ MainWindow {
         ListElement { name: "About";      caption: qsTr("About");}
     }
 
-    content: Content {}
-
     onClickItemMainMenu: {
         console.log(name);
         /*if (name === "File")
            optionsMenu.open();*/
     }
+
+    content: Content {}
 
     Component.onCompleted: {
         if (head.colorMobileMode)

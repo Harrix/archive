@@ -267,6 +267,9 @@ Rectangle {
             submenuHorizontalMainMenu.x = label.x - marginCommon
             submenuHorizontalMainMenu.y = marginCommon;
 
+            //submenuHorizontalMainMenu.model.destroy();
+
+
             submenuHorizontalMainMenu.open();
         }
     }

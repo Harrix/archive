@@ -128,35 +128,45 @@ Rectangle {
 
                     model: mainMenuModel
 
-                    Label {
-                        text: caption
-                        fontSize: fontSize
-                        color: colorMenu
-                        topPadding: topPaddingMenuVertical
-                        bottomPadding: bottomPaddingMenuVertical
-                        leftPadding: leftPaddingMenu
-                        rightPadding: rightPaddingMenu
-                        width: rectangleColumnMainMenu.width
+                    Column {
+                        spacing: 0
 
-                        Rectangle {
-                            height: 1
+                        Label {
+                            text: caption
+                            fontSize: fontSize
+                            color: colorMenu
+                            topPadding: topPaddingMenuVertical
+                            bottomPadding: bottomPaddingMenuVertical
+                            leftPadding: leftPaddingMenu
+                            rightPadding: rightPaddingMenu
                             width: rectangleColumnMainMenu.width
-                            y: parent.height - 1
-                            color: SettingsHarrixQML.colorBorder
-                        }
 
-                        MouseArea {
-                            anchors.fill: parent
-                            hoverEnabled: true
-                            onEntered: parent.color = colorMenuHover
-                            onExited: parent.color = colorMenu
-                            cursorShape: cursorShapeMenu
-                            onClicked: clickItemMainMenu (name)
-                        }
+                            Rectangle {
+                                height: 1
+                                width: rectangleColumnMainMenu.width
+                                y: parent.height - 1
+                                color: SettingsHarrixQML.colorBorder
+                            }
 
-                        Behavior on color {
-                            ColorAnimation {
-                                duration: durationAnimation
+                            MouseArea {
+                                anchors.fill: parent
+                                hoverEnabled: true
+                                onEntered: parent.color = colorMenuHover
+                                onExited: parent.color = colorMenu
+                                cursorShape: cursorShapeMenu
+                                onClicked: clickItemMainMenu (name)
+                            }
+
+                            Behavior on color {
+                                ColorAnimation {
+                                    duration: durationAnimation
+                                }
+                            }
+                        }
+                        Repeater {
+                            model: ListModel {model: subMenu}
+                            Label {
+                                text: caption
                             }
                         }
                     }

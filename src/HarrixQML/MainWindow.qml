@@ -72,7 +72,7 @@ ApplicationWindow {
 
     Connections {
         id: listenerSignalsFromMainMenu
-        target: head.mainMenuHead
+        target: head.mainMenu
 
         onClickItemMainMenu: clickItemMainMenu (name)
     }

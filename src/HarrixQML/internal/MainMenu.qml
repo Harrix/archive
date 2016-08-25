@@ -3,18 +3,19 @@ import QtQuick.Controls 2.0
 import ".."
 
 Rectangle {
-    id: mainMenuHead
-    objectName: "mainMenuHead"
+    id: mainMenu
+    objectName: "mainMenu"
 
     //Properties that it is necessary to set
-    property alias mainMenu: mainMenuRepeater.model
+    property alias mainMenuModel: mainMenuRepeater.model
     property alias signalSender: listenerSignals.target
+    property var arraySubmenu
 
     //Properties that it is to set if necessary
     property bool colorMobileMode: false
 
     //Properties, through which you can access the elements
-    property alias head: mainMenuHead.parent
+    property alias head: mainMenu.parent
 
     //Common properties which can be changed if necessary
     property string fontName: SettingsHarrixQML.fontName
@@ -126,7 +127,7 @@ Rectangle {
                 Repeater {
                     id: columnMainMenuRepeater
 
-                    model: mainMenu
+                    model: mainMenuModel
 
                     Label {
                         text: caption
@@ -169,14 +170,14 @@ Rectangle {
     states: [
         State {
             name: "expanded"
-            PropertyChanges { target: mainMenuHead; width: rowMainMenu.width; }
+            PropertyChanges { target: mainMenu; width: rowMainMenu.width; }
             PropertyChanges { target: rightIcon; visible: false; }
             PropertyChanges { target: rowMainMenu; visible: true; }
             PropertyChanges { target: rectangleColumnMainMenu; visible: false; }
         },
         State {
             name: "collapsed"
-            PropertyChanges { target: mainMenuHead; width: rowMainMenu.width; }
+            PropertyChanges { target: mainMenu; width: rowMainMenu.width; }
             PropertyChanges {
                 target: rightIcon
                 visible: true
@@ -188,7 +189,7 @@ Rectangle {
         },
         State {
             name: "collapsedWhite"
-            PropertyChanges { target: mainMenuHead; width: rowMainMenu.width; }
+            PropertyChanges { target: mainMenu; width: rowMainMenu.width; }
             PropertyChanges {
                 target: rightIcon
                 visible: true

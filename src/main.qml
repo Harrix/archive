@@ -16,7 +16,7 @@ MainWindow {
 
     head.colorMobileMode: false
 
-    head.mainMenu: ListModel {
+    head.mainMenu.mainMenuModel: ListModel {
         ListElement { name: "File";       caption: qsTr("File"); }
         ListElement { name: "Options";    caption: qsTr("Options"); }
         ListElement { name: "Harrix.org"; caption: qsTr("Harrix.org");}
@@ -27,8 +27,8 @@ MainWindow {
 
     onClickItemMainMenu: {
         console.log(name);
-        if (name === "File")
-           optionsMenu.open();
+        /*if (name === "File")
+           optionsMenu.open();*/
     }
 
     Component.onCompleted: {

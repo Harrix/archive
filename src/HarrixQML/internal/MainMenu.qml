@@ -102,6 +102,9 @@ Rectangle {
 
     Rectangle {
         id: submenuHorizontalMainMenu
+
+        property alias text: label.text
+
         //parent: mainMenu.parent
         color: "red"//colorBackgroundColumn
         width: 100
@@ -278,7 +281,7 @@ Rectangle {
         submenuHorizontalMainMenu.x = label.x//mainMenu.x;
         submenuHorizontalMainMenu.y = 0;
         submenuHorizontalMainMenu.visible = true;
-        submenuHorizontalMainMenu.label.text = name;
+        submenuHorizontalMainMenu.text = name;
         }
     }
 

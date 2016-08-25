@@ -34,6 +34,7 @@ Rectangle {
     property int bottomPaddingMenuVertical: 13
     property int leftPaddingMenu: 8
     property int rightPaddingMenu: 8
+    property int maximumHeightVerticalMainMenu: 318
 
     //Signals
     signal clickItemMainMenu (string name);
@@ -218,7 +219,8 @@ Rectangle {
 
     function toogleVecticalMainMenu() {
         if (rectangleColumnMainMenu.height === 0)
-            rectangleColumnMainMenu.height = Math.min(columnMainMenu.height, 300);
+            rectangleColumnMainMenu.height = Math.min(columnMainMenu.height,
+                                                      maximumHeightVerticalMainMenu);
         else
             rectangleColumnMainMenu.height = 0;
     }

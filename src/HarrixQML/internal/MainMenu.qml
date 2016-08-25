@@ -264,10 +264,8 @@ Rectangle {
 
     function showSubmenuHorizontalMainMenu(label, name, submenu) {
         if (submenu !== undefined) {
-            //submenuHorizontalMainMenu.x = label.x//mainMenu.x;
-            //submenuHorizontalMainMenu.y = 0;
-            //submenuHorizontalMainMenu.visible = true;
-            //submenuHorizontalMainMenu.text = name;
+            submenuHorizontalMainMenu.x = label.x - marginCommon
+            submenuHorizontalMainMenu.y = marginCommon;
 
             submenuHorizontalMainMenu.open();
         }

@@ -26,4 +26,16 @@ ListModel {
             ListElement { name: "About";    caption: qsTr("About"); }
         ]
     }
+    ListElement {
+        name: "TestItem";
+        caption: qsTr("Test Item");
+    }
+    ListElement {
+        name: "TestItem2";
+        caption: qsTr("Test Item 2");
+    }
+    ListElement {
+        name: "TestItem3";
+        caption: qsTr("Test Item 3");
+    }
 }

@@ -23,7 +23,7 @@ MenuItem {
         font.pixelSize: fontSize
         font.family: fontName
         text: menuItem.text
-        color: menuItem.enabled ? colorMenu : colorNotEnabled
+        color: defineColorTextMenu()
         elide: Text.ElideRight
         horizontalAlignment: Text.AlignLeft
         verticalAlignment: Text.AlignVCenter
@@ -33,8 +33,8 @@ MenuItem {
             anchors.fill: parent
             hoverEnabled: true
             colorRipple: colorRippleInWhite
-            onEntered: parent.color = colorMenuHover
-            onExited: parent.color = colorMenu
+            //onEntered: parent.color = colorMenuHover
+            //onExited: parent.color = colorMenu
             onClicked: menuItem.clicked()
         }
 
@@ -49,6 +49,14 @@ MenuItem {
         id: backgroundMenuItem
         color: "transparent"
         implicitHeight: 30
+    }
+
+    function defineColorTextMenu() {
+        if (!menuItem.enabled)
+            return colorNotEnabled;
+        if (mouseArea.containsMouse)
+            return colorMenuHover;
+        return colorMenu;
     }
 
 }

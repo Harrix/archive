@@ -22,6 +22,8 @@ Rectangle {
     property int marginCommon: SettingsHarrixQML.marginCommon
     property color colorBackground: SettingsHarrixQML.colorBackground
     property color colorBackgroundMobile: SettingsHarrixQML.colorRed
+    property color colorRippleNormal: SettingsHarrixQML.colorLightElement
+    property color colorRippleInWhite: SettingsHarrixQML.colorRippleInWhite
     property int durationAnimation: SettingsHarrixQML.durationAnimation
     property int marginIcons: SettingsHarrixQML.marginIcons
     property int sizeIcons: SettingsHarrixQML.sizeIcons
@@ -55,11 +57,12 @@ Rectangle {
         anchors.verticalCenter: parent.verticalCenter
         anchors.leftMargin: marginIcons
         visible: false
-        MouseArea {
-            anchors.fill: parent
-            cursorShape: cursorShapeIcon
-            onClicked: toogleNavigationDrawer()
-        }
+    }
+
+    MouseAreaRippleWithoutMask {
+        id: leftIconMouseArea
+        target: leftIcon
+        onClicked: toogleNavigationDrawer()
     }
 
     Image {
@@ -111,6 +114,7 @@ Rectangle {
                 colorIcon: SettingsHarrixQML.colorDarkElement
                 colorIconHover: SettingsHarrixQML.colorBlue
             }
+            PropertyChanges { target: leftIconMouseArea; colorRipple: colorRippleInWhite; }
         },
         State {
             name: "normalScroll"
@@ -139,6 +143,7 @@ Rectangle {
                 colorIcon: SettingsHarrixQML.colorDarkElement
                 colorIconHover: SettingsHarrixQML.colorBlue
             }
+            PropertyChanges { target: leftIconMouseArea; colorRipple: colorRippleInWhite; }
         },
         State {
             name: "mobile"
@@ -166,6 +171,7 @@ Rectangle {
                 colorIcon: SettingsHarrixQML.colorDarkElement
                 colorIconHover: SettingsHarrixQML.colorBlue
             }
+            PropertyChanges { target: leftIconMouseArea; colorRipple: colorRippleInWhite; }
         },
         State {
             name: "mobileColor"
@@ -193,6 +199,7 @@ Rectangle {
                 colorIcon: "white"
                 colorIconHover: SettingsHarrixQML.colorLightElementHover
             }
+            PropertyChanges { target: leftIconMouseArea; colorRipple: colorRippleNormal; }
         }
     ]
 

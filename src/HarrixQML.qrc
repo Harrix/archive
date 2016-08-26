@@ -27,5 +27,6 @@
         <file>HarrixQML/internal/IconWithMask.qml</file>
         <file>HarrixQML/internal/Menu.qml</file>
         <file>HarrixQML/internal/MenuItem.qml</file>
+        <file>HarrixQML/internal/MouseAreaRippleWithoutMask.qml</file>
     </qresource>
 </RCC>

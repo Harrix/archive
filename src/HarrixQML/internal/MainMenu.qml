@@ -37,10 +37,12 @@ Rectangle {
     property int bottomPaddingMenu: 5
     property int topPaddingMenuVertical: 16
     property int bottomPaddingMenuVertical: 13
-    property int leftPaddingMenu: 8
-    property int rightPaddingMenu: 8
+    property int leftPaddingMenu: 12
+    property int rightPaddingMenu: 12
     property int leftPaddingVerticalMenu: marginIcons
-    property int leftPaddingVerticalSubmenu: marginIcons + 20    
+    property int leftPaddingVerticalSubmenu: marginIcons + 20
+    property int fontSizeAngle: 10
+    property int yAngle: 10
 
     //Signals
     signal clickActiveItemMenu (string name);
@@ -90,6 +92,21 @@ Rectangle {
                     onClicked: {
                         clickActiveItemMenu(name);
                         showSubmenuHorizontalMainMenu(this.parent, name, submenu)
+                    }
+                }
+
+                IconFontAwesome {
+                    id: angle
+                    symbol: isThereSubmenuHorizontalMainMenu(submenu)
+                    colorFont: mouseAreaLabel.containsMouse ? colorMenuHover : colorMenu
+                    fontSize: fontSizeAngle
+                    y: yAngle
+                    anchors.right: parent.right
+
+                    Behavior on color {
+                        ColorAnimation {
+                            duration: durationAnimation
+                        }
                     }
                 }
 

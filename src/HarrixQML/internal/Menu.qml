@@ -32,23 +32,6 @@ Menu {
         }
     }
 
-    exit: Transition {
-        NumberAnimation {
-            property: "scale"
-            from: 1.0
-            to: 0.9
-            easing.type: easingTypeScale
-            duration: durationAnimation
-        }
-        NumberAnimation {
-            property: "opacity"
-            from: 1.0
-            to: 0.0
-            easing.type: easingTypeOpacity
-            duration: durationAnimation
-        }
-    }
-
     background: Rectangle {
         implicitWidth: implicitWidthMenu
         implicitHeight: implicitHeightMenu

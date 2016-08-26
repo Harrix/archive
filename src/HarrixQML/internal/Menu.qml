@@ -13,7 +13,7 @@ Menu {
     property int easingTypeOpacity: Easing.OutCubic
     property int implicitWidthMenu: 200
     property int implicitHeightMenu: 20
-    property int widthMenu: 200
+    property int borderWidth: 1
 
     enter: Transition {
         NumberAnimation {
@@ -53,7 +53,7 @@ Menu {
         implicitWidth: implicitWidthMenu
         implicitHeight: implicitHeightMenu
         color: colorBackground
-        border.width: 1
+        border.width: borderWidth
         border.color: colorBorder
     }
 }

@@ -271,6 +271,13 @@ Rectangle {
         return newModel;
     }
 
+    function isThereSubmenuHorizontalMainMenu(submenu) {
+        if (submenu !== undefined)
+            return FontAwesome.fa_angle_down;
+        else
+            return "";
+    }
+
     function showSubmenuHorizontalMainMenu(label, name, submenu) {
         if (submenu !== undefined) {
             submenuHorizontalMainMenu.x = label.x - marginCommon

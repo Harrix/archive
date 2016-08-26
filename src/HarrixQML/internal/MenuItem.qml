@@ -14,6 +14,7 @@ MenuItem {
     property int fontSize: SettingsHarrixQML.fontSize
     property int fontRenderType: SettingsHarrixQML.fontRenderType
     property color colorRippleInWhite: SettingsHarrixQML.colorRippleInWhite
+    property int durationAnimation: SettingsHarrixQML.durationAnimation
 
     contentItem: Text {
         anchors.fill: parent

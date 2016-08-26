@@ -33,8 +33,6 @@ MenuItem {
             anchors.fill: parent
             hoverEnabled: true
             colorRipple: colorRippleInWhite
-            //onEntered: parent.color = colorMenuHover
-            //onExited: parent.color = colorMenu
             onClicked: menuItem.clicked()
         }
 

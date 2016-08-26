@@ -74,22 +74,24 @@ Rectangle {
         Repeater {
             id: mainMenuRepeater
 
-            Row {
-                spacing: 0
+            Label {
+                text: caption
+                fontSize: fontSize
+                color: mouseAreaLabel.containsMouse ? colorMenuHover : colorMenu
+                topPadding: topPaddingMenu
+                bottomPadding: bottomPaddingMenu
+                leftPadding: leftPaddingMenu
+                rightPadding: rightPaddingMenu
 
-                Label {
-                    text: caption
-                    fontSize: fontSize
-                    color: mouseAreaLabel.containsMouse ? colorMenuHover : colorMenu
-                    topPadding: topPaddingMenu
-                    bottomPadding: bottomPaddingMenu
-                    leftPadding: leftPaddingMenu
-                    rightPadding: rightPaddingMenu
-
-                    Behavior on color {
-                        ColorAnimation {
-                            duration: durationAnimation
-                        }
+                MouseArea {
+                    id: mouseAreaLabel
+                    anchors.fill: parent
+                    hoverEnabled: true
+                    cursorShape: cursorShapeMenu
+                    //onEntered: showSubmenuHorizontalMainMenu(this.parent, name, submenu)
+                    onClicked: {
+                        clickActiveItemMenu(name);
+                        showSubmenuHorizontalMainMenu(this.parent, name, submenu)
                     }
                 }
 
@@ -99,7 +101,7 @@ Rectangle {
                     colorFont: mouseAreaLabel.containsMouse ? colorMenuHover : colorMenu
                     fontSize: fontSizeAngle
                     y: yAngle
-                    //anchors.right: parent.right
+                    anchors.right: parent.right
 
                     Behavior on color {
                         ColorAnimation {
@@ -108,7 +110,11 @@ Rectangle {
                     }
                 }
 
-
+                Behavior on color {
+                    ColorAnimation {
+                        duration: durationAnimation
+                    }
+                }
             }
         }
     }

@@ -72,33 +72,50 @@ Rectangle {
         Repeater {
             id: mainMenuRepeater
 
-            Label {
-                text: caption
-                fontSize: fontSize
-                color: mouseAreaLabel.containsMouse ? colorMenuHover : colorMenu
-                topPadding: topPaddingMenu
-                bottomPadding: bottomPaddingMenu
-                leftPadding: leftPaddingMenu
-                rightPadding: rightPaddingMenu
+            Row {
+                spacing: 0
 
-                MouseArea {
-                    id: mouseAreaLabel
-                    anchors.fill: parent
-                    hoverEnabled: true
-                    cursorShape: cursorShapeMenu
-                    onClicked: {
-                        clickActiveItemMenu(name);
-                        showSubmenuHorizontalMainMenu(this.parent, name, submenu)
+                Label {
+                    text: caption
+                    fontSize: fontSize
+                    color: mouseAreaLabel.containsMouse ? colorMenuHover : colorMenu
+                    topPadding: topPaddingMenu
+                    bottomPadding: bottomPaddingMenu
+                    leftPadding: leftPaddingMenu
+                    rightPadding: rightPaddingMenu
+
+                    MouseArea {
+                        id: mouseAreaLabel
+                        anchors.fill: parent
+                        hoverEnabled: true
+                        cursorShape: cursorShapeMenu
+                        onClicked: {
+                            clickActiveItemMenu(name);
+                            showSubmenuHorizontalMainMenu(this.parent, name, submenu)
+                        }
+                    }
+
+                    Behavior on color {
+                        ColorAnimation {
+                            duration: durationAnimation
+                        }
                     }
                 }
-
-                Behavior on color {
-                    ColorAnimation {
-                        duration: durationAnimation
-                    }
+                IconFontAwesome {
+                    symbol: isThereSubmenu(submenu)
+                    colorFont: colorMenu
+                    fontSize: 10
+                    y: 10
                 }
             }
         }
+    }
+
+    function isThereSubmenu(submenu) {
+        if (submenu !== undefined)
+            return FontAwesome.fa_angle_down;
+        else
+            return "";
     }
 
     Menu {

@@ -238,6 +238,10 @@ Rectangle {
         }
     }
 
+    onStateChanged: {
+        submenuHorizontalMainMenu.close();
+    }
+
     Connections {
         id: listenerSignals
 

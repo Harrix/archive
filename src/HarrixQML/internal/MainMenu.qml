@@ -72,50 +72,33 @@ Rectangle {
         Repeater {
             id: mainMenuRepeater
 
-            Row {
-                spacing: 0
+            Label {
+                text: caption
+                fontSize: fontSize
+                color: mouseAreaLabel.containsMouse ? colorMenuHover : colorMenu
+                topPadding: topPaddingMenu
+                bottomPadding: bottomPaddingMenu
+                leftPadding: leftPaddingMenu
+                rightPadding: rightPaddingMenu
 
-                Label {
-                    text: caption
-                    fontSize: fontSize
-                    color: mouseAreaLabel.containsMouse ? colorMenuHover : colorMenu
-                    topPadding: topPaddingMenu
-                    bottomPadding: bottomPaddingMenu
-                    leftPadding: leftPaddingMenu
-                    rightPadding: rightPaddingMenu
-
-                    MouseArea {
-                        id: mouseAreaLabel
-                        anchors.fill: parent
-                        hoverEnabled: true
-                        cursorShape: cursorShapeMenu
-                        onClicked: {
-                            clickActiveItemMenu(name);
-                            showSubmenuHorizontalMainMenu(this.parent, name, submenu)
-                        }
-                    }
-
-                    Behavior on color {
-                        ColorAnimation {
-                            duration: durationAnimation
-                        }
+                MouseArea {
+                    id: mouseAreaLabel
+                    anchors.fill: parent
+                    hoverEnabled: true
+                    cursorShape: cursorShapeMenu
+                    onClicked: {
+                        clickActiveItemMenu(name);
+                        showSubmenuHorizontalMainMenu(this.parent, name, submenu)
                     }
                 }
-                IconFontAwesome {
-                    symbol: isThereSubmenu(submenu)
-                    colorFont: colorMenu
-                    fontSize: 10
-                    y: 10
+
+                Behavior on color {
+                    ColorAnimation {
+                        duration: durationAnimation
+                    }
                 }
             }
         }
-    }
-
-    function isThereSubmenu(submenu) {
-        if (submenu !== undefined)
-            return FontAwesome.fa_angle_down;
-        else
-            return "";
     }
 
     Menu {

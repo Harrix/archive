@@ -6,7 +6,7 @@ MouseArea {
     id: mouseArea
 
     //Properties that it is necessary to set
-    property var target
+    property alias target: anchors.fill
 
     //Common properties which can be changed if necessary
     property int durationAnimation: SettingsHarrixQML.durationAnimation
@@ -23,7 +23,6 @@ MouseArea {
         property int yEnd: 0
     }
 
-    anchors.fill: target
     cursorShape: cursorShapeRipple
 
     Rectangle {

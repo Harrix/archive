@@ -82,7 +82,10 @@ Rectangle {
                 MouseArea {
                     anchors.fill: parent
                     hoverEnabled: true
-                    onEntered: parent.color = colorMenuHover
+                    onEntered: {
+                        parent.color = colorMenuHover;
+                        showSubmenuHorizontalMainMenu(this.parent, name, submenu)
+                    }
                     onExited: parent.color = colorMenu
                     cursorShape: cursorShapeMenu
                     onClicked: {
@@ -271,7 +274,7 @@ Rectangle {
 
             submenuHorizontalMainMenu.model.destroy();
             var model = createListModel(mainMenu);
-             for (var i = 0; i < mainMenuModel.count; i++) {
+            for (var i = 0; i < mainMenuModel.count; i++) {
                 if (mainMenuModel.get(i).name === name) {
                     var submenuArray = mainMenuModel.get(i).submenu;
                     if (submenuArray !== undefined) {
@@ -287,6 +290,8 @@ Rectangle {
 
             submenuHorizontalMainMenu.open();
         }
+        else
+           submenuHorizontalMainMenu.close();
     }
 
     function buildModelVerticalMenu() {

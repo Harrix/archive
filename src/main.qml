@@ -14,14 +14,13 @@ MainWindow {
 
     head.centerMobileElement: CenterMobileElement { }
 
-    head.colorMobileMode: false
+    head.colorMobileMode: true
 
     head.mainMenu.mainMenuModel: MainMenuModel {}
 
     onClickActiveItemMenu: {
         console.log(name);
-        /*if (name === "File")
-           optionsMenu.open();*/
+        if (name === "Exit") Qt.quit();
     }
 
     content: Content {}

@@ -86,7 +86,7 @@ Rectangle {
                     id: mouseAreaLabel
                     anchors.fill: parent
                     hoverEnabled: true
-                    onEntered: showSubmenuHorizontalMainMenu(this.parent, name, submenu)
+                    //onEntered: showSubmenuHorizontalMainMenu(this.parent, name, submenu)
                     cursorShape: cursorShapeMenu
                     onClicked: {
                         clickActiveItemMenu(name);
@@ -106,6 +106,7 @@ Rectangle {
     Menu {
         id: submenuHorizontalMainMenu
         property alias model: instantiatorSubmenuHorizontalMainMenu.model
+        property string name
 
         Instantiator {
             id: instantiatorSubmenuHorizontalMainMenu
@@ -292,6 +293,7 @@ Rectangle {
                 }
             }
             submenuHorizontalMainMenu.model = model;
+            submenuHorizontalMainMenu.name = name;
 
             submenuHorizontalMainMenu.open();
         }

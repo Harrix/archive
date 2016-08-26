@@ -36,7 +36,8 @@ Rectangle {
     property int topPaddingMenuVertical: 16
     property int bottomPaddingMenuVertical: 13
     property int leftPaddingMenu: 8
-    property int leftPaddingSubmenu: 30
+    property int leftPaddingVerticalMenu: marginIcons
+    property int leftPaddingVerticalSubmenu: marginIcons + 20
     property int rightPaddingMenu: 8
     property int maximumHeightVerticalMainMenu: 318
 
@@ -167,7 +168,7 @@ Rectangle {
                         color: colorMenu
                         topPadding: topPaddingMenuVertical
                         bottomPadding: bottomPaddingMenuVertical
-                        leftPadding: sub ? leftPaddingSubmenu : leftPaddingMenu
+                        leftPadding: sub ? leftPaddingVerticalSubmenu : leftPaddingVerticalMenu
                         rightPadding: rightPaddingMenu
                         width: rectangleColumnMainMenu.width
 

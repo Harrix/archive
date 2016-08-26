@@ -12,6 +12,9 @@ Rectangle {
     property alias signalSender: listenerSignals.target
 
     //Properties that it is to set if necessary
+property bool initialСoordinatesOfCenter: true
+
+    //Properties that it is to set if necessary
     property bool colorMobileMode: false
 
     //Properties, through which you can access the elements

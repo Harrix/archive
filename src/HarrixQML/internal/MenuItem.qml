@@ -6,28 +6,31 @@ MenuItem {
     id: control
 
     //Common properties which can be changed if necessary
+    property int marginCommon: SettingsHarrixQML.marginCommon
     property string fontName: SettingsHarrixQML.fontName
     property color colorFont: SettingsHarrixQML.colorFont
+    property color colorNotEnabled: SettingsHarrixQML.colorNotEnabled
     property int fontSize: SettingsHarrixQML.fontSize
     property int fontRenderType: SettingsHarrixQML.fontRenderType
 
     contentItem: Text {
-        leftPadding: control.checkable && !control.mirrored ? control.indicator.width + control.spacing : 0
-        rightPadding: control.checkable && control.mirrored ? control.indicator.width + control.spacing : 0
-
-        //wrapMode: Text.Wrap
+        leftPadding: marginCommon
+        rightPadding: marginCommon
         renderType: fontRenderType
         font.pixelSize: fontSize
         font.family: fontName
-        //color: colorFont
-
         text: control.text
-        //font: control.font
-        color: control.enabled ? "#000" : "red"
+        color: control.enabled ? colorFont : colorNotEnabled
         elide: Text.ElideRight
-        visible: control.text
         horizontalAlignment: Text.AlignLeft
         verticalAlignment: Text.AlignVCenter
     }
+
+    /*background: Rectangle {
+        implicitWidth: 200
+        implicitHeight: 48
+        visible: control.down || control.highlighted
+        color: control.down ? control.Material.buttonPressColor : control.Material.listHighlightColor
+    }*/
 
 }

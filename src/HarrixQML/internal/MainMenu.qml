@@ -61,6 +61,7 @@ Rectangle {
     }
 
     MouseAreaRippleWithoutMask {
+        id: rightIconMouseArea
         target: rightIcon
         onClicked: toogleVecticalMainMenu()
     }
@@ -234,6 +235,7 @@ Rectangle {
             PropertyChanges { target: rightIcon; visible: false; }
             PropertyChanges { target: rowMainMenu; visible: true; }
             PropertyChanges { target: rectangleColumnMainMenu; visible: false; }
+            PropertyChanges { target: rightIconMouseArea; colorRipple: colorMenuLight; }
         },
         State {
             name: "collapsed"
@@ -246,6 +248,7 @@ Rectangle {
             }
             PropertyChanges { target: rowMainMenu; visible: false; }
             PropertyChanges { target: rectangleColumnMainMenu; visible: true; }
+            PropertyChanges { target: rightIconMouseArea; colorRipple: colorRippleInWhite; }
         },
         State {
             name: "collapsedWhite"
@@ -258,6 +261,7 @@ Rectangle {
             }
             PropertyChanges { target: rowMainMenu; visible: false; }
             PropertyChanges { target: rectangleColumnMainMenu; visible: true; }
+            PropertyChanges { target: rightIconMouseArea; colorRipple: colorMenuLight; }
         }
     ]
 

@@ -8,6 +8,9 @@ MouseArea {
     //Properties that it is necessary to set
     property alias target: anchors.fill
 
+    //Properties that it is to set if necessary
+    property bool initialСoordinatesOfCenter: true
+
     //Common properties which can be changed if necessary
     property int durationAnimation: SettingsHarrixQML.durationAnimation
     property int cursorShapeRipple: SettingsHarrixQML.cursorHover

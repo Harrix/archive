@@ -37,8 +37,8 @@ Rectangle {
     property int bottomPaddingMenu: 5
     property int topPaddingMenuVertical: 16
     property int bottomPaddingMenuVertical: 13
-    property int leftPaddingMenu: 12
-    property int rightPaddingMenu: 12
+    property int leftPaddingMenu: 16
+    property int rightPaddingMenu: 16
     property int leftPaddingVerticalMenu: marginIcons
     property int leftPaddingVerticalSubmenu: marginIcons + 20
     property int fontSizeAngle: 10

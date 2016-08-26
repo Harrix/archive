@@ -8,20 +8,22 @@ MenuItem {
     //Common properties which can be changed if necessary
     property int marginCommon: SettingsHarrixQML.marginCommon
     property string fontName: SettingsHarrixQML.fontName
-    property color colorFont: SettingsHarrixQML.colorFont
+    property color colorMenu: SettingsHarrixQML.colorDarkElement
+    property color colorMenuHover: SettingsHarrixQML.colorDarkElementHover
     property color colorNotEnabled: SettingsHarrixQML.colorNotEnabled
     property int fontSize: SettingsHarrixQML.fontSize
     property int fontRenderType: SettingsHarrixQML.fontRenderType
     property color colorRippleInWhite: SettingsHarrixQML.colorRippleInWhite
 
     contentItem: Text {
+        anchors.fill: parent
         leftPadding: marginCommon
         rightPadding: marginCommon
         renderType: fontRenderType
         font.pixelSize: fontSize
         font.family: fontName
         text: menuItem.text
-        color: menuItem.enabled ? colorFont : colorNotEnabled
+        color: menuItem.enabled ? colorMenu : colorNotEnabled
         elide: Text.ElideRight
         horizontalAlignment: Text.AlignLeft
         verticalAlignment: Text.AlignVCenter
@@ -31,8 +33,8 @@ MenuItem {
             anchors.fill: parent
             hoverEnabled: true
             colorRipple: colorRippleInWhite
-            //onEntered: parent.color = colorButtonHover
-            //onExited: parent.color = colorButton
+            onEntered: parent.color = colorMenuHover
+            onExited: parent.color = colorMenu
             onClicked: menuItem.clicked()
         }
 
@@ -46,7 +48,7 @@ MenuItem {
     background: Rectangle {
         id: backgroundMenuItem
         color: "transparent"
-        implicitHeight: 40
+        implicitHeight: 30
     }
 
 }

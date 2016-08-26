@@ -25,7 +25,7 @@ ApplicationWindow {
     signal sendMobileMode(bool mobileMode);
     signal clickActiveItemMenu (string name);
 
-    visibility: "Maximized"
+    //visibility: "Maximized"
     font.family: fontName
     font.pixelSize: fontSize
 

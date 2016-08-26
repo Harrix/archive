@@ -58,7 +58,7 @@ Rectangle {
         anchors.right: parent.right
         anchors.verticalCenter: parent.verticalCenter
         anchors.rightMargin: marginIcons
-        MouseArea {
+        MouseAreaRippleWithoutMask {
             anchors.fill: parent
             cursorShape: cursorShapeMenu
             onClicked: toogleVecticalMainMenu()

@@ -86,7 +86,6 @@ Rectangle {
                     id: mouseAreaLabel
                     anchors.fill: parent
                     hoverEnabled: true
-                    onEntered: showSubmenuHorizontalMainMenu(this.parent, name, submenu)
                     cursorShape: cursorShapeMenu
                     onClicked: {
                         clickActiveItemMenu(name);

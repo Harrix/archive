@@ -74,20 +74,17 @@ Rectangle {
             Label {
                 text: caption
                 fontSize: fontSize
-                color: colorMenu
+                color: mouseAreaLabel.containsMouse ? colorMenuHover : colorMenu
                 topPadding: topPaddingMenu
                 bottomPadding: bottomPaddingMenu
                 leftPadding: leftPaddingMenu
                 rightPadding: rightPaddingMenu
 
                 MouseArea {
+                    id: mouseAreaLabel
                     anchors.fill: parent
                     hoverEnabled: true
-                    onEntered: {
-                        parent.color = colorMenuHover;
-                        showSubmenuHorizontalMainMenu(this.parent, name, submenu)
-                    }
-                    onExited: parent.color = colorMenu
+                    onEntered: showSubmenuHorizontalMainMenu(this.parent, name, submenu)
                     cursorShape: cursorShapeMenu
                     onClicked: {
                         clickActiveItemMenu(name);
@@ -165,7 +162,7 @@ Rectangle {
                     Label {
                         text: caption
                         fontSize: fontSize
-                        color: colorMenu
+                        color: mouseAreaLabelColumn.containsMouse ? colorMenuHover : colorMenu
                         topPadding: topPaddingMenuVertical
                         bottomPadding: bottomPaddingMenuVertical
                         leftPadding: sub ? leftPaddingVerticalSubmenu : leftPaddingVerticalMenu
@@ -180,10 +177,9 @@ Rectangle {
                         }
 
                         MouseArea {
+                            id: mouseAreaLabelColumn
                             anchors.fill: parent
                             hoverEnabled: true
-                            onEntered: parent.color = colorMenuHover
-                            onExited: parent.color = colorMenu
                             cursorShape: cursorShapeMenu
                             onClicked: clickActiveItemMenu(name)
                         }

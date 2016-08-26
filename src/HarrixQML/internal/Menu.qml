@@ -27,7 +27,7 @@ Menu {
             property: "opacity"
             from: 0.0
             to: 1.0
-            easing.type: v
+            easing.type: Easing.OutCubic
             duration: durationAnimation
         }
     }

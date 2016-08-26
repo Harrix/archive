@@ -62,8 +62,6 @@ Rectangle {
 
     MouseAreaRippleWithoutMask {
         target: rightIcon
-        //anchors.fill: rightIcon
-        cursorShape: cursorShapeMenu
         onClicked: toogleVecticalMainMenu()
     }
 

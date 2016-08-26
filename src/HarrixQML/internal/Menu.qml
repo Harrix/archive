@@ -13,7 +13,7 @@ Menu {
     property int easingTypeOpacity: Easing.OutCubic
     property int implicitWidthMenu: 200
     property int implicitHeightMenu: 20
-    property int borderWidth: 1
+    property int borderWidth: 0
 
     enter: Transition {
         NumberAnimation {

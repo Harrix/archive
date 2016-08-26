@@ -38,9 +38,9 @@ Rectangle {
     property int topPaddingMenuVertical: 16
     property int bottomPaddingMenuVertical: 13
     property int leftPaddingMenu: 8
-    property int leftPaddingVerticalMenu: marginIcons
-    property int leftPaddingVerticalSubmenu: marginIcons + 20
     property int rightPaddingMenu: 8
+    property int leftPaddingVerticalMenu: marginIcons
+    property int leftPaddingVerticalSubmenu: marginIcons + 20    
 
     //Signals
     signal clickActiveItemMenu (string name);
@@ -86,6 +86,7 @@ Rectangle {
                     anchors.fill: parent
                     hoverEnabled: true
                     cursorShape: cursorShapeMenu
+                    //onEntered: showSubmenuHorizontalMainMenu(this.parent, name, submenu)
                     onClicked: {
                         clickActiveItemMenu(name);
                         showSubmenuHorizontalMainMenu(this.parent, name, submenu)

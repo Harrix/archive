@@ -39,6 +39,7 @@ Rectangle {
     property int bottomPaddingMenuVertical: 13
     property int leftPaddingMenu: 16
     property int rightPaddingMenu: 16
+    property int rightPaddingMenuWithoutSubmenu: 2
     property int leftPaddingVerticalMenu: marginIcons
     property int leftPaddingVerticalSubmenu: marginIcons + 20
     property int fontSizeAngle: 10
@@ -112,8 +113,7 @@ Rectangle {
                     Component.onCompleted: {
                         if (symbol === "") {
                             width = 0;
-                            parent.rightPadding -= 10;
-                            console.log ("0")
+                            parent.rightPadding = rightPaddingMenuWithoutSubmenu;
                         }
                     }
                 }

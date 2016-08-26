@@ -210,7 +210,10 @@ Rectangle {
                             anchors.fill: parent
                             hoverEnabled: true
                             cursorShape: cursorShapeMenu
-                            onClicked: clickActiveItemMenu(name)
+                            onClicked:  {
+                                rectangleColumnMainMenu.height = 0;
+                                clickActiveItemMenu(name);
+                            }
                         }
 
                         Behavior on color {

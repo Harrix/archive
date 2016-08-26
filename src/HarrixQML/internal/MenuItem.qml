@@ -46,7 +46,7 @@ MenuItem {
     background: Rectangle {
         id: backgroundMenuItem
         color: "transparent"
-        implicitHeight: 35
+        implicitHeight: 30
     }
 
     function defineColorTextMenu() {

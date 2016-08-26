@@ -30,6 +30,7 @@ Rectangle {
     property color colorMenuLightHover: SettingsHarrixQML.colorLightElementHover
     property color colorBackgroundColumn: SettingsHarrixQML.colorBackground
     property color colorBorder: SettingsHarrixQML.colorBorder
+    property color colorRippleInWhite: SettingsHarrixQML.colorRippleInWhite
     property int cursorShapeMenu: SettingsHarrixQML.cursorHover
     property int easingTypeVerticalMenu: Easing.OutBack
     property int topPaddingMenu: 5
@@ -180,7 +181,7 @@ Rectangle {
 
                         MouseAreaRipple {
                             id: mouseAreaLabelColumn
-                            colorRipple: SettingsHarrixQML.colorRippleInWhite
+                            colorRipple: colorRippleInWhite
                             anchors.fill: parent
                             hoverEnabled: true
                             cursorShape: cursorShapeMenu

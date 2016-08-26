@@ -16,6 +16,8 @@ Rectangle {
 
     //Properties, through which you can access the elements
     property alias head: mainMenu.parent
+    //property alias mainWindowApp: mainMenu.parent.parent
+    //property alias mainWindow: mainMenu.parent.mainWindow
 
     //Common properties which can be changed if necessary
     property string fontName: SettingsHarrixQML.fontName
@@ -311,8 +313,9 @@ Rectangle {
     function toogleVecticalMainMenu() {
         if (rectangleColumnMainMenu.height > 0)
             rectangleColumnMainMenu.height = 0;
-        else
+        else {
             rectangleColumnMainMenu.height = Math.min(columnMainMenu.height,
-                                                      mainWindow.heightWindow - head.height);//TODO
+                                                      mainWindow.height - head.height);//TODO
+        }
     }
 }

@@ -6,7 +6,7 @@ MouseArea {
     id: mouseArea
 
     //Properties that it is necessary to set
-    property alias target: anchors.fill
+    property var target
 
     //Properties that it is to set if necessary
     property bool initialСoordinatesOfCenter: true
@@ -17,6 +17,7 @@ MouseArea {
     property real opacityRipple: 0.3
     property color colorRipple: "#fff"
     property int easingTypeRipple: Easing.Linear
+    property real increasingRadiusRatio: 1.5
 
     //Private properties
     QtObject {
@@ -26,6 +27,7 @@ MouseArea {
         property int yEnd: 0
     }
 
+    anchors.fill: target
     cursorShape: cursorShapeRipple
 
     Rectangle {
@@ -94,12 +96,18 @@ MouseArea {
             var mouseX = mouseArea.mouseX;
             var mouseY = mouseArea.mouseY;
 
+            if (initialСoordinatesOfCenter) {
+                mouseX = target.width/2
+                mouseY = target.height/2
+            }
+
             ripple.x = mouseX;
             ripple.y = mouseY;
             ripple.opacity = opacityRipple;
 
             privateVar.radiusEnd = maximumRadius (mouseX, mouseY,
                                                   mouseArea.width, mouseArea.height);
+            privateVar.radiusEnd *= increasingRadiusRatio;
 
             privateVar.xEnd = mouseX - privateVar.radiusEnd
             privateVar.yEnd = mouseY - privateVar.radiusEnd

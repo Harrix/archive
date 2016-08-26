@@ -13,6 +13,8 @@ Head 1.0 internal/Head.qml
 IconFontAwesome 1.0 internal/IconFontAwesome.qml
 IconWithMask 1.0 internal/IconWithMask.qml
 MainMenu 1.0 internal/MainMenu.qml
+Menu 1.0 internal/Menu.qml
+MenuItem 1.0 internal/MenuItem.qml
 MouseAreaRipple 1.0 internal/MouseAreaRipple.qml
 NavigationDrawer 1.0 internal/NavigationDrawer.qml
 

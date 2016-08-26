@@ -25,5 +25,7 @@
         <file>HarrixQML/internal/MainMenu.qml</file>
         <file>HarrixQML/Label.qml</file>
         <file>HarrixQML/internal/IconWithMask.qml</file>
+        <file>HarrixQML/internal/Menu.qml</file>
+        <file>HarrixQML/internal/MenuItem.qml</file>
     </qresource>
 </RCC>

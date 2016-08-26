@@ -105,6 +105,7 @@ Rectangle {
     Menu {
         id: submenuHorizontalMainMenu
         property alias model: instantiatorSubmenuHorizontalMainMenu.model
+        property string name: ""
 
         Instantiator {
             id: instantiatorSubmenuHorizontalMainMenu
@@ -291,11 +292,12 @@ Rectangle {
                 }
             }
             submenuHorizontalMainMenu.model = model;
+            submenuHorizontalMainMenu.name = name;
 
             submenuHorizontalMainMenu.open();
         }
-        else
-           submenuHorizontalMainMenu.close();
+        //else
+        //   submenuHorizontalMainMenu.close();
     }
 
     function buildModelVerticalMenu() {

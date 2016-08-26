@@ -41,7 +41,6 @@ Rectangle {
     property int leftPaddingVerticalMenu: marginIcons
     property int leftPaddingVerticalSubmenu: marginIcons + 20
     property int rightPaddingMenu: 8
-    property int maximumHeightVerticalMainMenu: 318
 
     //Signals
     signal clickActiveItemMenu (string name);

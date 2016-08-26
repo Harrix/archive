@@ -3,7 +3,7 @@ import QtQuick.Controls 2.0
 import ".."
 
 MenuItem {
-    id: control
+    id: menuItem
 
     //Common properties which can be changed if necessary
     property int marginCommon: SettingsHarrixQML.marginCommon
@@ -12,6 +12,7 @@ MenuItem {
     property color colorNotEnabled: SettingsHarrixQML.colorNotEnabled
     property int fontSize: SettingsHarrixQML.fontSize
     property int fontRenderType: SettingsHarrixQML.fontRenderType
+    property color colorRippleInWhite: SettingsHarrixQML.colorRippleInWhite
 
     contentItem: Text {
         leftPadding: marginCommon
@@ -19,18 +20,33 @@ MenuItem {
         renderType: fontRenderType
         font.pixelSize: fontSize
         font.family: fontName
-        text: control.text
-        color: control.enabled ? colorFont : colorNotEnabled
+        text: menuItem.text
+        color: menuItem.enabled ? colorFont : colorNotEnabled
         elide: Text.ElideRight
         horizontalAlignment: Text.AlignLeft
         verticalAlignment: Text.AlignVCenter
+
+        MouseAreaRipple {
+            id: mouseArea
+            anchors.fill: parent
+            hoverEnabled: true
+            colorRipple: colorRippleInWhite
+            //onEntered: parent.color = colorButtonHover
+            //onExited: parent.color = colorButton
+            onClicked: menuItem.clicked()
+        }
+
+        Behavior on color {
+            ColorAnimation {
+                duration: durationAnimation
+            }
+        }
     }
 
-    /*background: Rectangle {
-        implicitWidth: 200
-        implicitHeight: 48
-        visible: control.down || control.highlighted
-        color: control.down ? control.Material.buttonPressColor : control.Material.listHighlightColor
-    }*/
+    background: Rectangle {
+        id: backgroundMenuItem
+        color: "transparent"
+        implicitHeight: 40
+    }
 
 }

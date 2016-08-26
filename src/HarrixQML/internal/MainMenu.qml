@@ -73,7 +73,7 @@ Rectangle {
             id: mainMenuRepeater
 
             Label {
-                text: caption
+                text: caption + " <font style='font-family:\"FontAwesome\"'>\uf107</font>"
                 fontSize: fontSize
                 color: mouseAreaLabel.containsMouse ? colorMenuHover : colorMenu
                 topPadding: topPaddingMenu

@@ -108,6 +108,14 @@ Rectangle {
                             duration: durationAnimation
                         }
                     }
+
+                    Component.onCompleted: {
+                        if (symbol === "") {
+                            width = 0;
+                            parent.rightPadding -= 10;
+                            console.log ("0")
+                        }
+                    }
                 }
 
                 Behavior on color {

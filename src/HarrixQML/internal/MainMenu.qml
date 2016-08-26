@@ -31,6 +31,7 @@ Rectangle {
     property color colorBackgroundColumn: SettingsHarrixQML.colorBackground
     property color colorBorder: SettingsHarrixQML.colorBorder
     property int cursorShapeMenu: SettingsHarrixQML.cursorHover
+    property int easingTypeVerticalMenu: Easing.OutBack
     property int topPaddingMenu: 5
     property int bottomPaddingMenu: 5
     property int topPaddingMenuVertical: 16
@@ -136,6 +137,7 @@ Rectangle {
         Behavior on height {
             NumberAnimation {
                 duration: durationAnimation
+                easing.type: easingTypeVerticalMenu
             }
         }
 

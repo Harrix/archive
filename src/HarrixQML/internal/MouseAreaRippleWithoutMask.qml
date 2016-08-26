@@ -5,6 +5,9 @@ import ".."
 MouseArea {
     id: mouseArea
 
+    //Properties that it is necessary to set
+    property var target
+
     //Common properties which can be changed if necessary
     property int durationAnimation: SettingsHarrixQML.durationAnimation
     property int cursorShapeRipple: SettingsHarrixQML.cursorHover
@@ -20,33 +23,13 @@ MouseArea {
         property int yEnd: 0
     }
 
-    anchors.fill: parent
+    anchors.fill: target
     cursorShape: cursorShapeRipple
 
     Rectangle {
-        id: container
-        color: "transparent"
-        anchors.fill: parent
-        visible: false
-
-        Rectangle {
-            id: ripple
-            color: colorRipple
-            opacity: 0
-        }
-    }
-
-    Rectangle {
-        id: mask
-        anchors.fill: parent
-        color: "#fff"
-        visible: false
-    }
-
-    OpacityMask {
-        anchors.fill: parent
-        source: container
-        maskSource: mask
+        id: ripple
+        color: colorRipple
+        opacity: 0
     }
 
     SequentialAnimation {

@@ -58,11 +58,13 @@ Rectangle {
         anchors.right: parent.right
         anchors.verticalCenter: parent.verticalCenter
         anchors.rightMargin: marginIcons
-        MouseAreaRippleWithoutMask {
-            anchors.fill: parent
-            cursorShape: cursorShapeMenu
-            onClicked: toogleVecticalMainMenu()
-        }
+    }
+
+    MouseAreaRippleWithoutMask {
+        target: rightIcon
+        //anchors.fill: rightIcon
+        cursorShape: cursorShapeMenu
+        onClicked: toogleVecticalMainMenu()
     }
 
     Row {

@@ -28,7 +28,7 @@ Rectangle {
     property color colorMenuHover: SettingsHarrixQML.colorDarkElementHover
     property color colorMenuLight: SettingsHarrixQML.colorLightElement
     property color colorMenuLightHover: SettingsHarrixQML.colorLightElementHover
-    property color colorBackgroundColumn: SettingsHarrixQML.colorBackground
+    property color colorBackgroundMenu: SettingsHarrixQML.colorBackgroundMenu
     property color colorBorder: SettingsHarrixQML.colorBorder
     property color colorRippleInWhite: SettingsHarrixQML.colorRippleInWhite
     property int cursorShapeMenu: SettingsHarrixQML.cursorHover
@@ -156,7 +156,7 @@ Rectangle {
         parent: head
         x: 0
         y: head.height
-        color: colorBackgroundColumn
+        color: colorBackgroundMenu
         width: head.width
         height: 0
 
@@ -356,7 +356,7 @@ Rectangle {
             rectangleColumnMainMenu.height = 0;
         else {
             rectangleColumnMainMenu.height = Math.min(columnMainMenu.height,
-                                                      mainWindow.height - head.height);//TODO
+                                                      mainWindow.height - head.height);
         }
     }
 }

@@ -8,6 +8,7 @@ Menu {
     //Common properties which can be changed if necessary
     property color colorBackground: SettingsHarrixQML.colorBackground
     property color colorBorder: SettingsHarrixQML.colorBorder
+    property color colorBackgroundMenu: SettingsHarrixQML.colorBackgroundMenu
     property int durationAnimation: SettingsHarrixQML.durationAnimation
     property int easingTypeScale: Easing.OutQuint
     property int easingTypeOpacity: Easing.OutCubic
@@ -35,7 +36,7 @@ Menu {
     background: Rectangle {
         implicitWidth: implicitWidthMenu
         implicitHeight: implicitHeightMenu
-        color: colorBackground
+        color: colorBackgroundMenu
         border.width: borderWidth
         border.color: colorBorder
     }

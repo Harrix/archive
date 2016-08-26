@@ -295,8 +295,6 @@ Rectangle {
 
             submenuHorizontalMainMenu.open();
         }
-        //else
-        //   submenuHorizontalMainMenu.close();
     }
 
     function buildModelVerticalMenu() {

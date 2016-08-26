@@ -176,8 +176,9 @@ Rectangle {
                             color: SettingsHarrixQML.colorBorder
                         }
 
-                        MouseArea {
+                        MouseAreaRipple {
                             id: mouseAreaLabelColumn
+                            colorRipple: SettingsHarrixQML.colorRippleInWhite
                             anchors.fill: parent
                             hoverEnabled: true
                             cursorShape: cursorShapeMenu

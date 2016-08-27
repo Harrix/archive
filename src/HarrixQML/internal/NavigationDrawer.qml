@@ -23,6 +23,9 @@ Rectangle {
     property real percentFailureSwipe: 0.05
     property int zNavigationDrawer: 100
 
+    //Signals
+    signal toogleNavigationDrawerRealized(bool open)
+
     //Private properties
     QtObject {
         id: privateVar
@@ -214,6 +217,7 @@ Rectangle {
         else
             animationDarkOff.running = true;
         privateVar.startDrag = false;
+        toogleNavigationDrawerRealized(true)
     }
 
     function hideNavigationDrawer() {
@@ -221,6 +225,7 @@ Rectangle {
         navigationDrawer.x = privateVar.minimumX;
         animationDarkOff.running = true;
         privateVar.startDrag = false;
+        toogleNavigationDrawerRealized(false)
     }
 
     function releasedDrag(mouseArea) {

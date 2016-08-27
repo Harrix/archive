@@ -22,6 +22,7 @@ ApplicationWindow {
 
     //Signals
     signal toogleNavigationDrawer();
+    signal toogleNavigationDrawerRealized(bool open)
     signal sendMobileMode(bool mobileMode);
     signal clickActiveItemMenu (string name);
 
@@ -75,6 +76,13 @@ ApplicationWindow {
         target: head.mainMenu
 
         onClickActiveItemMenu: clickActiveItemMenu (name)
+    }
+
+    Connections {
+        id: listenerSignalsFromNavigationDrawer
+        target: navigationDrawer
+
+        onToogleNavigationDrawerRealized: toogleNavigationDrawerRealized(open)
     }
 
     onWidthChanged:        checkMobileMode();

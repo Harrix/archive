@@ -218,5 +218,13 @@ Page{
                 }
             }
         }
+
+        onMovementStarted: {
+            console.log(contentY);
+        }
+
+        onMovementEnded: {
+            console.log(contentY);
+        }
     }
 }

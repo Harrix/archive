@@ -21,24 +21,42 @@ Rectangle {
 
     Rectangle {
         id: topBar
-        color: colorHamburger
+        color: mouseAreaHamburger.containsMouse ? colorHamburgerHover : colorHamburger
         height: 2
         antialiasing: true
+
+        Behavior on color {
+            ColorAnimation {
+                duration: durationAnimation
+            }
+        }
     }
 
     Rectangle {
         id: centerBar
-        color: colorHamburger
+        color: mouseAreaHamburger.containsMouse ? colorHamburgerHover : colorHamburger
         y: 12
         height: 2
         antialiasing: true
+
+        Behavior on color {
+            ColorAnimation {
+                duration: durationAnimation
+            }
+        }
     }
 
     Rectangle {
         id: bottomBar
-        color: colorHamburger
+        color: mouseAreaHamburger.containsMouse ? colorHamburgerHover : colorHamburger
         height: 2
         antialiasing: true
+
+        Behavior on color {
+            ColorAnimation {
+                duration: durationAnimation
+            }
+        }
     }
 
     states: [
@@ -90,62 +108,11 @@ Rectangle {
         }
     ]
 
-    ParallelAnimation {
-        id: colorAnimationHover
-        ColorAnimation {
-            target: centerBar
-            property: "color"
-            running: false
-            duration: durationAnimation
-            to: colorHamburgerHover
-        }
-        ColorAnimation {
-            target: topBar
-            property: "color"
-            running: false
-            duration: durationAnimation
-            to: colorHamburgerHover
-        }
-        ColorAnimation {
-            target: bottomBar
-            property: "color"
-            running: false
-            duration: durationAnimation
-            to: colorHamburgerHover
-        }
-    }
-
-    ParallelAnimation {
-        id: colorAnimation
-        ColorAnimation {
-            target: centerBar
-            property: "color"
-            running: false
-            duration: durationAnimation
-            to: colorHamburger
-        }
-        ColorAnimation {
-            target: topBar
-            property: "color"
-            running: false
-            duration: durationAnimation
-            to: colorHamburger
-        }
-        ColorAnimation {
-            target: bottomBar
-            property: "color"
-            running: false
-            duration: durationAnimation
-            to: colorHamburger
-        }
-    }
-
     MouseArea {
+        id: mouseAreaHamburger
         anchors.fill: parent
         hoverEnabled: true
         cursorShape: cursorShapeHamburger
-        onEntered: colorAnimationHover.running = true
-        onExited: colorAnimation.running = true
     }
 
     transitions: [

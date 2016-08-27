@@ -29,26 +29,27 @@ Rectangle {
         anchors.verticalCenter: hamburger.verticalCenter
         width: hamburger.width - 2 * marginHamburger
         height: heightBar
+        antialiasing: true
     }
 
     Rectangle {
         id: topBar
         color: colorHamburger
         anchors.horizontalCenter: hamburger.horizontalCenter
-        anchors.bottom: centerBar.top
-        anchors.bottomMargin: distanceBetweenBars
+        y: centerBar.y - (distanceBetweenBars + heightBar)
         width: centerBar.width
         height: heightBar
+        antialiasing: true
     }
 
     Rectangle {
         id: bottomBar
         color: colorHamburger
         anchors.horizontalCenter: hamburger.horizontalCenter
-        anchors.top: centerBar.bottom
-        anchors.topMargin: distanceBetweenBars
+        y: centerBar.y + (distanceBetweenBars + heightBar)
         width: centerBar.width
         height: heightBar
+        antialiasing: true
     }
 
     ParallelAnimation {

@@ -117,6 +117,16 @@ Page{
                 onClicked:  toogleNavigationDrawer()
             }
 
+            ButtonBlue{
+                text: qsTr("Head Scroll")
+                onClicked:  toogleHeightHead(false)
+            }
+
+            ButtonBlue{
+                text: qsTr("Head Normall")
+                onClicked:  toogleHeightHead(true)
+            }
+
             ButtonGreen {
                 id: button2
                 text: qsTr("Download")

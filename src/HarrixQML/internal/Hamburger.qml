@@ -24,7 +24,7 @@ Rectangle {
         color: colorHamburger
         x: 2
         y: 6
-        width: centerBar.width
+        width: 22
         height: 2
         antialiasing: true
     }
@@ -44,7 +44,7 @@ Rectangle {
         color: colorHamburger
         x: 2
         y: 18
-        width: centerBar.width
+        width: 22
         height: 2
         antialiasing: true
     }

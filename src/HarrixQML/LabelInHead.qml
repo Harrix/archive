@@ -5,4 +5,5 @@ Label {
 
     fontSize: 20
     verticalAlignment: Text.AlignVCenter
+    font.weight: Font.Medium
 }

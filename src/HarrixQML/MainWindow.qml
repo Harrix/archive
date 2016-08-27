@@ -22,7 +22,7 @@ ApplicationWindow {
 
     //Signals
     signal toogleNavigationDrawer();
-    signal toogleNavigationDrawerRealized(bool open)
+    signal toogleNavigationDrawerRealized(bool open);
     signal sendMobileMode(bool mobileMode);
     signal clickActiveItemMenu (string name);
 

@@ -28,6 +28,7 @@ Rectangle {
     property int marginIcons: SettingsHarrixQML.marginIcons
     property int sizeIcons: SettingsHarrixQML.sizeIcons
     property int cursorShapeIcon: SettingsHarrixQML.cursorHover
+    property int easingTypeHight: Easing.Linear
     property int heightHead: 84
     property int heightHeadScroll: 48
     property int heightHeadMobile: 56
@@ -68,6 +69,13 @@ Rectangle {
         fillMode: Image.PreserveAspectFit
         anchors.left: head.left
         anchors.verticalCenter: parent.verticalCenter
+
+        Behavior on height {
+            NumberAnimation {
+                duration: durationAnimation
+                easing.type: easingTypeHight
+            }
+        }
     }
 
     Loader {
@@ -82,6 +90,13 @@ Rectangle {
         colorMobileMode: head.colorMobileMode
         anchors.right: parent.right
         anchors.verticalCenter: parent.verticalCenter
+    }
+
+    Behavior on height {
+        NumberAnimation {
+            duration: durationAnimation
+            easing.type: easingTypeHight
+        }
     }
 
     states: [

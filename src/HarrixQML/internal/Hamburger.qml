@@ -29,9 +29,7 @@ Rectangle {
     Rectangle {
         id: centerBar
         color: colorHamburger
-        x: 2
         y: 12
-        width: 22
         height: 2
         antialiasing: true
     }
@@ -39,8 +37,6 @@ Rectangle {
     Rectangle {
         id: bottomBar
         color: colorHamburger
-
-        width: 22
         height: 2
         antialiasing: true
     }
@@ -63,6 +59,11 @@ Rectangle {
                 x: 2
                 y: 18
             }
+            PropertyChanges {
+                target: centerBar
+                width: 22
+                        x: 2
+            }
         },
         State {
             name: "back"
@@ -71,15 +72,20 @@ Rectangle {
                 target: topBar
                 rotation: 45
                 width: 13
-                x: 13
+                x: 11
                 y: 8
             }
             PropertyChanges {
                 target: bottomBar
                 rotation: -45
                 width: 13
-                x: 13
+                x: 11
                 y: 16
+            }
+            PropertyChanges {
+                target: centerBar
+                width: 17
+                        x: 5
             }
         }
     ]

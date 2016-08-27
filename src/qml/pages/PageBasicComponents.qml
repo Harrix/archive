@@ -3,7 +3,7 @@ import QtQuick.Controls 2.0
 import QtQuick.Layouts 1.3
 import QtQml 2.2
 
-import "../HarrixQML"
+import "../../HarrixQML"
 
 Page{
     id: pageBasicComponents

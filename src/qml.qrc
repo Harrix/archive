@@ -1,16 +1,16 @@
 <RCC>
     <qresource prefix="/">
-        <file>main.qml</file>
         <file>images/harrix_photo.png</file>
-        <file>pages/PageBasicComponents.qml</file>
-        <file>LeftPanel.qml</file>
-        <file>images/logo-harrix.svg</file>
-        <file>images/logo-harrix-flattened.svg</file>
-        <file>Content.qml</file>
-        <file>CenterMobileElement.qml</file>
-        <file>SettingsApp.qml</file>
         <file>images/logo-harrix-flattened-white.svg</file>
+        <file>images/logo-harrix-flattened.svg</file>
         <file>images/logo-harrix-white.svg</file>
-        <file>MainMenuModel.qml</file>
+        <file>images/logo-harrix.svg</file>
+        <file>qml/pages/PageBasicComponents.qml</file>
+        <file>qml/CenterMobileElement.qml</file>
+        <file>qml/Content.qml</file>
+        <file>qml/LeftPanel.qml</file>
+        <file>qml/MainMenuModel.qml</file>
+        <file>qml/SettingsApp.qml</file>
+        <file>qml/main.qml</file>
     </qresource>
 </RCC>

@@ -233,11 +233,22 @@ Rectangle {
                     else
                         head.state = "mobile";
                 }
-                else
-                    head.state = "normal";
+                else {
+                    if (head.state != "normalScroll")
+                        head.state = "normal";
+                }
                 sendWidthForMainMenu(calculateWidthForMainMenu(),
                                      colorMobileMode, privateVar.mobileModeHead);
                 privateVar.firstOnSendMobileMode = true;
+            }
+        }
+
+        onToogleHeightHead: {
+            if (!mobileMode) {
+                if (normal)
+                    head.state = "normal";
+                else
+                    head.state = "normalScroll";
             }
         }
     }

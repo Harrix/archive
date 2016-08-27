@@ -25,6 +25,7 @@ ApplicationWindow {
     signal toogleNavigationDrawerRealized(bool open);
     signal sendMobileMode(bool mobileMode);
     signal clickActiveItemMenu (string name);
+    signal toogleHeightHead(bool normal);
 
     visibility: "Maximized"
     font.family: fontName

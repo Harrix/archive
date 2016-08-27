@@ -14,7 +14,7 @@ MainWindow {
 
     head.centerMobileElement: CenterMobileElement { }
 
-    head.colorMobileMode: false
+    head.colorMobileMode: true
 
     head.mainMenu.mainMenuModel: MainMenuModel {}
 
@@ -27,8 +27,12 @@ MainWindow {
 
     Component.onCompleted: {
         if (head.colorMobileMode)
+            head.centerMobileElementItem.colorFont = SettingsHarrixQML.colorLightElement;
+        else
+            head.centerMobileElementItem.colorFont = SettingsHarrixQML.colorDarkElement;
+        /*if (head.colorMobileMode)
             head.centerMobileElementItem.source = "qrc:/images/logo-harrix-white.svg";
         else
-            head.centerMobileElementItem.source = "qrc:/images/logo-harrix.svg";
+            head.centerMobileElementItem.source = "qrc:/images/logo-harrix.svg";*/
     }
 }

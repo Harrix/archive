@@ -184,6 +184,7 @@ Rectangle {
             PropertyChanges {
                 target: logo
                 visible: false
+                height: heightLogoScroll
             }
             PropertyChanges {
                 target: centerMobileElement
@@ -217,6 +218,7 @@ Rectangle {
             PropertyChanges {
                 target: logo
                 visible: false
+                height: heightLogoScroll
             }
             PropertyChanges {
                 target: centerMobileElement
@@ -270,7 +272,9 @@ Rectangle {
             }
             else {
                 if (!normal)
-                   privateVar.normalLastWasScroll = true;
+                    privateVar.normalLastWasScroll = true;
+                else
+                    privateVar.normalLastWasScroll = false;
             }
         }
     }

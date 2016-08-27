@@ -49,10 +49,8 @@ Rectangle {
     anchors.margins: marginCommon
     state: "normal"
 
-    IconWithMask {
+    Hamburger {
         id: leftIcon
-        source: "qrc:/HarrixQML/images/drawer.svg"
-        colorIcon: SettingsHarrixQML.colorDarkElement
         anchors.left: head.left
         anchors.verticalCenter: parent.verticalCenter
         anchors.leftMargin: marginIcons
@@ -111,10 +109,15 @@ Rectangle {
             PropertyChanges {
                 target: leftIcon
                 visible: false
-                colorIcon: SettingsHarrixQML.colorDarkElement
-                colorIconHover: SettingsHarrixQML.colorBlue
+                colorHamburger: SettingsHarrixQML.colorDarkElement
+                colorHamburgerHover: SettingsHarrixQML.colorBlue
+                state: "menu"
             }
-            PropertyChanges { target: leftIconMouseArea; colorRipple: colorRippleInWhite; }
+            PropertyChanges {
+                target: leftIconMouseArea
+                colorRipple: colorRippleInWhite
+                visible: false
+            }
         },
         State {
             name: "normalScroll"
@@ -140,10 +143,15 @@ Rectangle {
             PropertyChanges {
                 target: leftIcon
                 visible: false
-                colorIcon: SettingsHarrixQML.colorDarkElement
-                colorIconHover: SettingsHarrixQML.colorBlue
+                colorHamburger: SettingsHarrixQML.colorDarkElement
+                colorHamburgerHover: SettingsHarrixQML.colorBlue
+                state: "menu"
             }
-            PropertyChanges { target: leftIconMouseArea; colorRipple: colorRippleInWhite; }
+            PropertyChanges {
+                target: leftIconMouseArea
+                colorRipple:colorRippleInWhite
+                visible: false
+            }
         },
         State {
             name: "mobile"
@@ -168,10 +176,15 @@ Rectangle {
             PropertyChanges {
                 target: leftIcon
                 visible: true
-                colorIcon: SettingsHarrixQML.colorDarkElement
-                colorIconHover: SettingsHarrixQML.colorBlue
+                colorHamburger: SettingsHarrixQML.colorDarkElement
+                colorHamburgerHover: SettingsHarrixQML.colorBlue
+                state: "menu"
             }
-            PropertyChanges { target: leftIconMouseArea; colorRipple: colorRippleInWhite; }
+            PropertyChanges {
+                target: leftIconMouseArea
+                colorRipple: colorRippleInWhite
+                visible: true
+            }
         },
         State {
             name: "mobileColor"
@@ -196,10 +209,15 @@ Rectangle {
             PropertyChanges {
                 target: leftIcon
                 visible: true
-                colorIcon: "white"
-                colorIconHover: SettingsHarrixQML.colorLightElementHover
+                colorHamburger: "white"
+                colorHamburgerHover: SettingsHarrixQML.colorLightElementHover
+                state: "menu"
             }
-            PropertyChanges { target: leftIconMouseArea; colorRipple: colorRippleNormal; }
+            PropertyChanges {
+                target: leftIconMouseArea
+                colorRipple: colorRippleNormal
+                visible: true
+            }
         }
     ]
 

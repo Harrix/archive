@@ -14,7 +14,7 @@ MainWindow {
 
     head.centerMobileElement: CenterMobileElement { }
 
-    head.colorMobileMode: false
+    head.colorMobileMode: true
 
     head.mainMenu.mainMenuModel: MainMenuModel {}
 

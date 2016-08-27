@@ -217,7 +217,7 @@ Rectangle {
         else
             animationDarkOff.running = true;
         privateVar.startDrag = false;
-        toogleNavigationDrawerRealized(true)
+        toogleNavigationDrawerRealized(true);
     }
 
     function hideNavigationDrawer() {
@@ -225,7 +225,7 @@ Rectangle {
         navigationDrawer.x = privateVar.minimumX;
         animationDarkOff.running = true;
         privateVar.startDrag = false;
-        toogleNavigationDrawerRealized(false)
+        toogleNavigationDrawerRealized(false);
     }
 
     function releasedDrag(mouseArea) {

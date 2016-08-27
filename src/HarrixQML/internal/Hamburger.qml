@@ -17,7 +17,8 @@ Rectangle {
     //Private properties
     QtObject {
         id: privateVar
-        property color color: mouseAreaHamburger.containsMouse ? colorHamburgerHover : colorHamburger
+        property color color: mouseAreaHamburger.containsMouse ?
+                                  colorHamburgerHover : colorHamburger
     }
 
     width: sizeHamburger

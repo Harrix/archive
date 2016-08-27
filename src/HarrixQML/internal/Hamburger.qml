@@ -14,58 +14,61 @@ Rectangle {
     property int cursorShapeHamburger: SettingsHarrixQML.cursorHover
     property int durationAnimation: SettingsHarrixQML.durationAnimation
     property int marginHamburger: 2
+    property int heightBar: 2
+    property int distanceBetweenBars: 4
 
     width: sizeHamburger
     height: sizeHamburger
     color: "transparent"
+    state: "menu"
 
     Rectangle {
-        id: centerLine
+        id: centerBar
         color: colorHamburger
         anchors.horizontalCenter: hamburger.horizontalCenter
         anchors.verticalCenter: hamburger.verticalCenter
         width: hamburger.width - 2 * marginHamburger
-        height: 2
+        height: heightBar
     }
 
     Rectangle {
-        id: topLine
+        id: topBar
         color: colorHamburger
         anchors.horizontalCenter: hamburger.horizontalCenter
-        anchors.bottom: centerLine.top
-        anchors.bottomMargin: 4
-        width: hamburger.width - 2 * marginHamburger
-        height: 2
+        anchors.bottom: centerBar.top
+        anchors.bottomMargin: distanceBetweenBars
+        width: centerBar.width
+        height: heightBar
     }
 
     Rectangle {
-        id: bottomLine
+        id: bottomBar
         color: colorHamburger
         anchors.horizontalCenter: hamburger.horizontalCenter
-        anchors.top: centerLine.bottom
-        anchors.topMargin: 4
-        width: hamburger.width - 2 * marginHamburger
-        height: 2
+        anchors.top: centerBar.bottom
+        anchors.topMargin: distanceBetweenBars
+        width: centerBar.width
+        height: heightBar
     }
 
     ParallelAnimation {
         id: colorAnimationHover
         ColorAnimation {
-            target: centerLine
+            target: centerBar
             property: "color"
             running: false
             duration: durationAnimation
             to: colorHamburgerHover
         }
         ColorAnimation {
-            target: topLine
+            target: topBar
             property: "color"
             running: false
             duration: durationAnimation
             to: colorHamburgerHover
         }
         ColorAnimation {
-            target: bottomLine
+            target: bottomBar
             property: "color"
             running: false
             duration: durationAnimation
@@ -76,21 +79,21 @@ Rectangle {
     ParallelAnimation {
         id: colorAnimation
         ColorAnimation {
-            target: centerLine
+            target: centerBar
             property: "color"
             running: false
             duration: durationAnimation
             to: colorHamburger
         }
         ColorAnimation {
-            target: topLine
+            target: topBar
             property: "color"
             running: false
             duration: durationAnimation
             to: colorHamburger
         }
         ColorAnimation {
-            target: bottomLine
+            target: bottomBar
             property: "color"
             running: false
             duration: durationAnimation
@@ -105,4 +108,32 @@ Rectangle {
         onEntered: colorAnimationHover.running = true
         onExited: colorAnimation.running = true
     }
+
+    states: [
+        State {
+            name: "menu"
+            PropertyChanges {
+                target: hamburger
+                rotation: 0
+            }
+        },
+        State {
+            name: "back"
+            PropertyChanges {
+                target: hamburger
+                rotation: 180
+            }
+        }
+    ]
+
+    transitions: [
+        Transition {
+            RotationAnimation {
+                target: hamburger;
+                direction: RotationAnimation.Clockwise;
+                duration: durationAnimation;
+                easing.type: Easing.InOutQuad
+            }
+        }
+    ]
 }

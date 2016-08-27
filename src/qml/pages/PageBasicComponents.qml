@@ -87,7 +87,11 @@ Page{
             x: marginCommon
 
             Hamburger {
-
+                id: menuBackIcon
+                MouseArea {
+                    anchors.fill: parent
+                    onClicked: menuBackIcon.state = menuBackIcon.state === "menu" ? "back" : "menu"
+                  }
             }
 
             TextField {

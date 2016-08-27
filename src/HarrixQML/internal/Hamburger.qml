@@ -22,12 +22,8 @@ Rectangle {
     Rectangle {
         id: topBar
         color: colorHamburger
-        x: 2
-        y: 6
-        width: 22
         height: 2
         antialiasing: true
-        rotation: 0
     }
 
     Rectangle {
@@ -43,13 +39,50 @@ Rectangle {
     Rectangle {
         id: bottomBar
         color: colorHamburger
-        x: 2
-        y: 18
+
         width: 22
         height: 2
         antialiasing: true
-        rotation: 0
     }
+
+    states: [
+        State {
+            name: "menu"
+            PropertyChanges { target: hamburger; rotation: 0; }
+            PropertyChanges {
+                target: topBar
+                rotation: 0
+                width: 22
+                x: 2
+                y: 6
+            }
+            PropertyChanges {
+                target: bottomBar
+                rotation: 0
+                width: 22
+                x: 2
+                y: 18
+            }
+        },
+        State {
+            name: "back"
+            PropertyChanges { target: hamburger; rotation: 180; }
+            PropertyChanges {
+                target: topBar
+                rotation: 45
+                width: 13
+                x: 13
+                y: 8
+            }
+            PropertyChanges {
+                target: bottomBar
+                rotation: -45
+                width: 13
+                x: 13
+                y: 16
+            }
+        }
+    ]
 
     ParallelAnimation {
         id: colorAnimationHover
@@ -108,23 +141,6 @@ Rectangle {
         onEntered: colorAnimationHover.running = true
         onExited: colorAnimation.running = true
     }
-
-    states: [
-        State {
-            name: "menu"
-            PropertyChanges {
-                target: hamburger
-                rotation: 0
-            }
-        },
-        State {
-            name: "back"
-            PropertyChanges {
-                target: hamburger
-                rotation: 180
-            }
-        }
-    ]
 
     transitions: [
         Transition {

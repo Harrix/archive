@@ -14,13 +14,6 @@ Rectangle {
     property int cursorShapeHamburger: SettingsHarrixQML.cursorHover
     property int durationAnimation: SettingsHarrixQML.durationAnimation
 
-    //Private properties
-    QtObject {
-        id: privateVar
-        property color color: mouseAreaHamburger.containsMouse ?
-                                  colorHamburgerHover : colorHamburger
-    }
-
     width: sizeHamburger
     height: sizeHamburger
     color: "transparent"
@@ -28,14 +21,14 @@ Rectangle {
 
     Rectangle {
         id: topBar
-        color: privateVar.color
+        color: colorHamburger
         height: 2
         antialiasing: true
     }
 
     Rectangle {
         id: centerBar
-        color: privateVar.color
+        color: colorHamburger
         y: 12
         height: 2
         antialiasing: true
@@ -43,7 +36,7 @@ Rectangle {
 
     Rectangle {
         id: bottomBar
-        color: privateVar.color
+        color: colorHamburger
         height: 2
         antialiasing: true
     }
@@ -102,6 +95,8 @@ Rectangle {
         anchors.fill: parent
         hoverEnabled: true
         cursorShape: cursorShapeHamburger
+        onEntered: colorAnimarionHover.running = true
+        onExited: colorAnimarion.running = true
     }
 
     ParallelAnimation {

@@ -91,7 +91,7 @@ Page{
                 MouseArea {
                     anchors.fill: parent
                     onClicked: menuBackIcon.state = menuBackIcon.state === "menu" ? "back" : "menu"
-                  }
+                }
             }
 
             TextField {
@@ -231,7 +231,7 @@ Page{
 
         onContentYChanged: {
             if (contentY > 0)
-               toogleHeightHead(false);
+                toogleHeightHead(false);
             else
                 toogleHeightHead(true);
         }

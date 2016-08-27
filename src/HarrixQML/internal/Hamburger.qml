@@ -62,7 +62,7 @@ Rectangle {
             PropertyChanges {
                 target: centerBar
                 width: 22
-                        x: 2
+                x: 2
             }
         },
         State {
@@ -85,7 +85,7 @@ Rectangle {
             PropertyChanges {
                 target: centerBar
                 width: 17
-                        x: 5
+                x: 5
             }
         }
     ]

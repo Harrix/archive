@@ -86,6 +86,10 @@ Page{
             width: parent.width - 2*marginCommon
             x: marginCommon
 
+            Hamburger {
+
+            }
+
             TextField {
                 id: field1
                 objectName: "field1"

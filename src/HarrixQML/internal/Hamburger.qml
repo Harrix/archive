@@ -13,9 +13,6 @@ Rectangle {
     property int sizeHamburger: SettingsHarrixQML.sizeIcons
     property int cursorShapeHamburger: SettingsHarrixQML.cursorHover
     property int durationAnimation: SettingsHarrixQML.durationAnimation
-    property int marginHamburger: 2
-    property int heightBar: 2
-    property int distanceBetweenBars: 4
 
     width: sizeHamburger
     height: sizeHamburger
@@ -23,32 +20,32 @@ Rectangle {
     state: "menu"
 
     Rectangle {
-        id: centerBar
+        id: topBar
         color: colorHamburger
-        anchors.horizontalCenter: hamburger.horizontalCenter
-        anchors.verticalCenter: hamburger.verticalCenter
-        width: hamburger.width - 2 * marginHamburger
-        height: heightBar
+        x: 2
+        y: 6
+        width: centerBar.width
+        height: 2
         antialiasing: true
     }
 
     Rectangle {
-        id: topBar
+        id: centerBar
         color: colorHamburger
-        anchors.horizontalCenter: hamburger.horizontalCenter
-        y: centerBar.y - (distanceBetweenBars + heightBar)
-        width: centerBar.width
-        height: heightBar
+        x: 2
+        y: 12
+        width: 22
+        height: 2
         antialiasing: true
     }
 
     Rectangle {
         id: bottomBar
         color: colorHamburger
-        anchors.horizontalCenter: hamburger.horizontalCenter
-        y: centerBar.y + (distanceBetweenBars + heightBar)
+        x: 2
+        y: 18
         width: centerBar.width
-        height: heightBar
+        height: 2
         antialiasing: true
     }
 

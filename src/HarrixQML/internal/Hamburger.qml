@@ -130,6 +130,24 @@ Rectangle {
                 duration: durationAnimation;
                 easing.type: Easing.InOutQuad
             }
+            NumberAnimation {
+                target: topBar;
+                properties: "x, y, width, rotation";
+                duration: durationAnimation;
+                easing.type: Easing.InOutQuad
+            }
+            NumberAnimation {
+                target: centerBar;
+                properties: "x, y, width, rotation";
+                duration: durationAnimation;
+                easing.type: Easing.InOutQuad
+            }
+            NumberAnimation {
+                target: bottomBar;
+                properties: "x, y, width, rotation";
+                duration: durationAnimation;
+                easing.type: Easing.InOutQuad
+            }
         }
     ]
 }

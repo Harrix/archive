@@ -240,6 +240,13 @@ Rectangle {
                 privateVar.firstOnSendMobileMode = true;
             }
         }
+
+        onToogleNavigationDrawerRealized: {
+            if (open)
+                leftIcon.state = "back";
+            else
+                leftIcon.state = "menu";
+        }
     }
 
     onWidthChanged: {

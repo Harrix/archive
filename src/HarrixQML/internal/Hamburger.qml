@@ -31,12 +31,6 @@ Rectangle {
         color: privateVar.color
         height: 2
         antialiasing: true
-
-        Behavior on color {
-            ColorAnimation {
-                duration: durationAnimation
-            }
-        }
     }
 
     Rectangle {
@@ -45,12 +39,6 @@ Rectangle {
         y: 12
         height: 2
         antialiasing: true
-
-        Behavior on color {
-            ColorAnimation {
-                duration: durationAnimation
-            }
-        }
     }
 
     Rectangle {
@@ -58,12 +46,6 @@ Rectangle {
         color: privateVar.color
         height: 2
         antialiasing: true
-
-        Behavior on color {
-            ColorAnimation {
-                duration: durationAnimation
-            }
-        }
     }
 
     states: [

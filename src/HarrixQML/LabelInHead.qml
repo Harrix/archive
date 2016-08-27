@@ -4,4 +4,5 @@ Label {
     id: label
 
     fontSize: 20
+    verticalAlignment: Text.AlignVCenter
 }

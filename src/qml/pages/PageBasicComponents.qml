@@ -9,6 +9,8 @@ Page{
     id: pageBasicComponents
     objectName: "pageBasicComponents"
 
+    property alias flickable: flickable
+
     signal qmlSignal(string msg)
 
     ListModel {
@@ -72,6 +74,7 @@ Page{
     }
 
     Flickable {
+        id: flickable
         focus: true
         width: parent.width
         height: parent.height

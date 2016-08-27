@@ -12,12 +12,19 @@ SwipeView {
     anchors.fill: parent
     //currentIndex: tabBar.currentIndex
 
-    PageBasicComponents {}
+    PageBasicComponents {id: pageBasicComponents}
 
     Page {
         Rectangle {
             anchors.fill: parent
             color: "red"
+        }
+    }
+
+    onCurrentIndexChanged:  {
+        if (currentIndex == 1)
+            toogleHeightHead(true);
+        if (currentIndex == 0) {
         }
     }
 }

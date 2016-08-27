@@ -104,6 +104,52 @@ Rectangle {
         cursorShape: cursorShapeHamburger
     }
 
+    ParallelAnimation {
+        id: colorAnimarionHover
+        running: false
+        ColorAnimation {
+            target: topBar
+            properties: "color"
+            to: colorHamburgerHover
+            duration: durationAnimation
+        }
+        ColorAnimation {
+            target: centerBar
+            properties: "color"
+            to: colorHamburgerHover
+            duration: durationAnimation
+        }
+        ColorAnimation {
+            target: bottomBar
+            properties: "color"
+            to: colorHamburgerHover
+            duration: durationAnimation
+        }
+    }
+
+    ParallelAnimation {
+        id: colorAnimarion
+        running: false
+        ColorAnimation {
+            target: topBar
+            properties: "color"
+            to: colorHamburger
+            duration: durationAnimation
+        }
+        ColorAnimation {
+            target: centerBar
+            properties: "color"
+            to: colorHamburger
+            duration: durationAnimation
+        }
+        ColorAnimation {
+            target: bottomBar
+            properties: "color"
+            to: colorHamburger
+            duration: durationAnimation
+        }
+    }
+
     transitions: [
         Transition {
             RotationAnimation {

@@ -27,6 +27,7 @@ Rectangle {
         width: 22
         height: 2
         antialiasing: true
+        rotation: 0
     }
 
     Rectangle {
@@ -47,6 +48,7 @@ Rectangle {
         width: 22
         height: 2
         antialiasing: true
+        rotation: 0
     }
 
     ParallelAnimation {

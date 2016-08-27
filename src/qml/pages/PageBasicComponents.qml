@@ -229,12 +229,11 @@ Page{
             }
         }
 
-        onMovementStarted: {
-            console.log(contentY);
-        }
-
-        onMovementEnded: {
-            console.log(contentY);
+        onContentYChanged: {
+            if (contentY > 0)
+               toogleHeightHead(false);
+            else
+                toogleHeightHead(true);
         }
     }
 }

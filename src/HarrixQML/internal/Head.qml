@@ -40,6 +40,7 @@ Rectangle {
         id: privateVar
         property bool mobileModeHead: false
         property bool firstOnSendMobileMode: false
+        property bool normalLastWasScroll: false
     }
 
     //Signals
@@ -249,7 +250,9 @@ Rectangle {
                         head.state = "mobile";
                 }
                 else {
-                    if (head.state != "normalScroll")
+                    if (privateVar.normalLastWasScroll)
+                        head.state = "normalScroll";
+                    else
                         head.state = "normal";
                 }
                 sendWidthForMainMenu(calculateWidthForMainMenu(),
@@ -265,12 +268,23 @@ Rectangle {
                 else
                     head.state = "normalScroll";
             }
+            else {
+                if (!normal)
+                   privateVar.normalLastWasScroll = true;
+            }
         }
     }
 
     onWidthChanged: {
         sendWidthForMainMenu(calculateWidthForMainMenu(),
                              colorMobileMode, privateVar.mobileModeHead);
+    }
+
+    onStateChanged: {
+        if (state == "normal")
+            privateVar.normalLastWasScroll = false;
+        if (state == "normalScroll")
+            privateVar.normalLastWasScroll = true;
     }
 
     function calculateWidthForMainMenu() {

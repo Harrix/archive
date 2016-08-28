@@ -28,6 +28,9 @@ TextField {
     color: enabled ? colorFont : colorNotEnabled
     placeholderText: ""
 
+    padding: 6
+        leftPadding: padding + 4
+
     MouseArea {
         anchors.fill: parent
         cursorShape: Qt.IBeamCursor
@@ -35,6 +38,11 @@ TextField {
     }
 
     property alias textPlaceholder: placeholder2.text
+
+    implicitWidth: Math.max(background ? background.implicitWidth : 0,
+                                placeholder2.implicitWidth + leftPadding + rightPadding)
+        implicitHeight: Math.max(background ? background.implicitHeight : 0,
+                                 placeholder2.implicitHeight + topPadding + bottomPadding)
 
     Text {
         id: placeholder2
@@ -44,12 +52,14 @@ TextField {
         height: textField.height - (textField.topPadding + textField.bottomPadding)
 
         //text: textField.placeholderText
-        font: textField.font
+        renderType: fontRenderType
+        font.pixelSize: fontSize
+        font.family: fontName
         color: "red"
         horizontalAlignment: textField.horizontalAlignment
         verticalAlignment: textField.verticalAlignment
         visible: !textField.length && !textField.preeditText && (!textField.activeFocus || textField.horizontalAlignment !== Qt.AlignHCenter)
-        elide: Text.ElideRight
+        //elide: Text.ElideRight
     }
 
     background: Rectangle {

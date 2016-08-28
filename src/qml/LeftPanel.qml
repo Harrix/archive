@@ -16,13 +16,13 @@ Column {
     TextField {
         id: field10
         objectName: "field10"
-        placeholderText: qsTr("123 first 10313")
+        textPlaceholder: qsTr("123 first 10313")
     }
 
     TextField {
         id: field101
         objectName: "field101"
-        placeholderText: qsTr("test")
+        textPlaceholder: qsTr("test")
     }
 
     Button {

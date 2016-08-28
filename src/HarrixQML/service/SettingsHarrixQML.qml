@@ -38,7 +38,7 @@ QtObject {
     readonly property int fontSizeText: fontSize + 2
     readonly property int fontSizeFontAwesome: fontSize + 5
     readonly property int fontRenderType: Text.NativeRendering
-    readonly property real fontLineHeight: 1.3
+    readonly property real fontLineHeight: 1.1
 
     //Indents
     readonly property int marginCommon: 10

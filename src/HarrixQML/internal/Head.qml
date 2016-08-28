@@ -85,39 +85,18 @@ Rectangle {
     Loader {
         id: centerMobileElement
         sourceComponent: Component {
-            Rectangle {
+            Label {
                 property string textLabel: mainWindow.title
-
-                color: "transparent"
-                width: 200
-                height: parent.height
-                clip: true
-                Label {
-
-
-                    text: textLabel
-                    fontSize: fontSizeCenterMobileElement
-                    verticalAlignment: Text.AlignVCenter
-                    font.weight: Font.Medium
-                    elide: Text.ElideRight
-                    colorFont: colorMobileMode ? colorLightElement : colorDarkElement
-                    wrapMode: Text.NoWrap
-                }
+                text: textLabel
+                fontSize: fontSizeCenterMobileElement
+                verticalAlignment: Text.AlignVCenter
+                font.weight: Font.Medium
+                elide: Text.ElideRight
+                colorFont: colorMobileMode ? colorLightElement : colorDarkElement
             }
         }
         anchors.centerIn: parent
         visible: false
-    }
-
-    function calculateWidthCenterMobileElement () {
-        var widthCenterMobileElement = head.width;
-        if (leftIcon.visible)
-            widthCenterMobileElement -=  leftIcon.width;
-        if (mainMenu.rightIcon.visible)
-            widthCenterMobileElement -=  mainMenu.rightIcon.width;
-
-        console.log(widthCenterMobileElement)
-        return widthCenterMobileElement;
     }
 
     MainMenu {

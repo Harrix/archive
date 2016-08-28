@@ -42,7 +42,7 @@ QtObject {
 
     //Indents
     readonly property int marginCommon: 10
-    readonly property int spacingCommon: 10
+    readonly property int spacingCommon: 12
     readonly property int marginIcons: 18
 
     //Sizes

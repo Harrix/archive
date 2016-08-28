@@ -13,6 +13,7 @@ TextField {
     property string colorSelection: SettingsHarrixQML.colorRed
     property string colorFontSelection: SettingsHarrixQML.colorLightElement
     property string colorFont: SettingsHarrixQML.colorFont
+    property string colorNotEnabled: SettingsHarrixQML.colorNotEnabled
 
     property string colorTextField: "blue"
     property string colorTextFieldHover: "yellow"
@@ -24,12 +25,31 @@ TextField {
     selectionColor: colorSelection
     selectedTextColor: colorFontSelection
     selectByMouse: true
-    color: colorFont
+    color: enabled ? colorFont : colorNotEnabled
+    placeholderText: ""
 
     MouseArea {
         anchors.fill: parent
         cursorShape: Qt.IBeamCursor
         acceptedButtons: Qt.NoButton
+    }
+
+    property alias textPlaceholder: placeholder2.text
+
+    Text {
+        id: placeholder2
+        x: textField.leftPadding
+        y: textField.topPadding
+        width: textField.width - (textField.leftPadding + textField.rightPadding)
+        height: textField.height - (textField.topPadding + textField.bottomPadding)
+
+        //text: textField.placeholderText
+        font: textField.font
+        color: "red"
+        horizontalAlignment: textField.horizontalAlignment
+        verticalAlignment: textField.verticalAlignment
+        visible: !textField.length && !textField.preeditText && (!textField.activeFocus || textField.horizontalAlignment !== Qt.AlignHCenter)
+        elide: Text.ElideRight
     }
 
     background: Rectangle {

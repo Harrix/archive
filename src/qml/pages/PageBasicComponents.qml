@@ -100,7 +100,8 @@ Page{
             TextField {
                 id: field1
                 objectName: "field1"
-                placeholderText: qsTr("Input first number")
+                //placeholderText: qsTr("Input first number")
+                textPlaceholder: qsTr("Input first number")
             }
 
             TextField {

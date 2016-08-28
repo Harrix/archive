@@ -82,21 +82,15 @@ Rectangle {
         }
     }
 
-    Rectangle {
-        id: rectangleCenterMobileElement
-
-        anchors.horizontalCenter: head.horizontalCenter
-        anchors.verticalCenter: head.verticalCenter
-        color: "blue"
-        clip: true
-        width: head.width - 4 * sizeIcons
-        height: head.height
-
-        Loader {
-            id: centerMobileElement
-            sourceComponent: Component {
+    Loader {
+        id: centerMobileElement
+        sourceComponent: Component {
+            Rectangle {
+                property string textLabel: mainWindow.title
+                anchors.fill: parent
+                color: "transparent"
                 Label {
-                    property string textLabel: mainWindow.title
+
                     text: textLabel
                     fontSize: fontSizeCenterMobileElement
                     verticalAlignment: Text.AlignVCenter
@@ -104,12 +98,15 @@ Rectangle {
                     elide: Text.ElideRight
                     colorFont: colorMobileMode ? colorLightElement : colorDarkElement
                     wrapMode: Text.NoWrap
+                    anchors.centerIn: parent
                 }
             }
-            anchors.centerIn: parent
-            anchors.fill: parent
-            visible: false
         }
+        anchors.centerIn: parent
+        visible: false
+        clip: true
+        width: head.width - 4 * sizeIcons
+        height: head.height
     }
 
     MainMenu {
@@ -323,7 +320,7 @@ Rectangle {
         if (!privateVar.mobileModeHead)
             widthForMenu -= logo.x + logo.width + 2 * marginIcons;
         else
-            widthForMenu -= rectangleCenterMobileElement.x + rectangleCenterMobileElement.width + 2 * marginIcons;
+            widthForMenu -= centerMobileElement.x + centerMobileElement.width + 2 * marginIcons;
         return widthForMenu;
     }
 }

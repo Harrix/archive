@@ -13,7 +13,6 @@ MainWindow {
     head.logo.source: "qrc:/images/logo-harrix.svg"
 
     //head.centerMobileElement: CenterMobileElement { }
-    //head.centerMobileElementItem.textE: qsTr("Mind games for the company of people")
 
     head.colorMobileMode: true
 

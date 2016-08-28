@@ -348,6 +348,10 @@ header {
 } 
 }
 
+.navbar-nav .nav-item + .nav-item {
+  margin-left: 18px;
+}
+
 /* Sections */
 /* ------------------------------------------------------------------ */
 /* First section */

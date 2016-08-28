@@ -233,10 +233,12 @@ Page{
         }
 
         onContentYChanged: {
-            if (contentY > 0)
-                toogleHeightHead(false);
-            else
-                toogleHeightHead(true);
+            if (contentApp.currentIndex == 0) {
+                if (contentY > 0)
+                    toogleHeightHead(false);
+                else
+                    toogleHeightHead(true);
+            }
         }
     }
 }

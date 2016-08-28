@@ -11,19 +11,20 @@ TextField {
     property int fontRenderType: SettingsHarrixQML.fontRenderType
     property int durationAnimation: SettingsHarrixQML.durationAnimation
     property string colorSelection: SettingsHarrixQML.colorRed
-    property string colorTextSelection: SettingsHarrixQML.colorLightElement
+    property string colorFontSelection: SettingsHarrixQML.colorLightElement
+    property string colorFont: SettingsHarrixQML.colorFont
 
-    property string colorTextField: SettingsHarrixQML.colorRed
-    property string colorTextFieldHover: SettingsHarrixQML.colorRedLight
-    property string colorFontTextField: SettingsHarrixQML.colorLightElement
-
+    property string colorTextField: "blue"
+    property string colorTextFieldHover: "yellow"
+    property string colorFontTextField: "green"
 
     renderType: fontRenderType
     font.pixelSize: fontSize
     font.family: fontName
     selectionColor: colorSelection
-    selectedTextColor: colorTextSelection
+    selectedTextColor: colorFontSelection
     selectByMouse: true
+    color: colorFont
 
     MouseArea {
         anchors.fill: parent
@@ -40,6 +41,5 @@ TextField {
         Behavior on color {
             ColorAnimation { duration: durationAnimation }
         }
-
     }
 }

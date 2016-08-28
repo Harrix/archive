@@ -8,12 +8,17 @@ TextField {
     //Common properties which can be changed if necessary
     property string fontName: SettingsHarrixQML.fontName
     property int fontSize: SettingsHarrixQML.fontSize
+
     property string colorTextField: SettingsHarrixQML.colorRed
     property string colorTextFieldHover: SettingsHarrixQML.colorRedLight
+
     property string colorFontTextField: SettingsHarrixQML.colorLightElement
     property int fontRenderType: SettingsHarrixQML.fontRenderType
     property int durationAnimation: SettingsHarrixQML.durationAnimation
 
+    renderType: fontRenderType
+    font.pixelSize: fontSize
+    font.family: fontName
     selectionColor: SettingsHarrixQML.colorRed
     selectedTextColor: "#fff"
 

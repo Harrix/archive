@@ -94,6 +94,7 @@ Rectangle {
                 elide: Text.ElideRight
                 colorFont: colorMobileMode ? colorLightElement : colorDarkElement
                 wrapMode: Text.NoWrap
+                width: head.width - 2 * sizeIcons - 4 * marginIcons
             }
         }
         anchors.verticalCenter: head.verticalCenter

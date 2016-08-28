@@ -14,7 +14,7 @@ ListModel {
         name: "Options";
         caption: qsTr("Options");
     }
-    /*ListElement {
+    ListElement {
         name: "Harrix.org";
         caption: qsTr("Harrix.org");
     }
@@ -25,5 +25,5 @@ ListModel {
             ListElement { name: "Help";            caption: qsTr("Help"); },
             ListElement { name: "AboutProgram";    caption: qsTr("About program"); }
         ]
-    }*/
+    }
 }

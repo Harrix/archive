@@ -12,7 +12,8 @@ MainWindow {
 
     head.logo.source: "qrc:/images/logo-harrix.svg"
 
-    head.centerMobileElement: CenterMobileElement { }
+    //head.centerMobileElement: CenterMobileElement { }
+    //head.centerMobileElementItem.textE: qsTr("Mind games for the company of people")
 
     head.colorMobileMode: true
 
@@ -26,7 +27,8 @@ MainWindow {
     content: Content {}
 
     Component.onCompleted: {
-        if (head.colorMobileMode)
+        head.centerMobileElementItem.textE = qsTr("Mind games for the company of people")
+        /*if (head.colorMobileMode)
             head.centerMobileElementItem.colorFont = SettingsHarrixQML.colorLightElement;
         else
             head.centerMobileElementItem.colorFont = SettingsHarrixQML.colorDarkElement;

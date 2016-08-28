@@ -24,6 +24,8 @@ Rectangle {
     property color colorBackgroundMobile: SettingsHarrixQML.colorRed
     property color colorRippleNormal: SettingsHarrixQML.colorLightElement
     property color colorRippleInWhite: SettingsHarrixQML.colorRippleInWhite
+    property color colorDarkElement: SettingsHarrixQML.colorDarkElement
+    property color colorLightElement: SettingsHarrixQML.colorLightElement
     property int durationAnimation: SettingsHarrixQML.durationAnimation
     property int marginIcons: SettingsHarrixQML.marginIcons
     property int sizeIcons: SettingsHarrixQML.sizeIcons
@@ -34,6 +36,7 @@ Rectangle {
     property int heightHeadMobile: 56
     property int heightLogo: 60
     property int heightLogoScroll: 40
+    property int fontSizeCenterMobileElement: 20
 
     //Private properties
     QtObject {
@@ -85,10 +88,11 @@ Rectangle {
             Label {
                 property string textLabel: mainWindow.title
                 text: textLabel
-                fontSize: 20
+                fontSize: fontSizeCenterMobileElement
                 verticalAlignment: Text.AlignVCenter
                 font.weight: Font.Medium
                 elide: Text.ElideRight
+                colorFont: colorMobileMode ? colorLightElement : colorDarkElement
             }
         }
         anchors.centerIn: parent

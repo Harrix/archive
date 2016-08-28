@@ -16,12 +16,6 @@ body {
     overflow-x: hidden;
 }
 
-@media (max-width:990px){
-body {
-    line-height: 1.6;
-}
-}
-
 /* Color selection */
 body ::selection { 
     background: #de2b26;

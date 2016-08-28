@@ -26,7 +26,7 @@ MainWindow {
     content: Content {}
 
     Component.onCompleted: {
-        head.centerMobileElementItem.textLabel = qsTr("Mind games for the company of people")
+        head.centerMobileElementItem.textLabel = qsTr("Min")
         /*if (head.colorMobileMode)
             head.centerMobileElementItem.source = "qrc:/images/logo-harrix-white.svg";
         else

@@ -93,6 +93,7 @@ Rectangle {
                 font.weight: Font.Medium
                 elide: Text.ElideRight
                 colorFont: colorMobileMode ? colorLightElement : colorDarkElement
+                wrapMode: Text.NoWrap
             }
         }
         anchors.centerIn: parent

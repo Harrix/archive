@@ -89,7 +89,7 @@ Rectangle {
         anchors.verticalCenter: head.verticalCenter
         color: "blue"
         clip: true
-        width: Math.min (head.width - 4 * sizeIcons, centerMobileElement.width)
+        width: head.width - 4 * sizeIcons
         height: head.height
 
         Loader {
@@ -107,7 +107,7 @@ Rectangle {
                 }
             }
             anchors.centerIn: parent
-            width: item.width
+            anchors.fill: parent
             visible: false
         }
     }

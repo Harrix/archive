@@ -93,10 +93,13 @@ Rectangle {
                 font.weight: Font.Medium
                 elide: Text.ElideRight
                 colorFont: colorMobileMode ? colorLightElement : colorDarkElement
+                wrapMode: Text.NoWrap
             }
         }
         anchors.centerIn: parent
         visible: false
+        clip: true
+        width: head.width/3
     }
 
     MainMenu {

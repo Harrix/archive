@@ -8,9 +8,6 @@
         <file>HarrixQML/fonts/FontAwesome.ttf</file>
         <file>HarrixQML/fonts/OpenSans.ttf</file>
         <file>HarrixQML/fonts/PTMono.ttf</file>
-        <file>HarrixQML/images/arrow.svg</file>
-        <file>HarrixQML/images/drawer.svg</file>
-        <file>HarrixQML/images/menu.svg</file>
         <file>HarrixQML/images/search.svg</file>
         <file>HarrixQML/images/share.svg</file>
         <file>HarrixQML/internal/ApplicationWindow.qml</file>
@@ -29,5 +26,6 @@
         <file>HarrixQML/internal/MenuItem.qml</file>
         <file>HarrixQML/internal/MouseAreaRippleWithoutMask.qml</file>
         <file>HarrixQML/internal/Hamburger.qml</file>
+        <file>HarrixQML/images/menu.svg</file>
     </qresource>
 </RCC>

@@ -323,7 +323,8 @@ Rectangle {
         if (!privateVar.mobileModeHead)
             widthForMenu -= logo.x + logo.width + 2 * marginIcons;
         else
-            widthForMenu -= rectangleCenterMobileElement.x + rectangleCenterMobileElement.width + 2 * marginIcons;
+            widthForMenu -= rectangleCenterMobileElement.x + rectangleCenterMobileElement.width
+                    + 2 * marginIcons;
         return widthForMenu;
     }
 }

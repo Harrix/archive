@@ -26,7 +26,7 @@ MainWindow {
     content: Content {}
 
     Component.onCompleted: {
-        head.centerMobileElementItem.textLabel = qsTr("Mind")
+        head.centerMobileElementItem.textLabel = qsTr("Calculate the width of the central element.")
         /*if (head.colorMobileMode)
             head.centerMobileElementItem.source = "qrc:/images/logo-harrix-white.svg";
         else

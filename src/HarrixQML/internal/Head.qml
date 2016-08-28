@@ -94,20 +94,10 @@ Rectangle {
                 elide: Text.ElideRight
                 colorFont: colorMobileMode ? colorLightElement : colorDarkElement
                 wrapMode: Text.NoWrap
-                TextMetrics {
-                    id: textMetrics
-                    text: textLabel
-                    font.pixelSize: fontSizeCenterMobileElement
-                    font.weight: Font.Medium
-                    elide: Text.ElideNone
-                }
-                width: textMetrics.width + 20
             }
         }
         anchors.centerIn: parent
         visible: false
-        clip: true
-        width: centerMobileElement.item.width
     }
 
     MainMenu {

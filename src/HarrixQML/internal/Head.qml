@@ -85,28 +85,21 @@ Rectangle {
     Loader {
         id: centerMobileElement
         sourceComponent: Component {
-            Rectangle {
+            Label {
                 property string textLabel: mainWindow.title
-                anchors.fill: parent
-                color: "transparent"
-                Label {
-
-                    text: textLabel
-                    fontSize: fontSizeCenterMobileElement
-                    verticalAlignment: Text.AlignVCenter
-                    font.weight: Font.Medium
-                    elide: Text.ElideRight
-                    colorFont: colorMobileMode ? colorLightElement : colorDarkElement
-                    wrapMode: Text.NoWrap
-                    anchors.centerIn: parent
-                }
+                text: textLabel
+                fontSize: fontSizeCenterMobileElement
+                verticalAlignment: Text.AlignVCenter
+                font.weight: Font.Medium
+                elide: Text.ElideRight
+                colorFont: colorMobileMode ? colorLightElement : colorDarkElement
+                wrapMode: Text.NoWrap
             }
         }
         anchors.centerIn: parent
         visible: false
         clip: true
-        width: head.width - 4 * sizeIcons
-        height: head.height
+        width: head.width/3
     }
 
     MainMenu {

@@ -16,6 +16,7 @@ Rectangle {
 
     //Properties, through which you can access the elements
     property alias head: mainMenu.parent
+    property alias rightIcon: rightIcon
 
     //Common properties which can be changed if necessary
     property string fontName: SettingsHarrixQML.fontName

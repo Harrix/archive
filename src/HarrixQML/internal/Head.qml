@@ -96,7 +96,9 @@ Rectangle {
                 wrapMode: Text.NoWrap
             }
         }
-        anchors.centerIn: parent
+        anchors.verticalCenter: head.verticalCenter
+        anchors.left: leftIcon.right
+        anchors.leftMargin: marginIcons
         visible: false
     }
 

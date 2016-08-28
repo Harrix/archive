@@ -8,21 +8,23 @@ TextField {
     //Common properties which can be changed if necessary
     property string fontName: SettingsHarrixQML.fontName
     property int fontSize: SettingsHarrixQML.fontSize
+    property int fontRenderType: SettingsHarrixQML.fontRenderType
+    property int durationAnimation: SettingsHarrixQML.durationAnimation
+    property string colorSelection: SettingsHarrixQML.colorRed
+    property string colorTextSelection: SettingsHarrixQML.colorLightElement
 
     property string colorTextField: SettingsHarrixQML.colorRed
     property string colorTextFieldHover: SettingsHarrixQML.colorRedLight
-
     property string colorFontTextField: SettingsHarrixQML.colorLightElement
-    property int fontRenderType: SettingsHarrixQML.fontRenderType
-    property int durationAnimation: SettingsHarrixQML.durationAnimation
+
 
     renderType: fontRenderType
     font.pixelSize: fontSize
     font.family: fontName
-    selectionColor: SettingsHarrixQML.colorRed
-    selectedTextColor: "#fff"
-
+    selectionColor: colorSelection
+    selectedTextColor: colorTextSelection
     selectByMouse: true
+
     MouseArea {
         anchors.fill: parent
         cursorShape: Qt.IBeamCursor

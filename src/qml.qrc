@@ -6,7 +6,7 @@
         <file>images/logo-harrix-white.svg</file>
         <file>images/logo-harrix.svg</file>
         <file>qml/pages/PageBasicComponents.qml</file>
-        <file>qml/CenterMobileElement.qml</file>
+        <file>qml/TitleMobileElement.qml</file>
         <file>qml/Content.qml</file>
         <file>qml/LeftPanel.qml</file>
         <file>qml/MainMenuModel.qml</file>

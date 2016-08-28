@@ -12,7 +12,7 @@ MainWindow {
 
     head.logo.source: "qrc:/images/logo-harrix.svg"
 
-    //head.centerMobileElement: CenterMobileElement { }
+    //head.titleMobileElement: TitleMobileElement {}
 
     //head.colorMobileMode: true
 
@@ -26,10 +26,10 @@ MainWindow {
     content: Content {}
 
     Component.onCompleted: {
-        head.centerMobileElementItem.textLabel = qsTr("Mind")
+        head.titleMobileElementItem.textLabel = qsTr("Mind games for the company of people")
         /*if (head.colorMobileMode)
-            head.centerMobileElementItem.source = "qrc:/images/logo-harrix-white.svg";
+            head.titleMobileElementItem.source = "qrc:/images/logo-harrix-white.svg";
         else
-            head.centerMobileElementItem.source = "qrc:/images/logo-harrix.svg";*/
+            head.titleMobileElementItem.source = "qrc:/images/logo-harrix.svg";*/
     }
 }

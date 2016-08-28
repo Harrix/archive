@@ -8,7 +8,7 @@ Rectangle {
 
     //Properties that it is necessary to set
     property alias logo: logo
-    property alias centerMobileElement: centerMobileElement.sourceComponent
+    property alias titleMobileElement: titleMobileElement.sourceComponent
     property alias signalSender: listenerSignals.target
     property alias mainMenu: mainMenu
 
@@ -16,7 +16,7 @@ Rectangle {
     property bool colorMobileMode: false
 
     //Properties, through which you can access the elements
-    property alias centerMobileElementItem: centerMobileElement.item
+    property alias titleMobileElementItem: titleMobileElement.item
 
     //Common properties which can be changed if necessary
     property int marginCommon: SettingsHarrixQML.marginCommon
@@ -36,7 +36,7 @@ Rectangle {
     property int heightHeadMobile: 56
     property int heightLogo: 60
     property int heightLogoScroll: 40
-    property int fontSizeCenterMobileElement: 20
+    property int fontSizeTitleMobileElement: 20
 
     //Private properties
     QtObject {
@@ -83,12 +83,12 @@ Rectangle {
     }
 
     Loader {
-        id: centerMobileElement
+        id: titleMobileElement
         sourceComponent: Component {
             Label {
                 property string textLabel: mainWindow.title
                 text: textLabel
-                fontSize: fontSizeCenterMobileElement
+                fontSize: fontSizeTitleMobileElement
                 verticalAlignment: Text.AlignVCenter
                 font.weight: Font.Medium
                 elide: Text.ElideRight
@@ -136,7 +136,7 @@ Rectangle {
                 height: heightLogo
             }
             PropertyChanges {
-                target: centerMobileElement
+                target: titleMobileElement
                 visible: false
             }
             PropertyChanges {
@@ -170,7 +170,7 @@ Rectangle {
                 height: heightLogoScroll
             }
             PropertyChanges {
-                target: centerMobileElement
+                target: titleMobileElement
                 visible: false
             }
             PropertyChanges {
@@ -204,7 +204,7 @@ Rectangle {
                 height: heightLogoScroll
             }
             PropertyChanges {
-                target: centerMobileElement
+                target: titleMobileElement
                 visible: true
             }
             PropertyChanges {
@@ -238,7 +238,7 @@ Rectangle {
                 height: heightLogoScroll
             }
             PropertyChanges {
-                target: centerMobileElement
+                target: titleMobileElement
                 visible: true
             }
             PropertyChanges {
@@ -313,7 +313,7 @@ Rectangle {
         if (!privateVar.mobileModeHead)
             widthForMenu -= logo.x + logo.width + 2 * marginIcons;
         else
-            widthForMenu -= centerMobileElement.x + centerMobileElement.width + 2 * marginIcons;
+            widthForMenu -= titleMobileElement.x + titleMobileElement.width + 2 * marginIcons;
         return widthForMenu;
     }
 }

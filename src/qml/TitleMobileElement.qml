@@ -5,8 +5,8 @@ import QtQuick.Layouts 1.3
 import "../HarrixQML"
 
 Image {
-    id: centerMobileElementApp
-    objectName: "centerMobileElementApp"
+    id: titleMobileElementApp
+    objectName: "titleMobileElementApp"
 
     source: "qrc:/images/logo-harrix-white.svg"
     height: 40

@@ -5,7 +5,6 @@ Button 1.0 Button.qml
 ButtonBlue 1.0 ButtonBlue.qml
 ButtonGreen 1.0 ButtonGreen.qml
 Label 1.0 Label.qml
-LabelInHead 1.0 LabelInHead.qml
 MainWindow 1.0 MainWindow.qml
 TextField 1.0 TextField.qml
 

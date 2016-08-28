@@ -4,12 +4,7 @@ import QtQuick.Layouts 1.3
 
 import "../HarrixQML"
 
-LabelInHead {
-   id: centerMobileElementApp
-   text: qsTr("Mind games for the company of people")
-}
-
-/*Image {
+Image {
     id: centerMobileElementApp
     objectName: "centerMobileElementApp"
 
@@ -18,4 +13,4 @@ LabelInHead {
     fillMode: Image.PreserveAspectFit
     anchors.verticalCenter: parent.verticalCenter
     anchors.horizontalCenter: parent.horizontalCenter
-}*/
+}

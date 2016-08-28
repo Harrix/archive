@@ -29,6 +29,5 @@
         <file>HarrixQML/internal/MenuItem.qml</file>
         <file>HarrixQML/internal/MouseAreaRippleWithoutMask.qml</file>
         <file>HarrixQML/internal/Hamburger.qml</file>
-        <file>HarrixQML/LabelInHead.qml</file>
     </qresource>
 </RCC>

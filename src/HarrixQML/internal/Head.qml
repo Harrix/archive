@@ -81,22 +81,18 @@ Rectangle {
 
     Loader {
         id: centerMobileElement
-        sourceComponent: labelll
+        sourceComponent: Component {
+            Label {
+                property string textLabel: mainWindow.title
+                text: textLabel
+                fontSize: 20
+                verticalAlignment: Text.AlignVCenter
+                font.weight: Font.Medium
+                elide: Text.ElideRight
+            }
+        }
         anchors.centerIn: parent
         visible: false
-    }
-
-    Component {
-        id: labelll
-        Label {
-            property string textE: "111"
-            id: label
-            text: textE
-            fontSize: 20
-            verticalAlignment: Text.AlignVCenter
-            font.weight: Font.Medium
-            elide: Text.ElideRight
-        }
     }
 
     MainMenu {

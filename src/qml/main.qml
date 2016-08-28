@@ -26,7 +26,7 @@ MainWindow {
     content: Content {}
 
     Component.onCompleted: {
-        head.centerMobileElementItem.textE = qsTr("Mind games for the company of people")
+        head.centerMobileElementItem.textLabel = qsTr("Mind games for the company of people")
         /*if (head.colorMobileMode)
             head.centerMobileElementItem.colorFont = SettingsHarrixQML.colorLightElement;
         else

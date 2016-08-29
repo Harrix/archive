@@ -29,17 +29,18 @@ TextField {
     selectByMouse: true
     color: enabled ? colorFont : colorNotEnabled
     placeholderText: ""
+    implicitWidth: Math.max(background ? background.implicitWidth : 0,
+                                         placeholderReplace.implicitWidth
+                                         + leftPadding + rightPadding)
+    implicitHeight: Math.max(background ? background.implicitHeight : 0,
+                                          placeholderReplace.implicitHeight
+                                          + topPadding + bottomPadding)
 
     MouseArea {
         anchors.fill: parent
         cursorShape: Qt.IBeamCursor
         acceptedButtons: Qt.NoButton
     }
-
-    implicitWidth: Math.max(background ? background.implicitWidth : 0,
-                                         placeholderReplace.implicitWidth + leftPadding + rightPadding)
-    implicitHeight: Math.max(background ? background.implicitHeight : 0,
-                                          placeholderReplace.implicitHeight + topPadding + bottomPadding)
 
     Text {
         id: placeholderReplace

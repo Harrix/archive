@@ -5,6 +5,9 @@ import "."
 TextField {
     id: textField
 
+    //Properties that it is necessary to set
+    property alias textPlaceholder: placeholderReplace.text
+
     //Common properties which can be changed if necessary
     property string fontName: SettingsHarrixQML.fontName
     property int fontSize: SettingsHarrixQML.fontSize
@@ -14,6 +17,8 @@ TextField {
     property string colorFontSelection: SettingsHarrixQML.colorLightElement
     property string colorFont: SettingsHarrixQML.colorFont
     property string colorNotEnabled: SettingsHarrixQML.colorNotEnabled
+
+    property string colorFontPlaceholder: SettingsHarrixQML.colorNotEnabled
 
     property string colorTextField: "blue"
     property string colorTextFieldHover: "yellow"
@@ -28,38 +33,32 @@ TextField {
     color: enabled ? colorFont : colorNotEnabled
     placeholderText: ""
 
-    padding: 6
-    leftPadding: padding + 4
-
     MouseArea {
         anchors.fill: parent
         cursorShape: Qt.IBeamCursor
         acceptedButtons: Qt.NoButton
     }
 
-    property alias textPlaceholder: placeholder2.text
-
     implicitWidth: Math.max(background ? background.implicitWidth : 0,
-                                         placeholder2.implicitWidth + leftPadding + rightPadding)
+                                         placeholderReplace.implicitWidth + leftPadding + rightPadding)
     implicitHeight: Math.max(background ? background.implicitHeight : 0,
-                                          placeholder2.implicitHeight + topPadding + bottomPadding)
+                                          placeholderReplace.implicitHeight + topPadding + bottomPadding)
 
     Text {
-        id: placeholder2
+        id: placeholderReplace
         x: textField.leftPadding
         y: textField.topPadding
         width: textField.width - (textField.leftPadding + textField.rightPadding)
         height: textField.height - (textField.topPadding + textField.bottomPadding)
 
-        //text: textField.placeholderText
         renderType: fontRenderType
         font.pixelSize: fontSize
         font.family: fontName
-        color: "red"
+        color: colorFontPlaceholder
         horizontalAlignment: textField.horizontalAlignment
         verticalAlignment: textField.verticalAlignment
         visible: !textField.length && !textField.preeditText && (!textField.activeFocus || textField.horizontalAlignment !== Qt.AlignHCenter)
-        //elide: Text.ElideRight
+        elide: Text.ElideRight
     }
 
     background: Rectangle {

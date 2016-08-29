@@ -104,7 +104,6 @@ Page{
             }
 
             TextField {
-                objectName: "field1"
                 textPlaceholder: qsTr("Input first number")
             }
 

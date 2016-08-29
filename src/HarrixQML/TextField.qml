@@ -18,11 +18,10 @@ TextField {
     property string colorFont: SettingsHarrixQML.colorFont
     property string colorNotEnabled: SettingsHarrixQML.colorNotEnabled
 
-    property string colorFontPlaceholder: SettingsHarrixQML.colorNotEnabled
+    property string colorFontPlaceholder: SettingsHarrixQML.colorFontPlaceholder
 
-    property string colorTextField: "blue"
-    property string colorTextFieldHover: "yellow"
-    property string colorFontTextField: "green"
+    property string colorTextFieldBorder: SettingsHarrixQML.colorRed
+    property string colorTextFieldBorderHover: SettingsHarrixQML.colorRedLight
 
     renderType: fontRenderType
     font.pixelSize: fontSize
@@ -65,7 +64,7 @@ TextField {
         y: textField.height - height - textField.bottomPadding / 2
         implicitWidth: 120
         height: textField.activeFocus ? 2 : 1
-        color: textField.activeFocus ? colorTextFieldHover : colorTextField
+        color: textField.activeFocus ? colorTextFieldBorderHover : colorTextFieldBorder
 
         Behavior on color {
             ColorAnimation { duration: durationAnimation }

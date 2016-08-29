@@ -65,7 +65,10 @@ Button {
             hoverEnabled: true
             onEntered: parent.color = colorButtonHover
             onExited: parent.color = colorButton
-            onClicked: button.clicked()
+            onClicked:  {
+                button.clicked();
+                Qt.inputMethod.hide();
+            }
         }
 
         Behavior on color {

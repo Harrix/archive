@@ -14,13 +14,11 @@ Column {
     anchors.bottomMargin: 0
 
     TextField {
-        id: field10
         objectName: "field10"
         textPlaceholder: qsTr("123 first 10313")
     }
 
     TextField {
-        id: field101
         objectName: "field101"
         textPlaceholder: qsTr("test")
     }

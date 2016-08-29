@@ -29,7 +29,7 @@ TextField {
     placeholderText: ""
 
     padding: 6
-        leftPadding: padding + 4
+    leftPadding: padding + 4
 
     MouseArea {
         anchors.fill: parent
@@ -40,9 +40,9 @@ TextField {
     property alias textPlaceholder: placeholder2.text
 
     implicitWidth: Math.max(background ? background.implicitWidth : 0,
-                                placeholder2.implicitWidth + leftPadding + rightPadding)
-        implicitHeight: Math.max(background ? background.implicitHeight : 0,
-                                 placeholder2.implicitHeight + topPadding + bottomPadding)
+                                         placeholder2.implicitWidth + leftPadding + rightPadding)
+    implicitHeight: Math.max(background ? background.implicitHeight : 0,
+                                          placeholder2.implicitHeight + topPadding + bottomPadding)
 
     Text {
         id: placeholder2

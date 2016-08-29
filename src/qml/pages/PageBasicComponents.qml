@@ -100,25 +100,22 @@ Page{
             TextField {
                 id: field1
                 objectName: "field1"
-                //placeholderText: qsTr("Input first number")
                 textPlaceholder: qsTr("Input first number")
             }
 
             TextField {
                 objectName: "field1"
-                placeholderText: qsTr("Input first number")
-                //textPlaceholder: qsTr("Input first number")
+                textPlaceholder: qsTr("Input first number")
             }
 
             TextField {
-                placeholderText: qsTr("Input first number")
                 textPlaceholder: qsTr("Input first number")
             }
 
             TextField {
                 id: field2
                 objectName: "field2"
-                placeholderText: qsTr("Input second number")
+                textPlaceholder: qsTr("Input second number")
             }
 
             Button {

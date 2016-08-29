@@ -26,7 +26,7 @@ Rectangle {
     property color colorRippleInWhite: SettingsHarrixQML.colorRippleInWhite
     property color colorDarkElement: SettingsHarrixQML.colorDarkElement
     property color colorLightElement: SettingsHarrixQML.colorLightElement
-    property int durationAnimation: SettingsHarrixQML.durationAnimation
+    property int durationAnimation: SettingsHarrixQML.durationAnimation / 2
     property int marginIcons: SettingsHarrixQML.marginIcons
     property int sizeIcons: SettingsHarrixQML.sizeIcons
     property int cursorShapeIcon: SettingsHarrixQML.cursorHover

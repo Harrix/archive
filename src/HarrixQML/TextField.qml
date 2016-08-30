@@ -22,12 +22,13 @@ Rectangle {
     property string colorTextFieldBorderHover: SettingsHarrixQML.colorRed
 
     width: textField.width
-    height: textField.height
+    height: textField.height + 10
     color: "transparent"
 
     TextField {
         id: textField
 
+        y: 10
         renderType: fontRenderType
         font.pixelSize: fontSize
         font.family: fontName

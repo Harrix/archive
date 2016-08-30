@@ -42,6 +42,7 @@ Rectangle {
         placeholderText: ""
         leftPadding: 0
         rightPadding: 0
+        opacity: 1
         implicitWidth: Math.max(background ? background.implicitWidth : 0,
                                              placeholderReplace.implicitWidth
                                              + leftPadding + rightPadding)
@@ -84,7 +85,7 @@ Rectangle {
             y: textField.height - height - textField.bottomPadding / 2
             implicitWidth: 120
             height: 1
-            color: colorTextFieldBorder
+            color: textField.enabled ? colorTextFieldBorder : colorNotEnabled
 
             Rectangle {
                 y: 0
@@ -110,6 +111,8 @@ Rectangle {
     }
 
     function defineColorFontPlaceholder() {
+        if (!textField.enabled)
+            return colorNotEnabled;
         if (normalPlaceholder())
             return colorFontPlaceholder;
         if (textField.activeFocus)

@@ -24,7 +24,7 @@ Rectangle {
 
     width: textField.width
     height: textField.height + extraHeight
-    color: "transparent"
+    color: "yellow"
 
     TextField {
         id: textField
@@ -47,6 +47,10 @@ Rectangle {
                                               placeholderReplace.implicitHeight
                                               + topPadding + bottomPadding)
 
+        onHeightChanged: {
+            console.log(height)
+        }
+
         MouseArea {
             anchors.fill: parent
             cursorShape: Qt.IBeamCursor
@@ -56,7 +60,8 @@ Rectangle {
         Text {
             id: placeholderReplace
             x: 0
-            y: normalPlaceholder() ? textField.topPadding : -(extraHeight + textField.bottomPadding)
+            y: normalPlaceholder() ?
+                   textField.topPadding : -(extraHeight + textField.bottomPadding / 2)
             width: textField.width
             height: textField.height - (textField.topPadding + textField.bottomPadding)
             renderType: fontRenderType
@@ -83,29 +88,10 @@ Rectangle {
         background: Rectangle {
             y: textField.height - height - textField.bottomPadding / 2
             implicitWidth: 120
-            height: 1
+            height: 2
             color: colorTextFieldBorder
 
-            Rectangle {
-                y: 0
-                width: textField.activeFocus ? parent.width : 0
-                height: 2
-                color: textField.activeFocus ? colorTextFieldBorderHover : colorTextFieldBorder
-                anchors.horizontalCenter: parent.horizontalCenter
 
-                Behavior on width {
-                    NumberAnimation {
-                        duration: durationAnimation
-                        easing.type: Easing.InOutQuad
-                    }
-                }
-                Behavior on color {
-                    ColorAnimation {
-                        duration: durationAnimation
-                        easing.type: Easing.InOutQuad
-                    }
-                }
-            }
         }
     }
 

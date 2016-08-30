@@ -84,8 +84,14 @@ Rectangle {
         background: Rectangle {
             y: textField.height - height - textField.bottomPadding / 2
             implicitWidth: 120
-            height: 1
-            color: textField.enabled ? colorTextFieldBorder : colorNotEnabled
+            height: 2
+            color: "transparent"
+            LineDashed {
+                id: lineDashed
+                width: parent.width
+                spacingDash: textField.enabled ? 0 : 1
+                colorLineDashed: textField.enabled ? colorTextFieldBorder : colorNotEnabled
+            }
 
             Rectangle {
                 y: 0

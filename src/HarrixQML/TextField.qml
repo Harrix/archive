@@ -10,6 +10,7 @@ Rectangle {
     property alias text: textField.text
 
     //Common properties which can be changed if necessary
+    property alias inputMethodHints: textField. inputMethodHints
     property string fontName: SettingsHarrixQML.fontName
     property int fontSize: SettingsHarrixQML.fontSize
     property int fontRenderType: SettingsHarrixQML.fontRenderType

@@ -101,12 +101,14 @@ Page{
                 id: field1
                 objectName: "field1"
                 textPlaceholder: qsTr("Input first number")
+                inputMethodHints: Qt.ImhDigitsOnly
             }
 
             TextFieldBlue {
                 id: field2
                 objectName: "field2"
                 textPlaceholder: qsTr("Input second number")
+                inputMethodHints: Qt.ImhDigitsOnly
             }
 
             Button {
@@ -132,7 +134,28 @@ Page{
             }
 
             TextField {
-                textPlaceholder: qsTr("Input first number")
+                textPlaceholder: qsTr("Qt.ImhDate")
+                inputMethodHints: Qt.ImhDate
+            }
+
+            TextField {
+                textPlaceholder: qsTr("Qt.ImhPreferNumbers")
+                inputMethodHints: Qt.ImhPreferNumbers
+            }
+
+            TextField {
+                textPlaceholder: qsTr("Qt.ImhTime")
+                inputMethodHints: Qt.ImhTime
+            }
+
+            TextField {
+                textPlaceholder: qsTr("Qt.ImhEmailCharactersOnly")
+                inputMethodHints: Qt.ImhEmailCharactersOnly
+            }
+
+            TextField {
+                textPlaceholder: qsTr("Qt.ImhUrlCharactersOnly")
+                inputMethodHints: Qt.ImhUrlCharactersOnly
             }
 
             ButtonBlue{

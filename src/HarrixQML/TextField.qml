@@ -62,7 +62,7 @@ Rectangle {
             renderType: fontRenderType
             font.pixelSize: normalPlaceholder() ? fontSize : fontSize - 1
             font.family: fontName
-            color: normalPlaceholder() ? colorFontPlaceholder : colorTextFieldBorderHover
+            color: defineColorFontPlaceholder()
             horizontalAlignment: textField.horizontalAlignment
             verticalAlignment: textField.verticalAlignment
             elide: Text.ElideRight
@@ -107,6 +107,15 @@ Rectangle {
                 }
             }
         }
+    }
+
+    function defineColorFontPlaceholder() {
+        if (normalPlaceholder())
+            return colorFontPlaceholder;
+        if (textField.activeFocus)
+            return colorTextFieldBorderHover;
+        else
+            return  colorFontPlaceholder;
     }
 
     function normalPlaceholder() {

@@ -56,16 +56,15 @@ Rectangle {
         Text {
             id: placeholderReplace
             x: 0
-            y: textField.topPadding
+            y: normalPlaceholder() ? textField.topPadding : -(extraHeight + textField.bottomPadding)
             width: textField.width
             height: textField.height - (textField.topPadding + textField.bottomPadding)
             renderType: fontRenderType
-            font.pixelSize: fontSize
+            font.pixelSize: normalPlaceholder() ? fontSize : fontSize - 1
             font.family: fontName
-            color: colorFontPlaceholder
+            color: normalPlaceholder() ? colorFontPlaceholder : colorTextFieldBorderHover
             horizontalAlignment: textField.horizontalAlignment
             verticalAlignment: textField.verticalAlignment
-            visible: calculateNormalStatePlaceholder()
             elide: Text.ElideRight
         }
 
@@ -98,7 +97,7 @@ Rectangle {
         }
     }
 
-    function calculateNormalStatePlaceholder() {
+    function normalPlaceholder() {
         var result = !textField.length;
         result = result && !textField.preeditText;
         result = result && !textField.activeFocus;

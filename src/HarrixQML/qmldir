@@ -22,6 +22,7 @@ MenuItem 1.0 internal/MenuItem.qml
 MouseAreaRipple 1.0 internal/MouseAreaRipple.qml
 MouseAreaRippleWithoutMask 1.0 internal/MouseAreaRippleWithoutMask.qml
 NavigationDrawer 1.0 internal/NavigationDrawer.qml
+LineDashed 1.0 internal/LineDashed.qml
 
 # Service components
 Fonts 1.0 service/Fonts.qml

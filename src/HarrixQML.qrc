@@ -29,5 +29,6 @@
         <file>HarrixQML/images/menu.svg</file>
         <file>HarrixQML/TextFieldBlue.qml</file>
         <file>HarrixQML/TextFieldGreen.qml</file>
+        <file>HarrixQML/internal/LineDashed.qml</file>
     </qresource>
 </RCC>

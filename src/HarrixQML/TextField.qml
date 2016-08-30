@@ -66,6 +66,18 @@ Rectangle {
             horizontalAlignment: textField.horizontalAlignment
             verticalAlignment: textField.verticalAlignment
             elide: Text.ElideRight
+            Behavior on y {
+                NumberAnimation {
+                    duration: durationAnimation
+                    easing.type: Easing.InOutQuad
+                }
+            }
+            Behavior on color {
+                ColorAnimation {
+                    duration: durationAnimation
+                    easing.type: Easing.InOutQuad
+                }
+            }
         }
 
         background: Rectangle {

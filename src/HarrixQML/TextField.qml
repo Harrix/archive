@@ -18,8 +18,8 @@ TextField {
     property string colorFont: SettingsHarrixQML.colorFont
     property string colorNotEnabled: SettingsHarrixQML.colorNotEnabled
     property string colorFontPlaceholder: SettingsHarrixQML.colorFontPlaceholder
-    property string colorTextFieldBorder: SettingsHarrixQML.colorRed
-    property string colorTextFieldBorderHover: SettingsHarrixQML.colorRedLight
+    property string colorTextFieldBorder: SettingsHarrixQML.colorBorder
+    property string colorTextFieldBorderHover: SettingsHarrixQML.colorRed
 
     renderType: fontRenderType
     font.pixelSize: fontSize

@@ -10,8 +10,8 @@ Rectangle {
     property int widthDash: 1
     property int spacingDash: 1
 
-    width: 50
-    height: 1
+    implicitWidth: 50
+    implicitHeight: 1
     clip: true
     color: "transparent"
 

@@ -104,14 +104,6 @@ Page{
             }
 
             TextField {
-                textPlaceholder: qsTr("Input first number")
-            }
-
-            TextField {
-                textPlaceholder: qsTr("Input first number")
-            }
-
-            TextField {
                 id: field2
                 objectName: "field2"
                 textPlaceholder: qsTr("Input second number")
@@ -119,8 +111,24 @@ Page{
 
             Button {
                 id: button
-                text: qsTr("Download")
+                text: qsTr("Sum")
                 onClicked: qmlSignal( qsTr("apples") )
+            }
+
+            TextArea {
+                id: textArea
+                objectName: "textArea"
+                wrapMode: TextArea.Wrap
+                readOnly: true
+                width: 250
+            }
+
+            TextField {
+                textPlaceholder: qsTr("Input first number")
+            }
+
+            TextField {
+                textPlaceholder: qsTr("Input first number")
             }
 
             ButtonBlue{
@@ -174,14 +182,6 @@ Page{
 
             Label {
                 text: "Answer:"
-            }
-
-            TextArea {
-                id: textArea
-                objectName: "textArea"
-                wrapMode: TextArea.Wrap
-                readOnly: true
-                width: 250
             }
 
             Image {

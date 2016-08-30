@@ -125,10 +125,17 @@ Page{
 
             TextField {
                 textPlaceholder: qsTr("Input first number")
+                enabled: false
             }
 
             TextField {
                 textPlaceholder: qsTr("Input first number")
+            }
+
+            ButtonBlue{
+                text: qsTr("enabled: false")
+                onClicked:  toogleNavigationDrawer()
+                enabled: false
             }
 
             ButtonBlue{

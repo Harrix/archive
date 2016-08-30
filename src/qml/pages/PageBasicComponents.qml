@@ -123,6 +123,9 @@ Page{
                 width: 250
             }
 
+            LineDashed {}
+
+
             TextField {
                 textPlaceholder: qsTr("Input first number")
                 enabled: false

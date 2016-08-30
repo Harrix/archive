@@ -20,15 +20,16 @@ Rectangle {
     property string colorFontPlaceholder: SettingsHarrixQML.colorFontPlaceholder
     property string colorTextFieldBorder: SettingsHarrixQML.colorBorder
     property string colorTextFieldBorderHover: SettingsHarrixQML.colorRed
+    property int extraHeight: 10
 
     width: textField.width
-    height: textField.height + 10
+    height: textField.height + extraHeight
     color: "transparent"
 
     TextField {
         id: textField
 
-        y: 10
+        y: extraHeight
         renderType: fontRenderType
         font.pixelSize: fontSize
         font.family: fontName

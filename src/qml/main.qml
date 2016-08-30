@@ -6,7 +6,7 @@ import "../HarrixQML"
 import "../HarrixQML/internal"
 
 MainWindow {
-    title: qsTr("Harrix-QMLComponents - Demo")
+    title: qsTr("Harrix-QML - Demo")
 
     navigationDrawer.drawer: LeftPanel {}
 

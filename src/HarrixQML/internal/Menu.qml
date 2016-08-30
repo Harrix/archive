@@ -7,14 +7,12 @@ Menu {
 
     //Common properties which can be changed if necessary
     property color colorBackground: SettingsHarrixQML.colorBackground
-    property color colorBorder: SettingsHarrixQML.colorBorder
     property color colorBackgroundMenu: SettingsHarrixQML.colorBackgroundMenu
     property int durationAnimation: SettingsHarrixQML.durationAnimation
     property int easingTypeScale: Easing.OutQuint
     property int easingTypeOpacity: Easing.OutCubic
     property int implicitWidthMenu: 200
     property int implicitHeightMenu: 20
-    property int borderWidth: 0
 
     enter: Transition {
         NumberAnimation {
@@ -37,7 +35,5 @@ Menu {
         implicitWidth: implicitWidthMenu
         implicitHeight: implicitHeightMenu
         color: colorBackgroundMenu
-        border.width: borderWidth
-        border.color: colorBorder
     }
 }

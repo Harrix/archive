@@ -18,7 +18,7 @@ QtObject {
     readonly property color colorLightElement: "#fff"
     readonly property color colorLightElementHover: "#eee"
     readonly property color colorNotEnabled: "#d0d0d0"
-    readonly property color colorBorder: "#eee"
+    readonly property color colorBorder: "#dbdbdb"
     readonly property color colorBackgroundMenu: "#f5f5f5"
     readonly property color colorRippleInWhite: "#cecece"
     readonly property color colorFontPlaceholder: "#939393"

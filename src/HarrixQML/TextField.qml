@@ -7,6 +7,7 @@ Rectangle {
 
     //Properties that it is necessary to set
     property alias textPlaceholder: placeholderReplace.text
+    property alias text: textField.text
 
     //Common properties which can be changed if necessary
     property string fontName: SettingsHarrixQML.fontName

@@ -68,11 +68,28 @@ TextField {
     background: Rectangle {
         y: textField.height - height - textField.bottomPadding / 2
         implicitWidth: 120
-        height: textField.activeFocus ? 2 : 1
-        color: textField.activeFocus ? colorTextFieldBorderHover : colorTextFieldBorder
+        height: 1
+        color: colorTextFieldBorder
 
-        Behavior on color {
-            ColorAnimation { duration: durationAnimation }
+        Rectangle {
+            y: 0
+            width: textField.activeFocus ? parent.width : 0
+            height: 2
+            color: textField.activeFocus ? colorTextFieldBorderHover : colorTextFieldBorder
+            anchors.horizontalCenter: parent.horizontalCenter
+
+            Behavior on width {
+                NumberAnimation {
+                    duration: durationAnimation
+                    easing.type: Easing.InOutQuad
+                }
+            }
+            Behavior on color {
+                ColorAnimation {
+                    duration: durationAnimation
+                    easing.type: Easing.InOutQuad
+                }
+            }
         }
     }
 }

@@ -7,11 +7,11 @@ Rectangle {
 
     //Common properties which can be changed if necessary
     property color colorLineDashed: SettingsHarrixQML.colorBorder
-    property int widthDash: 2
-    property int spacingDash: 2
+    property int widthDash: 1
+    property int spacingDash: 1
 
     width: 50
-    height: 2
+    height: 1
     clip: true
     color: "transparent"
 

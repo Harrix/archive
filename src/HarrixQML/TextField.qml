@@ -21,6 +21,7 @@ Rectangle {
     property string colorTextFieldBorder: SettingsHarrixQML.colorBorder
     property string colorTextFieldBorderHover: SettingsHarrixQML.colorRed
     property int extraHeight: 10
+    property int implicitHeightTextField: 31
 
     width: textField.width
     height: textField.height + extraHeight
@@ -43,9 +44,7 @@ Rectangle {
         implicitWidth: Math.max(background ? background.implicitWidth : 0,
                                              placeholderReplace.implicitWidth
                                              + leftPadding + rightPadding)
-        implicitHeight: Math.max(background ? background.implicitHeight : 0,
-                                              placeholderReplace.implicitHeight
-                                              + topPadding + bottomPadding)
+        implicitHeight: implicitHeightTextField
 
         MouseArea {
             anchors.fill: parent

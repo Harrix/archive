@@ -48,15 +48,21 @@ TextField {
         y: textField.topPadding
         width: textField.width - (textField.leftPadding + textField.rightPadding)
         height: textField.height - (textField.topPadding + textField.bottomPadding)
-
         renderType: fontRenderType
         font.pixelSize: fontSize
         font.family: fontName
         color: colorFontPlaceholder
         horizontalAlignment: textField.horizontalAlignment
         verticalAlignment: textField.verticalAlignment
-        visible: !textField.length && !textField.preeditText && (!textField.activeFocus || textField.horizontalAlignment !== Qt.AlignHCenter)
+        visible: calculateNormalStatePlaceholder()
         elide: Text.ElideRight
+    }
+
+    function calculateNormalStatePlaceholder() {
+        var result = !textField.length;
+        result = result && !textField.preeditText;
+        result = result && !textField.activeFocus;
+        return result;
     }
 
     background: Rectangle {

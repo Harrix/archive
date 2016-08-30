@@ -7,6 +7,8 @@ ButtonGreen 1.0 ButtonGreen.qml
 Label 1.0 Label.qml
 MainWindow 1.0 MainWindow.qml
 TextField 1.0 TextField.qml
+TextFieldBlue 1.0 TextFieldBlue.qml
+TextFieldGreen 1.0 TextFieldGreen.qml
 
 # Internal components
 ApplicationWindow 1.0 internal/ApplicationWindow.qml

@@ -27,5 +27,7 @@
         <file>HarrixQML/internal/MouseAreaRippleWithoutMask.qml</file>
         <file>HarrixQML/internal/Hamburger.qml</file>
         <file>HarrixQML/images/menu.svg</file>
+        <file>HarrixQML/TextFieldBlue.qml</file>
+        <file>HarrixQML/TextFieldGreen.qml</file>
     </qresource>
 </RCC>

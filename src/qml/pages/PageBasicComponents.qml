@@ -97,13 +97,13 @@ Page{
                 }
             }
 
-            TextField {
+            TextFieldGreen {
                 id: field1
                 objectName: "field1"
                 textPlaceholder: qsTr("Input first number")
             }
 
-            TextField {
+            TextFieldBlue {
                 id: field2
                 objectName: "field2"
                 textPlaceholder: qsTr("Input second number")

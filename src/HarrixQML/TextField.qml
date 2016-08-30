@@ -20,7 +20,7 @@ Rectangle {
     property string colorNotEnabled: SettingsHarrixQML.colorNotEnabled
     property string colorFontPlaceholder: SettingsHarrixQML.colorFontPlaceholder
     property string colorTextFieldBorder: SettingsHarrixQML.colorBorder
-    property string colorTextFieldBorderHover: SettingsHarrixQML.colorRed
+    property string colorTextFieldHover: SettingsHarrixQML.colorRed
     property int extraHeight: 10
     property int implicitHeightTextField: 31
 
@@ -90,7 +90,7 @@ Rectangle {
                 y: 0
                 width: textField.activeFocus ? parent.width : 0
                 height: 2
-                color: textField.activeFocus ? colorTextFieldBorderHover : colorTextFieldBorder
+                color: textField.activeFocus ? colorTextFieldHover : colorTextFieldBorder
                 anchors.horizontalCenter: parent.horizontalCenter
 
                 Behavior on width {
@@ -113,9 +113,9 @@ Rectangle {
         if (normalPlaceholder())
             return colorFontPlaceholder;
         if (textField.activeFocus)
-            return colorTextFieldBorderHover;
+            return colorTextFieldHover;
         else
-            return  colorFontPlaceholder;
+            return colorFontPlaceholder;
     }
 
     function normalPlaceholder() {

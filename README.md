@@ -1,2 +1,2 @@
-# HarrixUpdate
+# Harrix Update
 Обновление библиотек

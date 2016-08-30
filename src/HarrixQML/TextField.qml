@@ -9,6 +9,9 @@ Rectangle {
     property alias textPlaceholder: placeholderReplace.text
     property alias text: textField.text
 
+    //Properties, through which you can access the elements
+    property alias textField: textField
+
     //Common properties which can be changed if necessary
     property alias inputMethodHints: textField. inputMethodHints
     property string fontName: SettingsHarrixQML.fontName

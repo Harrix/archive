@@ -27,6 +27,7 @@ Rectangle {
     property string colorTextFieldHover: SettingsHarrixQML.colorRed
     property int extraHeight: 10
     property int implicitHeightTextField: 31
+    property int easingType: Easing.InOutQuad
 
     width: textField.width
     height: textField.height + extraHeight
@@ -74,13 +75,13 @@ Rectangle {
             Behavior on y {
                 NumberAnimation {
                     duration: durationAnimation
-                    easing.type: Easing.InOutQuad
+                    easing.type: easingType
                 }
             }
             Behavior on color {
                 ColorAnimation {
                     duration: durationAnimation
-                    easing.type: Easing.InOutQuad
+                    easing.type: easingType
                 }
             }
         }
@@ -107,13 +108,13 @@ Rectangle {
                 Behavior on width {
                     NumberAnimation {
                         duration: durationAnimation
-                        easing.type: Easing.InOutQuad
+                        easing.type: easingType
                     }
                 }
                 Behavior on color {
                     ColorAnimation {
                         duration: durationAnimation
-                        easing.type: Easing.InOutQuad
+                        easing.type: easingType
                     }
                 }
             }

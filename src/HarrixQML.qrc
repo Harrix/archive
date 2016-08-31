@@ -1,0 +1,34 @@
+<RCC>
+    <qresource prefix="/">
+        <file>HarrixQML/Button.qml</file>
+        <file>HarrixQML/ButtonBlue.qml</file>
+        <file>HarrixQML/ButtonGreen.qml</file>
+        <file>HarrixQML/MainWindow.qml</file>
+        <file>HarrixQML/TextField.qml</file>
+        <file>HarrixQML/fonts/FontAwesome.ttf</file>
+        <file>HarrixQML/fonts/OpenSans.ttf</file>
+        <file>HarrixQML/fonts/PTMono.ttf</file>
+        <file>HarrixQML/images/search.svg</file>
+        <file>HarrixQML/images/share.svg</file>
+        <file>HarrixQML/internal/ApplicationWindow.qml</file>
+        <file>HarrixQML/internal/Head.qml</file>
+        <file>HarrixQML/internal/IconFontAwesome.qml</file>
+        <file>HarrixQML/internal/MouseAreaRipple.qml</file>
+        <file>HarrixQML/internal/NavigationDrawer.qml</file>
+        <file>HarrixQML/qmldir</file>
+        <file>HarrixQML/service/FontAwesome.qml</file>
+        <file>HarrixQML/service/Fonts.qml</file>
+        <file>HarrixQML/service/SettingsHarrixQML.qml</file>
+        <file>HarrixQML/internal/MainMenu.qml</file>
+        <file>HarrixQML/Label.qml</file>
+        <file>HarrixQML/internal/IconWithMask.qml</file>
+        <file>HarrixQML/internal/Menu.qml</file>
+        <file>HarrixQML/internal/MenuItem.qml</file>
+        <file>HarrixQML/internal/MouseAreaRippleWithoutMask.qml</file>
+        <file>HarrixQML/internal/Hamburger.qml</file>
+        <file>HarrixQML/images/menu.svg</file>
+        <file>HarrixQML/TextFieldBlue.qml</file>
+        <file>HarrixQML/TextFieldGreen.qml</file>
+        <file>HarrixQML/internal/LineDashed.qml</file>
+    </qresource>
+</RCC>

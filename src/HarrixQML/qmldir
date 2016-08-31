@@ -1,0 +1,30 @@
+module HarrixQML
+
+# Visual components
+Button 1.0 Button.qml
+ButtonBlue 1.0 ButtonBlue.qml
+ButtonGreen 1.0 ButtonGreen.qml
+Label 1.0 Label.qml
+MainWindow 1.0 MainWindow.qml
+TextField 1.0 TextField.qml
+TextFieldBlue 1.0 TextFieldBlue.qml
+TextFieldGreen 1.0 TextFieldGreen.qml
+
+# Internal components
+ApplicationWindow 1.0 internal/ApplicationWindow.qml
+Head 1.0 internal/Head.qml
+IconFontAwesome 1.0 internal/IconFontAwesome.qml
+IconWithMask 1.0 internal/IconWithMask.qml
+Hamburger 1.0 internal/Hamburger.qml
+MainMenu 1.0 internal/MainMenu.qml
+Menu 1.0 internal/Menu.qml
+MenuItem 1.0 internal/MenuItem.qml
+MouseAreaRipple 1.0 internal/MouseAreaRipple.qml
+MouseAreaRippleWithoutMask 1.0 internal/MouseAreaRippleWithoutMask.qml
+NavigationDrawer 1.0 internal/NavigationDrawer.qml
+LineDashed 1.0 internal/LineDashed.qml
+
+# Service components
+Fonts 1.0 service/Fonts.qml
+singleton FontAwesome 1.0 service/FontAwesome.qml
+singleton SettingsHarrixQML 1.0 service/SettingsHarrixQML.qml

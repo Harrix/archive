@@ -6,11 +6,11 @@ import "../HarrixQML"
 import "../HarrixQML/internal"
 
 MainWindow {
-    title: qsTr("Harrix-QML - Demo")
+    title: qsTr("Harrix Updater v.1.0")
 
     navigationDrawer.drawer: LeftPanel {}
 
-    head.logo.source: "qrc:/images/logo-harrix.svg"
+    //head.logo.source: "qrc:/images/logo-harrix.svg"
 
     //head.titleMobileElement: TitleMobileElement {}
 

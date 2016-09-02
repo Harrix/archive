@@ -20,12 +20,20 @@ int main(int argc, char *argv[])
     parser.addHelpOption();
     parser.addVersionOption();
 
-    cout << "Hello, World1!\n";
+    parser.addPositionalArgument("filename", QCoreApplication::translate("main", "Binary file to disassemble."));
 
-    QString S;
-    cout << "S "<< S.toStdString() <<"\n";
+    QCommandLineOption noListOption(QStringList() << "n" << "no-list", QCoreApplication::translate("main", "Don't list instruction bytes (make output suitable for assembler)."));
+    parser.addOption(noListOption);
 
-    //system("pause");
-    //return a.exec();
+    parser.process(a);
+
+    const QStringList args = parser.positionalArguments();
+
+    if (args.size() != 1) {
+       // fprintf(stderr, "%s\n", qPrintable(QCoreApplication::translate("main", "Error: Must specify one filename argument.")));
+        cout << qPrintable(QCoreApplication::translate("main", "Error: Must specify one filename argument."));
+        parser.showHelp(1);
+    }
+
     return 0;
 }

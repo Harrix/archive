@@ -34,6 +34,13 @@ int main(int argc, char *argv[])
         cout << qPrintable(QCoreApplication::translate("main", "Error: Must specify one filename argument."));
         parser.showHelp(1);
     }
+    else {
+        qDebug() << "filename:  " << args.at(0);
+            qDebug() << "no list:   " << parser.isSet(noListOption);
+    }
+
+    system("pause");
 
     return 0;
+    //return a.exec();
 }

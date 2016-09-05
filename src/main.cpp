@@ -12,11 +12,11 @@ using namespace std;
 int main(int argc, char *argv[])
 {
     QCoreApplication a(argc, argv);
-    QCoreApplication::setApplicationName("updt");
+    QCoreApplication::setApplicationName("Harrix Updater");
     QCoreApplication::setApplicationVersion("1.0");
 
     QCommandLineParser parser;
-    parser.setApplicationDescription("Test helper");
+    parser.setApplicationDescription("The program allows you to copy files to other folders to update existing files.");
     parser.addHelpOption();
     parser.addVersionOption();
 

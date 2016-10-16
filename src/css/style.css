@@ -17,12 +17,12 @@ body {
 }
 
 /* Color selection */
-body ::selection { 
+body ::selection {
     background: #de2b26;
     color: #fff;
 }
- 
-body ::-moz-selection { 
+
+body ::-moz-selection {
     background: #de2b26;
     color: #fff;
 }
@@ -74,34 +74,34 @@ body ::-moz-selection {
 
 /* Margin bottom */
 .margin-bottom {
-    margin-bottom: 30px; 
+    margin-bottom: 30px;
 }
 
 @media (max-width: 544px)
 {
 .margin-bottom-sm {
-    margin-bottom: 30px; 
+    margin-bottom: 30px;
 }
 }
 
 @media (max-width: 768px)
 {
 .margin-bottom-md {
-    margin-bottom: 30px; 
+    margin-bottom: 30px;
 }
 }
 
 @media (max-width: 992px)
 {
 .margin-bottom-lg {
-    margin-bottom: 30px; 
+    margin-bottom: 30px;
 }
 }
 
 @media (max-width: 1200px)
 {
 .margin-bottom-xl {
-    margin-bottom: 30px; 
+    margin-bottom: 30px;
 }
 }
 
@@ -283,19 +283,19 @@ header {
 }
 
 .navbar a {
-    color: #25292c !important; 
+    color: #25292c !important;
 }
 
 .navbar a:visited {
-    color: #25292c !important; 
+    color: #25292c !important;
 }
 
 .navbar a:hover {
-    color: #19a5a5 !important; 
+    color: #19a5a5 !important;
 }
 
 .navbar a:active {
-    color: #19a5a5 !important; 
+    color: #19a5a5 !important;
 }
 
 @media (max-width:767px){
@@ -323,7 +323,7 @@ header {
 @media (max-width: 768px)
 {
 #main-nav {
-    margin-top: 0px; 
+    margin-top: 0px;
 }
 }
 
@@ -345,7 +345,7 @@ header {
     border-bottom: 1px solid #E9E9E9 !important;
     padding-bottom: 15px !important;
     padding-top: 15px !important;
-} 
+}
 }
 
 .navbar-nav .nav-item + .nav-item {
@@ -544,13 +544,13 @@ header {
 .content a, .content .dot  {
     text-decoration: none;
     border-bottom: 1px dashed #19a5a5;
-    color: #19a5a5; 
+    color: #19a5a5;
 }
 
 .content a:hover, .content .dot:hover {
     text-decoration: none;
     border-bottom: 1px dashed #71c2c2;
-    color: #71c2c2; 
+    color: #71c2c2;
 }
 
 .content h1 a, .content h2 a, .content h3 a, .content h4 a, .content h5 a, .content h6 a, .content .h1 a, .content .h2 a, .content .h3 a, .content .h4 a, .content .h5 a, .content .h6 a {

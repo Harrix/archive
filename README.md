@@ -21,7 +21,7 @@ HarrixFileFormats
 Данные распространяются по лицензии Apache License, Version 2.0.
 
 Установка
----------
+----------
 
 Прочитать подробно об установке можно тут [http://blog.harrix.org/?p=1233](http://blog.harrix.org/?p=1233).
 

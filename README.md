@@ -1,7 +1,7 @@
 HarrixFileFormats
 =================
 
-Сборник описаний форматов файлов, которые использую в своих продуктах Harrix.
+Сборник описаний форматов файлов, которые использую в своих продуктах Harrix..
 
 [https://github.com/Harrix/HarrixFileFormats](https://github.com/Harrix/HarrixFileFormats)
 

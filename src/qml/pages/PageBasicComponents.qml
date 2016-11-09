@@ -2,6 +2,8 @@ import QtQuick 2.7
 import QtQuick.Controls 2.0
 import QtQuick.Layouts 1.3
 import QtQml 2.2
+import QtQuick.Controls.Material 2.1
+import QtQuick.Controls.Material.impl 2.1
 
 import "../../HarrixQML"
 
@@ -230,6 +232,23 @@ Page{
                     onClicked: {
                         console.log("image")
                     }
+                }
+            }
+
+            Image {
+                source: "qrc:/images/harrix_photo.png"
+                width: 300
+                height: 300
+                smooth: true
+
+                Ripple {
+                    clipRadius: 2
+                    width: parent.width
+                    height: parent.height
+                    pressed: control.pressed
+                    anchor: control
+                    active: control.down || control.visualFocus || control.hovered
+                    color: "black"
                 }
             }
 

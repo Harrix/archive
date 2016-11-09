@@ -515,6 +515,13 @@ header {
 
 /* Content */
 /* ------------------------------------------------------------------ */
+@media (max-width: 768px) {
+  .container {
+    width: 100% !important;
+    max-width: 100%;
+  }
+}
+
 .content {
     padding-right: 15px;
     padding-left: 15px;

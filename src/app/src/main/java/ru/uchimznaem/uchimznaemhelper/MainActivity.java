@@ -1,10 +1,14 @@
 package ru.uchimznaem.uchimznaemhelper;
 
+import android.graphics.Color;
+import android.graphics.drawable.GradientDrawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -21,6 +25,7 @@ public class MainActivity extends AppCompatActivity
 
     private FrameLayout fragmentContainer;
     private FragmentManager fragmentManager;
+    private DrawerLayout drawer_layout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +54,20 @@ public class MainActivity extends AppCompatActivity
 
         fragmentContainer = (FrameLayout)findViewById(R.id.fragmentContainer);
         fragmentManager = getSupportFragmentManager();
+
+        drawer_layout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        GradientDrawable gd = new GradientDrawable(
+                GradientDrawable.Orientation.TOP_BOTTOM,
+                new int[] {Color.RED,Color.YELLOW});
+        gd.setCornerRadius(0f);
+        gd.setGradientType(GradientDrawable.RADIAL_GRADIENT);
+        //gd.setGradientRadius(Math.max(drawer_layout.getWidth(),drawer.getHeight()));
+        gd.setGradientRadius(600);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+            drawer_layout.setBackground( gd );
+        } else {
+            drawer_layout.setBackgroundDrawable( gd );
+        }
     }
 
     @Override

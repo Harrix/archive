@@ -5,6 +5,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -19,6 +20,7 @@ import android.widget.FrameLayout;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    private static final String TAG = "uz-helper";
     private FrameLayout fragmentContainer;
     private FragmentManager fragmentManager;
 
@@ -49,6 +51,20 @@ public class MainActivity extends AppCompatActivity
 
         fragmentContainer = (FrameLayout)findViewById(R.id.fragmentContainer);
         fragmentManager = getSupportFragmentManager();
+
+        //Main Fragment
+        Fragment fragment = fragmentManager.findFragmentById(R.id.fragmentContainer);
+
+        if (fragment == null) {
+            Log.d(TAG," fragment == null" );
+            fragment = new MainFragment();
+            fragmentManager.beginTransaction()
+                    .add(R.id.fragmentContainer, fragment)
+                    .commit();
+            Log.d(TAG, "fragment changed to "+fragment.toString());
+        } else {
+            Log.d(TAG, "fragment is not null");
+        }
     }
 
     @Override

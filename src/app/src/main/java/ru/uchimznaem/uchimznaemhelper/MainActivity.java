@@ -56,10 +56,10 @@ public class MainActivity extends AppCompatActivity
 
                     GradientDrawable gd = new GradientDrawable(
                             GradientDrawable.Orientation.TOP_BOTTOM,
-                            new int[] {getResources().getColor(R.color.colorGradientBegin),getResources().getColor(R.color.colorGradientEnd)});
+                            new int[]{getResources().getColor(R.color.colorGradientBegin), getResources().getColor(R.color.colorGradientEnd)});
                     gd.setCornerRadius(0f);
                     gd.setGradientType(GradientDrawable.RADIAL_GRADIENT);
-                    gd.setGradientRadius(Math.max(drawer_layout.getWidth(),drawer_layout.getHeight()));
+                    gd.setGradientRadius(Math.max(drawer_layout.getWidth(), drawer_layout.getHeight()));
                     //gd.setGradientRadius(600);
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                         drawer_layout.setBackground(gd);
@@ -70,19 +70,19 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
-        fragmentContainer = (FrameLayout)findViewById(R.id.fragmentContainer);
+        fragmentContainer = (FrameLayout) findViewById(R.id.fragmentContainer);
         fragmentManager = getSupportFragmentManager();
 
         //Main Fragment
         Fragment fragment = fragmentManager.findFragmentById(R.id.fragmentContainer);
 
         if (fragment == null) {
-            Log.d(TAG," fragment == null" );
+            Log.d(TAG, " fragment == null");
             fragment = new MainFragment();
             fragmentManager.beginTransaction()
                     .add(R.id.fragmentContainer, fragment)
                     .commit();
-            Log.d(TAG, "fragment changed to "+fragment.toString());
+            Log.d(TAG, "fragment changed to " + fragment.toString());
         } else {
             Log.d(TAG, "fragment is not null");
         }
@@ -128,12 +128,10 @@ public class MainActivity extends AppCompatActivity
 
         if (id == R.id.nav_camera) {
             Fragment fragment = fragmentManager.findFragmentById(R.id.fragmentContainer);
-            if (fragment == null) {
-                fragment = new QRFragment();
-                fragmentManager.beginTransaction()
-                        .add(R.id.fragmentContainer, fragment)
-                        .commit();
-            }
+            fragment = new QRFragment();
+            fragmentManager.beginTransaction()
+                    .add(R.id.fragmentContainer, fragment)
+                    .commit();
         } else if (id == R.id.nav_gallery) {
 
         } else if (id == R.id.nav_slideshow) {

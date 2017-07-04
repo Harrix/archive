@@ -3,6 +3,7 @@ package ru.uchimznaem.uchimznaemhelper;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -89,7 +90,13 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_camera) {
-            // Handle the camera action
+            Fragment fragment = fragmentManager.findFragmentById(R.id.fragmentContainer);
+            if (fragment == null) {
+                fragment = new QRFragment();
+                fragmentManager.beginTransaction()
+                        .add(R.id.fragmentContainer, fragment)
+                        .commit();
+            }
         } else if (id == R.id.nav_gallery) {
 
         } else if (id == R.id.nav_slideshow) {

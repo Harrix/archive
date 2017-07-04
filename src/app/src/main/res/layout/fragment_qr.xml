@@ -3,19 +3,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#FF33B5E5">
+    android:background="#FF33B5E5"
+    android:weightSum="1">
 
     <SurfaceView
-        android:layout_width="640px"
-        android:layout_height="480px"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:layout_alignParentLeft="true"
         android:id="@+id/camera_view"
-        />
+        android:layout_weight="1.00" />
 
     <TextView
         android:id="@+id/code_info"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Nothing to read."
         />

@@ -151,6 +151,7 @@ public class MainActivity extends AppCompatActivity
             fragment = new QRFragment();
             fragmentManager.beginTransaction()
                     .add(R.id.fragmentContainer, fragment)
+                    .addToBackStack(null)
                     .commit();
         } else if (id == R.id.nav_gallery) {
 

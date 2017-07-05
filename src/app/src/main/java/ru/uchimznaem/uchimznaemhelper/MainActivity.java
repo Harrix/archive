@@ -25,8 +25,7 @@ import java.io.IOException;
 public class MainActivity extends AppCompatActivity implements
         NavigationView.OnNavigationItemSelectedListener,
         OnQRFragmentDataListener,
-        OnMainFragmentDataListener
-{
+        OnMainFragmentDataListener {
 
     private static final String TAG = "uz-helper";
     private FrameLayout fragmentContainer;
@@ -38,6 +37,8 @@ public class MainActivity extends AppCompatActivity implements
 
     public int height;
     public int width;
+
+    private OnActivityDataListener mListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -178,7 +179,19 @@ public class MainActivity extends AppCompatActivity implements
 
     @Override
     public void onQRFragmentDataListener(String string) {
-        Toast.makeText(getApplicationContext(),string, Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(), string, Toast.LENGTH_SHORT).show();
+
+        Fragment fragment = fragmentManager.findFragmentById(R.id.fragmentContainer);
+        fragment = new RoomFragment();
+
+        Bundle bundle = new Bundle();
+        bundle.putString("message", string);
+        fragment.setArguments(bundle);
+
+        fragmentManager.beginTransaction()
+                .add(R.id.fragmentContainer, fragment)
+                .addToBackStack(null)
+                .commit();
     }
 
     @Override

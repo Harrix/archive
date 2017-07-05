@@ -25,8 +25,7 @@ import java.io.IOException;
 public class MainActivity extends AppCompatActivity implements
         NavigationView.OnNavigationItemSelectedListener,
         OnQRFragmentDataListener,
-        OnMainFragmentDataListener
-{
+        OnMainFragmentDataListener {
 
     private static final String TAG = "uz-helper";
     private FrameLayout fragmentContainer;
@@ -38,6 +37,8 @@ public class MainActivity extends AppCompatActivity implements
 
     public int height;
     public int width;
+
+    private OnActivityDataListener mListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -100,17 +101,26 @@ public class MainActivity extends AppCompatActivity implements
         fragmentManager = getSupportFragmentManager();
 
         //Main Fragment
-        Fragment fragment = fragmentManager.findFragmentById(R.id.fragmentContainer);
+        Fragment fragment = new MainFragment();
+        setFragment(fragment);
+    }
 
-        if (fragment == null) {
+    void setFragment(Fragment f){
+        Fragment container = fragmentManager.findFragmentById(R.id.fragmentContainer);
+
+        if (container == null) {
             Log.d(TAG, " fragment == null");
-            fragment = new MainFragment();
             fragmentManager.beginTransaction()
-                    .add(R.id.fragmentContainer, fragment)
+                    .add(R.id.fragmentContainer, f)
                     .commit();
-            Log.d(TAG, "fragment changed to " + fragment.toString());
+            Log.d(TAG, "fragment changed to " + f.toString());
         } else {
             Log.d(TAG, "fragment is not null");
+            fragmentManager.beginTransaction()
+                    .replace(R.id.fragmentContainer, f)
+                    .addToBackStack("replace")
+                    .commit();
+            Log.d(TAG, "fragment changed to " + f.toString());
         }
     }
 
@@ -153,14 +163,12 @@ public class MainActivity extends AppCompatActivity implements
         int id = item.getItemId();
 
         if (id == R.id.nav_camera) {
-            Fragment fragment = fragmentManager.findFragmentById(R.id.fragmentContainer);
-            fragment = new QRFragment();
-            fragmentManager.beginTransaction()
-                    .add(R.id.fragmentContainer, fragment)
-                    .addToBackStack(null)
-                    .commit();
-        } else if (id == R.id.nav_gallery) {
-
+            //Fragment fragment = fragmentManager.findFragmentById(R.id.fragmentContainer);
+            Fragment fragment = new QRFragment();
+            setFragment(fragment);
+        } else if (id == R.id.rooms_list) {
+            Fragment fragment = new RoomsListFragment();
+            setFragment(fragment);
         } else if (id == R.id.nav_slideshow) {
 
         } else if (id == R.id.nav_manage) {
@@ -178,12 +186,31 @@ public class MainActivity extends AppCompatActivity implements
 
     @Override
     public void onQRFragmentDataListener(String string) {
-        Toast.makeText(getApplicationContext(),string, Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(), string, Toast.LENGTH_SHORT).show();
+
+        Fragment fragment = fragmentManager.findFragmentById(R.id.fragmentContainer);
+        fragment = new RoomFragment();
+
+        Bundle bundle = new Bundle();
+        bundle.putString("message", string);
+        fragment.setArguments(bundle);
+
+        fragmentManager.beginTransaction()
+                .add(R.id.fragmentContainer, fragment)
+                .addToBackStack(null)
+                .commit();
     }
 
     @Override
     public void OnMainFragmentDataListener(int position) {
         Toast.makeText(getApplicationContext(), "Tile " + position,
                 Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mDb.close();
+        mDBHelper.close();
     }
 }

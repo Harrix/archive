@@ -32,8 +32,8 @@ public class MainActivity extends AppCompatActivity implements
     private FragmentManager fragmentManager;
     private DrawerLayout drawer_layout;
 
-    private DatabaseHelper mDBHelper;
-    private SQLiteDatabase mDb;
+    public DatabaseHelper mDBHelper;
+    public SQLiteDatabase mDb;
 
     public int height;
     public int width;
@@ -188,17 +188,13 @@ public class MainActivity extends AppCompatActivity implements
     public void onQRFragmentDataListener(String string) {
         Toast.makeText(getApplicationContext(), string, Toast.LENGTH_SHORT).show();
 
-        Fragment fragment = fragmentManager.findFragmentById(R.id.fragmentContainer);
-        fragment = new RoomFragment();
+        Fragment fragment = new RoomFragment();
 
         Bundle bundle = new Bundle();
         bundle.putString("message", string);
         fragment.setArguments(bundle);
 
-        fragmentManager.beginTransaction()
-                .add(R.id.fragmentContainer, fragment)
-                .addToBackStack(null)
-                .commit();
+        setFragment(fragment);
     }
 
     @Override

@@ -32,9 +32,10 @@ public class QRFragment extends Fragment {
 
     private static final int CAMERA_PERMISSION_CAMERA = 0x000000;
 
+    private static final String TAG = "uz-helper";
+
     public QRFragment() {
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -85,7 +86,7 @@ public class QRFragment extends Fragment {
                     }
                     cameraSource.start(cameraView.getHolder());
                 } catch (IOException ie) {
-                    Log.e("Harrix", ie.getMessage());
+                    Log.e(TAG, ie.getMessage());
                 }
             }
 
@@ -129,46 +130,22 @@ public class QRFragment extends Fragment {
                                            int[] grantResults) {
         switch (requestCode) {
             case CAMERA_PERMISSION_CAMERA: {
-                // If request is cancelled, the result arrays are empty.
-                if (grantResults.length > 0
-                        && grantResults[0]
-                        == PackageManager
-                        .PERMISSION_GRANTED) {
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
 
-                    Intent startMain = new Intent(getActivity(), MainActivity
-                            .class);
+                    Intent startMain = new Intent(getActivity(), MainActivity.class);
                     startActivity(startMain);
 
                 } else {
                     if (ContextCompat.checkSelfPermission(getActivity(),
-                            android.Manifest
-                                    .permission
-                                    .CAMERA)
-                            != PackageManager
-                            .PERMISSION_GRANTED) {
+                            android.Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
 
-                        // Should we show an explanation?
                         if (ActivityCompat.shouldShowRequestPermissionRationale(getActivity(),
-                                android.Manifest
-                                        .permission
-                                        .CAMERA)) {
-
-                            // Show an explanation to the user *asynchronously* -- don't block
-                            // this thread waiting for the user's response! After the user
-                            // sees the explanation, try again to request the permission.
-
+                                android.Manifest.permission.CAMERA)) {
                         } else {
 
-                            // No explanation needed, we can request the permission.
-
                             ActivityCompat.requestPermissions(getActivity(),
-                                    new String[]{android.Manifest.permission
-                                            .CAMERA},
+                                    new String[]{android.Manifest.permission.CAMERA},
                                     CAMERA_PERMISSION_CAMERA);
-
-                            // CAMERA_PERMISSION_CAMERA is an
-                            // app-defined int constant. The callback method gets the
-                            // result of the request.
                         }
                     }
                 }

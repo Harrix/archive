@@ -109,8 +109,8 @@ public class MainFragment extends Fragment {
 
         // references to our images
         private Integer[] mThumbIds = {
-                R.drawable.tile,
-                R.drawable.tile,
+                R.drawable.tile_how_to_get,
+                R.drawable.tile_where_i,
                 R.drawable.tile,
                 R.drawable.tile,
                 R.drawable.tile

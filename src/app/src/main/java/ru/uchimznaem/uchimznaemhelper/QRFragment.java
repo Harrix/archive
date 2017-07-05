@@ -48,7 +48,7 @@ public class QRFragment extends Fragment {
             mListener = (OnQRFragmentDataListener) context;
         } else {
             throw new RuntimeException(context.toString()
-                    + " must implement OnFragment1DataListener");
+                    + " must implement OnQRFragmentDataListener");
         }
     }
 

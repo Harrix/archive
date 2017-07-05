@@ -1,6 +1,6 @@
 package ru.uchimznaem.uchimznaemhelper;
 
-
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
@@ -33,6 +33,19 @@ public class QRFragment extends Fragment {
     private static final int CAMERA_PERMISSION_CAMERA = 0x000000;
 
     private static final String TAG = "uz-helper";
+
+    private OnQRFragmentDataListener mListener;
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if (context instanceof OnQRFragmentDataListener) {
+            mListener = (OnQRFragmentDataListener) context;
+        } else {
+            throw new RuntimeException(context.toString()
+                    + " must implement OnFragment1DataListener");
+        }
+    }
 
     public QRFragment() {
     }
@@ -112,9 +125,9 @@ public class QRFragment extends Fragment {
                 if (barcodes.size() != 0) {
                     barcodeInfo.post(new Runnable() {    // Use the post method of the TextView
                         public void run() {
-                            barcodeInfo.setText(    // Update the TextView
-                                    barcodes.valueAt(0).displayValue
-                            );
+                            String S = barcodes.valueAt(0).displayValue;
+                            barcodeInfo.setText(S);
+                            mListener.onQRFragmentDataListener(S);
                         }
                     });
                 }

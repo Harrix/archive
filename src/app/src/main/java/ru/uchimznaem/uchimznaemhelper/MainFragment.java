@@ -112,7 +112,7 @@ public class MainFragment extends Fragment {
                 R.drawable.tile_how_to_get,
                 R.drawable.tile_where_i,
                 R.drawable.tile_how_to_contact,
-                R.drawable.tile,
+                R.drawable.tile_how_to_treat,
                 R.drawable.tile
                 /*R.drawable.sample_2, R.drawable.sample_3,
                 R.drawable.sample_4, R.drawable.sample_5,

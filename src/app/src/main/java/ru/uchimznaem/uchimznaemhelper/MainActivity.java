@@ -179,7 +179,7 @@ public class MainActivity extends AppCompatActivity implements
             setFragment(fragment);
 
         } else if (id == R.id.nav_how_to_treat) {
-
+            setFragment(new TreatmentsFragment());
         } else if (id == R.id.nav_what_events) {
 
         } else if (id == R.id.nav_question) {
@@ -189,6 +189,9 @@ public class MainActivity extends AppCompatActivity implements
             Intent i = new Intent(Intent.ACTION_VIEW);
             i.setData(Uri.parse(url));
             startActivity(i);
+        } else if (id == R.id.nav_home) {
+            Fragment fragment = new MainFragment();
+            setFragment(fragment);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -221,7 +224,7 @@ public class MainActivity extends AppCompatActivity implements
             Fragment fragment = new ContactsFragment();
             setFragment(fragment);
         } else if (position == 3) {
-
+            setFragment(new TreatmentsFragment());
         } else if (position == 4) {
             Fragment fragment = new EventsFragment();
             setFragment(fragment);

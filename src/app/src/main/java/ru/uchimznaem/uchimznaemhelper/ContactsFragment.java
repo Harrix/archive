@@ -18,7 +18,7 @@ public class ContactsFragment extends Fragment {
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        int[] fields = new int[]{R.id.listid, R.id.listfullname, R.id.listroom, R.id.listphone};
+        int[] fields = new int[]{R.id.item_id, R.id.item_name, R.id.item_room, R.id.listphone};
         String[] headers = new String[]{"_id", "fullname", "room_number", "phone"};
 
         View root = inflater.inflate(R.layout.fragment_contacts, container, false);

@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:orientation="horizontal">
     <TextView
-        android:id="@+id/listid"
+        android:id="@+id/item_id"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
@@ -13,7 +13,7 @@
         android:textSize="12sp">
     </TextView>
     <TextView
-        android:id="@+id/listfullname"
+        android:id="@+id/item_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="fill_horizontal"
@@ -22,7 +22,7 @@
         android:textSize="12sp">
     </TextView>
     <TextView
-        android:id="@+id/listroom"
+        android:id="@+id/item_room"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="right"

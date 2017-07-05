@@ -4,27 +4,27 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_how_to_get"
-            android:icon="@drawable/ic_menu_camera"
+            android:icon="@drawable/icon_how_to_get"
             android:title="Как пройти?" />
         <item
             android:id="@+id/nav_where_i"
-            android:icon="@drawable/ic_menu_gallery"
+            android:icon="@drawable/icon_where_i"
             android:title="Где я?" />
         <item
             android:id="@+id/nav_how_to_contact"
-            android:icon="@drawable/ic_menu_slideshow"
+            android:icon="@drawable/icon_how_to_contact"
             android:title="Как связаться?" />
         <item
             android:id="@+id/nav_how_to_treat"
-            android:icon="@drawable/ic_menu_manage"
+            android:icon="@drawable/icon_how_to_treat"
             android:title="Как лечат?" />
         <item
             android:id="@+id/nav_what_events"
-            android:icon="@drawable/ic_menu_manage"
+            android:icon="@drawable/icon_what_events"
             android:title="Какие события?" />
         <item
             android:id="@+id/nav_question"
-            android:icon="@drawable/ic_menu_manage"
+            android:icon="@drawable/icon_advertising"
             android:title="Хочу спросить" />
     </group>
 

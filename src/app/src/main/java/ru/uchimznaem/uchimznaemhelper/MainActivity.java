@@ -1,8 +1,10 @@
 package ru.uchimznaem.uchimznaemhelper;
 
+import android.content.Intent;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.drawable.GradientDrawable;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -181,6 +183,11 @@ public class MainActivity extends AppCompatActivity implements
 
         } else if (id == R.id.nav_question) {
 
+        } else if (id == R.id.nav_uchimznaem) {
+            String url = "http://uchimznaem.ru";
+            Intent i = new Intent(Intent.ACTION_VIEW);
+            i.setData(Uri.parse(url));
+            startActivity(i);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

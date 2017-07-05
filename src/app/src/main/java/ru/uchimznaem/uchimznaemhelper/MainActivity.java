@@ -203,8 +203,6 @@ public class MainActivity extends AppCompatActivity implements
 
     @Override
     public void OnMainFragmentDataListener(int position) {
-        Toast.makeText(getApplicationContext(), "Tile " + position,
-                Toast.LENGTH_SHORT).show();
         if (position == 0) {
 
         } else if (position == 1) {

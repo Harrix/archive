@@ -166,8 +166,9 @@ public class MainActivity extends AppCompatActivity implements
             //Fragment fragment = fragmentManager.findFragmentById(R.id.fragmentContainer);
             Fragment fragment = new QRFragment();
             setFragment(fragment);
-        } else if (id == R.id.nav_gallery) {
-
+        } else if (id == R.id.rooms_list) {
+            Fragment fragment = new RoomsListFragment();
+            setFragment(fragment);
         } else if (id == R.id.nav_slideshow) {
 
         } else if (id == R.id.nav_manage) {
@@ -204,5 +205,12 @@ public class MainActivity extends AppCompatActivity implements
     public void OnMainFragmentDataListener(int position) {
         Toast.makeText(getApplicationContext(), "Tile " + position,
                 Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mDb.close();
+        mDBHelper.close();
     }
 }

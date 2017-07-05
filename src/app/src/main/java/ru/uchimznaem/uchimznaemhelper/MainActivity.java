@@ -176,7 +176,7 @@ public class MainActivity extends AppCompatActivity implements
             setFragment(fragment);
 
         } else if (id == R.id.nav_how_to_treat) {
-
+            setFragment(new TreatmentsFragment());
         } else if (id == R.id.nav_what_events) {
 
         } else if (id == R.id.nav_question) {
@@ -212,7 +212,7 @@ public class MainActivity extends AppCompatActivity implements
             Fragment fragment = new ContactsFragment();
             setFragment(fragment);
         } else if (position == 3) {
-
+            setFragment(new TreatmentsFragment());
         } else if (position == 4) {
 
         } else if (position == 5) {

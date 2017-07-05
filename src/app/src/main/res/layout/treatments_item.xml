@@ -10,7 +10,8 @@
         android:layout_gravity="center_vertical"
         android:layout_marginLeft="10dp"
         android:text="id"
-        android:textSize="12sp">
+        android:textSize="24sp"
+        android:visibility="gone">
     </TextView>
     <TextView
         android:id="@+id/item_name"
@@ -19,7 +20,7 @@
         android:layout_gravity="fill_horizontal"
         android:layout_marginLeft="10dp"
         android:text="note"
-        android:textSize="12sp">
+        android:textSize="24sp">
     </TextView>
     <TextView
         android:id="@+id/item_room"
@@ -28,16 +29,8 @@
         android:layout_gravity="right"
         android:layout_marginLeft="10dp"
         android:text="time"
-        android:textSize="12sp">
+        android:textSize="24sp">
         </TextView>
 
-    <TextView
-        android:id="@+id/listphone"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="right"
-        android:layout_marginLeft="10dp"
-        android:text="time"
-        android:textSize="12sp">
-    </TextView>
+
 </LinearLayout>

@@ -9,9 +9,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:numColumns="auto_fit"
-        android:horizontalSpacing="20dp"
-        android:verticalSpacing="20dp"
-        android:padding="20dp"
+        android:horizontalSpacing="@dimen/grid_space"
+        android:verticalSpacing="@dimen/grid_space"
+        android:padding="@dimen/grid_space"
         android:gravity="center"
         />
 </LinearLayout>

@@ -194,10 +194,7 @@ public class MainActivity extends AppCompatActivity implements
         bundle.putString("message", string);
         fragment.setArguments(bundle);
 
-        fragmentManager.beginTransaction()
-                .add(R.id.fragmentContainer, fragment)
-                .addToBackStack(null)
-                .commit();
+        setFragment(fragment);
     }
 
     @Override

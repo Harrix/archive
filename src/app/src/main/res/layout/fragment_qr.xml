@@ -8,11 +8,8 @@
 
     <SurfaceView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_alignParentLeft="true"
-        android:id="@+id/camera_view"
-        android:layout_weight="1.00" />
+        android:layout_height="match_parent"
+        android:id="@+id/camera_view" />
 
     <TextView
         android:id="@+id/code_info"

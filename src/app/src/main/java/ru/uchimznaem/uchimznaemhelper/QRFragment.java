@@ -36,6 +36,11 @@ public class QRFragment extends Fragment {
 
     private OnQRFragmentDataListener mListener;
 
+    private int height;
+    private int width;
+
+    private String qRText = "";
+
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -65,6 +70,9 @@ public class QRFragment extends Fragment {
             }
         }
 
+        height = ((MainActivity)getActivity()).height;
+        width = ((MainActivity)getActivity()).width;
+
         cameraView = (SurfaceView) v.findViewById(R.id.camera_view);
         barcodeInfo = (TextView) v.findViewById(R.id.code_info);
 
@@ -79,7 +87,7 @@ public class QRFragment extends Fragment {
                 .Builder(getActivity().getApplicationContext(), barcodeDetector)
                 .setFacing(CameraSource.CAMERA_FACING_BACK)
                 .setRequestedFps(35.0f)
-                .setRequestedPreviewSize(960, 960)
+                .setRequestedPreviewSize(height,width)
                 .setAutoFocusEnabled(true)
                 .build();
 
@@ -126,8 +134,12 @@ public class QRFragment extends Fragment {
                     barcodeInfo.post(new Runnable() {    // Use the post method of the TextView
                         public void run() {
                             String S = barcodes.valueAt(0).displayValue;
-                            barcodeInfo.setText(S);
-                            mListener.onQRFragmentDataListener(S);
+                            if (!qRText.equals(S)) {
+                                Log.d(TAG, S);
+                                qRText = S;
+                                barcodeInfo.setText(S);
+                                mListener.onQRFragmentDataListener(S);
+                            }
                         }
                     });
                 }

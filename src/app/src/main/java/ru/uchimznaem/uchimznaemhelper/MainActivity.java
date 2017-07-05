@@ -33,6 +33,9 @@ public class MainActivity extends AppCompatActivity
     private DatabaseHelper mDBHelper;
     private SQLiteDatabase mDb;
 
+    public int height;
+    public int width;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,6 +71,9 @@ public class MainActivity extends AppCompatActivity
         drawer_layout.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
             @Override
             public void onGlobalLayout() {
+                height = drawer_layout.getHeight();
+                width = drawer_layout.getWidth();
+
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                     drawer_layout.getViewTreeObserver().removeOnGlobalLayoutListener(this);
                     drawer_layout.getHeight(); //height is ready
@@ -169,6 +175,6 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onQRFragmentDataListener(String string) {
-        Toast.makeText(getApplicationContext(),string, Toast.LENGTH_LONG).show();
+        Toast.makeText(getApplicationContext(),string, Toast.LENGTH_SHORT).show();
     }
 }

@@ -24,7 +24,6 @@ public class ContactsFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_contacts, container, false);
         ListView lvContacts = (ListView) root.findViewById(R.id.lvcontacts);
         MainActivity activity = (MainActivity) getActivity();
-        //Cursor c = activity.mDb.rawQuery("SELECT * FROM person", null);
         Cursor c = activity.mDb.rawQuery("SELECT id AS _id, fullname, room_number, phone FROM person", null);
         SimpleCursorAdapter cursorAdapter = new SimpleCursorAdapter(activity, R.layout.contacts_item, c, headers, fields, SimpleCursorAdapter.FLAG_AUTO_REQUERY);
         lvContacts.setAdapter(cursorAdapter);

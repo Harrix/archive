@@ -223,6 +223,8 @@ public class MainActivity extends AppCompatActivity implements
         } else if (position == 3) {
 
         } else if (position == 4) {
+            Fragment fragment = new EventsFragment();
+            setFragment(fragment);
 
         } else if (position == 5) {
 

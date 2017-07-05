@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
+import android.widget.ListView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,6 +19,7 @@ import java.util.List;
 
 public class RoomsListFragment extends ListFragment {
     private MainActivity activity;
+    private ArrayList<String> rooms;
 
     public RoomsListFragment() {
 
@@ -41,7 +43,7 @@ public class RoomsListFragment extends ListFragment {
         int idIdx = c.getColumnIndex("id");
         int nameIdx = c.getColumnIndex("name");
         int typeIdx = c.getColumnIndex("type_name");
-        List<String> rooms = new ArrayList<>();
+        rooms = new ArrayList<>();
         while (c.moveToNext()) {
             long id = c.getLong(idIdx);
             String name = c.getString(nameIdx);
@@ -52,5 +54,14 @@ public class RoomsListFragment extends ListFragment {
         ListAdapter adapter = new ArrayAdapter<>(getActivity(),
                 R.layout.rooms_layout_item_1, rooms.toArray());
         setListAdapter(adapter);
+    }
+
+    @Override
+    public void onListItemClick(ListView l, View v, int position, long id) {
+        RoomFragment fragment = new RoomFragment();
+        Bundle bundle = new Bundle();
+        bundle.putString("message", rooms.get(position));
+        fragment.setArguments(bundle);
+        activity.setFragment(fragment);
     }
 }

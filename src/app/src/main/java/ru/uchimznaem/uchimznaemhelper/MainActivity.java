@@ -105,7 +105,7 @@ public class MainActivity extends AppCompatActivity implements
         setFragment(fragment);
     }
 
-    void setFragment(Fragment f){
+    public void setFragment(Fragment f){
         Fragment container = fragmentManager.findFragmentById(R.id.fragmentContainer);
 
         if (container == null) {

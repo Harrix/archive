@@ -22,8 +22,11 @@ import android.widget.Toast;
 
 import java.io.IOException;
 
-public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, OnQRFragmentDataListener {
+public class MainActivity extends AppCompatActivity implements
+        NavigationView.OnNavigationItemSelectedListener,
+        OnQRFragmentDataListener,
+        OnMainFragmentDataListener
+{
 
     private static final String TAG = "uz-helper";
     private FrameLayout fragmentContainer;
@@ -176,5 +179,11 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onQRFragmentDataListener(String string) {
         Toast.makeText(getApplicationContext(),string, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void OnMainFragmentDataListener(int position) {
+        Toast.makeText(getApplicationContext(), "Tile " + position,
+                Toast.LENGTH_SHORT).show();
     }
 }

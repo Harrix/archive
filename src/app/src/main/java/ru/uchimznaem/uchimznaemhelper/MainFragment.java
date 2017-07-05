@@ -18,8 +18,21 @@ import android.widget.Toast;
 
 public class MainFragment extends Fragment {
 
+    private OnMainFragmentDataListener mListener;
+
     public MainFragment(){
 
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if (context instanceof OnQRFragmentDataListener) {
+            mListener = (OnMainFragmentDataListener) context;
+        } else {
+            throw new RuntimeException(context.toString()
+                    + " must implement OnMainFragmentDataListener");
+        }
     }
 
     @Override
@@ -32,8 +45,7 @@ public class MainFragment extends Fragment {
         gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View v,
                                     int position, long id) {
-                Toast.makeText(getContext(), "Tile " + position,
-                        Toast.LENGTH_SHORT).show();
+                mListener.OnMainFragmentDataListener(position);
             }
         });
         return root;

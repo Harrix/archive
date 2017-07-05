@@ -202,6 +202,10 @@ public class MainActivity extends AppCompatActivity implements
     public void OnMainFragmentDataListener(int position) {
         Toast.makeText(getApplicationContext(), "Tile " + position,
                 Toast.LENGTH_SHORT).show();
+        if (position == 1) {
+            Fragment fragment = new ContactsFragment();
+            setFragment(fragment);
+        }
     }
 
     @Override

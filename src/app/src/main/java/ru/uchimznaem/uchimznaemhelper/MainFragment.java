@@ -1,11 +1,14 @@
 package ru.uchimznaem.uchimznaemhelper;
 
 import android.content.Context;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
@@ -19,6 +22,8 @@ import android.widget.Toast;
 public class MainFragment extends Fragment {
 
     private OnMainFragmentDataListener mListener;
+
+    private GridView gridview;
 
     public MainFragment(){
 
@@ -39,7 +44,7 @@ public class MainFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View root =  inflater.inflate(R.layout.fragment_main, container, false);
-        GridView gridview = (GridView) root.findViewById(R.id.gridview);
+        gridview = (GridView) root.findViewById(R.id.gridview);
         gridview.setAdapter(new ImageAdapter(getContext()));
 
         gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -76,9 +81,11 @@ public class MainFragment extends Fragment {
             if (convertView == null) {
                 // if it's not recycled, initialize some attributes
                 imageView = new ImageView(mContext);
-                imageView.setLayoutParams(new GridView.LayoutParams(300, 200));
-                imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
-                imageView.setPadding(8, 8, 8, 8);
+                //imageView.setLayoutParams(new GridView.LayoutParams(300, 200));
+                //imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
+                imageView.setPadding(20, 20, 20, 20);
+                imageView.setAdjustViewBounds(true);
+
             } else {
                 imageView = (ImageView) convertView;
             }
@@ -106,6 +113,31 @@ public class MainFragment extends Fragment {
                 R.drawable.sample_4, R.drawable.sample_5,
                 R.drawable.sample_6, R.drawable.sample_7*/
         };
+    }
+
+    private void refreshGridView() {
+
+        /*int gridViewEntrySize = getResources().getDimensionPixelSize(R.dimen.grip_view_entry_size);
+        int gridViewSpacing = getResources().getDimensionPixelSize(R.dimen.grip_view_spacing);
+
+        WindowManager wm = (WindowManager) getContext().getSystemService(Context.WINDOW_SERVICE);
+        Display display = wm.getDefaultDisplay();
+
+        int numColumns = (display.getWidth() - gridViewSpacing) / (gridViewEntrySize + gridViewSpacing);
+
+        gridview.setNumColumns(numColumns);*/
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        refreshGridView();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        refreshGridView();
     }
 
 }

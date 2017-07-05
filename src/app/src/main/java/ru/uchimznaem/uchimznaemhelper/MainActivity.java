@@ -172,7 +172,8 @@ public class MainActivity extends AppCompatActivity implements
             Fragment fragment = new RoomsListFragment();
             setFragment(fragment);
         } else if (id == R.id.nav_how_to_get) {
-
+            Fragment fragment = new MapFragment();
+            setFragment(fragment);
         } else if (id == R.id.nav_how_to_contact) {
             Fragment fragment = new ContactsFragment();
             setFragment(fragment);
@@ -211,7 +212,8 @@ public class MainActivity extends AppCompatActivity implements
     @Override
     public void OnMainFragmentDataListener(int position) {
         if (position == 0) {
-
+            Fragment fragment = new MapFragment();
+            setFragment(fragment);
         } else if (position == 1) {
             Fragment fragment = new QRFragment();
             setFragment(fragment);

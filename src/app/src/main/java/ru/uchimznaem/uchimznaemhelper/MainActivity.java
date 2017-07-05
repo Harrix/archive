@@ -1,5 +1,7 @@
 package ru.uchimznaem.uchimznaemhelper;
 
+import android.database.SQLException;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Build;
@@ -21,6 +23,8 @@ import android.view.MenuItem;
 import android.view.ViewTreeObserver;
 import android.widget.FrameLayout;
 
+import java.io.IOException;
+
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -28,6 +32,9 @@ public class MainActivity extends AppCompatActivity
     private FrameLayout fragmentContainer;
     private FragmentManager fragmentManager;
     private DrawerLayout drawer_layout;
+
+    private DatabaseHelper mDBHelper;
+    private SQLiteDatabase mDb;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +51,20 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        mDBHelper = new DatabaseHelper(this);
+
+        try {
+            mDBHelper.updateDataBase();
+        } catch (IOException mIOException) {
+            throw new Error("UnableToUpdateDatabase");
+        }
+
+        try {
+            mDb = mDBHelper.getWritableDatabase();
+        } catch (SQLException mSQLException) {
+            throw mSQLException;
+        }
 
         drawer_layout = (DrawerLayout) findViewById(R.id.drawer_layout);
 

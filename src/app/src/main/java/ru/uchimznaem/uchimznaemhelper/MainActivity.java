@@ -60,7 +60,6 @@ public class MainActivity extends AppCompatActivity
                     gd.setCornerRadius(0f);
                     gd.setGradientType(GradientDrawable.RADIAL_GRADIENT);
                     gd.setGradientRadius(Math.max(drawer_layout.getWidth(), drawer_layout.getHeight()));
-                    //gd.setGradientRadius(600);
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                         drawer_layout.setBackground(gd);
                     } else {

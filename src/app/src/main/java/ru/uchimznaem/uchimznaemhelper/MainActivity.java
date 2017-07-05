@@ -100,17 +100,26 @@ public class MainActivity extends AppCompatActivity implements
         fragmentManager = getSupportFragmentManager();
 
         //Main Fragment
-        Fragment fragment = fragmentManager.findFragmentById(R.id.fragmentContainer);
+        Fragment fragment = new MainFragment();
+        setFragment(fragment);
+    }
 
-        if (fragment == null) {
+    void setFragment(Fragment f){
+        Fragment container = fragmentManager.findFragmentById(R.id.fragmentContainer);
+
+        if (container == null) {
             Log.d(TAG, " fragment == null");
-            fragment = new MainFragment();
             fragmentManager.beginTransaction()
-                    .add(R.id.fragmentContainer, fragment)
+                    .add(R.id.fragmentContainer, f)
                     .commit();
-            Log.d(TAG, "fragment changed to " + fragment.toString());
+            Log.d(TAG, "fragment changed to " + f.toString());
         } else {
             Log.d(TAG, "fragment is not null");
+            fragmentManager.beginTransaction()
+                    .replace(R.id.fragmentContainer, f)
+                    .addToBackStack("replace")
+                    .commit();
+            Log.d(TAG, "fragment changed to " + f.toString());
         }
     }
 
@@ -153,12 +162,9 @@ public class MainActivity extends AppCompatActivity implements
         int id = item.getItemId();
 
         if (id == R.id.nav_camera) {
-            Fragment fragment = fragmentManager.findFragmentById(R.id.fragmentContainer);
-            fragment = new QRFragment();
-            fragmentManager.beginTransaction()
-                    .add(R.id.fragmentContainer, fragment)
-                    .addToBackStack(null)
-                    .commit();
+            //Fragment fragment = fragmentManager.findFragmentById(R.id.fragmentContainer);
+            Fragment fragment = new QRFragment();
+            setFragment(fragment);
         } else if (id == R.id.nav_gallery) {
 
         } else if (id == R.id.nav_slideshow) {

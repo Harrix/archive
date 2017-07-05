@@ -3,33 +3,46 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_camera"
+            android:id="@+id/nav_how_to_get"
             android:icon="@drawable/ic_menu_camera"
-            android:title="Где я? (QR)" />
+            android:title="Как пройти?" />
         <item
-            android:id="@+id/rooms_list"
+            android:id="@+id/nav_where_i"
             android:icon="@drawable/ic_menu_gallery"
-            android:title="Gallery" />
+            android:title="Где я?" />
         <item
-            android:id="@+id/nav_slideshow"
+            android:id="@+id/nav_how_to_contact"
             android:icon="@drawable/ic_menu_slideshow"
-            android:title="Slideshow" />
+            android:title="Как связаться?" />
         <item
-            android:id="@+id/nav_manage"
+            android:id="@+id/nav_how_to_treat"
             android:icon="@drawable/ic_menu_manage"
-            android:title="Tools" />
+            android:title="Как лечат?" />
+        <item
+            android:id="@+id/nav_what_events"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="Какие события?" />
+        <item
+            android:id="@+id/nav_question"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="Хочу спросить" />
     </group>
 
-    <item android:title="Communicate">
+    <item android:title="Списки">
         <menu>
             <item
-                android:id="@+id/nav_share"
-                android:icon="@drawable/ic_menu_share"
-                android:title="Share" />
-            <item
-                android:id="@+id/nav_send"
+                android:id="@+id/nav_rooms"
                 android:icon="@drawable/ic_menu_send"
-                android:title="Send" />
+                android:title="Список кабинетов" />
+        </menu>
+    </item>
+
+    <item android:title="Ссылки">
+        <menu>
+            <item
+                android:id="@+id/nav_uchimznaem"
+                android:icon="@drawable/ic_menu_send"
+                android:title="Сайт «УчимЗнаем»" />
         </menu>
     </item>
 

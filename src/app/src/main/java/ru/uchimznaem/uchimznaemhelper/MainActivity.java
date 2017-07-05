@@ -162,20 +162,24 @@ public class MainActivity extends AppCompatActivity implements
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
+        if (id == R.id.nav_where_i) {
             //Fragment fragment = fragmentManager.findFragmentById(R.id.fragmentContainer);
             Fragment fragment = new QRFragment();
             setFragment(fragment);
-        } else if (id == R.id.rooms_list) {
+        } else if (id == R.id.nav_rooms) {
             Fragment fragment = new RoomsListFragment();
             setFragment(fragment);
-        } else if (id == R.id.nav_slideshow) {
+        } else if (id == R.id.nav_how_to_get) {
 
-        } else if (id == R.id.nav_manage) {
+        } else if (id == R.id.nav_how_to_contact) {
+            Fragment fragment = new ContactsFragment();
+            setFragment(fragment);
 
-        } else if (id == R.id.nav_share) {
+        } else if (id == R.id.nav_how_to_treat) {
 
-        } else if (id == R.id.nav_send) {
+        } else if (id == R.id.nav_what_events) {
+
+        } else if (id == R.id.nav_question) {
 
         }
 
@@ -201,9 +205,20 @@ public class MainActivity extends AppCompatActivity implements
     public void OnMainFragmentDataListener(int position) {
         Toast.makeText(getApplicationContext(), "Tile " + position,
                 Toast.LENGTH_SHORT).show();
-        if (position == 1) {
+        if (position == 0) {
+
+        } else if (position == 1) {
+            Fragment fragment = new QRFragment();
+            setFragment(fragment);
+        } else if (position == 2) {
             Fragment fragment = new ContactsFragment();
             setFragment(fragment);
+        } else if (position == 3) {
+
+        } else if (position == 4) {
+
+        } else if (position == 5) {
+
         }
     }
 

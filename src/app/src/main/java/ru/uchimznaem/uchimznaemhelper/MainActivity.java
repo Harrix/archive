@@ -189,6 +189,9 @@ public class MainActivity extends AppCompatActivity implements
             Intent i = new Intent(Intent.ACTION_VIEW);
             i.setData(Uri.parse(url));
             startActivity(i);
+        } else if (id == R.id.nav_home) {
+            Fragment fragment = new MainFragment();
+            setFragment(fragment);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

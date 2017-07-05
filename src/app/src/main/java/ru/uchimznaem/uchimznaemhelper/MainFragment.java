@@ -25,7 +25,7 @@ public class MainFragment extends Fragment {
 
     private GridView gridview;
 
-    public MainFragment(){
+    public MainFragment() {
 
     }
 
@@ -43,7 +43,7 @@ public class MainFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View root =  inflater.inflate(R.layout.fragment_main, container, false);
+        View root = inflater.inflate(R.layout.fragment_main, container, false);
         gridview = (GridView) root.findViewById(R.id.gridview);
         gridview.setAdapter(new ImageAdapter(getContext()));
 
@@ -53,6 +53,19 @@ public class MainFragment extends Fragment {
                 mListener.OnMainFragmentDataListener(position);
             }
         });
+
+        if (isTablet(getContext())) {
+            if (isLandscape(getContext()))
+                gridview.setNumColumns(3);
+            else
+                gridview.setNumColumns(2);
+        } else {
+            if (isLandscape(getContext()))
+                gridview.setNumColumns(2);
+            else
+                gridview.setNumColumns(1);
+        }
+
         return root;
     }
 
@@ -83,7 +96,7 @@ public class MainFragment extends Fragment {
                 imageView = new ImageView(mContext);
                 //imageView.setLayoutParams(new GridView.LayoutParams(300, 200));
                 //imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
-                imageView.setPadding(20, 20, 20, 20);
+                //imageView.setPadding(20, 20, 20, 20);
                 imageView.setAdjustViewBounds(true);
 
             } else {
@@ -138,6 +151,19 @@ public class MainFragment extends Fragment {
     public void onResume() {
         super.onResume();
         refreshGridView();
+    }
+
+    public static boolean isTablet(Context context) {
+        return (context.getResources().getConfiguration().screenLayout
+                & Configuration.SCREENLAYOUT_SIZE_MASK)
+                >= Configuration.SCREENLAYOUT_SIZE_LARGE;
+    }
+
+    public static boolean isLandscape(Context context) {
+        boolean isLandscapeBoolean = false;
+        if (context.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE)
+            isLandscapeBoolean = true;
+        return isLandscapeBoolean;
     }
 
 }

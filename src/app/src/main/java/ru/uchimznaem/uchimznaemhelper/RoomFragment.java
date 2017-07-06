@@ -47,14 +47,18 @@ public class RoomFragment extends Fragment {
             map.setImageDrawable(getResources().getDrawable(R.drawable.map02));
             description.setText("Здесь вас встретят и ответят на вопросы.");
         }
-
-        if (message.equals("operating room")) {
+        else if (message.equals("operating room")) {
             numberRoom.setText("Операционная");
-            image.setImageDrawable(getResources().getDrawable(R.drawable.room01));
+            image.setImageDrawable(getResources().getDrawable(R.drawable.room00));
             map.setImageDrawable(getResources().getDrawable(R.drawable.map01));
             description.setText("Кабинет 101. Находится на 2 этаже. В ней проходят операции общего характера.");
         }
-
+        else {
+            numberRoom.setText(message);
+            image.setImageDrawable(getResources().getDrawable(R.drawable.room00));
+            map.setImageDrawable(getResources().getDrawable(R.drawable.map00));
+            description.setText("Кабинет.");
+        }
 
         return v;
     }

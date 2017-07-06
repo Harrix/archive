@@ -177,11 +177,11 @@ public class MainActivity extends AppCompatActivity implements
         } else if (id == R.id.nav_how_to_contact) {
             Fragment fragment = new ContactsFragment();
             setFragment(fragment);
-
         } else if (id == R.id.nav_how_to_treat) {
             setFragment(new TreatmentsFragment());
         } else if (id == R.id.nav_what_events) {
-
+            Fragment fragment = new EventsFragment();
+            setFragment(fragment);
         } else if (id == R.id.nav_question) {
             Fragment fragment = new QuestionFragment();
             setFragment(fragment);

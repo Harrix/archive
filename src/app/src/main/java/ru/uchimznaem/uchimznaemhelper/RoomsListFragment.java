@@ -20,6 +20,8 @@ import java.util.List;
 public class RoomsListFragment extends ListFragment {
     private MainActivity activity;
     private ArrayList<String> rooms;
+    private ArrayList<String> roomTypes;
+    private ArrayList<String> roomNames;
 
     public RoomsListFragment() {
 
@@ -44,10 +46,15 @@ public class RoomsListFragment extends ListFragment {
         int nameIdx = c.getColumnIndex("name");
         int typeIdx = c.getColumnIndex("type_name");
         rooms = new ArrayList<>();
+        roomTypes = new ArrayList<>();
+        roomNames = new ArrayList<>();
+
         while (c.moveToNext()) {
             long id = c.getLong(idIdx);
             String name = c.getString(nameIdx);
+            roomNames.add(name);
             String type = c.getString(typeIdx);
+            roomTypes.add(type);
             rooms.add(name + " (" + type + ")");
         }
 
@@ -60,7 +67,8 @@ public class RoomsListFragment extends ListFragment {
     public void onListItemClick(ListView l, View v, int position, long id) {
         RoomFragment fragment = new RoomFragment();
         Bundle bundle = new Bundle();
-        bundle.putString("message", rooms.get(position));
+        bundle.putString("message", roomNames.get(position));
+        bundle.putString("room_type", roomTypes.get(position));
         fragment.setArguments(bundle);
         activity.setFragment(fragment);
     }

@@ -45,7 +45,7 @@ public class RoomFragment extends Fragment {
             numberRoom.setText("Холл");
             image.setImageDrawable(getResources().getDrawable(R.drawable.room02));
             map.setImageDrawable(getResources().getDrawable(R.drawable.map02));
-            description.setText("Здесь вас встретят и ответят на вопросы. Бла бла бла бла бла бла бла бла бла бла бла бла бла.");
+            description.setText("Здесь вас встретят и ответят на вопросы.");
         }
 
         if (message.equals("operating room")) {

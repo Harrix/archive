@@ -17,7 +17,9 @@ import android.widget.TextView;
 public class RoomFragment extends Fragment {
 
     private TextView numberRoom;
+    private TextView description;
     private ImageView image;
+    private ImageView map;
 
     private static final String TAG = "uz-helper";
 
@@ -35,16 +37,22 @@ public class RoomFragment extends Fragment {
         String message = getArguments().getString("message");
 
         numberRoom = (TextView)v.findViewById(R.id.numberroom);
+        description = (TextView)v.findViewById(R.id.description);
         image = (ImageView)v.findViewById(R.id.image);
+        map = (ImageView)v.findViewById(R.id.map);
 
         if (message.equals("hall")) {
-            numberRoom.setText(message);
+            numberRoom.setText("Холл");
             image.setImageDrawable(getResources().getDrawable(R.drawable.room02));
+            map.setImageDrawable(getResources().getDrawable(R.drawable.map02));
+            description.setText("Здесь вас встретят и ответят на вопросы. Бла бла бла бла бла бла бла бла бла бла бла бла бла.");
         }
 
         if (message.equals("operating room")) {
-            numberRoom.setText(message);
+            numberRoom.setText("Операционная");
             image.setImageDrawable(getResources().getDrawable(R.drawable.room01));
+            map.setImageDrawable(getResources().getDrawable(R.drawable.map01));
+            description.setText("Кабинет 101. Находится на 2 этаже. В ней проходят операции общего характера.");
         }
 
 

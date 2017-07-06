@@ -3,6 +3,7 @@ package ru.uchimznaem.uchimznaemhelper;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.hardware.Camera;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
@@ -134,8 +135,8 @@ public class QRFragment extends Fragment {
                     barcodeInfo.post(new Runnable() {    // Use the post method of the TextView
                         public void run() {
                             String S = barcodes.valueAt(0).displayValue;
+                            Log.d(TAG, S);
                             if (!qRText.equals(S)) {
-                                Log.d(TAG, S);
                                 qRText = S;
                                 barcodeInfo.setText(S);
                                 mListener.onQRFragmentDataListener(S);

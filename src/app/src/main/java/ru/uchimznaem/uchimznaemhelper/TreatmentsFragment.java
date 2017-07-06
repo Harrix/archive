@@ -38,11 +38,12 @@ public class TreatmentsFragment extends Fragment implements AdapterView.OnItemCl
 
     @Override
     public void onItemClick(AdapterView<?> l, View v, int position, long id) {
-        SimpleCursorAdapter adapter = (SimpleCursorAdapter) l.getAdapter();
-        String data = ((TextView)v.findViewById(R.id.item_name)).getText().toString(); //todo
-        RoomFragment fragment = new RoomFragment();
         Bundle bundle = new Bundle();
-        bundle.putString("message", data);
+        String itemId = ((TextView)v.findViewById(R.id.item_id)).getText().toString();
+        bundle.putString("id", itemId);
+        //String treatment = ((TextView)v.findViewById(R.id.item_name)).getText().toString();
+        bundle.putString("message", "hall"); //todo remove
+        Fragment fragment = new TreatmentDescriptionFragment();
         fragment.setArguments(bundle);
         ((MainActivity)getActivity()).setFragment(fragment);
     }

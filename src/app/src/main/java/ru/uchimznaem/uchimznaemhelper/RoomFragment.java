@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 
@@ -16,6 +17,7 @@ import android.widget.TextView;
 public class RoomFragment extends Fragment {
 
     private TextView numberRoom;
+    private ImageView image;
 
     private static final String TAG = "uz-helper";
 
@@ -33,8 +35,18 @@ public class RoomFragment extends Fragment {
         String message = getArguments().getString("message");
 
         numberRoom = (TextView)v.findViewById(R.id.numberroom);
+        image = (ImageView)v.findViewById(R.id.image);
 
-        numberRoom.setText(message);
+        if (message.equals("hall")) {
+            numberRoom.setText(message);
+            image.setImageDrawable(getResources().getDrawable(R.drawable.room02));
+        }
+
+        if (message.equals("operating room")) {
+            numberRoom.setText(message);
+            image.setImageDrawable(getResources().getDrawable(R.drawable.room01));
+        }
+
 
         return v;
     }

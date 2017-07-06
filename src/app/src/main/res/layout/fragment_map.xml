@@ -1,16 +1,52 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:layout_weight="1"
     android:background="#f4ffee"
-    tools:context="ru.uchimznaem.uchimznaemhelper.MapFragment">
-
-    <!-- TODO: Update blank fragment layout -->
+    >
 
     <ImageView
         android:id="@+id/map"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
         app:srcCompat="@drawable/floor01" />
-</FrameLayout>
+
+    <ImageView
+        android:id="@+id/button_floor_1"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        app:srcCompat="@drawable/button_floor_1"
+        android:layout_marginTop="10dp"/>
+
+    <ImageView
+        android:id="@+id/button_floor_2"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        app:srcCompat="@drawable/button_floor_2"
+        android:layout_marginTop="10dp"/>
+
+    <ImageView
+        android:id="@+id/button_floor_3"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        app:srcCompat="@drawable/button_floor_3"
+        android:layout_marginTop="10dp"/>
+
+    <ImageView
+        android:id="@+id/button_floor_4"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        app:srcCompat="@drawable/button_floor_4"
+        android:layout_marginTop="10dp"/>
+
+</LinearLayout>

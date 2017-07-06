@@ -29,8 +29,8 @@ public class TreatmentsFragment extends Fragment implements AdapterView.OnItemCl
         lvContacts.setOnItemClickListener(this);
         MainActivity activity = (MainActivity) getActivity();
         //Cursor c = activity.mDb.rawQuery("SELECT * FROM person", null);
-        Cursor c = activity.mDb.rawQuery("SELECT id AS _id, name, '(кабинет №' ||room||')' as room FROM treatment", null);
-        SimpleCursorAdapter cursorAdapter = new SimpleCursorAdapter(activity, R.layout.treatments_item, c, headers, fields, SimpleCursorAdapter.FLAG_AUTO_REQUERY);
+        Cursor c = activity.mDb.rawQuery("SELECT id AS _id, name, 'кабинет №' || room as room FROM treatment", null);
+        SimpleCursorAdapter cursorAdapter = new SimpleCursorAdapter(activity, R.layout.treatments_item2, c, headers, fields, SimpleCursorAdapter.FLAG_AUTO_REQUERY);
         lvContacts.setAdapter(cursorAdapter);
         return root;
     }

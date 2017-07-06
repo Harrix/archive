@@ -136,7 +136,8 @@ public class QRFragment extends Fragment {
                         public void run() {
                             String S = barcodes.valueAt(0).displayValue;
                             Log.d(TAG, S);
-                            if (!qRText.equals(S)) {
+                            //if (!qRText.equals(S))
+                            {
                                 qRText = S;
                                 barcodeInfo.setText(S);
                                 mListener.onQRFragmentDataListener(S);

@@ -183,7 +183,8 @@ public class MainActivity extends AppCompatActivity implements
         } else if (id == R.id.nav_what_events) {
 
         } else if (id == R.id.nav_question) {
-
+            Fragment fragment = new QuestionFragment();
+            setFragment(fragment);
         } else if (id == R.id.nav_uchimznaem) {
             String url = "http://uchimznaem.ru";
             Intent i = new Intent(Intent.ACTION_VIEW);
@@ -228,9 +229,9 @@ public class MainActivity extends AppCompatActivity implements
         } else if (position == 4) {
             Fragment fragment = new EventsFragment();
             setFragment(fragment);
-
         } else if (position == 5) {
-
+            Fragment fragment = new QuestionFragment();
+            setFragment(fragment);
         }
     }
 

@@ -34,3 +34,15 @@
     font-weight: 400;
     src: url(../fonts/PTM75F.ttf);
     }
+@font-face {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    src: url(../fonts/Roboto-Regular.ttf);
+    }
+@font-face {
+    font-family: 'Roboto Mono';
+    font-style: normal;
+    font-weight: 400;
+    src: url(../fonts/RobotoMono-Regular.ttf);
+    }

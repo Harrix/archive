@@ -8,7 +8,7 @@
 /* General settings */
 /* ------------------------------------------------------------------ */
 body {
-    font-family: "Open Sans", sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, Roboto, Open Sans, Helvetica Neue, sans-serif;
     font-weight: 400;
     font-size: 16px;
     line-height: 24px;
@@ -732,7 +732,7 @@ a.anchor {
     background-color: #de2b26;
     border-radius: 3px;
     box-shadow: none;
-    font-family:'PT Mono', monospace;
+    font-family:'Roboto Mono', monospace;
 }
 
 .content blockquote {
@@ -747,7 +747,7 @@ a.anchor {
 .content .important {
     color: #de2b26;
     font-weight: bold;
-    font-family: 'PT Mono', monospace;
+    font-family: 'Roboto Mono', monospace;
 }
 
 .content table.table_adaptive_classic caption:before {

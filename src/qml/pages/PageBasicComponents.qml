@@ -185,13 +185,13 @@ Page{
                 id: button2
                 text: qsTr("Download")
                 onClicked: qmlSignal( qsTr("tables") )
-                icon:  IconFontAwesome { symbol: FontAwesome.fa_download }
+                //icon:  IconFontAwesome { symbol: FontAwesome.fa_download }
             }
 
             ButtonBlue {
                 id: button22
                 text: qsTr("Open menu")
-                icon:  IconFontAwesome { symbol: FontAwesome.fa_vk }
+                //icon:  IconFontAwesome { symbol: FontAwesome.fa_vk }
                 onClicked:  {
                     menuTest.model = modelTest
                     menuTest.open()
@@ -201,7 +201,7 @@ Page{
             ButtonBlue {
                 id: button22996
                 text: qsTr("Open menu 2")
-                icon:  IconFontAwesome { symbol: FontAwesome.fa_vk }
+                //icon:  IconFontAwesome { symbol: FontAwesome.fa_vk }
                 onClicked:  {
                     menuTest.model = modelTest2
                     menuTest.open()
@@ -212,7 +212,7 @@ Page{
                 id: button3
                 text: qsTr("Download")
                 enabled: false
-                icon:  IconFontAwesome { symbol: FontAwesome.fa_apple }
+                //icon:  IconFontAwesome { symbol: FontAwesome.fa_apple }
             }
 
             Label {

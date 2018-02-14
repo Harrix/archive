@@ -6,7 +6,7 @@ Button {
     id: button
 
     //Properties that it is to set if necessary
-    property alias icon: loaderIcon.sourceComponent
+    //property alias icon: loaderIcon.sourceComponent
 
     //Common properties which can be changed if necessary
     property string fontName: SettingsHarrixQML.fontName

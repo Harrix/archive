@@ -44,7 +44,7 @@ public class MainFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_main, container, false);
-        gridview = (GridView) root.findViewById(R.id.gridview);
+        gridview = root.findViewById(R.id.gridview);
         gridview.setAdapter(new ImageAdapter(getContext()));
 
         gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {

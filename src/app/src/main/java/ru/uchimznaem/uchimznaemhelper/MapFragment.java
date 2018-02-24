@@ -44,8 +44,6 @@ public class MapFragment extends Fragment {
 
         map = (ImageView)v.findViewById(R.id.map);
 
-
-
         button_floor_1 = (ImageView)v.findViewById(R.id.button_floor_1);
         button_floor_1.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -20,7 +20,7 @@ import android.widget.Toast;
  */
 public class MapFragment extends Fragment {
 
-    private ImageView map;
+    private MapView map;
     private ImageView button_floor_1;
     private ImageView button_floor_2;
     private ImageView button_floor_3;
@@ -42,8 +42,8 @@ public class MapFragment extends Fragment {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_map, container, false);
 
-        map = (ImageView)v.findViewById(R.id.map);
-
+        map = (MapView)v.findViewById(R.id.map);
+        /*
         button_floor_1 = (ImageView)v.findViewById(R.id.button_floor_1);
         button_floor_1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -75,7 +75,7 @@ public class MapFragment extends Fragment {
                 map.setImageDrawable(getResources().getDrawable(R.drawable.floor04));
             }
         });
-
+        */
         roomsButton = v.findViewById(R.id.button_rooms);
         roomsButton.setOnClickListener(new View.OnClickListener() {
             @Override

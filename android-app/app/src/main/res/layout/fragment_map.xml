@@ -20,10 +20,10 @@
             android:text="@string/rooms_button"
             />
 
-        <ImageView
+        <ru.uchimznaem.uchimznaemhelper.MapView
             android:id="@+id/map"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="300dp"
             android:adjustViewBounds="true"
             app:srcCompat="@drawable/floor01" />
 

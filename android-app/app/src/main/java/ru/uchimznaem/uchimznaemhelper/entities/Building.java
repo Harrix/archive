@@ -3,7 +3,7 @@ package ru.uchimznaem.uchimznaemhelper.entities;
 import java.util.List;
 
 /**
- * Created by user on 2/24/18.
+ * Created by Vladimir Ulyanov.
  */
 
 public class Building {

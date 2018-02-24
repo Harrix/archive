@@ -1,7 +1,7 @@
 package ru.uchimznaem.uchimznaemhelper.entities;
 
 /**
- * Created by user on 2/24/18.
+ * Created by Vladimir Ulyanov.
  */
 
 public class MapPoint {

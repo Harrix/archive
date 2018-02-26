@@ -14,7 +14,7 @@ The latest version of the plugin can be found here:
  - [https://github.com/Harrix/Harrix-MarkdownFile/releases/](https://github.com/Harrix/Harrix-MarkdownFile/releases/)
  - [https://wordpress.org/plugins/harrix-markdownfile/](https://wordpress.org/plugins/harrix-markdownfile/)
 
-License: [MIT](https://github.com/Harrix/Harrix-MarkdownFile/blob/master/LICENSE).
+License: [MIT](https://github.com/Harrix/Harrix-MarkdownFile/blob/master/LICENSE.md).
 
 Demo: [http://blog.harrix.org/?p=1336](http://blog.harrix.org/?p=1336)
 

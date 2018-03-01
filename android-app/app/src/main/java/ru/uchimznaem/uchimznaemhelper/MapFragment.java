@@ -15,18 +15,19 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import ru.uchimznaem.uchimznaemhelper.entities.Floor;
+import ru.uchimznaem.uchimznaemhelper.entities.Room;
+import ru.uchimznaem.uchimznaemhelper.repository.MapRepository;
+import ru.uchimznaem.uchimznaemhelper.repository.StubMapRepository;
+
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class MapFragment extends Fragment {
 
+    private final Floor floor;
     private MapView map;
-    private ImageView button_floor_1;
-    private ImageView button_floor_2;
-    private ImageView button_floor_3;
-    private ImageView button_floor_4;
-
     //Rooms button
     Button roomsButton;
 
@@ -34,6 +35,13 @@ public class MapFragment extends Fragment {
 
     public MapFragment() {
         // Required empty public constructor
+
+        Bundle args = getArguments();
+        Integer floorNumber = (args!=null) ? args.getInt("floor_id", 1) : 1;
+
+
+        MapRepository repository = new StubMapRepository();
+        this.floor = repository.getFloor(floorNumber);
     }
 
 
@@ -46,40 +54,9 @@ public class MapFragment extends Fragment {
         // added for testing
         MapUtils.testLoad();
 
+        //todo передавать номер схемы в компоненту
         map = (MapView)v.findViewById(R.id.map);
-        /*
-        button_floor_1 = (ImageView)v.findViewById(R.id.button_floor_1);
-        button_floor_1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                map.setImageDrawable(getResources().getDrawable(R.drawable.floor01));
-            }
-        });
 
-        button_floor_2 = (ImageView)v.findViewById(R.id.button_floor_2);
-        button_floor_2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                map.setImageDrawable(getResources().getDrawable(R.drawable.floor02));
-            }
-        });
-
-        button_floor_3 = (ImageView)v.findViewById(R.id.button_floor_3);
-        button_floor_3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                map.setImageDrawable(getResources().getDrawable(R.drawable.floor03));
-            }
-        });
-
-        button_floor_4 = (ImageView)v.findViewById(R.id.button_floor_4);
-        button_floor_4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                map.setImageDrawable(getResources().getDrawable(R.drawable.floor04));
-            }
-        });
-        */
         roomsButton = v.findViewById(R.id.button_rooms);
         roomsButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -90,13 +67,12 @@ public class MapFragment extends Fragment {
                 builderSingle.setTitle("Выберите помещение");
 
                 final ArrayAdapter<String> roomsAdapter = new ArrayAdapter<String>(context, android.R.layout.select_dialog_item);
-                roomsAdapter.add("Процедурный кабинет №7");
-                roomsAdapter.add("Столовая");
-                roomsAdapter.add("Палата №1");
-                roomsAdapter.add("Палата №2");
-                roomsAdapter.add("Палата №3");
+                //todo заполнить из объекта Floor
+                for (Room room : floor.getRooms()) {
+                    roomsAdapter.add(room.getTitle());
+                }
 
-                builderSingle.setNegativeButton("cancel", new DialogInterface.OnClickListener() {
+                builderSingle.setNegativeButton("Отмена", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();

@@ -2,6 +2,7 @@ package ru.uchimznaem.uchimznaemhelper.repository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 import ru.uchimznaem.uchimznaemhelper.R;
 import ru.uchimznaem.uchimznaemhelper.entities.Building;
@@ -17,10 +18,11 @@ public class StubMapRepository implements MapRepository {
 
     /**
      * Болванка - заготовка для гегнерации инфо об этаже
+     *
      * @param floorNumber номер этажа
      * @return Объект этажа с одинаковым содержимым
      */
-    private Floor createDummyFloor(int floorNumber){
+    private Floor createDummyFloor(int floorNumber) {
         Floor f = new Floor();
         f.setNumber(floorNumber);
         f.setMapId(R.drawable.scheme);
@@ -40,12 +42,20 @@ public class StubMapRepository implements MapRepository {
     public Building getBuilding() {
         Building ret = new Building();
         List<Floor> list = new ArrayList<Floor>();
-        //todo replace with loadFloorFromRes
-        //list.add(loadFloorFromRes(R.drawable.scheme));
         list.add(createDummyFloor(1));
         list.add(createDummyFloor(2));
         list.add(createDummyFloor(3));
+        list.add(createDummyFloor(4));
+        ret.setFloors(list);
 
         return ret;
+    }
+
+    @Override
+    public Floor getFloor(int floorNumber) {
+        for (Floor floor : getBuilding().getFloors()) {
+            if (floor.getNumber().equals(floorNumber)) return floor;
+        }
+        throw new NoSuchElementException("Unknown floor number");
     }
 }

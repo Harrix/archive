@@ -2,8 +2,7 @@ english | [русский](https://github.com/Harrix/Harrix-MarkdownFile/blob/ma
 
 ![Harrix MarkdownFile](https://rawgithub.com/Harrix/Harrix-MarkdownFile/master/images_github/logo-harrix-markdownfile.svg)
 
-Harrix MarkdownFile
-===================
+# Harrix MarkdownFile
 
 Version 1.2
 
@@ -18,8 +17,7 @@ License: [MIT](https://github.com/Harrix/Harrix-MarkdownFile/blob/master/LICENSE
 
 Demo: [http://blog.harrix.org/?p=1336](http://blog.harrix.org/?p=1336)
 
-Usage
------
+## Usage
 
 ```html
 [markdown-file][/markdown-file]
@@ -31,20 +29,17 @@ This shortcode embeds markdown file by url.
 [markdown-file]https://raw.github.com/Harrix/HarrixQtLibrary/master/README.md[/markdown-file]
 ```
 
-Libraries
----------
+## Libraries
 
 The plugin uses the libraries:
  - parsedown: [http://parsedown.org/](http://parsedown.org/)
  - highlight.js: [https://highlightjs.org/](https://highlightjs.org)
 
-History
--------
+## History
 
 A detailed list of changes in the file [CHANGELOG.md](https://github.com/Harrix/Harrix-MarkdownFile/blob/master/CHANGELOG.md).
 
-Contacts
---------
+## Contacts
 
 Author: Sergienko Anton
 

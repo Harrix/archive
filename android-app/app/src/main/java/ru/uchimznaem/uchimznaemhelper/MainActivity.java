@@ -232,6 +232,9 @@ public class MainActivity extends AppCompatActivity implements
         } else if (position == 5) {
             Fragment fragment = new QuestionFragment();
             setFragment(fragment);
+        } else if (position == 6) {
+            Fragment fragment = new OnkoBooksFragment();
+            setFragment(fragment);
         }
     }
 

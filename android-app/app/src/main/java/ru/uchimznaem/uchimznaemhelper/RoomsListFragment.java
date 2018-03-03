@@ -11,7 +11,6 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * @author Vladimir Ulyanov
@@ -59,7 +58,7 @@ public class RoomsListFragment extends ListFragment {
         }
 
         ListAdapter adapter = new ArrayAdapter<>(getActivity(),
-                R.layout.rooms_layout_item_1, rooms.toArray());
+                R.layout.list_layout_item_1, rooms.toArray());
         setListAdapter(adapter);
     }
 

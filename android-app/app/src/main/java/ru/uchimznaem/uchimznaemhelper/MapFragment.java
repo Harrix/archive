@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -40,7 +41,7 @@ public class MapFragment extends Fragment {
         Integer floorNumber = (args!=null) ? args.getInt("floor_id", 1) : 1;
 
 
-        MapRepository repository = new StubMapRepository();
+        MapRepository repository = new StubMapRepository(getContext());
         this.floor = repository.getFloor(floorNumber);
     }
 
@@ -52,7 +53,11 @@ public class MapFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_map, container, false);
 
         // added for testing
-        MapUtils.testLoad();
+        Log.d("my", "Loading in MapFragment");
+
+        //MapUtils.startLoadBuilding(getContext());
+        final MapRepository repository = new StubMapRepository(getContext());
+        Log.d("my", repository.getBuilding().toString());
 
         //todo передавать номер схемы в компоненту
         map = (MapView)v.findViewById(R.id.map);
@@ -66,10 +71,11 @@ public class MapFragment extends Fragment {
                 builderSingle.setIcon(R.drawable.icon_rooms);
                 builderSingle.setTitle("Выберите помещение");
 
-                final ArrayAdapter<String> roomsAdapter = new ArrayAdapter<String>(context, android.R.layout.select_dialog_item);
+                final ArrayAdapter<Room> roomsAdapter = new ArrayAdapter<>(context, android.R.layout.select_dialog_item);
                 //todo заполнить из объекта Floor
-                for (Room room : floor.getRooms()) {
-                    roomsAdapter.add(room.getTitle());
+
+                for (Room room : repository.getFloor(1).getRooms()) {
+                    roomsAdapter.add(room);
                 }
 
                 builderSingle.setNegativeButton("Отмена", new DialogInterface.OnClickListener() {
@@ -85,8 +91,9 @@ public class MapFragment extends Fragment {
                     public void onClick(DialogInterface dialog, int position) {
                         //todo Обработать нажатие на выбранное помещение!
 
-                        String room = roomsAdapter.getItem(position);
-                        Toast.makeText(context, room, Toast.LENGTH_LONG).show();
+                        Room room = roomsAdapter.getItem(position);
+                        Toast.makeText(context, room.toString(), Toast.LENGTH_LONG).show();
+                        map.centerTo(room);
                     }
                 });
                 builderSingle.show();

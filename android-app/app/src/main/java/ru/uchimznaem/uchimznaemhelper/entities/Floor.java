@@ -15,6 +15,14 @@ public class Floor {
         return number;
     }
 
+    public String toString() {
+        String out = "Rooms: " + rooms.size() + "[";
+        for (Room r: rooms) {
+            out += r.toString();
+        }
+        return out;
+    }
+
     public List<Room> getRooms() {
         return rooms;
     }

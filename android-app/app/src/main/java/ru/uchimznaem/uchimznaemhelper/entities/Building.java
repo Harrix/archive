@@ -14,6 +14,15 @@ public class Building {
 
     }
 
+    @Override
+    public String toString() {
+        String out = "Floors: " + floors.size() + "[";
+        for (Floor f: floors) {
+            out += f.toString();
+        }
+        return out;
+    }
+
     public Building(List<Floor> floors, String title) {
         this.floors = floors;
         this.title = title;

@@ -9,6 +9,7 @@ import android.support.v7.widget.Toolbar;
 
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -53,7 +54,11 @@ public class MapActivity extends AppCompatActivity {
                         "Section 3",
                 }));*/
         //todo заменить на ResourcesMapRepository по готовности
-        final MapRepository repository = new StubMapRepository();
+        Log.d("my", "Loading in MapActivity");
+        final MapRepository repository = new StubMapRepository(getApplicationContext());
+        Log.d("my", repository.getBuilding().toString());
+
+        //spinner.setAdapter(new MapAdapter(toolbar.getContext(), repository.getBuilding()));
         spinner.setAdapter(new MapAdapter(toolbar.getContext(), repository.getBuilding()));
 
 

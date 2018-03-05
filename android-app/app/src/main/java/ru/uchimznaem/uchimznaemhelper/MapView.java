@@ -15,7 +15,8 @@ import ru.uchimznaem.uchimznaemhelper.entities.Room;
 
 public class MapView extends View {
     float x = 0, y = 0, touch_x = 0, touch_y = 0, x_offset = 0, y_offset = 0;
-    final int MAP_WIDTH = 1284 , MAP_HEIGHT = 534;
+    final int MAP_WIDTH = 1027 , MAP_HEIGHT = 427;
+    final float zoom = 0.01f;
     float cWidth = 400, cHeight = 300;
 
     Drawable map;
@@ -28,7 +29,11 @@ public class MapView extends View {
     }
 
     public void centerTo(Room room) {
-        
+        Log.d("my", "Centered to " + room);
+        x_offset = cWidth - room.getCenter_x() * zoom;
+        y_offset = cHeight - room.getCenter_y() * zoom;
+        invalidate();
+
     }
     @Override
     protected void onDraw(Canvas canvas) {

@@ -1,5 +1,6 @@
 package ru.uchimznaem.uchimznaemhelper;
 
+import android.content.Context;
 import android.util.Log;
 
 import org.xmlpull.v1.XmlPullParser;
@@ -9,6 +10,7 @@ import java.io.InputStream;
 import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 import ru.uchimznaem.uchimznaemhelper.entities.Building;
 import ru.uchimznaem.uchimznaemhelper.entities.Floor;
@@ -19,65 +21,84 @@ import ru.uchimznaem.uchimznaemhelper.entities.Room;
  */
 
 public class MapUtils {
+    public static Building building = null;
 
-    public static Building loadBuilding(){
+    public static void startLoadBuilding(Context ctx) {
+        building = loadBuilding(ctx);
+    }
+
+    public static Building loadBuilding(Context ctx){
         Building ret = new Building();
         List<Floor> list = new ArrayList<Floor>();
         //todo replace with loadFloorFromRes
         //list.add(loadFloorFromRes(R.drawable.scheme));
-        list.add(loadDummyFloor(1));
-        list.add(loadDummyFloor(2));
-        list.add(loadDummyFloor(3));
-
+        list.add(loadDummyFloor(1, ctx));
+        //list.add(loadDummyFloor(2 ,ctx));
+        //list.add(loadDummyFloor(3, ctx));
+        ret.setFloors(list);
         return ret;
     }
-    public static void testLoad() {
+    public static List<Room> testLoad(Context ctx ) {
+
+
         // todo ipetrushin
         // переписать с поддержкой загрузки XML
-        String str = "<vector xmlns:android=\"http://schemas.android.com/apk/res/android\"\n" +
-                "    android:width=\"29700dp\"\n" +
-                "    android:height=\"21000dp\"\n" +
-                "    android:viewportWidth=\"29700\"\n" +
-                "    android:viewportHeight=\"21000\">\n" +
-                "\n" +
-                "    <path\n" +
-                "        android:name=\"classroom1\"\n" +
-                "        android:fillColor=\"#000000\"\n" +
-                "        android:pathData=\"M 19176 12593 L 21112 12593 L 21112 9718 L 23247 9718 L 23247 12593 L 28423 12593 L 28423 13947 L 20196 13947 L 20196 13773 L 18290 13766 L 5844 8810 L 6922 6107 L 7799 6457 L 6950 8588 L 9010 9408 L 9860 7279 L 10901 7694 L 10052 9823 L 18201 13067 L 19176 13075 Z\" />\n" +
-                "    <path\n" +
-                "        android:name=\"classroom2\"\n" +
-                "        android:fillColor=\"#2B2A29\"\n" +
-                "        android:pathData=\"M 17036 13290 L 13270 11788 L 13282 11759 L 17048 13260 Z\" />\n" +
-                "  </vector>";
+        String xml ;
         try {
+            xml = "";
+            InputStream is = ctx.getResources().getAssets().open("scheme.xml");
+            Scanner sc = new Scanner(is);
+            while (sc.hasNextLine()) {
+                xml += sc.nextLine();
+            }
             XmlPullParserFactory factory = XmlPullParserFactory.newInstance();
             XmlPullParser parser = factory.newPullParser();
-            parser.setInput(new StringReader(str));
+            parser.setInput(new StringReader(xml));
             int eventtype = parser.getEventType();
+            int room_id = 0;
+            List<Room> list = new ArrayList<>();
             while (eventtype != XmlPullParser.END_DOCUMENT) {
                 if (eventtype == XmlPullParser.START_TAG && parser.getName().equals("path")) {
-                    Log.d("my", "" + parser.getAttributeValue(0));
+                    Log.d("my", "Attributes " + parser.getAttributeCount() + " " + parser.getAttributeName(0));
+
+                    if (parser.getAttributeCount() > 2 && (Character.isUpperCase(parser.getAttributeValue(0).charAt(0)))) {
+                        Log.d("my",parser.getAttributeValue(2));
+                        String[] pathData = parser.getAttributeValue(2).split(" ");
+                        room_id ++;
+                        int room_x = Integer.parseInt(pathData[1]);
+                        int room_y = Integer.parseInt(pathData[2]);
+                        Log.d("my", String.format("name: %s, x: %d, y: %d", parser.getAttributeValue(0), room_x, room_y));
+                        Room r = new Room(Integer.toString(room_id), parser.getAttributeValue(0), room_x, room_y);
+                        list.add(r);
+                    }
                 }
                 eventtype = parser.next();
             }
+            Log.d("my", "Loaded " + list.size() + " rooms");
+            return list;
         } catch (Exception e) {}
+        return new  ArrayList<Room>();
+
     }
 
     /*
     Болванка - заготовка для генерации инфо об этаже
      */
-    public static Floor loadDummyFloor(int floorNumber){
+    public static Floor loadDummyFloor(int floorNumber, Context context){
         Floor f = new Floor();
         f.setNumber(floorNumber);
         f.setMapId(R.drawable.scheme);
-        List<Room> list = new ArrayList<>();
-        list.add(new Room("1", "Операционная № 1"));
-        list.add(new Room("2", "Палата №1"));
-        list.add(new Room("3", "Палата №2"));
-        list.add(new Room("4", "Палата №3"));
-        list.add(new Room("5", "Палата №4"));
-
+        List<Room> list = testLoad(context);
+                //new ArrayList<>();
+        /*
+        list.add(new Room("1", "Операционная № 1", 0,0));
+        list.add(new Room("2", "Палата №1", 0,0));
+        list.add(new Room("3", "Палата №2", 0,0));
+        list.add(new Room("4", "Палата №3", 0,0));
+        list.add(new Room("5", "Палата №4", 0,0));
+*/
         f.setRooms(list);
+        //Log.d("my", "Loaded rooms in MapUtils: "+list.size());
         return f;
     }
 

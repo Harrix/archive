@@ -1,14 +1,14 @@
 package ru.uchimznaem.uchimznaemhelper;
 
-import android.content.res.Resources;
+import android.content.Context;
+import android.content.res.Resources.Theme;
+import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.ThemedSpinnerAdapter;
 import android.support.v7.widget.Toolbar;
-
-import android.support.v4.app.Fragment;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -20,10 +20,6 @@ import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.Spinner;
-import android.content.Context;
-import android.support.v7.widget.ThemedSpinnerAdapter;
-import android.content.res.Resources.Theme;
-
 import android.widget.TextView;
 
 import java.util.List;
@@ -31,7 +27,7 @@ import java.util.List;
 import ru.uchimznaem.uchimznaemhelper.entities.Building;
 import ru.uchimznaem.uchimznaemhelper.entities.Floor;
 import ru.uchimznaem.uchimznaemhelper.repository.MapRepository;
-import ru.uchimznaem.uchimznaemhelper.repository.StubMapRepository;
+import ru.uchimznaem.uchimznaemhelper.repository.ResourcesMapRepository;
 
 public class MapActivity extends AppCompatActivity {
 
@@ -46,16 +42,9 @@ public class MapActivity extends AppCompatActivity {
 
         // Setup spinner
         Spinner spinner = (Spinner) findViewById(R.id.spinner);
-        /*spinner.setAdapter(new MyAdapter(
-                toolbar.getContext(),
-                new String[]{
-                        "Section 1",
-                        "Section 2",
-                        "Section 3",
-                }));*/
         //todo заменить на ResourcesMapRepository по готовности
         Log.d("my", "Loading in MapActivity");
-        final MapRepository repository = new StubMapRepository(getApplicationContext());
+        final MapRepository repository = new ResourcesMapRepository(getApplicationContext());
         Log.d("my", repository.getBuilding().toString());
 
         //spinner.setAdapter(new MapAdapter(toolbar.getContext(), repository.getBuilding()));

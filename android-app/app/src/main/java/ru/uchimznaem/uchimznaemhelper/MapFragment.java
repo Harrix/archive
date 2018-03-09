@@ -7,19 +7,17 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
-import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.Toast;
 
 import ru.uchimznaem.uchimznaemhelper.entities.Floor;
 import ru.uchimznaem.uchimznaemhelper.entities.Room;
 import ru.uchimznaem.uchimznaemhelper.repository.MapRepository;
-import ru.uchimznaem.uchimznaemhelper.repository.StubMapRepository;
+import ru.uchimznaem.uchimznaemhelper.repository.ResourcesMapRepository;
 
 
 /**
@@ -41,7 +39,7 @@ public class MapFragment extends Fragment {
         Integer floorNumber = (args!=null) ? args.getInt("floor_id", 1) : 1;
 
 
-        MapRepository repository = new StubMapRepository(getContext());
+        MapRepository repository = new ResourcesMapRepository(getContext());
         this.floor = repository.getFloor(floorNumber);
     }
 
@@ -56,7 +54,7 @@ public class MapFragment extends Fragment {
         Log.d("my", "Loading in MapFragment");
 
         //MapUtils.startLoadBuilding(getContext());
-        final MapRepository repository = new StubMapRepository(getContext());
+        final MapRepository repository = new ResourcesMapRepository(getContext());
         Log.d("my", repository.getBuilding().toString());
 
         //todo передавать номер схемы в компоненту

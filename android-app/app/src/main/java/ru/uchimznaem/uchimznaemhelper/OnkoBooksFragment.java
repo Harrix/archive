@@ -40,11 +40,6 @@ class OnkoBooksFragment extends Fragment {
         lvBooks.setAdapter(booksAdapter);
         lvBooks.setOnItemClickListener(booksAdapter);
 
-        //test
-        //String testUrl= Uri.parse("file:///android_res/raw/books/Chudik/Chudik.html").toString();
-        /*String testUrl= "file:///android_asset/books/Chudik/Chudik.html";
-        wvBook.loadUrl(testUrl);
-*/
         return root;
     }
 
@@ -77,9 +72,7 @@ class OnkoBooksFragment extends Fragment {
                 view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_layout_item_1, parent, false);
             }
 
-            assert(view != null);
             TextView tv = (TextView) view;
-            assert(tv != null);
             Book book = books.get(position);
             String title = book.getTitle();
             tv.setText(title);
@@ -90,7 +83,6 @@ class OnkoBooksFragment extends Fragment {
         @Override
         public void onItemClick(AdapterView<?> adapterView, View view, int pos, long id) {
             Book book = books.get(pos);
-            Uri uri = book.getUri();
             String url = book.getUri().toString();
             Log.d(TAG, url);
             wvBook.loadUrl(url);

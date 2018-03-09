@@ -4,16 +4,13 @@ import android.content.Context;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 /**
  * @author Vladimir Ulyanov
@@ -36,7 +33,7 @@ public class MainFragment extends Fragment {
             mListener = (OnMainFragmentDataListener) context;
         } else {
             throw new RuntimeException(context.toString()
-                    + " must implement OnMainFragmentDataListener");
+                    + " must implement onMainFragmentDataListener");
         }
     }
 
@@ -50,7 +47,7 @@ public class MainFragment extends Fragment {
         gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View v,
                                     int position, long id) {
-                mListener.OnMainFragmentDataListener(position);
+                mListener.onMainFragmentDataListener(position);
             }
         });
 

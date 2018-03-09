@@ -5,5 +5,5 @@ package ru.uchimznaem.uchimznaemhelper;
  */
 
 public interface OnMainFragmentDataListener {
-    void OnMainFragmentDataListener(int position);
+    void onMainFragmentDataListener(int position);
 }

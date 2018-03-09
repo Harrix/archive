@@ -20,9 +20,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.ViewTreeObserver;
 import android.widget.FrameLayout;
-import android.widget.Toast;
 
 import java.io.IOException;
+
 
 public class MainActivity extends AppCompatActivity implements
         NavigationView.OnNavigationItemSelectedListener,
@@ -30,6 +30,15 @@ public class MainActivity extends AppCompatActivity implements
         OnMainFragmentDataListener {
 
     private static final String TAG = "uz-helper";
+    private static final String FRAGMENT_STATE_KEY = "MainActivityFragmentStateKey";
+    private static final int MAIN_FRAGMENT = -1;
+    private static final int QR_FRAGMENT = 1;
+    private static final int CONTACTS_FRAGMENT = 2;
+    private static final int TREATMENTS_FRAGMENT = 3;
+    private static final int EVENTS_FRAGMENT = 4;
+    private static final int QUESTION_FRAGMENT = 5;
+    private static final int ONKO_BOOK_FRAGMENT = 6;
+
     private FrameLayout fragmentContainer;
     private FragmentManager fragmentManager;
     private DrawerLayout drawer_layout;
@@ -114,6 +123,7 @@ public class MainActivity extends AppCompatActivity implements
             Log.d(TAG, " fragment == null");
             fragmentManager.beginTransaction()
                     .add(R.id.fragmentContainer, f)
+                    .addToBackStack("addition")
                     .commit();
             Log.d(TAG, "fragment changed to " + f.toString());
         } else {
@@ -214,25 +224,25 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     @Override
-    public void OnMainFragmentDataListener(int position) {
+    public void onMainFragmentDataListener(int position) {
         if (position == 0) {
-            Fragment fragment = new MapFragment();
-            setFragment(fragment);
-        } else if (position == 1) {
+            Intent intent = new Intent(this,MapActivity.class);
+            startActivity(intent);
+        } else if (position == QR_FRAGMENT) {
             Fragment fragment = new QRFragment();
             setFragment(fragment);
-        } else if (position == 2) {
+        } else if (position == CONTACTS_FRAGMENT) {
             Fragment fragment = new ContactsFragment();
             setFragment(fragment);
-        } else if (position == 3) {
+        } else if (position == TREATMENTS_FRAGMENT) {
             setFragment(new TreatmentsFragment());
-        } else if (position == 4) {
+        } else if (position == EVENTS_FRAGMENT) {
             Fragment fragment = new EventsFragment();
             setFragment(fragment);
-        } else if (position == 5) {
+        } else if (position == QUESTION_FRAGMENT) {
             Fragment fragment = new QuestionFragment();
             setFragment(fragment);
-        } else if (position == 6) {
+        } else if (position == ONKO_BOOK_FRAGMENT) {
             Fragment fragment = new OnkoBooksFragment();
             setFragment(fragment);
         }
@@ -243,5 +253,60 @@ public class MainActivity extends AppCompatActivity implements
         super.onDestroy();
         mDb.close();
         mDBHelper.close();
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        Fragment container = fragmentManager.findFragmentById(R.id.fragmentContainer);
+        Log.d(TAG, container.toString());
+
+        int value = MAIN_FRAGMENT;
+        if (container instanceof QRFragment){
+            value = QR_FRAGMENT;
+        } else if (container instanceof ContactsFragment){
+            value = CONTACTS_FRAGMENT;
+        } else if (container instanceof TreatmentsFragment){
+            value = TREATMENTS_FRAGMENT;
+        } else if (container instanceof EventsFragment){
+            value = EVENTS_FRAGMENT;
+        } else if (container instanceof QuestionFragment){
+            value = QUESTION_FRAGMENT;
+        } else if (container instanceof  OnkoBooksFragment){
+            value = ONKO_BOOK_FRAGMENT;
+        }
+        Log.d(TAG, String.valueOf(value));
+        outState.putInt(FRAGMENT_STATE_KEY, value);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        int value = savedInstanceState.getInt(FRAGMENT_STATE_KEY, MAIN_FRAGMENT);
+
+        Fragment fragment = null;
+        switch (value){
+            case QR_FRAGMENT:
+                fragment = new QRFragment();
+                break;
+            case CONTACTS_FRAGMENT:
+                fragment = new ContactsFragment();
+                break;
+            case TREATMENTS_FRAGMENT:
+                fragment = new TreatmentsFragment();
+                break;
+            case EVENTS_FRAGMENT:
+                fragment = new EventsFragment();
+            case QUESTION_FRAGMENT:
+                fragment = new QuestionFragment();
+                break;
+            case ONKO_BOOK_FRAGMENT:
+                fragment = new OnkoBooksFragment();
+                break;
+        }
+
+        if (fragment !=null){
+            setFragment(fragment);
+        }
     }
 }

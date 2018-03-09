@@ -1,6 +1,7 @@
 package ru.uchimznaem.uchimznaemhelper;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Resources.Theme;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -59,7 +60,7 @@ public class MapActivity extends AppCompatActivity {
                 MapFragment mapFragment = new MapFragment();
                 Bundle bundle = new Bundle();
                 //todo CONSTANT
-                bundle.putInt("floor_id",repository.getBuilding().getFloors().get(position).getNumber());
+                bundle.putInt("floor_id", repository.getBuilding().getFloors().get(position).getNumber());
                 mapFragment.setArguments(bundle);
 
                 getSupportFragmentManager().beginTransaction()
@@ -76,11 +77,14 @@ public class MapActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                Snackbar.make(view, "Наведите на ближайший QR-код", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
+
+                Intent mainActivityIntent = new Intent(getApplicationContext(), MainActivity.class);
+                mainActivityIntent.putExtra(MainActivity.FRAGMENT_STATE_KEY, MainActivity.QR_FRAGMENT);
+                startActivity(mainActivityIntent);
             }
         });
-
     }
 
 
@@ -144,13 +148,13 @@ public class MapActivity extends AppCompatActivity {
         }
     }
 
-    public static class MapAdapter extends BaseAdapter implements ThemedSpinnerAdapter{
+    public static class MapAdapter extends BaseAdapter implements ThemedSpinnerAdapter {
 
         private final Building building;
         private final Helper mDropDownHelper;
         List<Floor> floors;
 
-        public MapAdapter(Context context, Building building){
+        public MapAdapter(Context context, Building building) {
             this.building = building;
             floors = building.getFloors();
             mDropDownHelper = new ThemedSpinnerAdapter.Helper(context);

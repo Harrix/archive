@@ -30,14 +30,15 @@ public class MainActivity extends AppCompatActivity implements
         OnMainFragmentDataListener {
 
     private static final String TAG = "uz-helper";
-    private static final String FRAGMENT_STATE_KEY = "MainActivityFragmentStateKey";
-    private static final int MAIN_FRAGMENT = -1;
-    private static final int QR_FRAGMENT = 1;
-    private static final int CONTACTS_FRAGMENT = 2;
-    private static final int TREATMENTS_FRAGMENT = 3;
-    private static final int EVENTS_FRAGMENT = 4;
-    private static final int QUESTION_FRAGMENT = 5;
-    private static final int ONKO_BOOK_FRAGMENT = 6;
+    public static final String FRAGMENT_STATE_KEY = "MainActivityFragmentStateKey";
+    public static final int MAIN_FRAGMENT = -1;
+    public static final int QR_FRAGMENT = 1;
+    public static final int CONTACTS_FRAGMENT = 2;
+    public static final int TREATMENTS_FRAGMENT = 3;
+    public static final int EVENTS_FRAGMENT = 4;
+    public static final int QUESTION_FRAGMENT = 5;
+    public static final int ONKO_BOOK_FRAGMENT = 6;
+    private static final int ROOMS_FRAGMENT = 7;
 
     private FrameLayout fragmentContainer;
     private FragmentManager fragmentManager;
@@ -54,6 +55,7 @@ public class MainActivity extends AppCompatActivity implements
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -111,19 +113,50 @@ public class MainActivity extends AppCompatActivity implements
         fragmentContainer = (FrameLayout) findViewById(R.id.fragmentContainer);
         fragmentManager = getSupportFragmentManager();
 
-        //Main Fragment
-        Fragment fragment = new MainFragment();
+        Intent intent = getIntent();
+        int fragmentCode = intent.getIntExtra(FRAGMENT_STATE_KEY, MAIN_FRAGMENT);
+        setFragmentByCode(fragmentCode);
+    }
+
+    private void setFragmentByCode(int fragmentCode) {
+        Fragment fragment;
+        switch (fragmentCode) {
+            case QR_FRAGMENT:
+                fragment = new QRFragment();
+                break;
+            case CONTACTS_FRAGMENT:
+                fragment = new ContactsFragment();
+                break;
+            case TREATMENTS_FRAGMENT:
+                fragment = new TreatmentsFragment();
+                break;
+            case EVENTS_FRAGMENT:
+                fragment = new EventsFragment();
+                break;
+            case QUESTION_FRAGMENT:
+                fragment = new QuestionFragment();
+                break;
+            case ONKO_BOOK_FRAGMENT:
+                fragment = new OnkoBooksFragment();
+                break;
+            case ROOMS_FRAGMENT:
+                fragment = new RoomsListFragment();
+                break;
+            default:
+                fragment = new MainFragment();
+        }
+
+        Log.d(TAG, "Restored fragment: " + fragment.toString());
         setFragment(fragment);
     }
 
-    public void setFragment(Fragment f){
+    public void setFragment(Fragment f) {
         Fragment container = fragmentManager.findFragmentById(R.id.fragmentContainer);
 
         if (container == null) {
             Log.d(TAG, " fragment == null");
             fragmentManager.beginTransaction()
                     .add(R.id.fragmentContainer, f)
-                    .addToBackStack("addition")
                     .commit();
             Log.d(TAG, "fragment changed to " + f.toString());
         } else {
@@ -175,34 +208,29 @@ public class MainActivity extends AppCompatActivity implements
         int id = item.getItemId();
 
         if (id == R.id.nav_where_i) {
-            //Fragment fragment = fragmentManager.findFragmentById(R.id.fragmentContainer);
-            Fragment fragment = new QRFragment();
-            setFragment(fragment);
+            setFragmentByCode(QR_FRAGMENT);
         } else if (id == R.id.nav_rooms) {
-            Fragment fragment = new RoomsListFragment();
-            setFragment(fragment);
+            setFragmentByCode(ROOMS_FRAGMENT);
         } else if (id == R.id.nav_how_to_get) {
-            Fragment fragment = new MapFragment();
-            setFragment(fragment);
+            Intent intent = new Intent(this, MapActivity.class);
+            startActivity(intent);
         } else if (id == R.id.nav_how_to_contact) {
-            Fragment fragment = new ContactsFragment();
-            setFragment(fragment);
+            setFragmentByCode(CONTACTS_FRAGMENT);
         } else if (id == R.id.nav_how_to_treat) {
-            setFragment(new TreatmentsFragment());
+            setFragmentByCode(TREATMENTS_FRAGMENT);
         } else if (id == R.id.nav_what_events) {
-            Fragment fragment = new EventsFragment();
-            setFragment(fragment);
+            setFragmentByCode(EVENTS_FRAGMENT);
         } else if (id == R.id.nav_question) {
-            Fragment fragment = new QuestionFragment();
-            setFragment(fragment);
+            setFragmentByCode(QUESTION_FRAGMENT);
         } else if (id == R.id.nav_uchimznaem) {
             String url = "http://uchimznaem.ru";
             Intent i = new Intent(Intent.ACTION_VIEW);
             i.setData(Uri.parse(url));
             startActivity(i);
         } else if (id == R.id.nav_home) {
-            Fragment fragment = new MainFragment();
-            setFragment(fragment);
+            setFragmentByCode(MAIN_FRAGMENT);
+        } else if (id==R.id.nav_books){
+            setFragmentByCode(ONKO_BOOK_FRAGMENT);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -226,7 +254,7 @@ public class MainActivity extends AppCompatActivity implements
     @Override
     public void onMainFragmentDataListener(int position) {
         if (position == 0) {
-            Intent intent = new Intent(this,MapActivity.class);
+            Intent intent = new Intent(this, MapActivity.class);
             startActivity(intent);
         } else if (position == QR_FRAGMENT) {
             Fragment fragment = new QRFragment();
@@ -259,23 +287,24 @@ public class MainActivity extends AppCompatActivity implements
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         Fragment container = fragmentManager.findFragmentById(R.id.fragmentContainer);
-        Log.d(TAG, container.toString());
 
         int value = MAIN_FRAGMENT;
-        if (container instanceof QRFragment){
+        if (container instanceof QRFragment) {
             value = QR_FRAGMENT;
-        } else if (container instanceof ContactsFragment){
+        } else if (container instanceof ContactsFragment) {
             value = CONTACTS_FRAGMENT;
-        } else if (container instanceof TreatmentsFragment){
+        } else if (container instanceof TreatmentsFragment) {
             value = TREATMENTS_FRAGMENT;
-        } else if (container instanceof EventsFragment){
+        } else if (container instanceof EventsFragment) {
             value = EVENTS_FRAGMENT;
-        } else if (container instanceof QuestionFragment){
+        } else if (container instanceof QuestionFragment) {
             value = QUESTION_FRAGMENT;
-        } else if (container instanceof  OnkoBooksFragment){
+        } else if (container instanceof OnkoBooksFragment) {
             value = ONKO_BOOK_FRAGMENT;
+        } else if (container instanceof RoomsListFragment) {
+            value = ROOMS_FRAGMENT;
         }
-        Log.d(TAG, String.valueOf(value));
+        Log.d(TAG, "MAIN_ACTIVITY_FRAGMENT = " + String.valueOf(value));
         outState.putInt(FRAGMENT_STATE_KEY, value);
     }
 
@@ -283,30 +312,6 @@ public class MainActivity extends AppCompatActivity implements
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
         int value = savedInstanceState.getInt(FRAGMENT_STATE_KEY, MAIN_FRAGMENT);
-
-        Fragment fragment = null;
-        switch (value){
-            case QR_FRAGMENT:
-                fragment = new QRFragment();
-                break;
-            case CONTACTS_FRAGMENT:
-                fragment = new ContactsFragment();
-                break;
-            case TREATMENTS_FRAGMENT:
-                fragment = new TreatmentsFragment();
-                break;
-            case EVENTS_FRAGMENT:
-                fragment = new EventsFragment();
-            case QUESTION_FRAGMENT:
-                fragment = new QuestionFragment();
-                break;
-            case ONKO_BOOK_FRAGMENT:
-                fragment = new OnkoBooksFragment();
-                break;
-        }
-
-        if (fragment !=null){
-            setFragment(fragment);
-        }
+        setFragmentByCode(value);
     }
 }

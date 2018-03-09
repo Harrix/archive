@@ -30,6 +30,10 @@
             android:id="@+id/nav_question"
             android:icon="@drawable/icon_advertising"
             android:title="Хочу спросить" />
+        <item
+            android:id="@+id/nav_books"
+            android:icon="@drawable/icon_book"
+            android:title="Книги" />
     </group>
 
     <item android:title="Списки">

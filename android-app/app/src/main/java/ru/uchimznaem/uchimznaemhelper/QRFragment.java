@@ -59,7 +59,7 @@ public class QRFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View v =  inflater.inflate(R.layout.fragment_qr, container, false);
+        View v = inflater.inflate(R.layout.fragment_qr, container, false);
 
         if (ContextCompat.checkSelfPermission(getContext(), android.Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
 
@@ -71,13 +71,15 @@ public class QRFragment extends Fragment {
             }
         }
 
-        height = ((MainActivity)getActivity()).height;
-        width = ((MainActivity)getActivity()).width;
+        height = ((MainActivity) getActivity()).height;
+        width = ((MainActivity) getActivity()).width;
+        if (height == 0) height = 200; //todo remove this hack
+        if (width == 0) width = 200;  //todo remove this hack
 
         cameraView = (SurfaceView) v.findViewById(R.id.camera_view);
         barcodeInfo = (TextView) v.findViewById(R.id.code_info);
 
-        getActivity().getPackageManager().hasSystemFeature (PackageManager.FEATURE_CAMERA_FLASH);
+        getActivity().getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA_FLASH);
 
         barcodeDetector =
                 new BarcodeDetector.Builder(getActivity().getApplicationContext())
@@ -88,7 +90,7 @@ public class QRFragment extends Fragment {
                 .Builder(getActivity().getApplicationContext(), barcodeDetector)
                 .setFacing(CameraSource.CAMERA_FACING_BACK)
                 .setRequestedFps(35.0f)
-                .setRequestedPreviewSize(height,width)
+                .setRequestedPreviewSize(height, width)
                 .setAutoFocusEnabled(true)
                 .build();
 

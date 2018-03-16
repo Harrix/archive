@@ -25,7 +25,8 @@ public class Room {
 
     @Override
     public String toString() {
-        return "t: "+title + " ("+center_x+","+center_y+")";
+        //return "t: "+title + " ("+center_x+","+center_y+")";
+        return getTitle();
     }
 
     public String getTitle() {

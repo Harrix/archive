@@ -90,7 +90,7 @@ public class MapFragment extends Fragment {
                         //todo Обработать нажатие на выбранное помещение!
 
                         Room room = roomsAdapter.getItem(position);
-                        Toast.makeText(context, room.toString(), Toast.LENGTH_LONG).show();
+                        Toast.makeText(context, "Переход на карте к комнате: " + room.toString(), Toast.LENGTH_SHORT).show();
                         map.centerTo(room);
                     }
                 });

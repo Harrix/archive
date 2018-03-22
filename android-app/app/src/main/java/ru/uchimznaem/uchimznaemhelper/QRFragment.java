@@ -137,6 +137,7 @@ public class QRFragment extends Fragment {
                     barcodeInfo.post(new Runnable() {    // Use the post method of the TextView
                         public void run() {
                             String S = barcodes.valueAt(0).displayValue;
+                            Log.d(TAG, "Считан QR код");
                             Log.d(TAG, S);
                             //if (!qRText.equals(S))
                             {

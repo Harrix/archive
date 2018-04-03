@@ -2,8 +2,7 @@
 
 ![Harrix MarkdownFile](https://rawgithub.com/Harrix/Harrix-MarkdownFile/master/images_github/logo-harrix-markdownfile.svg)
 
-Harrix MarkdownFile
-===================
+# Harrix MarkdownFile
 
 Версия 1.2
 
@@ -18,8 +17,7 @@ Worpress плагин. Отображает содержимое Markdown фай
 
 Демо: [http://blog.harrix.org/?p=1336](http://blog.harrix.org/?p=1336)
 
-Использование
--------------
+## Использование
 
 ```html
 [markdown-file][/markdown-file]
@@ -31,20 +29,17 @@ Worpress плагин. Отображает содержимое Markdown фай
 [markdown-file]https://raw.github.com/Harrix/HarrixQtLibrary/master/README.md[/markdown-file]
 ```
 
-Библиотеки
-----------
+## Библиотеки
 
 Данный плагин использует следующие сторонние библиотеки:
  - parsedown: [http://parsedown.org/](http://parsedown.org/)
  - highlight.js: [https://highlightjs.org/](https://highlightjs.org)
 
-История проекта
----------------
+## История проекта
 
 Подробный список изменений в файле [CHANGELOG.md](https://github.com/Harrix/Harrix-MarkdownFile/blob/master/CHANGELOG.md).
 
-Контакты
---------
+## Контакты
 
 Автор: Сергиенко Антон Борисович.
 

@@ -30,5 +30,7 @@
         <file>HarrixQML/TextFieldBlue.qml</file>
         <file>HarrixQML/TextFieldGreen.qml</file>
         <file>HarrixQML/internal/LineDashed.qml</file>
+        <file>HarrixQML/fonts/RobotoMono-Regular.ttf</file>
+        <file>HarrixQML/fonts/Roboto-Regular.ttf</file>
     </qresource>
 </RCC>

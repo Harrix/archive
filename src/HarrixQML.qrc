@@ -6,8 +6,6 @@
         <file>HarrixQML/MainWindow.qml</file>
         <file>HarrixQML/TextField.qml</file>
         <file>HarrixQML/fonts/FontAwesome.ttf</file>
-        <file>HarrixQML/fonts/OpenSans.ttf</file>
-        <file>HarrixQML/fonts/PTMono.ttf</file>
         <file>HarrixQML/images/search.svg</file>
         <file>HarrixQML/images/share.svg</file>
         <file>HarrixQML/internal/ApplicationWindow.qml</file>

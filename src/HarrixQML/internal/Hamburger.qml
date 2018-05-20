@@ -48,20 +48,20 @@ Rectangle {
             PropertyChanges {
                 target: topBar
                 rotation: 0
-                width: 22
+                width: 18
                 x: 2
                 y: 6
             }
             PropertyChanges {
                 target: bottomBar
                 rotation: 0
-                width: 22
+                width: 18
                 x: 2
                 y: 18
             }
             PropertyChanges {
                 target: centerBar
-                width: 22
+                width: 18
                 x: 2
             }
         },

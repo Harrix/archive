@@ -144,7 +144,7 @@ Rectangle {
                 target: leftIcon
                 visible: false
                 colorHamburger: SettingsHarrixQML.colorDarkElement
-                colorHamburgerHover: SettingsHarrixQML.colorBlue
+                colorHamburgerHover: SettingsHarrixQML.colorTeal
                 state: "menu"
             }
             PropertyChanges {
@@ -178,7 +178,7 @@ Rectangle {
                 target: leftIcon
                 visible: false
                 colorHamburger: SettingsHarrixQML.colorDarkElement
-                colorHamburgerHover: SettingsHarrixQML.colorBlue
+                colorHamburgerHover: SettingsHarrixQML.colorTeal
                 state: "menu"
             }
             PropertyChanges {
@@ -212,7 +212,7 @@ Rectangle {
                 target: leftIcon
                 visible: true
                 colorHamburger: SettingsHarrixQML.colorDarkElement
-                colorHamburgerHover: SettingsHarrixQML.colorBlue
+                colorHamburgerHover: SettingsHarrixQML.colorTeal
                 state: "menu"
             }
             PropertyChanges {

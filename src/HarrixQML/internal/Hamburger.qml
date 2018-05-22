@@ -7,7 +7,7 @@ Rectangle {
 
     //Properties that it is necessary to set
     property color colorHamburger: SettingsHarrixQML.colorDarkElement
-    property color colorHamburgerHover: SettingsHarrixQML.colorBlue
+    property color colorHamburgerHover: SettingsHarrixQML.colorTeal
 
     //Common properties which can be changed if necessary
     property int sizeHamburger: SettingsHarrixQML.sizeIcons

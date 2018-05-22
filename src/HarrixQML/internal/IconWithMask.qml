@@ -8,7 +8,7 @@ Rectangle {
     //Properties that it is necessary to set
     property alias source: mask.source
     property color colorIcon: SettingsHarrixQML.colorDarkElement
-    property color colorIconHover: SettingsHarrixQML.colorBlue
+    property color colorIconHover: SettingsHarrixQML.colorTeal
 
     //Common properties which can be changed if necessary
     property int sizeIcons: SettingsHarrixQML.sizeIcons

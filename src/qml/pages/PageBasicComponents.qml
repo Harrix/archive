@@ -106,7 +106,7 @@ Page{
                 inputMethodHints: Qt.ImhDigitsOnly
             }
 
-            TextFieldBlue {
+            TextFieldTeal {
                 id: field2
                 objectName: "field2"
                 textPlaceholder: qsTr("Input second number")
@@ -160,23 +160,23 @@ Page{
                 inputMethodHints: Qt.ImhUrlCharactersOnly
             }
 
-            ButtonBlue{
+            ButtonTeal{
                 text: qsTr("enabled: false")
                 onClicked:  toogleNavigationDrawer()
                 enabled: false
             }
 
-            ButtonBlue{
+            ButtonTeal{
                 text: qsTr("Open Drawer")
                 onClicked:  toogleNavigationDrawer()
             }
 
-            ButtonBlue{
+            ButtonTeal{
                 text: qsTr("Head Scroll")
                 onClicked:  toogleHeightHead(false)
             }
 
-            ButtonBlue{
+            ButtonTeal{
                 text: qsTr("Head Normall")
                 onClicked:  toogleHeightHead(true)
             }
@@ -188,7 +188,7 @@ Page{
                 //icon:  IconFontAwesome { symbol: FontAwesome.fa_download }
             }
 
-            ButtonBlue {
+            ButtonTeal {
                 id: button22
                 text: qsTr("Open menu")
                 //icon:  IconFontAwesome { symbol: FontAwesome.fa_vk }
@@ -198,7 +198,7 @@ Page{
                 }
             }
 
-            ButtonBlue {
+            ButtonTeal {
                 id: button22996
                 text: qsTr("Open menu 2")
                 //icon:  IconFontAwesome { symbol: FontAwesome.fa_vk }

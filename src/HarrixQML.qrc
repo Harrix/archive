@@ -1,7 +1,7 @@
 <RCC>
     <qresource prefix="/">
         <file>HarrixQML/Button.qml</file>
-        <file>HarrixQML/ButtonBlue.qml</file>
+        <file>HarrixQML/ButtonTeal.qml</file>
         <file>HarrixQML/ButtonGreen.qml</file>
         <file>HarrixQML/MainWindow.qml</file>
         <file>HarrixQML/TextField.qml</file>
@@ -25,7 +25,7 @@
         <file>HarrixQML/internal/MouseAreaRippleWithoutMask.qml</file>
         <file>HarrixQML/internal/Hamburger.qml</file>
         <file>HarrixQML/images/menu.svg</file>
-        <file>HarrixQML/TextFieldBlue.qml</file>
+        <file>HarrixQML/TextFieldTeal.qml</file>
         <file>HarrixQML/TextFieldGreen.qml</file>
         <file>HarrixQML/internal/LineDashed.qml</file>
         <file>HarrixQML/fonts/RobotoMono-Regular.ttf</file>

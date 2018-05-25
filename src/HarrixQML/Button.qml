@@ -22,7 +22,6 @@ Button {
     property int rightPaddingButton: 24
     property int spacingIconText: 10
     property int fontWeightButton: Font.Bold
-    property int fontCapitalizationButton: Font.AllUppercase
 
     padding: paddingButton
     leftPadding: leftPaddingButton
@@ -45,7 +44,6 @@ Button {
             font.family: fontName
             font.pixelSize: fontSize
             font.weight: fontWeightButton
-            font.capitalization: fontCapitalizationButton
             color: colorFontButton
             horizontalAlignment: Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter

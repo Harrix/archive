@@ -10,9 +10,11 @@ SwipeView {
     objectName: "contentApp"
 
     anchors.fill: parent
-    //currentIndex: tabBar.currentIndex
 
-    PageBasicComponents {id: pageBasicComponents}
+    //currentIndex: tabBar.currentIndex
+    PageBasicComponents {
+        id: pageBasicComponents
+    }
 
     Page {
         Rectangle {
@@ -21,14 +23,14 @@ SwipeView {
         }
     }
 
-    onCurrentIndexChanged:  {
+    onCurrentIndexChanged: {
         if (currentIndex == 1)
-            toogleHeightHead(true);
+            toogleHeightHead(true)
         if (currentIndex == 0) {
             if (pageBasicComponents.flickable.contentY > 0)
-                toogleHeightHead(false);
+                toogleHeightHead(false)
             else
-                toogleHeightHead(true);
+                toogleHeightHead(true)
         }
     }
 }

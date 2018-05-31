@@ -25,7 +25,6 @@ Column {
 
     Button {
         text: qsTr("Download")
-
     }
 
     ListView {
@@ -40,6 +39,7 @@ Column {
             onClicked: console.log("clicked:", modelData)
         }
 
-        ScrollIndicator.vertical: ScrollIndicator { }
+        ScrollIndicator.vertical: ScrollIndicator {
+        }
     }
 }

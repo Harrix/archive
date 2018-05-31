@@ -8,25 +8,30 @@ import "../HarrixQML/internal"
 MainWindow {
     title: qsTr("Harrix-QML - Demo")
 
-    navigationDrawer.drawer: LeftPanel {}
+    navigationDrawer.drawer: LeftPanel {
+    }
 
     head.logo.source: "qrc:/images/logo-harrix.svg"
 
-    //head.titleMobileElement: TitleMobileElement {}
 
+    //head.titleMobileElement: TitleMobileElement {}
     head.colorMobileMode: true
 
-    head.mainMenu.mainMenuModel: MainMenuModel {}
-
-    onClickActiveItemMenu: {
-        console.log(name);
-        if (name === "Exit") Qt.quit();
+    head.mainMenu.mainMenuModel: MainMenuModel {
     }
 
-    content: Content {}
+    onClickActiveItemMenu: {
+        console.log(name)
+        if (name === "Exit")
+            Qt.quit()
+    }
+
+    content: Content {
+    }
 
     Component.onCompleted: {
-        head.titleMobileElementItem.textLabel = qsTr("Mind games for the company of people")
+        head.titleMobileElementItem.textLabel = qsTr(
+                    "Mind games for the company of people")
         /*if (head.colorMobileMode)
             head.titleMobileElementItem.source = "qrc:/images/logo-harrix-white.svg";
         else

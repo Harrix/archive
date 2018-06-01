@@ -21,11 +21,11 @@ ApplicationWindow {
     property int widthTransitionInMobileMode: 640
 
     //Signals
-    signal toogleNavigationDrawer();
-    signal toogleNavigationDrawerRealized(bool open);
-    signal sendMobileMode(bool mobileMode);
-    signal clickActiveItemMenu (string name);
-    signal toogleHeightHead(bool normal);
+    signal toogleNavigationDrawer
+    signal toogleNavigationDrawerRealized(bool open)
+    signal sendMobileMode(bool mobileMode)
+    signal clickActiveItemMenu(string name)
+    signal toogleHeightHead(bool normal)
 
     visibility: "Maximized"
     font.family: fontName
@@ -70,13 +70,14 @@ ApplicationWindow {
         }
     }
 
-    Fonts {}
+    Fonts {
+    }
 
     Connections {
         id: listenerSignalsFromMainMenu
         target: head.mainMenu
 
-        onClickActiveItemMenu: clickActiveItemMenu (name)
+        onClickActiveItemMenu: clickActiveItemMenu(name)
     }
 
     Connections {
@@ -86,21 +87,21 @@ ApplicationWindow {
         onToogleNavigationDrawerRealized: toogleNavigationDrawerRealized(open)
     }
 
-    onWidthChanged:        checkMobileMode();
-    onHeightChanged:       checkMobileMode();
-    Component.onCompleted: checkMobileMode();
+    onWidthChanged: checkMobileMode()
+    onHeightChanged: checkMobileMode()
+    Component.onCompleted: checkMobileMode()
 
     function checkMobileMode() {
         var check = ((mainWindow.width <= widthTransitionInMobileMode)
-                     ||(mainWindow.width < mainWindow.height));
-        mobileMode = check ? true : false;
-        sendMobileMode(mobileMode);
+                     || (mainWindow.width < mainWindow.height))
+        mobileMode = check ? true : false
+        sendMobileMode(mobileMode)
     }
 
     function widthPaneRight() {
         if (mobileMode)
-            return mainWindow.width;
+            return mainWindow.width
         else
-            return mainWindow.width - navigationDrawer.width;
+            return mainWindow.width - navigationDrawer.width
     }
 }

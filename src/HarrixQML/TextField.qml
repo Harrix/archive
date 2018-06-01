@@ -13,7 +13,7 @@ Rectangle {
     property alias textField: textField
 
     //Common properties which can be changed if necessary
-    property alias inputMethodHints: textField. inputMethodHints
+    property alias inputMethodHints: textField.inputMethodHints
     property string fontName: SettingsHarrixQML.fontName
     property int fontSize: SettingsHarrixQML.fontSize
     property int fontRenderType: SettingsHarrixQML.fontRenderType
@@ -62,7 +62,8 @@ Rectangle {
         Text {
             id: placeholderReplace
             x: 0
-            y: normalPlaceholder() ? textField.topPadding : -(extraHeight + textField.bottomPadding)
+            y: normalPlaceholder(
+                   ) ? textField.topPadding : -(extraHeight + textField.bottomPadding)
             width: textField.width
             height: textField.height - (textField.topPadding + textField.bottomPadding)
             renderType: fontRenderType
@@ -123,19 +124,19 @@ Rectangle {
 
     function defineColorFontPlaceholder() {
         if (!textField.enabled)
-            return colorNotEnabled;
+            return colorNotEnabled
         if (normalPlaceholder())
-            return colorFontPlaceholder;
+            return colorFontPlaceholder
         if (textField.activeFocus)
-            return colorTextFieldHover;
+            return colorTextFieldHover
         else
-            return colorFontPlaceholder;
+            return colorFontPlaceholder
     }
 
     function normalPlaceholder() {
-        var result = !textField.length;
-        result = result && !textField.preeditText;
-        result = result && !textField.activeFocus;
-        return result;
+        var result = !textField.length
+        result = result && !textField.preeditText
+        result = result && !textField.activeFocus
+        return result
     }
 }

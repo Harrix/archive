@@ -6,35 +6,34 @@ import "../HarrixQML"
 import "../HarrixQML/internal"
 
 MainWindow {
-    title: qsTr("Harrix-QML - Demo")
+  title: qsTr("Harrix-QML - Demo")
 
-    navigationDrawer.drawer: LeftPanel {
-    }
+  navigationDrawer.drawer: LeftPanel {
+  }
 
-    head.logo.source: "qrc:/images/logo-harrix.svg"
+  head.logo.source: "qrc:/images/logo-harrix.svg"
 
+  //head.titleMobileElement: TitleMobileElement {}
+  head.colorMobileMode: true
 
-    //head.titleMobileElement: TitleMobileElement {}
-    head.colorMobileMode: true
+  head.mainMenu.mainMenuModel: MainMenuModel {
+  }
 
-    head.mainMenu.mainMenuModel: MainMenuModel {
-    }
+  onClickActiveItemMenu: {
+    console.log(name)
+    if (name === "Exit")
+      Qt.quit()
+  }
 
-    onClickActiveItemMenu: {
-        console.log(name)
-        if (name === "Exit")
-            Qt.quit()
-    }
+  content: Content {
+  }
 
-    content: Content {
-    }
-
-    Component.onCompleted: {
-        head.titleMobileElementItem.textLabel = qsTr(
-                    "Mind games for the company of people")
-        /*if (head.colorMobileMode)
+  Component.onCompleted: {
+    head.titleMobileElementItem.textLabel = qsTr(
+          "Mind games for the company of people")
+    /*if (head.colorMobileMode)
             head.titleMobileElementItem.source = "qrc:/images/logo-harrix-white.svg";
         else
             head.titleMobileElementItem.source = "qrc:/images/logo-harrix.svg";*/
-    }
+  }
 }

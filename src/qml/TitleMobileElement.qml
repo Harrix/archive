@@ -5,12 +5,12 @@ import QtQuick.Layouts 1.3
 import "../HarrixQML"
 
 Image {
-    id: titleMobileElementApp
-    objectName: "titleMobileElementApp"
+  id: titleMobileElementApp
+  objectName: "titleMobileElementApp"
 
-    source: "qrc:/images/logo-harrix-white.svg"
-    height: 40
-    fillMode: Image.PreserveAspectFit
-    anchors.verticalCenter: parent.verticalCenter
-    anchors.horizontalCenter: parent.horizontalCenter
+  source: "qrc:/images/logo-harrix-white.svg"
+  height: 40
+  fillMode: Image.PreserveAspectFit
+  anchors.verticalCenter: parent.verticalCenter
+  anchors.horizontalCenter: parent.horizontalCenter
 }

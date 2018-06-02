@@ -6,31 +6,31 @@ import "../HarrixQML"
 import "pages"
 
 SwipeView {
-    id: contentApp
-    objectName: "contentApp"
+  id: contentApp
+  objectName: "contentApp"
 
-    anchors.fill: parent
+  anchors.fill: parent
 
-    //currentIndex: tabBar.currentIndex
-    PageBasicComponents {
-        id: pageBasicComponents
+  //currentIndex: tabBar.currentIndex
+  PageBasicComponents {
+    id: pageBasicComponents
+  }
+
+  Page {
+    Rectangle {
+      anchors.fill: parent
+      color: "red"
     }
+  }
 
-    Page {
-        Rectangle {
-            anchors.fill: parent
-            color: "red"
-        }
+  onCurrentIndexChanged: {
+    if (currentIndex == 1)
+      toogleHeightHead(true)
+    if (currentIndex == 0) {
+      if (pageBasicComponents.flickable.contentY > 0)
+        toogleHeightHead(false)
+      else
+        toogleHeightHead(true)
     }
-
-    onCurrentIndexChanged: {
-        if (currentIndex == 1)
-            toogleHeightHead(true)
-        if (currentIndex == 0) {
-            if (pageBasicComponents.flickable.contentY > 0)
-                toogleHeightHead(false)
-            else
-                toogleHeightHead(true)
-        }
-    }
+  }
 }

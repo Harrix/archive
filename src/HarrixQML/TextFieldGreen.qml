@@ -3,5 +3,5 @@ import QtQuick.Controls 2.0
 import "."
 
 TextField {
-    colorTextFieldHover: SettingsHarrixQML.colorGreen
+  colorTextFieldHover: SettingsHarrixQML.colorGreen
 }

@@ -3,6 +3,6 @@ import QtQuick.Controls 2.0
 import "."
 
 Button {
-    colorButton: SettingsHarrixQML.colorGreen
-    colorButtonHover: SettingsHarrixQML.colorGreenLight
+  colorButton: SettingsHarrixQML.colorGreen
+  colorButtonHover: SettingsHarrixQML.colorGreenLight
 }

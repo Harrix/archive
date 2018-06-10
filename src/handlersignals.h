@@ -6,14 +6,14 @@
 
 class HandlerSignals : public QObject
 {
-    Q_OBJECT
+  Q_OBJECT
 public:
-    explicit HandlerSignals(QObject *parent = 0);
+  explicit HandlerSignals(QObject *parent = 0);
 
 signals:
 
 public slots:
-    void cppSlot(const QString &msg);
+  void cppSlot(const QString &msg);
 };
 
 #endif // HANDLERSIGNALS_H

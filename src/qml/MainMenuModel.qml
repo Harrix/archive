@@ -25,7 +25,7 @@ ListModel {
   }
   ListElement {
     name: "Harrix.org"
-    caption: qsTr("Harrix.org")
+    caption: qsTr("Harrix.io")
   }
   ListElement {
     name: "About"

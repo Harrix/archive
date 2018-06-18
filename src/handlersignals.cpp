@@ -20,7 +20,7 @@ void HandlerSignals::cppSlot(const QString &msg) {
   int a = str1.toInt();//Переведем строку в число
   int b = str2.toInt();//Переведем строку в число
 
-  int c = a + b; //Вычисления наши
+  int c = a + b;//Вычисления наши
 
   QString strResult=QString::number(c);//Переведем результат в строку
 

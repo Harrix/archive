@@ -3,7 +3,7 @@
 If the setting can be used somewhere else, then it prescribes in this file.
 If the setting is used qml only one file, the file it is prescribed.
 */
-import QtQuick 2.7
+import QtQuick 2.11
 pragma Singleton
 
 QtObject {

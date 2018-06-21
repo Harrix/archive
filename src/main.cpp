@@ -10,7 +10,7 @@ int main(int argc, char *argv[])
 
   QCoreApplication::setApplicationName("Harrix QMLComponents");
   QCoreApplication::setOrganizationName("Harrix");
-  QCoreApplication::setOrganizationDomain("org.harrix");
+  QCoreApplication::setOrganizationDomain("io.harrix");
 
   QGuiApplication app(argc, argv);
 

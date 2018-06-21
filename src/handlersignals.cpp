@@ -25,5 +25,5 @@ void HandlerSignals::cppSlot(const QString &msg) {
   QString strResult=QString::number(c);//Переведем результат в строку
 
   //Ну и наконец выведем в поле вывода нашу информацию
-  textArea->setProperty("text", str1+" + "+str2+" = "+strResult+" "+msg);
+  textArea->setProperty("text", str1 + " + " + str2 + " = " + strResult + " " + msg);
 }

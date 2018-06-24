@@ -6,7 +6,7 @@ License: [MIT](https://github.com/Harrix/Harrix-QML/blob/master/LICENSE.md).
 
 Welcome to the Spoon-Knife wiki!
 
-##heading
+## heading
 
 <details> 
   <summary>Q1: What is the best Language in the World? </summary>

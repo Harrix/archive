@@ -26,6 +26,7 @@ SwipeView {
   onCurrentIndexChanged: {
     if (currentIndex == 1)
       toogleHeightHead(true)
+
     if (currentIndex == 0) {
       if (pageBasicComponents.flickable.contentY > 0)
         toogleHeightHead(false)

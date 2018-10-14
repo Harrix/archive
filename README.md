@@ -5,7 +5,7 @@ HarrixFileFormats
 
 [https://github.com/Harrix/HarrixFileFormats](https://github.com/Harrix/HarrixFileFormats)
 
-Данные распространяются по лицензии [MIT](https://github.com/Harrix/HarrixFileFormats/blob/master/LICENSE).
+Данные распространяются по лицензии [CC BY 4.0](https://github.com/Harrix/HarrixFileFormats/blob/master/LICENSE.md).
 
 Форматы файлов
 --------------
@@ -50,7 +50,7 @@ HarrixFileFormats
 Сведения для редактирования файлов
 ----------------------------------
 
-Для полноценной работы редактированию LaTeX документа вам потребуются программа для компиляции \*.tex документов в \*.pdf. Автор использует для этого связку [MiKTex](http://www.miktex.org/) и [TeXstudio](http://texstudio.sourceforge.net/). 
+Для полноценной работы редактированию LaTeX документа вам потребуются программа для компиляции \*.tex документов в \*.pdf. Автор использует для этого связку [MiKTex](http://www.miktex.org/) и [TeXstudio](http://texstudio.sourceforge.net/).
 
 В варианте, который использует автор, в \*.tex файлах справок для отображения русских букв используется модуль pscyr. Об его установке можно прочитать (и скачать) в статье [http://blog.harrix.org/?p=444](http://blog.harrix.org/?p=444).
 

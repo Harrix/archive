@@ -1,33 +1,33 @@
 import QtQuick 2.12
-import QtQuick.Controls 2.5
+import QtQuick.Window 2.12
+import QtQuick.Controls 2.4
+import QtQuick.Layouts 1.3
 
-ApplicationWindow {
+Window {
   visible: true
   width: 640
   height: 480
-  title: qsTr("Tabs")
+  title: qsTr("Hello World")
 
-  SwipeView {
-    id: swipeView
+  Column {
+    id: leftPanel
+    objectName: "leftPanel"
+
+    spacing: 10
     anchors.fill: parent
-    currentIndex: tabBar.currentIndex
+    anchors.margins: marginCommon
+    anchors.bottomMargin: 0
 
-    Page1Form {
+    TextField {
+      objectName: "field10"
     }
 
-    Page2Form {
+    TextField {
+      objectName: "field101"
     }
-  }
 
-  footer: TabBar {
-    id: tabBar
-    currentIndex: swipeView.currentIndex
-
-    TabButton {
-      text: qsTr("Page 1")
-    }
-    TabButton {
-      text: qsTr("Page 2")
+    Button {
+      text: qsTr("Download")
     }
   }
 }

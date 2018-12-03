@@ -5,6 +5,10 @@ int main(int argc, char *argv[])
 {
   QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
 
+  QCoreApplication::setApplicationName("Demo Harrix QML");
+  QCoreApplication::setOrganizationName("Harrix");
+  QCoreApplication::setOrganizationDomain("io.harrix");
+
   QGuiApplication app(argc, argv);
 
   QQmlApplicationEngine engine;

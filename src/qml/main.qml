@@ -15,7 +15,6 @@ Window {
 
     spacing: 10
     anchors.fill: parent
-    anchors.margins: marginCommon
     anchors.bottomMargin: 0
 
     TextField {

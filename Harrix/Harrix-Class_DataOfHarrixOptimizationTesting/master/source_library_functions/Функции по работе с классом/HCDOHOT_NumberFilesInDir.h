@@ -1,0 +1,1 @@
+int HCDOHOT_NumberFilesInDir(QString path);

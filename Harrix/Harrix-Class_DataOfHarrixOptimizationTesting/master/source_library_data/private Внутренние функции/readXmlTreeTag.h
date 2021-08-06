@@ -1,0 +1,1 @@
+bool readXmlTreeTag(QString tag);

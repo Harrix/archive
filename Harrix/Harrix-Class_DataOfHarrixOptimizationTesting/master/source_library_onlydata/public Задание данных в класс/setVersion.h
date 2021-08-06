@@ -1,0 +1,1 @@
+void setVersion(QString Version);

@@ -1,0 +1,2 @@
+QStringList getListOfVectorParameterOptions();
+QString getListOfVectorParameterOptions(int Number_Of_Experiment);

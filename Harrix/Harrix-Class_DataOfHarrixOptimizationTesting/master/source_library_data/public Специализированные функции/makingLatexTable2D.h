@@ -1,0 +1,1 @@
+QString makingLatexTable2D(QString Title, QStringList InfoForEveryExperiment);

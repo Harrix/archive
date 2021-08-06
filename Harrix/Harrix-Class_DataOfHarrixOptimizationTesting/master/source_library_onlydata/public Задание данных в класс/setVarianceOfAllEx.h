@@ -1,0 +1,1 @@
+void setVarianceOfAllEx(double Variance);

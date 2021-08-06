@@ -1,0 +1,815 @@
+\documentclass[a4paper,12pt]{article}
+
+\input{packages}
+\input{styles}
+
+\title{Fu\-ncti\-ons\_For\_Har\-rix\-Class\_Da\-ta\-Of\-Har\-rix\-Opt\-im\-iz\-at\-ion\-Tes\-ting - Har\-rix\-Class\_Da\-ta\-Of\-Har\-rix\-Op\-ti\-mi\-za\-tion\-Test\-ing v.1.27}
+\author{А.\,Б. Сергиенко}
+\date{\today}
+
+
+\begin{document}
+
+\input{names}
+
+\maketitle
+
+\begin{abstract}
+Класс HarrixClass\_DataOfHarrixOptimizationTesting для считывания информации формата данных Harrix Optimization Testing на C++ для Qt. Рассматривается Functions\_For\_HarrixClass\_DataOfHarrixOptimizationTesting.cpp.
+\end{abstract}
+
+\tableofcontents
+
+\newpage
+
+\section{Введение}
+
+Класс HarrixClass\_DataOfHarrixOptimizationTesting для считывания информации формата данных Harrix Optimization Testing на C++ для Qt.
+
+Последнюю версию документа можно найти по адресу:
+
+\href{https://github.com/Harrix/HarrixClass\_DataOfHarrixOptimizationTesting}{https://github.com/Harrix/HarrixClass\_DataOfHarrixOptimizationTesting}
+
+Об установке библиотеки можно прочитать тут:
+
+\href{http://blog.harrix.org/?p=992}{http://blog.harrix.org/?p=992}
+
+С автором можно связаться по адресу \href{mailto:sergienkoanton@mail.ru}{sergienkoanton@mail.ru} или  \href{http://vk.com/harrix}{http://vk.com/harrix}.
+
+Сайт автора, где публикуются последние новости: \href{http://blog.harrix.org/}{http://blog.harrix.org/}, а проекты располагаются по адресу \href{http://harrix.org/}{http://harrix.org/}.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% ВСТАВЛЯТЬ НИЖЕ
+\newpage
+\section{Список функций}\label{section_listfunctions}
+\textbf{Блок функций проверки равенства переменных нескольких исследований}
+\begin{enumerate}
+	
+	\item \textbf{\hyperref[HCDOHOT_CompareOfDataByWilcoxonW]{HCDOHOT\_CompareOfDataByWilcoxonW}} --- Проверяет по критерию Вилкосона два исследования алгоритмов.
+	
+	\item \textbf{\hyperref[HCDOHOT_CompareOfDataForAuthor]{HCDOHOT\_CompareOfDataForAuthor}} --- Проверяет равенство авторов исследований.
+	
+	\item \textbf{\hyperref[HCDOHOT_CompareOfDataForCheckAllCombinations]{HCDOHOT\_CompareOfDataForCheckAllCombinations}} --- Проверяет равенство переменной, которая говорит все ли рассмотрены функции в исследованиях.
+	
+	\item \textbf{\hyperref[HCDOHOT_CompareOfDataForDate]{HCDOHOT\_CompareOfDataForDate}} --- Проверяет равенство дат исследований.
+	
+	\item \textbf{\hyperref[HCDOHOT_CompareOfDataForDimensionTestFunction]{HCDOHOT\_CompareOfDataForDimensionTestFunction}} --- Проверяет равенство размерностей тестовой задачи (длина хромосомы решения) в исследованиях.
+	
+	\item \textbf{\hyperref[HCDOHOT_CompareOfDataForEmail]{HCDOHOT\_CompareOfDataForEmail}} --- Проверяет равенство email авторов исследований.
+	
+	\item \textbf{\hyperref[HCDOHOT_CompareOfDataForFormat]{HCDOHOT\_CompareOfDataForFormat}} --- Проверяет равенство форматов файлов в исследованиях.
+	
+	\item \textbf{\hyperref[HCDOHOT_CompareOfDataForFullNameAlgorithm]{HCDOHOT\_CompareOfDataForFullNameAlgorithm}} --- Проверяет равенство полных названий алгоритмов в исследованиях.
+	
+	\item \textbf{\hyperref[HCDOHOT_CompareOfDataForFullNameTestFunction]{HCDOHOT\_CompareOfDataForFullNameTestFunction}} --- Проверяет равенство полных названий тестовых функций в исследованиях.
+	
+	\item \textbf{\hyperref[HCDOHOT_CompareOfDataForLink]{HCDOHOT\_CompareOfDataForLink}} --- Проверяет равенство ссылок на описание версий формата файла в исследованиях.
+	
+	\item \textbf{\hyperref[HCDOHOT_CompareOfDataForMaxCountOfFitness]{HCDOHOT\_CompareOfDataForMaxCountOfFitness}} --- Проверяет равенство максимальных допустимых чисел вычислений целевой функции для алгоритма в исследованиях.
+	
+	\item \textbf{\hyperref[HCDOHOT_CompareOfDataForNameAlgorithm]{HCDOHOT\_CompareOfDataForNameAlgorithm}} --- Проверяет равенство идентификаторов алгоритмов оптимизации: в данных содержится один и тот же алгоритм или же нет.
+	
+	\item \textbf{\hyperref[HCDOHOT_CompareOfDataForNameTestFunction]{HCDOHOT\_CompareOfDataForNameTestFunction}} --- Проверяет равенство идентификаторов тестовых функций в исследованиях.
+	
+	\item \textbf{\hyperref[HCDOHOT_CompareOfDataForNumberOfExperiments]{HCDOHOT\_CompareOfDataForNumberOfExperiments}} --- Проверяет равенство количества комбинаций вариантов настроек в исследованиях.
+	
+	\item \textbf{\hyperref[HCDOHOT_CompareOfDataForNumberOfMeasuring]{HCDOHOT\_CompareOfDataForNumberOfMeasuring}} --- Проверяет равенство количества экспериментов для каждого набора параметров алгоритма в исследованиях.
+	
+	\item \textbf{\hyperref[HCDOHOT_CompareOfDataForNumberOfParameters]{HCDOHOT\_CompareOfDataForNumberOfParameters}} --- Проверяет равенство количества проверяемых параметров алгоритма оптимизации в исследованиях.
+	
+	\item \textbf{\hyperref[HCDOHOT_CompareOfDataForNumberOfRuns]{HCDOHOT\_CompareOfDataForNumberOfRuns}} --- Проверяет равенство количества прогонов, по которому делается усреднение для эксперимента в исследованиях.
+	
+	\item \textbf{\hyperref[HCDOHOT_CompareOfDataForVersion]{HCDOHOT\_CompareOfDataForVersion}} --- Проверяет равенство версий формата файла в исследованиях.
+	
+\end{enumerate}
+
+\textbf{Генерация отчетов}
+\begin{enumerate}
+	
+	\item \textbf{\hyperref[HCDOHOT_GeneratedAnalysisReportFromFile]{HCDOHOT\_GeneratedAnalysisReportFromFile}} --- Генерирует отчет-анализ Latex по алгоритму по файлу *.hdata.
+	
+	\item \textbf{\hyperref[HCDOHOT_GeneratedReportAboutAlgorithmFromDir]{HCDOHOT\_GeneratedReportAboutAlgorithmFromDir}} --- Генерирует отчет Latex по алгоритму по файлам *.hdata алгоритма, просматривая все файлы в папке. То, чтобы в папке были файлы только одного алгоритма, вы берете на себя.
+	
+	\item \textbf{\hyperref[HCDOHOT_GeneratedSimpleReportFromFile]{HCDOHOT\_GeneratedSimpleReportFromFile}} --- Генерирует простой отчет Latex по алгоритму по файлу *.hdata.
+	
+\end{enumerate}
+
+\textbf{Функции по работе с классом}
+\begin{enumerate}
+	
+	\item \textbf{\hyperref[HCDOHOT_NumberFilesInDir]{HCDOHOT\_NumberFilesInDir}} --- Подсчитывает число HarrixClass\_DataOfHarrixOptimizationTesting файлов в папке.
+	
+	\item \textbf{\hyperref[HCDOHOT_ReadFilesInDir]{HCDOHOT\_ReadFilesInDir}} --- Заполняет массив SeveralData данными из всех файлов *.hdata из папки.
+	
+	\item \textbf{\hyperref[HCDOHOT_ReadFilesOnlyDataInDir]{HCDOHOT\_ReadFilesOnlyDataInDir}} --- Заполняет массив SeveralData данными (только исследования) из всех файлов *.hdata из папки.
+	
+\end{enumerate}
+
+
+\newpage
+\section{Функции}
+\subsection{Блок функций проверки равенства переменных нескольких исследований}
+
+\subsubsection{HCDOHOT\_CompareOfDataByWilcoxonW}\label{HCDOHOT_CompareOfDataByWilcoxonW}
+
+Проверяет по критерию Вилкосона два исследования алгоритмов.
+
+
+\begin{lstlisting}[label=code_syntax_HCDOHOT_CompareOfDataByWilcoxonW,caption=Синтаксис]
+int HCDOHOT_CompareOfDataByWilcoxonW (HarrixClass_OnlyDataOfHarrixOptimizationTesting *Data1, HarrixClass_OnlyDataOfHarrixOptimizationTesting *Data2, double Q);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+
+Data1 --- первое исследование;
+
+Data2 --- второе исследование;
+
+Q --- уровень значимости. Может принимать значения:
+
+\begin{itemize}
+	\item 0.002; 
+	\item 0.01; 
+	\item 0.02; 
+	\item 0.05; 
+	\item 0.1; 
+	\item 0.2.
+\end{itemize}
+
+\textbf{Возвращаемое значение:}
+
+
+-2 --- уровень значимости выбран неправильно (не из допустимого множества);
+
+-1 --- объемы выборок не позволяют провести проверку при данном уровне значимости (или они не положительные);
+
+0 --- выборки не однородны  при данном уровне значимости;
+
+1 --- выборки однородны  при данном уровне значимости;
+
+
+\subsubsection{HCDOHOT\_CompareOfDataForAuthor}\label{HCDOHOT_CompareOfDataForAuthor}
+
+Проверяет равенство авторов исследований.
+
+
+\begin{lstlisting}[label=code_syntax_HCDOHOT_CompareOfDataForAuthor,caption=Синтаксис]
+bool HCDOHOT_CompareOfDataForAuthor (HarrixClass_DataOfHarrixOptimizationTesting *Data1, HarrixClass_DataOfHarrixOptimizationTesting *Data2);
+bool HCDOHOT_CompareOfDataForAuthor (HarrixClass_DataOfHarrixOptimizationTesting *SeveralData, int N);
+bool HCDOHOT_CompareOfDataForAuthor (HarrixClass_OnlyDataOfHarrixOptimizationTesting *SeveralData, int N);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+Data1 --- первое исследование;
+
+Data2 --- второе исследование.
+
+\textbf{Входные параметры в функциях перегрузках:}
+
+SeveralData --- массив исследований;
+
+N --- количество исследований в массиве.
+
+\textbf{Возвращаемое значение:}
+
+true --- если исследуемый параметр алгоритмов одинаков.
+
+false --- если разные.
+
+
+\subsubsection{HCDOHOT\_CompareOfDataForCheckAllCombinations}\label{HCDOHOT_CompareOfDataForCheckAllCombinations}
+
+Проверяет равенство переменной, которая говорит все ли рассмотрены функции в исследованиях.
+
+
+\begin{lstlisting}[label=code_syntax_HCDOHOT_CompareOfDataForCheckAllCombinations,caption=Синтаксис]
+bool HCDOHOT_CompareOfDataForCheckAllCombinations (HarrixClass_DataOfHarrixOptimizationTesting *Data1, HarrixClass_DataOfHarrixOptimizationTesting *Data2);
+bool HCDOHOT_CompareOfDataForCheckAllCombinations (HarrixClass_DataOfHarrixOptimizationTesting *SeveralData, int N);
+bool HCDOHOT_CompareOfDataForCheckAllCombinations (HarrixClass_OnlyDataOfHarrixOptimizationTesting *SeveralData, int N);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+Data1 --- первое исследование;
+
+Data2 --- второе исследование.
+
+\textbf{Входные параметры в функциях перегрузках:}
+
+SeveralData --- массив исследований;
+
+N --- количество исследований в массиве.
+
+\textbf{Возвращаемое значение:}
+
+true --- если исследуемый параметр алгоритмов одинаков.
+
+false --- если разные.
+
+
+\subsubsection{HCDOHOT\_CompareOfDataForDate}\label{HCDOHOT_CompareOfDataForDate}
+
+Проверяет равенство дат исследований.
+
+
+\begin{lstlisting}[label=code_syntax_HCDOHOT_CompareOfDataForDate,caption=Синтаксис]
+bool HCDOHOT_CompareOfDataForDate (HarrixClass_DataOfHarrixOptimizationTesting *Data1, HarrixClass_DataOfHarrixOptimizationTesting *Data2);
+bool HCDOHOT_CompareOfDataForDate (HarrixClass_DataOfHarrixOptimizationTesting *SeveralData, int N);
+bool HCDOHOT_CompareOfDataForDate (HarrixClass_OnlyDataOfHarrixOptimizationTesting *SeveralData, int N);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+Data1 --- первое исследование;
+
+Data2 --- второе исследование.
+
+\textbf{Входные параметры в функциях перегрузках:}
+
+SeveralData --- массив исследований;
+
+N --- количество исследований в массиве.
+
+\textbf{Возвращаемое значение:}
+
+true --- если исследуемый параметр алгоритмов одинаков.
+
+false --- если разные.
+
+
+\subsubsection{HCDOHOT\_CompareOfDataForDimensionTestFunction}\label{HCDOHOT_CompareOfDataForDimensionTestFunction}
+
+Проверяет равенство размерностей тестовой задачи (длина хромосомы решения) в исследованиях.
+
+
+\begin{lstlisting}[label=code_syntax_HCDOHOT_CompareOfDataForDimensionTestFunction,caption=Синтаксис]
+bool HCDOHOT_CompareOfDataForDimensionTestFunction (HarrixClass_DataOfHarrixOptimizationTesting *Data1, HarrixClass_DataOfHarrixOptimizationTesting *Data2);
+bool HCDOHOT_CompareOfDataForDimensionTestFunction (HarrixClass_DataOfHarrixOptimizationTesting *SeveralData, int N);
+bool HCDOHOT_CompareOfDataForDimensionTestFunction (HarrixClass_OnlyDataOfHarrixOptimizationTesting *SeveralData, int N);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+Data1 --- первое исследование;
+
+Data2 --- второе исследование.
+
+\textbf{Входные параметры в функциях перегрузках:}
+
+SeveralData --- массив исследований;
+
+N --- количество исследований в массиве.
+
+\textbf{Возвращаемое значение:}
+
+true --- если исследуемый параметр алгоритмов одинаков.
+
+false --- если разные.
+
+
+\subsubsection{HCDOHOT\_CompareOfDataForEmail}\label{HCDOHOT_CompareOfDataForEmail}
+
+Проверяет равенство email авторов исследований.
+
+
+\begin{lstlisting}[label=code_syntax_HCDOHOT_CompareOfDataForEmail,caption=Синтаксис]
+bool HCDOHOT_CompareOfDataForEmail (HarrixClass_DataOfHarrixOptimizationTesting *Data1, HarrixClass_DataOfHarrixOptimizationTesting *Data2);
+bool HCDOHOT_CompareOfDataForEmail (HarrixClass_DataOfHarrixOptimizationTesting *SeveralData, int N);
+bool HCDOHOT_CompareOfDataForEmail (HarrixClass_OnlyDataOfHarrixOptimizationTesting *SeveralData, int N);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+Data1 --- первое исследование;
+
+Data2 --- второе исследование.
+
+\textbf{Входные параметры в функциях перегрузках:}
+
+SeveralData --- массив исследований;
+
+N --- количество исследований в массиве.
+
+\textbf{Возвращаемое значение:}
+
+true --- если исследуемый параметр алгоритмов одинаков.
+
+false --- если разные.
+
+
+\subsubsection{HCDOHOT\_CompareOfDataForFormat}\label{HCDOHOT_CompareOfDataForFormat}
+
+Проверяет равенство форматов файлов в исследованиях.
+
+
+\begin{lstlisting}[label=code_syntax_HCDOHOT_CompareOfDataForFormat,caption=Синтаксис]
+bool HCDOHOT_CompareOfDataForFormat (HarrixClass_DataOfHarrixOptimizationTesting *Data1, HarrixClass_DataOfHarrixOptimizationTesting *Data2);
+bool HCDOHOT_CompareOfDataForFormat (HarrixClass_DataOfHarrixOptimizationTesting *SeveralData, int N);
+bool HCDOHOT_CompareOfDataForFormat (HarrixClass_OnlyDataOfHarrixOptimizationTesting *SeveralData, int N);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+Data1 --- первое исследование;
+
+Data2 --- второе исследование.
+
+\textbf{Входные параметры в функциях перегрузках:}
+
+SeveralData --- массив исследований;
+
+N --- количество исследований в массиве.
+
+\textbf{Возвращаемое значение:}
+
+true --- если исследуемый параметр алгоритмов одинаков.
+
+false --- если разные.
+
+
+\subsubsection{HCDOHOT\_CompareOfDataForFullNameAlgorithm}\label{HCDOHOT_CompareOfDataForFullNameAlgorithm}
+
+Проверяет равенство полных названий алгоритмов в исследованиях.
+
+
+\begin{lstlisting}[label=code_syntax_HCDOHOT_CompareOfDataForFullNameAlgorithm,caption=Синтаксис]
+bool HCDOHOT_CompareOfDataForFullNameAlgorithm (HarrixClass_DataOfHarrixOptimizationTesting *Data1, HarrixClass_DataOfHarrixOptimizationTesting *Data2);
+bool HCDOHOT_CompareOfDataForFullNameAlgorithm (HarrixClass_DataOfHarrixOptimizationTesting *SeveralData, int N);
+bool HCDOHOT_CompareOfDataForFullNameAlgorithm (HarrixClass_OnlyDataOfHarrixOptimizationTesting *SeveralData, int N);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+Data1 --- первое исследование;
+
+Data2 --- второе исследование.
+
+\textbf{Входные параметры в функциях перегрузках:}
+
+SeveralData --- массив исследований;
+
+N --- количество исследований в массиве.
+
+\textbf{Возвращаемое значение:}
+
+true --- если исследуемый параметр алгоритмов одинаков.
+
+false --- если разные.
+
+
+\subsubsection{HCDOHOT\_CompareOfDataForFullNameTestFunction}\label{HCDOHOT_CompareOfDataForFullNameTestFunction}
+
+Проверяет равенство полных названий тестовых функций в исследованиях.
+
+
+\begin{lstlisting}[label=code_syntax_HCDOHOT_CompareOfDataForFullNameTestFunction,caption=Синтаксис]
+bool HCDOHOT_CompareOfDataForFullNameTestFunction (HarrixClass_DataOfHarrixOptimizationTesting *Data1, HarrixClass_DataOfHarrixOptimizationTesting *Data2);
+bool HCDOHOT_CompareOfDataForFullNameTestFunction (HarrixClass_DataOfHarrixOptimizationTesting *SeveralData, int N);
+bool HCDOHOT_CompareOfDataForFullNameTestFunction (HarrixClass_OnlyDataOfHarrixOptimizationTesting *SeveralData, int N);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+Data1 --- первое исследование;
+
+Data2 --- второе исследование.
+
+\textbf{Входные параметры в функциях перегрузках:}
+
+SeveralData --- массив исследований;
+
+N --- количество исследований в массиве.
+
+\textbf{Возвращаемое значение:}
+
+true --- если исследуемый параметр алгоритмов одинаков.
+
+false --- если разные.
+
+
+\subsubsection{HCDOHOT\_CompareOfDataForLink}\label{HCDOHOT_CompareOfDataForLink}
+
+Проверяет равенство ссылок на описание версий формата файла в исследованиях.
+
+
+\begin{lstlisting}[label=code_syntax_HCDOHOT_CompareOfDataForLink,caption=Синтаксис]
+bool HCDOHOT_CompareOfDataForLink (HarrixClass_DataOfHarrixOptimizationTesting *Data1, HarrixClass_DataOfHarrixOptimizationTesting *Data2);
+bool HCDOHOT_CompareOfDataForLink (HarrixClass_DataOfHarrixOptimizationTesting *SeveralData, int N);
+bool HCDOHOT_CompareOfDataForLink (HarrixClass_OnlyDataOfHarrixOptimizationTesting *SeveralData, int N);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+Data1 --- первое исследование;
+
+Data2 --- второе исследование.
+
+\textbf{Входные параметры в функциях перегрузках:}
+
+SeveralData --- массив исследований;
+
+N --- количество исследований в массиве.
+
+\textbf{Возвращаемое значение:}
+
+true --- если исследуемый параметр алгоритмов одинаков.
+
+false --- если разные.
+
+
+\subsubsection{HCDOHOT\_CompareOfDataForMaxCountOfFitness}\label{HCDOHOT_CompareOfDataForMaxCountOfFitness}
+
+Проверяет равенство максимальных допустимых чисел вычислений целевой функции для алгоритма в исследованиях.
+
+
+\begin{lstlisting}[label=code_syntax_HCDOHOT_CompareOfDataForMaxCountOfFitness,caption=Синтаксис]
+bool HCDOHOT_CompareOfDataForMaxCountOfFitness (HarrixClass_DataOfHarrixOptimizationTesting *Data1, HarrixClass_DataOfHarrixOptimizationTesting *Data2);
+bool HCDOHOT_CompareOfDataForMaxCountOfFitness (HarrixClass_DataOfHarrixOptimizationTesting *SeveralData, int N);
+bool HCDOHOT_CompareOfDataForMaxCountOfFitness (HarrixClass_OnlyDataOfHarrixOptimizationTesting *SeveralData, int N);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+Data1 --- первое исследование;
+
+Data2 --- второе исследование.
+
+\textbf{Входные параметры в функциях перегрузках:}
+
+SeveralData --- массив исследований;
+
+N --- количество исследований в массиве.
+
+\textbf{Возвращаемое значение:}
+
+true --- если исследуемый параметр алгоритмов одинаков.
+
+false --- если разные.
+
+
+\subsubsection{HCDOHOT\_CompareOfDataForNameAlgorithm}\label{HCDOHOT_CompareOfDataForNameAlgorithm}
+
+Проверяет равенство идентификаторов алгоритмов оптимизации: в данных содержится один и тот же алгоритм или же нет.
+
+
+\begin{lstlisting}[label=code_syntax_HCDOHOT_CompareOfDataForNameAlgorithm,caption=Синтаксис]
+bool HCDOHOT_CompareOfDataForNameAlgorithm (HarrixClass_DataOfHarrixOptimizationTesting *Data1, HarrixClass_DataOfHarrixOptimizationTesting *Data2);
+bool HCDOHOT_CompareOfDataForNameAlgorithm (HarrixClass_DataOfHarrixOptimizationTesting *SeveralData, int N);
+bool HCDOHOT_CompareOfDataForNameAlgorithm (HarrixClass_OnlyDataOfHarrixOptimizationTesting *SeveralData, int N);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+Data1 --- первое исследование;
+
+Data2 --- второе исследование.
+
+\textbf{Входные параметры в функциях перегрузках:}
+
+SeveralData --- массив исследований;
+
+N --- количество исследований в массиве.
+
+\textbf{Возвращаемое значение:}
+
+true --- если имена алгоритмов одинаковы.
+
+false --- если разные.
+
+
+\subsubsection{HCDOHOT\_CompareOfDataForNameTestFunction}\label{HCDOHOT_CompareOfDataForNameTestFunction}
+
+Проверяет равенство идентификаторов тестовых функций в исследованиях.
+
+
+\begin{lstlisting}[label=code_syntax_HCDOHOT_CompareOfDataForNameTestFunction,caption=Синтаксис]
+bool HCDOHOT_CompareOfDataForNameTestFunction (HarrixClass_DataOfHarrixOptimizationTesting *Data1, HarrixClass_DataOfHarrixOptimizationTesting *Data2);
+bool HCDOHOT_CompareOfDataForNameTestFunction (HarrixClass_DataOfHarrixOptimizationTesting *SeveralData, int N);
+bool HCDOHOT_CompareOfDataForNameTestFunction (HarrixClass_OnlyDataOfHarrixOptimizationTesting *SeveralData, int N);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+Data1 --- первое исследование;
+
+Data2 --- второе исследование.
+
+\textbf{Входные параметры в функциях перегрузках:}
+
+SeveralData --- массив исследований;
+
+N --- количество исследований в массиве.
+
+\textbf{Возвращаемое значение:}
+
+true --- если исследуемый параметр алгоритмов одинаков.
+
+false --- если разные.
+
+
+\subsubsection{HCDOHOT\_CompareOfDataForNumberOfExperiments}\label{HCDOHOT_CompareOfDataForNumberOfExperiments}
+
+Проверяет равенство количества комбинаций вариантов настроек в исследованиях.
+
+
+\begin{lstlisting}[label=code_syntax_HCDOHOT_CompareOfDataForNumberOfExperiments,caption=Синтаксис]
+bool HCDOHOT_CompareOfDataForNumberOfExperiments (HarrixClass_DataOfHarrixOptimizationTesting *Data1, HarrixClass_DataOfHarrixOptimizationTesting *Data2);
+bool HCDOHOT_CompareOfDataForNumberOfExperiments (HarrixClass_DataOfHarrixOptimizationTesting *SeveralData, int N);
+bool HCDOHOT_CompareOfDataForNumberOfExperiments (HarrixClass_OnlyDataOfHarrixOptimizationTesting *SeveralData, int N);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+Data1 --- первое исследование;
+
+Data2 --- второе исследование.
+
+\textbf{Входные параметры в функциях перегрузках:}
+
+SeveralData --- массив исследований;
+
+N --- количество исследований в массиве.
+
+\textbf{Возвращаемое значение:}
+
+true --- если исследуемый параметр алгоритмов одинаков.
+
+false --- если разные.
+
+
+\subsubsection{HCDOHOT\_CompareOfDataForNumberOfMeasuring}\label{HCDOHOT_CompareOfDataForNumberOfMeasuring}
+
+Проверяет равенство количества экспериментов для каждого набора параметров алгоритма в исследованиях.
+
+
+\begin{lstlisting}[label=code_syntax_HCDOHOT_CompareOfDataForNumberOfMeasuring,caption=Синтаксис]
+bool HCDOHOT_CompareOfDataForNumberOfMeasuring (HarrixClass_DataOfHarrixOptimizationTesting *Data1, HarrixClass_DataOfHarrixOptimizationTesting *Data2);
+bool HCDOHOT_CompareOfDataForNumberOfMeasuring (HarrixClass_DataOfHarrixOptimizationTesting *SeveralData, int N);
+bool HCDOHOT_CompareOfDataForNumberOfMeasuring (HarrixClass_OnlyDataOfHarrixOptimizationTesting *SeveralData, int N);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+Data1 --- первое исследование;
+
+Data2 --- второе исследование.
+
+\textbf{Входные параметры в функциях перегрузках:}
+
+SeveralData --- массив исследований;
+
+N --- количество исследований в массиве.
+
+\textbf{Возвращаемое значение:}
+
+true --- если исследуемый параметр алгоритмов одинаков.
+
+false --- если разные.
+
+
+\subsubsection{HCDOHOT\_CompareOfDataForNumberOfParameters}\label{HCDOHOT_CompareOfDataForNumberOfParameters}
+
+Проверяет равенство количества проверяемых параметров алгоритма оптимизации в исследованиях.
+
+
+\begin{lstlisting}[label=code_syntax_HCDOHOT_CompareOfDataForNumberOfParameters,caption=Синтаксис]
+bool HCDOHOT_CompareOfDataForNumberOfParameters (HarrixClass_DataOfHarrixOptimizationTesting *Data1, HarrixClass_DataOfHarrixOptimizationTesting *Data2);
+bool HCDOHOT_CompareOfDataForNumberOfParameters (HarrixClass_DataOfHarrixOptimizationTesting *SeveralData, int N);
+bool HCDOHOT_CompareOfDataForNumberOfParameters (HarrixClass_OnlyDataOfHarrixOptimizationTesting *SeveralData, int N);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+Data1 --- первое исследование;
+
+Data2 --- второе исследование.
+
+\textbf{Входные параметры в функциях перегрузках:}
+
+SeveralData --- массив исследований;
+
+N --- количество исследований в массиве.
+
+\textbf{Возвращаемое значение:}
+
+true --- если исследуемый параметр алгоритмов одинаков.
+
+false --- если разные.
+
+
+\subsubsection{HCDOHOT\_CompareOfDataForNumberOfRuns}\label{HCDOHOT_CompareOfDataForNumberOfRuns}
+
+Проверяет равенство количества прогонов, по которому делается усреднение для эксперимента в исследованиях.
+
+
+\begin{lstlisting}[label=code_syntax_HCDOHOT_CompareOfDataForNumberOfRuns,caption=Синтаксис]
+bool HCDOHOT_CompareOfDataForNumberOfRuns (HarrixClass_DataOfHarrixOptimizationTesting *Data1, HarrixClass_DataOfHarrixOptimizationTesting *Data2);
+bool HCDOHOT_CompareOfDataForNumberOfRuns (HarrixClass_DataOfHarrixOptimizationTesting *SeveralData, int N);
+bool HCDOHOT_CompareOfDataForNumberOfRuns (HarrixClass_OnlyDataOfHarrixOptimizationTesting *SeveralData, int N);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+Data1 --- первое исследование;
+
+Data2 --- второе исследование.
+
+\textbf{Входные параметры в функциях перегрузках:}
+
+SeveralData --- массив исследований;
+
+N --- количество исследований в массиве.
+
+\textbf{Возвращаемое значение:}
+
+true --- если исследуемый параметр алгоритмов одинаков.
+
+false --- если разные.
+
+
+\subsubsection{HCDOHOT\_CompareOfDataForVersion}\label{HCDOHOT_CompareOfDataForVersion}
+
+Проверяет равенство версий формата файла в исследованиях.
+
+
+\begin{lstlisting}[label=code_syntax_HCDOHOT_CompareOfDataForVersion,caption=Синтаксис]
+bool HCDOHOT_CompareOfDataForVersion (HarrixClass_DataOfHarrixOptimizationTesting *Data1, HarrixClass_DataOfHarrixOptimizationTesting *Data2);
+bool HCDOHOT_CompareOfDataForVersion (HarrixClass_DataOfHarrixOptimizationTesting *SeveralData, int N);
+bool HCDOHOT_CompareOfDataForVersion (HarrixClass_OnlyDataOfHarrixOptimizationTesting *SeveralData, int N);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+Data1 --- первое исследование;
+
+Data2 --- второе исследование.
+
+\textbf{Входные параметры в функциях перегрузках:}
+
+SeveralData --- массив исследований;
+
+N --- количество исследований в массиве.
+
+\textbf{Возвращаемое значение:}
+
+true --- если исследуемый параметр алгоритмов одинаков.
+
+false --- если разные.
+
+
+\subsection{Генерация отчетов}
+
+\subsubsection{HCDOHOT\_GeneratedAnalysisReportFromFile}\label{HCDOHOT_GeneratedAnalysisReportFromFile}
+
+Генерирует отчет-анализ Latex по алгоритму по файлу *.hdata.
+
+
+\begin{lstlisting}[label=code_syntax_HCDOHOT_GeneratedAnalysisReportFromFile,caption=Синтаксис]
+void HCDOHOT_GeneratedAnalysisReportFromFile(QString filename, QString pathForSave, QString pathForTempHtml);
+void HCDOHOT_GeneratedAnalysisReportFromFile(QString filename, QString pathForSave);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+filename --- путь к файлу, из которого считываем данные.
+
+pathForSave --- путь к папке, куда сохраняем Latex файлы.
+
+pathForTempHtml --- путь к папке куда сохраняем во время работы функции отчет в виде temp.html.
+
+\textbf{Возвращаемое значение:}
+
+Отсутствует.
+
+В папке сохранения должны быть находиться файлы names.tex, packages.tex, styles.tex из проекта https://github.com/Harrix/HarrixLaTeXDocumentTemplate. Для отчета в виде html берется проект: https://github.com/Harrix/HarrixHtmlForQWebView.
+
+
+\subsubsection{HCDOHOT\_GeneratedReportAboutAlgorithmFromDir}\label{HCDOHOT_GeneratedReportAboutAlgorithmFromDir}
+
+Генерирует отчет Latex по алгоритму по файлам *.hdata алгоритма, просматривая все файлы в папке. То, чтобы в папке были файлы только одного алгоритма, вы берете на себя.
+
+
+\begin{lstlisting}[label=code_syntax_HCDOHOT_GeneratedReportAboutAlgorithmFromDir,caption=Синтаксис]
+void HCDOHOT_GeneratedReportAboutAlgorithmFromDir(QString path, QString pathForSave, QString pathForTempHtml);
+void HCDOHOT_GeneratedReportAboutAlgorithmFromDir(QString path, QString pathForSave);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+path --- путь к папке, из которой считаем файлы.
+
+pathForSave --- путь к папке, куда сохраняем Latex файлы.
+
+pathForTempHtml --- путь к папке куда сохраняем во время работы функции отчет в виде temp.html.
+
+\textbf{Возвращаемое значение:}
+
+Отсутствует.
+
+В папке сохранения должны быть находиться файлы names.tex, packages.tex, styles.tex из проекта https://github.com/Harrix/HarrixLaTeXDocumentTemplate. Для отчета в виде html берется проект: https://github.com/Harrix/HarrixHtmlForQWebView.
+
+
+\subsubsection{HCDOHOT\_GeneratedSimpleReportFromFile}\label{HCDOHOT_GeneratedSimpleReportFromFile}
+
+Генерирует простой отчет Latex по алгоритму по файлу *.hdata.
+
+
+\begin{lstlisting}[label=code_syntax_HCDOHOT_GeneratedSimpleReportFromFile,caption=Синтаксис]
+void HCDOHOT_GeneratedSimpleReportFromFile(QString filename, QString pathForSave, QString pathForTempHtml);
+void HCDOHOT_GeneratedSimpleReportFromFile(QString filename, QString pathForSave);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+filename --- путь к файлу, из которого считываем данные.
+
+pathForSave --- путь к папке, куда сохраняем Latex файлы.
+
+pathForTempHtml --- путь к папке куда сохраняем во время работы функции отчет в виде temp.html.
+
+\textbf{Возвращаемое значение:}
+
+Отсутствует.
+
+В папке сохранения должны быть находиться файлы names.tex, packages.tex, styles.tex из проекта https://github.com/Harrix/HarrixLaTeXDocumentTemplate. Для отчета в виде html берется проект: https://github.com/Harrix/HarrixHtmlForQWebView.
+
+
+\subsection{Функции по работе с классом}
+
+\subsubsection{HCDOHOT\_NumberFilesInDir}\label{HCDOHOT_NumberFilesInDir}
+
+Подсчитывает число HarrixClass\_DataOfHarrixOptimizationTesting файлов в папке.
+
+
+\begin{lstlisting}[label=code_syntax_HCDOHOT_NumberFilesInDir,caption=Синтаксис]
+int HCDOHOT_NumberFilesInDir(QString path);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+path --- путь к папке, из которой считаем файлы.
+
+\textbf{Возвращаемое значение:}
+
+Число файлов HarrixClass\_DataOfHarrixOptimizationTesting файлов в папке.
+
+
+\subsubsection{HCDOHOT\_ReadFilesInDir}\label{HCDOHOT_ReadFilesInDir}
+
+Заполняет массив SeveralData данными из всех файлов *.hdata из папки.
+
+
+\begin{lstlisting}[label=code_syntax_HCDOHOT_ReadFilesInDir,caption=Синтаксис]
+int HCDOHOT_ReadFilesInDir(HarrixClass_DataOfHarrixOptimizationTesting *SeveralData, QString path, QString pathForTempHtml);
+int HCDOHOT_ReadFilesInDir(HarrixClass_DataOfHarrixOptimizationTesting *SeveralData, QString path);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+SeveralData --- массив, в который записываем данные.
+
+path --- путь к папке, из которой считаем файлы.
+
+pathForTempHtml --- путь к папке куда сохраняем во время работы функции отчет в виде temp.html.
+
+\textbf{Возвращаемое значение:}
+
+Число файлов HarrixClass\_DataOfHarrixOptimizationTesting файлов в папке.
+
+\textbf{Примечание:}
+
+Подсчитать число файлов в папке до вызова этой функции можно функцией HCDOHOT\_NumberFilesInDir.
+
+
+
+\subsubsection{HCDOHOT\_ReadFilesOnlyDataInDir}\label{HCDOHOT_ReadFilesOnlyDataInDir}
+
+Заполняет массив SeveralData данными (только исследования) из всех файлов *.hdata из папки.
+
+
+\begin{lstlisting}[label=code_syntax_HCDOHOT_ReadFilesOnlyDataInDir,caption=Синтаксис]
+int HCDOHOT_ReadFilesOnlyDataInDir(HarrixClass_OnlyDataOfHarrixOptimizationTesting *SeveralData, QString path, QString pathForTempHtml);
+int HCDOHOT_ReadFilesOnlyDataInDir(HarrixClass_OnlyDataOfHarrixOptimizationTesting *SeveralData, QString path);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+SeveralData --- массив, в который записываем данные.
+
+path --- путь к папке, из которой считаем файлы.
+
+pathForTempHtml --- путь к папке куда сохраняем во время работы функции отчет в виде temp.html.
+
+\textbf{Возвращаемое значение:}
+
+
+Число файлов HarrixClass\_DataOfHarrixOptimizationTesting файлов в папке.
+
+\textbf{Примечание:}
+
+Подсчитать число файлов в папке до вызова этой функции можно функцией HCDOHOT\_NumberFilesInDir.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{document}

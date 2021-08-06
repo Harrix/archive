@@ -1,0 +1,2 @@
+HarrixClass_DataOfHarrixOptimizationTesting(QString filename);
+HarrixClass_DataOfHarrixOptimizationTesting();

@@ -1,0 +1,1686 @@
+\documentclass[a4paper,12pt]{article}
+
+\input{packages}
+\input{styles}
+
+\title{Har\-rix\-Class\_Da\-ta\-Of\-Har\-rix\-Op\-ti\-mi\-za\-ti\-on\-Test\-ing - Har\-rix\-Class\_Da\-ta\-Of\-Har\-rix\-Op\-ti\-mi\-za\-ti\-on\-Test\-ing v.1.27}
+\author{А.\,Б. Сергиенко}
+\date{\today}
+
+
+\begin{document}
+
+\input{names}
+
+\maketitle
+
+\begin{abstract}
+Класс HarrixClass\_DataOfHarrixOptimizationTesting для считывания информации формата данных Harrix Optimization Testing на C++ для Qt. Рассматривается HarrixClass\_DataOfHarrixOptimizationTesting.cpp.
+\end{abstract}
+
+\tableofcontents
+
+\newpage
+
+\section{Введение}
+
+Класс HarrixClass\_DataOfHarrixOptimizationTesting для считывания информации формата данных Harrix Optimization Testing на C++ для Qt.
+
+Последнюю версию документа можно найти по адресу:
+
+\href{https://github.com/Harrix/HarrixClass\_DataOfHarrixOptimizationTesting}{https://github.com/Harrix/HarrixClass\_DataOfHarrixOptimizationTesting}
+
+Об установке библиотеки можно прочитать тут:
+
+\href{http://blog.harrix.org/?p=992}{http://blog.harrix.org/?p=992}
+
+С автором можно связаться по адресу \href{mailto:sergienkoanton@mail.ru}{sergienkoanton@mail.ru} или  \href{http://vk.com/harrix}{http://vk.com/harrix}.
+
+Сайт автора, где публикуются последние новости: \href{http://blog.harrix.org/}{http://blog.harrix.org/}, а проекты располагаются по адресу \href{http://harrix.org/}{http://harrix.org/}.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% ВСТАВЛЯТЬ НИЖЕ
+\newpage
+\section{Список функций}\label{section_listfunctions}
+\textbf{\_Конструкторы и деструкторы}
+\begin{enumerate}
+
+\item \textbf{\hyperref[HarrixClass_DataOfHarrixOptimizationTesting]{HarrixClass\_DataOfHarrixOptimizationTesting}} --- Конструктор. Функция считывает данные о тестировании алгоритма оптимизации из файла формата HarrixOptimizationTesting. Во второй реализации это конструктор., который создает пустой экземпляр.
+
+\item \textbf{\hyperref[tildaHarrixClass_DataOfHarrixOptimizationTesting]{$\sim$HarrixClass\_DataOfHarrixOptimizationTesting}} --- Деструктор класса.
+
+\end{enumerate}
+
+\textbf{Возвращение HTML данных из класса}
+\begin{enumerate}
+
+\item \textbf{\hyperref[getHtml]{getHtml}} --- Получение текста переменной Html. Это итоговый Html документ. Помните, что это не полноценный Html код. Его нужно применять в виде temp.html для макета:      https://github.com/Harrix/QtHarrixLibraryForQWebView.
+
+\item \textbf{\hyperref[getHtmlMessageOfError]{getHtmlMessageOfError}} --- Получение текста переменной HtmlMessageOfError. Это часть html документа в виде кода о сообщениях ошибок. Помните, что это не полноценный Html код. Его нужно применять в виде temp.html для макета: https://github.com/Harrix/QtHarrixLibraryForQWebView.
+
+\item \textbf{\hyperref[getHtmlReport]{getHtmlReport}} --- Получение текста переменной HtmlReport. Это часть html документа в виде отчета о проделанной работе. Помните, что это не полноценный Html код. Его нужно применять в виде temp.html для макета: https://github.com/Harrix/QtHarrixLibraryForQWebView.
+
+\end{enumerate}
+
+\textbf{Возвращение LaTeX данных из класса}
+\begin{enumerate}
+
+\item \textbf{\hyperref[getFullLatex]{getFullLatex}} --- Получение текста переменной Latex в полном составе с началом и концовкой в Latex файле. Здесь собран полный файл анализа данных из считываемого xml файла. Это полноценный Latex код. Его нужно применять с файлами из макета: https://github.com/Harrix/Harrix-Document-Template-LaTeX.
+
+\item \textbf{\hyperref[getFullLatexAboutParameters]{getFullLatexAboutParameters}} --- Получение текста переменной LatexAboutParameters --- отображение данных о обнаруженных параметрах алгоритма и какие они бывают с началом и концовкой в Latex файле.
+
+\item \textbf{\hyperref[getFullLatexAnalysis]{getFullLatexAnalysis}} --- Получение текста переменной LatexAnalysis --- отображение данных первоначального анализа данных.
+
+\item \textbf{\hyperref[getFullLatexInfo]{getFullLatexInfo}} --- Получение текста переменной LatexInfo --- отображение информации о исследовании с началом и концовкой в Latex файле.
+
+\item \textbf{\hyperref[getFullLatexTable]{getFullLatexTable}} --- Получение текста переменной LatexTable в полном составе с началом и концовкой в Latex файле.
+
+\item \textbf{\hyperref[getFullLatexTableEx]{getFullLatexTableEx}} --- Получение текста переменной LatexTableEx --- отображение сырых данных таблицы данных о ошибке Ex с началом и концовкой в Latex файле.
+
+\item \textbf{\hyperref[getFullLatexTableEy]{getFullLatexTableEy}} --- Получение текста переменной LatexTableEy --- отображение сырых данных таблицы данных о ошибке Ey с началом и концовкой в Latex файле.
+
+\item \textbf{\hyperref[getFullLatexTableR]{getFullLatexTableR}} --- Получение текста переменной LatexTableR --- отображение сырых данных по надежности в виде полной таблицы с началом и концовкой в Latex файле.
+
+\item \textbf{\hyperref[getLatex]{getLatex}} --- Получение текста переменной Latex. Здесь собран полный файл анализа данных из считываемого xml файла. Помните, что это не полноценный Latex код. Его нужно применять внутри файла из макета: https://github.com/Harrix/Harrix-Document-Template-LaTeX.
+
+\item \textbf{\hyperref[getLatexAboutParameters]{getLatexAboutParameters}} --- Получение текста переменной LatexAboutParameters --- отображение данных о обнаруженных параметрах алгоритма и какие они бывают.
+
+\item \textbf{\hyperref[getLatexAnalysis]{getLatexAnalysis}} --- Получение текста переменной LatexAnalysis --- отображение первоначального анализа данных.
+
+\item \textbf{\hyperref[getLatexInfo]{getLatexInfo}} --- Получение текста переменной LatexInfo --- отображение информации о исследовании.
+
+\item \textbf{\hyperref[getLatexTable]{getLatexTable}} --- Получение текста переменной LatexTable.
+
+\item \textbf{\hyperref[getLatexTableEx]{getLatexTableEx}} --- Получение текста переменной LatexTableEx --- отображение сырых данных таблицы данных о ошибке Ex.
+
+\item \textbf{\hyperref[getLatexTableEy]{getLatexTableEy}} --- Получение текста переменной LatexTableEy --- отображение сырых данных ошибки по значениям целевой функции в виде полной таблицы.
+
+\item \textbf{\hyperref[getLatexTableR]{getLatexTableR}} --- Получение текста переменной LatexTableR --- отображение сырых данных по надежности в виде полной таблицы.
+
+\end{enumerate}
+
+\textbf{Возвращение переменных из класса}
+\begin{enumerate}
+
+\item \textbf{\hyperref[getAuthor]{getAuthor}} --- Получение текста переменной XML\_Author --- Автор документа.
+
+\item \textbf{\hyperref[getCheckAllCombinations]{getCheckAllCombinations}} --- Получение текста переменной  XML\_All\_Combinations --- Все ли комбинации вариантов настроек просмотрены: 0 или 1.
+
+\item \textbf{\hyperref[getData]{getData}} --- Возвращает содержимое исследований в виде экземпляра класса.
+
+\item \textbf{\hyperref[getDate]{getDate}} --- Получение текста переменной  XML\_Date --- Дата создания документа.
+
+\item \textbf{\hyperref[getDimensionTestFunction]{getDimensionTestFunction}} --- Получение текста переменной  XML\_DimensionTestFunction --- Размерность тестовой задачи.
+
+\item \textbf{\hyperref[getEmail]{getEmail}} --- Получение текста переменной  XML\_Email --- Email автора, чтобы можно было с ним связаться
+
+\item \textbf{\hyperref[getErrorEx]{getErrorEx}} --- Получение значения ошибки Ex.
+
+\item \textbf{\hyperref[getErrorEy]{getErrorEy}} --- Получение значения ошибки Ey.
+
+\item \textbf{\hyperref[getErrorR]{getErrorR}} --- Получение значения надежности R.
+
+\item \textbf{\hyperref[getFormat]{getFormat}} --- Получение переменной XML\_Format, то есть возвращает название формата документа.
+
+\item \textbf{\hyperref[getFullNameAlgorithm]{getFullNameAlgorithm}} --- Получение текста переменной  XML\_Full\_Name\_Algorithm --- Полное название алгоритма оптимизации.
+
+\item \textbf{\hyperref[getFullNameTestFunction]{getFullNameTestFunction}} --- Получение текста переменной  XML\_Full\_Name\_Test\_Function --- Полное название тестовой функции.
+
+\item \textbf{\hyperref[getLink]{getLink}} --- Получение переменной XML\_Link, то есть возвращает ссылку на описание формата файла.
+
+\item \textbf{\hyperref[getLinkAlgorithm]{getLinkAlgorithm}} --- Получение текста переменной  XML\_Link\_Algorithm --- Ссылка на описание алгоритма оптимизации.
+
+\item \textbf{\hyperref[getLinkTestFunction]{getLinkTestFunction}} --- Получение текста переменной  XML\_Link\_Test\_Function --- Ссылка на описание тестовой функции.
+
+\item \textbf{\hyperref[getMaxCountOfFitness]{getMaxCountOfFitness}} --- Получение текста переменной  Max\_Count\_Of\_Fitness --- Максимальное допустимое число вычислений целевой функции для алгоритма.
+
+\item \textbf{\hyperref[getMeanEx]{getMeanEx}} --- Получение среднего значения ошибки Ex по измерениям для настройки (сколько точек было по столько и усредняем).
+
+\item \textbf{\hyperref[getMeanEy]{getMeanEy}} --- Получение среднего значения ошибки Ey по измерениям для настройки (сколько точек было по столько и усредняем).
+
+\item \textbf{\hyperref[getMeanR]{getMeanR}} --- Получение среднего значения надежности R по измерениям для настройки (сколько точек было по столько и усредняем).
+
+\item \textbf{\hyperref[getNameAlgorithm]{getNameAlgorithm}} --- Получение текста переменной  XML\_Name\_Algorithm --- Название алгоритма оптимизации.
+
+\item \textbf{\hyperref[getNameParameter]{getNameParameter}} --- Получение значения параметра настройки какой-то в виде полного наименования.
+
+\item \textbf{\hyperref[getNameTestFunction]{getNameTestFunction}} --- Получение текста переменной  XML\_Name\_Test\_Function --- Название тестовой функции.
+
+\item \textbf{\hyperref[getNumberOfExperiments]{getNumberOfExperiments}} --- Получение текста переменной  XML\_Number\_Of\_Experiments --- Количество комбинаций вариантов настроек.
+
+\item \textbf{\hyperref[getNumberOfMeasuring]{getNumberOfMeasuring}} --- Получение текста переменной  XML\_Number\_Of\_Measuring --- Размерность тестовой задачи (длина хромосомы решения).
+
+\item \textbf{\hyperref[getNumberOfOption]{getNumberOfOption}} --- Получение номера параметра алгоритма по его имени.
+
+\item \textbf{\hyperref[getNumberOfParameters]{getNumberOfParameters}} --- Получение текста переменной  XML\_Number\_Of\_Parameters --- Количество проверяемых параметров алгоритма оптимизации
+
+\item \textbf{\hyperref[getNumberOfRuns]{getNumberOfRuns}} --- Получение текста переменной  XML\_Number\_Of\_Runs --- Количество прогонов, по которому делается усреднение для эксперимента.
+
+\item \textbf{\hyperref[getParameter]{getParameter}} --- Получение значения параметра настройки какой-то.
+
+\item \textbf{\hyperref[getSuccessReading]{getSuccessReading}} --- Получение значения переменной SuccessReading о удачности или не удачности считывания файла.
+
+\item \textbf{\hyperref[getVarianceOfEx]{getVarianceOfEx}} --- Получение дисперсии значения ошибки Ex по измерениям для настройки (сколько точек было по столько и усредняем).
+
+\item \textbf{\hyperref[getVarianceOfEy]{getVarianceOfEy}} --- Получение дисперсии значения ошибки Ey по измерениям для настройки (сколько точек было по столько и усредняем).
+
+\item \textbf{\hyperref[getVarianceOfR]{getVarianceOfR}} --- Получение дисперсии значения надежности R по измерениям для настройки (сколько точек было по столько и усредняем).
+
+\item \textbf{\hyperref[getVersion]{getVersion}} --- Получение переменной XML\_Version, то есть возвращает версию формата документа.
+
+\end{enumerate}
+
+\textbf{Операторы}
+\begin{enumerate}
+
+\item \textbf{\hyperref[operator =]{operator =}} --- Оператор присваивания.
+
+\end{enumerate}
+
+\textbf{Специализированные функции}
+\begin{enumerate}
+
+\item \textbf{\hyperref[makingLatexTable2D]{makingLatexTable2D}} --- Создает текст LaTeX в виде таблицы 2D для всех экспериментов для отображения какой-нибудь информации.
+
+\end{enumerate}
+
+\textbf{Внутренние функции}
+\begin{enumerate}
+
+\item \textbf{\hyperref[checkXmlLeafTags]{checkXmlLeafTags}} --- Проверяет наличие тэгов и правильное их выполнение. Внутренняя функция. Учитывает все "листовые" тэги кроме тэгов данных.
+
+\item \textbf{\hyperref[getLatexBegin]{getLatexBegin}} --- Внутренняя функция. Возвращает начало для полноценного Latex файла.
+
+\item \textbf{\hyperref[getLatexEnd]{getLatexEnd}} --- Внутренняя функция. Возвращает концовку для полноценного Latex файла.
+
+\item \textbf{\hyperref[initializationOfVariables]{initializationOfVariables}} --- Обнуление переменных. Внутренняя функция.
+
+\item \textbf{\hyperref[makingListOfVectorParameterOptions]{makingListOfVectorParameterOptions}} --- Заполняет список вектора названий вариантов параметров алгоритма оптимизации.
+
+\item \textbf{\hyperref[memoryAllocation]{memoryAllocation}} --- Выделяет память под необходимые массивы. Внутренняя функция.
+
+\item \textbf{\hyperref[memoryDeallocation]{memoryDeallocation}} --- Удаляет память из-под массивов. Внутренняя функция.
+
+\item \textbf{\hyperref[readXml]{readXml}} --- Считывание XML файла и осуществление всех остальных анализов и др.
+
+\item \textbf{\hyperref[readXmlDataTags]{readXmlDataTags}} --- Считывает и проверяет тэги данных. Внутренняя функция. Учитывает все "листовые" тэги кроме тэгов данных.
+
+\item \textbf{\hyperref[readXmlLeafTag]{readXmlLeafTag}} --- Считывает и проверяет тэг, который должен являться "листом", то есть самым глубоким. Внутренняя функция. Учитывает все "листовые" тэги кроме тэгов данных.
+
+\item \textbf{\hyperref[readXmlTreeTag]{readXmlTreeTag}} --- Считывает и проверяет тэг, который содержит внутри себя другие тэги. Внутренняя функция.
+
+\item \textbf{\hyperref[zeroArray]{zeroArray}} --- Обнуляет массивы, в котрые записывается информация о данных из файла. Внутренняя функция.
+
+\end{enumerate}
+
+\textbf{Создание содержимого отчетов LaTeX и HTML}
+\begin{enumerate}
+
+\item \textbf{\hyperref[makingHtmlReport]{makingHtmlReport}} --- Создает текст Html для отображения отчета о считывании XML файла.
+
+\item \textbf{\hyperref[makingLatexAboutParameters]{makingLatexAboutParameters}} --- Создает текст LaTeX для отображения данных о обнаруженных параметрах алгоритма и какие они бывают.
+
+\item \textbf{\hyperref[makingLatexAnalysis]{makingLatexAnalysis}} --- Создает текст LaTeX для отображения первоначального анализа данных.
+
+\item \textbf{\hyperref[makingLatexInfo]{makingLatexInfo}} --- Создает текст LaTeX для отображения информации о исследовании.
+
+\item \textbf{\hyperref[makingLatexListOfVectorParameterOptions]{makingLatexListOfVectorParameterOptions}} --- Создает текст LaTeX для отображения списка вектора названий вариантов параметров алгоритма оптимизации.
+
+\item \textbf{\hyperref[makingLatexListOfVectorParameterOptions2]{makingLatexListOfVectorParameterOptions2}} --- Создает текст LaTeX для отображения списка вектора названий вариантов параметров алгоритма оптимизации.
+
+\item \textbf{\hyperref[makingLatexTableEx]{makingLatexTableEx}} --- Создает текст LaTeX для отображения сырых данных ошибки по входным параметрам в виде полной таблицы.
+
+\item \textbf{\hyperref[makingLatexTableEy]{makingLatexTableEy}} --- Создает текст LaTeX для отображения сырых данных ошибки по значениям целевой функции в виде полной таблицы.
+
+\item \textbf{\hyperref[makingLatexTableR]{makingLatexTableR}} --- Создает текст LaTeX для отображения сырых данных по надежности в виде полной таблицы.
+
+\end{enumerate}
+
+\textbf{Функции анализа данных}
+\begin{enumerate}
+
+\item \textbf{\hyperref[makingAnalysis]{makingAnalysis}} --- Выполняет анализ считанных данных. Внутренняя функция.
+
+\end{enumerate}
+
+
+\newpage
+\section{Функции}
+\subsection{\_Конструкторы и деструкторы}
+
+\subsubsection{HarrixClass\_DataOfHarrixOptimizationTesting}\label{HarrixClass_DataOfHarrixOptimizationTesting}
+
+Конструктор. Функция считывает данные о тестировании алгоритма оптимизации из файла формата HarrixOptimizationTesting. Во второй реализации это конструктор., который создает пустой экземпляр.
+
+
+\begin{lstlisting}[label=code_syntax_HarrixClass_DataOfHarrixOptimizationTesting,caption=Синтаксис]
+HarrixClass_DataOfHarrixOptimizationTesting(QString filename);
+HarrixClass_DataOfHarrixOptimizationTesting();
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+filename --- полное имя считываемого файла.
+
+\textbf{Возвращаемое значение:}
+
+Отсутствует.
+
+
+\subsubsection{$\sim$HarrixClass\_DataOfHarrixOptimizationTesting}\label{tildaHarrixClass_DataOfHarrixOptimizationTesting}
+
+Деструктор класса.
+
+
+\begin{lstlisting}[label=code_syntax_tildaHarrixClass_DataOfHarrixOptimizationTesting,caption=Синтаксис]
+~HarrixClass_DataOfHarrixOptimizationTesting();
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+Отсутствуют.
+
+\textbf{Возвращаемое значение:}
+
+Отсутствует.
+
+
+\subsection{Возвращение HTML данных из класса}
+
+\subsubsection{getHtml}\label{getHtml}
+
+Получение текста переменной Html. Это итоговый Html документ. Помните, что это не полноценный Html код. Его нужно применять в виде temp.html для макета:      https://github.com/Harrix/QtHarrixLibraryForQWebView.
+
+
+\begin{lstlisting}[label=code_syntax_getHtml,caption=Синтаксис]
+QString getHtml();
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+Отсутствуют.
+
+\textbf{Возвращаемое значение:}
+
+Итоговый Html документ.
+
+
+\subsubsection{getHtmlMessageOfError}\label{getHtmlMessageOfError}
+
+Получение текста переменной HtmlMessageOfError. Это часть html документа в виде кода о сообщениях ошибок. Помните, что это не полноценный Html код. Его нужно применять в виде temp.html для макета: https://github.com/Harrix/QtHarrixLibraryForQWebView.
+
+
+\begin{lstlisting}[label=code_syntax_getHtmlMessageOfError,caption=Синтаксис]
+QString getHtmlMessageOfError();
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+Отсутствуют.
+
+\textbf{Возвращаемое значение:}
+
+Часть html документа в виде кода о сообщениях ошибок.
+
+
+\subsubsection{getHtmlReport}\label{getHtmlReport}
+
+Получение текста переменной HtmlReport. Это часть html документа в виде отчета о проделанной работе. Помните, что это не полноценный Html код. Его нужно применять в виде temp.html для макета: https://github.com/Harrix/QtHarrixLibraryForQWebView.
+
+
+\begin{lstlisting}[label=code_syntax_getHtmlReport,caption=Синтаксис]
+QString getHtmlReport();
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+Отсутствуют.
+
+\textbf{Возвращаемое значение:}
+
+Часть html документа в виде отчета о проделанной работе.
+
+
+\subsection{Возвращение LaTeX данных из класса}
+
+\subsubsection{getFullLatex}\label{getFullLatex}
+
+Получение текста переменной Latex в полном составе с началом и концовкой в Latex файле. Здесь собран полный файл анализа данных из считываемого xml файла. Это полноценный Latex код. Его нужно применять с файлами из макета: https://github.com/Harrix/Harrix-Document-Template-LaTeX.
+
+
+\begin{lstlisting}[label=code_syntax_getFullLatex,caption=Синтаксис]
+QString getFullLatex();
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+Отсутствуют.
+
+\textbf{Возвращаемое значение:}
+
+Полный файл анализа данных из считываемого xml файла.
+
+
+\subsubsection{getFullLatexAboutParameters}\label{getFullLatexAboutParameters}
+
+Получение текста переменной LatexAboutParameters --- отображение данных о обнаруженных параметрах алгоритма и какие они бывают с началом и концовкой в Latex файле.
+
+
+\begin{lstlisting}[label=code_syntax_getFullLatexAboutParameters,caption=Синтаксис]
+QString getFullLatexAboutParameters();
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+Отсутствуют.
+
+\textbf{Возвращаемое значение:}
+
+Полный переменной LatexAboutParameters --- отображение данных о обнаруженных параметрах алгоритма и какие они бывают с началом и концовкой в Latex файле.
+
+
+\subsubsection{getFullLatexAnalysis}\label{getFullLatexAnalysis}
+
+Получение текста переменной LatexAnalysis --- отображение данных первоначального анализа данных.
+
+
+\begin{lstlisting}[label=code_syntax_getFullLatexAnalysis,caption=Синтаксис]
+QString getFullLatexAnalysis();
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+Отсутствуют.
+
+\textbf{Возвращаемое значение:}
+
+Текст переменной LatexAnalysis --- отображение данных первоначального анализа данных.
+
+
+\subsubsection{getFullLatexInfo}\label{getFullLatexInfo}
+
+Получение текста переменной LatexInfo --- отображение информации о исследовании с началом и концовкой в Latex файле.
+
+
+\begin{lstlisting}[label=code_syntax_getFullLatexInfo,caption=Синтаксис]
+QString getFullLatexInfo();
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+Отсутствуют.
+
+\textbf{Возвращаемое значение:}
+
+Текст переменной LatexInfo --- отображение информации о исследовании с началом и концовкой в Latex файле.
+
+
+\subsubsection{getFullLatexTable}\label{getFullLatexTable}
+
+Получение текста переменной LatexTable в полном составе с началом и концовкой в Latex файле.
+
+
+\begin{lstlisting}[label=code_syntax_getFullLatexTable,caption=Синтаксис]
+QString getFullLatexTable();
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+Отсутствуют.
+
+\textbf{Возвращаемое значение:}
+
+Полный файл первичных данных из считываемого xml файла (без анализа).
+
+
+\subsubsection{getFullLatexTableEx}\label{getFullLatexTableEx}
+
+Получение текста переменной LatexTableEx --- отображение сырых данных таблицы данных о ошибке Ex с началом и концовкой в Latex файле.
+
+
+\begin{lstlisting}[label=code_syntax_getFullLatexTableEx,caption=Синтаксис]
+QString getFullLatexTableEx();
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+Отсутствуют.
+
+\textbf{Возвращаемое значение:}
+
+Текст переменной LatexTableEx --- отображение сырых данных таблицы данных о ошибке Ex с началом и концовкой в Latex файле.
+
+
+\subsubsection{getFullLatexTableEy}\label{getFullLatexTableEy}
+
+Получение текста переменной LatexTableEy --- отображение сырых данных таблицы данных о ошибке Ey с началом и концовкой в Latex файле.
+
+
+\begin{lstlisting}[label=code_syntax_getFullLatexTableEy,caption=Синтаксис]
+QString getFullLatexTableEy();
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+Отсутствуют.
+
+\textbf{Возвращаемое значение:}
+
+Текст переменной LatexTableEy --- отображение сырых данных таблицы данных о ошибке Ey с началом и концовкой в Latex файле.
+
+
+\subsubsection{getFullLatexTableR}\label{getFullLatexTableR}
+
+Получение текста переменной LatexTableR --- отображение сырых данных по надежности в виде полной таблицы с началом и концовкой в Latex файле.
+
+
+\begin{lstlisting}[label=code_syntax_getFullLatexTableR,caption=Синтаксис]
+QString getFullLatexTableR();
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+Отсутствуют.
+
+\textbf{Возвращаемое значение:}
+
+Текст переменной LatexTableR --- отображение сырых данных по надежности в виде полной таблицы с началом и концовкой в Latex файле.
+
+
+\subsubsection{getLatex}\label{getLatex}
+
+Получение текста переменной Latex. Здесь собран полный файл анализа данных из считываемого xml файла. Помните, что это не полноценный Latex код. Его нужно применять внутри файла из макета: https://github.com/Harrix/Harrix-Document-Template-LaTeX.
+
+
+\begin{lstlisting}[label=code_syntax_getLatex,caption=Синтаксис]
+QString getLatex();
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+Отсутствуют.
+
+\textbf{Возвращаемое значение:}
+
+Полный файл анализа данных из считываемого xml файла.
+
+
+\subsubsection{getLatexAboutParameters}\label{getLatexAboutParameters}
+
+Получение текста переменной LatexAboutParameters --- отображение данных о обнаруженных параметрах алгоритма и какие они бывают.
+
+
+\begin{lstlisting}[label=code_syntax_getLatexAboutParameters,caption=Синтаксис]
+QString getLatexAboutParameters();
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+Отсутствуют.
+
+\textbf{Возвращаемое значение:}
+
+Текст переменной LatexAboutParameters --- отображение данных о обнаруженных параметрах алгоритма и какие они бывают.
+
+
+\subsubsection{getLatexAnalysis}\label{getLatexAnalysis}
+
+Получение текста переменной LatexAnalysis --- отображение первоначального анализа данных.
+
+
+\begin{lstlisting}[label=code_syntax_getLatexAnalysis,caption=Синтаксис]
+QString getLatexAnalysis();
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+Отсутствуют.
+
+\textbf{Возвращаемое значение:}
+
+Полный переменной LatexAnalysis --- отображение первоначального анализа данных.
+
+
+\subsubsection{getLatexInfo}\label{getLatexInfo}
+
+Получение текста переменной LatexInfo --- отображение информации о исследовании.
+
+
+\begin{lstlisting}[label=code_syntax_getLatexInfo,caption=Синтаксис]
+QString getLatexInfo();
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+Отсутствуют.
+
+\textbf{Возвращаемое значение:}
+
+Текст переменной LatexInfo --- отображение информации о исследовании.
+
+
+\subsubsection{getLatexTable}\label{getLatexTable}
+
+Получение текста переменной LatexTable.
+
+
+\begin{lstlisting}[label=code_syntax_getLatexTable,caption=Синтаксис]
+QString getLatexTable();
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+Отсутствуют.
+
+\textbf{Возвращаемое значение:}
+
+Полный файл первичных данных из считываемого xml файла (без анализа).
+
+
+\subsubsection{getLatexTableEx}\label{getLatexTableEx}
+
+Получение текста переменной LatexTableEx --- отображение сырых данных таблицы данных о ошибке Ex.
+
+
+\begin{lstlisting}[label=code_syntax_getLatexTableEx,caption=Синтаксис]
+QString getLatexTableEx();
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+Отсутствуют.
+
+\textbf{Возвращаемое значение:}
+
+Текст переменной LatexTableEx --- отображение сырых данных таблицы данных о ошибке Ex.
+
+
+\subsubsection{getLatexTableEy}\label{getLatexTableEy}
+
+Получение текста переменной LatexTableEy --- отображение сырых данных ошибки по значениям целевой функции в виде полной таблицы.
+
+
+\begin{lstlisting}[label=code_syntax_getLatexTableEy,caption=Синтаксис]
+QString getLatexTableEy();
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+Отсутствуют.
+
+\textbf{Возвращаемое значение:}
+
+Текст переменной LatexTableEy --- отображение сырых данных таблицы данных о ошибке Ey.
+
+
+\subsubsection{getLatexTableR}\label{getLatexTableR}
+
+Получение текста переменной LatexTableR --- отображение сырых данных по надежности в виде полной таблицы.
+
+
+\begin{lstlisting}[label=code_syntax_getLatexTableR,caption=Синтаксис]
+QString getLatexTableR();
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+Отсутствуют.
+
+\textbf{Возвращаемое значение:}
+
+Текст переменной LatexTableR --- отображение сырых данных по надежности в виде полной таблицы.
+
+
+\subsection{Возвращение переменных из класса}
+
+\subsubsection{getAuthor}\label{getAuthor}
+
+Получение текста переменной XML\_Author --- Автор документа.
+
+
+\begin{lstlisting}[label=code_syntax_getAuthor,caption=Синтаксис]
+QString getAuthor();
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+Отсутствуют.
+
+\textbf{Возвращаемое значение:}
+
+Значение переменной из описания.
+
+
+\subsubsection{getCheckAllCombinations}\label{getCheckAllCombinations}
+
+Получение текста переменной  XML\_All\_Combinations --- Все ли комбинации вариантов настроек просмотрены: 0 или 1.
+
+
+\begin{lstlisting}[label=code_syntax_getCheckAllCombinations,caption=Синтаксис]
+bool getCheckAllCombinations();
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+Отсутствуют.
+
+\textbf{Возвращаемое значение:}
+
+Значение переменной из описания.
+
+
+\subsubsection{getData}\label{getData}
+
+Возвращает содержимое исследований в виде экземпляра класса.
+
+
+\begin{lstlisting}[label=code_syntax_getData,caption=Синтаксис]
+HarrixClass_OnlyDataOfHarrixOptimizationTesting& getData();
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+Отсутствуют.
+
+\textbf{Возвращаемое значение:}
+
+Содержимое исследований в виде экземпляра класса.
+
+
+\subsubsection{getDate}\label{getDate}
+
+Получение текста переменной  XML\_Date --- Дата создания документа.
+
+
+\begin{lstlisting}[label=code_syntax_getDate,caption=Синтаксис]
+QString getDate();
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+Отсутствуют.
+
+\textbf{Возвращаемое значение:}
+
+Значение переменной из описания.
+
+
+\subsubsection{getDimensionTestFunction}\label{getDimensionTestFunction}
+
+Получение текста переменной  XML\_DimensionTestFunction --- Размерность тестовой задачи.
+
+
+\begin{lstlisting}[label=code_syntax_getDimensionTestFunction,caption=Синтаксис]
+qint64 getDimensionTestFunction();
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+Отсутствуют.
+
+\textbf{Возвращаемое значение:}
+
+Значение переменной из описания.
+
+
+\subsubsection{getEmail}\label{getEmail}
+
+Получение текста переменной  XML\_Email --- Email автора, чтобы можно было с ним связаться
+
+
+\begin{lstlisting}[label=code_syntax_getEmail,caption=Синтаксис]
+QString getEmail();
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+Отсутствуют.
+
+\textbf{Возвращаемое значение:}
+
+Значение переменной из описания.
+
+
+\subsubsection{getErrorEx}\label{getErrorEx}
+
+Получение значения ошибки Ex.
+
+
+\begin{lstlisting}[label=code_syntax_getErrorEx,caption=Синтаксис]
+double getErrorEx(int Number_Of_Experiment, int Number_Of_Measuring);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+Number\_Of\_Experiment --- номер комбинации вариантов настроек;
+ 
+    Number\_Of\_Measuring --- номер измерения варианта настроек.
+
+\textbf{Возвращаемое значение:}
+
+Значения ошибки Ex.
+
+
+\subsubsection{getErrorEy}\label{getErrorEy}
+
+Получение значения ошибки Ey.
+
+
+\begin{lstlisting}[label=code_syntax_getErrorEy,caption=Синтаксис]
+double getErrorEy(int Number_Of_Experiment, int Number_Of_Measuring);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+Number\_Of\_Experiment --- номер комбинации вариантов настроек;
+ 
+    Number\_Of\_Measuring --- номер измерения варианта настроек.
+
+\textbf{Возвращаемое значение:}
+
+Значения ошибки Ey.
+
+
+\subsubsection{getErrorR}\label{getErrorR}
+
+Получение значения надежности R.
+
+
+\begin{lstlisting}[label=code_syntax_getErrorR,caption=Синтаксис]
+double getErrorR(int Number_Of_Experiment, int Number_Of_Measuring);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+Number\_Of\_Experiment --- номер комбинации вариантов настроек;
+ 
+    Number\_Of\_Measuring --- номер измерения варианта настроек.
+
+\textbf{Возвращаемое значение:}
+
+Значения надежности R.
+
+
+\subsubsection{getFormat}\label{getFormat}
+
+Получение переменной XML\_Format, то есть возвращает название формата документа.
+
+
+\begin{lstlisting}[label=code_syntax_getFormat,caption=Синтаксис]
+QString getFormat();
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+Отсутствует.
+
+\textbf{Возвращаемое значение:}
+
+Если документ без ошибок в описании формата, то всегда должно возвращаться "Harrix Optimization Testing".
+
+
+\subsubsection{getFullNameAlgorithm}\label{getFullNameAlgorithm}
+
+Получение текста переменной  XML\_Full\_Name\_Algorithm --- Полное название алгоритма оптимизации.
+
+
+\begin{lstlisting}[label=code_syntax_getFullNameAlgorithm,caption=Синтаксис]
+QString getFullNameAlgorithm();
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+Отсутствуют.
+
+\textbf{Возвращаемое значение:}
+
+Значение переменной из описания.
+
+
+\subsubsection{getFullNameTestFunction}\label{getFullNameTestFunction}
+
+Получение текста переменной  XML\_Full\_Name\_Test\_Function --- Полное название тестовой функции.
+
+
+\begin{lstlisting}[label=code_syntax_getFullNameTestFunction,caption=Синтаксис]
+QString getFullNameTestFunction();
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+Отсутствуют.
+
+\textbf{Возвращаемое значение:}
+
+Значение переменной из описания.
+
+
+\subsubsection{getLink}\label{getLink}
+
+Получение переменной XML\_Link, то есть возвращает ссылку на описание формата файла.
+
+
+\begin{lstlisting}[label=code_syntax_getLink,caption=Синтаксис]
+QString getLink();
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+Отсутствует.
+
+\textbf{Возвращаемое значение:}
+
+Если документ без ошибок в описании формата, то всегда должно возвращаться "https://github.com/Harrix/HarrixFileFormats".
+
+
+\subsubsection{getLinkAlgorithm}\label{getLinkAlgorithm}
+
+Получение текста переменной  XML\_Link\_Algorithm --- Ссылка на описание алгоритма оптимизации.
+
+
+\begin{lstlisting}[label=code_syntax_getLinkAlgorithm,caption=Синтаксис]
+QString getLinkAlgorithm();
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+Отсутствуют.
+
+\textbf{Возвращаемое значение:}
+
+Значение переменной из описания.
+
+
+\subsubsection{getLinkTestFunction}\label{getLinkTestFunction}
+
+Получение текста переменной  XML\_Link\_Test\_Function --- Ссылка на описание тестовой функции.
+
+
+\begin{lstlisting}[label=code_syntax_getLinkTestFunction,caption=Синтаксис]
+QString getLinkTestFunction();
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+Отсутствуют.
+
+\textbf{Возвращаемое значение:}
+
+Значение переменной из описания.
+
+
+\subsubsection{getMaxCountOfFitness}\label{getMaxCountOfFitness}
+
+Получение текста переменной  Max\_Count\_Of\_Fitness --- Максимальное допустимое число вычислений целевой функции для алгоритма.
+
+
+\begin{lstlisting}[label=code_syntax_getMaxCountOfFitness,caption=Синтаксис]
+qint64 getMaxCountOfFitness();
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+Отсутствуют.
+
+\textbf{Возвращаемое значение:}
+
+Значение переменной из описания.
+
+
+\subsubsection{getMeanEx}\label{getMeanEx}
+
+Получение среднего значения ошибки Ex по измерениям для настройки (сколько точек было по столько и усредняем).
+
+
+\begin{lstlisting}[label=code_syntax_getMeanEx,caption=Синтаксис]
+double getMeanEx(int Number_Of_Experiment);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+Number\_Of\_Experiment --- номер комбинации вариантов настроек.
+
+\textbf{Возвращаемое значение:}
+
+Значения среднего значения Ex.
+
+
+\subsubsection{getMeanEy}\label{getMeanEy}
+
+Получение среднего значения ошибки Ey по измерениям для настройки (сколько точек было по столько и усредняем).
+
+
+\begin{lstlisting}[label=code_syntax_getMeanEy,caption=Синтаксис]
+double getMeanEy(int Number_Of_Experiment);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+Number\_Of\_Experiment --- номер комбинации вариантов настроек.
+
+\textbf{Возвращаемое значение:}
+
+Значения среднего значения Ey.
+
+
+\subsubsection{getMeanR}\label{getMeanR}
+
+Получение среднего значения надежности R по измерениям для настройки (сколько точек было по столько и усредняем).
+
+
+\begin{lstlisting}[label=code_syntax_getMeanR,caption=Синтаксис]
+double getMeanR(int Number_Of_Experiment);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+Number\_Of\_Experiment --- номер комбинации вариантов настроек.
+
+\textbf{Возвращаемое значение:}
+
+Значения среднего значения R.
+
+
+\subsubsection{getNameAlgorithm}\label{getNameAlgorithm}
+
+Получение текста переменной  XML\_Name\_Algorithm --- Название алгоритма оптимизации.
+
+
+\begin{lstlisting}[label=code_syntax_getNameAlgorithm,caption=Синтаксис]
+QString getNameAlgorithm();
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+Отсутствуют.
+
+\textbf{Возвращаемое значение:}
+
+Значение переменной из описания.
+
+
+\subsubsection{getNameParameter}\label{getNameParameter}
+
+Получение значения параметра настройки какой-то в виде полного наименования.
+
+
+\begin{lstlisting}[label=code_syntax_getNameParameter,caption=Синтаксис]
+QString getNameParameter(int Number_Of_Experiment, int Number_Of_Parameter);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+Number\_Of\_Experiment --- номер комбинации вариантов настроек;
+ 
+Number\_Of\_Parameter --- номер параметра.
+
+\textbf{Возвращаемое значение:}
+
+Значения параметра в виде наименования.
+
+
+\subsubsection{getNameTestFunction}\label{getNameTestFunction}
+
+Получение текста переменной  XML\_Name\_Test\_Function --- Название тестовой функции.
+
+
+\begin{lstlisting}[label=code_syntax_getNameTestFunction,caption=Синтаксис]
+QString getNameTestFunction();
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+Отсутствуют.
+
+\textbf{Возвращаемое значение:}
+
+Значение переменной из описания.
+
+
+\subsubsection{getNumberOfExperiments}\label{getNumberOfExperiments}
+
+Получение текста переменной  XML\_Number\_Of\_Experiments --- Количество комбинаций вариантов настроек.
+
+
+\begin{lstlisting}[label=code_syntax_getNumberOfExperiments,caption=Синтаксис]
+qint64 getNumberOfExperiments();
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+Отсутствуют.
+
+\textbf{Возвращаемое значение:}
+
+Значение переменной из описания.
+
+
+\subsubsection{getNumberOfMeasuring}\label{getNumberOfMeasuring}
+
+Получение текста переменной  XML\_Number\_Of\_Measuring --- Размерность тестовой задачи (длина хромосомы решения).
+
+
+\begin{lstlisting}[label=code_syntax_getNumberOfMeasuring,caption=Синтаксис]
+qint64 getNumberOfMeasuring();
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+Отсутствуют.
+
+\textbf{Возвращаемое значение:}
+
+Значение переменной из описания.
+
+
+\subsubsection{getNumberOfOption}\label{getNumberOfOption}
+
+Получение номера параметра алгоритма по его имени.
+
+
+\begin{lstlisting}[label=code_syntax_getNumberOfOption,caption=Синтаксис]
+int getNumberOfOption(QString NameOption);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+NameOption --- имя параметра.
+
+\textbf{Возвращаемое значение:}
+
+Значения параметра в виде номера (если не найдено, то возвращается -1.
+
+
+\subsubsection{getNumberOfParameters}\label{getNumberOfParameters}
+
+Получение текста переменной  XML\_Number\_Of\_Parameters --- Количество проверяемых параметров алгоритма оптимизации
+
+
+\begin{lstlisting}[label=code_syntax_getNumberOfParameters,caption=Синтаксис]
+qint64 getNumberOfParameters();
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+Отсутствуют.
+
+\textbf{Возвращаемое значение:}
+
+Значение переменной из описания.
+
+
+\subsubsection{getNumberOfRuns}\label{getNumberOfRuns}
+
+Получение текста переменной  XML\_Number\_Of\_Runs --- Количество прогонов, по которому делается усреднение для эксперимента.
+
+
+\begin{lstlisting}[label=code_syntax_getNumberOfRuns,caption=Синтаксис]
+qint64 getNumberOfRuns();
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+Отсутствуют.
+
+\textbf{Возвращаемое значение:}
+
+Значение переменной из описания.
+
+
+\subsubsection{getParameter}\label{getParameter}
+
+Получение значения параметра настройки какой-то.
+
+
+\begin{lstlisting}[label=code_syntax_getParameter,caption=Синтаксис]
+int getParameter(int Number_Of_Experiment, int Number_Of_Parameter);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+Number\_Of\_Experiment --- номер комбинации вариантов настроек;
+ 
+Number\_Of\_Parameter --- номер параметра.
+
+\textbf{Возвращаемое значение:}
+
+Значения параметра в виде числа (соответствие находим в ListOfParameterOptions).
+
+
+\subsubsection{getSuccessReading}\label{getSuccessReading}
+
+Получение значения переменной SuccessReading о удачности или не удачности считывания файла.
+
+
+\begin{lstlisting}[label=code_syntax_getSuccessReading,caption=Синтаксис]
+bool getSuccessReading();
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+Отсутствует.
+
+\textbf{Возвращаемое значение:}
+
+Значения переменной SuccessReading о удачности или не удачности считывания файла..
+
+
+\subsubsection{getVarianceOfEx}\label{getVarianceOfEx}
+
+Получение дисперсии значения ошибки Ex по измерениям для настройки (сколько точек было по столько и усредняем).
+
+
+\begin{lstlisting}[label=code_syntax_getVarianceOfEx,caption=Синтаксис]
+double getVarianceOfEx(int Number_Of_Experiment);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+Number\_Of\_Experiment --- номер комбинации вариантов настроек.
+
+\textbf{Возвращаемое значение:}
+
+Значения дисперсии значения Ex.
+
+
+\subsubsection{getVarianceOfEy}\label{getVarianceOfEy}
+
+Получение дисперсии значения ошибки Ey по измерениям для настройки (сколько точек было по столько и усредняем).
+
+
+\begin{lstlisting}[label=code_syntax_getVarianceOfEy,caption=Синтаксис]
+double getVarianceOfEy(int Number_Of_Experiment);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+Number\_Of\_Experiment --- номер комбинации вариантов настроек.
+
+\textbf{Возвращаемое значение:}
+
+Значения дисперсии значения Ey.
+
+
+\subsubsection{getVarianceOfR}\label{getVarianceOfR}
+
+Получение дисперсии значения надежности R по измерениям для настройки (сколько точек было по столько и усредняем).
+
+
+\begin{lstlisting}[label=code_syntax_getVarianceOfR,caption=Синтаксис]
+double getVarianceOfR(int Number_Of_Experiment);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+Number\_Of\_Experiment --- номер комбинации вариантов настроек.
+
+\textbf{Возвращаемое значение:}
+
+Значения дисперсии значения надежности R.
+
+
+\subsubsection{getVersion}\label{getVersion}
+
+Получение переменной XML\_Version, то есть возвращает версию формата документа.
+
+
+\begin{lstlisting}[label=code_syntax_getVersion,caption=Синтаксис]
+QString getVersion();
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+Отсутствует.
+
+\textbf{Возвращаемое значение:}
+
+Если документ без ошибок в описании формата, то всегда должно возвращаться "1.0".
+
+
+\subsection{Операторы}
+
+\subsubsection{operator =}\label{operator =}
+
+Оператор присваивания.
+
+
+\begin{lstlisting}[label=code_syntax_operator =,caption=Синтаксис]
+void operator = (HarrixClass_DataOfHarrixOptimizationTesting& B);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+B --- Другой экземпляр класса, который и копируем.
+
+\textbf{Возвращаемое значение:}
+
+Отсутствует.
+
+
+\subsection{Специализированные функции}
+
+\subsubsection{makingLatexTable2D}\label{makingLatexTable2D}
+
+Создает текст LaTeX в виде таблицы 2D для всех экспериментов для отображения какой-нибудь информации.
+
+
+\begin{lstlisting}[label=code_syntax_makingLatexTable2D,caption=Синтаксис]
+QString makingLatexTable2D(QString Title, QStringList InfoForEveryExperiment);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+Title --- заголовок таблицы;
+
+InfoForEvryExperiment --- информация выдаваемая в таблицу.
+
+\textbf{Возвращаемое значение:}
+
+Итоговая таблица в виде кода Latex.
+
+
+\subsection{Внутренние функции}
+
+\subsubsection{checkXmlLeafTags}\label{checkXmlLeafTags}
+
+Проверяет наличие тэгов и правильное их выполнение. Внутренняя функция. Учитывает все "листовые" тэги кроме тэгов данных.
+
+
+\begin{lstlisting}[label=code_syntax_checkXmlLeafTags,caption=Синтаксис]
+void checkXmlLeafTags();
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+Отсутствуют.
+
+\textbf{Возвращаемое значение:}
+
+Отсутствует.
+
+
+\subsubsection{getLatexBegin}\label{getLatexBegin}
+
+Внутренняя функция. Возвращает начало для полноценного Latex файла.
+
+
+\begin{lstlisting}[label=code_syntax_getLatexBegin,caption=Синтаксис]
+QString getLatexBegin();
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+Отсутствуют.
+
+\textbf{Возвращаемое значение:}
+
+Начало для полноценного Latex файла.
+
+
+\subsubsection{getLatexEnd}\label{getLatexEnd}
+
+Внутренняя функция. Возвращает концовку для полноценного Latex файла.
+
+
+\begin{lstlisting}[label=code_syntax_getLatexEnd,caption=Синтаксис]
+QString getLatexEnd();
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+Отсутствуют.
+
+\textbf{Возвращаемое значение:}
+
+Концовка для полноценного Latex файла.
+
+
+\subsubsection{initializationOfVariables}\label{initializationOfVariables}
+
+Обнуление переменных. Внутренняя функция.
+
+
+\begin{lstlisting}[label=code_syntax_initializationOfVariables,caption=Синтаксис]
+void initializationOfVariables();
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+Отсутствуют.
+
+\textbf{Возвращаемое значение:}
+
+Отсутствует.
+
+
+\subsubsection{makingListOfVectorParameterOptions}\label{makingListOfVectorParameterOptions}
+
+Заполняет список вектора названий вариантов параметров алгоритма оптимизации.
+
+
+\begin{lstlisting}[label=code_syntax_makingListOfVectorParameterOptions,caption=Синтаксис]
+void makingListOfVectorParameterOptions();
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+Отсутствуют.
+
+\textbf{Возвращаемое значение:}
+
+Отсутствует. Значение возвращается в переменную LatexListOfParameterOptions.
+
+
+\subsubsection{memoryAllocation}\label{memoryAllocation}
+
+Выделяет память под необходимые массивы. Внутренняя функция.
+
+
+\begin{lstlisting}[label=code_syntax_memoryAllocation,caption=Синтаксис]
+void memoryAllocation();
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+Отсутствуют.
+
+\textbf{Возвращаемое значение:}
+
+Отсутствует.
+
+
+\subsubsection{memoryDeallocation}\label{memoryDeallocation}
+
+Удаляет память из-под массивов. Внутренняя функция.
+
+
+\begin{lstlisting}[label=code_syntax_memoryDeallocation,caption=Синтаксис]
+void memoryDeallocation();
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+Отсутствуют.
+
+\textbf{Возвращаемое значение:}
+
+Отсутствует.
+
+
+\subsubsection{readXml}\label{readXml}
+
+Считывание XML файла и осуществление всех остальных анализов и др.
+
+
+\begin{lstlisting}[label=code_syntax_readXml,caption=Синтаксис]
+void readXml();
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+Отсутствуют.
+
+\textbf{Возвращаемое значение:}
+
+Отсутствует.
+
+
+\subsubsection{readXmlDataTags}\label{readXmlDataTags}
+
+Считывает и проверяет тэги данных. Внутренняя функция. Учитывает все "листовые" тэги кроме тэгов данных.
+
+
+\begin{lstlisting}[label=code_syntax_readXmlDataTags,caption=Синтаксис]
+void readXmlDataTags();
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+Отсутствуют.
+
+\textbf{Возвращаемое значение:}
+
+Отсутствует.
+
+
+\subsubsection{readXmlLeafTag}\label{readXmlLeafTag}
+
+Считывает и проверяет тэг, который должен являться "листом", то есть самым глубоким. Внутренняя функция. Учитывает все "листовые" тэги кроме тэгов данных.
+
+
+\begin{lstlisting}[label=code_syntax_readXmlLeafTag,caption=Синтаксис]
+void readXmlLeafTag();
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+Отсутствуют.
+
+\textbf{Возвращаемое значение:}
+
+Отсутствует.
+
+
+\subsubsection{readXmlTreeTag}\label{readXmlTreeTag}
+
+Считывает и проверяет тэг, который содержит внутри себя другие тэги. Внутренняя функция.
+
+
+\begin{lstlisting}[label=code_syntax_readXmlTreeTag,caption=Синтаксис]
+bool readXmlTreeTag(QString tag);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+tag --- какой тэг мы ищем.
+
+\textbf{Возвращаемое значение:}
+
+ 
+    true --- текущий тэг это тот самый, что нам и нужен;
+ 
+    false --- иначе.
+
+
+\subsubsection{zeroArray}\label{zeroArray}
+
+Обнуляет массивы, в котрые записывается информация о данных из файла. Внутренняя функция.
+
+
+\begin{lstlisting}[label=code_syntax_zeroArray,caption=Синтаксис]
+void zeroArray();
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+Отсутствуют.
+
+\textbf{Возвращаемое значение:}
+
+Отсутствует.
+
+
+\subsection{Создание содержимого отчетов LaTeX и HTML}
+
+\subsubsection{makingHtmlReport}\label{makingHtmlReport}
+
+Создает текст Html для отображения отчета о считывании XML файла.
+
+
+\begin{lstlisting}[label=code_syntax_makingHtmlReport,caption=Синтаксис]
+void makingHtmlReport();
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+Отсутствуют.
+
+\textbf{Возвращаемое значение:}
+
+Отсутствует. Значение возвращается в переменную HtmlReport, которую можно вызвать getHtmlReport.
+
+
+\subsubsection{makingLatexAboutParameters}\label{makingLatexAboutParameters}
+
+Создает текст LaTeX для отображения данных о обнаруженных параметрах алгоритма и какие они бывают.
+
+
+\begin{lstlisting}[label=code_syntax_makingLatexAboutParameters,caption=Синтаксис]
+void makingLatexAboutParameters();
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+Отсутствуют.
+
+\textbf{Возвращаемое значение:}
+
+Отсутствует. Значение возвращается в переменную LatexTableEx, которую можно вызвать getLatexAboutParameters
+
+
+\subsubsection{makingLatexAnalysis}\label{makingLatexAnalysis}
+
+Создает текст LaTeX для отображения первоначального анализа данных.
+
+
+\begin{lstlisting}[label=code_syntax_makingLatexAnalysis,caption=Синтаксис]
+void makingLatexAnalysis();
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+Отсутствуют.
+
+\textbf{Возвращаемое значение:}
+
+Отсутствует. Значение возвращается в переменную LatexAnalysis, которую можно вызвать getLatexAnalysis.
+
+
+\subsubsection{makingLatexInfo}\label{makingLatexInfo}
+
+Создает текст LaTeX для отображения информации о исследовании.
+
+
+\begin{lstlisting}[label=code_syntax_makingLatexInfo,caption=Синтаксис]
+void makingLatexInfo();
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+Отсутствуют.
+
+\textbf{Возвращаемое значение:}
+
+Отсутствует. Значение возвращается в переменную LatexTableEx, которую можно вызвать getLatexInfo.
+
+
+\subsubsection{makingLatexListOfVectorParameterOptions}\label{makingLatexListOfVectorParameterOptions}
+
+Создает текст LaTeX для отображения списка вектора названий вариантов параметров алгоритма оптимизации.
+
+
+\begin{lstlisting}[label=code_syntax_makingLatexListOfVectorParameterOptions,caption=Синтаксис]
+void makingLatexListOfVectorParameterOptions();
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+Отсутствуют.
+
+\textbf{Возвращаемое значение:}
+
+Отсутствует. Значение возвращается в переменную LatexListOfParameterOptions.
+
+
+\subsubsection{makingLatexListOfVectorParameterOptions2}\label{makingLatexListOfVectorParameterOptions2}
+
+Создает текст LaTeX для отображения списка вектора названий вариантов параметров алгоритма оптимизации.
+
+
+\begin{lstlisting}[label=code_syntax_makingLatexListOfVectorParameterOptions2,caption=Синтаксис]
+void makingLatexListOfVectorParameterOptions2();
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+Отсутствуют.
+
+\textbf{Возвращаемое значение:}
+
+Отсутствует. Значение возвращается в переменную LatexListOfParameterOptions.
+
+
+\subsubsection{makingLatexTableEx}\label{makingLatexTableEx}
+
+Создает текст LaTeX для отображения сырых данных ошибки по входным параметрам в виде полной таблицы.
+
+
+\begin{lstlisting}[label=code_syntax_makingLatexTableEx,caption=Синтаксис]
+void makingLatexTableEx();
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+Отсутствуют.
+
+\textbf{Возвращаемое значение:}
+
+Отсутствует. Значение возвращается в переменную LatexTableEx, которую можно вызвать getLatexTableEx.
+
+
+\subsubsection{makingLatexTableEy}\label{makingLatexTableEy}
+
+Создает текст LaTeX для отображения сырых данных ошибки по значениям целевой функции в виде полной таблицы.
+
+
+\begin{lstlisting}[label=code_syntax_makingLatexTableEy,caption=Синтаксис]
+void makingLatexTableEy();
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+Отсутствуют.
+
+\textbf{Возвращаемое значение:}
+
+Отсутствует. Значение возвращается в переменную LatexTableEy, которую можно вызвать getLatexTableEy.
+
+
+\subsubsection{makingLatexTableR}\label{makingLatexTableR}
+
+Создает текст LaTeX для отображения сырых данных по надежности в виде полной таблицы.
+
+
+\begin{lstlisting}[label=code_syntax_makingLatexTableR,caption=Синтаксис]
+void makingLatexTableR();
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+Отсутствуют.
+
+\textbf{Возвращаемое значение:}
+
+Отсутствует. Значение возвращается в переменную LatexTableR, которую можно вызвать getLatexTableR.
+
+
+\subsection{Функции анализа данных}
+
+\subsubsection{makingAnalysis}\label{makingAnalysis}
+
+Выполняет анализ считанных данных. Внутренняя функция.
+
+
+\begin{lstlisting}[label=code_syntax_makingAnalysis,caption=Синтаксис]
+void makingAnalysis();
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+Отсутствуют.
+
+\textbf{Возвращаемое значение:}
+
+Отсутствует.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{document}

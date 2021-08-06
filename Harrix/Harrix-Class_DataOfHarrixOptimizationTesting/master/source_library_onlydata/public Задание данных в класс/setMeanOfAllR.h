@@ -1,0 +1,1 @@
+void setMeanOfAllR(double Mean);

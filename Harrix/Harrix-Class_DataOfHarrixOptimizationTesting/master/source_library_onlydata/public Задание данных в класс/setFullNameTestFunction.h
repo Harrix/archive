@@ -1,0 +1,1 @@
+void setFullNameTestFunction(QString FullNameTestFunction);

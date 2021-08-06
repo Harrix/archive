@@ -1,0 +1,1 @@
+void setLinkAlgorithm(QString LinkAlgorithm);

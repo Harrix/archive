@@ -1,0 +1,1 @@
+void setNumberOfExperiments(qint64 NumberOfExperiments);

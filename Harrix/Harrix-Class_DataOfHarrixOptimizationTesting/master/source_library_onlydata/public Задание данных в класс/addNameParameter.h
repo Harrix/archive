@@ -1,0 +1,1 @@
+void addNameParameter(QString Name, int Number_Of_Experiment);

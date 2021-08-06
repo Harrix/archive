@@ -1,0 +1,1958 @@
+\documentclass[a4paper,12pt]{article}
+
+\input{packages}
+\input{styles}
+
+\title{Har\-rix\-Class\_On\-ly\-Da\-ta\-Of\-Har\-rix\-Op\-ti\-mi\-za\-tion\-Test\-ing - Har\-rix\-Class\_Da\-ta\-Of\-Har\-rix\-Op\-ti\-mi\-za\-ti\-on\-Tes\-ting v.1.27}
+\author{А.\,Б. Сергиенко}
+\date{\today}
+
+
+\begin{document}
+
+\input{names}
+
+\maketitle
+
+\begin{abstract}
+Класс HarrixClass\_DataOfHarrixOptimizationTesting для считывания информации формата данных Harrix Optimization Testing на C++ для Qt. Рассматривается HarrixClass\_OnlyDataOfHarrixOptimizationTesting.cpp.
+\end{abstract}
+
+\tableofcontents
+
+\newpage
+
+\section{Введение}
+
+Класс HarrixClass\_DataOfHarrixOptimizationTesting для считывания информации формата данных Harrix Optimization Testing на C++ для Qt.
+
+Последнюю версию документа можно найти по адресу:
+
+\href{https://github.com/Harrix/HarrixClass\_DataOfHarrixOptimizationTesting}{https://github.com/Harrix/HarrixClass\_DataOfHarrixOptimizationTesting}
+
+Об установке библиотеки можно прочитать тут:
+
+\href{http://blog.harrix.org/?p=992}{http://blog.harrix.org/?p=992}
+
+С автором можно связаться по адресу \href{mailto:sergienkoanton@mail.ru}{sergienkoanton@mail.ru} или  \href{http://vk.com/harrix}{http://vk.com/harrix}.
+
+Сайт автора, где публикуются последние новости: \href{http://blog.harrix.org/}{http://blog.harrix.org/}, а проекты располагаются по адресу \href{http://harrix.org/}{http://harrix.org/}.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% ВСТАВЛЯТЬ НИЖЕ
+\newpage
+\section{Список функций}\label{section_listfunctions}
+\textbf{\_Конструкторы и деструкторы}
+\begin{enumerate}
+	
+	\item \textbf{\hyperref[HarrixClass_OnlyDataOfHarrixOptimizationTesting]{HarrixClass\_OnlyDataOfHarrixOptimizationTesting}} --- Конструктор. Создает пустой экземпляр.
+	
+	\item \textbf{\hyperref[tildaHarrixClass_OnlyDataOfHarrixOptimizationTesting]{$\sim$HarrixClass\_OnlyDataOfHarrixOptimizationTesting}} --- Деструктор класса.
+	
+\end{enumerate}
+
+\textbf{Возвращение данных из класса}
+\begin{enumerate}
+	
+	\item \textbf{\hyperref[getAuthor]{getAuthor}} --- Получение текста переменной XML\_Author - Автор документа.
+	
+	\item \textbf{\hyperref[getCheckAllCombinations]{getCheckAllCombinations}} --- Получение текста переменной  XML\_All\_Combinations --- Все ли комбинации вариантов настроек просмотрены: 0 или 1.
+	
+	\item \textbf{\hyperref[getDate]{getDate}} --- Получение текста переменной  XML\_Date - Дата создания документа.
+	
+	\item \textbf{\hyperref[getDimensionTestFunction]{getDimensionTestFunction}} --- Получение текста переменной  XML\_DimensionTestFunction --- Размерность тестовой задачи.
+	
+	\item \textbf{\hyperref[getEmail]{getEmail}} --- Получение текста переменной  XML\_Email - Email автора, чтобы можно было с ним связаться.
+	
+	\item \textbf{\hyperref[getErrorEx]{getErrorEx}} --- Получение значения ошибки Ex.
+	
+	\item \textbf{\hyperref[getErrorEy]{getErrorEy}} --- Получение значения ошибки Ey.
+	
+	\item \textbf{\hyperref[getErrorR]{getErrorR}} --- Получение значения надежности R.
+	
+	\item \textbf{\hyperref[getFormat]{getFormat}} --- Получение переменной XML\_Format, то есть возвращает название формата документа.
+	
+	\item \textbf{\hyperref[getFullNameAlgorithm]{getFullNameAlgorithm}} --- Получение текста переменной  XML\_Full\_Name\_Algorithm --- Полное название алгоритма оптимизации.
+	
+	\item \textbf{\hyperref[getFullNameTestFunction]{getFullNameTestFunction}} --- Получение текста переменной  XML\_Full\_Name\_Test\_Function --- Полное название тестовой функции.
+	
+	\item \textbf{\hyperref[getLink]{getLink}} --- Получение переменной XML\_Link, то есть возвращает ссылку на описание формата файла.
+	
+	\item \textbf{\hyperref[getLinkAlgorithm]{getLinkAlgorithm}} --- Получение текста переменной  XML\_Link\_Algorithm --- Ссылка на описание алгоритма оптимизации.
+	
+	\item \textbf{\hyperref[getLinkTestFunction]{getLinkTestFunction}} --- Получение текста переменной  XML\_Link\_Test\_Function --- Ссылка на описание тестовой функции.
+	
+	\item \textbf{\hyperref[getListOfParameterOptions]{getListOfParameterOptions}} --- Получение списка вектора названий вариантов параметров алгоритма оптимизации.
+	
+	\item \textbf{\hyperref[getListOfVectorParameterOptions]{getListOfVectorParameterOptions}} --- Получение списка вектора названий вариантов параметров алгоритма оптимизации --- это сборник строк из MatrixOfNameParameters, где объединены столбцы. Получение строки параметров эксперимента из списка вектора названий вариантов параметров алгоритма оптимизации --- это сборник строк из MatrixOfNameParameters, где объединены столбцы.
+	
+	\item \textbf{\hyperref[getMaxCountOfFitness]{getMaxCountOfFitness}} --- Получение текста переменной  Max\_Count\_Of\_Fitness --- Максимальное допустимое число вычислений целевой функции для алгоритма.
+	
+	\item \textbf{\hyperref[getMeanEx]{getMeanEx}} --- Получение среднего значения ошибки Ex по измерениям для настройки (сколько точек было по столько и усредняем).
+	
+	\item \textbf{\hyperref[getMeanEy]{getMeanEy}} --- Получение среднего значения ошибки Ey по измерениям для настройки (сколько точек было по столько и усредняем).
+	
+	\item \textbf{\hyperref[getMeanOfAllEx]{getMeanOfAllEx}} --- Получение значения переменной MeanOfAllEx --- среднее значение ошибок Ex алгоритма оптимизации по измерениям по всем измерениям вообще
+	
+	\item \textbf{\hyperref[getMeanOfAllEy]{getMeanOfAllEy}} --- Получение значения переменной MeanOfAllEy --- среднее значение ошибок Ey алгоритма оптимизации по измерениям по всем измерениям вообще.
+	
+	\item \textbf{\hyperref[getMeanOfAllR]{getMeanOfAllR}} --- Получение значения переменной MeanOfAllR --- среднее значение надежностей R алгоритма оптимизации по измерениям по всем измерениям вообще.
+	
+	\item \textbf{\hyperref[getMeanR]{getMeanR}} --- Получение среднего значения надежности R по измерениям для настройки (сколько точек было по столько и усредняем).
+	
+	\item \textbf{\hyperref[getNameAlgorithm]{getNameAlgorithm}} --- Получение текста переменной  XML\_Name\_Algorithm - Название алгоритма оптимизации.
+	
+	\item \textbf{\hyperref[getNameOption]{getNameOption}} --- Получение имени параметра алгоритма по его номеру.
+	
+	\item \textbf{\hyperref[getNameParameter]{getNameParameter}} --- Получение значения параметра настройки какой-то в виде полного наименования.
+	
+	\item \textbf{\hyperref[getNameTestFunction]{getNameTestFunction}} --- Получение текста переменной  XML\_Name\_Test\_Function --- Название тестовой функции.
+	
+	\item \textbf{\hyperref[getNamesOfParameters]{getNamesOfParameters}} --- Получение списка параметров алгоритма (тип селекции, тип скрещивания).
+	
+	\item \textbf{\hyperref[getNumberOfExperiments]{getNumberOfExperiments}} --- Получение текста переменной  XML\_Number\_Of\_Experiments --- Количество комбинаций вариантов настроек.
+	
+	\item \textbf{\hyperref[getNumberOfMeasuring]{getNumberOfMeasuring}} --- Получение текста переменной  XML\_Number\_Of\_Measuring --- Размерность тестовой задачи (длина хромосомы решения).
+	
+	\item \textbf{\hyperref[getNumberOfParameters]{getNumberOfParameters}} --- Получение текста переменной  XML\_Number\_Of\_Parameters --- Количество проверяемых параметров алгоритма оптимизации.
+	
+	\item \textbf{\hyperref[getNumberOfRuns]{getNumberOfRuns}} --- Получение текста переменной  XML\_Number\_Of\_Runs --- Количество прогонов по которому делается усреднение для эксперимента.
+	
+	\item \textbf{\hyperref[getOptionFromListOfParameterOptions]{getOptionFromListOfParameterOptions}} --- Получение названия вариантов параметров алгоритма оптимизации.
+	
+	\item \textbf{\hyperref[getOptionFromListOfParameterOptionsForTable]{getOptionFromListOfParameterOptionsForTable}} --- Получение названия вариантов параметров алгоритма оптимизации. Но старается где-то сокращать, а где-то добавлять строки.
+	
+	\item \textbf{\hyperref[getParameter]{getParameter}} --- Получение значения параметра настройки какой-то.
+	
+	\item \textbf{\hyperref[getSuccessReading]{getSuccessReading}} --- Получение текста переменной SuccessReading --- Успешно ли прошло считывание.
+	
+	\item \textbf{\hyperref[getVarianceOfAllEx]{getVarianceOfAllEx}} --- Получение значения переменной VarianceOfAllEx --- дисперсия ошибок Ex алгоритма оптимизации по измерениям по всем измерениям вообще.
+	
+	\item \textbf{\hyperref[getVarianceOfAllEy]{getVarianceOfAllEy}} --- Получение значения переменной VarianceOfAllEy --- дисперсия ошибок Ey алгоритма оптимизации по измерениям по всем измерениям вообще
+	
+	\item \textbf{\hyperref[getVarianceOfAllR]{getVarianceOfAllR}} --- Получение значения переменной VarianceOfAllR --- дисперсия надежностей R алгоритма оптимизации по измерениям по всем измерениям вообще.
+	
+	\item \textbf{\hyperref[getVarianceOfEx]{getVarianceOfEx}} --- Получение дисперсии значения ошибки Ex по измерениям для настройки (сколько точек было по столько и усредняем).
+	
+	\item \textbf{\hyperref[getVarianceOfEy]{getVarianceOfEy}} --- Получение дисперсии значения ошибки Ey по измерениям для настройки (сколько точек было по столько и усредняем).
+	
+	\item \textbf{\hyperref[getVarianceOfR]{getVarianceOfR}} --- Получение дисперсии значения надежности R по измерениям для настройки (сколько точек было по столько и усредняем).
+	
+	\item \textbf{\hyperref[getVersion]{getVersion}} --- Получение переменной Version, то есть возвращает версию формата документа.
+	
+\end{enumerate}
+
+\textbf{Задание данных в класс}
+\begin{enumerate}
+	
+	\item \textbf{\hyperref[addListOfParameterOptions]{addListOfParameterOptions}} --- Добавление списка вектора названий вариантов параметров алгоритма оптимизации.
+	
+	\item \textbf{\hyperref[addListOfVectorParameterOptions]{addListOfVectorParameterOptions}} --- Добавление строки параметров эксперимента из списка вектора названий вариантов параметров алгоритма оптимизации --- это сборник строк из MatrixOfNameParameters, где объединены столбцы.
+	
+	\item \textbf{\hyperref[addNameOption]{addNameOption}} --- Добавление имени параметра алгоритма.
+	
+	\item \textbf{\hyperref[addNameParameter]{addNameParameter}} --- Получение значения параметра настройки какой-то в виде полного наименования.
+	
+	\item \textbf{\hyperref[setAuthor]{setAuthor}} --- Задание текста переменной XML\_Author - Автор документа.
+	
+	\item \textbf{\hyperref[setCheckAllCombinations]{setCheckAllCombinations}} --- Задание текста переменной  XML\_All\_Combinations --- Все ли комбинации вариантов настроек просмотрены: 0 или 1.
+	
+	\item \textbf{\hyperref[setDate]{setDate}} --- Задание текста переменной  XML\_Date - Дата создания документа.
+	
+	\item \textbf{\hyperref[setDimensionTestFunction]{setDimensionTestFunction}} --- Задание текста переменной  XML\_DimensionTestFunction --- Размерность тестовой задачи.
+	
+	\item \textbf{\hyperref[setEmail]{setEmail}} --- Задание текста переменной  XML\_Email - Email автора, чтобы можно было с ним связаться
+	
+	\item \textbf{\hyperref[setErrorEx]{setErrorEx}} --- Задание значения ошибки Ex.
+	
+	\item \textbf{\hyperref[setErrorEy]{setErrorEy}} --- Задание значения ошибки Ey.
+	
+	\item \textbf{\hyperref[setErrorR]{setErrorR}} --- Задание значения надежности R.
+	
+	\item \textbf{\hyperref[setFormat]{setFormat}} --- Задание переменной XML\_Format --- название формата документа.
+	
+	\item \textbf{\hyperref[setFullNameAlgorithm]{setFullNameAlgorithm}} --- Задание текста переменной  XML\_Full\_Name\_Algorithm --- Полное название алгоритма оптимизации.
+	
+	\item \textbf{\hyperref[setFullNameTestFunction]{setFullNameTestFunction}} --- Задание текста переменной  XML\_Full\_Name\_Test\_Function --- Полное название тестовой функции.
+	
+	\item \textbf{\hyperref[setLink]{setLink}} --- Задание переменной XML\_Link --- ссылка на описание формата файла.
+	
+	\item \textbf{\hyperref[setLinkAlgorithm]{setLinkAlgorithm}} --- Задание текста переменной  XML\_Link\_Algorithm --- Ссылка на описание алгоритма оптимизации.
+	
+	\item \textbf{\hyperref[setLinkTestFunction]{setLinkTestFunction}} --- Задание текста переменной  XML\_Link\_Test\_Function --- Ссылка на описание тестовой функции.
+	
+	\item \textbf{\hyperref[setListOfParameterOptions]{setListOfParameterOptions}} --- Задание списка вектора названий вариантов параметров алгоритма оптимизации.
+	
+	\item \textbf{\hyperref[setMaxCountOfFitness]{setMaxCountOfFitness}} --- Задание текста переменной  Max\_Count\_Of\_Fitness --- Максимальное допустимое число вычислений целевой функции для алгоритма.
+	
+	\item \textbf{\hyperref[setMeanEx]{setMeanEx}} --- Задание среднего значения ошибки Ex по измерениям для настройки (сколько точек было по столько и усредняем).
+	
+	\item \textbf{\hyperref[setMeanEy]{setMeanEy}} --- Задание среднего значения ошибки Ey по измерениям для настройки (сколько точек было по столько и усредняем).
+	
+	\item \textbf{\hyperref[setMeanOfAllEx]{setMeanOfAllEx}} --- Задание значения переменной MeanOfAllEx - среднее значение ошибок Ex алгоритма оптимизации по измерениям по всем измерениям вообще
+	
+	\item \textbf{\hyperref[setMeanOfAllEy]{setMeanOfAllEy}} --- Задание значения переменной MeanOfAllEy - среднее значение ошибок Ey алгоритма оптимизации по измерениям по всем измерениям вообще.
+	
+	\item \textbf{\hyperref[setMeanOfAllR]{setMeanOfAllR}} --- Задание значения переменной MeanOfAllR --- среднее значение надежностей R алгоритма оптимизации по измерениям по всем измерениям вообще.
+	
+	\item \textbf{\hyperref[setMeanR]{setMeanR}} --- Задание среднего значения надежности R по измерениям для настройки (сколько точек было по столько и усредняем).
+	
+	\item \textbf{\hyperref[setNameAlgorithm]{setNameAlgorithm}} --- Получение текста переменной  XML\_Name\_Algorithm - Название алгоритма оптимизации.
+	
+	\item \textbf{\hyperref[setNameTestFunction]{setNameTestFunction}} --- Задание текста переменной  XML\_Name\_Test\_Function --- Название тестовой функции.
+	
+	\item \textbf{\hyperref[setNumberOfExperiments]{setNumberOfExperiments}} --- Задание текста переменной  XML\_Number\_Of\_Experiments --- Количество комбинаций вариантов настроек.
+	
+	\item \textbf{\hyperref[setNumberOfListOfVectorParameterOptions]{setNumberOfListOfVectorParameterOptions}} --- Задание значения элемента массива NumberOfListOfVectorParameterOptions.
+	
+	\item \textbf{\hyperref[setNumberOfMeasuring]{setNumberOfMeasuring}} --- Задание текста переменной  XML\_Number\_Of\_Measuring --- Размерность тестовой задачи (длина хромосомы решения).
+	
+	\item \textbf{\hyperref[setNumberOfParameters]{setNumberOfParameters}} --- Задание текста переменной  XML\_Number\_Of\_Parameters --- Количество проверяемых параметров алгоритма оптимизации.
+	
+	\item \textbf{\hyperref[setNumberOfRuns]{setNumberOfRuns}} --- Задание текста переменной  XML\_Number\_Of\_Runs --- Количество прогонов по которому делается усреднение для эксперимента.
+	
+	\item \textbf{\hyperref[setParameter]{setParameter}} --- Задание значения параметра настройки какой-то.
+	
+	\item \textbf{\hyperref[setSuccessReading]{setSuccessReading}} --- Задание текста переменной SuccessReading --- Успешно ли прошло считывание.
+	
+	\item \textbf{\hyperref[setVarianceOfAllEx]{setVarianceOfAllEx}} --- Задание значения переменной VarianceOfAllEx --- дисперсия ошибок Ex алгоритма оптимизации по измерениям по всем измерениям вообще
+	
+	\item \textbf{\hyperref[setVarianceOfAllEy]{setVarianceOfAllEy}} --- Задание значения переменной VarianceOfAllEy --- дисперсия ошибок Ey алгоритма оптимизации по измерениям по всем измерениям вообще.
+	
+	\item \textbf{\hyperref[setVarianceOfAllR]{setVarianceOfAllR}} --- Задание значения переменной VarianceOfAllR --- дисперсия надежностей R алгоритма оптимизации по измерениям по всем измерениям вообще.
+	
+	\item \textbf{\hyperref[setVarianceOfEx]{setVarianceOfEx}} --- Получение дисперсии значения ошибки Ex по измерениям для настройки (сколько точек было по столько и усредняем).
+	
+	\item \textbf{\hyperref[setVarianceOfEy]{setVarianceOfEy}} --- Получение дисперсии значения ошибки Ey по измерениям для настройки (сколько точек было по столько и усредняем).
+	
+	\item \textbf{\hyperref[setVarianceOfR]{setVarianceOfR}} --- Получение дисперсии значения надежности R по измерениям для настройки (сколько точек было по столько и усредняем).
+	
+	\item \textbf{\hyperref[setVersion]{setVersion}} --- Задание переменной XML\_Version --- версия формата документа.
+	
+\end{enumerate}
+
+\textbf{Операторы}
+\begin{enumerate}
+	
+	\item \textbf{\hyperref[operator =]{operator =}} --- Оператор присваивания.
+	
+\end{enumerate}
+
+\textbf{Служебные функции}
+\begin{enumerate}
+	
+	\item \textbf{\hyperref[initializationOfVariables]{initializationOfVariables}} --- Обнуление переменных. Внутренняя функция.
+	
+	\item \textbf{\hyperref[memoryAllocation]{memoryAllocation}} --- Выделяет память под необходимые массивы.
+	
+	\item \textbf{\hyperref[memoryDeallocation]{memoryDeallocation}} --- Удаляет память из-под массивов. Внутренняя функция.
+	
+\end{enumerate}
+
+
+\newpage
+\section{Функции}
+\subsection{\_Конструкторы и деструкторы}
+
+\subsubsection{HarrixClass\_OnlyDataOfHarrixOptimizationTesting}\label{HarrixClass_OnlyDataOfHarrixOptimizationTesting}
+
+Конструктор. Создает пустой экземпляр.
+
+
+\begin{lstlisting}[label=code_syntax_HarrixClass_OnlyDataOfHarrixOptimizationTesting,caption=Синтаксис]
+HarrixClass_OnlyDataOfHarrixOptimizationTesting();
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+Отсутствуют.
+
+\textbf{Возвращаемое значение:}
+
+Отсутствует.
+
+
+\subsubsection{$\sim$HarrixClass\_OnlyDataOfHarrixOptimizationTesting}\label{tildaHarrixClass_OnlyDataOfHarrixOptimizationTesting}
+
+Деструктор класса.
+
+
+\begin{lstlisting}[label=code_syntax_tildaHarrixClass_OnlyDataOfHarrixOptimizationTesting,caption=Синтаксис]
+~HarrixClass_OnlyDataOfHarrixOptimizationTesting();
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+Отсутствуют.
+
+\textbf{Возвращаемое значение:}
+
+Отсутствует.
+
+
+\subsection{Возвращение данных из класса}
+
+\subsubsection{getAuthor}\label{getAuthor}
+
+Получение текста переменной XML\_Author - Автор документа.
+
+
+\begin{lstlisting}[label=code_syntax_getAuthor,caption=Синтаксис]
+QString getAuthor();
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+Отсутствуют.
+
+\textbf{Возвращаемое значение:}
+
+Значение переменной из описания.
+
+
+\subsubsection{getCheckAllCombinations}\label{getCheckAllCombinations}
+
+Получение текста переменной  XML\_All\_Combinations --- Все ли комбинации вариантов настроек просмотрены: 0 или 1.
+
+
+\begin{lstlisting}[label=code_syntax_getCheckAllCombinations,caption=Синтаксис]
+bool getCheckAllCombinations();
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+Отсутствуют.
+
+\textbf{Возвращаемое значение:}
+
+Значение переменной из описания.
+
+
+\subsubsection{getDate}\label{getDate}
+
+Получение текста переменной  XML\_Date - Дата создания документа.
+
+
+\begin{lstlisting}[label=code_syntax_getDate,caption=Синтаксис]
+QString getDate();
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+Отсутствуют.
+
+\textbf{Возвращаемое значение:}
+
+Значение переменной из описания.
+
+
+\subsubsection{getDimensionTestFunction}\label{getDimensionTestFunction}
+
+Получение текста переменной  XML\_DimensionTestFunction --- Размерность тестовой задачи.
+
+
+\begin{lstlisting}[label=code_syntax_getDimensionTestFunction,caption=Синтаксис]
+qint64 getDimensionTestFunction();
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+Отсутствуют.
+
+\textbf{Возвращаемое значение:}
+
+Значение переменной из описания.
+
+
+\subsubsection{getEmail}\label{getEmail}
+
+Получение текста переменной  XML\_Email - Email автора, чтобы можно было с ним связаться.
+
+
+\begin{lstlisting}[label=code_syntax_getEmail,caption=Синтаксис]
+QString getEmail();
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+Отсутствуют.
+
+\textbf{Возвращаемое значение:}
+
+Значение переменной из описания.
+
+
+\subsubsection{getErrorEx}\label{getErrorEx}
+
+Получение значения ошибки Ex.
+
+
+\begin{lstlisting}[label=code_syntax_getErrorEx,caption=Синтаксис]
+double getErrorEx(int Number_Of_Experiment, int Number_Of_Measuring);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+Number\_Of\_Experiment --- номер комбинации вариантов настроек;
+
+Number\_Of\_Measuring --- номер измерения варианта настроек.
+
+\textbf{Возвращаемое значение:}
+
+
+Значения ошибки Ex.
+
+
+\subsubsection{getErrorEy}\label{getErrorEy}
+
+Получение значения ошибки Ey.
+
+
+\begin{lstlisting}[label=code_syntax_getErrorEy,caption=Синтаксис]
+double getErrorEy(int Number_Of_Experiment, int Number_Of_Measuring);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+Number\_Of\_Experiment --- номер комбинации вариантов настроек;
+
+Number\_Of\_Measuring --- номер измерения варианта настроек.
+
+\textbf{Возвращаемое значение:}
+
+
+Значения ошибки Ey.
+
+
+\subsubsection{getErrorR}\label{getErrorR}
+
+Получение значения надежности R.
+
+
+\begin{lstlisting}[label=code_syntax_getErrorR,caption=Синтаксис]
+double getErrorR(int Number_Of_Experiment, int Number_Of_Measuring);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+Number\_Of\_Experiment --- номер комбинации вариантов настроек;
+
+Number\_Of\_Measuring --- номер измерения варианта настроек.
+
+\textbf{Возвращаемое значение:}
+
+
+Значения надежности R.
+
+
+\subsubsection{getFormat}\label{getFormat}
+
+Получение переменной XML\_Format, то есть возвращает название формата документа.
+
+
+\begin{lstlisting}[label=code_syntax_getFormat,caption=Синтаксис]
+QString getFormat();
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+Отсутствуют.
+
+\textbf{Возвращаемое значение:}
+
+Значение переменной из описания.
+
+
+\subsubsection{getFullNameAlgorithm}\label{getFullNameAlgorithm}
+
+Получение текста переменной  XML\_Full\_Name\_Algorithm --- Полное название алгоритма оптимизации.
+
+
+\begin{lstlisting}[label=code_syntax_getFullNameAlgorithm,caption=Синтаксис]
+QString getFullNameAlgorithm();
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+Отсутствуют.
+
+\textbf{Возвращаемое значение:}
+
+Значение переменной из описания.
+
+
+\subsubsection{getFullNameTestFunction}\label{getFullNameTestFunction}
+
+Получение текста переменной  XML\_Full\_Name\_Test\_Function --- Полное название тестовой функции.
+
+
+\begin{lstlisting}[label=code_syntax_getFullNameTestFunction,caption=Синтаксис]
+QString getFullNameTestFunction();
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+Отсутствуют.
+
+\textbf{Возвращаемое значение:}
+
+Значение переменной из описания.
+
+
+\subsubsection{getLink}\label{getLink}
+
+Получение переменной XML\_Link, то есть возвращает ссылку на описание формата файла.
+
+
+\begin{lstlisting}[label=code_syntax_getLink,caption=Синтаксис]
+QString getLink();
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+Отсутствуют.
+
+\textbf{Возвращаемое значение:}
+
+Значение переменной из описания.
+
+
+\subsubsection{getLinkAlgorithm}\label{getLinkAlgorithm}
+
+Получение текста переменной  XML\_Link\_Algorithm --- Ссылка на описание алгоритма оптимизации.
+
+
+\begin{lstlisting}[label=code_syntax_getLinkAlgorithm,caption=Синтаксис]
+QString getLinkAlgorithm();
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+Отсутствуют.
+
+\textbf{Возвращаемое значение:}
+
+Значение переменной из описания.
+
+
+\subsubsection{getLinkTestFunction}\label{getLinkTestFunction}
+
+Получение текста переменной  XML\_Link\_Test\_Function --- Ссылка на описание тестовой функции.
+
+
+\begin{lstlisting}[label=code_syntax_getLinkTestFunction,caption=Синтаксис]
+QString getLinkTestFunction();
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+Отсутствуют.
+
+\textbf{Возвращаемое значение:}
+
+Значение переменной из описания.
+
+
+\subsubsection{getListOfParameterOptions}\label{getListOfParameterOptions}
+
+Получение списка вектора названий вариантов параметров алгоритма оптимизации.
+
+
+\begin{lstlisting}[label=code_syntax_getListOfParameterOptions,caption=Синтаксис]
+QStringList getListOfParameterOptions(int Number_Of_Parameter);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+Number\_Of\_Parameter --- номер параметра.
+
+\textbf{Возвращаемое значение:}
+
+Список вектора названий вариантов параметров алгоритма оптимизации.
+
+
+\subsubsection{getListOfVectorParameterOptions}\label{getListOfVectorParameterOptions}
+
+Получение списка вектора названий вариантов параметров алгоритма оптимизации --- это сборник строк из MatrixOfNameParameters, где объединены столбцы. Получение строки параметров эксперимента из списка вектора названий вариантов параметров алгоритма оптимизации --- это сборник строк из MatrixOfNameParameters, где объединены столбцы.
+
+
+\begin{lstlisting}[label=code_syntax_getListOfVectorParameterOptions,caption=Синтаксис]
+QStringList getListOfVectorParameterOptions();
+QString getListOfVectorParameterOptions(int Number_Of_Experiment);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+Number\_Of\_Experiment --- номер эксперимента.
+
+\textbf{Возвращаемое значение:}
+
+Значения строки параметров эксперимента.
+
+
+\subsubsection{getMaxCountOfFitness}\label{getMaxCountOfFitness}
+
+Получение текста переменной  Max\_Count\_Of\_Fitness --- Максимальное допустимое число вычислений целевой функции для алгоритма.
+
+
+\begin{lstlisting}[label=code_syntax_getMaxCountOfFitness,caption=Синтаксис]
+qint64 getMaxCountOfFitness();
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+Отсутствуют.
+
+\textbf{Возвращаемое значение:}
+
+Значение переменной из описания.
+
+
+\subsubsection{getMeanEx}\label{getMeanEx}
+
+Получение среднего значения ошибки Ex по измерениям для настройки (сколько точек было по столько и усредняем).
+
+
+\begin{lstlisting}[label=code_syntax_getMeanEx,caption=Синтаксис]
+double getMeanEx(int Number_Of_Experiment);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+Number\_Of\_Experiment --- номер комбинации вариантов настроек.
+
+\textbf{Возвращаемое значение:}
+
+Значения среднего значения Ex.
+
+
+\subsubsection{getMeanEy}\label{getMeanEy}
+
+Получение среднего значения ошибки Ey по измерениям для настройки (сколько точек было по столько и усредняем).
+
+
+\begin{lstlisting}[label=code_syntax_getMeanEy,caption=Синтаксис]
+double getMeanEy(int Number_Of_Experiment);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+Number\_Of\_Experiment --- номер комбинации вариантов настроек.
+
+\textbf{Возвращаемое значение:}
+
+Значения среднего значения Ey.
+
+
+\subsubsection{getMeanOfAllEx}\label{getMeanOfAllEx}
+
+Получение значения переменной MeanOfAllEx --- среднее значение ошибок Ex алгоритма оптимизации по измерениям по всем измерениям вообще
+
+
+\begin{lstlisting}[label=code_syntax_getMeanOfAllEx,caption=Синтаксис]
+double getMeanOfAllEx();
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+Отсутствуют.
+
+\textbf{Возвращаемое значение:}
+
+Среднее значение ошибок Ex алгоритма оптимизации по измерениям по всем измерениям вообще
+
+
+\subsubsection{getMeanOfAllEy}\label{getMeanOfAllEy}
+
+Получение значения переменной MeanOfAllEy --- среднее значение ошибок Ey алгоритма оптимизации по измерениям по всем измерениям вообще.
+
+
+\begin{lstlisting}[label=code_syntax_getMeanOfAllEy,caption=Синтаксис]
+double getMeanOfAllEy();
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+Отсутствуют.
+
+\textbf{Возвращаемое значение:}
+
+Среднее значение ошибок Ey алгоритма оптимизации по измерениям по всем измерениям вообще.
+
+
+\subsubsection{getMeanOfAllR}\label{getMeanOfAllR}
+
+Получение значения переменной MeanOfAllR --- среднее значение надежностей R алгоритма оптимизации по измерениям по всем измерениям вообще.
+
+
+\begin{lstlisting}[label=code_syntax_getMeanOfAllR,caption=Синтаксис]
+double getMeanOfAllR();
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+Отсутствуют.
+
+\textbf{Возвращаемое значение:}
+
+Среднее значение надежностей R алгоритма оптимизации по измерениям по всем измерениям вообще
+
+
+\subsubsection{getMeanR}\label{getMeanR}
+
+Получение среднего значения надежности R по измерениям для настройки (сколько точек было по столько и усредняем).
+
+
+\begin{lstlisting}[label=code_syntax_getMeanR,caption=Синтаксис]
+double getMeanR(int Number_Of_Experiment);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+Number\_Of\_Experiment --- номер комбинации вариантов настроек.
+
+\textbf{Возвращаемое значение:}
+
+Значения среднего значения R.
+
+
+\subsubsection{getNameAlgorithm}\label{getNameAlgorithm}
+
+Получение текста переменной  XML\_Name\_Algorithm - Название алгоритма оптимизации.
+
+
+\begin{lstlisting}[label=code_syntax_getNameAlgorithm,caption=Синтаксис]
+QString getNameAlgorithm();
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+Отсутствуют.
+
+\textbf{Возвращаемое значение:}
+
+Значение переменной из описания.
+
+
+\subsubsection{getNameOption}\label{getNameOption}
+
+Получение имени параметра алгоритма по его номеру.
+
+
+\begin{lstlisting}[label=code_syntax_getNameOption,caption=Синтаксис]
+QString getNameOption(int Number_Of_Parameter);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+Number\_Of\_Parameter --- номер параметра.
+
+\textbf{Возвращаемое значение:}
+
+Значения параметра в виде наименования.
+
+
+\subsubsection{getNameParameter}\label{getNameParameter}
+
+Получение значения параметра настройки какой-то в виде полного наименования.
+
+
+\begin{lstlisting}[label=code_syntax_getNameParameter,caption=Синтаксис]
+QString getNameParameter(int Number_Of_Experiment, int Number_Of_Parameter);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+Number\_Of\_Experiment --- номер комбинации вариантов настроек;
+
+Number\_Of\_Parameter --- номер параметра.
+
+\textbf{Возвращаемое значение:}
+
+Значения параметра в виде наименования.
+
+
+\subsubsection{getNameTestFunction}\label{getNameTestFunction}
+
+Получение текста переменной  XML\_Name\_Test\_Function --- Название тестовой функции.
+
+
+\begin{lstlisting}[label=code_syntax_getNameTestFunction,caption=Синтаксис]
+QString getNameTestFunction();
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+Отсутствуют.
+
+\textbf{Возвращаемое значение:}
+
+Значение переменной из описания.
+
+
+\subsubsection{getNamesOfParameters}\label{getNamesOfParameters}
+
+Получение списка параметров алгоритма (тип селекции, тип скрещивания).
+
+
+\begin{lstlisting}[label=code_syntax_getNamesOfParameters,caption=Синтаксис]
+QStringList getNamesOfParameters();
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+Отсутствуют.
+
+\textbf{Возвращаемое значение:}
+
+Список параметров алгоритма.
+
+
+\subsubsection{getNumberOfExperiments}\label{getNumberOfExperiments}
+
+Получение текста переменной  XML\_Number\_Of\_Experiments --- Количество комбинаций вариантов настроек.
+
+
+\begin{lstlisting}[label=code_syntax_getNumberOfExperiments,caption=Синтаксис]
+qint64 getNumberOfExperiments();
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+Отсутствуют.
+
+\textbf{Возвращаемое значение:}
+
+Значение переменной из описания.
+
+
+\subsubsection{getNumberOfMeasuring}\label{getNumberOfMeasuring}
+
+Получение текста переменной  XML\_Number\_Of\_Measuring --- Размерность тестовой задачи (длина хромосомы решения).
+
+
+\begin{lstlisting}[label=code_syntax_getNumberOfMeasuring,caption=Синтаксис]
+qint64 getNumberOfMeasuring();
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+Отсутствуют.
+
+\textbf{Возвращаемое значение:}
+
+Значение переменной из описания.
+
+
+\subsubsection{getNumberOfParameters}\label{getNumberOfParameters}
+
+Получение текста переменной  XML\_Number\_Of\_Parameters --- Количество проверяемых параметров алгоритма оптимизации.
+
+
+\begin{lstlisting}[label=code_syntax_getNumberOfParameters,caption=Синтаксис]
+qint64 getNumberOfParameters();
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+Отсутствуют.
+
+\textbf{Возвращаемое значение:}
+
+Значение переменной из описания.
+
+
+\subsubsection{getNumberOfRuns}\label{getNumberOfRuns}
+
+Получение текста переменной  XML\_Number\_Of\_Runs --- Количество прогонов по которому делается усреднение для эксперимента.
+
+
+\begin{lstlisting}[label=code_syntax_getNumberOfRuns,caption=Синтаксис]
+qint64 getNumberOfRuns();
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+Отсутствуют.
+
+\textbf{Возвращаемое значение:}
+
+Значение переменной из описания.
+
+
+\subsubsection{getOptionFromListOfParameterOptions}\label{getOptionFromListOfParameterOptions}
+
+Получение названия вариантов параметров алгоритма оптимизации.
+
+
+\begin{lstlisting}[label=code_syntax_getOptionFromListOfParameterOptions,caption=Синтаксис]
+QString getOptionFromListOfParameterOptions(int Number_Of_Parameter, int Number_Of_Option);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+Number\_Of\_Parameter --- номер параметра.
+
+Number\_Of\_Option --- номер считываемой опции у параметра алгоритма оптимизации.
+
+\textbf{Возвращаемое значение:}
+
+Название вариантов параметров алгоритма оптимизации.
+
+
+\subsubsection{getOptionFromListOfParameterOptionsForTable}\label{getOptionFromListOfParameterOptionsForTable}
+
+Получение названия вариантов параметров алгоритма оптимизации. Но старается где-то сокращать, а где-то добавлять строки.
+
+
+\begin{lstlisting}[label=code_syntax_getOptionFromListOfParameterOptionsForTable,caption=Синтаксис]
+QString getOptionFromListOfParameterOptionsForTable(int Number_Of_Parameter, int Number_Of_Option);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+Number\_Of\_Parameter --- номер параметра.
+
+Number\_Of\_Option --- номер считываемой опции у параметра алгоритма оптимизации.
+
+\textbf{Возвращаемое значение:}
+
+Название вариантов параметров алгоритма оптимизации.
+
+
+\subsubsection{getParameter}\label{getParameter}
+
+Получение значения параметра настройки какой-то.
+
+
+\begin{lstlisting}[label=code_syntax_getParameter,caption=Синтаксис]
+int getParameter(int Number_Of_Experiment, int Number_Of_Parameter);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+Number\_Of\_Experiment --- номер комбинации вариантов настроек;
+
+Number\_Of\_Parameter --- номер параметра.
+
+\textbf{Возвращаемое значение:}
+
+Значения параметра в виде числа (соответствие находим в ListOfParameterOptions).
+
+
+\subsubsection{getSuccessReading}\label{getSuccessReading}
+
+Получение текста переменной SuccessReading --- Успешно ли прошло считывание.
+
+
+\begin{lstlisting}[label=code_syntax_getSuccessReading,caption=Синтаксис]
+bool getSuccessReading();
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+Отсутствуют.
+
+\textbf{Возвращаемое значение:}
+
+Значение переменной из описания.
+
+
+\subsubsection{getVarianceOfAllEx}\label{getVarianceOfAllEx}
+
+Получение значения переменной VarianceOfAllEx --- дисперсия ошибок Ex алгоритма оптимизации по измерениям по всем измерениям вообще.
+
+
+\begin{lstlisting}[label=code_syntax_getVarianceOfAllEx,caption=Синтаксис]
+double getVarianceOfAllEx();
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+Отсутствуют.
+
+\textbf{Возвращаемое значение:}
+
+Дисперсия ошибок Ex алгоритма оптимизации по измерениям по всем измерениям вообще.
+
+
+\subsubsection{getVarianceOfAllEy}\label{getVarianceOfAllEy}
+
+Получение значения переменной VarianceOfAllEy --- дисперсия ошибок Ey алгоритма оптимизации по измерениям по всем измерениям вообще
+
+
+\begin{lstlisting}[label=code_syntax_getVarianceOfAllEy,caption=Синтаксис]
+double getVarianceOfAllEy();
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+Отсутствуют.
+
+\textbf{Возвращаемое значение:}
+
+Дисперсия ошибок Ey алгоритма оптимизации по измерениям по всем измерениям вообще.
+
+
+\subsubsection{getVarianceOfAllR}\label{getVarianceOfAllR}
+
+Получение значения переменной VarianceOfAllR --- дисперсия надежностей R алгоритма оптимизации по измерениям по всем измерениям вообще.
+
+
+\begin{lstlisting}[label=code_syntax_getVarianceOfAllR,caption=Синтаксис]
+double getVarianceOfAllR();
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+Отсутствуют.
+
+\textbf{Возвращаемое значение:}
+
+Дисперсия надежностей R алгоритма оптимизации по измерениям по всем измерениям вообще.
+
+
+\subsubsection{getVarianceOfEx}\label{getVarianceOfEx}
+
+Получение дисперсии значения ошибки Ex по измерениям для настройки (сколько точек было по столько и усредняем).
+
+
+\begin{lstlisting}[label=code_syntax_getVarianceOfEx,caption=Синтаксис]
+double getVarianceOfEx(int Number_Of_Experiment);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+Number\_Of\_Experiment --- номер комбинации вариантов настроек.
+
+\textbf{Возвращаемое значение:}
+
+Значения дисперсии значения Ex.
+
+
+\subsubsection{getVarianceOfEy}\label{getVarianceOfEy}
+
+Получение дисперсии значения ошибки Ey по измерениям для настройки (сколько точек было по столько и усредняем).
+
+
+\begin{lstlisting}[label=code_syntax_getVarianceOfEy,caption=Синтаксис]
+double getVarianceOfEy(int Number_Of_Experiment);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+Number\_Of\_Experiment --- номер комбинации вариантов настроек.
+
+\textbf{Возвращаемое значение:}
+
+Значения дисперсии значения Ey.
+
+
+\subsubsection{getVarianceOfR}\label{getVarianceOfR}
+
+Получение дисперсии значения надежности R по измерениям для настройки (сколько точек было по столько и усредняем).
+
+
+\begin{lstlisting}[label=code_syntax_getVarianceOfR,caption=Синтаксис]
+double getVarianceOfR(int Number_Of_Experiment);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+Number\_Of\_Experiment --- номер комбинации вариантов настроек.
+
+\textbf{Возвращаемое значение:}
+
+Значения дисперсии значения надежности R.
+
+
+\subsubsection{getVersion}\label{getVersion}
+
+Получение переменной Version, то есть возвращает версию формата документа.
+
+
+\begin{lstlisting}[label=code_syntax_getVersion,caption=Синтаксис]
+QString getVersion();
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+Отсутствуют.
+
+\textbf{Возвращаемое значение:}
+
+Значение переменной из описания.
+
+
+\subsection{Задание данных в класс}
+
+\subsubsection{addListOfParameterOptions}\label{addListOfParameterOptions}
+
+Добавление списка вектора названий вариантов параметров алгоритма оптимизации.
+
+
+\begin{lstlisting}[label=code_syntax_addListOfParameterOptions,caption=Синтаксис]
+void addListOfParameterOptions(QString Option, int Number_Of_Parameter);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+Option --- добавляемое название варианта параметра алгоритма.
+
+Number\_Of\_Parameter --- номер параметра.
+
+\textbf{Возвращаемое значение:}
+
+Отсутствуют.
+
+
+\subsubsection{addListOfVectorParameterOptions}\label{addListOfVectorParameterOptions}
+
+Добавление строки параметров эксперимента из списка вектора названий вариантов параметров алгоритма оптимизации --- это сборник строк из MatrixOfNameParameters, где объединены столбцы.
+
+
+\begin{lstlisting}[label=code_syntax_addListOfVectorParameterOptions,caption=Синтаксис]
+void addListOfVectorParameterOptions(QString Option);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+Option --- добавляемая строка.
+
+\textbf{Возвращаемое значение:}
+
+Отсутствуют.
+
+
+\subsubsection{addNameOption}\label{addNameOption}
+
+Добавление имени параметра алгоритма.
+
+
+\begin{lstlisting}[label=code_syntax_addNameOption,caption=Синтаксис]
+void addNameOption(QString Option);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+Option - имени параметра алгоритма.
+
+\textbf{Возвращаемое значение:}
+
+Отсутствуют.
+
+
+\subsubsection{addNameParameter}\label{addNameParameter}
+
+Получение значения параметра настройки какой-то в виде полного наименования.
+
+
+\begin{lstlisting}[label=code_syntax_addNameParameter,caption=Синтаксис]
+void addNameParameter(QString Name, int Number_Of_Experiment);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+Number\_Of\_Experiment --- номер комбинации вариантов настроек;
+
+Number\_Of\_Parameter --- номер параметра.
+
+\textbf{Возвращаемое значение:}
+
+Отсутствуют.
+
+
+\subsubsection{setAuthor}\label{setAuthor}
+
+Задание текста переменной XML\_Author - Автор документа.
+
+
+\begin{lstlisting}[label=code_syntax_setAuthor,caption=Синтаксис]
+void setAuthor(QString Author);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+Author --- значение переменной из описания.
+
+\textbf{Возвращаемое значение:}
+
+Отсутствуют.
+
+
+\subsubsection{setCheckAllCombinations}\label{setCheckAllCombinations}
+
+Задание текста переменной  XML\_All\_Combinations --- Все ли комбинации вариантов настроек просмотрены: 0 или 1.
+
+
+\begin{lstlisting}[label=code_syntax_setCheckAllCombinations,caption=Синтаксис]
+void setCheckAllCombinations(bool AllCombinations);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+AllCombinations --- Все ли комбинации вариантов настроек просмотрены: 0 или 1.
+
+\textbf{Возвращаемое значение:}
+
+Отсутствуют.
+
+
+\subsubsection{setDate}\label{setDate}
+
+Задание текста переменной  XML\_Date - Дата создания документа.
+
+
+\begin{lstlisting}[label=code_syntax_setDate,caption=Синтаксис]
+void setDate(QString Date);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+Date --- Дата создания документа.
+
+\textbf{Возвращаемое значение:}
+
+Отсутствуют.
+
+
+\subsubsection{setDimensionTestFunction}\label{setDimensionTestFunction}
+
+Задание текста переменной  XML\_DimensionTestFunction --- Размерность тестовой задачи.
+
+
+\begin{lstlisting}[label=code_syntax_setDimensionTestFunction,caption=Синтаксис]
+void setDimensionTestFunction(qint64 DimensionTestFunction);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+DimensionTestFunction --- Размерность тестовой задачи.
+
+\textbf{Возвращаемое значение:}
+
+Отсутствуют.
+
+
+\subsubsection{setEmail}\label{setEmail}
+
+Задание текста переменной  XML\_Email - Email автора, чтобы можно было с ним связаться
+
+
+\begin{lstlisting}[label=code_syntax_setEmail,caption=Синтаксис]
+void setEmail(QString Email);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+Email - Email автора, чтобы можно было с ним связаться.
+
+\textbf{Возвращаемое значение:}
+
+Отсутствуют.
+
+
+\subsubsection{setErrorEx}\label{setErrorEx}
+
+Задание значения ошибки Ex.
+
+
+\begin{lstlisting}[label=code_syntax_setErrorEx,caption=Синтаксис]
+void setErrorEx(double ErrorEx,int Number_Of_Experiment, int Number_Of_Measuring);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+ErrorEx --- задаваемое значение ошибки;
+
+Number\_Of\_Experiment --- номер комбинации вариантов настроек;
+
+Number\_Of\_Measuring --- номер измерения варианта настроек.
+
+\textbf{Возвращаемое значение:}
+
+Отсутствуют.
+
+
+\subsubsection{setErrorEy}\label{setErrorEy}
+
+Задание значения ошибки Ey.
+
+
+\begin{lstlisting}[label=code_syntax_setErrorEy,caption=Синтаксис]
+void setErrorEy(double ErrorEy,int Number_Of_Experiment, int Number_Of_Measuring);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+ErrorEy --- задаваемое значение ошибки;
+
+Number\_Of\_Experiment --- номер комбинации вариантов настроек;
+
+Number\_Of\_Measuring --- номер измерения варианта настроек.
+
+\textbf{Возвращаемое значение:}
+
+Отсутствуют.
+
+
+\subsubsection{setErrorR}\label{setErrorR}
+
+Задание значения надежности R.
+
+
+\begin{lstlisting}[label=code_syntax_setErrorR,caption=Синтаксис]
+void setErrorR(double ErrorR,int Number_Of_Experiment, int Number_Of_Measuring);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+ErrorR --- задаваемое значение надежности;
+
+Number\_Of\_Experiment --- номер комбинации вариантов настроек;
+
+Number\_Of\_Measuring --- номер измерения варианта настроек.
+
+\textbf{Возвращаемое значение:}
+
+Отсутствуют.
+
+
+\subsubsection{setFormat}\label{setFormat}
+
+Задание переменной XML\_Format --- название формата документа.
+
+
+\begin{lstlisting}[label=code_syntax_setFormat,caption=Синтаксис]
+void setFormat(QString Format);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+Format --- название формата документа.
+
+\textbf{Возвращаемое значение:}
+
+Отсутствуют.
+
+
+\subsubsection{setFullNameAlgorithm}\label{setFullNameAlgorithm}
+
+Задание текста переменной  XML\_Full\_Name\_Algorithm --- Полное название алгоритма оптимизации.
+
+
+\begin{lstlisting}[label=code_syntax_setFullNameAlgorithm,caption=Синтаксис]
+void setFullNameAlgorithm(QString FullNameAlgorithm);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+FullNameAlgorithm --- Полное название алгоритма оптимизации.
+
+\textbf{Возвращаемое значение:}
+
+Отсутствуют.
+
+
+\subsubsection{setFullNameTestFunction}\label{setFullNameTestFunction}
+
+Задание текста переменной  XML\_Full\_Name\_Test\_Function --- Полное название тестовой функции.
+
+
+\begin{lstlisting}[label=code_syntax_setFullNameTestFunction,caption=Синтаксис]
+void setFullNameTestFunction(QString FullNameTestFunction);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+FullNameTestFunction --- Полное название тестовой функции.
+
+\textbf{Возвращаемое значение:}
+
+Отсутствуют.
+
+
+\subsubsection{setLink}\label{setLink}
+
+Задание переменной XML\_Link --- ссылка на описание формата файла.
+
+
+\begin{lstlisting}[label=code_syntax_setLink,caption=Синтаксис]
+void setLink(QString Link);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+Link --- ссылка на описание формата файла.
+
+\textbf{Возвращаемое значение:}
+
+Отсутствуют.
+
+
+\subsubsection{setLinkAlgorithm}\label{setLinkAlgorithm}
+
+Задание текста переменной  XML\_Link\_Algorithm --- Ссылка на описание алгоритма оптимизации.
+
+
+\begin{lstlisting}[label=code_syntax_setLinkAlgorithm,caption=Синтаксис]
+void setLinkAlgorithm(QString LinkAlgorithm);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+LinkAlgorithm --- Ссылка на описание алгоритма оптимизации.
+
+\textbf{Возвращаемое значение:}
+
+Отсутствуют.
+
+
+\subsubsection{setLinkTestFunction}\label{setLinkTestFunction}
+
+Задание текста переменной  XML\_Link\_Test\_Function --- Ссылка на описание тестовой функции.
+
+
+\begin{lstlisting}[label=code_syntax_setLinkTestFunction,caption=Синтаксис]
+void setLinkTestFunction(QString LinkTestFunction);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+LinkTestFunction --- Ссылка на описание тестовой функции.
+
+\textbf{Возвращаемое значение:}
+
+Отсутствуют.
+
+
+\subsubsection{setListOfParameterOptions}\label{setListOfParameterOptions}
+
+Задание списка вектора названий вариантов параметров алгоритма оптимизации.
+
+
+\begin{lstlisting}[label=code_syntax_setListOfParameterOptions,caption=Синтаксис]
+void setListOfParameterOptions(QStringList List, int Number_Of_Parameter);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+List --- список названий параметров, которым будем заменять текущий список.
+
+Number\_Of\_Parameter --- номер параметра.
+
+\textbf{Возвращаемое значение:}
+
+Значения параметра в виде наименования.
+
+
+\subsubsection{setMaxCountOfFitness}\label{setMaxCountOfFitness}
+
+Задание текста переменной  Max\_Count\_Of\_Fitness --- Максимальное допустимое число вычислений целевой функции для алгоритма.
+
+
+\begin{lstlisting}[label=code_syntax_setMaxCountOfFitness,caption=Синтаксис]
+void setMaxCountOfFitness(qint64 MaxCountOfFitness);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+MaxCountOfFitness --- Максимальное допустимое число вычислений целевой функции для алгоритма.
+
+\textbf{Возвращаемое значение:}
+
+Отсутствуют.
+
+
+\subsubsection{setMeanEx}\label{setMeanEx}
+
+Задание среднего значения ошибки Ex по измерениям для настройки (сколько точек было по столько и усредняем).
+
+
+\begin{lstlisting}[label=code_syntax_setMeanEx,caption=Синтаксис]
+void setMeanEx(double MeanEx, int Number_Of_Experiment);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+MeanEx --- значение ошибки;
+
+Number\_Of\_Experiment --- номер комбинации вариантов настроек.
+
+\textbf{Возвращаемое значение:}
+
+Отсутствуют.
+
+
+\subsubsection{setMeanEy}\label{setMeanEy}
+
+Задание среднего значения ошибки Ey по измерениям для настройки (сколько точек было по столько и усредняем).
+
+
+\begin{lstlisting}[label=code_syntax_setMeanEy,caption=Синтаксис]
+void setMeanEy(double MeanEy, int Number_Of_Experiment);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+MeanEy --- значение ошибки;
+
+Number\_Of\_Experiment --- номер комбинации вариантов настроек.
+
+\textbf{Возвращаемое значение:}
+
+Отсутствуют.
+
+
+\subsubsection{setMeanOfAllEx}\label{setMeanOfAllEx}
+
+Задание значения переменной MeanOfAllEx - среднее значение ошибок Ex алгоритма оптимизации по измерениям по всем измерениям вообще
+
+
+\begin{lstlisting}[label=code_syntax_setMeanOfAllEx,caption=Синтаксис]
+void setMeanOfAllEx(double Mean);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+Mean --- среднее значение ошибок Ex алгоритма оптимизации по измерениям по всем измерениям вообще.
+
+\textbf{Возвращаемое значение:}
+
+Отсутствуют.
+
+
+\subsubsection{setMeanOfAllEy}\label{setMeanOfAllEy}
+
+Задание значения переменной MeanOfAllEy - среднее значение ошибок Ey алгоритма оптимизации по измерениям по всем измерениям вообще.
+
+
+\begin{lstlisting}[label=code_syntax_setMeanOfAllEy,caption=Синтаксис]
+void setMeanOfAllEy(double Mean);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+Mean --- среднее значение ошибок Ey алгоритма оптимизации по измерениям по всем измерениям вообще.
+
+\textbf{Возвращаемое значение:}
+
+Отсутствуют.
+
+
+\subsubsection{setMeanOfAllR}\label{setMeanOfAllR}
+
+Задание значения переменной MeanOfAllR --- среднее значение надежностей R алгоритма оптимизации по измерениям по всем измерениям вообще.
+
+
+\begin{lstlisting}[label=code_syntax_setMeanOfAllR,caption=Синтаксис]
+void setMeanOfAllR(double Mean);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+Mean --- среднее значение надежностей R алгоритма оптимизации по измерениям по всем измерениям вообще.
+
+\textbf{Возвращаемое значение:}
+
+Отсутствуют.
+
+
+\subsubsection{setMeanR}\label{setMeanR}
+
+Задание среднего значения надежности R по измерениям для настройки (сколько точек было по столько и усредняем).
+
+
+\begin{lstlisting}[label=code_syntax_setMeanR,caption=Синтаксис]
+void setMeanR(double MeanR, int Number_Of_Experiment);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+MeanR --- значение ошибки;
+
+Number\_Of\_Experiment --- номер комбинации вариантов настроек.
+
+\textbf{Возвращаемое значение:}
+
+Отсутствуют.
+
+
+\subsubsection{setNameAlgorithm}\label{setNameAlgorithm}
+
+Получение текста переменной  XML\_Name\_Algorithm - Название алгоритма оптимизации.
+
+
+\begin{lstlisting}[label=code_syntax_setNameAlgorithm,caption=Синтаксис]
+void setNameAlgorithm(QString NameAlgorithm);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+NameAlgorithm --- Название алгоритма оптимизации
+
+\textbf{Возвращаемое значение:}
+
+Отсутствуют.
+
+
+\subsubsection{setNameTestFunction}\label{setNameTestFunction}
+
+Задание текста переменной  XML\_Name\_Test\_Function --- Название тестовой функции.
+
+
+\begin{lstlisting}[label=code_syntax_setNameTestFunction,caption=Синтаксис]
+void setNameTestFunction(QString NameTestFunction);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+NameTestFunction --- Название тестовой функции.
+
+\textbf{Возвращаемое значение:}
+
+Отсутствуют.
+
+
+\subsubsection{setNumberOfExperiments}\label{setNumberOfExperiments}
+
+Задание текста переменной  XML\_Number\_Of\_Experiments --- Количество комбинаций вариантов настроек.
+
+
+\begin{lstlisting}[label=code_syntax_setNumberOfExperiments,caption=Синтаксис]
+void setNumberOfExperiments(qint64 NumberOfExperiments);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+NumberOfExperiments --- Количество комбинаций вариантов настроек.
+
+\textbf{Возвращаемое значение:}
+
+Отсутствуют.
+
+
+\subsubsection{setNumberOfListOfVectorParameterOptions}\label{setNumberOfListOfVectorParameterOptions}
+
+Задание значения элемента массива NumberOfListOfVectorParameterOptions.
+
+
+\begin{lstlisting}[label=code_syntax_setNumberOfListOfVectorParameterOptions,caption=Синтаксис]
+void setNumberOfListOfVectorParameterOptions(double Num,int Number);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+Num --- значение элемента;
+
+Number --- номер элемента.
+
+\textbf{Возвращаемое значение:}
+
+Значения параметра в виде наименования.
+
+
+\subsubsection{setNumberOfMeasuring}\label{setNumberOfMeasuring}
+
+Задание текста переменной  XML\_Number\_Of\_Measuring --- Размерность тестовой задачи (длина хромосомы решения).
+
+
+\begin{lstlisting}[label=code_syntax_setNumberOfMeasuring,caption=Синтаксис]
+void setNumberOfMeasuring(qint64 NumberOfMeasuring);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+NumberOfMeasuring --- Размерность тестовой задачи (длина хромосомы решения).
+
+\textbf{Возвращаемое значение:}
+
+Отсутствуют.
+
+
+\subsubsection{setNumberOfParameters}\label{setNumberOfParameters}
+
+Задание текста переменной  XML\_Number\_Of\_Parameters --- Количество проверяемых параметров алгоритма оптимизации.
+
+
+\begin{lstlisting}[label=code_syntax_setNumberOfParameters,caption=Синтаксис]
+void setNumberOfParameters(qint64 NumberOfParameters);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+NumberOfParameters --- Количество проверяемых параметров алгоритма оптимизации.
+
+\textbf{Возвращаемое значение:}
+
+Отсутствуют.
+
+
+\subsubsection{setNumberOfRuns}\label{setNumberOfRuns}
+
+Задание текста переменной  XML\_Number\_Of\_Runs --- Количество прогонов по которому делается усреднение для эксперимента.
+
+
+\begin{lstlisting}[label=code_syntax_setNumberOfRuns,caption=Синтаксис]
+void setNumberOfRuns(qint64 NumberOfRuns);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+NumberOfRuns --- Количество прогонов по которому делается усреднение для эксперимента.
+
+\textbf{Возвращаемое значение:}
+
+Отсутствуют.
+
+
+\subsubsection{setParameter}\label{setParameter}
+
+Задание значения параметра настройки какой-то.
+
+
+\begin{lstlisting}[label=code_syntax_setParameter,caption=Синтаксис]
+void setParameter(int Parameter, int Number_Of_Experiment, int Number_Of_Parameter);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+Parameter --- значение параметра в виде числа;
+
+Number\_Of\_Experiment --- номер комбинации вариантов настроек;
+
+Number\_Of\_Parameter --- номер параметра.
+
+\textbf{Возвращаемое значение:}
+
+Отсутствуют.
+
+
+\subsubsection{setSuccessReading}\label{setSuccessReading}
+
+Задание текста переменной SuccessReading --- Успешно ли прошло считывание.
+
+
+\begin{lstlisting}[label=code_syntax_setSuccessReading,caption=Синтаксис]
+void setSuccessReading(bool Success);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+SuccessReading --- Успешно ли прошло считывание.
+
+\textbf{Возвращаемое значение:}
+
+Отсутствуют.
+
+
+\subsubsection{setVarianceOfAllEx}\label{setVarianceOfAllEx}
+
+Задание значения переменной VarianceOfAllEx --- дисперсия ошибок Ex алгоритма оптимизации по измерениям по всем измерениям вообще
+
+
+\begin{lstlisting}[label=code_syntax_setVarianceOfAllEx,caption=Синтаксис]
+void setVarianceOfAllEx(double Variance);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+Variance --- дисперсия ошибок Ex алгоритма оптимизации по измерениям по всем измерениям вообще.
+
+\textbf{Возвращаемое значение:}
+
+Отсутствуют.
+
+
+\subsubsection{setVarianceOfAllEy}\label{setVarianceOfAllEy}
+
+Задание значения переменной VarianceOfAllEy --- дисперсия ошибок Ey алгоритма оптимизации по измерениям по всем измерениям вообще.
+
+
+\begin{lstlisting}[label=code_syntax_setVarianceOfAllEy,caption=Синтаксис]
+void setVarianceOfAllEy(double Variance);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+Variance --- дисперсия ошибок Ey алгоритма оптимизации по измерениям по всем измерениям вообще.
+
+\textbf{Возвращаемое значение:}
+
+Отсутствуют.
+
+
+\subsubsection{setVarianceOfAllR}\label{setVarianceOfAllR}
+
+Задание значения переменной VarianceOfAllR --- дисперсия надежностей R алгоритма оптимизации по измерениям по всем измерениям вообще.
+
+
+\begin{lstlisting}[label=code_syntax_setVarianceOfAllR,caption=Синтаксис]
+void setVarianceOfAllR(double Variance);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+Variance --- дисперсия надежностей R алгоритма оптимизации по измерениям по всем измерениям вообще.
+
+\textbf{Возвращаемое значение:}
+
+Отсутствуют.
+
+
+\subsubsection{setVarianceOfEx}\label{setVarianceOfEx}
+
+Получение дисперсии значения ошибки Ex по измерениям для настройки (сколько точек было по столько и усредняем).
+
+
+\begin{lstlisting}[label=code_syntax_setVarianceOfEx,caption=Синтаксис]
+void setVarianceOfEx(double Variance, int Number_Of_Experiment);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+Variance --- значение заносимой дисперсии;
+
+Number\_Of\_Experiment --- номер комбинации вариантов настроек.
+
+\textbf{Возвращаемое значение:}
+
+Отсутствуют.
+
+
+\subsubsection{setVarianceOfEy}\label{setVarianceOfEy}
+
+Получение дисперсии значения ошибки Ey по измерениям для настройки (сколько точек было по столько и усредняем).
+
+
+\begin{lstlisting}[label=code_syntax_setVarianceOfEy,caption=Синтаксис]
+void setVarianceOfEy(double Variance, int Number_Of_Experiment);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+Variance --- значение заносимой дисперсии;
+
+Number\_Of\_Experiment --- номер комбинации вариантов настроек.
+
+\textbf{Возвращаемое значение:}
+
+Отсутствуют.
+
+
+\subsubsection{setVarianceOfR}\label{setVarianceOfR}
+
+Получение дисперсии значения надежности R по измерениям для настройки (сколько точек было по столько и усредняем).
+
+
+\begin{lstlisting}[label=code_syntax_setVarianceOfR,caption=Синтаксис]
+void setVarianceOfR(double Variance, int Number_Of_Experiment);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+Variance --- значение заносимой дисперсии;
+
+Number\_Of\_Experiment --- номер комбинации вариантов настроек.
+
+\textbf{Возвращаемое значение:}
+
+Отсутствуют.
+
+
+\subsubsection{setVersion}\label{setVersion}
+
+Задание переменной XML\_Version --- версия формата документа.
+
+
+\begin{lstlisting}[label=code_syntax_setVersion,caption=Синтаксис]
+void setVersion(QString Version);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+Version --- версия формата документа.
+
+\textbf{Возвращаемое значение:}
+
+Отсутствуют.
+
+
+\subsection{Операторы}
+
+\subsubsection{operator =}\label{operator =}
+
+Оператор присваивания.
+
+
+\begin{lstlisting}[label=code_syntax_operator =,caption=Синтаксис]
+void operator = (HarrixClass_OnlyDataOfHarrixOptimizationTesting& B);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+B --- Другой экземпляр класса, который и копируем.
+
+\textbf{Возвращаемое значение:}
+
+Отсутствует.
+
+
+\subsection{Служебные функции}
+
+\subsubsection{initializationOfVariables}\label{initializationOfVariables}
+
+Обнуление переменных. Внутренняя функция.
+
+
+\begin{lstlisting}[label=code_syntax_initializationOfVariables,caption=Синтаксис]
+void initializationOfVariables();
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+Отсутствуют.
+
+\textbf{Возвращаемое значение:}
+
+Отсутствует.
+
+
+\subsubsection{memoryAllocation}\label{memoryAllocation}
+
+Выделяет память под необходимые массивы.
+
+
+\begin{lstlisting}[label=code_syntax_memoryAllocation,caption=Синтаксис]
+void memoryAllocation();
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+Отсутствуют.
+
+\textbf{Возвращаемое значение:}
+
+Отсутствует.
+
+
+\subsubsection{memoryDeallocation}\label{memoryDeallocation}
+
+Удаляет память из-под массивов. Внутренняя функция.
+
+
+\begin{lstlisting}[label=code_syntax_memoryDeallocation,caption=Синтаксис]
+void memoryDeallocation();
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+Отсутствуют.
+
+\textbf{Возвращаемое значение:}
+
+Отсутствует.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{document}

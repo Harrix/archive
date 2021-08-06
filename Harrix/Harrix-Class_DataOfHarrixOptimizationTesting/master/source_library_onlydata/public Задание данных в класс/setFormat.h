@@ -1,0 +1,1 @@
+void setFormat(QString Format);

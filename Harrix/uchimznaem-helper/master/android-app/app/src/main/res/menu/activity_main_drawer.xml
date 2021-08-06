@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/icon_home"
+            android:title="Главная" />
+        <item
+            android:id="@+id/nav_how_to_get"
+            android:icon="@drawable/icon_how_to_get"
+            android:title="Как пройти?" />
+        <item
+            android:id="@+id/nav_where_i"
+            android:icon="@drawable/icon_where_i"
+            android:title="Где я?" />
+        <item
+            android:id="@+id/nav_how_to_contact"
+            android:icon="@drawable/icon_how_to_contact"
+            android:title="Как связаться?" />
+        <item
+            android:id="@+id/nav_how_to_treat"
+            android:icon="@drawable/icon_how_to_treat"
+            android:title="Как лечат?" />
+        <item
+            android:id="@+id/nav_what_events"
+            android:icon="@drawable/icon_what_events"
+            android:title="Какие события?" />
+        <item
+            android:id="@+id/nav_question"
+            android:icon="@drawable/icon_advertising"
+            android:title="Хочу спросить" />
+        <item
+            android:id="@+id/nav_books"
+            android:icon="@drawable/icon_book"
+            android:title="Книги" />
+    </group>
+
+    <item android:title="Списки">
+        <menu>
+            <item
+                android:id="@+id/nav_rooms"
+                android:icon="@drawable/icon_rooms"
+                android:title="Список кабинетов" />
+        </menu>
+    </item>
+
+    <item android:title="Ссылки">
+        <menu>
+            <item
+                android:id="@+id/nav_uchimznaem"
+                android:icon="@drawable/icon_uchimznaem"
+                android:title="Сайт «УчимЗнаем»" />
+        </menu>
+    </item>
+
+</menu>

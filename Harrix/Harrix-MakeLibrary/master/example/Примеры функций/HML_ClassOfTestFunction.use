@@ -1,0 +1,11 @@
+        TypeOfTestFunction Type=TestFunction_Ackley;
+
+        //Вызов функции
+        int ClassOfTestFunction=HML_ClassOfTestFunction(Type);
+
+        //используем результат
+        if (ClassOfTestFunction==1)
+            HML_ShowText("Это задача бинарной оптимизации");
+        if (ClassOfTestFunction==2)
+            HML_ShowText("Это задача вещественной оптимизации");
+        //Это задача вещественной оптимизации.

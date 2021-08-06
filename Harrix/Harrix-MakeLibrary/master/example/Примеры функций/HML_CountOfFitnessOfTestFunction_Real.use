@@ -1,0 +1,11 @@
+        HML_DefineTestFunction(TestFunction_Ackley);
+
+        int Dimension = 3;
+
+        //Вызов функции
+        int  N=HML_CountOfFitnessOfTestFunction_Real(Dimension);
+
+        //Использование результата
+        HML_ShowNumber(N,"Количество вычислений целевой функции для TestFunction_Ackley при размерности 3","N");
+        //Количество вычислений целевой функции для TestFunction_Ackley при размерности 3:
+        //N=729

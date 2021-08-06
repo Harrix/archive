@@ -1,0 +1,2 @@
+int HML_CountOfFitnessOfTestFunction_Binary(int Dimension);
+int HML_CountOfFitnessOfTestFunction_Binary(int Dimension, TypeOfTestFunction Type);

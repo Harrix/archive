@@ -1,0 +1,169 @@
+\documentclass[a4paper,12pt]{article}
+
+\input{packages}
+\input{styles}
+
+\title{HarrixMakeLibrary v.1.7}
+\author{А.\,Б. Сергиенко}
+\date{\today}
+
+
+\begin{document}
+
+\input{names}
+
+\maketitle
+
+\begin{abstract}
+\textbf{HarrixMakeLibrary} --- это программа собирающая библиотеки функций на языке C++ и справку к ним из исходных материалов.
+\end{abstract}
+
+\tableofcontents
+
+\newpage
+
+\section{Внешний вид программы}
+
+\begin{figure} [h] 
+  \center
+  \includegraphics [scale=0.5] {makemainwindow.png}
+  \caption{Внешний вид программы} 
+  \label{img:latex}  
+\end{figure}
+
+При нажатии на кнопку \textbf{<<Собрать библиотеку>>} будет производиться сборка библиотеки вместе с файлами справки. После чего будет открыта папка с сформированными файлами.
+
+В текстовом поле под кнопкой будет отображаться ход работы программы.
+
+Это программа является упрощенной версией программы \textbf{MakeHarrixMathLibrary} из библиотеки \textbf{HarrixMathLibrary}. Помогает собирать файлы библиотек, если каждая функция прописана в отдельных файлах.
+
+\section{Результат работы программы}
+
+В папке \textbf{source\_library} находится исходный материал, который обрабатывается программой HarrixMakeLibrary.exe, в результате чего образуются следующие элементы:
+
+\begin{itemize}
+\item \textbf{Library.cpp} --- главный файл библиотеки;
+\item \textbf{Library.h} --- заголовочный файл;
+\item \textbf{Library\_Help.tex} --- файл справки в формате \LaTeX.
+\end{itemize}
+
+Обратите внимание, что это не полноценные файлы исходников библиотеки --- это только сборка функций в соответствующие файлы. И код этих файлов надо вставлять в ваши основные файлы исходных кодов библиотек. В общем, программа генерирует основу, а всякие дополнительные элементы вроде подключение include и др. это вам самим прописывать.
+
+Все данные файлы собираются в папке \textbf{temp\_library}.
+
+\section{Как собирается библиотека}
+Исходники библиотеки находятся с папке \textbf{source\_library}.
+
+Файлы \textbf{Library.cpp} и \textbf{Library.h} собираются следующим образом.
+
+В папке \textbf{source\_library} есть директории. Каждая директория --- это множество функций какого-то раздела. Перед рассмотрением файлов папки программа добавляет в файл Library.cpp следующий код:
+
+\begin{lstlisting}[label=make_sectioncpp,caption=Название раздела]
+//*****************************************************************
+//[Название папки]
+//*****************************************************************
+\end{lstlisting}
+
+А в файл Library.h добавляется код:
+
+\begin{lstlisting}[label=make_sectionh,caption=Название раздела]
+//[Название папки]
+\end{lstlisting}
+
+После каждой функции в Library.cpp вставляется код:
+\begin{lstlisting}[label=make_sectionh,caption=Название раздела]
+//---------------------------------------------------------------------------
+\end{lstlisting}
+
+Далее программа пробегает по каждой папке, которая представляет собой раздел функций в библиотеке. Каждая функция в разделе предоставляется следующими файлами:
+\begin{itemize}
+\item \textbf{<File>.cpp} или \textbf{<File>.tpp} --- код функции;
+\item \textbf{<File>.h} --- заголовочный файл функции;
+\item \textbf{<File>.tex} --- справка по функции;
+\item \textbf{<File>.desc} --- описание функции;
+\item \textbf{<File>.use} --- пример использования функции (из него удаляются пробелы в начале строк, равным числу пробелов вначале первой строки);
+\item \textbf{<File>\_<name>.pdf} --- множество рисунков, необходимых для справки по функции (необязательные файлы);
+\item \textbf{<File>\_<name>.png} --- множество рисунков, необходимых для справки по функции (необязательные файлы);
+\end{itemize}
+
+Важно помнить, что каждый *.cpp, *.h, *.tex файл в папках папки \textbf{source\_library} не является полноценным файлом соответствующего расширения и без сборки в единые файлы библиотеки не может использоваться.
+
+Разница файлов *.cpp и *.tpp в том, что в *.tpp  пишется код шаблонов функций, а в *.cpp пишутся обычные функции, и их реализация располагается в Library.cpp файле, тогда как шаблоны располагаются в Library.h файле.
+
+Ниже показан алгоритм (Алгоритм \ref{alg:MakingCppH}) формирования файлов библиотеки.
+
+Итоговое количество функций определяется как количество знаков <<;>> в h файлах функций, которые располагаются в папках.
+
+
+\begin{algorithm}
+\caption{Алгоритм собирания файлов библиотеки} \label{alg:MakingCppH}
+\begin{algorithmic}
+\State \textbf{Начало алгоритма}
+\ForAll {папок}
+\State $ Library.cpp+=\text{\textit{Код 1. Название раздела}} $;
+\State $ Library.h+=\text{\textit{Код 2. Название раздела}} $;
+\ForAll {файлов папки расширения *.cpp, *.tpp и *.h}
+\If {есть файл *.cpp}
+\State $ Library.cpp+=<File>.cpp $;
+\Else
+\State $ ResultTpp+=<File>.tpp $;
+\EndIf
+\State $ Library.h+=<File>.h $;
+\EndFor
+\EndFor
+\State $ Library.h+= ResultTpp$;
+\State Сохранить $ Library.cpp $ в папке temp\_library;
+\State Сохранить $ Library.h $ в папке temp\_library;
+\State \textbf{Конец алгоритма}
+\end{algorithmic}
+\end{algorithm}
+
+Стоит отметить, что все разделы функций и сами функции сортируются в алфавитном порядке.
+
+
+\section{Как собирается справка}
+Исходники файлов справки библиотеки находятся с папке
+\textbf{source\_library}.
+
+Файлы \textbf{Library.tex} собирается следующим образом, как показано ниже в алгоритме (Алгоритм \ref{alg:MakingHelp}) формирования файлов справки библиотеки.
+
+Некоторые моменты по преобразованию некоторых данных (например, преобразование $<File>.desc$) не рассматривается в алгоритме, но вы можете все посмотреть в исходном коде программы, которая поставляется с данной библиотекой в папке \textbf{source\textbackslash}
+
+Также еще собирается файл \textbf{FUNCTIONS.md} со списком функций в формате \textbf{Markdown}, например, для размещения в GitHub.
+
+\section{Исходники HarrixMakeLibrary.exe и справки по ним}
+
+HarrixMakeLibrary написан на Qt.  Не требует каких-то дополнительных файлов. Исходники программы располагаются в папке \textbf{source\textbackslash}.
+
+Исходники справки HarrixMakeLibrary (данного файла, который вы читаете) по располагаются в папке \textbf{source\textbackslash help\textbackslash}. Главный файл исходника справки --- это файл HarrixMakeLibrary\_Help.tex.
+
+\begin{algorithm}
+\caption{Алгоритм собирания файлов справки библиотеки} \label{alg:MakingHelp}
+\begin{algorithmic}
+\State \textbf{Начало алгоритма}
+\State $ResultTexList += \text {\textit{Заголовок для списка функций}}$;
+\State $ResultTexFunctions += \text {\textit{Заголовок для функций}}$;
+\ForAll {папок}
+\State $ ResultTexList+=\text{\textit{Заголовок раздела}} $;
+\State $ ResultTexFunctions+=\text{\textit{Заголовок раздела}} $;
+\State $n=0$;
+\ForAll {файлов папки расширения *.desc, *.tex, *.h, *.use}
+\State $ ResultTexList+=<File>.desc $ в обработке;
+\State $ ResultTexFunctions+=<File>.desc $ в обработке;
+\State $ ResultTexFunctions+=<File>.h $ в обертке;
+\State $ ResultTexFunctions+=<File>.tex $;
+\State $ ResultTexFunctions+=<File>.use $ в обертке;
+\State $n++$;
+\EndFor
+\ForAll {файлов папки расширения *.pdf и *.png}
+\State  Скопировать файл <File>.<png|pdf> в папку \textbf{\textbackslash images\textbackslash};
+\EndFor
+\EndFor
+\State $ Library\_Help.tex+=ResultTexList $;
+\State $ Library\_Help.tex+=ResultTexFunctions $;
+\State Сохранить $ Library\_Help.tex $ в папке temp\_library;
+\State \textbf{Конец алгоритма}
+\end{algorithmic}
+\end{algorithm}
+
+\end{document}

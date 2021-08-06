@@ -1,0 +1,1 @@
+QString HQt_ShowH1 (QString String);

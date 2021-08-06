@@ -1,0 +1,1 @@
+QString HQt_ShowSimpleText (QString String);

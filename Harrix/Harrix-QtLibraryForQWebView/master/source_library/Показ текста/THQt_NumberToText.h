@@ -1,0 +1,1 @@
+template <class T> QString THQt_NumberToText (T VHQt_X);

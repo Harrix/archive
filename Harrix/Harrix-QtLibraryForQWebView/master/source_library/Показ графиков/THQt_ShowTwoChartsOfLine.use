@@ -1,0 +1,26 @@
+    QString DS=QDir::separator();
+    QString path=QGuiApplication::applicationDirPath()+DS;//путь к папке
+
+    QString Html;
+    Html=HQt_BeginHtml ();
+
+    int N=6;
+    double *dataX=new double [N];
+    double *dataY1=new double [N];
+    double *dataY2=new double [N];
+    dataX[0]=7;dataY1[0]=6;dataY2[0]=1;
+    dataX[1]=8;dataY1[1]=4;dataY2[0]=2;
+    dataX[2]=10;dataY1[2]=7;dataY2[0]=3;
+    dataX[3]=5;dataY1[3]=12;dataY2[0]=4;
+    dataX[4]=14;dataY1[4]=4;dataY2[0]=4;
+    dataX[5]=13;dataY1[5]=8;dataY2[0]=3;
+
+    Html += THQt_ShowTwoChartsOfLine (dataX,dataY1,dataY2,N,"Тестовый график","x","y","количество деревьев","количество домов",true,true,true,true);
+
+    delete []dataX;
+    delete []dataY1;
+    delete []dataY2;
+
+    Html+=HQt_EndHtml();
+    HQt_SaveFile(Html, path+"temp.html");
+    ui->webView->setUrl(QUrl::fromLocalFile(path+"temp.html"));

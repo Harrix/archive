@@ -1,0 +1,27 @@
+        HML_DefineTestFunction(TestFunction_SumVector);
+
+        HML_SetToZeroCountOfFitness();
+
+        int N=5;
+        double f=0;
+        int *x=new int[N];
+
+        for (int i=0;i<10;i++)
+        {
+            HML_RandomBinaryVector(x,N);
+            f+=HML_TestFunction_Binary(x,N);
+        }
+
+        f/=double(10.);
+
+        //Вызов функции
+        int M=HML_GetCountOfFitness();
+
+        //Использование результата
+        HML_ShowNumber(M,"Количество вызовов целевой функции","M");
+        //Количество вызовов целевой функции:
+        //M=10
+
+        HML_ShowNumber(f,"Среднее значение целевой функции","f");
+        //Среднее значение целевой функции:
+        //f=2.6

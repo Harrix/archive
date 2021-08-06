@@ -1,0 +1,1336 @@
+\documentclass[a4paper,12pt]{article}
+
+\input{packages}
+\input{styles}
+
+\title{HarrixMathLibraryForTestFunctions v.1.2}
+\author{А.\,Б. Сергиенко}
+\date{\today}
+
+
+\begin{document}
+
+\input{names}
+
+\maketitle
+
+\begin{abstract}
+Библиотека HarrixMathLibraryForTestFunctions --- это множество функций для работы с тестовыми функциями.
+\end{abstract}
+
+\tableofcontents
+
+\newpage
+
+\section{Введение}
+
+Библиотека HarrixMathLibraryForTestFunctions --- это множество функций для работы с тестовыми функциями.
+
+Последнюю версию документа можно найти по адресу:
+
+\href{https://github.com/Harrix/HarrixMathLibraryForTestFunctions}{https://github.com/Harrix/HarrixMathLibraryForTestFunctions}
+
+Об установке библиотеки можно прочитать тут:
+
+\href{http://blog.harrix.org/?p=1279}{http://blog.harrix.org/?p=1279}
+
+С автором можно связаться по адресу \href{mailto:sergienkoanton@mail.ru}{sergienkoanton@mail.ru} или  \href{http://vk.com/harrix}{http://vk.com/harrix}.
+
+Сайт автора, где публикуются последние новости: \href{http://blog.harrix.org/}{http://blog.harrix.org/}, а проекты располагаются по адресу \href{http://harrix.org/}{http://harrix.org/}.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% ВСТАВЛЯТЬ НИЖЕ
+\newpage
+\section{Список функций}\label{section_listfunctions}
+\textbf{Для тестовых функций}
+\begin{enumerate}
+
+\item \textbf{\hyperref[HML_ClassOfTestFunction]{HML\_ClassOfTestFunction}} --- Функция выдает принадлежность тестовой функции к классу функций: бинарной, вещественной или иной оптимизации.
+
+\item \textbf{\hyperref[HML_CountOfFitnessOfTestFunction_Binary]{HML\_CountOfFitnessOfTestFunction\_Binary}} --- Функция определяет количество вычислений целевой функции для тестовых задач для единообразного сравнения алгоритмов. Включает в себя все тестовые функции вещественной оптимизации.
+
+\item \textbf{\hyperref[HML_CountOfFitnessOfTestFunction_Real]{HML\_CountOfFitnessOfTestFunction\_Real}} --- Функция определяет количество вычислений целевой функции для тестовых задач для единообразного сравнения алгоритмов. Включает в себя все тестовые функции вещественной оптимизации.
+
+\item \textbf{\hyperref[HML_DefineTestFunction]{HML\_DefineTestFunction}} --- Служебная функция определяет тестовую функцию для других функций по работе с тестовыми функциями.
+
+\item \textbf{\hyperref[HML_DimensionTestFunction_Binary]{HML\_DimensionTestFunction\_Binary}} --- Функция определяет размерность тестовой задачи для тестовой функции бинарной оптимизации по номеру подзадачи (число подзадач по функции HML\_GetCountOfSubProblems\_Binary).
+
+\item \textbf{\hyperref[HML_DimensionTestFunction_Real]{HML\_DimensionTestFunction\_Real}} --- Функция определяет размерность тестовой задачи для тестовой функции вещественной оптимизации по номеру подзадачи (число подзадач по функции HML\_GetCountOfSubProblems\_Binary).
+
+\item \textbf{\hyperref[HML_ErrorExOfTestFunction_Binary]{HML\_ErrorExOfTestFunction\_Binary}} --- Функция определяет значение ошибки по входным параметрам найденного решения в задаче оптимизации для тестовой функции. Включает в себя все тестовые функции бинарной оптимизации. Есть функция-переопределение, где пользователь может сам указать тип тестовой функции.
+
+\item \textbf{\hyperref[HML_ErrorExOfTestFunction_Real]{HML\_ErrorExOfTestFunction\_Real}} --- Функция определяет значение ошибки по входным параметрам найденного решения в задаче оптимизации для тестовой функции вещественной оптимизации. Включает в себя все тестовые функции вещественной оптимизации. Есть функция-переопределение, где пользователь может сам указать тип тестовой функции.
+
+\item \textbf{\hyperref[HML_ErrorEyOfTestFunction_Binary]{HML\_ErrorEyOfTestFunction\_Binary}} --- Функция определяет значение ошибки по значениям целевой функции найденного решения в задаче оптимизации для тестовой функции. Включает в себя все тестовые функции бинарной оптимизации. Есть функция-переопределение, где пользователь может сам указать тип тестовой функции.
+
+\item \textbf{\hyperref[HML_ErrorEyOfTestFunction_Real]{HML\_ErrorEyOfTestFunction\_Real}} --- Функция определяет значение ошибки по значениям целевой функции найденного решения в задаче оптимизации для тестовой функции вещественной оптимизации. Включает в себя все тестовые функции вещественной оптимизации. Есть функция-переопределение, где пользователь может сам указать тип тестовой функции.
+
+\item \textbf{\hyperref[HML_ErrorROfTestFunction_Binary]{HML\_ErrorROfTestFunction\_Binary}} --- Функция определяет значение надежности найденного решения в задаче оптимизации для тестовой функции. Включает в себя все тестовые функции бинарной оптимизации. Есть функция-переопределение, где пользователь может сам указать тип тестовой функции.
+
+\item \textbf{\hyperref[HML_ErrorROfTestFunction_Real]{HML\_ErrorROfTestFunction\_Real}} --- Функция определяет значение надежности найденного решения в задаче оптимизации для тестовой функции вещественной оптимизации. Включает в себя все тестовые функции  вещественной оптимизации. Есть функция-переопределение, где пользователь может сам указать тип тестовой функции.
+
+\item \textbf{\hyperref[HML_FitnessOfOptimumOfTestFunction_Binary]{HML\_FitnessOfOptimumOfTestFunction\_Binary}} --- Функция определяет значение целевой функции в оптимуме для тестовой функции бинарной оптимизации. Включает в себя все тестовые функции бинарной оптимизации. Есть функция-переопределение, где пользователь может сам указать тип тестовой функции.
+
+\item \textbf{\hyperref[HML_FitnessOfOptimumOfTestFunction_Real]{HML\_FitnessOfOptimumOfTestFunction\_Real}} --- Функция определяет значение целевой функции в оптимуме для тестовой функции вещественной оптимизации. Включает в себя все тестовые функции вещественной оптимизации. Есть функция-переопределение, где пользователь может сам указать тип тестовой функции.
+
+\item \textbf{\hyperref[HML_GetCountOfFitness]{HML\_GetCountOfFitness}} --- Функция выдает количество вызовов целевой функции.
+
+\item \textbf{\hyperref[HML_GetCountOfSubProblems_Binary]{HML\_GetCountOfSubProblems\_Binary}} --- Функция определяет число подзадач (включая основную задачу) для тестовой функции бинарной оптимизации. Включает в себя все тестовые функции бинарной оптимизации.
+
+\item \textbf{\hyperref[HML_GetCountOfSubProblems_Real]{HML\_GetCountOfSubProblems\_Real}} --- Функция определяет число подзадач (включая основную задачу) для тестовой функции вещественной оптимизации. Включает в себя все тестовые функции вещественной оптимизации.
+
+\item \textbf{\hyperref[HML_LeftBorderOfTestFunction_Real]{HML\_LeftBorderOfTestFunction\_Real}} --- Функция определяет левые и правые границы допустимой области для тестовой функции вещественной оптимизации. Включает в себя все тестовые функции вещественной оптимизации. Есть функция-переопределение, где пользователь может сам указать тип тестовой функции.
+
+\item \textbf{\hyperref[HML_MaximumOrMinimumOfTestFunction_Binary]{HML\_MaximumOrMinimumOfTestFunction\_Binary}} --- 	Функция сообщает - ищется максимум или минимум в задаче оптимизации для тестовой функции бинарной оптимизации.
+
+\item \textbf{\hyperref[HML_MaximumOrMinimumOfTestFunction_Real]{HML\_MaximumOrMinimumOfTestFunction\_Real}} --- 	Функция сообщает - ищется максимум или минимум в задаче оптимизации для тестовой функции вещественной оптимизации.
+
+\item \textbf{\hyperref[HML_NumberOfPartsOfTestFunction_Real]{HML\_NumberOfPartsOfTestFunction\_Real}} --- Функция определяет на сколько частей нужно делить каждую координату в задаче оптимизации для тестовой функции вещественной оптимизации для алгоритма дискретной оптимизации и какая при этом требуется точность для подсчета надежности. Включает в себя все тестовые функции вещественной оптимизации. Есть функция-переопределение, где пользователь может сам указать тип тестовой функции.
+
+\item \textbf{\hyperref[HML_OptimumOfTestFunction_Binary]{HML\_OptimumOfTestFunction\_Binary}} --- Функция определяет значение оптимума для тестовой функции. Включает в себя все тестовые функции бинарной оптимизации. Есть функция-переопределение, где пользователь может сам указать тип тестовой функции.
+
+\item \textbf{\hyperref[HML_OptimumOfTestFunction_Real]{HML\_OptimumOfTestFunction\_Real}} --- Функция определяет значение оптимума для тестовой функции вещественной оптимизации. Включает в себя все тестовые функции вещественной оптимизации. Есть функция-переопределение, где пользователь может сам указать тип тестовой функции.
+
+\item \textbf{\hyperref[HML_PrecisionOfCalculationsOfTestFunction_Real]{HML\_PrecisionOfCalculationsOfTestFunction\_Real}} --- Функция определяет точность для подсчета надежности в задаче оптимизации для тестовой функции вещественной оптимизации для алгоритма дискретной оптимизации.
+
+\item \textbf{\hyperref[HML_SetToZeroCountOfFitness]{HML\_SetToZeroCountOfFitness}} --- Функция обнуляет количество вызовов целевой функции. Обязательно вызвать один раз перед вызовом алгоритмов оптимизации при исследовании эффективности    алгоритмов оптимизации, где требуется контроль числа вызовов целевой функции.
+
+\item \textbf{\hyperref[HML_TestFunction_Binary]{HML\_TestFunction\_Binary}} --- Общая тестовая функция для задач бинарной оптимизации. Есть функция-переопределение, где пользователь может сам указать тип тестовой функции.
+
+\item \textbf{\hyperref[HML_TestFunction_Real]{HML\_TestFunction\_Real}} --- Общая тестовая функция для задач вещественной оптимизации. Есть функция-переопределение, где пользователь может сам указать тип тестовой функции.
+
+\end{enumerate}
+
+
+\newpage
+\section{Функции}
+\subsection{Для тестовых функций}
+
+\subsubsection{HML\_ClassOfTestFunction}\label{HML_ClassOfTestFunction}
+
+Функция выдает принадлежность тестовой функции к классу функций: бинарной, вещественной или иной оптимизации.
+
+
+\begin{lstlisting}[label=code_syntax_HML_ClassOfTestFunction,caption=Синтаксис]
+int HML_ClassOfTestFunction(TypeOfTestFunction Type);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+Type --- тип тестовой функции. Смотреть виды в переменных перечисляемого типа в начале HarrixMathLibrary.h файла.
+
+\textbf{Возвращаемое значение:}
+
+Класс тестовой функции:
+
+\begin{enumerate}
+\item 1 - бинарной оптимизации;
+\item 2 - вещественной оптимизации.
+\end{enumerate}
+
+
+\begin{lstlisting}[label=code_use_HML_ClassOfTestFunction,caption=Пример использования]
+TypeOfTestFunction Type=TestFunction_Ackley;
+
+//Вызов функции
+int ClassOfTestFunction=HML_ClassOfTestFunction(Type);
+
+//используем результат
+if (ClassOfTestFunction==1)
+    HML_ShowText("Это задача бинарной оптимизации");
+if (ClassOfTestFunction==2)
+    HML_ShowText("Это задача вещественной оптимизации");
+//Это задача вещественной оптимизации.
+\end{lstlisting}
+
+\subsubsection{HML\_CountOfFitnessOfTestFunction\_Binary}\label{HML_CountOfFitnessOfTestFunction_Binary}
+
+Функция определяет количество вычислений целевой функции для тестовых задач для единообразного сравнения алгоритмов. Включает в себя все тестовые функции вещественной оптимизации.
+
+
+\begin{lstlisting}[label=code_syntax_HML_CountOfFitnessOfTestFunction_Binary,caption=Синтаксис]
+int HML_CountOfFitnessOfTestFunction_Binary(int Dimension);
+int HML_CountOfFitnessOfTestFunction_Binary(int Dimension, TypeOfTestFunction Type);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+Dimension --- размерность тестовой задачи. Может принимать значения: 20; 30; 40; 50; 60; 70; 80; 90; 100; 200.
+
+В переопределяемой функции также есть параметр:
+  
+Type --- обозначение тестовой функции, которую вызываем. 
+
+Смотреть виды в переменных перечисляемого типа в начале HarrixMathLibrary.h файла: TestFunction\_Ackley, TestFunction\_ParaboloidOfRevolution, TestFunction\_Rastrigin и др. Они совпадают с названиями одноименных тестовых функций, но без приставки \textbf{HML\_}.
+
+\textbf{Возвращаемое значение:}
+ 
+Количество вычислений целевой функции для тестовых задач.
+
+Итак, для обычного использования (без параметра Type) нужно вызвать функцию HML\_DefineTestFunction. Иначе использовать переопределенную функцию и самому указать тип тестовой функции.
+
+
+\begin{lstlisting}[label=code_use_HML_CountOfFitnessOfTestFunction_Binary,caption=Пример использования]
+HML_DefineTestFunction(TestFunction_SumVector);
+
+int Dimension = 30;
+
+//Вызов функции
+int  N=HML_CountOfFitnessOfTestFunction_Binary(Dimension);
+
+//Использование результата
+HML_ShowNumber(N,"Количество вычислений целевой функции для TestFunction_SumVector при размерности 30","N");
+//Количество вычислений целевой функции для TestFunction_SumVector при размерности 30:
+//N=400
+\end{lstlisting}
+
+\subsubsection{HML\_CountOfFitnessOfTestFunction\_Real}\label{HML_CountOfFitnessOfTestFunction_Real}
+
+Функция определяет количество вычислений целевой функции для тестовых задач для единообразного сравнения алгоритмов. Включает в себя все тестовые функции вещественной оптимизации.
+
+
+\begin{lstlisting}[label=code_syntax_HML_CountOfFitnessOfTestFunction_Real,caption=Синтаксис]
+int HML_CountOfFitnessOfTestFunction_Real(int Dimension);
+int HML_CountOfFitnessOfTestFunction_Real(int Dimension, TypeOfTestFunction Type);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+Dimension --- размерность тестовой задачи. Может принимать значения: 2; 3; 4; 5; 10; 20; 30.
+
+В переопределяемой функции также есть параметр:
+  
+Type --- обозначение тестовой функции, которую вызываем. 
+
+Смотреть виды в переменных перечисляемого типа в начале HarrixMathLibrary.h файла: TestFunction\_Ackley, TestFunction\_ParaboloidOfRevolution, TestFunction\_Rastrigin и др. Они совпадают с названиями одноименных тестовых функций, но без приставки \textbf{HML\_}.
+
+\textbf{Возвращаемое значение:}
+ 
+Количество вычислений целевой функции для тестовых задач.
+
+Итак, для обычного использования (без параметра Type) нужно вызвать функцию HML\_DefineTestFunction. Иначе использовать переопределенную функцию и самому указать тип тестовой функции.
+
+
+\begin{lstlisting}[label=code_use_HML_CountOfFitnessOfTestFunction_Real,caption=Пример использования]
+HML_DefineTestFunction(TestFunction_Ackley);
+
+int Dimension = 3;
+
+//Вызов функции
+int  N=HML_CountOfFitnessOfTestFunction_Real(Dimension);
+
+//Использование результата
+HML_ShowNumber(N,"Количество вычислений целевой функции для TestFunction_Ackley при размерности 3","N");
+//Количество вычислений целевой функции для TestFunction_Ackley при размерности 3:
+//N=729
+\end{lstlisting}
+
+\subsubsection{HML\_DefineTestFunction}\label{HML_DefineTestFunction}
+
+Служебная функция определяет тестовую функцию для других функций по работе с тестовыми функциями.
+
+
+\begin{lstlisting}[label=code_syntax_HML_DefineTestFunction,caption=Синтаксис]
+void HML_DefineTestFunction(TypeOfTestFunction Type);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+  
+Type --- обозначение тестовой функции, которую вызываем.
+Смотреть виды в переменных перечисляемого типа в начале HarrixMathLibrary.h файла: TestFunction\_Ackley, TestFunction\_ParaboloidOfRevolution, TestFunction\_Rastrigin и др. Они совпадают с названиями одноименных тестовых функций, но без приставки \textbf{HML\_}.
+
+\textbf{Возвращаемое значение:}
+ 
+Отсутствует.
+
+
+\begin{lstlisting}[label=code_use_HML_DefineTestFunction,caption=Пример использования]
+//Вызов функции
+HML_DefineTestFunction(TestFunction_SumVector);
+
+//Использование результата
+int N=5;
+int *x=new int[N];
+HML_RandomBinaryVector(x,N);
+double f=HML_TestFunction_Binary(x,N);
+
+HML_ShowVectorT(x,N,"Решение","x");
+//Решение:
+//x =	
+//1	1	1	1	0
+
+HML_ShowNumber(f,"Значение целевой функции","f");
+//Значение целевой функции:
+//f=4
+\end{lstlisting}
+
+\subsubsection{HML\_DimensionTestFunction\_Binary}\label{HML_DimensionTestFunction_Binary}
+
+Функция определяет размерность тестовой задачи для тестовой функции бинарной оптимизации по номеру подзадачи (число подзадач по функции HML\_GetCountOfSubProblems\_Binary).
+
+
+\begin{lstlisting}[label=code_syntax_HML_DimensionTestFunction_Binary,caption=Синтаксис]
+int HML_DimensionTestFunction_Binary(int i);
+int HML_DimensionTestFunction_Binary(int i, TypeOfTestFunction Type);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+\textbf{i} - номер подзадачи (начиная с нуля).
+
+В переопределяемой функции также есть параметр:
+  
+Type --- обозначение тестовой функции, которую вызываем. 
+
+Смотреть виды в переменных перечисляемого типа в начале HarrixMathLibrary.h файла: TestFunction\_Ackley, TestFunction\_ParaboloidOfRevolution, TestFunction\_Rastrigin и др. Они совпадают с названиями одноименных тестовых функций, но без приставки \textbf{HML\_}.
+
+\textbf{Возвращаемое значение:}
+ 
+Размерность тестовой задачи для тестовой функции бинарной оптимизации.
+
+Итак, для обычного использования (без параметра Type) нужно вызвать функцию HML\_DefineTestFunction. Иначе использовать переопределенную функцию и самому указать тип тестовой функции.
+
+
+\begin{lstlisting}[label=code_use_HML_DimensionTestFunction_Binary,caption=Пример использования]
+HML_DefineTestFunction(TestFunction_SumVector);
+
+//Вызов функции
+double N=HML_DimensionTestFunction_Binary(0);
+
+//Использование результата
+HML_ShowNumber(N,"Размерность тестовой задачи для TestFunction_SumVector при i=0","N");
+//Размерность тестовой задачи для TestFunction_SumVector при i=0:
+//N=20
+\end{lstlisting}
+
+\subsubsection{HML\_DimensionTestFunction\_Real}\label{HML_DimensionTestFunction_Real}
+
+Функция определяет размерность тестовой задачи для тестовой функции вещественной оптимизации по номеру подзадачи (число подзадач по функции HML\_GetCountOfSubProblems\_Binary).
+
+
+\begin{lstlisting}[label=code_syntax_HML_DimensionTestFunction_Real,caption=Синтаксис]
+int HML_DimensionTestFunction_Real(int i);
+int HML_DimensionTestFunction_Real(int i, TypeOfTestFunction Type);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+\textbf{i} - номер подзадачи (начиная с нуля).
+
+В переопределяемой функции также есть параметр:
+  
+Type --- обозначение тестовой функции, которую вызываем. 
+
+Смотреть виды в переменных перечисляемого типа в начале HarrixMathLibrary.h файла: TestFunction\_Ackley, TestFunction\_ParaboloidOfRevolution, TestFunction\_Rastrigin и др. Они совпадают с названиями одноименных тестовых функций, но без приставки \textbf{HML\_}.
+
+\textbf{Возвращаемое значение:}
+ 
+Размерность тестовой задачи для тестовой функции вещественной оптимизации.
+
+Итак, для обычного использования (без параметра Type) нужно вызвать функцию HML\_DefineTestFunction. Иначе использовать переопределенную функцию и самому указать тип тестовой функции.
+
+
+\begin{lstlisting}[label=code_use_HML_DimensionTestFunction_Real,caption=Пример использования]
+HML_DefineTestFunction(TestFunction_Ackley);
+
+//Вызов функции
+double N=HML_DimensionTestFunction_Real(0);
+
+//Использование результата
+HML_ShowNumber(N,"Размерность тестовой задачи для TestFunction_Ackley при i=0","N");
+//Размерность тестовой задачи для TestFunction_Ackley при i=0:
+//N=2
+\end{lstlisting}
+
+\subsubsection{HML\_ErrorExOfTestFunction\_Binary}\label{HML_ErrorExOfTestFunction_Binary}
+
+Функция определяет значение ошибки по входным параметрам найденного решения в задаче оптимизации для тестовой функции. Включает в себя все тестовые функции бинарной оптимизации. Есть функция-переопределение, где пользователь может сам указать тип тестовой функции.
+
+
+\begin{lstlisting}[label=code_syntax_HML_ErrorExOfTestFunction_Binary,caption=Синтаксис]
+double HML_ErrorExOfTestFunction_Binary(int *x, int VHML_N);
+double HML_ErrorExOfTestFunction_Binary(int *x, int VHML_N, TypeOfTestFunction Type);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+x --- указатель на исходный массив (найденное решение алгоритмом);
+
+VHML\_N --- размер массива x.
+
+В переопределяемой функции также есть параметр:
+  
+Type --- обозначение тестовой функции, которую вызываем.
+Смотреть виды в переменных перечисляемого типа в начале HarrixMathLibrary.h файла: TestFunction\_Ackley, TestFunction\_ParaboloidOfRevolution, TestFunction\_Rastrigin и др. Они совпадают с названиями одноименных тестовых функций, но без приставки \textbf{HML\_}.
+
+\textbf{Возвращаемое значение:}
+ 
+Значение ошибки по входным параметрам Ex.
+
+Итак, для обычного использования (без параметра Type) нужно вызвать функцию HML\_DefineTestFunction. Иначе использовать переопределенную функцию и самому указать тип тестовой функции.
+
+Конкретную формулу, которые используются для нахождения для каждой тестовой функции, смотрите в функциях этих тестовых функций. Обратите внимание, что данная функция находит ошибку только для одного решения, тогда как по формулам нужно множество решений.
+
+
+\begin{lstlisting}[label=code_use_HML_ErrorExOfTestFunction_Binary,caption=Пример использования]
+HML_DefineTestFunction(TestFunction_SumVector);
+
+int N=5;
+int *x=new int[N];
+HML_RandomBinaryVector(x,N);
+
+//Вызов функции
+double Ex=HML_ErrorExOfTestFunction_Binary(x,N);
+
+//Использование результата
+HML_ShowVectorT(x,N,"Решение","x");
+//Решение:
+//x =	
+//1	0	1	1	1
+
+HML_ShowNumber(Ex,"Значение ошибки по входным параметрам","E<sub>x</sub>");
+//Значение ошибки по входным параметрам:
+//Ex=1
+\end{lstlisting}
+
+\subsubsection{HML\_ErrorExOfTestFunction\_Real}\label{HML_ErrorExOfTestFunction_Real}
+
+Функция определяет значение ошибки по входным параметрам найденного решения в задаче оптимизации для тестовой функции вещественной оптимизации. Включает в себя все тестовые функции вещественной оптимизации. Есть функция-переопределение, где пользователь может сам указать тип тестовой функции.
+
+
+\begin{lstlisting}[label=code_syntax_HML_ErrorExOfTestFunction_Real,caption=Синтаксис]
+double HML_ErrorExOfTestFunction_Real(double *x, int VHML_N);
+double HML_ErrorExOfTestFunction_Real(double *x, int VHML_N, TypeOfTestFunction Type);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+x --- указатель на исходный массив (найденное решение алгоритмом);
+
+VHML\_N --- размер массива x.
+
+В переопределяемой функции также есть параметр:
+  
+Type --- обозначение тестовой функции, которую вызываем.
+Смотреть виды в переменных перечисляемого типа в начале HarrixMathLibrary.h файла: TestFunction\_Ackley, TestFunction\_ParaboloidOfRevolution, TestFunction\_Rastrigin и др. Они совпадают с названиями одноименных тестовых функций, но без приставки \textbf{HML\_}.
+
+\textbf{Возвращаемое значение:}
+ 
+Значение ошибки по входным параметрам Ex.
+
+Итак, для обычного использования (без параметра Type) нужно вызвать функцию HML\_DefineTestFunction. Иначе использовать переопределенную функцию и самому указать тип тестовой функции.
+
+Конкретную формулу, которые используются для нахождения для каждой тестовой функции, смотрите в функциях этих тестовых функций. Обратите внимание, что данная функция находит ошибку только для одного решения, тогда как по формулам нужно множество решений.
+
+
+\begin{lstlisting}[label=code_use_HML_ErrorExOfTestFunction_Real,caption=Пример использования]
+HML_DefineTestFunction(TestFunction_Ackley);
+
+int N=5;
+double *x=new double[N];
+HML_RandomRealVector(x,-0.5,0.05,N);
+
+//Вызов функции
+double Ex=HML_ErrorExOfTestFunction_Real(x,N);
+
+//Использование результата
+HML_ShowVectorT(x,N,"Решение","x");
+//Решение:
+//x =
+//-0.43694	-0.458693	-0.0266388	0.0117142	-0.136948
+
+
+HML_ShowNumber(Ex,"Значение ошибки по входным параметрам","E<sub>x</sub>");
+//Значение ошибки по входным параметрам:
+//Ex=0.129756
+\end{lstlisting}
+
+\subsubsection{HML\_ErrorEyOfTestFunction\_Binary}\label{HML_ErrorEyOfTestFunction_Binary}
+
+Функция определяет значение ошибки по значениям целевой функции найденного решения в задаче оптимизации для тестовой функции. Включает в себя все тестовые функции бинарной оптимизации. Есть функция-переопределение, где пользователь может сам указать тип тестовой функции.
+
+
+\begin{lstlisting}[label=code_syntax_HML_ErrorEyOfTestFunction_Binary,caption=Синтаксис]
+double HML_ErrorEyOfTestFunction_Binary(double FitnessOfx, int VHML_N);
+double HML_ErrorEyOfTestFunction_Binary(double FitnessOfx, int VHML_N, TypeOfTestFunction Type);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+FitnessOfx --- значение целевой функции найденного решения алгоритмом оптимизации;
+
+VHML\_N --- размер массива x.
+
+В переопределяемой функции также есть параметр:
+  
+Type --- обозначение тестовой функции, которую вызываем.
+Смотреть виды в переменных перечисляемого типа в начале HarrixMathLibrary.h файла: TestFunction\_Ackley, TestFunction\_ParaboloidOfRevolution, TestFunction\_Rastrigin и др. Они совпадают с названиями одноименных тестовых функций, но без приставки \textbf{HML\_}.
+
+\textbf{Возвращаемое значение:}
+ 
+Значение ошибки по значениям целевой функции Ey.
+
+Итак, для обычного использования (без параметра Type) нужно вызвать функцию HML\_DefineTestFunction. Иначе использовать переопределенную функцию и самому указать тип тестовой функции.
+
+Конкретную формулу, которые используются для нахождения для каждой тестовой функции, смотрите в функциях этих тестовых функций. Обратите внимание, что данная функция находит ошибку только для одного решения, тогда как по формулам нужно множество решений.
+
+Все функции так высчитываются, чтобы алгоритм решал задачу поиска максимального значения целевой функции, поэтому тестовые функции на минимум умножаются на $-1$. Поэтому, фактически алгоритмы оптимизации находят максимум перевернутой функции. А значит, чтобы правильно посчитать ошибку по значениям целевой функции, нужно найденное решение умножить на $-1$.
+
+
+\begin{lstlisting}[label=code_use_HML_ErrorEyOfTestFunction_Binary,caption=Пример использования]
+HML_DefineTestFunction(TestFunction_SumVector);
+
+int N=5;
+int *x=new int[N];
+HML_RandomBinaryVector(x,N);
+double f=HML_TestFunction_Binary(x,N);
+
+//Вызов функции
+double Ey=HML_ErrorEyOfTestFunction_Binary(f,N);
+
+//Использование результата
+HML_ShowVectorT(x,N,"Решение","x");
+//Решение:
+//x =	
+//0	1	1	0	1
+
+HML_ShowNumber(Ey,"Значение ошибки по значениям целевой функции","E<sub>y</sub>");
+//Значение ошибки по значениям целевой функции:
+//Ey=2
+\end{lstlisting}
+
+\subsubsection{HML\_ErrorEyOfTestFunction\_Real}\label{HML_ErrorEyOfTestFunction_Real}
+
+Функция определяет значение ошибки по значениям целевой функции найденного решения в задаче оптимизации для тестовой функции вещественной оптимизации. Включает в себя все тестовые функции вещественной оптимизации. Есть функция-переопределение, где пользователь может сам указать тип тестовой функции.
+
+
+\begin{lstlisting}[label=code_syntax_HML_ErrorEyOfTestFunction_Real,caption=Синтаксис]
+double HML_ErrorEyOfTestFunction_Real(double FitnessOfx, int VHML_N);
+double HML_ErrorEyOfTestFunction_Real(double FitnessOfx, int VHML_N, TypeOfTestFunction Type);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+FitnessOfx --- значение целевой функции найденного решения алгоритмом оптимизации;
+
+VHML\_N --- размер массива x.
+
+В переопределяемой функции также есть параметр:
+  
+Type --- обозначение тестовой функции, которую вызываем.
+Смотреть виды в переменных перечисляемого типа в начале HarrixMathLibrary.h файла: TestFunction\_Ackley, TestFunction\_ParaboloidOfRevolution, TestFunction\_Rastrigin и др. Они совпадают с названиями одноименных тестовых функций, но без приставки \textbf{HML\_}.
+
+\textbf{Возвращаемое значение:}
+ 
+Значение ошибки по значениям целевой функции Ey.
+
+Итак, для обычного использования (без параметра Type) нужно вызвать функцию HML\_DefineTestFunction. Иначе использовать переопределенную функцию и самому указать тип тестовой функции.
+
+Конкретную формулу, которые используются для нахождения для каждой тестовой функции, смотрите в функциях этих тестовых функций. Обратите внимание, что данная функция находит ошибку только для одного решения, тогда как по формулам нужно множество решений.
+
+Все функции так высчитываются, чтобы алгоритм решал задачу поиска максимального значения целевой функции, поэтому тестовые функции на минимум умножаются на $-1$. Поэтому, фактически алгоритмы оптимизации находят максимум перевернутой функции. А значит, чтобы правильно посчитать ошибку по значениям целевой функции, нужно найденное решение умножить на $-1$.
+
+
+\begin{lstlisting}[label=code_use_HML_ErrorEyOfTestFunction_Real,caption=Пример использования]
+HML_DefineTestFunction(TestFunction_Ackley);
+
+int N=5;
+double *x=new double[N];
+HML_RandomRealVector(x,-0.5,0.05,N);
+double f=HML_TestFunction_Real(x,N);
+
+//Вызов функции
+double Ey=HML_ErrorEyOfTestFunction_Real(f,N);
+
+//Использование результата
+HML_ShowVectorT(x,N,"Решение","x");
+//Решение:
+//x =
+//-0.0963959	-0.183693	-0.0485428	-0.185757	0.0321075
+
+HML_ShowNumber(Ey,"Значение ошибки по значениям целевой функции","E<sub>y</sub>");
+//Значение ошибки по значениям целевой функции:
+//Ey=1.18549ы
+\end{lstlisting}
+
+\subsubsection{HML\_ErrorROfTestFunction\_Binary}\label{HML_ErrorROfTestFunction_Binary}
+
+Функция определяет значение надежности найденного решения в задаче оптимизации для тестовой функции. Включает в себя все тестовые функции бинарной оптимизации. Есть функция-переопределение, где пользователь может сам указать тип тестовой функции.
+
+
+\begin{lstlisting}[label=code_syntax_HML_ErrorROfTestFunction_Binary,caption=Синтаксис]
+double HML_ErrorROfTestFunction_Binary(int *x, int VHML_N);
+double HML_ErrorROfTestFunction_Binary(int *x, int VHML_N, TypeOfTestFunction Type);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+x --- указатель на исходный массив (найденное решение алгоритмом);
+
+VHML\_N --- размер массива x.
+
+В переопределяемой функции также есть параметр:
+  
+Type --- обозначение тестовой функции, которую вызываем.
+Смотреть виды в переменных перечисляемого типа в начале HarrixMathLibrary.h файла: TestFunction\_Ackley, TestFunction\_ParaboloidOfRevolution, TestFunction\_Rastrigin и др. Они совпадают с названиями одноименных тестовых функций, но без приставки \textbf{HML\_}.
+
+\textbf{Возвращаемое значение:}
+ 
+Значение надежности R.
+
+Итак, для обычного использования (без параметра Type) нужно вызвать функцию HML\_DefineTestFunction. Иначе использовать переопределенную функцию и самому указать тип тестовой функции.
+
+Конкретную формулу, которые используются для нахождения для каждой тестовой функции, смотрите в функциях этих тестовых функций. Обратите внимание, что данная функция находит ошибку только для одного решения, тогда как по формулам нужно множество решений.
+
+
+\begin{lstlisting}[label=code_use_HML_ErrorROfTestFunction_Binary,caption=Пример использования]
+HML_DefineTestFunction(TestFunction_SumVector);
+
+int N=5;
+int *x=new int[N];
+HML_RandomBinaryVector(x,N);
+
+//Вызов функции
+double R=HML_ErrorROfTestFunction_Binary(x,N);
+
+//Использование результата
+HML_ShowVectorT(x,N,"Решение","x");
+//Решение:
+//x =
+//1	1	1	1	1
+
+HML_ShowNumber(R,"Значение надежности","R");
+//Значение надежности:
+//R=1
+\end{lstlisting}
+
+\subsubsection{HML\_ErrorROfTestFunction\_Real}\label{HML_ErrorROfTestFunction_Real}
+
+Функция определяет значение надежности найденного решения в задаче оптимизации для тестовой функции вещественной оптимизации. Включает в себя все тестовые функции  вещественной оптимизации. Есть функция-переопределение, где пользователь может сам указать тип тестовой функции.
+
+
+\begin{lstlisting}[label=code_syntax_HML_ErrorROfTestFunction_Real,caption=Синтаксис]
+double HML_ErrorROfTestFunction_Real(double *x, int VHML_N);
+double HML_ErrorROfTestFunction_Real(double *x, int VHML_N, TypeOfTestFunction Type);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+x --- указатель на исходный массив (найденное решение алгоритмом);
+
+VHML\_N --- размер массива x.
+
+В переопределяемой функции также есть параметр:
+  
+Type --- обозначение тестовой функции, которую вызываем.
+Смотреть виды в переменных перечисляемого типа в начале HarrixMathLibrary.h файла: TestFunction\_Ackley, TestFunction\_ParaboloidOfRevolution, TestFunction\_Rastrigin и др. Они совпадают с названиями одноименных тестовых функций, но без приставки \textbf{HML\_}.
+
+\textbf{Возвращаемое значение:}
+ 
+Значение надежности R.
+
+Итак, для обычного использования (без параметра Type) нужно вызвать функцию HML\_DefineTestFunction. Иначе использовать переопределенную функцию и самому указать тип тестовой функции.
+
+Конкретную формулу, которые используются для нахождения для каждой тестовой функции, смотрите в функциях этих тестовых функций. Обратите внимание, что данная функция находит ошибку только для одного решения, тогда как по формулам нужно множество решений.
+
+
+\begin{lstlisting}[label=code_use_HML_ErrorROfTestFunction_Real,caption=Пример использования]
+HML_DefineTestFunction(TestFunction_Ackley);
+
+int N=5;
+double *x=new double[N];
+HML_RandomRealVector(x,0.01,0.02,N);
+
+//Вызов функции
+double R=HML_ErrorROfTestFunction_Real(x,N);
+
+//Использование результата
+HML_ShowVectorT(x,N,"Решение","x");
+//Решение:
+//x =
+//0.0118939	0.0177618	0.0115656	0.0181937	0.0124084
+
+HML_ShowNumber(R,"Значение надежности","R");
+//Значение надежности:
+//R=1
+\end{lstlisting}
+
+\subsubsection{HML\_FitnessOfOptimumOfTestFunction\_Binary}\label{HML_FitnessOfOptimumOfTestFunction_Binary}
+
+Функция определяет значение целевой функции в оптимуме для тестовой функции бинарной оптимизации. Включает в себя все тестовые функции бинарной оптимизации. Есть функция-переопределение, где пользователь может сам указать тип тестовой функции.
+
+
+\begin{lstlisting}[label=code_syntax_HML_FitnessOfOptimumOfTestFunction_Binary,caption=Синтаксис]
+double HML_FitnessOfOptimumOfTestFunction_Binary(int VHML_N);
+double HML_FitnessOfOptimumOfTestFunction_Binary(int VHML_N, TypeOfTestFunction Type);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+VHML\_N --- размер массива x.
+
+В переопределяемой функции также есть параметр:
+  
+Type --- обозначение тестовой функции, которую вызываем.
+Смотреть виды в переменных перечисляемого типа в начале HarrixMathLibrary.h файла: TestFunction\_Ackley, TestFunction\_ParaboloidOfRevolution, TestFunction\_Rastrigin и др. Они совпадают с названиями одноименных тестовых функций, но без приставки \textbf{HML\_}.
+
+\textbf{Возвращаемое значение:}
+ 
+Значение тестовой функции в оптимальной точке.
+
+Итак, для обычного использования (без параметра Type) нужно вызвать функцию HML\_DefineTestFunction. Иначе использовать переопределенную функцию и самому указать тип тестовой функции.
+
+
+\begin{lstlisting}[label=code_use_HML_FitnessOfOptimumOfTestFunction_Binary,caption=Пример использования]
+HML_DefineTestFunction(TestFunction_SumVector);
+
+int N=5;
+
+//Вызов функции
+double f=HML_FitnessOfOptimumOfTestFunction_Binary(N);
+
+//Использование результата
+HML_ShowNumber(f,"Значение целевой функции оптимального решения","f");
+//Значение целевой функции оптимального решения:
+//f=5
+\end{lstlisting}
+
+\subsubsection{HML\_FitnessOfOptimumOfTestFunction\_Real}\label{HML_FitnessOfOptimumOfTestFunction_Real}
+
+Функция определяет значение целевой функции в оптимуме для тестовой функции вещественной оптимизации. Включает в себя все тестовые функции вещественной оптимизации. Есть функция-переопределение, где пользователь может сам указать тип тестовой функции.
+
+
+\begin{lstlisting}[label=code_syntax_HML_FitnessOfOptimumOfTestFunction_Real,caption=Синтаксис]
+double HML_FitnessOfOptimumOfTestFunction_Real(double VHML_N);
+double HML_FitnessOfOptimumOfTestFunction_Real(double VHML_N, TypeOfTestFunction Type);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+VHML\_N --- размер массива x.
+
+В переопределяемой функции также есть параметр:
+  
+Type --- обозначение тестовой функции, которую вызываем.
+Смотреть виды в переменных перечисляемого типа в начале HarrixMathLibrary.h файла: TestFunction\_Ackley, TestFunction\_ParaboloidOfRevolution, TestFunction\_Rastrigin и др. Они совпадают с названиями одноименных тестовых функций, но без приставки \textbf{HML\_}.
+
+\textbf{Возвращаемое значение:}
+ 
+Значение тестовой функции в оптимальной точке.
+
+Итак, для обычного использования (без параметра Type) нужно вызвать функцию HML\_DefineTestFunction. Иначе использовать переопределенную функцию и самому указать тип тестовой функции.
+
+
+\begin{lstlisting}[label=code_use_HML_FitnessOfOptimumOfTestFunction_Real,caption=Пример использования]
+HML_DefineTestFunction(TestFunction_Ackley);
+
+int N=5;
+
+//Вызов функции
+double f=HML_FitnessOfOptimumOfTestFunction_Binary(N);
+
+//Использование результата
+HML_ShowNumber(f,"Значение целевой функции оптимального решения функции TestFunction_Ackley","f");
+//Значение целевой функции оптимального решения функции TestFunction_Ackley:
+//f=0
+\end{lstlisting}
+
+\subsubsection{HML\_GetCountOfFitness}\label{HML_GetCountOfFitness}
+
+Функция выдает количество вызовов целевой функции.
+
+
+\begin{lstlisting}[label=code_syntax_HML_GetCountOfFitness,caption=Синтаксис]
+int HML_GetCountOfFitness();
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+Отсутствуют.
+
+\textbf{Возвращаемое значение:}
+ 
+Количество вызовов целевой функции.
+
+Данную функцию надо использовать в связке с функцией HML\_GetCountOfFitness(). Для чего использовать эти функции? Дело в том, что для сравнения алгоритмов оптимизации очень критично оценивать вызов целевой функции. И часто многие программисты пишут или не очень акккуратно, или логика алгоритма такая, что заявленное число вычислений функций не совпадает с действительным. Поэтому в общие тестовые функции (например, HML\_TestFunction\_Binary) вшит подсчет числа вызовов целевой функции.
+
+HML\_SetToZeroCountOfFitness --- эту функцию вызываем перед вызовом какого-то алгоритма оптимизации, а HML\_GetCountOfFitness --- после его работы.
+
+
+\begin{lstlisting}[label=code_use_HML_GetCountOfFitness,caption=Пример использования]
+HML_DefineTestFunction(TestFunction_SumVector);
+
+HML_SetToZeroCountOfFitness();
+
+int N=5;
+double f=0;
+int *x=new int[N];
+
+for (int i=0;i<10;i++)
+{
+    HML_RandomBinaryVector(x,N);
+    f+=HML_TestFunction_Binary(x,N);
+}
+
+f/=double(10.);
+
+//Вызов функции
+int M=HML_GetCountOfFitness();
+
+//Использование результата
+HML_ShowNumber(M,"Количество вызовов целевой функции","M");
+//Количество вызовов целевой функции:
+//M=10
+
+HML_ShowNumber(f,"Среднее значение целевой функции","f");
+//Среднее значение целевой функции:
+//f=2.6
+\end{lstlisting}
+
+\subsubsection{HML\_GetCountOfSubProblems\_Binary}\label{HML_GetCountOfSubProblems_Binary}
+
+Функция определяет число подзадач (включая основную задачу) для тестовой функции бинарной оптимизации. Включает в себя все тестовые функции бинарной оптимизации.
+
+
+\begin{lstlisting}[label=code_syntax_HML_GetCountOfSubProblems_Binary,caption=Синтаксис]
+int HML_GetCountOfSubProblems_Binary();
+int HML_GetCountOfSubProblems_Binary(TypeOfTestFunction Type);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+Отсутствуют.
+
+В переопределяемой функции также есть параметр:
+  
+Type --- обозначение тестовой функции, которую вызываем.
+
+Смотреть виды в переменных перечисляемого типа в начале HarrixMathLibrary.h файла: TestFunction\_Ackley, TestFunction\_ParaboloidOfRevolution, TestFunction\_Rastrigin и др. Они совпадают с названиями одноименных тестовых функций, но без приставки \textbf{HML\_}.
+
+\textbf{Возвращаемое значение:}
+ 
+Число подзадач (включая основную задачу) для тестовой функции.
+
+Итак, для обычного использования (без параметра Type) нужно вызвать функцию HML\_DefineTestFunction. Иначе использовать переопределенную функцию и самому указать тип тестовой функции.
+
+
+\begin{lstlisting}[label=code_use_HML_GetCountOfSubProblems_Binary,caption=Пример использования]
+HML_DefineTestFunction(TestFunction_SumVector);
+
+//Вызов функции
+double N=HML_GetCountOfSubProblems_Binary();
+
+//Использование результата
+HML_ShowNumber(N,"Число подзадач (включая основную задачу) для TestFunction_SumVector","N");
+//Число подзадач (включая основную задачу) для TestFunction_SumVector:
+//N=10
+\end{lstlisting}
+
+\subsubsection{HML\_GetCountOfSubProblems\_Real}\label{HML_GetCountOfSubProblems_Real}
+
+Функция определяет число подзадач (включая основную задачу) для тестовой функции вещественной оптимизации. Включает в себя все тестовые функции вещественной оптимизации.
+
+
+\begin{lstlisting}[label=code_syntax_HML_GetCountOfSubProblems_Real,caption=Синтаксис]
+int HML_GetCountOfSubProblems_Real();
+int HML_GetCountOfSubProblems_Real(TypeOfTestFunction Type);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+Отсутствуют.
+
+В переопределяемой функции также есть параметр:
+  
+Type --- обозначение тестовой функции, которую вызываем. 
+
+Смотреть виды в переменных перечисляемого типа в начале HarrixMathLibrary.h файла: TestFunction\_Ackley, TestFunction\_ParaboloidOfRevolution, TestFunction\_Rastrigin и др. Они совпадают с названиями одноименных тестовых функций, но без приставки \textbf{HML\_}.
+
+\textbf{Возвращаемое значение:}
+ 
+Число подзадач (включая основную задачу) для тестовой функции.
+
+Итак, для обычного использования (без параметра Type) нужно вызвать функцию HML\_DefineTestFunction. Иначе использовать переопределенную функцию и самому указать тип тестовой функции.
+
+
+\begin{lstlisting}[label=code_use_HML_GetCountOfSubProblems_Real,caption=Пример использования]
+HML_DefineTestFunction(TestFunction_Ackley);
+
+//Вызов функции
+double N=HML_GetCountOfSubProblems_Real();
+
+//Использование результата
+HML_ShowNumber(N,"Число подзадач (включая основную задачу) для TestFunction_Ackley","N");
+//Число подзадач (включая основную задачу) для TestFunction_Ackley:
+//N=7
+\end{lstlisting}
+
+\subsubsection{HML\_LeftBorderOfTestFunction\_Real}\label{HML_LeftBorderOfTestFunction_Real}
+
+Функция определяет левые и правые границы допустимой области для тестовой функции вещественной оптимизации. Включает в себя все тестовые функции вещественной оптимизации. Есть функция-переопределение, где пользователь может сам указать тип тестовой функции.
+
+
+\begin{lstlisting}[label=code_syntax_HML_LeftBorderOfTestFunction_Real,caption=Синтаксис]
+void HML_LeftAndRightBorderOfTestFunction_Real(double *Left, double *Right,int VHML_N);
+void HML_LeftAndRightBorderOfTestFunction_Real(double *Left, double *Right, int VHML_N, TypeOfTestFunction Type);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+Left --- указатель на массив, куда будет записываться результат левых границ допустимой области;
+
+Right --- указатель на массив, куда будет записываться результат левых границ допустимой области;
+	 
+VHML\_N --- размер массива x.
+
+В переопределяемой функции также есть параметр:
+  
+Type --- обозначение тестовой функции, которую вызываем.
+Смотреть виды в переменных перечисляемого типа в начале HarrixMathLibrary.h файла: TestFunction\_Ackley, TestFunction\_ParaboloidOfRevolution, TestFunction\_Rastrigin и др. Они совпадают с названиями одноименных тестовых функций, но без приставки \textbf{HML\_}.
+
+\textbf{Возвращаемое значение:}
+ 
+Отсутствует.
+
+Итак, для обычного использования (без параметра Type) нужно вызвать функцию HML\_DefineTestFunction. Иначе использовать переопределенную функцию и самому указать тип тестовой функции.
+
+
+\begin{lstlisting}[label=code_use_HML_LeftBorderOfTestFunction_Real,caption=Пример использования]
+HML_DefineTestFunction(TestFunction_Ackley);
+
+int N=5;
+double *Left=new double[N];
+double *Right=new double[N];
+
+//Вызов функции
+HML_LeftAndRightBorderOfTestFunction_Real(Left,Right,N);
+
+//Использование результата
+HML_ShowVectorT(Left,N,"Левые границы допустимой области функции TestFunction_Ackley","Left");
+//Левые границы допустимой области функции TestFunction_Ackley:
+//Left =	
+//-5	-5	-5	-5	-5
+
+HML_ShowVectorT(Right,N,"Правые границы допустимой области функции TestFunction_Ackley","Right");
+//Правые границы допустимой области функции TestFunction_Ackley:
+//Right =	
+//5	5	5	5	5
+\end{lstlisting}
+
+\subsubsection{HML\_MaximumOrMinimumOfTestFunction\_Binary}\label{HML_MaximumOrMinimumOfTestFunction_Binary}
+
+	Функция сообщает - ищется максимум или минимум в задаче оптимизации для тестовой функции бинарной оптимизации.
+
+
+\begin{lstlisting}[label=code_syntax_HML_MaximumOrMinimumOfTestFunction_Binary,caption=Синтаксис]
+double HML_MaximumOrMinimumOfTestFunction_Binary();
+double HML_MaximumOrMinimumOfTestFunction_Binary(TypeOfTestFunction Type);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+Отсутствуют.
+
+В переопределяемой функции также есть параметр:
+  
+Type --- обозначение тестовой функции, которую вызываем.
+Смотреть виды в переменных перечисляемого типа в начале HarrixMathLibrary.h файла: TestFunction\_Ackley, TestFunction\_ParaboloidOfRevolution, TestFunction\_Rastrigin и др. Они совпадают с названиями одноименных тестовых функций, но без приставки \textbf{HML\_}.
+
+\textbf{Возвращаемое значение:}
+ 
+1 --- задача на нахождение максимума;
+
+-1 --- задача на нахождение минимума.
+
+Итак, для обычного использования (без параметра Type) нужно вызвать функцию HML\_DefineTestFunction. Иначе использовать переопределенную функцию и самому указать тип тестовой функции.
+
+
+\begin{lstlisting}[label=code_use_HML_MaximumOrMinimumOfTestFunction_Binary,caption=Пример использования]
+HML_DefineTestFunction(TestFunction_SumVector);
+
+//Вызов функции
+double MorM=HML_MaximumOrMinimumOfTestFunction_Binary();
+
+//Использование результата
+HML_ShowNumber(MorM,"Максимум или минимум функции находим у TestFunction_SumVector","MorM");
+//Максимум или минимум функции находим у TestFunction_SumVector:
+//MorM=1
+\end{lstlisting}
+
+\subsubsection{HML\_MaximumOrMinimumOfTestFunction\_Real}\label{HML_MaximumOrMinimumOfTestFunction_Real}
+
+	Функция сообщает - ищется максимум или минимум в задаче оптимизации для тестовой функции вещественной оптимизации.
+
+
+\begin{lstlisting}[label=code_syntax_HML_MaximumOrMinimumOfTestFunction_Real,caption=Синтаксис]
+double HML_MaximumOrMinimumOfTestFunction_Real();
+double HML_MaximumOrMinimumOfTestFunction_Real(TypeOfTestFunction Type);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+Отсутствуют.
+
+В переопределяемой функции также есть параметр:
+  
+Type --- обозначение тестовой функции, которую вызываем.
+Смотреть виды в переменных перечисляемого типа в начале HarrixMathLibrary.h файла: TestFunction\_Ackley, TestFunction\_ParaboloidOfRevolution, TestFunction\_Rastrigin и др. Они совпадают с названиями одноименных тестовых функций, но без приставки \textbf{HML\_}.
+
+\textbf{Возвращаемое значение:}
+ 
+1 --- задача на нахождение максимума;
+
+-1 --- задача на нахождение минимума.
+
+Итак, для обычного использования (без параметра Type) нужно вызвать функцию HML\_DefineTestFunction. Иначе использовать переопределенную функцию и самому указать тип тестовой функции.
+
+
+\begin{lstlisting}[label=code_use_HML_MaximumOrMinimumOfTestFunction_Real,caption=Пример использования]
+HML_DefineTestFunction(TestFunction_Ackley);
+
+//Вызов функции
+double MorM=HML_MaximumOrMinimumOfTestFunction_Real();
+
+//Использование результата
+HML_ShowNumber(MorM,"Максимум или минимум функции находим у TestFunction_Ackley","MorM");
+//Максимум или минимум функции находим у TestFunction_Ackley:
+//MorM=-1
+\end{lstlisting}
+
+\subsubsection{HML\_NumberOfPartsOfTestFunction\_Real}\label{HML_NumberOfPartsOfTestFunction_Real}
+
+Функция определяет на сколько частей нужно делить каждую координату в задаче оптимизации для тестовой функции вещественной оптимизации для алгоритма дискретной оптимизации и какая при этом требуется точность для подсчета надежности. Включает в себя все тестовые функции вещественной оптимизации. Есть функция-переопределение, где пользователь может сам указать тип тестовой функции.
+
+
+\begin{lstlisting}[label=code_syntax_HML_NumberOfPartsOfTestFunction_Real,caption=Синтаксис]
+double HML_NumberOfPartsOfTestFunction_Real(int *NumberOfParts, int VHML_N);
+double HML_NumberOfPartsOfTestFunction_Real(int *NumberOfParts, int VHML_N, TypeOfTestFunction Type);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+NumberOfParts --- указатель на массив, куда будет записываться результат;
+
+VHML\_N --- размер массива NumberOfParts.
+
+В переопределяемой функции также есть параметр:
+  
+Type --- обозначение тестовой функции, которую вызываем.
+Смотреть виды в переменных перечисляемого типа в начале HarrixMathLibrary.h файла: TestFunction\_Ackley, TestFunction\_ParaboloidOfRevolution, TestFunction\_Rastrigin и др. Они совпадают с названиями одноименных тестовых функций, но без приставки \textbf{HML\_}.
+
+\textbf{Возвращаемое значение:}
+ 
+Точность вычислений.
+
+Итак, для обычного использования (без параметра Type) нужно вызвать функцию HML\_DefineTestFunction. Иначе использовать переопределенную функцию и самому указать тип тестовой функции.
+
+
+\begin{lstlisting}[label=code_use_HML_NumberOfPartsOfTestFunction_Real,caption=Пример использования]
+HML_DefineTestFunction(TestFunction_Ackley);
+
+int N=5;
+int *NumberOfParts=new int[N];
+
+//Вызов функции
+double e=HML_NumberOfPartsOfTestFunction_Real(NumberOfParts,N);
+
+//Использование результата
+HML_ShowVectorT(NumberOfParts,N,"На сколько частей нужно делить каждую координату функции TestFunction_Ackley","NumberOfParts");
+//На сколько частей нужно делить каждую координату функции TestFunction_Ackley:
+//NumberOfParts =	
+//4095	4095	4095	4095	4095
+
+HML_ShowNumber(e,"Точность вычислений.","e");
+//Точность вычислений.:
+//e=0.025
+\end{lstlisting}
+
+\subsubsection{HML\_OptimumOfTestFunction\_Binary}\label{HML_OptimumOfTestFunction_Binary}
+
+Функция определяет значение оптимума для тестовой функции. Включает в себя все тестовые функции бинарной оптимизации. Есть функция-переопределение, где пользователь может сам указать тип тестовой функции.
+
+
+\begin{lstlisting}[label=code_syntax_HML_OptimumOfTestFunction_Binary,caption=Синтаксис]
+double HML_OptimumOfTestFunction_Binary(int *Optimum, int VHML_N);
+double HML_OptimumOfTestFunction_Binary(int *Optimum, int VHML_N, TypeOfTestFunction Type);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+Optimum --- указатель на исходный массив, куда будет записываться результат, то есть оптимум тестовой функции (максимум или минимум --- это зависит от типа тестовой функции, что расписывается в самих функциях тестовых функций);
+
+     VHML\_N --- размер массива x.
+
+В переопределяемой функции также есть параметр:
+  
+Type --- обозначение тестовой функции, которую вызываем.
+Смотреть виды в переменных перечисляемого типа в начале HarrixMathLibrary.h файла: TestFunction\_Ackley, TestFunction\_ParaboloidOfRevolution, TestFunction\_Rastrigin и др. Они совпадают с названиями одноименных тестовых функций, но без приставки \textbf{HML\_}.
+
+\textbf{Возвращаемое значение:}
+ 
+Значение тестовой функции в оптимальной точке.
+
+Итак, для обычного использования (без параметра Type) нужно вызвать функцию HML\_DefineTestFunction. Иначе использовать переопределенную функцию и самому указать тип тестовой функции.
+
+
+\begin{lstlisting}[label=code_use_HML_OptimumOfTestFunction_Binary,caption=Пример использования]
+HML_DefineTestFunction(TestFunction_SumVector);
+
+int N=5;
+int *x=new int[N];
+
+//Вызов функции
+double f=HML_OptimumOfTestFunction_Binary(x,N);
+
+//Использование результата
+HML_ShowVectorT(x,N,"Оптимальное решение тестовой функции TestFunction_SumVector","x");
+//Оптимальное решение тестовой функции TestFunction_SumVector:
+//x =	
+//1	1	1	1	1
+
+HML_ShowNumber(f,"Значение целевой функции оптимального решения","f");
+//Значение целевой функции оптимального решения:
+//f=5
+\end{lstlisting}
+
+\subsubsection{HML\_OptimumOfTestFunction\_Real}\label{HML_OptimumOfTestFunction_Real}
+
+Функция определяет значение оптимума для тестовой функции вещественной оптимизации. Включает в себя все тестовые функции вещественной оптимизации. Есть функция-переопределение, где пользователь может сам указать тип тестовой функции.
+
+
+\begin{lstlisting}[label=code_syntax_HML_OptimumOfTestFunction_Real,caption=Синтаксис]
+double HML_OptimumOfTestFunction_Real(double *Optimum, int VHML_N);
+double HML_OptimumOfTestFunction_Real(double *Optimum, int VHML_N, TypeOfTestFunction Type);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+Optimum --- указатель на исходный массив, куда будет записываться результат, то есть оптимум тестовой функции (максимум или минимум --- это зависит от типа тестовой функции, что расписывается в самих функциях тестовых функций);
+
+     VHML\_N --- размер массива x.
+
+В переопределяемой функции также есть параметр:
+  
+Type --- обозначение тестовой функции, которую вызываем.
+Смотреть виды в переменных перечисляемого типа в начале HarrixMathLibrary.h файла: TestFunction\_Ackley, TestFunction\_ParaboloidOfRevolution, TestFunction\_Rastrigin и др. Они совпадают с названиями одноименных тестовых функций, но без приставки \textbf{HML\_}.
+
+\textbf{Возвращаемое значение:}
+ 
+Значение тестовой функции в оптимальной точке.
+
+Итак, для обычного использования (без параметра Type) нужно вызвать функцию HML\_DefineTestFunction. Иначе использовать переопределенную функцию и самому указать тип тестовой функции.
+
+
+\begin{lstlisting}[label=code_use_HML_OptimumOfTestFunction_Real,caption=Пример использования]
+HML_DefineTestFunction(TestFunction_Ackley);
+
+int N=5;
+double *x=new double[N];
+
+//Вызов функции
+double f=HML_OptimumOfTestFunction_Real(x,N);
+
+//Использование результата
+HML_ShowVectorT(x,N,"Оптимальное решение тестовой функции TestFunction_Ackley","x");
+//Оптимальное решение тестовой функции TestFunction_Ackley:
+//x =	
+//0	0	0	0	0
+
+HML_ShowNumber(f,"Значение целевой функции оптимального решения","f");
+//Значение целевой функции оптимального решения:
+//f=0
+\end{lstlisting}
+
+\subsubsection{HML\_PrecisionOfCalculationsOfTestFunction\_Real}\label{HML_PrecisionOfCalculationsOfTestFunction_Real}
+
+Функция определяет точность для подсчета надежности в задаче оптимизации для тестовой функции вещественной оптимизации для алгоритма дискретной оптимизации.
+
+
+\begin{lstlisting}[label=code_syntax_HML_PrecisionOfCalculationsOfTestFunction_Real,caption=Синтаксис]
+double HML_PrecisionOfCalculationsOfTestFunction_Real();
+double HML_PrecisionOfCalculationsOfTestFunction_Real(TypeOfTestFunction Type);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+Отсутствуют.
+
+В переопределяемой функции также есть параметр:
+  
+Type --- обозначение тестовой функции, которую вызываем.
+Смотреть виды в переменных перечисляемого типа в начале HarrixMathLibrary.h файла: TestFunction\_Ackley, TestFunction\_ParaboloidOfRevolution, TestFunction\_Rastrigin и др. Они совпадают с названиями одноименных тестовых функций, но без приставки \textbf{HML\_}.
+
+\textbf{Возвращаемое значение:}
+ 
+Точность вычислений.
+
+Итак, для обычного использования (без параметра Type) нужно вызвать функцию HML\_DefineTestFunction. Иначе использовать переопределенную функцию и самому указать тип тестовой функции.
+
+
+\begin{lstlisting}[label=code_use_HML_PrecisionOfCalculationsOfTestFunction_Real,caption=Пример использования]
+HML_DefineTestFunction(TestFunction_Ackley);
+
+//Вызов функции
+double e=HML_PrecisionOfCalculationsOfTestFunction_Real();
+
+//Использование результата
+HML_ShowNumber(e,"Точность вычислений","e");
+//Точность вычислений:
+//e=0.025
+\end{lstlisting}
+
+\subsubsection{HML\_SetToZeroCountOfFitness}\label{HML_SetToZeroCountOfFitness}
+
+Функция обнуляет количество вызовов целевой функции. Обязательно вызвать один раз перед вызовом алгоритмов оптимизации при исследовании эффективности    алгоритмов оптимизации, где требуется контроль числа вызовов целевой функции.
+
+
+\begin{lstlisting}[label=code_syntax_HML_SetToZeroCountOfFitness,caption=Синтаксис]
+void HML_SetToZeroCountOfFitness();
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+Отсутствуют.
+
+\textbf{Возвращаемое значение:}
+ 
+Отсутствует.
+
+Данную функцию надо использовать в связке с функцией HML\_GetCountOfFitness(). Для чего использовать эти функции? Дело в том, что для сравнения алгоритмов оптимизации очень критично оценивать вызов целевой функции. И часто многие программисты пишут или не очень акккуратно, или логика алгоритма такая, что заявленное число вычислений функций не совпадает с действительным. Поэтому в общие тестовые функции (например, HML\_TestFunction\_Binary) вшит подсчет числа вызовов целевой функции.
+
+HML\_SetToZeroCountOfFitness --- эту функцию вызываем перед вызовом какого-то алгоритма оптимизации, а HML\_GetCountOfFitness --- после его работы.
+
+
+\begin{lstlisting}[label=code_use_HML_SetToZeroCountOfFitness,caption=Пример использования]
+HML_DefineTestFunction(TestFunction_SumVector);
+
+//Вызов функции
+HML_SetToZeroCountOfFitness();
+
+//Использование результата
+int N=5;
+double f=0;
+int *x=new int[N];
+
+for (int i=0;i<10;i++)
+{
+    HML_RandomBinaryVector(x,N);
+    f+=HML_TestFunction_Binary(x,N);
+}
+
+f/=double(10.);
+
+int M=HML_GetCountOfFitness();
+HML_ShowNumber(M,"Количество вызовов целевой функции","M");
+//Количество вызовов целевой функции:
+//M=10
+
+HML_ShowNumber(f,"Среднее значение целевой функции","f");
+//Среднее значение целевой функции:
+//f=2.6
+\end{lstlisting}
+
+\subsubsection{HML\_TestFunction\_Binary}\label{HML_TestFunction_Binary}
+
+Общая тестовая функция для задач бинарной оптимизации. Есть функция-переопределение, где пользователь может сам указать тип тестовой функции.
+
+
+\begin{lstlisting}[label=code_syntax_HML_TestFunction_Binary,caption=Синтаксис]
+double HML_TestFunction_Binary(int *x, int VHML_N);
+double HML_TestFunction_Binary(int *x, int VHML_N, TypeOfTestFunction Type);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+x --- указатель на исходный массив;
+
+VHML\_N --- размер массива x.
+
+В переопределяемой функции также есть параметр:
+  
+Type --- обозначение тестовой функции, которую вызываем.
+Смотреть виды в переменных перечисляемого типа в начале HarrixMathLibrary.h файла: TestFunction\_Ackley, TestFunction\_ParaboloidOfRevolution, TestFunction\_Rastrigin и др. Они совпадают с названиями одноименных тестовых функций, но без приставки \textbf{HML\_}.
+
+\textbf{Возвращаемое значение:}
+ 
+Значение тестовой функции в точке x.
+
+Итак, для обычного использования (без параметра Type) нужно вызвать функцию HML\_DefineTestFunction. Иначе использовать переопределенную функцию и самому указать тип тестовой функции.
+
+Все функции так высчитываются, чтобы алгоритм решал задачу поиска максимального значения целевой функции, поэтому тестовые функции на минимум умножаются на $-1$.
+
+
+\begin{lstlisting}[label=code_use_HML_TestFunction_Binary,caption=Пример использования]
+HML_DefineTestFunction(TestFunction_SumVector);
+
+int N=5;
+int *x=new int[N];
+HML_RandomBinaryVector(x,N);
+
+//Вызов функции
+double f=HML_TestFunction_Binary(x,N);
+
+//Использование результата
+HML_ShowVectorT(x,N,"Решение","x");
+//Решение:
+//x =
+//1	1	1	1	0
+
+HML_ShowNumber(f,"Значение целевой функции","f");
+//Значение целевой функции:
+//f=4
+\end{lstlisting}
+
+\subsubsection{HML\_TestFunction\_Real}\label{HML_TestFunction_Real}
+
+Общая тестовая функция для задач вещественной оптимизации. Есть функция-переопределение, где пользователь может сам указать тип тестовой функции.
+
+
+\begin{lstlisting}[label=code_syntax_HML_TestFunction_Real,caption=Синтаксис]
+double HML_TestFunction_Real(double *x, int VHML_N);
+double HML_TestFunction_Real(double *x, int VHML_N, TypeOfTestFunction Type);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+x --- указатель на исходный массив;
+
+VHML\_N --- размер массива x.
+
+В переопределяемой функции также есть параметр:
+  
+Type --- обозначение тестовой функции, которую вызываем.
+Смотреть виды в переменных перечисляемого типа в начале HarrixMathLibrary.h файла: TestFunction\_Ackley, TestFunction\_ParaboloidOfRevolution, TestFunction\_Rastrigin и др. Они совпадают с названиями одноименных тестовых функций, но без приставки \textbf{HML\_}.
+
+\textbf{Возвращаемое значение:}
+ 
+Значение тестовой функции в точке x.
+
+Итак, для обычного использования (без параметра Type) нужно вызвать функцию HML\_DefineTestFunction. Иначе использовать переопределенную функцию и самому указать тип тестовой функции.
+
+Все функции так высчитываются, чтобы алгоритм решал задачу поиска максимального значения целевой функции, поэтому тестовые функции на минимум умножаются на $-1$.
+
+
+\begin{lstlisting}[label=code_use_HML_TestFunction_Real,caption=Пример использования]
+HML_DefineTestFunction(TestFunction_Ackley);
+
+int N=5;
+double *x=new double[N];
+HML_RandomRealVector(x,-1,1,N);
+
+//Вызов функции
+double f=HML_TestFunction_Real(x,N);
+
+//Использование результата
+HML_ShowVectorT(x,N,"Решение","x");
+//Решение:
+//x =
+//-0.391724	0.347656	0.259155	-0.544617	0.116516
+
+HML_ShowNumber(f,"Значение целевой функции","f");
+//Значение целевой функции:
+//f=3.38932
+\end{lstlisting}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{document}

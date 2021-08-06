@@ -1,0 +1,17 @@
+        HML_DefineTestFunction(TestFunction_Ackley);
+
+        int N=5;
+        double *x=new double[N];
+
+        //Вызов функции
+        double f=HML_OptimumOfTestFunction_Real(x,N);
+
+        //Использование результата
+        HML_ShowVectorT(x,N,"Оптимальное решение тестовой функции TestFunction_Ackley","x");
+        //Оптимальное решение тестовой функции TestFunction_Ackley:
+        //x =	
+        //0	0	0	0	0
+
+        HML_ShowNumber(f,"Значение целевой функции оптимального решения","f");
+        //Значение целевой функции оптимального решения:
+        //f=0

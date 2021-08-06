@@ -1,0 +1,1 @@
+void HML_SetToZeroCountOfFitness();

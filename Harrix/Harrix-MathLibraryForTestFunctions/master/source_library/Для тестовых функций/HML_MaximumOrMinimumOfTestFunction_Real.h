@@ -1,0 +1,2 @@
+double HML_MaximumOrMinimumOfTestFunction_Real();
+double HML_MaximumOrMinimumOfTestFunction_Real(TypeOfTestFunction Type);

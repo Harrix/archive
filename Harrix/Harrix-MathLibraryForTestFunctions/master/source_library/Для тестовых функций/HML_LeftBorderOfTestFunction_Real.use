@@ -1,0 +1,19 @@
+        HML_DefineTestFunction(TestFunction_Ackley);
+
+        int N=5;
+        double *Left=new double[N];
+        double *Right=new double[N];
+
+        //Вызов функции
+        HML_LeftAndRightBorderOfTestFunction_Real(Left,Right,N);
+
+        //Использование результата
+        HML_ShowVectorT(Left,N,"Левые границы допустимой области функции TestFunction_Ackley","Left");
+        //Левые границы допустимой области функции TestFunction_Ackley:
+        //Left =	
+        //-5	-5	-5	-5	-5
+
+        HML_ShowVectorT(Right,N,"Правые границы допустимой области функции TestFunction_Ackley","Right");
+        //Правые границы допустимой области функции TestFunction_Ackley:
+        //Right =	
+        //5	5	5	5	5

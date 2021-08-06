@@ -1,0 +1,21 @@
+HarrixFileFormat = Harrix Data 1.0
+Site = https://github.com/Harrix/HarrixFileFormats
+Type = Line
+Title = Прочность металлоизделий
+AxisX = v
+AxisY = T
+Parameters = ShowLine, ShowPoints, ShowArea, ShowSpecPoints
+BeginNamesOfCharts
+цинк
+EndNamesOfCharts
+BeginData
+1.45	5
+2	1
+4.4	5
+1.6	8
+7.9	3
+7	5
+1	8
+2	9
+3.555555	4.4
+EndData

@@ -1,7 +1,7 @@
 from pathlib import Path
 
 
-def path(path:str) -> None:
+def check_featured_image(path:str) -> None:
     """This function check `featured_image` in every child directory.
     Not recursively.
 

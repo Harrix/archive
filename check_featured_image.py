@@ -1,7 +1,7 @@
 from pathlib import Path
 
 
-def check_featured_image(path:str) -> None:
+def check_featured_image(path: str) -> None:
     """This function check `featured_image` in every child directory.
     Not recursively.
 
@@ -33,20 +33,22 @@ if __name__ == "__main__":
     if path:
         check_featured_image(path)
     else:
-        lst = ["D:\\Dropbox\\IT\\3D printer\\Models\\Print",
-        "D:\\Dropbox\\IT\\3D printer\\Models\\Printed",
-        "D:\\Dropbox\\IT\\3D printer\\Models\\Unprinted",
-        "D:\\Dropbox\\IT\\3D printer\\Models - Box\\Printed",
-        "D:\\Dropbox\\IT\\3D printer\\Models - Box\\Unprinted",
-        "D:\\Dropbox\\IT\\3D printer\\Models - Cable\\Printed",
-        "D:\\Dropbox\\IT\\3D printer\\Models - Cable\\Unprinted",
-        "D:\\Dropbox\\IT\\3D printer\\Models - Miscellaneous\\Print",
-        "D:\\Dropbox\\IT\\3D printer\\Models - Miscellaneous\\Printed",
-        "D:\\Dropbox\\IT\\3D printer\\Models - Miscellaneous\\Unprinted",
-        "D:\\Dropbox\\IT\\3D printer\\Models - Puzzle\\Bad",
-        "D:\\Dropbox\\IT\\3D printer\\Models - Puzzle\\Printed",
-        "D:\\Dropbox\\IT\\3D printer\\Models - Puzzle\\Unprinted",
-        "D:\\Dropbox\\IT\\3D printer\\Models - Science\\Printed",
-        "D:\\Dropbox\\IT\\3D printer\\Models - Science\\Unprinted"]
+        lst = [
+            "D:\\Dropbox\\IT\\3D printer\\Models\\Print",
+            "D:\\Dropbox\\IT\\3D printer\\Models\\Printed",
+            "D:\\Dropbox\\IT\\3D printer\\Models\\Unprinted",
+            "D:\\Dropbox\\IT\\3D printer\\Models - Box\\Printed",
+            "D:\\Dropbox\\IT\\3D printer\\Models - Box\\Unprinted",
+            "D:\\Dropbox\\IT\\3D printer\\Models - Cable\\Printed",
+            "D:\\Dropbox\\IT\\3D printer\\Models - Cable\\Unprinted",
+            "D:\\Dropbox\\IT\\3D printer\\Models - Miscellaneous\\Print",
+            "D:\\Dropbox\\IT\\3D printer\\Models - Miscellaneous\\Printed",
+            "D:\\Dropbox\\IT\\3D printer\\Models - Miscellaneous\\Unprinted",
+            "D:\\Dropbox\\IT\\3D printer\\Models - Puzzle\\Bad",
+            "D:\\Dropbox\\IT\\3D printer\\Models - Puzzle\\Printed",
+            "D:\\Dropbox\\IT\\3D printer\\Models - Puzzle\\Unprinted",
+            "D:\\Dropbox\\IT\\3D printer\\Models - Science\\Printed",
+            "D:\\Dropbox\\IT\\3D printer\\Models - Science\\Unprinted",
+        ]
         for path in lst:
             check_featured_image(path)

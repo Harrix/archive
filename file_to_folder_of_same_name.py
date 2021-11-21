@@ -1,8 +1,9 @@
 from pathlib import Path
 
-def file_to_folder_of_same_name(path:str, extension:str) -> None:
+
+def file_to_folder_of_same_name(path: str, extension: str) -> None:
     for file in Path(path).glob("**/*"):
-        if file.is_file() and (file.suffix.lower() in [extension, ""]) :
+        if file.is_file() and (file.suffix.lower() in [extension, ""]):
             path_new = path / Path(file.stem)
             path_new.mkdir(parents=True, exist_ok=True)
             Path.rename(file, path_new / Path(file.name))

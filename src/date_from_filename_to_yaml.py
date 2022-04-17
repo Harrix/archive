@@ -133,7 +133,7 @@ if __name__ == "__main__":
         "and transfers it to yaml. See docstring for more information."
     )
     parser.add_argument(
-        "path", type=str, nargs='?', help="path of the folder with markdown files"
+        "path", type=str, nargs="?", help="path of the folder with markdown files"
     )
 
     args = parser.parse_args()

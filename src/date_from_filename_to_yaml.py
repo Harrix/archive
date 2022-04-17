@@ -1,6 +1,6 @@
 """
-CLI console removes the date from the names of folders and markdown files
-and transfers it to yaml.
+CLI console script removes the date from the names of folders and markdown files
+and transfers it to YAML.
 
 ## Usage example
 

@@ -96,7 +96,7 @@ def rename_file(file: Path):
         res = re.match(pattern, file.name)
         if bool(res):
             lines = file.read_text(encoding="utf8").splitlines()
-            lines[0] = f"---\ndata: {res.group(1)}"
+            lines[0] = f"---\ndate: {res.group(1)}"
             file.write_text("\n".join(lines) + "\n", encoding="utf8")
 
             new_filename = f"{res.group(2)}.md"

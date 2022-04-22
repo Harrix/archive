@@ -133,9 +133,13 @@ if __name__ == "__main__":
         "and transfers it to yaml. See docstring for more information."
     )
     parser.add_argument(
-        "path", type=str, nargs="?", help="path of the folder with markdown files",
+        "path",
+        type=str,
+        nargs="?",
+        help="path of the folder with markdown files",
     )
-    parser.add_argument('--year', action='store_true', help='save year in filaname')
+    parser.add_argument("--year", action="store_true", help="save year in filaname")
+    parser.add_argument("--ext", default=".md", help="ext of filenames")
 
     args = parser.parse_args()
     if args.path is not None and Path(args.path).is_dir():

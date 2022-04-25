@@ -90,7 +90,7 @@ import re
 from pathlib import Path
 
 
-def rename_file(file: Path, is_save_year=False):
+def rename_file(file: Path, is_save_year):
     if file.is_file():
         pattern = r"^(\d{4}-\d{2}-\d{2})-(.*)\.md$"
         res = re.match(pattern, file.name)
@@ -104,7 +104,7 @@ def rename_file(file: Path, is_save_year=False):
             print(f"File '{file.parent / file.name}' renamed.")
 
 
-def rename_dir(dir: Path, is_save_year=False):
+def rename_dir(dir: Path, is_save_year):
     if dir.is_dir() and dir.name[0] != ".":
         pattern = r"^\d{4}-\d{2}-\d{2}-(.*)$"
         res = re.match(pattern, dir.name)

@@ -143,7 +143,8 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
     if args.path is not None and Path(args.path).is_dir():
-        date_from_filename_to_yaml(args.path)
+        if not args.year:
+            date_from_filename_to_yaml(args.path)
     else:
         path = input("Input path: ")
         if Path(path).is_dir():

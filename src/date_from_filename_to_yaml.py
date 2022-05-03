@@ -90,26 +90,40 @@ import re
 from pathlib import Path
 
 
+def __get_pattern(is_save_year, ext=r"\.md"):
+    if not is_save_year:
+        return r"^(\d{4}-\d{2}-\d{2})-(.*)" + ext + r"$"
+    else:
+        return r"^(\d{4})-(\d{2}-\d{2})-(.*)" + ext + r"$"
+
+
+def __get_new_filename(res, is_save_year, ext=".md"):
+    if not is_save_year:
+        return f"{res.group(2)}{ext}"
+    else:
+        return f"{res.group(1)}-{res.group(3)}{ext}"
+
+
 def rename_file(file: Path, is_save_year):
     if file.is_file():
-        pattern = r"^(\d{4}-\d{2}-\d{2})-(.*)\.md$"
+        pattern = __get_pattern(is_save_year)
         res = re.match(pattern, file.name)
         if bool(res):
             lines = file.read_text(encoding="utf8").splitlines()
             lines[0] = f"---\ndate: {res.group(1)}"
             file.write_text("\n".join(lines) + "\n", encoding="utf8")
 
-            new_filename = f"{res.group(2)}.md"
+            new_filename = __get_new_filename(res, is_save_year)
             os.rename(file.parent / file.name, file.parent / new_filename)
             print(f"File '{file.parent / file.name}' renamed.")
 
 
 def rename_dir(dir: Path, is_save_year):
     if dir.is_dir() and dir.name[0] != ".":
-        pattern = r"^\d{4}-\d{2}-\d{2}-(.*)$"
+        pattern = __get_pattern(is_save_year, ext=r"")
         res = re.match(pattern, dir.name)
         if bool(res):
-            new_filename = res.group(1)
+            new_filename = __get_new_filename(res, is_save_year, ext="")
             os.rename(dir.parent / dir.name, dir.parent / new_filename)
             print(f"Dir '{dir.parent / dir.name}' renamed.")
 
@@ -143,11 +157,13 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
     if args.path is not None and Path(args.path).is_dir():
-        if not args.year:
-            date_from_filename_to_yaml(args.path)
+        ext =  args.ext is None
+        date_from_filename_to_yaml(args.path, args.year)
     else:
         path = input("Input path: ")
+        year = input("save year in filaname (y/n): ")
+        is_save_year = True if year.lower() == "y" else False
         if Path(path).is_dir():
-            date_from_filename_to_yaml(path)
+            date_from_filename_to_yaml(path, is_save_year)
         else:
             print("Invalid path.")

@@ -2,6 +2,8 @@
 CLI console script removes the date from the names of folders and markdown
 (and other) files and transfers (for markdown files) it to YAML.
 
+`2022-04-16-test.md` to `test.md`.
+
 ## Usage example
 
 With arguments:

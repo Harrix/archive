@@ -1,6 +1,6 @@
 """
-CLI console script removes the date from the names of folders and markdown files
-and transfers it to YAML.
+CLI console script removes the date from the names of folders and markdown
+(and other) files and transfers it to YAML.
 
 ## Usage example
 
@@ -15,6 +15,8 @@ Without arguments:
 ```console
 python date_from_filename_to_yaml.py
 C:/test/2022
+y
+.md
 ```
 
 ## Result
@@ -90,58 +92,74 @@ import re
 from pathlib import Path
 
 
-def __get_pattern(is_save_year, ext=r"\.md"):
-    if not is_save_year:
-        return r"^(\d{4}-\d{2}-\d{2})-(.*)" + ext + r"$"
-    else:
-        return r"^(\d{4})-(\d{2}-\d{2})-(.*)" + ext + r"$"
+DEFAULT_EXTENSION = ".md"
 
 
-def __get_new_filename(res, is_save_year, ext=".md") -> str:
+def __get_pattern(is_save_year, ext=DEFAULT_EXTENSION):
+    return r"^(\d{4})-(\d{2}-\d{2})-(.*)" + ext + r"$"
+
+
+def __get_new_filename(res, is_save_year, ext=DEFAULT_EXTENSION) -> str:
     if not is_save_year:
-        return f"{res.group(2)}{ext}"
+        return f"{res.group(3)}{ext}"
     else:
         return f"{res.group(1)}-{res.group(3)}{ext}"
 
 
-def rename_file(file: Path, is_save_year) -> None:
-    if file.is_file():
-        pattern = __get_pattern(is_save_year)
-        res = re.match(pattern, file.name)
-        if bool(res):
-            lines = file.read_text(encoding="utf8").splitlines()
-            lines[0] = f"---\ndate: {res.group(1)}"
+def __rename_file(file: Path, is_save_year, ext=DEFAULT_EXTENSION) -> None:
+    pattern = __get_pattern(is_save_year, ext)
+    res = re.match(pattern, file.name)
+    if not bool(res):
+        return
+
+    if ext.lower() == ".md":
+        content = file.read_text(encoding="utf8")
+        if content.count("---") >= 2:
+            lines = content.splitlines()
+            lines[0] = f"---\ndate: {res.group(1)}-{res.group(2)}"
             file.write_text("\n".join(lines) + "\n", encoding="utf8")
 
-            new_filename = __get_new_filename(res, is_save_year)
-            os.rename(file.parent / file.name, file.parent / new_filename)
-            print(f"File '{file.parent / file.name}' renamed.")
+    new_filename = __get_new_filename(res, is_save_year, ext)
+    try:
+        os.rename(file.parent / file.name, file.parent / new_filename)
+        print(f"File '{file.parent / file.name}' renamed.")
+    except FileExistsError as exception:
+        print(exception)
 
 
-def rename_dir(dir: Path, is_save_year) -> None:
-    if dir.is_dir() and dir.name[0] != ".":
-        pattern = __get_pattern(is_save_year, ext=r"")
-        res = re.match(pattern, dir.name)
-        if bool(res):
-            new_filename = __get_new_filename(res, is_save_year, ext="")
-            os.rename(dir.parent / dir.name, dir.parent / new_filename)
-            print(f"Dir '{dir.parent / dir.name}' renamed.")
+def __rename_dir(dir: Path, is_save_year) -> None:
+    pattern = __get_pattern(is_save_year, ext=r"")
+    res = re.match(pattern, dir.name)
+    if not bool(res):
+        return
+
+    new_filename = __get_new_filename(res, is_save_year, ext="")
+    try:
+        os.rename(dir.parent / dir.name, dir.parent / new_filename)
+        print(f"Dir '{dir.parent / dir.name}' renamed.")
+    except FileExistsError as exception:
+        print(exception)
 
 
-def date_from_filename_to_yaml(path: str, is_save_year=False, ext=".md") -> None:
-    for child_dir in Path(path).iterdir():
-        if child_dir.name[0] != ".":
-            for file in Path(child_dir).glob("**/*"):
-                rename_file(file, is_save_year, ext)
-    for child_dir in Path(path).iterdir():
-        if child_dir.name[0] != ".":
-            for dir in Path(child_dir).glob("**/*"):
-                rename_dir(dir, is_save_year)
-    for child_dir in Path(path).iterdir():
-        rename_dir(child_dir, is_save_year)
+def date_from_filename_to_yaml(
+    path: str, is_save_year=False, ext=DEFAULT_EXTENSION
+) -> None:
+    for item in filter(
+        lambda path: not any((part for part in path.parts if part.startswith("."))),
+        Path(path).rglob("*"),
+    ):
+        if item.is_file():
+            __rename_file(item, is_save_year, ext)
+
+    for item in filter(
+        lambda path: not any((part for part in path.parts if part.startswith("."))),
+        Path(path).rglob("*"),
+    ):
+        if item.is_dir():
+            __rename_dir(item, is_save_year)
 
 
-if __name__ == "__main__":
+def main():
     parser = argparse.ArgumentParser(
         description="Remove the date from the names of folders and markdown files "
         "and transfers it to yaml. See docstring for more information."
@@ -152,19 +170,27 @@ if __name__ == "__main__":
         nargs="?",
         help="path of the folder with markdown files",
     )
-    parser.add_argument("--year", action="store_true", help="save year in filaname")
-    parser.add_argument("--ext", default=".md", help="ext of filenames")
+    parser.add_argument("--year", action="store_true", help="save year in filanames")
+    parser.add_argument("--ext", default=DEFAULT_EXTENSION, help="ext of filenames")
 
     args = parser.parse_args()
     if args.path is not None and Path(args.path).is_dir():
-        ext = ".md" if args.ext is None else args.ext
+        ext = DEFAULT_EXTENSION if args.ext is None else args.ext
         date_from_filename_to_yaml(args.path, args.year, ext)
     else:
         path = input("Input path: ")
         year = input("Save the year in filenames (y/n): ")
-        ext = input("Input (y/n): ")
-        is_save_year = True if year.lower() == "y" else False
+        ext = input("Input the file extension (default: .md): ")
+        ext = DEFAULT_EXTENSION if not bool(ext) else ext
+        if "." not in ext:
+            print("Invalid the file extension.")
+            return
+        is_save_year = True if year.lower().startswith("y") else False
         if Path(path).is_dir():
             date_from_filename_to_yaml(path, is_save_year, ext)
         else:
             print("Invalid path.")
+
+
+if __name__ == "__main__":
+    main()

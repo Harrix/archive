@@ -1,4 +1,4 @@
-# harrix-pyutilities
+# Harrix PyUtilities
 
 All utilities are independent and unrelated to each other.
 

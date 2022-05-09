@@ -1,6 +1,6 @@
 """
 CLI console script removes the date from the names of folders and markdown
-(and other) files and transfers it to YAML.
+(and other) files and transfers (for markdown files) it to YAML.
 
 ## Usage example
 
@@ -15,13 +15,11 @@ Without arguments:
 ```console
 python date_from_filename_to_yaml.py
 C:/test/2022
-y
+n
 .md
 ```
 
-## Result
-
-### Before
+**Before:**
 
 Folder structure:
 
@@ -50,10 +48,9 @@ categories: [it, program]
 # Test
 
 ![Test image](img/test.png)
-
 ```
 
-### After
+**After:**
 
 Folder structure:
 
@@ -83,8 +80,71 @@ categories: [it, program]
 # Test
 
 ![Test image](img/test.png)
-
 ```
+
+## Using `--year`
+
+If we apply the following command `python date_from_filename_to_yaml.py C:/test/2022 --year` for the example above, we get the following folder structure:
+
+```text
+C:/test/2022
+├─ 2022-test
+│  ├─ 2022-test.en.md
+│  ├─ 2022-test.md
+│  ├─ featured-image.png
+│  └─ img
+│     └─ test.png
+└─ 2022-test2
+   ├─ 2022-test.md
+   ├─ featured-image.png
+   └─ img
+      └─ test.png
+```
+
+## Using `--ext`
+
+With arguments:
+
+```console
+python date_from_filename_to_yaml.py C:/test/2022 --ext .svg
+```
+
+Without arguments:
+
+```console
+python date_from_filename_to_yaml.py
+C:/test/2022
+n
+.svg
+```
+
+**Before:**
+
+```text
+C:/test/2022
+├─ 2022-04-16-test.svg
+├─ 2022-05-09-test.svg
+└─ 2022-05-09-test.png
+```
+
+**After:**
+
+```text
+C:/test/2022
+├─ test.svg
+├─ test.svg
+└─ 2022-05-09-test.png
+```
+
+Command `python date_from_filename_to_yaml.py C:/test/2022 --year --ext .svg` get the following folder structure:
+
+```text
+C:/test/2022
+├─ 2022-test.svg
+├─ 2022-test.svg
+└─ 2022-05-09-test.png
+```
+
 """
 import argparse
 import os

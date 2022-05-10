@@ -210,7 +210,7 @@ def __rename_dir(dir: Path, is_save_year) -> None:
     try:
         os.rename(dir.parent / dir.name, dir.parent / new_filename)
         print(f"Dir '{dir.parent / dir.name}' renamed.")
-    except FileExistsError as exception:
+    except Exception as exception:
         print(exception)
 
 

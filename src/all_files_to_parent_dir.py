@@ -1,10 +1,23 @@
 """
-CLI console utility copies files from subdirectories to these folders
+CLI console script copies files from subdirectories to these folders
 for each folder in the parent directory.
 
 ## Usage example
 
-Before:
+**Before:**
+
+With arguments:
+
+```console
+python all_files_to_parent_dir.py C:/test
+```
+
+Without arguments:
+
+```console
+python all_files_to_parent_dir.py
+C:/test
+```
 
 ```text
 C:\test
@@ -23,7 +36,7 @@ C:\test
          └─ file5.txt
 ```
 
-After:
+**After:**
 
 ```text
 C:\test
@@ -37,26 +50,56 @@ C:\test
    ├─ file5.txt
    └─ file6.txt
 ```
+
 """
 
+import argparse
 from pathlib import Path
 import shutil
+
+DEFAULT_PATH = "D:\\Downloads\\_3d"
 
 
 def all_files_to_parent_dir(path: str) -> None:
     for child_dir in Path(path).iterdir():
         for file in Path(child_dir).glob("**/*"):
             if file.is_file():
-                file.replace(child_dir / file.name)
+                try:
+                    file.replace(child_dir / file.name)
+                except Exception as exception:
+                    print(exception)
         for file in Path(child_dir).glob("**/*"):
             if file.is_dir():
-                shutil.rmtree(file)
+                try:
+                    shutil.rmtree(file)
+                except Exception as exception:
+                    print(exception)
         print("Fix {}".format(child_dir))
 
 
-if __name__ == "__main__":
-    path = input()
-    if path:
-        all_files_to_parent_dir(path)
+def main():
+    parser = argparse.ArgumentParser(
+        description="Copies files from subdirectories to these folders "
+        "for each folder in the parent directory."
+    )
+    parser.add_argument(
+        "path",
+        type=str,
+        nargs="?",
+        help="path of the folder",
+    )
+
+    args = parser.parse_args()
+    if args.path is not None and Path(args.path).is_dir():
+        all_files_to_parent_dir(args.path)
     else:
-        all_files_to_parent_dir("D:\\Downloads\\_3d")
+        path = input("Input path: ")
+        path = DEFAULT_PATH if not bool(path) else path
+        if Path(path).is_dir():
+            all_files_to_parent_dir(path)
+        else:
+            print("Invalid path.")
+
+
+if __name__ == "__main__":
+    main()

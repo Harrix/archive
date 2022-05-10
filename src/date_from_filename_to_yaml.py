@@ -86,7 +86,12 @@ categories: [it, program]
 
 ## Using `--year`
 
-If we apply the following command `python date_from_filename_to_yaml.py C:/test/2022 --year` for the example above, we get the following folder structure:
+```console
+`python date_from_filename_to_yaml.py C:/test/2022 --year`
+```
+
+If we apply the following command for the example above, we get the following
+folder structure:
 
 ```text
 C:/test/2022
@@ -138,7 +143,13 @@ C:/test/2022
 └─ 2022-05-09-test.png
 ```
 
-Command `python date_from_filename_to_yaml.py C:/test/2022 --year --ext .svg` get the following folder structure:
+## Using `--ext` and `--year`
+
+```console
+python date_from_filename_to_yaml.py C:/test/2022 --year --ext .svg
+```
+
+Command get the following folder structure for the example above:
 
 ```text
 C:/test/2022

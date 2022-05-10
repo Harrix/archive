@@ -2,6 +2,8 @@
 CLI console script removes the date from the names of folders and markdown
 (and other) files and transfers (for markdown files) it to YAML.
 
+Hidden folders and files are ignored.
+
 `2022-04-16-test.md` to `test.md`.
 
 ## Usage example
@@ -163,7 +165,7 @@ import argparse
 import os
 import re
 from pathlib import Path
-
+from typing import Union
 
 DEFAULT_EXTENSION = ".md"
 
@@ -215,7 +217,7 @@ def __rename_dir(dir: Path, is_save_year) -> None:
 
 
 def date_from_filename_to_yaml(
-    path: str, is_save_year=False, ext=DEFAULT_EXTENSION
+    path: Union[Path, str], is_save_year=False, ext=DEFAULT_EXTENSION
 ) -> None:
     for item in filter(
         lambda path: not any((part for part in path.parts if part.startswith("."))),

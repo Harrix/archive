@@ -54,13 +54,14 @@ C:\test
 """
 
 import argparse
-from pathlib import Path
 import shutil
+from pathlib import Path
+from typing import Union
 
 DEFAULT_PATH = "D:\\Downloads\\_3d"
 
 
-def all_files_to_parent_dir(path: str) -> None:
+def all_files_to_parent_dir(path: Union[Path, str]) -> None:
     for child_dir in Path(path).iterdir():
         for file in Path(child_dir).glob("**/*"):
             if file.is_file():

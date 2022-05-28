@@ -4,8 +4,6 @@ for each folder in the parent directory.
 
 ## Usage example
 
-**Before:**
-
 With arguments:
 
 ```console
@@ -18,6 +16,8 @@ Without arguments:
 python all_files_to_parent_dir.py
 C:/test
 ```
+
+**Before:**
 
 ```text
 C:\test

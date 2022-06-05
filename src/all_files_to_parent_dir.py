@@ -1,6 +1,15 @@
 """
-CLI console script copies files from subdirectories to these folders
-for each folder in the parent directory.
+# Temp title
+
+CLI console script for each directory located directly in the specified directory moves all files from subdirectories to these directories.
+
+---
+
+**Russian** <!-- !note -->
+
+Для каждой директории, которые находятся непосредственно в указанной директории, перемещает все файлы из поддиректорий в эти самые директории.
+
+---
 
 ## Usage example
 

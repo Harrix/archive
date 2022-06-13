@@ -1,6 +1,4 @@
 """
-# Temp title
-
 CLI console script for each directory located directly in the specified directory moves all files from subdirectories to these directories. See the example below.
 
 ---

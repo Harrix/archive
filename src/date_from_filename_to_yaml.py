@@ -1,4 +1,8 @@
 """
+TODO RUssian
+"""
+
+"""
 CLI console script removes the date from the names of folders and markdown
 (and other) files and transfers (for markdown files) it to YAML.
 

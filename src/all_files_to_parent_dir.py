@@ -3,7 +3,7 @@ CLI console script for each directory located directly in the specified director
 
 ---
 
-**Russian** <!-- !note -->
+**Russian** <!-- !details -->
 
 Для каждой директории, которые находятся непосредственно в указанной директории, перемещает все файлы из поддиректорий в эти самые директории. Смотрите пример ниже.
 

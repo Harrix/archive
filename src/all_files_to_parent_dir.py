@@ -1,11 +1,13 @@
 """
-CLI console script for each directory located directly in the specified directory moves all files from subdirectories to these directories. See the example below.
+CLI console script for each directory located directly in the specified directory moves
+all files from subdirectories to these directories. See the example below.
 
 ---
 
 **Russian** <!-- !details -->
 
-Для каждой директории, которые находятся непосредственно в указанной директории, перемещает все файлы из поддиректорий в эти самые директории. Смотрите пример ниже.
+Для каждой директории, которые находятся непосредственно в указанной директории,
+перемещает все файлы из поддиректорий в эти самые директории. Смотрите пример ниже.
 
 ---
 

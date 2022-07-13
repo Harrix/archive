@@ -249,7 +249,7 @@ def main():
         nargs="?",
         help="path of the folder with markdown files",
     )
-    parser.add_argument("--year", action="store_true", help="save year in filanames")
+    parser.add_argument("--year", action="store_true", help="save year in filenames")
     parser.add_argument("--ext", default=DEFAULT_EXTENSION, help="ext of filenames")
 
     args = parser.parse_args()

@@ -1,5 +1,7 @@
 # Harrix PyUtilities
 
+[English](https://github.com/Harrix/harrix-pyutilities/blob/main/README.md) | **Russian**
+
 Все утилиты независимы и не связаны друг с другом.
 
 - [all_files_to_parent_dir](https://github.com/Harrix/harrix-pyutilities/blob/main/src/all_files_to_parent_dir.py): Для каждой директории, которые находятся непосредственно в указанной директории,

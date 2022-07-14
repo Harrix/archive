@@ -1,18 +1,6 @@
 """
-TODO RUssian
-"""
-
-"""
 CLI console script removes the date from the names of folders, files and transfers
 (for markdown files) it to YAML.
-
----
-
-**Russian** <!-- !details -->
-
-Удаляет дату из имен директорий, файлов и переносит дату (для Markdown файлов) в YAML.
-
----
 
 Hidden folders and files are ignored.
 

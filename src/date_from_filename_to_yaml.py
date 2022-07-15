@@ -89,10 +89,10 @@ categories: [it, program]
 ## Using `--year`
 
 ```console
-`python date_from_filename_to_yaml.py C:/test/2022 --year`
+python date_from_filename_to_yaml.py C:/test/2022 --year
 ```
 
-If we apply the following command for the example above, we get the following
+The parameter `--year` saves the year in the file name. If we apply the following command for the example above, we get the following
 folder structure:
 
 ```text
@@ -111,6 +111,8 @@ C:/test/2022
 ```
 
 ## Using `--ext`
+
+Applies the date deletion operation in the file name only to files of the extension specified in the parameter `--ext`.
 
 With arguments:
 

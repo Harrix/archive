@@ -42,7 +42,7 @@ draft: true
 
 ## Стандартная типографика
 
-В этом разделе показана стандартная типографика для [Markdown](https://ru.wikipedia.org/wiki/Markdown), которая проверена на:
+В этом разделе показана стандартная типографика для [Markdown](https://ru.wikipedia.org/wiki/Markdown), которая должна работать везде. Проверено на:
 
 - ✅ [GitHub](https://github.com/) (например, в `README.md`)
 - ✅ [VSCode](https://code.visualstudio.com/) с [Markdown Preview Enhanced](https://marketplace.visualstudio.com/items?itemName=shd101wyy.markdown-preview-enhanced)
@@ -202,8 +202,6 @@ draft: true
 ![SVG изображение](img/image.svg)
 
 ![Логотип GitHub](https://github.githubassets.com/images/modules/site/icons/footer/github-logo.svg)
-
-[![Изображение-ссылка](https://github.githubassets.com/images/modules/site/icons/footer/github-logo.svg)](https://github.com)
 ```
 
 ![Изображение](img/image.png)
@@ -213,8 +211,6 @@ draft: true
 ![SVG изображение](img/image.svg)
 
 ![Логотип GitHub](https://github.githubassets.com/images/modules/site/icons/footer/github-logo.svg)
-
-[![Изображение-ссылка](https://github.githubassets.com/images/modules/site/icons/footer/github-logo.svg)](https://github.com)
 
 ### Код
 
@@ -242,11 +238,15 @@ int main() {
 }
 ```
 
+Лучше писать полное название языка, например, в мобильной версии Obsidian Python не распознается через ```` ```py ````,  а через ```` ```python ```` всё пройдет хорошо. Также вместо ```` ```md ````пишем ```` ```markdown ````.
+
 ```markdown
 Встроенный код оформляется так: `double x = 1.3`.
 ```
 
 Встроенный код оформляется так: `double x = 1.3`.
+
+
 
 ### Цитаты
 

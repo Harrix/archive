@@ -56,12 +56,23 @@ C:\test
 import argparse
 import shutil
 from pathlib import Path
-from typing import Union
 
 DEFAULT_PATH = "D:\\Downloads\\_3d"
 
 
-def all_files_to_parent_dir(path: Union[Path, str]) -> None:
+def all_files_to_parent_dir(path: Path | str) -> None:
+    """
+    This function check files `featured_image.*` in every child directory.
+    Not recursively.
+
+    Args:
+
+    - `path` (Path | str): Path to the directory being checked.
+
+    Returns:
+
+    - `bool`: True if each child folder contains `featured_image.*`, False otherwise.
+    """
     for child_dir in Path(path).iterdir():
         for file in Path(child_dir).glob("**/*"):
             if file.is_file():

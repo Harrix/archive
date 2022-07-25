@@ -44,7 +44,7 @@ C:/test/2022
 
 File `C:/test/2022/2022-04-16-test/2022-04-16-test.en.md`:
 
-```md
+```markdown
 ---
 categories: [it, program]
 ---
@@ -75,7 +75,7 @@ C:/test/2022
 
 File `C:/test/2022/test/test.en.md`:
 
-```md
+```markdown
 ---
 data: 2022-04-16
 categories: [it, program]
@@ -92,8 +92,8 @@ categories: [it, program]
 python date_from_filename_to_yaml.py C:/test/2022 --year
 ```
 
-The parameter `--year` saves the year in the file name. If we apply the following command for the example above, we get the following
-folder structure:
+The parameter `--year` saves the year in the file name. If we apply the following
+command for the example above, we get the following folder structure:
 
 ```text
 C:/test/2022
@@ -172,6 +172,38 @@ from typing import Union
 DEFAULT_EXTENSION = ".md"
 
 
+def date_from_filename_to_yaml(
+    path: Union[Path, str], is_save_year=False, ext=DEFAULT_EXTENSION
+) -> None:
+    """
+    This function removes the date from the names of folders, files and transfers
+    (for Markdown files) it to YAML. Recursively. `2022-04-16-test.md` to `test.md`.
+
+    Args:
+
+    - `path` (Path | str): Path to the directory being checked.
+    - `is_save_year` (bool): Saves the year in the file name. Defaults to `False`.
+    - `ext` (str):  Applies the date deletion operation in the file name only to files of the extension. Defaults to ".md".
+
+    Returns:
+
+    - `None`.
+    """
+    for item in filter(
+        lambda path: not any((part for part in path.parts if part.startswith("."))),
+        Path(path).rglob("*"),
+    ):
+        if item.is_file():
+            __rename_file(item, is_save_year, ext)
+
+    for item in filter(
+        lambda path: not any((part for part in path.parts if part.startswith("."))),
+        Path(path).rglob("*"),
+    ):
+        if item.is_dir():
+            __rename_dir(item, is_save_year)
+
+
 def __get_pattern(is_save_year, ext=DEFAULT_EXTENSION):
     return r"^(\d{4})-(\d{2}-\d{2})-(.*)" + ext + r"$"
 
@@ -189,7 +221,7 @@ def __rename_file(file: Path, is_save_year, ext=DEFAULT_EXTENSION) -> None:
     if not bool(res):
         return
 
-    if ext.lower() == ".md":
+    if ext.lower() == DEFAULT_EXTENSION:
         content = file.read_text(encoding="utf8")
         if content.count("---") >= 2:
             lines = content.splitlines()
@@ -216,24 +248,6 @@ def __rename_dir(dir: Path, is_save_year) -> None:
         print(f"Dir '{dir.parent / dir.name}' renamed.")
     except Exception as exception:
         print(exception)
-
-
-def date_from_filename_to_yaml(
-    path: Union[Path, str], is_save_year=False, ext=DEFAULT_EXTENSION
-) -> None:
-    for item in filter(
-        lambda path: not any((part for part in path.parts if part.startswith("."))),
-        Path(path).rglob("*"),
-    ):
-        if item.is_file():
-            __rename_file(item, is_save_year, ext)
-
-    for item in filter(
-        lambda path: not any((part for part in path.parts if part.startswith("."))),
-        Path(path).rglob("*"),
-    ):
-        if item.is_dir():
-            __rename_dir(item, is_save_year)
 
 
 def main():

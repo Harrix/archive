@@ -1,12 +1,12 @@
 ---
 categories: [it, program]
-tags: [Markdown, VSCode, GitHub, Habr, Obsidian]
+tags: [Markdown, VSCode, GitHub, Obsidian]
 draft: true
 ---
 
 # Markdown синтаксис
 
-Подробное описание синтаксиса Markdown, проверенного на нескольких платформах: GitHub, VSCode, Obsidian, Habr, Markor.
+Подробное описание синтаксиса Markdown, проверенного на нескольких платформах: GitHub, VSCode, Obsidian, Markor.
 
 <details>
 <summary>Вводные пояснения</summary>
@@ -47,7 +47,6 @@ draft: true
 - ✅ [GitHub](https://github.com/) (например, в `README.md`)
 - ✅ [VSCode](https://code.visualstudio.com/) с [Markdown Preview Enhanced](https://marketplace.visualstudio.com/items?itemName=shd101wyy.markdown-preview-enhanced)
 - ✅ [Obsidian](https://obsidian.md/)
-- ✅ [Habr](https://habr.com/)
 - ✅ [Markor](https://play.google.com/store/apps/details?id=net.gsantner.markor&hl=ru&gl=US)
 
 ### Заголовки
@@ -238,15 +237,13 @@ int main() {
 }
 ```
 
-Лучше писать полное название языка, например, в мобильной версии Obsidian Python не распознается через ```` ```py ````,  а через ```` ```python ```` всё пройдет хорошо. Также вместо ```` ```md ````пишем ```` ```markdown ````.
+Лучше писать полное название языка, например, в мобильной версии Obsidian Python не распознается через ` ```py `, а через ` ```python ` всё пройдет хорошо. Также вместо ` ```md `пишем ` ```markdown `.
 
 ```markdown
 Встроенный код оформляется так: `double x = 1.3`.
 ```
 
 Встроенный код оформляется так: `double x = 1.3`.
-
-
 
 ### Цитаты
 

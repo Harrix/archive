@@ -50,9 +50,7 @@ C:\test
    ├─ file5.txt
    └─ file6.txt
 ```
-
 """
-
 import argparse
 import shutil
 from pathlib import Path

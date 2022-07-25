@@ -161,7 +161,6 @@ C:/test/2022
 ├─ 2022-test.svg
 └─ 2022-05-09-test.png
 ```
-
 """
 import argparse
 import os

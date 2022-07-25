@@ -43,9 +43,7 @@ C:\test
 ```
 
 Result: `All correct in C:\test`
-
 """
-
 import argparse
 from pathlib import Path
 

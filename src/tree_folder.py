@@ -1,176 +1,57 @@
 """
-TODO
-"""
-
-"""
-CLI console script removes the date from the names of folders and markdown
-(and other) files and transfers (for markdown files) it to YAML.
-
-Hidden folders and files are ignored.
-
-`2022-04-16-test.md` to `test.md`.
+CLI console script builds a tree of files and subdirectories of the specified directory.
 
 ## Usage example
 
 With arguments:
 
 ```console
-python date_from_filename_to_yaml.py C:/test/2022
+python check_featured_image.py C:/test
+```
+
+With arguments and ignoring hidden files:
+
+```console
+python check_featured_image.py C:/test --ignore
 ```
 
 Without arguments:
 
 ```console
-python date_from_filename_to_yaml.py
-C:/test/2022
-n
-.md
+python check_featured_image.py
+C:/test
+y
 ```
 
-**Before:**
-
-Folder structure:
+Example output:
 
 ```text
-C:/test/2022
-├─ 2022-04-16-test
-│  ├─ 2022-04-16-test.en.md
-│  ├─ 2022-04-16-test.md
+├─ note1
 │  ├─ featured-image.png
-│  └─ img
-│     └─ test.png
-└─ 2022-04-17-test2
-   ├─ 2022-04-17-test.md
-   ├─ featured-image.png
-   └─ img
-      └─ test.png
+│  └─ note1.md
+└─ note2
+   └─ note2.md
 ```
-
-File `C:/test/2022/2022-04-16-test/2022-04-16-test.en.md`:
-
-```md
----
-categories: [it, program]
----
-
-# Test
-
-![Test image](img/test.png)
-```
-
-**After:**
-
-Folder structure:
-
-```text
-C:/test/2022
-├─ test
-│  ├─ featured-image.png
-│  ├─ img
-│  │  └─ test.png
-│  ├─ test.en.md
-│  └─ test.md
-└─ test2
-   ├─ featured-image.png
-   ├─ img
-   │  └─ test.png
-   └─ test.md
-```
-
-File `C:/test/2022/test/test.en.md`:
-
-```md
----
-data: 2022-04-16
-categories: [it, program]
----
-
-# Test
-
-![Test image](img/test.png)
-```
-
-## Using `--year`
-
-```console
-`python date_from_filename_to_yaml.py C:/test/2022 --year`
-```
-
-If we apply the following command for the example above, we get the following
-folder structure:
-
-```text
-C:/test/2022
-├─ 2022-test
-│  ├─ 2022-test.en.md
-│  ├─ 2022-test.md
-│  ├─ featured-image.png
-│  └─ img
-│     └─ test.png
-└─ 2022-test2
-   ├─ 2022-test.md
-   ├─ featured-image.png
-   └─ img
-      └─ test.png
-```
-
-## Using `--ext`
-
-With arguments:
-
-```console
-python date_from_filename_to_yaml.py C:/test/2022 --ext .svg
-```
-
-Without arguments:
-
-```console
-python date_from_filename_to_yaml.py
-C:/test/2022
-n
-.svg
-```
-
-**Before:**
-
-```text
-C:/test/2022
-├─ 2022-04-16-test.svg
-├─ 2022-05-09-test.svg
-└─ 2022-05-09-test.png
-```
-
-**After:**
-
-```text
-C:/test/2022
-├─ test.svg
-├─ test.svg
-└─ 2022-05-09-test.png
-```
-
-## Using `--ext` and `--year`
-
-```console
-python date_from_filename_to_yaml.py C:/test/2022 --year --ext .svg
-```
-
-Command get the following folder structure for the example above:
-
-```text
-C:/test/2022
-├─ 2022-test.svg
-├─ 2022-test.svg
-└─ 2022-05-09-test.png
-```
-
 """
 import argparse
 from pathlib import Path
-from typing import Union
 
 
-def tree(path: Union[Path, str], is_ignore_hidden_dirs=False) -> str:
+def tree(path: Path | str, is_ignore_hidden_dirs=False) -> str:
+    """
+    This function builds a tree of files and subdirectories of the specified directory.
+
+    Args:
+
+    - `path` (Path | str): Path to the directory.
+    - `is_ignore_hidden_dirs` (bool): Ignores files and folders starting with a dot
+       (for example `.git`). Defaults to `False`.
+
+    Returns:
+
+    - `str`: tree of files and subdirectories.
+    """
+
     def __tree(path: Path, is_ignore_hidden_dirs=False, prefix: str = "") -> str:
         if is_ignore_hidden_dirs and path.name.startswith("."):
             contents = []

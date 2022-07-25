@@ -50,3 +50,18 @@ All utilities are independent and unrelated to each other.
 - [check_featured_image.py](https://github.com/Harrix/harrix-pyutilities/blob/main/src/check_featured_image.py): CLI console script checks `featured_image` in every child directory. Not recursively.
 
 - [date_from_filename_to_yaml.py](https://github.com/Harrix/harrix-pyutilities/blob/main/src/date_from_filename_to_yaml.py): CLI console script removes the date from the names of folders and markdown (and other) files and transfers (for markdown files) it to YAML. Before: `2022-04-16-test.md`. After: `test.md`. Recursively.
+
+- [tree_folder.py](https://github.com/Harrix/harrix-pyutilities/blob/main/src/tree_folder.py): CLI console script builds a tree of files and subdirectories of the specified directory.
+
+  <details>
+  <summary>Example output</summary>
+
+  ```text
+  ├─ note1
+  │  ├─ featured-image.png
+  │  └─ note1.md
+  └─ note2
+     └─ note2.md
+  ```
+
+  </details>

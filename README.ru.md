@@ -48,4 +48,6 @@ Python утилиты для решения различных задач.
 
   </details>
 
+- [check_featured_image.py](https://github.com/Harrix/harrix-pyutilities/blob/main/src/check_featured_image.py): Проверяет наличие файла `featured_image.*` во всех дочерних директориях (не рекурсивно) указанной директории.
+
 - [date_from_filename_to_yaml.py](https://github.com/Harrix/harrix-pyutilities/blob/main/src/date_from_filename_to_yaml.py): Удаляет дату из имен директорий, файлов и переносит дату (для Markdown файлов) в YAML. Было: `2022-04-16-test.md`. Стало: `test.md`. Рекурсивно.

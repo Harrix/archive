@@ -41,7 +41,7 @@ Example of Markdown file with a field list:
 
 ```
 """
-
+import argparse
 import re
 from pathlib import Path
 
@@ -99,7 +99,7 @@ class FieldList:
     def get_md_list(self, fields, template=""):
         res = ""
         if not template:
-            template = " - ".join(["{}"]*len(fields))
+            template = " - ".join(["{}"] * len(fields))
         for item in self.items:
             lst_for_line = []
             for field in fields:
@@ -112,19 +112,20 @@ class FieldList:
 
 
 def main():
-    # table = FieldList().load_first_from_file("data/table.md")
-    # print(len(table))
-    # print(table[0])
-    # print(table.items)
-    # print(table.get_md_list(["Field1", "Field3"]))
+    table_books = FieldList().load_first_from_file("data/books.md")
+    print("Книги (количество: {}):".format(len(table_books)))
+    print(
+        table_books.get_md_list(["Name", "Author", "Rating"], template="{} ({}) - {}")
+    )
+    print()
+    table_movies = FieldList().load_first_from_file("data/movies.md")
+    print("Фильмы (количество: {}):".format(len(table_movies)))
+    print(
+        table_movies.get_md_list(
+            ["Name", "Season", "Rating"], template="{} (Сезон {}) - {}"
+        ).replace("(Сезон ) ", "")
+    )
 
-    # table = FieldList().load_first_from_file("data/books.md")
-    # print("Книги (количество: {}):".format(len(table)))
-    # print(table.get_md_list(["Name", "Author", "Rating"], template="{} ({}) - {}"))
-
-    table = FieldList().load_first_from_file("data/movies.md")
-    print("Фильмы (количество: {}):".format(len(table)))
-    print(table.get_md_list(["Name", "Season", "Rating"], template="{} (Сезон {}) - {}").replace("(Сезон ) ",""))
 
 if __name__ == "__main__":
     main()

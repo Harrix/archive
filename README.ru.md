@@ -2,6 +2,8 @@
 
 [English](https://github.com/Harrix/harrix-pyutilities/) | **Russian**
 
+![Harrix PyUtilities](img/featured-image.svg)
+
 Python утилиты для решения различных задач.
 
 Все утилиты независимы и не связаны друг с другом.

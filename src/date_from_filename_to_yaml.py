@@ -166,13 +166,12 @@ import argparse
 import os
 import re
 from pathlib import Path
-from typing import Union
 
 DEFAULT_EXTENSION = ".md"
 
 
 def date_from_filename_to_yaml(
-    path: Union[Path, str], is_save_year=False, ext=DEFAULT_EXTENSION
+    path: Path | str, is_save_year=False, ext=DEFAULT_EXTENSION
 ) -> None:
     """
     This function removes the date from the names of folders, files and transfers

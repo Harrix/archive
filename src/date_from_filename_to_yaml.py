@@ -182,7 +182,7 @@ def date_from_filename_to_yaml(
 
     - `path` (Path | str): Path to the directory being checked.
     - `is_save_year` (bool): Saves the year in the file name. Defaults to `False`.
-    - `ext` (str):  Applies the date deletion operation in the file name only to files of the extension. Defaults to ".md".
+    - `ext` (str):  Applies the date deletion operation in the file name only to files of the extension. Defaults to `.md`.
 
     Returns:
 

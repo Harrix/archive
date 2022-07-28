@@ -59,7 +59,8 @@ def check_featured_image(path: str) -> None:
 
     Returns:
 
-    - `bool`. True if each child folder contains `featured_image.*`, False otherwise.
+    - `bool`. `True` if each child folder contains `featured_image.*`,
+      `False` otherwise.
     """
     is_correct = True
 

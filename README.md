@@ -10,6 +10,8 @@ All utilities are independent and unrelated to each other.
 
 ## Universal
 
+The package [argparse](https://docs.python.org/3/library/argparse.html) is used.
+
 - [all_files_to_parent_dir](https://github.com/Harrix/harrix-pyutilities/blob/main/src/all_files_to_parent_dir.py): CLI console script copies files from subdirectories (recursively) to these folders for each folder in the parent directory. Before: `C:\test\folder1\sub1\file1.txt`. After: `C:\test\folder1\file1.txt`.
 
   <details>
@@ -71,3 +73,34 @@ All utilities are independent and unrelated to each other.
   </details>
 
 ## Specific
+
+These utilities are made for my specific tasks. The package `argparse` is not used.
+
+- [check_featured_image.py](https://github.com/Harrix/harrix-pyutilities/blob/main/src/specific__field_list_analysis.py): CLI console script analyzes a field list from Markdown.
+
+  <details>
+  <summary>Example of a field list</summary>
+
+  ```markdown
+  # Title
+
+  ---
+
+  **Title of the field list** <!-- !list-as-table -->
+
+  <!-- !item -->
+
+  - **Field1:** Name1
+  - **Field2:** One Two
+  - **Field3:** 1
+
+  <!-- !item -->
+
+  - **Field1:** Name2
+  - **Field2:** Three Four
+  - **Field3:** 2
+
+  ---
+  ```
+
+  </details>

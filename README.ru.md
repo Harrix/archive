@@ -10,6 +10,8 @@ Python утилиты для решения различных задач.
 
 ## Универсальные
 
+Пакет [argparse](https://docs.python.org/3/library/argparse.html) используется.
+
 - [all_files_to_parent_dir](https://github.com/Harrix/harrix-pyutilities/blob/main/src/all_files_to_parent_dir.py): Для
   каждой директории, которые находятся непосредственно в указанной директории (рекурсивно), перемещает все файлы из поддиректорий в эти самые директории. Было: `C:\test\folder1\sub1\file1.txt`. Стало: `C:\test\folder1\file1.txt`.
 
@@ -74,3 +76,36 @@ Python утилиты для решения различных задач.
 ## Специфические
 
 These utilities are made for my specific tasks.
+
+## Specific
+
+Эти утилиты созданы для моих конкретных задач. Пакет `argparse` не используется.
+
+- [check_featured_image.py](https://github.com/Harrix/harrix-pyutilities/blob/main/src/specific__field_list_analysis.py): Анализирует таблицу в виде списка из Markdown.
+
+  <details>
+  <summary>Пример таблицы в виде списка</summary>
+
+  ```markdown
+  # Title
+
+  ---
+
+  **Title of the field list** <!-- !list-as-table -->
+
+  <!-- !item -->
+
+  - **Field1:** Name1
+  - **Field2:** One Two
+  - **Field3:** 1
+
+  <!-- !item -->
+
+  - **Field1:** Name2
+  - **Field2:** Three Four
+  - **Field3:** 2
+
+  ---
+  ```
+
+  </details>

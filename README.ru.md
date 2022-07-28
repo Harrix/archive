@@ -75,10 +75,6 @@ Python утилиты для решения различных задач.
 
 ## Специфические
 
-These utilities are made for my specific tasks.
-
-## Specific
-
 Эти утилиты созданы для моих конкретных задач. Пакет `argparse` не используется.
 
 - [check_featured_image.py](https://github.com/Harrix/harrix-pyutilities/blob/main/src/specific__field_list_analysis.py): Анализирует таблицу в виде списка из Markdown.

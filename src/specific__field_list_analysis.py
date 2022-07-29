@@ -1,5 +1,5 @@
 """
-CLI console script analyzes a field list from Markdown.
+The script analyzes a field list from Markdown.
 
 ## Usage example
 

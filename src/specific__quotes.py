@@ -94,7 +94,7 @@ def add_author_book(filename: Path | str) -> None:
     note += "\n\n---\n\n".join(quotes_fix) + "\n"
     if note_initial != note:
         file.write_text(note, encoding="utf8")
-        print(f"\x1b[31mFix {filename}\x1b[0m")
+        print(f"\x1b[34mFix {filename}\x1b[0m")
     else:
         print(f"No changes in {filename}")
 

@@ -76,7 +76,7 @@ The package [argparse](https://docs.python.org/3/library/argparse.html) is used.
 
 These utilities are made for my specific tasks. The package `argparse` is not used.
 
-- [check_featured_image.py](https://github.com/Harrix/harrix-pyutilities/blob/main/src/specific__field_list_analysis.py): CLI console script analyzes a field list from Markdown.
+- [check_featured_image.py](https://github.com/Harrix/harrix-pyutilities/blob/main/src/specific__field_list_analysis.py): The script analyzes a field list from Markdown.
 
   <details>
   <summary>Example of a field list</summary>

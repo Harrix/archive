@@ -1,3 +1,16 @@
+"""
+Scripts for the design of quotes.
+
+## Usage example
+
+```console
+python specific__quotes.py
+1
+D:/Dropbox/Notes/Quotes/Fiction
+```
+
+For a description of the functions, see the docstring of the functions.
+"""
 from pathlib import Path
 
 
@@ -71,7 +84,7 @@ def add_author_book(filename: Path | str) -> None:
     for quote in quotes:
         lines_quote = quote.splitlines()
         if lines_quote[-1].startswith("> -- _"):
-            quotes_fix.append(quote) # The quote has already been processed
+            quotes_fix.append(quote)  # The quote has already been processed
             continue
         if lines_quote[-1].startswith("-- "):
             title = lines_quote[-1][3:]
@@ -86,11 +99,40 @@ def add_author_book(filename: Path | str) -> None:
         print(f"No changes in {filename}")
 
 
+def add_author_book_in_folder(path: Path | str) -> None:
+    """
+    The function applies the function `add_author_book` to all Markdown files
+    in the folder.
+
+    Args:
+
+    - `path` (Path | str): The path to the directory being processed.
+
+    Returns:
+
+    - `None`.
+    """
+    for item in filter(
+        lambda path: not any((part for part in path.parts if part.startswith("."))),
+        Path(path).rglob("*"),
+    ):
+        if item.suffix.lower() == ".md":
+            add_author_book(item)
+
+
 def main():
-    add_author_book(
-        # "D:\\Dropbox\\Notes\\Quotes\\Fiction\\Вейер-Энди\\Марсианин\\Марсианин.md"
-        "D:/Dropbox/Notes/Quotes/Fiction/Азимов-Айзек/Основание/Основание.md"
+    print(
+        """Select command
+    1 - add_author_book_in_folder
+    """
     )
+    command = input("Input number of a command: ")
+    if command == "1":
+        path = input("Input path: ")
+        if Path(path).is_dir():
+            add_author_book_in_folder(path)
+        else:
+            print("Invalid path.")
 
 
 if __name__ == "__main__":

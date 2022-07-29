@@ -105,3 +105,5 @@ Python утилиты для решения различных задач.
   ```
 
   </details>
+
+- [specific__quotes.py](https://github.com/Harrix/harrix-pyutilities/blob/main/src/specific__quotes.py): Скрипты для оформления Markdown цитат.

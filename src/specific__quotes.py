@@ -90,7 +90,7 @@ def add_author_book(filename: Path | str) -> None:
             title = lines_quote[-1][3:]
             del lines_quote[-2:]
         quote_fix = "\n".join([f"> {line}".rstrip() for line in lines_quote])
-        quotes_fix.append(f"{quote_fix}\n>\n> -- _{author} - {title}_")
+        quotes_fix.append(f"{quote_fix}\n>\n> -- _{author}, {title}_")
     note += "\n\n---\n\n".join(quotes_fix) + "\n"
     if note_initial != note:
         file.write_text(note, encoding="utf8")
@@ -175,7 +175,7 @@ def add_author_book_evernote(filename: Path | str) -> None:
             title = lines_quote[0][1:]
             del lines_quote[0]
         quote_fix = "\n".join([f"> {line}".rstrip() for line in lines_quote])
-        quotes_fix.append(f"{quote_fix}\n>\n> -- _{author} - {title}_")
+        quotes_fix.append(f"{quote_fix}\n>\n> -- _{author}, {title}_")
     note += "\n\n---\n\n".join(quotes_fix) + "\n"
     if note_initial != note:
         file.write_text(note, encoding="utf8")

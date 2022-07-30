@@ -176,7 +176,7 @@ def add_author_book_evernote(filename: Path | str) -> None:
             del lines_quote[0]
         quote_fix = "\n".join([f"> {line}".rstrip() for line in lines_quote])
         quotes_fix.append(f"{quote_fix}\n>\n> -- _{author} - {title}_")
-    note += "\n\n---\n\n".join(quotes_fix[]) + "\n"
+    note += "\n\n---\n\n".join(quotes_fix) + "\n"
     if note_initial != note:
         file.write_text(note, encoding="utf8")
         print(f"\x1b[34mFix {filename}\x1b[0m")

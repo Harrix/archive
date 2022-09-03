@@ -129,5 +129,4 @@ def main():
 
 
 if __name__ == "__main__":
-    # main()
-    help(modify_all_md_in_folder)
+    main()

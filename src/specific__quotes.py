@@ -26,7 +26,7 @@ def add_author_book(filename: Path | str) -> None:
 
     - `None`.
 
-       Example file `C:/test/Name_Surname/Title_of_book/Title_of_book.md`:
+    Example file `C:/test/Name_Surname/Title_of_book/Title_of_book.md`:
 
     ```markdown
     # Title of book

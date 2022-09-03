@@ -76,33 +76,4 @@ The package [argparse](https://docs.python.org/3/library/argparse.html) is used.
 
 These utilities are made for my specific tasks. The package `argparse` is not used.
 
-- [check_featured_image.py](https://github.com/Harrix/harrix-pyutilities/blob/main/src/specific__field_list_analysis.py): The script analyzes a field list from Markdown.
-
-  <details>
-  <summary>Example of a field list</summary>
-
-  ```markdown
-  # Title
-
-  ---
-
-  **Title of the field list** <!-- !list-as-table -->
-
-  <!-- !item -->
-
-  - **Field1:** Name1
-  - **Field2:** One Two
-  - **Field3:** 1
-
-  <!-- !item -->
-
-  - **Field1:** Name2
-  - **Field2:** Three Four
-  - **Field3:** 2
-
-  ---
-  ```
-
-  </details>
-
 - [specific__quotes.py](https://github.com/Harrix/harrix-pyutilities/blob/main/src/specific__quotes.py): Scripts for the design of Markdown quotes.

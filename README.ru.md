@@ -77,33 +77,4 @@ Python утилиты для решения различных задач.
 
 Эти утилиты созданы для моих конкретных задач. Пакет `argparse` не используется.
 
-- [check_featured_image.py](https://github.com/Harrix/harrix-pyutilities/blob/main/src/specific__field_list_analysis.py): Анализирует таблицу в виде списка из Markdown.
-
-  <details>
-  <summary>Пример таблицы в виде списка</summary>
-
-  ```markdown
-  # Title
-
-  ---
-
-  **Title of the field list** <!-- !list-as-table -->
-
-  <!-- !item -->
-
-  - **Field1:** Name1
-  - **Field2:** One Two
-  - **Field3:** 1
-
-  <!-- !item -->
-
-  - **Field1:** Name2
-  - **Field2:** Three Four
-  - **Field3:** 2
-
-  ---
-  ```
-
-  </details>
-
 - [specific__quotes.py](https://github.com/Harrix/harrix-pyutilities/blob/main/src/specific__quotes.py): Скрипты для оформления Markdown цитат.

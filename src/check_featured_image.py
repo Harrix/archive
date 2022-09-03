@@ -48,7 +48,7 @@ import argparse
 from pathlib import Path
 
 
-def check_featured_image(path: str) -> None:
+def check_featured_image(path: str) -> bool:
     """
     This function check files `featured_image.*` in every child directory.
     Not recursively.

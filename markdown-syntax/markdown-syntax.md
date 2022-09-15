@@ -2,6 +2,7 @@
 categories: [it, program]
 tags: [Markdown, VSCode, GitHub, Obsidian]
 draft: true
+latex: true
 ---
 
 # Markdown синтаксис
@@ -638,3 +639,5 @@ Github может отображать сноски[^1]. Об этом можн�
 ```
 
 [![Rick Astley - Never Gonna Give You Up](https://img.youtube.com/vi/dQw4w9WgXcQ/0.jpg)](https://www.youtube.com/watch?v=dQw4w9WgXcQ)
+
+`\` в конце строк как break

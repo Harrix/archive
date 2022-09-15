@@ -1192,6 +1192,90 @@ pip install black
 
 Попробуйте создать Markdown файл `test.md` с таким [содержимым](files/test.md):
 
+```markdown
+---
+date: 2022-09-15
+categories: []
+tags: []
+latex: true
+draft: true
+---
+
+# Markdown test
+
+## Подзаголовок
+
+![Терминатор](terminator.svg)
+
+![Пират](pirate.png)
+
+_Выделение_ курсивом. **Выделение** жирным начертанием. **_Выделение_** курсивом и жирным начертанием одновременно. ~~Зачеркнутый текст~~.
+
+Код `int x = 0;` объявляет переменную `x`.
+
+Команда `File` → `New File` создает новый файл.
+
+Пример ненумерованного списка:
+
+- пункт 1;
+- пункт 2;
+- пункт 3.
+
+Ссылка: <https://github.com>.
+
+Ссылка: [GitHub](https://github.com).
+
+![Логотип GitHub](https://github.githubassets.com/images/modules/site/icons/footer/github-logo.svg)
+
+Кусок кода:
+
+```cpp
+#include <iostream>
+
+using namespace std;
+
+int main() {
+
+  return 0;
+}
+```
+
+Пример таблицы с двумя столбцами:
+
+| №   | Высота (мм) |
+| --- | ----------- |
+| 1   | 23          |
+| 2   | 52          |
+| 3   | 123         |
+
+Встроенная формула: $c = a^2$. И еще одна формула $\sqrt{\frac{a}{b}}$.
+
+Пример формулы:
+
+$$
+\tag{1} x+y^{2x}
+$$
+
+Пример более сложной формулы:
+
+$$
+\def\arraystretch{1.5}
+   \begin{array}{c:c:c}
+   a & b & c \\ \hline
+   d & e & f \\
+   \hdashline
+   g & h & i
+\end{array}
+$$
+
+| Дерево | Возраст |
+|--------|---------|
+| Яблоня | 20      |
+| Липа   | 12      |
+| Ель    | 55      |
+
+```
+
 ![Markdown файл с формулами и таблицей](img/markdown_03.png)
 
 Слева внизу есть раздел `Outline`, при раскрытии которого вы увидите структуру вашего Markdown файла:
@@ -1373,3 +1457,9 @@ VScode спросит стоит ли открывать всякие ссылк
 ![Выход из аккаунта](img/settings-sync_11.png)
 
 TODO бэкап настроек https://code.visualstudio.com/docs/editor/settings-sync
+
+
+TODO shift + alt выделение мышкой нескольких строк
+
+
+TODO Если не работает ctrl v в терминале то правый клик мышкой

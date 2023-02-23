@@ -2,6 +2,8 @@
 categories: [it, program]
 tags: [VSCode, Текстовой редактор, FAQ, Установка]
 draft: true
+author: Anton Sergienko
+author-email: anton.b.sergienko@gmail.com
 ---
 
 # Установка и настройка Visual Studio Code

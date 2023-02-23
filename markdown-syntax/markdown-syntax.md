@@ -3,6 +3,8 @@ categories: [it, program]
 tags: [Markdown, VSCode, GitHub, Obsidian]
 draft: true
 latex: true
+author: Anton Sergienko
+author-email: anton.b.sergienko@gmail.com
 ---
 
 # Markdown синтаксис

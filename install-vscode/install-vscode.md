@@ -13,6 +13,8 @@ lang: ru
 
 # Установка и настройка Visual Studio Code
 
+![Featured image](featured-image.svg)
+
 ## Ссылки
 
 - [Stable Build](https://code.visualstudio.com/).

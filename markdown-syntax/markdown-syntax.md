@@ -14,6 +14,8 @@ lang: ru
 
 # Markdown синтаксис
 
+![Featured image](featured-image.svg)
+
 Подробное описание синтаксиса Markdown, проверенного на нескольких платформах: GitHub, VSCode, Obsidian, Markor.
 
 <details>

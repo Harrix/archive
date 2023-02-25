@@ -8,6 +8,7 @@ license: CC BY 4.0
 license-url: https://github.com/Harrix/harrix.dev/blob/main/LICENSE.md
 url-src: https://github.com/Harrix/harrix.dev-blog-2022/blob/main/install-vscode/install-vscode.md
 url: https://harrix.dev/ru/blog/2022/install-vscode/
+lang: ru
 ---
 
 # Установка и настройка Visual Studio Code

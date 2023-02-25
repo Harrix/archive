@@ -215,11 +215,17 @@ lang: ru
 
 ![Изображение](img/image.png)
 
+_Рисунок 1 — Изображение_
+
 [![Изображение со ссылкой](img/image.png)](https://github.com)
 
 ![SVG изображение](img/image.svg)
 
+_Рисунок 2 — SVG изображение_
+
 ![Логотип GitHub](https://github.githubassets.com/images/modules/site/icons/footer/github-logo.svg)
+
+_Рисунок 3 — Логотип GitHub_
 
 ### Код
 

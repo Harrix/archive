@@ -1,13 +1,13 @@
 {
-"attribution":[
-  {
-    "title": "Markdown-mark.svg",
-    "permalink": "https://commons.wikimedia.org/wiki/File:Markdown-mark.svg",
-    "permalink-date": "2019-03-19",
-    "author": "Dustin Curtis",
-    "author-site": "https://github.com/dcurtis",
-    "license": "CC0",
-    "license-url": "https://github.com/dcurtis/markdown-mark/blob/master/LICENSE"
-  }
-]
+  "attribution": [
+    {
+      "title": "Markdown-mark.svg",
+      "permalink": "https://commons.wikimedia.org/wiki/File:Markdown-mark.svg",
+      "permalink-date": "2019-03-19",
+      "author": "Dustin Curtis",
+      "author-site": "https://github.com/dcurtis",
+      "license": "CC0",
+      "license-url": "https://github.com/dcurtis/markdown-mark/blob/master/LICENSE"
+    }
+  ]
 }

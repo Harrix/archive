@@ -7,7 +7,7 @@ author-email: anton.b.sergienko@gmail.com
 license: CC BY 4.0
 license-url: https://github.com/Harrix/harrix.dev/blob/main/LICENSE.md
 url-src: https://github.com/Harrix/harrix.dev-blog-2022/blob/main/install-vscode/install-vscode.md
-url: https://harrix.dev/ru/blog/2022/install-vscode/
+permalink: https://harrix.dev/ru/blog/2022/install-vscode/
 lang: ru
 ---
 
@@ -310,19 +310,19 @@ _Рисунок 37 — Увеличенный текст_
 
 ```json
 {
-    "workbench.colorTheme": "FlatUI",
-    "workbench.iconTheme": "material-icon-theme",
-    "files.autoSave": "afterDelay",
-    "editor.wordWrap": "on",
-    "editor.rulers": [80, 120],
-    "editor.fontFamily": "'JetBrains Mono','Roboto Mono', 'Fira Code', 'Courier New', monospace",
-    "explorer.confirmDelete": false,
-    "files.associations": {
-        "*.inc": "ini"
-    },
-    "files.trimTrailingWhitespace": true,
-    "explorer.confirmDragAndDrop": false,
-    "editor.mouseWheelZoom": true,
+  "workbench.colorTheme": "FlatUI",
+  "workbench.iconTheme": "material-icon-theme",
+  "files.autoSave": "afterDelay",
+  "editor.wordWrap": "on",
+  "editor.rulers": [80, 120],
+  "editor.fontFamily": "'JetBrains Mono','Roboto Mono', 'Fira Code', 'Courier New', monospace",
+  "explorer.confirmDelete": false,
+  "files.associations": {
+    "*.inc": "ini"
+  },
+  "files.trimTrailingWhitespace": true,
+  "explorer.confirmDragAndDrop": false,
+  "editor.mouseWheelZoom": true
 }
 ```
 
@@ -645,80 +645,60 @@ _Рисунок 70 — Пример использования сниппета_
 
 ```json
 {
-    "Insert «»": {
-      "prefix": "<<>>",
-      "body": [
-        "«»"
-      ]
-    },
-    "Insert «": {
-      "prefix": "<<",
-      "body": [
-        "«"
-      ]
-    },
-    "Insert »": {
-      "prefix": ">>",
-      "body": [
-        "»"
-      ]
-    },
-    "Insert ©": {
-      "prefix": "(c)",
-      "body": [
-        "©"
-      ]
-    },
-    "Insert ×": {
-      "prefix": "x",
-      "body": [
-        "×"
-      ]
-    },
-    "Insert →": {
-      "prefix": "->",
-      "body": [
-        "→"
-      ]
-    },
-    "Insert …": {
-      "prefix": ",,,",
-      "body": [
-        "…"
-      ]
-    },
-    "Insert em dash (век живи — век учись)": {
-      "prefix": "---",
-      "body": [
-        "—"
-      ]
-    },
-    "Insert en dash (2010–2018)": {
-      "prefix": "--",
-      "body": [
-        "–"
-      ]
-    },
-    "Insert keyboard shortcut": {
-      "prefix": "``",
-      "body": [
-        "`` → ``"
-      ]
-    },
-    "Insert HTML": {
-      "prefix": "doctype",
-      "body": [
-        "<!DOCTYPE html>",
-        "<html>",
-        "  <head>",
-        "    <meta charset=\"utf-8\">",
-        "    <title></title>",
-        "  </head>",
-        "  <body>",
-        "  </body>",
-        "</html>"
-      ],
-      }
+  "Insert «»": {
+    "prefix": "<<>>",
+    "body": ["«»"]
+  },
+  "Insert «": {
+    "prefix": "<<",
+    "body": ["«"]
+  },
+  "Insert »": {
+    "prefix": ">>",
+    "body": ["»"]
+  },
+  "Insert ©": {
+    "prefix": "(c)",
+    "body": ["©"]
+  },
+  "Insert ×": {
+    "prefix": "x",
+    "body": ["×"]
+  },
+  "Insert →": {
+    "prefix": "->",
+    "body": ["→"]
+  },
+  "Insert …": {
+    "prefix": ",,,",
+    "body": ["…"]
+  },
+  "Insert em dash (век живи — век учись)": {
+    "prefix": "---",
+    "body": ["—"]
+  },
+  "Insert en dash (2010–2018)": {
+    "prefix": "--",
+    "body": ["–"]
+  },
+  "Insert keyboard shortcut": {
+    "prefix": "``",
+    "body": ["`` → ``"]
+  },
+  "Insert HTML": {
+    "prefix": "doctype",
+    "body": [
+      "<!DOCTYPE html>",
+      "<html>",
+      "  <head>",
+      "    <meta charset=\"utf-8\">",
+      "    <title></title>",
+      "  </head>",
+      "  <body>",
+      "  </body>",
+      "</html>"
+    ]
+  }
 }
 ```
 
@@ -728,12 +708,10 @@ _Рисунок 70 — Пример использования сниппета_
 
 ```json
 {
-    "Insert image": {
-      "prefix": "img",
-      "body": [
-        "![](img/.png)"
-      ]
-    }
+  "Insert image": {
+    "prefix": "img",
+    "body": ["![](img/.png)"]
+  }
 }
 ```
 
@@ -868,15 +846,13 @@ _Рисунок 87 — Выбор плагина для форматирован
 Покажем, как работает код. Например, есть такой код:
 
 ```html
-<!DOCTYPE                html>
+<!DOCTYPE html>
 <html>
-                <head>
-    <meta
-    charset=    "utf-8">
+  <head>
+    <meta charset="utf-8" />
     <title></title>
-                </head>
-          <body>
-  </body>
+  </head>
+  <body></body>
 </html>
 ```
 
@@ -1181,7 +1157,7 @@ _Рисунок 116 — Запуск скрипта в output_
 
 #### Запуск в Jupyter
 
-Официальная документация по работе  Jupyter: [Jupyter Notebooks in VS Code](https://code.visualstudio.com/docs/datascience/jupyter-notebooks).
+Официальная документация по работе Jupyter: [Jupyter Notebooks in VS Code](https://code.visualstudio.com/docs/datascience/jupyter-notebooks).
 
 Для работы с Jupyter нужен пакет [Jupyter](https://marketplace.visualstudio.com/items?itemName=ms-toolsai.jupyter), который ставится автоматически при установке пакета [Python](https://marketplace.visualstudio.com/items?itemName=ms-python.python).
 
@@ -1507,7 +1483,7 @@ _Рисунок 153 — Markdown файл и его превью_
 
 Попробуйте создать Markdown файл `test.md` с таким [содержимым](files/test.md):
 
-```markdown
+````markdown
 ---
 date: 2022-09-15
 categories: []
@@ -1554,6 +1530,7 @@ int main() {
   return 0;
 }
 ```
+````
 
 Пример таблицы с двумя столбцами:
 
@@ -1584,12 +1561,12 @@ $$
 $$
 
 | Дерево | Возраст |
-|--------|---------|
+| ------ | ------- |
 | Яблоня | 20      |
 | Липа   | 12      |
 | Ель    | 55      |
 
-```
+````
 
 ![Markdown файл с формулами и таблицей](img/markdown_03.png)
 
@@ -1737,7 +1714,7 @@ TODO https://marketplace.visualstudio.com/items?itemName=marp-team.marp-vscode
     },
     "code-runner.runInTerminal": true,
 }
-```
+````
 
 TODO
 
@@ -1815,8 +1792,6 @@ _Рисунок 174 — Выход из аккаунта_
 
 TODO бэкап настроек https://code.visualstudio.com/docs/editor/settings-sync
 
-
 TODO shift + alt выделение мышкой нескольких строк
-
 
 TODO Если не работает ctrl v в терминале то правый клик мышкой

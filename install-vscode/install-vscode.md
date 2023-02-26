@@ -1,7 +1,7 @@
 ---
 categories: [it, program]
 tags: [VSCode, Текстовой редактор, FAQ, Установка]
-draft: true
+published: false
 author: Anton Sergienko
 author-email: anton.b.sergienko@gmail.com
 license: CC BY 4.0
@@ -1489,7 +1489,7 @@ date: 2022-09-15
 categories: []
 tags: []
 latex: true
-draft: true
+published: false
 ---
 
 # Markdown test

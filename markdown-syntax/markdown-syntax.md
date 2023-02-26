@@ -1,7 +1,7 @@
 ---
 categories: [it, program]
 tags: [Markdown, VSCode, GitHub, Obsidian]
-draft: true
+published: false
 latex: true
 author: Anton Sergienko
 author-email: anton.b.sergienko@gmail.com

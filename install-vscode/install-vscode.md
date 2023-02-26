@@ -1161,7 +1161,7 @@ _Рисунок 116 — Запуск скрипта в output_
 
 Для работы с Jupyter нужен пакет [Jupyter](https://marketplace.visualstudio.com/items?itemName=ms-toolsai.jupyter), который ставится автоматически при установке пакета [Python](https://marketplace.visualstudio.com/items?itemName=ms-python.python).
 
-Создать новый блокнот Jupyter можно через `F1` → `Jupyter: Create New Blank  Notebook`:
+Создать новый блокнот Jupyter можно через `F1` → `Jupyter: Create New Blank Notebook`:
 
 ![Создание нового блокнота](img/run-py-jupyter_01.png)
 

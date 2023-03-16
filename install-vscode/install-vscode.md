@@ -1534,7 +1534,6 @@ int main() {
   return 0;
 }
 ```
-````
 
 Пример таблицы с двумя столбцами:
 
@@ -1569,7 +1568,6 @@ $$
 | Яблоня | 20      |
 | Липа   | 12      |
 | Ель    | 55      |
-
 ````
 
 ![Markdown файл с формулами и таблицей](img/markdown_03.png)
@@ -1616,8 +1614,6 @@ _Рисунок 159 — Контекстное меню_
 
 _Рисунок 160 — HTML файл_
 
-
-
 TODO Markdown Preview Enhanced
 
 ### markdownlint
@@ -1658,67 +1654,52 @@ TODO https://marketplace.visualstudio.com/items?itemName=marp-team.marp-vscode
 
 ```json
 {
-    "workbench.iconTheme": "material-icon-theme",
-    "files.autoSave": "afterDelay",
-    "editor.wordWrap": "on",
-    "editor.rulers": [80, 88, 120],
-    "editor.fontFamily": "'JetBrains Mono','Roboto Mono', 'Fira Code', 'Courier New', monospace",
-    "explorer.confirmDelete": false,
-    "files.associations": {
-        "*.inc": "ini"
-    },
-    "files.trimTrailingWhitespace": true,
-    "explorer.confirmDragAndDrop": false,
-    "editor.mouseWheelZoom": true,
-    "cSpell.language": "en,ru",
-    "cSpell.enabled": true,
-    "prettier.printWidth": 120,
-    "[html]": {
-        "editor.defaultFormatter": "esbenp.prettier-vscode"
-    },
-    "[jsonc]": {
-        "editor.defaultFormatter": "esbenp.prettier-vscode"
-    },
-    "[javascript]": {
-        "editor.defaultFormatter": "esbenp.prettier-vscode"
-    },
-    "gutterpreview.imagePreviewMaxHeight": 200,
-    "colorize.languages": [
-        "css",
-        "scss",
-        "sass",
-        "javascript",
-        "html",
-        "markdown"
-    ],
-    "security.workspace.trust.untrustedFiles": "open",
-    "[markdown]": {
-        "editor.defaultFormatter": "esbenp.prettier-vscode"
-    },
-    "python.insidersChannel": "daily",
-    "python.formatting.provider": "black",
-    "todo-tree.general.tags": [
-        "BUG",
-        "HACK",
-        "FIXME",
-        "TODO",
-        "XXX",
-        "[ ]",
-        "[x]"
-    ],
-    "todo-tree.regex.regex": "(//|#|<!--|;|/\\*|^|^\\s*(-|\\d+.))\\s*($TAGS)",
-    "workbench.colorTheme": "FlatUI",
-    "cSpell.customDictionaries": {
-        "custom-dictionary-user": {
-            "name": "custom-dictionary-user",
-            "path": "~/.cspell/custom-dictionary-user.txt",
-            "addWords": true,
-            "scope": "user"
-        }
-    },
-    "code-runner.runInTerminal": true,
+  "workbench.iconTheme": "material-icon-theme",
+  "files.autoSave": "afterDelay",
+  "editor.wordWrap": "on",
+  "editor.rulers": [80, 88, 120],
+  "editor.fontFamily": "'JetBrains Mono','Roboto Mono', 'Fira Code', 'Courier New', monospace",
+  "explorer.confirmDelete": false,
+  "files.associations": {
+    "*.inc": "ini"
+  },
+  "files.trimTrailingWhitespace": true,
+  "explorer.confirmDragAndDrop": false,
+  "editor.mouseWheelZoom": true,
+  "cSpell.language": "en,ru",
+  "cSpell.enabled": true,
+  "prettier.printWidth": 120,
+  "[html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "gutterpreview.imagePreviewMaxHeight": 200,
+  "colorize.languages": ["css", "scss", "sass", "javascript", "html", "markdown"],
+  "security.workspace.trust.untrustedFiles": "open",
+  "[markdown]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "python.insidersChannel": "daily",
+  "python.formatting.provider": "black",
+  "todo-tree.general.tags": ["BUG", "HACK", "FIXME", "TODO", "XXX", "[ ]", "[x]"],
+  "todo-tree.regex.regex": "(//|#|<!--|;|/\\*|^|^\\s*(-|\\d+.))\\s*($TAGS)",
+  "workbench.colorTheme": "FlatUI",
+  "cSpell.customDictionaries": {
+    "custom-dictionary-user": {
+      "name": "custom-dictionary-user",
+      "path": "~/.cspell/custom-dictionary-user.txt",
+      "addWords": true,
+      "scope": "user"
+    }
+  },
+  "code-runner.runInTerminal": true
 }
-````
+```
 
 TODO
 

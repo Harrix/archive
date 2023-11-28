@@ -2,6 +2,7 @@
 date: 2023-11-27
 categories: [it, programming]
 tags: [Python, VScode]
+published: false
 author: Anton Sergienko
 author-email: anton.b.sergienko@gmail.com
 license: CC BY 4.0

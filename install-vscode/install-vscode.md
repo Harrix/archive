@@ -1,4 +1,5 @@
 ---
+date: 2023-11-28
 categories: [it, program]
 tags: [VSCode, Текстовой редактор, FAQ, Установка]
 published: false

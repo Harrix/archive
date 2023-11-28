@@ -1,4 +1,5 @@
 ---
+date: 2023-11-28
 categories: [it, program]
 tags: [Markdown, VSCode, GitHub, Obsidian]
 published: false

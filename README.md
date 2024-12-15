@@ -6,7 +6,7 @@ Minimize images, including SVG, PNG, JPG via Node.js.
 
 Example:
 
-```console
+```shell
 npm run opt
 npm run opt C:\Users\sergi\Desktop\bl
 npm run opt "C:\\Users\\sergi\\Desktop\\bl"
